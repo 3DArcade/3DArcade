@@ -100,7 +100,7 @@ namespace SK.Libretro
 
         public void DeactivateAudio()
         {
-            AudioProcessor.DeInit();
+            AudioProcessor?.DeInit();
             AudioProcessor = null;
         }
 
