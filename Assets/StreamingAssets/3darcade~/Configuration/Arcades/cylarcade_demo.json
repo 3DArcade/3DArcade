@@ -1,0 +1,1150 @@
+{
+    "descriptiveName": "CylArcade Demo",
+    "id": "cylarcade_demo",
+    "arcadeType": "CylArcade",
+    "gameLauncherMethod": "External",
+    "externalModels": false,
+    "showFPS": false,
+    "camera": {
+        "position": {
+            "x": -0.7959365248680115,
+            "y": 0.39999842643737795,
+            "z": -0.8767662048339844
+        },
+        "rotation": {
+            "x": 0.05678074434399605,
+            "y": -0.17207157611846925,
+            "z": 0.00993531383574009,
+            "w": 0.9833964705467224
+        },
+        "height": 1.189368724822998,
+        "aspectRatio": 0.0,
+        "orthographic": false,
+        "fieldOfView": 60.0,
+        "nearClipPlane": 0.10000000149011612,
+        "farClipPlane": 100.0,
+        "viewportRect": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+        },
+        "allowDynamicResolution": false
+    },
+    "modelSharedProperties": {
+        "spatialSound": false,
+        "videoOnModelEnabled": "VisibleUnobstructed",
+        "renderSettings": {
+            "ambientIntensity": 3.0,
+            "marqueeIntensity": 1.600000023841858,
+            "screenRasterIntensity": 2.4000000953674318,
+            "screenVectorIntenstity": 6.0,
+            "screenPinballIntensity": 1.0
+        }
+    },
+    "fpsArcadeProperties": [],
+    "cylArcadeProperties": [
+        {
+            "gamePosition": 8,
+            "sprockets": 19,
+            "selectedSprocket": 9,
+            "radius": 5,
+            "modelSpacing": 0.25,
+            "modelWidthAxisY": false,
+            "modelIsKinemtatic": true,
+            "cylArcadeOnScreenSelectedModel": true,
+            "cameraAspectRatio": 0.0,
+            "cameraTranslation": 0.514421284198761,
+            "cameraMinTranslation": -0.699999988079071,
+            "cameraMaxTranslation": 0.699999988079071,
+            "cameraTranslationDirectionAxisY": false,
+            "cameraTranslationReverse": false,
+            "cameraTranslationdamping": 4.0,
+            "cameraRotationdamping": 8.0,
+            "cameraLocalEularAngleX": 6.60911226272583,
+            "cameraLocalEularAngleY": 180.0,
+            "cameraLocalEularAngleZ": 0.0,
+            "cameraLocalEularAngleRotation": true,
+            "cameraLocalDefaultEularAngleRotation": 0.0,
+            "cameraLocalMinEularAngleRotation": -15.0,
+            "cameraLocalMaxEularAngleRotation": 15.0,
+            "mouseLook": true,
+            "mouseLookAxisY": true,
+            "mouseLookReverse": true,
+            "cameraLocalTranslation": {
+                "x": 0.0,
+                "y": 1.600000023841858,
+                "z": 0.0
+            },
+            "sprocketLocalEularAngleX": 0.0,
+            "sprocketLocalEularAngleY": 180.0,
+            "sprocketLocalEularAngleZ": 0.0
+        }
+    ],
+    "zones": [],
+    "gameModelList": [
+        {
+            "descriptiveName": "Berzerk (set 1)",
+            "id": "berzerk",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.8969347476959229,
+                "y": 0.0,
+                "z": 4.918892860412598
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9959364533424377,
+                "z": 0.0,
+                "w": -0.09005951136350632
+            },
+            "scale": {
+                "x": 1.0000122785568238,
+                "y": 1.0,
+                "z": 1.0000122785568238
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Stern",
+            "year": "1980",
+            "genre": "Maze / Shooter Small",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Asteroids (rev 2)",
+            "id": "asteroid",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 1.7646912336349488,
+                "y": 0.0,
+                "z": 4.6782331466674809
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9837801456451416,
+                "z": 0.0,
+                "w": -0.1793786585330963
+            },
+            "scale": {
+                "x": 1.0000083446502686,
+                "y": 1.0,
+                "z": 1.0000083446502686
+            },
+            "screen": "vector horizontal",
+            "manufacturer": "Atari",
+            "year": "1979",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Gyruss (Konami)",
+            "id": "gyruss",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.575279474258423,
+                "y": 0.0,
+                "z": 4.285783290863037
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9636277556419373,
+                "z": 0.0,
+                "w": -0.2672484517097473
+            },
+            "scale": {
+                "x": 1.000016212463379,
+                "y": 1.0,
+                "z": 1.000016212463379
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1983",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Missile Command (set 1)",
+            "id": "missile",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.3031952381134035,
+                "y": 0.0,
+                "z": 3.75351881980896
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9356024265289307,
+                "z": 0.0,
+                "w": -0.35305550694465639
+            },
+            "scale": {
+                "x": 1.0000072717666627,
+                "y": 1.0,
+                "z": 1.0000072717666627
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Atari",
+            "year": "1980",
+            "genre": "Shooter / Command",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAudio",
+                    "animationProperties": [],
+                    "audioProperties": [
+                        {
+                            "name": "Play_On_Missile",
+                            "priority": 128,
+                            "volume": 1.0,
+                            "loop": true,
+                            "playOnAwake": false,
+                            "Randomize": false,
+                            "spatialBlend": 1.0,
+                            "spatialize": true,
+                            "minDistance": 4.0,
+                            "maxDistance": 200.0,
+                            "audioFiles": [
+                                {
+                                    "file": "",
+                                    "path": "/3darcade~/Configuration/Media/Default/Sounds/nummers/"
+                                }
+                            ]
+                        }
+                    ],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PauseAudio",
+                    "animationProperties": [],
+                    "audioProperties": [
+                        {
+                            "name": "Play_On_Missile",
+                            "priority": 0,
+                            "volume": 0.0,
+                            "loop": false,
+                            "playOnAwake": false,
+                            "Randomize": false,
+                            "spatialBlend": 0.0,
+                            "spatialize": false,
+                            "minDistance": 0.0,
+                            "maxDistance": 0.0,
+                            "audioFiles": [
+                                {
+                                    "file": "",
+                                    "path": "/3darcade~/Configuration/Media/Default/Sounds/nummers/"
+                                }
+                            ]
+                        }
+                    ],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Super Zaxxon",
+            "id": "szaxxon",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.9236690998077394,
+                "y": 0.0,
+                "z": 3.0991647243499758
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.8999536037445068,
+                "z": 0.0,
+                "w": -0.4359857439994812
+            },
+            "scale": {
+                "x": 1.0000052452087403,
+                "y": 1.0,
+                "z": 1.0000052452087403
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Sega",
+            "year": "1982",
+            "genre": "Shooter / Flying Diagonal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Time Pilot",
+            "id": "timeplt",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.416010856628418,
+                "y": 0.0,
+                "z": 2.3449621200561525
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.857027530670166,
+                "z": 0.0,
+                "w": -0.5152706503868103
+            },
+            "scale": {
+                "x": 0.9999998807907105,
+                "y": 1.0,
+                "z": 0.9999998807907105
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1982",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Zoo Keeper (set 1)",
+            "id": "zookeep",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.758608341217041,
+                "y": 0.0,
+                "z": 1.5348106622695923
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.8083817362785339,
+                "z": 0.0,
+                "w": -0.5886586308479309
+            },
+            "scale": {
+                "x": 1.0000033378601075,
+                "y": 1.0,
+                "z": 1.0000033378601075
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Taito America Corporation",
+            "year": "1982",
+            "genre": "",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelCollisionEnter",
+                    "triggerSource": [],
+                    "triggerTarget": [
+                        "pi"
+                    ],
+                    "triggerAction": "SetActiveEnabled",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelCollisionEnter",
+                    "triggerSource": [],
+                    "triggerTarget": [
+                        "pi"
+                    ],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "penguin_path_2",
+                            "loop": true,
+                            "speed": 0.10000000149011612,
+                            "playMode": "StopSameLayer",
+                            "layer": 1
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Donkey Kong (US set 1)",
+            "id": "dkong",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "none",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.953933238983154,
+                "y": 0.0,
+                "z": 0.6771588325500488
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.7534692287445068,
+                "z": 0.0,
+                "w": -0.6574832201004028
+            },
+            "scale": {
+                "x": 1.0000030994415284,
+                "y": 1.0,
+                "z": 1.0000030994415284
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Nintendo of America",
+            "year": "1981",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Vanguard (SNK)",
+            "id": "vanguardx",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.9950432777404789,
+                "y": 0.0,
+                "z": -0.22258108854293824
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.6911887526512146,
+                "z": 0.0,
+                "w": -0.7226743102073669
+            },
+            "scale": {
+                "x": 1.0000133514404297,
+                "y": 1.0,
+                "z": 1.0000133514404297
+            },
+            "screen": "raster vertical",
+            "manufacturer": "SNK",
+            "year": "1981",
+            "genre": "Shooter / Flying",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Tutankham (Stern)",
+            "id": "tutankst",
+            "idParent": "tutankhm",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.874069690704346,
+                "y": 0.0,
+                "z": -1.115098476409912
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.6232898235321045,
+                "z": 0.0,
+                "w": -0.7819910049438477
+            },
+            "scale": {
+                "x": 1.0000040531158448,
+                "y": 1.0,
+                "z": 1.0000040531158448
+            },
+            "screen": "raster vertical",
+            "manufacturer": "[Konami] (Stern license)",
+            "year": "1982",
+            "genre": "Maze / Shooter Large",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Tron (set 1)",
+            "id": "tron",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.594937801361084,
+                "y": 0.0,
+                "z": -1.9714322090148926
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.5503242611885071,
+                "z": 0.0,
+                "w": -0.8349511027336121
+            },
+            "scale": {
+                "x": 1.0000033378601075,
+                "y": 1.0,
+                "z": 1.0000033378601075
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Bally Midway",
+            "year": "1982",
+            "genre": "Multiplay",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Smash T.V. (rev 8.00)",
+            "id": "smashtv",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 4.125291347503662,
+                "y": 0.0,
+                "z": -2.825237989425659
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.4663434624671936,
+                "z": 0.0,
+                "w": -0.8846037983894348
+            },
+            "scale": {
+                "x": 1.0000039339065552,
+                "y": 1.0,
+                "z": 1.0000039339065552
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1990",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Scramble",
+            "id": "scramble",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.498957633972168,
+                "y": 0.0,
+                "z": -3.571735382080078
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.3779239058494568,
+                "z": 0.0,
+                "w": -0.9258366823196411
+            },
+            "scale": {
+                "x": 1.0000007152557374,
+                "y": 1.0,
+                "z": 1.0000007152557374
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1981",
+            "genre": "Shooter / Flying Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "R-Type (Japan)",
+            "id": "rtype",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.8014769554138185,
+                "y": 0.0,
+                "z": -4.1414642333984379
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.29300785064697268,
+                "z": 0.0,
+                "w": -0.9561101198196411
+            },
+            "scale": {
+                "x": 1.0000005960464478,
+                "y": 1.0,
+                "z": 1.0000005960464478
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Irem",
+            "year": "1987",
+            "genre": "Shooter / Flying Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pooyan",
+            "id": "pooyan",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.013108491897583,
+                "y": 0.0,
+                "z": -4.576832294464111
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.20571039617061616,
+                "z": 0.0,
+                "w": -0.9786129593849182
+            },
+            "scale": {
+                "x": 1.0000011920928956,
+                "y": 1.0,
+                "z": 1.0000011920928956
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1982",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pole Position",
+            "id": "polepos",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 1.1594290733337403,
+                "y": 0.0,
+                "z": -4.863715171813965
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.1167411133646965,
+                "z": 0.0,
+                "w": -0.9931623935699463
+            },
+            "scale": {
+                "x": 1.000000238418579,
+                "y": 1.0,
+                "z": 1.000000238418579
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Namco",
+            "year": "1982",
+            "genre": "Driving / Race (chase view)",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pac-Man (Midway)",
+            "id": "pacman",
+            "idParent": "puckman",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.2681345045566559,
+                "y": 0.0,
+                "z": -4.992805480957031
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.026823051273822786,
+                "z": 0.0,
+                "w": -0.9996402859687805
+            },
+            "scale": {
+                "x": 1.0000073909759522,
+                "y": 1.0,
+                "z": 1.0000073909759522
+            },
+            "screen": "raster vertical",
+            "manufacturer": "[Namco] (Midway license)",
+            "year": "1980",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelCollisionEnter",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAudio",
+                    "animationProperties": [],
+                    "audioProperties": [
+                        {
+                            "name": "Play_one",
+                            "priority": 0,
+                            "volume": 1.0,
+                            "loop": false,
+                            "playOnAwake": false,
+                            "Randomize": false,
+                            "spatialBlend": 0.0,
+                            "spatialize": false,
+                            "minDistance": 0.0,
+                            "maxDistance": 0.0,
+                            "audioFiles": [
+                                {
+                                    "file": "nummer1.wav",
+                                    "path": "/3darcade~/Configuration/Media/Default/Sounds/nummers/"
+                                }
+                            ]
+                        }
+                    ],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Marble Madness (set 1)",
+            "id": "marble",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.6318591237068176,
+                "y": 0.0,
+                "z": -4.9599151611328129
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": -0.06331300735473633,
+                "z": 0.0,
+                "w": -0.9979937672615051
+            },
+            "scale": {
+                "x": 1.0000004768371583,
+                "y": 1.0,
+                "z": 1.0000004768371583
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Atari Games",
+            "year": "1984",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Bomb Jack (set 1)",
+            "id": "bombjack",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -1.5113534927368165,
+                "y": 0.0,
+                "z": -4.766110897064209
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": -0.1529345065355301,
+                "z": 0.0,
+                "w": -0.9882363080978394
+            },
+            "scale": {
+                "x": 0.9999999403953552,
+                "y": 1.0,
+                "z": 0.9999999403953552
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Tehkan",
+            "year": "1984",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Mame",
+            "id": "mame",
+            "idParent": "",
+            "emulator": "defaultmenu",
+            "model": "default80vert",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.8969347476959229,
+                "y": 0.0,
+                "z": 4.918892860412598
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9959364533424377,
+                "z": 0.0,
+                "w": -0.09005951136350632
+            },
+            "scale": {
+                "x": 1.0000122785568238,
+                "y": 1.0,
+                "z": 1.0000122785568238
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Stern",
+            "year": "1980",
+            "genre": "Maze / Shooter Small",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "ArcadeConfiguration",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        }
+    ],
+    "arcadeModelList": [
+        {
+            "descriptiveName": "Cylinder Arcade",
+            "id": "cylinderarcade",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "defaultCylinder",
+            "grabbable": true,
+            "animatedTextureSpeed": 0.20000000298023225,
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        }
+    ],
+    "propModelList": [
+        {
+            "descriptiveName": "ping",
+            "id": "penguin",
+            "idParent": "",
+            "emulator": "",
+            "model": "penguin",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": -5.671187608413675e-8,
+                "y": 0.9999656081199646,
+                "z": 3.4580392593852596e-7,
+                "w": 0.00829676166176796
+            },
+            "scale": {
+                "x": 1.0000016689300538,
+                "y": 1.0,
+                "z": 1.0000016689300538
+            },
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "run",
+                            "loop": true,
+                            "speed": 1.0,
+                            "playMode": "StopSameLayer",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "walk",
+                            "loop": true,
+                            "speed": 1.0,
+                            "playMode": "StopSameLayer",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "circling",
+                            "loop": true,
+                            "speed": 0.10000000149011612,
+                            "playMode": "StopSameLayer",
+                            "layer": 1
+                        },
+                        {
+                            "name": "walk",
+                            "loop": true,
+                            "speed": 1.0,
+                            "playMode": "StopSameLayer",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": [
+                "pi"
+            ]
+        },
+        {
+            "descriptiveName": "Default Speaker",
+            "id": "defaultSpeaker",
+            "idParent": "",
+            "emulator": "",
+            "model": "defaultSpeaker",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.309999942779541,
+                "y": 2.9100000858306886,
+                "z": -1.5700000524520875
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5541354417800903,
+                "y": 0.5541354417800903,
+                "z": 0.5541354417800903
+            },
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAudio",
+                    "animationProperties": [],
+                    "audioProperties": [
+                        {
+                            "name": "Ambient Sound ",
+                            "priority": 0,
+                            "volume": 0.20000000298023225,
+                            "loop": true,
+                            "playOnAwake": false,
+                            "Randomize": false,
+                            "spatialBlend": 1.0,
+                            "spatialize": true,
+                            "minDistance": 4.0,
+                            "maxDistance": 200.0,
+                            "audioFiles": [
+                                {
+                                    "file": "ambientsound.wav",
+                                    "path": "/3darcade~/Configuration/Media/Default/Sounds/"
+                                }
+                            ]
+                        }
+                    ],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        }
+    ]
+}
