@@ -111,6 +111,11 @@ namespace Arcade
                                 _rendererComponent.material.SetColor("_EmissionColor", Color.white);
                                 if (useRunLoop) { InvokeRepeating("LibretroRunLoop", 0f, 1f / (float)Wrapper.Game.SystemAVInfo.timing.fps); }
                             }
+                            else
+                            {
+                                Wrapper.StopGame();
+                                Wrapper = null;
+                            }
                         }
                     }
                 }
