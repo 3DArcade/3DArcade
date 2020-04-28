@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEditor.Presets;
 using UnityEngine;
@@ -42,8 +43,8 @@ namespace Arcade.ArcadeEditorExtensions
 
     internal static class GlobalSettings
     {
-        internal static readonly bool UseParticleViewsFix = true;
-        internal static readonly bool UseUnwantedNodeFix  = true;
+        internal const bool UseParticleViewsFix = true;
+        internal const bool UseUnwantedNodeFix  = true;
     }
 
     internal static class GlobalPaths
@@ -86,36 +87,19 @@ namespace Arcade.ArcadeEditorExtensions
         }
     }
 
-    internal sealed class ModelAssetProcessor : AssetPostprocessor
-    {
-        private void OnPostprocessModel(GameObject obj)
-        {
-            if (GlobalSettings.UseParticleViewsFix)
-            {
-                Utils.RemoveParticleViews(obj);
-            }
-
-            if (GlobalSettings.UseUnwantedNodeFix)
-            {
-                Utils.FixUnwantedNode(obj);
-            }
-        }
-    }
-
     internal sealed class ImportAssistantWindow : EditorWindow
     {
         private static string _savedBrowseDir = string.Empty;
         private static string _externalPath   = string.Empty;
         private static ModelType _modelType   = ModelType.Game;
 
-        private static ImportAssistantWindow _window;
         private static bool _closeAfterImport = true;
 
         [MenuItem("3DArcade/Import a new Model...", false, 10003)]
         private static void ShowWindow()
         {
-            _window         = GetWindow<ImportAssistantWindow>("Import Assistant");
-            _window.minSize = new Vector2(290f, 120f);
+            ImportAssistantWindow window = GetWindow<ImportAssistantWindow>("Import Assistant");
+            window.minSize = new Vector2(290f, 120f);
         }
 
         private void OnGUI()
@@ -134,7 +118,7 @@ namespace Arcade.ArcadeEditorExtensions
                 GUILayout.Label("Model file:", GUILayout.Width(80f));
                 if (GUILayout.Button("Browse", GUILayout.Width(60f), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
                 {
-                    _externalPath = ShowSelectModelWindow();
+                    _externalPath = ShowSelectModelFileDialog();
                 }
                 _externalPath = GUILayout.TextField(_externalPath);
             }
@@ -195,6 +179,16 @@ namespace Arcade.ArcadeEditorExtensions
                         ModelImporter modelImporter = AssetImporter.GetAtPath(assetPath) as ModelImporter;
                         if (modelImporter != null)
                         {
+                            if (GlobalSettings.UseParticleViewsFix)
+                            {
+                                Utils.RemoveParticleViews(asset);
+                            }
+
+                            if (GlobalSettings.UseUnwantedNodeFix)
+                            {
+                                Utils.FixUnwantedNode(asset);
+                            }
+
                             if (Utils.ExtractTextures(assetPath, modelImporter))
                             {
                                 Utils.ExtractMaterials(assetPath);
@@ -209,17 +203,20 @@ namespace Arcade.ArcadeEditorExtensions
 
                         if (_closeAfterImport)
                         {
-                            _window.Close();
+                            GetWindow<ImportAssistantWindow>().Close();
                         }
                     }
                 }
             }
         }
 
-        private string ShowSelectModelWindow()
+        private string ShowSelectModelFileDialog()
         {
             string filePath = EditorUtility.OpenFilePanel("Select FBX", _savedBrowseDir, "fbx");
-            _savedBrowseDir = Path.GetDirectoryName(filePath);
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                _savedBrowseDir = Path.GetDirectoryName(filePath);
+            }
             return filePath;
         }
     }
@@ -232,6 +229,7 @@ namespace Arcade.ArcadeEditorExtensions
         // ***************
         // Assets
         // ***************
+        /*
         [MenuItem("Assets/ArcadeEditorExtensions/Setup model", false, 1000)]
         private static void AssetsSetupModel()
         {
@@ -254,7 +252,7 @@ namespace Arcade.ArcadeEditorExtensions
             ModelType modelType = Utils.GetModelType(assetPath);
             Utils.SaveAsPrefab(selectedObj, modelType);
         }
-
+        */
         [MenuItem("Assets/ArcadeEditorExtensions/Set as transparent", false, 1000)]
         private static void AssetsSetAsTransparent()
         {
@@ -331,6 +329,7 @@ namespace Arcade.ArcadeEditorExtensions
         // ***************
         // Validation
         // ***************
+        /*
         [MenuItem("Assets/ArcadeEditorExtensions/Setup model", true)]
         private static bool AssetsSetupModelValidation()
         {
@@ -343,7 +342,7 @@ namespace Arcade.ArcadeEditorExtensions
             return assetPath.StartsWith(GlobalPaths.MODELS_FOLDER, System.StringComparison.OrdinalIgnoreCase)
                 && Path.GetExtension(assetPath).Equals(".fbx", System.StringComparison.OrdinalIgnoreCase);
         }
-
+        */
         [MenuItem("Assets/ArcadeEditorExtensions/Set as transparent", true)]
         private static bool AssetsSetAsTransparentValidation()
         {
@@ -501,10 +500,18 @@ namespace Arcade.ArcadeEditorExtensions
                 _ = Directory.CreateDirectory(prefabsFolder);
             }
 
-            GameObject newObj = PrefabUtility.SaveAsPrefabAsset(tempObj, Path.Combine(prefabsFolder, $"{obj.name}.prefab"), out bool success);
+            RenameNodes(tempObj.transform, modelType);
+
+            string destinationPath = Path.Combine(prefabsFolder, $"{obj.name}.prefab");
+            if (File.Exists(destinationPath))
+            {
+                File.Delete(destinationPath);
+                File.Delete($"{destinationPath}.meta");
+            }
+
+            GameObject newObj = PrefabUtility.SaveAsPrefabAsset(tempObj, destinationPath, out bool success);
             if (success)
             {
-                RenameNodes(newObj, modelType);
                 Debug.Log($"{modelType} prefab '{obj.name}' created");
                 Selection.activeGameObject = newObj;
                 EditorGUIUtility.PingObject(newObj);
@@ -589,79 +596,57 @@ namespace Arcade.ArcadeEditorExtensions
             }
         }
 
-        private static List<GameObject> GetAllChildren(GameObject obj, bool getNestedNodes)
+        private static void RenameNodes(Transform transform, ModelType modelType)
         {
-            List<GameObject> result = new List<GameObject>();
-            foreach (Transform child in obj.transform)
+            List<Transform> children = GetAllChildren(transform, modelType == ModelType.Arcade);
+            if (children.Count > 0)
             {
-                GameObject childObj = child.gameObject;
-                result.Add(childObj);
+                string meshNumberFormat = children.Count > 100 ? "{0:000}" : "{0:00}";
+                for (int i = 0; i < children.Count; ++i)
+                {
+                    Transform child = children[i];
+                    if (!child.name.StartsWith(transform.name))
+                    {
+                        child.name = $"{transform.name.Replace("(Clone)", string.Empty)}_Mesh{string.Format(meshNumberFormat, i)}";
+                    }
+                }
+            }
+        }
+
+        private static List<Transform> GetAllChildren(Transform parentTansform, bool getNestedNodes)
+        {
+            List<Transform> result = new List<Transform>();
+            foreach (Transform childTransform in parentTansform)
+            {
+                result.Add(childTransform);
                 if (getNestedNodes)
                 {
-                    result.AddRange(GetAllChildren(childObj, getNestedNodes));
+                    result.AddRange(GetAllChildren(childTransform, getNestedNodes));
                 }
             }
             return result;
         }
 
-        private static void RenameNodes(GameObject obj, ModelType modelType)
-        {
-            List<GameObject> children = GetAllChildren(obj, modelType == ModelType.Arcade);
-            for (int i = 0; i < children.Count; ++i)
-            {
-                GameObject child = children[i];
-                if (!child.name.StartsWith(obj.name, System.StringComparison.OrdinalIgnoreCase))
-                {
-                    if (modelType != ModelType.Arcade
-                        && (!child.name.StartsWith("01", System.StringComparison.Ordinal) && !child.name.Contains(obj.name))
-                        && (!child.name.StartsWith("02", System.StringComparison.Ordinal) && !child.name.Contains(obj.name)))
-                    {
-                        if (i == 0)
-                        {
-                            child.name = $"01_{obj.name}_{child.name}";
-                        }
-                        else if (i == 1)
-                        {
-                            child.name = $"02_{obj.name}_{child.name}";
-                        }
-                        else
-                        {
-                            child.name = $"{obj.name}_{child.name}";
-                        }
-                    }
-                    else
-                    {
-                        child.name = $"{obj.name}_{child.name}";
-                    }
-                }
-            }
-        }
-
         private static void AddBoxCollider(GameObject obj)
         {
-            if (obj.GetComponent<MeshCollider>() || obj.GetComponentInChildren<MeshCollider>() || obj.GetComponentInChildren<BoxCollider>())
+            if (obj.GetComponent<Collider>() != null || obj.GetComponentInChildren<Collider>() != null)
             {
                 return;
             }
 
-            BoxCollider boxCollider = obj.GetComponent<BoxCollider>();
-            if (boxCollider == null)
-            {
-                boxCollider = obj.AddComponent<BoxCollider>();
-            }
+            BoxCollider boxCollider = obj.AddComponent<BoxCollider>();
 
-            Transform rootTransform = obj.transform;
-            Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
-            Transform[] childrenTransforms = obj.GetComponentsInChildren<Transform>();
-            foreach (Transform childTransform in childrenTransforms)
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            if (renderers.Length > 0)
             {
-                Renderer childRenderer = childTransform.GetComponent<Renderer>();
-                if (childRenderer != null)
+                Bounds bounds = new Bounds(renderers[0].bounds.center, renderers[0].bounds.size);
+                foreach (Renderer renderer in renderers)
                 {
-                    bounds.Encapsulate(childRenderer.bounds);
+                    bounds.Encapsulate(renderer.bounds);
                 }
-                boxCollider.center = bounds.center - rootTransform.position;
-                boxCollider.size = bounds.size;
+                boxCollider.center = boxCollider.transform.InverseTransformPoint(bounds.center);
+                Vector3 size       = boxCollider.transform.InverseTransformVector(bounds.size);
+                boxCollider.size   = new Vector3(math.abs(size.x), math.abs(size.y), math.abs(size.z));
             }
         }
     }
