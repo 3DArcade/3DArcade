@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4f996ae50704db4ab44e023b3374038
+guid: 3051e2afb65074d43b976333a66361bb
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,52 +8,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: nametunebezel
-    second: {fileID: 2100000, guid: 2d51e2c6325e99d4abb506e6a7008091, type: 2}
+    second: {fileID: 2100000, guid: fad561fc0133acc469b1f9f246505848, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: nametunemarquee
-    second: {fileID: 2100000, guid: 581579ef2225ecd40a7e9589a8e4e275, type: 2}
+    second: {fileID: 2100000, guid: 0035636e1c9a508409fbeebce24e0597, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nametunemetal
+    second: {fileID: 2100000, guid: 82301054800418a419466325d9c8f625, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: nametunemonitor
-    second: {fileID: 2100000, guid: 614b3f30fc618264194452ce8e7b2f50, type: 2}
+    second: {fileID: 2100000, guid: bae2063db7151a44ea37cf291f2a434f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: nametunered
-    second: {fileID: 2100000, guid: c8695f839b60cbc4eb11ff0c251ed3a3, type: 2}
+    second: {fileID: 2100000, guid: 2f0ecc078c68c9a47b74bd81f6bb528e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: nametunesideart
-    second: {fileID: 2100000, guid: 86d3d26b1b237ee4cb155bbe5dde997c, type: 2}
+    second: {fileID: 2100000, guid: fe918afc161501348ba6ce953ad7d7bd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: nametuneyellow
-    second: {fileID: 2100000, guid: f30f56f9837b4fb42baf504c0bc5ab64, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: nametunebezel
-    second: {fileID: 2800000, guid: e1c50cff093cb9b468ea12882119860e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: nametunemarquee
-    second: {fileID: 2800000, guid: 3c0848cc33f0c764d954ecd0b1fbe1fc, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: nametunemonitor
-    second: {fileID: 2800000, guid: d024f145b66826e4cb7b5ad9e6f1ffca, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: nametunesideart
-    second: {fileID: 2800000, guid: b51e16ded6b9b3d47942c41fdc3c0b52, type: 3}
+    second: {fileID: 2100000, guid: a3e4b7aa661fe6c408e99703b7b2a868, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +57,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,16 +72,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -105,9 +90,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

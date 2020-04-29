@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 236b054797a016a4fb4a1aa63b22e6c0
+guid: 39cca37970e7f764a85e2ad582bfef49
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,52 +8,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: minigolfbezel
-    second: {fileID: 2100000, guid: 70dcf7a9c69484445b9866e722c40aac, type: 2}
+    second: {fileID: 2100000, guid: cfc9b0d67fbfb7c4981697e43e78460e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: minigolfmarquee
-    second: {fileID: 2100000, guid: 495691244610234469f4efe691664551, type: 2}
+    second: {fileID: 2100000, guid: 0ba9700ae05fb774095f1f8fc06d74bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: minigolfmetal
+    second: {fileID: 2100000, guid: 38a4da1ef6776b043abf6def1aaca476, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: minigolfmonitor
-    second: {fileID: 2100000, guid: 9bb8340ba4093b44ebfbeab5dfb25fd6, type: 2}
+    second: {fileID: 2100000, guid: da91548be130ac542bca30da3c85f0b8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: minigolfred
-    second: {fileID: 2100000, guid: eaa43061ea0cf2846815bb448b71d6ae, type: 2}
+    second: {fileID: 2100000, guid: 78422856dc062c646903297ca05a2fd3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: minigolfsideart
-    second: {fileID: 2100000, guid: 8518555520d29ed49ba499a1089ef8c9, type: 2}
+    second: {fileID: 2100000, guid: d017df6e06fd90a41a7bff58cdabbb5e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: minigolfyellow
-    second: {fileID: 2100000, guid: 196f9d3f7d68c9142a7c0fc1c24ef524, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: minigolfbezel
-    second: {fileID: 2800000, guid: 1936052c168c58a44915e40ee137a9c8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: minigolfmarquee
-    second: {fileID: 2800000, guid: 905b8431760b8b14381bc8f32f511c97, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: minigolfmonitor
-    second: {fileID: 2800000, guid: 7c1e9b098eddfbb40b4959a9dce150c5, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: minigolfsideart
-    second: {fileID: 2800000, guid: d1e61b70d1cff19428362d62c4cfafa0, type: 3}
+    second: {fileID: 2100000, guid: 38ec96f9b3603fa46b5346bf0fcf946a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +57,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,16 +72,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -105,9 +90,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
