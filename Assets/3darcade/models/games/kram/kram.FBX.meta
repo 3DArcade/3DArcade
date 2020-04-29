@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 075fb5f03c5c2be4a938c00161241575
+guid: d4d0cc8527964964e8260e4c31877a79
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,47 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kram-bezel
-    second: {fileID: 2100000, guid: 837c411c79e137c4c9791e2575de35b4, type: 2}
+    second: {fileID: 2100000, guid: 92c125d2db0be964296cc34808bd3c9f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kram-marquee
-    second: {fileID: 2100000, guid: 821b1729031878946808a6e5770ce47d, type: 2}
+    second: {fileID: 2100000, guid: 90da94ad392b2c04a9566304519b13fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kram-metal
+    second: {fileID: 2100000, guid: 1a3631f0499235f43925af964708e1fe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kram-monitor
-    second: {fileID: 2100000, guid: 10f64d1daf1c0e64a81f4ef6aaf5c26b, type: 2}
+    second: {fileID: 2100000, guid: 56ffd4daa03f9dd46accccf1a53da0b1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kram-shiny
-    second: {fileID: 2100000, guid: 15a616316ce18ae4a89f1c21c92b458d, type: 2}
+    second: {fileID: 2100000, guid: 05691bfc66698154fb5b6d123039e29f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kram-shinyred
+    second: {fileID: 2100000, guid: ae59d5b55a63f074196982684c2c431d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kram-shinywhite
+    second: {fileID: 2100000, guid: 6b9ff174f16fb0b43a8ff0b6773d66da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kram-shinyyellow
+    second: {fileID: 2100000, guid: b01d65c0891cc08468036b7102a35dc0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: kram-textures
-    second: {fileID: 2100000, guid: bb24d03e9700d3a49a055d2ed5ab4823, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: kram-bezel
-    second: {fileID: 2800000, guid: af574a1af6ea8374285c457093cc450c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: kram-marquee
-    second: {fileID: 2800000, guid: 8c49c9cc290c2584cb3600281edf63f3, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: kram-snap
-    second: {fileID: 2800000, guid: 8649dfd9f9bf9b1478b926cb080282ef, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: kram-textures
-    second: {fileID: 2800000, guid: 7b79782629cb8d344bf399e4c393975b, type: 3}
+    second: {fileID: 2100000, guid: 3f7155ce9360ad1429bccd521ec4513a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +67,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +82,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +100,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

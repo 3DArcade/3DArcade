@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dfa500a1d051ad6439bb8dc08249bd0e
+guid: dc2dd1d0aed882f46a399bd302393101
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: jungleh-bezel
-    second: {fileID: 2100000, guid: 8b3bdd7baca238d4cbe2973723ed9555, type: 2}
+    second: {fileID: 2100000, guid: f87f26570a441564aac6124f2300be33, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: jungleh-marquee
-    second: {fileID: 2100000, guid: d687ea17e63844e4081bcd4d4d2af39a, type: 2}
+    second: {fileID: 2100000, guid: 58d72d106ed22604abc6c2994b3e961a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jungleh-metal
+    second: {fileID: 2100000, guid: 4f83c7d29f0316941a373a63142fb5d1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: jungleh-monitor
-    second: {fileID: 2100000, guid: 6dfd4e257cd54644dbab4e5979a00464, type: 2}
+    second: {fileID: 2100000, guid: 1694f021bdc764442aa67068b0dc7c10, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: jungleh-shiny
-    second: {fileID: 2100000, guid: a13f224fb77c1ad45bf9fdde4195cd69, type: 2}
+    second: {fileID: 2100000, guid: 4ecc4a67812325f4ea676400d8c4d409, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jungleh-shinyred
+    second: {fileID: 2100000, guid: b1796c99bdae2514e8becfbbfa1dc368, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jungleh-shinywhite
+    second: {fileID: 2100000, guid: bcb41de409f6f5d4f85cdec345e434e6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: jungleh-textures
-    second: {fileID: 2100000, guid: 4116dc8a344cec14f808fe76fd8bdc90, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: jungleh-bezel
-    second: {fileID: 2800000, guid: 8490aba25a7739546818f97ff3b149de, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: jungleh-marquee
-    second: {fileID: 2800000, guid: 7275de5d3b5be9b44bdd5a90c75e248f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: jungleh-snap
-    second: {fileID: 2800000, guid: af2690ae9041d6c4eaf86d07a5662d96, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: jungleh-textures
-    second: {fileID: 2800000, guid: 7bf47c9c356c55345bd706bf1b8ad086, type: 3}
+    second: {fileID: 2100000, guid: 1a41385c22f09a048bcea76e11842ea4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +62,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +77,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +95,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

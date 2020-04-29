@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1204456989822323374}
   - component: {fileID: 6342436783262453198}
+  - component: {fileID: -1599847717627714650}
   m_Layer: 0
   m_Name: mplanets
   m_TagString: Untagged
@@ -381,6 +382,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6604868, y: 1.748345, z: 0.8669394}
   m_Center: {x: 0.024430722, y: 0.8741725, z: -0.12140548}
+--- !u!54 &-1599847717627714650
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2547161202945058816}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3639122783937697738
 GameObject:
   m_ObjectHideFlags: 0

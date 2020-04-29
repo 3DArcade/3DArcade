@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7801f0d135b20a845b37f97c685a683b
+guid: 477994cacf385484bbb5e327e2f7d7c4
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,52 +8,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: snakjackbezel
-    second: {fileID: 2100000, guid: ba58d8f467caf904c9054d03e9a8c91c, type: 2}
+    second: {fileID: 2100000, guid: 5ff6342965844514399d152446d8d011, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: snakjackmarquee
-    second: {fileID: 2100000, guid: 4824cfb026281874fa9b6c1b6f3a0905, type: 2}
+    second: {fileID: 2100000, guid: f217333b54eb7f341b6a41a5d6ca51d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: snakjackmetal
+    second: {fileID: 2100000, guid: 1d91a6c98453f8a40a887835e4145aa4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: snakjackmonitor
-    second: {fileID: 2100000, guid: 7001513682f89554790f23ada2085fb3, type: 2}
+    second: {fileID: 2100000, guid: 86cc343d7e88c994a9fdfb5a6b27c651, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: snakjackred
-    second: {fileID: 2100000, guid: f68b8c26aec74a44ba510ce668067c09, type: 2}
+    second: {fileID: 2100000, guid: 5175b83c453685f48bdb17b3e6feb2d6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: snakjacksideart
-    second: {fileID: 2100000, guid: 9f14494c878d0e545a2f27f3d155a37c, type: 2}
+    second: {fileID: 2100000, guid: 879a5ffb9032f1e40a6a3e1319945d68, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: snakjackyellow
-    second: {fileID: 2100000, guid: d185837ca6e120d44a9f73ca34f01846, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: snakjackbezel
-    second: {fileID: 2800000, guid: 49763876de661914f81587d02a546ee9, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: snakjackmarquee
-    second: {fileID: 2800000, guid: 3e90ed211dd2cf54ea17fe702ac48bfc, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: snakjackmonitor
-    second: {fileID: 2800000, guid: 2dc61540bb04f5047971f1520a3043a2, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: snakjacksideart
-    second: {fileID: 2800000, guid: a94fb84ce47b1924eba0dee5a0658535, type: 3}
+    second: {fileID: 2100000, guid: 0db2467210454a9459dc04aab3d00fd2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +57,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,16 +72,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -105,9 +90,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

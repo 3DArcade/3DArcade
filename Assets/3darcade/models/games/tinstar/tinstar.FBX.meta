@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16e074a8e4c14984f9308baa45d7112a
+guid: 2e3136afe81416548a62420f0849b20f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tinstar-bezel
-    second: {fileID: 2100000, guid: d9ca32005b675f8418484dcff9f671df, type: 2}
+    second: {fileID: 2100000, guid: 8e69e189fb9f2c9478d2a566cd94132b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tinstar-marquee
-    second: {fileID: 2100000, guid: 8fab1174f947be244ac853ce17729c12, type: 2}
+    second: {fileID: 2100000, guid: facd88123458f734080b08180d8cd988, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tinstar-metal
+    second: {fileID: 2100000, guid: f9594c58cb75fa349a420d89e155e85f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tinstar-monitor
-    second: {fileID: 2100000, guid: 53ec75bddb63c5c4fb3e35bdb0e56063, type: 2}
+    second: {fileID: 2100000, guid: 858be67ff700697429d6fe7ee4a01545, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tinstar-shiny
-    second: {fileID: 2100000, guid: 4c07e6dd17e52774a9b7d33542f9ffb5, type: 2}
+    second: {fileID: 2100000, guid: 41e8728affcfa1c448f7afb65fe73f92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tinstar-shinyred
+    second: {fileID: 2100000, guid: 1d35c4cb0f868df40aee22a4811714f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tinstar-shinywhite
+    second: {fileID: 2100000, guid: 626f51c3996f394449bce20d1e69a825, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: tinstar-textures
-    second: {fileID: 2100000, guid: 65f119776900335419008aa24b65a6ab, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: tinstar-bezel
-    second: {fileID: 2800000, guid: 6b2b2b5c78578304db89f6f0f36beaac, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: tinstar-marquee
-    second: {fileID: 2800000, guid: b0d00d2f284e36d41ac5d63ac78d5a97, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: tinstar-snap
-    second: {fileID: 2800000, guid: 7b057f6a5a4c5124b8d447b8b11afe1f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: tinstar-textures
-    second: {fileID: 2800000, guid: e402fc2335ebb374d800d99ae9ff776e, type: 3}
+    second: {fileID: 2100000, guid: a3eb6b5ec97a55e4ba77437d640669fa, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +62,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +77,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +95,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
