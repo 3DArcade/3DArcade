@@ -33,9 +33,12 @@ namespace Arcade
 
         void Update()
         {
-            if (!setupFinished) { return; }
-            if (arcadeType == ArcadeType.CylArcade && !(ArcadeManager.arcadeState == ArcadeStates.Running && ArcadeManager.activeArcadeType == ArcadeType.CylArcade)) { return; }
-            if (arcadeType == ArcadeType.CylMenu && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu && ArcadeManager.activeMenuType == ArcadeType.CylMenu)) { return; }
+            if (!setupFinished)
+            { return; }
+            if (arcadeType == ArcadeType.CylArcade && !(ArcadeManager.arcadeState == ArcadeStates.Running && ArcadeManager.activeArcadeType == ArcadeType.CylArcade))
+            { return; }
+            if (arcadeType == ArcadeType.CylMenu && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu && ArcadeManager.activeMenuType == ArcadeType.CylMenu))
+            { return; }
             thisCamera.transform.rotation = Quaternion.Lerp(thisCamera.transform.rotation, dummyCameraTransform.transform.rotation, timer);
             thisCamera.transform.position = Vector3.Lerp(thisCamera.transform.position, dummyCameraTransform.transform.position, timer);
 
@@ -50,17 +53,20 @@ namespace Arcade
                 if (jumpForwards)
                 {
                     tempTargetModelGamePosition += 1;
-                    if (tempTargetModelGamePosition > games.Count - 1) { tempTargetModelGamePosition = 0; }
+                    if (tempTargetModelGamePosition > games.Count - 1)
+                    { tempTargetModelGamePosition = 0; }
                     Forwards(tempTargetModelGamePosition);
                 }
                 else
                 {
-                    tempTargetModelGamePosition = tempTargetModelGamePosition - 1;
-                    if (tempTargetModelGamePosition < 0) { tempTargetModelGamePosition = games.Count - 1; }
+                    tempTargetModelGamePosition -= 1;
+                    if (tempTargetModelGamePosition < 0)
+                    { tempTargetModelGamePosition = games.Count - 1; }
                     Backwards(tempTargetModelGamePosition);
                 }
                 jumps += 1;
-                if (jumps < jumpsCount) { return; }
+                if (jumps < jumpsCount)
+                { return; }
                 jump = false;
             }
             jumpsCount = 0;
@@ -82,14 +88,16 @@ namespace Arcade
             {
                 cameraRotationDeltaDamping = 2 + (cylArcadeProperties.cameraRotationdamping * (straffe / 1f));
                 cylArcadeProperties.gamePosition += 1;
-                if (cylArcadeProperties.gamePosition > games.Count - 1) { cylArcadeProperties.gamePosition = 0; }
+                if (cylArcadeProperties.gamePosition > games.Count - 1)
+                { cylArcadeProperties.gamePosition = 0; }
                 Forwards(cylArcadeProperties.gamePosition);
             }
             if (straffe < -0.0017)
             {
                 cameraRotationDeltaDamping = 2 + (cylArcadeProperties.cameraRotationdamping * (straffe / -1f));
                 cylArcadeProperties.gamePosition -= 1;
-                if (cylArcadeProperties.gamePosition < 0) { cylArcadeProperties.gamePosition = games.Count - 1; }
+                if (cylArcadeProperties.gamePosition < 0)
+                { cylArcadeProperties.gamePosition = games.Count - 1; }
                 Backwards(cylArcadeProperties.gamePosition);
             }
 
@@ -120,10 +128,12 @@ namespace Arcade
                 }
             }
             GameObject model = AddModel(targetGamePosition);
-            if (objects.Count == cylArcadeProperties.sprockets) { objects.RemoveAt(0); }
+            if (objects.Count == cylArcadeProperties.sprockets)
+            { objects.RemoveAt(0); }
             objects.Add(model);
             UpdateModelTransform(objects.Count - 2, model, true);
-            if (objects.Count == cylArcadeProperties.sprockets) { UpdateCamera(); }
+            if (objects.Count == cylArcadeProperties.sprockets)
+            { UpdateCamera(); }
         }
         void Backwards(int targetGamePosition)
         {
@@ -140,7 +150,8 @@ namespace Arcade
             {
                 DestroyImmediate(objects[objects.Count - 1]);
             }
-            GameObject model = AddModel(targetGamePosition); ;
+            GameObject model = AddModel(targetGamePosition);
+            ;
             objects.RemoveAt(objects.Count - 1);
             objects.Insert(0, model);
             UpdateModelTransform(1, model, false);
@@ -189,7 +200,7 @@ namespace Arcade
                     cylArcadeProperties.gamePosition = goToGamePosition;
                     if (tempTargetModelGamePosition > games.Count - 1)
                     {
-                        tempTargetModelGamePosition = tempTargetModelGamePosition - games.Count;
+                        tempTargetModelGamePosition -= games.Count;
                     }
                 }
             }
@@ -223,23 +234,25 @@ namespace Arcade
         {
             model.transform.position = objects[index].transform.position;
             model.transform.rotation = objects[index].transform.rotation;
-            var tOrig = objects[index];
-            var tOrigWidth = GetModelWidth(tOrig);
-            var modelWidth = GetModelWidth(model);
+            GameObject tOrig = objects[index];
+            float tOrigWidth = GetModelWidth(tOrig);
+            float modelWidth = GetModelWidth(model);
             float width = ((tOrigWidth / 2) + (modelWidth / 2) + cylArcadeProperties.modelSpacing) / cylArcadeProperties.radius;
             model.transform.RotateAround(new Vector3(0, 0, 0), Vector3.up, (width * (forwards == true ? 1 : -1)) * 57.29577951f);
         }
 
         public void UpdateCamera()
         {
-            if (!setupFinished) { return; } 
-            var direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
+            if (!setupFinished)
+            { return; }
+            Vector3 direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
             direction.y = 0;
             dummyCameraTransform.transform.position = objects[cylArcadeProperties.selectedSprocket].transform.position;
             dummyCameraTransform.transform.Translate(direction * -0.99f, Space.World);
             dummyCameraTransform.transform.LookAt(Vector3.zero);
             dummyCameraTransform.transform.Rotate(cylArcadeProperties.cameraLocalEularAngleX, cylArcadeProperties.cameraLocalEularAngleY, cylArcadeProperties.cameraLocalEularAngleZ, Space.Self);
-            if (cylArcadeProperties.cameraTranslationDirectionAxisY) { direction = Vector3.up; }
+            if (cylArcadeProperties.cameraTranslationDirectionAxisY)
+            { direction = Vector3.up; }
             dummyCameraTransform.transform.Translate(direction * cylArcadeProperties.cameraTranslation * (cylArcadeProperties.cameraTranslationReverse == true ? -1 : 1), Space.World);
             dummyCameraTransform.transform.Translate(cylArcadeProperties.cameraLocalTranslation, Space.Self);
             timer = 0;
@@ -247,12 +260,14 @@ namespace Arcade
 
         void UpdateCameraDistance()
         {
-            if (!setupFinished) { return; }
-            var direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
+            if (!setupFinished)
+            { return; }
+            Vector3 direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
             direction.y = 0;
             thisCamera.transform.position = objects[cylArcadeProperties.selectedSprocket].transform.position;
             thisCamera.transform.Translate(direction * -0.99f, Space.World);
-            if (cylArcadeProperties.cameraTranslationDirectionAxisY) { direction = Vector3.up; }
+            if (cylArcadeProperties.cameraTranslationDirectionAxisY)
+            { direction = Vector3.up; }
             thisCamera.transform.Translate(direction * cylArcadeProperties.cameraTranslation * (cylArcadeProperties.cameraTranslationReverse == true ? -1 : 1), Space.World);
             thisCamera.transform.Translate(cylArcadeProperties.cameraLocalTranslation, Space.Self);
             timer = 1;
@@ -261,7 +276,7 @@ namespace Arcade
         GameObject AddModel(int position, bool addTrigger = true)
         {
             GameObject model = Arcade.ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(Arcade.ModelType.Game, games[position], arcadeType, addTrigger);
-            var rigid = model.transform.GetChild(0).GetComponent<Rigidbody>();
+            Rigidbody rigid = model.transform.GetChild(0).GetComponent<Rigidbody>();
             if (rigid != null)
             {
                 rigid.isKinematic = cylArcadeProperties.modelIsKinemtatic;
@@ -272,7 +287,7 @@ namespace Arcade
         float GetModelWidth(GameObject obj)
         {
             Transform t = obj.transform;
-            var col = t.GetChild(0).GetComponent<BoxCollider>();
+            BoxCollider col = t.GetChild(0).GetComponent<BoxCollider>();
             Vector3 size;
             if (col != null)
             {
@@ -290,7 +305,8 @@ namespace Arcade
                 t.localRotation = Quaternion.identity;
                 Renderer[] rr = t.GetChild(0).GetComponentsInChildren<Renderer>();
                 Bounds b = rr[0].bounds;
-                foreach (Renderer r in rr) { b.Encapsulate(r.bounds); }
+                foreach (Renderer r in rr)
+                { b.Encapsulate(r.bounds); }
                 t.position = savedPosition;
                 t.localPosition = savedLocalPosition;
                 t.rotation = savedRotation;
@@ -303,7 +319,8 @@ namespace Arcade
 
         public bool SetupCylArcade(ArcadeConfiguration arcadeConfiguration)
         {
-            if (arcadeConfiguration.cylArcadeProperties.Count < 1) { return false; }
+            if (arcadeConfiguration.cylArcadeProperties.Count < 1)
+            { return false; }
             games = arcadeConfiguration.gameModelList;
             objects = new List<GameObject>();
             cylArcadeProperties = arcadeConfiguration.cylArcadeProperties[0];
@@ -320,7 +337,7 @@ namespace Arcade
                 }
                 else
                 {
-                    cylArcadeProperties.selectedSprocket = (((games.Count % 2 == 0) ? games.Count : (games.Count - 1)) / 2)-1;
+                    cylArcadeProperties.selectedSprocket = (((games.Count % 2 == 0) ? games.Count : (games.Count - 1)) / 2) - 1;
                 }
                 cylArcadeProperties.sprockets = games.Count - 1;
             }
@@ -333,13 +350,15 @@ namespace Arcade
             }
 
             //print("gamesc " + games.Count + " sp " + cylArcadeProperties.sprockets + " ssp " + cylArcadeProperties.selectedSprocket + " gp " + cylArcadeProperties.gamePosition);
-           
+
             // Dummy transform to smoothly interpolate our camera towards.
             Transform t = transform.Find("dummyCameraTransform");
             if (t == null)
             {
-                dummyCameraTransform = new GameObject();
-                dummyCameraTransform.name = "dummyCameraTransform";
+                dummyCameraTransform = new GameObject
+                {
+                    name = "dummyCameraTransform"
+                };
                 dummyCameraTransform.transform.parent = gameObject.transform;
             }
             else
@@ -366,7 +385,8 @@ namespace Arcade
             for (int i = 0; i < cylArcadeProperties.sprockets; i++)
             {
                 cylArcadeProperties.gamePosition += 1;
-                if (cylArcadeProperties.gamePosition > games.Count - 1) { cylArcadeProperties.gamePosition = 0; }
+                if (cylArcadeProperties.gamePosition > games.Count - 1)
+                { cylArcadeProperties.gamePosition = 0; }
                 Forwards(cylArcadeProperties.gamePosition);
             }
             cylArcadeProperties.gamePosition = tempTargetModelGamePosition;
@@ -384,7 +404,7 @@ namespace Arcade
             {
                 obj = objects[cylArcadeProperties.selectedSprocket];
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }

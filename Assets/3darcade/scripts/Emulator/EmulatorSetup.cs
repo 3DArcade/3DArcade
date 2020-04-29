@@ -26,7 +26,7 @@ namespace Arcade
         }
         private void SelectExecutable()
         {
-            var exe = FileManager.DialogGetFilePart("Select Emulator Executable", null, FileManager.FilePart.Name_Extension);
+            string exe = FileManager.DialogGetFilePart("Select Emulator Executable", null, FileManager.FilePart.Name_Extension);
             if (exe != null)
             {
                 executable = exe;
@@ -160,7 +160,7 @@ namespace Arcade
         [MenuItem("CONTEXT/EmulatorSetup/Save Emulator Configuration")]
         private static void SaveEmulatorConfigurationMenuOption(MenuCommand menuCommand)
         {
-            var emulatorSetup = menuCommand.context as EmulatorSetup;
+            EmulatorSetup emulatorSetup = menuCommand.context as EmulatorSetup;
             EmulatorConfiguration emulatorConfiguration = ArcadeManager.loadSaveEmulatorConfiguration.GetEmulatorConfiguration(emulatorSetup.id);
             if (emulatorConfiguration == null)
             {
@@ -169,19 +169,19 @@ namespace Arcade
             emulatorConfiguration.emulator = emulatorSetup.GetEmulatorSetup();
             ArcadeManager.loadSaveEmulatorConfiguration.SaveEmulatorConfiguration(emulatorConfiguration);
             //TODO: Change so that we update ArcadeManager.EmulatorsConfigurationList for save cfg instead of reloading all
-            ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
+            _ = ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
         }
         [MenuItem("CONTEXT/EmulatorSetup/Select MasterGamelist")]
         private static void SelectMasterGamelistMenuOption(MenuCommand menuCommand)
         {
-            var emulatorSetup = menuCommand.context as EmulatorSetup;
-            var obj = emulatorSetup.transform.gameObject;
-            if (ShowSelectMasterGamelistWindow != null) ShowSelectMasterGamelistWindow(emulatorSetup);
+            EmulatorSetup emulatorSetup = menuCommand.context as EmulatorSetup;
+            GameObject obj = emulatorSetup.transform.gameObject;
+            ShowSelectMasterGamelistWindow?.Invoke(emulatorSetup);
         }
         [MenuItem("CONTEXT/EmulatorSetup/Update MasterGamelist")]
         private static void UpdateMasterGamelistMenuOption(MenuCommand menuCommand)
         {
-            var emulatorSetup = menuCommand.context as EmulatorSetup;
+            EmulatorSetup emulatorSetup = menuCommand.context as EmulatorSetup;
             EmulatorConfiguration emulatorConfiguration = ArcadeManager.loadSaveEmulatorConfiguration.GetEmulatorConfiguration(emulatorSetup.id);
             if (emulatorConfiguration != null)
             {
@@ -196,7 +196,7 @@ namespace Arcade
             descriptiveName = emulatorProperties.descriptiveName;
             id = emulatorProperties.id;
             about = emulatorProperties.about;
-            System.Enum.TryParse(emulatorProperties.gameLauncherMethod, true, out gameLauncherMethod);
+            _ = System.Enum.TryParse(emulatorProperties.gameLauncherMethod, true, out gameLauncherMethod);
             executable = emulatorProperties.executable;
             extension = emulatorProperties.extension;
             libretroCore = emulatorProperties.libretroCore;
@@ -216,33 +216,28 @@ namespace Arcade
 
         public EmulatorProperties GetEmulatorSetup()
         {
-            var emulatorProperties = new EmulatorProperties();
-            emulatorProperties.descriptiveName = descriptiveName;
-            emulatorProperties.id = id;
-            emulatorProperties.about = about;
-            emulatorProperties.gameLauncherMethod = gameLauncherMethod.ToString();
-            emulatorProperties.executable = executable;
-            emulatorProperties.extension = extension;
-            emulatorProperties.libretroCore = libretroCore;
-            emulatorProperties.arguments = arguments;
-            emulatorProperties.options = options;
-            emulatorProperties.emulatorPath = emulatorPath;
-            emulatorProperties.gamePath = gamePath;
-            emulatorProperties.workingDir = workingDir;
-            emulatorProperties.outputCommandLine = outputCommandLine;
-            emulatorProperties.marqueePath = marqueePath;
-            emulatorProperties.screenPath = screenPath;
-            emulatorProperties.screenVideoPath = screenVideoPath;
-            emulatorProperties.genericPath = genericPath;
-            emulatorProperties.titlePath = titlePath;
-            emulatorProperties.infoPath = infoPath;
-            return emulatorProperties;
+            return new EmulatorProperties
+            {
+                descriptiveName = descriptiveName,
+                id = id,
+                about = about,
+                gameLauncherMethod = gameLauncherMethod.ToString(),
+                executable = executable,
+                extension = extension,
+                libretroCore = libretroCore,
+                arguments = arguments,
+                options = options,
+                emulatorPath = emulatorPath,
+                gamePath = gamePath,
+                workingDir = workingDir,
+                outputCommandLine = outputCommandLine,
+                marqueePath = marqueePath,
+                screenPath = screenPath,
+                screenVideoPath = screenVideoPath,
+                genericPath = genericPath,
+                titlePath = titlePath,
+                infoPath = infoPath
+            };
         }
-
-        // Start is called before the first frame update
-        //void Start()
-        //{
-
-        //}
     }
 }

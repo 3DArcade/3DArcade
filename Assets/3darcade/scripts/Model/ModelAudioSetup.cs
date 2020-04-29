@@ -18,7 +18,8 @@ namespace Arcade
 
         public void Setup(AudioProperties audioProperties)
         {
-            if (audioProperties == null || !Application.isPlaying) { return; }
+            if (audioProperties == null || !Application.isPlaying)
+            { return; }
 
             // Resume if not null
             if (this.audioProperties != null)
@@ -51,14 +52,14 @@ namespace Arcade
 
                 foreach (AudioFile audioFile in audioProperties.audioFiles)
                 {
-                    var file = FileManager.FileExists(ArcadeManager.applicationPath + FileManager.CorrectFilePath(audioFile.path.Trim()), audioFile.file.Trim());
+                    string file = FileManager.FileExists(ArcadeManager.applicationPath + FileManager.CorrectFilePath(audioFile.path.Trim()), audioFile.file.Trim());
                     if (file != null)
                     {
                         clips.Add("file://" + file);
                     }
                     else
                     {
-                        var files = FileManager.GetAudioPathsFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(audioFile.path.Trim()));
+                        List<string> files = FileManager.GetAudioPathsFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(audioFile.path.Trim()));
                         //print(files[0]);
                         foreach (string i in files)
                         {
@@ -76,7 +77,8 @@ namespace Arcade
                             audioSource.loop = false;
                         }
                         loop = audioProperties.loop;
-                        if (audioProperties.Randomize) { clips.Shuffle(); }
+                        if (audioProperties.Randomize)
+                        { clips.Shuffle(); }
                         clipIndex = -1;
                         JukeboxEnabled = true;
                     }
@@ -84,7 +86,7 @@ namespace Arcade
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (JukeboxEnabled)
             {
@@ -97,7 +99,7 @@ namespace Arcade
                         {
                             clipIndex = 0;
                             updateInProgress = true;
-                            StartCoroutine(LoadAudio(clips[clipIndex]));
+                            _ = StartCoroutine(LoadAudio(clips[clipIndex]));
                         }
                         else
                         {
@@ -107,7 +109,7 @@ namespace Arcade
                     else
                     {
                         updateInProgress = true;
-                        StartCoroutine(LoadAudio(clips[clipIndex]));
+                        _ = StartCoroutine(LoadAudio(clips[clipIndex]));
                     }
                 }
             }
@@ -115,7 +117,7 @@ namespace Arcade
 
         private IEnumerator LoadAudio(string file)
         {
-            using (var uwr = UnityWebRequestMultimedia.GetAudioClip(file, AudioType.UNKNOWN))
+            using (UnityWebRequest uwr = UnityWebRequestMultimedia.GetAudioClip(file, AudioType.UNKNOWN))
             {
                 yield return uwr.SendWebRequest();
                 if (uwr.isNetworkError || uwr.isHttpError)
@@ -164,8 +166,5 @@ namespace Arcade
                 list[n] = value;
             }
         }
-    } 
+    }
 }
-
-
-

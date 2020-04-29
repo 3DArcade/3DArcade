@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Arcade
 {
@@ -26,25 +26,25 @@ namespace Arcade
             if (emulatorConfiguration != null)
             {
                 List<ModelProperties> gamelist = emulatorConfiguration.masterGamelist;
-                if (ShowSelectEmulatorWindow != null) ShowSelectGameWindow(gameObject, gamelist);
+                ShowSelectGameWindow?.Invoke(gameObject, gamelist);
             }
         }
-        [ArcadeAttribute("Game")]
+        [Arcade("Game")]
         public string id;
         public string idParent;
         [ContextMenuItem("Select an Emulator Configuration", "GetEmulator")]
-        [ArcadeAttribute("Emulator")]
+        [Arcade("Emulator")]
         public string emulator;
         private void GetEmulator()
         {
-            if (ShowSelectEmulatorWindow != null) ShowSelectEmulatorWindow(gameObject);
+            ShowSelectEmulatorWindow?.Invoke(gameObject);
         }
         [ContextMenuItem("Select Model", "GetModel")]
-        [ArcadeAttribute("Model")]
+        [Arcade("Model")]
         public string model;
         private void GetModel()
         {
-            if (ShowSelectModelWindow != null) ShowSelectModelWindow(gameObject);
+            ShowSelectModelWindow?.Invoke(gameObject);
         }
         //public ModelAnimationMethod animationType = ModelAnimationMethod.Never;
         public bool grabbable = false;
@@ -82,12 +82,25 @@ namespace Arcade
         private Rigidbody rigid;
         private Texture2D tempTexture = null;
 
+        private Keyframe[] volumeCurveKeyFrames;
+        private AnimationCurve volumeCurve;
+
         // Global Variables
         // ArcadeManager.applicationPath
         // ArcadeManager.emulatorsConfigurationList
         // ArcadeManager.loadSaveArcade.LoadEmulatorsConfigurationList
         // ArcadeManager.loadSaveArcade.GetEmulatorConfiguration
 
+        private void Awake()
+        {
+            volumeCurveKeyFrames = new Keyframe[]
+            {
+                new Keyframe(0.8f, 1f),
+                new Keyframe(1.8f, 0.3f),
+                new Keyframe(3f, 0f)
+            };
+            volumeCurve = new AnimationCurve(volumeCurveKeyFrames);
+        }
 
 #if UNITY_EDITOR
         void Reset()
@@ -117,8 +130,8 @@ namespace Arcade
         [MenuItem("CONTEXT/ModelSetup/Update from MasterGamelist")]
         private static void MenuOptionUpdateFromMasterGamelist(MenuCommand menuCommand)
         {
-            var modelSetup = menuCommand.context as ModelSetup;
-            var model = modelSetup.id.Trim();
+            ModelSetup modelSetup = menuCommand.context as ModelSetup;
+            string model = modelSetup.id.Trim();
             if (model == "")
             {
                 model = modelSetup.transform.gameObject.name;
@@ -130,20 +143,20 @@ namespace Arcade
         [MenuItem("CONTEXT/ModelSetup/Build Prefab(s)")]
         private static void MenuOptionGetAssetPath(MenuCommand menuCommand)
         {
-            var modelSetup = menuCommand.context as ModelSetup;
-            var obj = modelSetup.transform.gameObject;
+            ModelSetup modelSetup = menuCommand.context as ModelSetup;
+            GameObject obj = modelSetup.transform.gameObject;
 
             string assetPath = Application.dataPath.Replace("Assets", "") + AssetDatabase.GetAssetPath(obj);
-            string assetName = FileManager.getFilePart(FileManager.FilePart.Name, null, null, assetPath);
-            assetPath = FileManager.getFilePart(FileManager.FilePart.Path, null, null, assetPath);
+            string assetName = FileManager.GetFilePart(FileManager.FilePart.Name, null, null, assetPath);
+            assetPath = FileManager.GetFilePart(FileManager.FilePart.Path, null, null, assetPath);
             print(assetPath + assetName + ".prefab");
-            if (ShowBuildAssetBundleWindow != null) ShowBuildAssetBundleWindow(obj, assetPath, assetName);
+            ShowBuildAssetBundleWindow?.Invoke(obj, assetPath, assetName);
         }
         [MenuItem("CONTEXT/ModelSetup/Build Prefab(s)", true)]
         private static bool MenuOptionGetAssetPathValidation(MenuCommand menuCommand)
         {
-            var modelSetup = menuCommand.context as ModelSetup;
-            var obj = modelSetup.transform.gameObject;
+            ModelSetup modelSetup = menuCommand.context as ModelSetup;
+            GameObject obj = modelSetup.transform.gameObject;
             return AssetDatabase.GetAssetPath(obj).Contains("Assets/Resources") ? true : false;
             // modelSetup.SetupPropertiesFromEmulatorMasterGameList(modelSetup.id, modelSetup.emulator);
         }
@@ -174,7 +187,7 @@ namespace Arcade
             mature = modelProperties.mature;
             available = modelProperties.available;
             runnable = modelProperties.runnable;
-            System.Enum.TryParse(modelProperties.gameLauncherMethod, true, out gameLauncherMethod);
+            _ = System.Enum.TryParse(modelProperties.gameLauncherMethod, true, out gameLauncherMethod);
             playCount = modelProperties.playCount;
             //audioProperties = modelProperties.audioProperties;
             zone = modelProperties.zone;
@@ -190,37 +203,38 @@ namespace Arcade
 
         public ModelProperties GetModelProperties()
         {
-            var modelProperties = new ModelProperties();
-            modelProperties.descriptiveName = descriptiveName;
-            modelProperties.id = id;
-            modelProperties.idParent = idParent;
-            modelProperties.emulator = emulator;
-            modelProperties.model = model;
-            //modelProperties.animationType = animationType.ToString();
-            modelProperties.grabbable = grabbable;
-            //modelProperties.lightmap = lightmap;
-            //modelProperties.animatedTextureSequence = animatedTextureSequence;
-            modelProperties.animatedTextureSpeed = animatedTextureSpeed;
+            return new ModelProperties
+            {
+                descriptiveName = descriptiveName,
+                id = id,
+                idParent = idParent,
+                emulator = emulator,
+                model = model,
+                //modelProperties.animationType = animationType.ToString();
+                grabbable = grabbable,
+                //modelProperties.lightmap = lightmap;
+                //modelProperties.animatedTextureSequence = animatedTextureSequence;
+                animatedTextureSpeed = animatedTextureSpeed,
 
-            //modelProperties.attachToCamera = attachToCamera; // TODO: Move to TriggerEvent System? setParent to, set Transform
-            //modelProperties.hideWhenArcadeIsActive = hideWhenArcadeIsActive;
-            //modelProperties.receiveSelectedModelArtWork = receiveSelectedModelArtWork; //  TODO: Move to TriggerEvent System?
-            //modelProperties.receiveActiveMenuRenderTexture = receiveActiveMenuRenderTexture; // TODO: Move to TriggerEvent System?
+                //modelProperties.attachToCamera = attachToCamera; // TODO: Move to TriggerEvent System? setParent to, set Transform
+                //modelProperties.hideWhenArcadeIsActive = hideWhenArcadeIsActive;
+                //modelProperties.receiveSelectedModelArtWork = receiveSelectedModelArtWork; //  TODO: Move to TriggerEvent System?
+                //modelProperties.receiveActiveMenuRenderTexture = receiveActiveMenuRenderTexture; // TODO: Move to TriggerEvent System?
 
-            modelProperties.screen = screen;
-            modelProperties.manufacturer = manufacturer;
-            modelProperties.year = year;
-            modelProperties.genre = genre;
-            modelProperties.mature = mature;
-            modelProperties.available = available;
-            modelProperties.runnable = runnable;
-            modelProperties.gameLauncherMethod = gameLauncherMethod.ToString();
-            modelProperties.playCount = playCount;
-            //modelProperties.audioProperties = audioProperties;
-            modelProperties.zone = zone;
-            modelProperties.triggers = triggers;
-            modelProperties.triggerIDs = triggerIDs;
-            return modelProperties;
+                screen = screen,
+                manufacturer = manufacturer,
+                year = year,
+                genre = genre,
+                mature = mature,
+                available = available,
+                runnable = runnable,
+                gameLauncherMethod = gameLauncherMethod.ToString(),
+                playCount = playCount,
+                //modelProperties.audioProperties = audioProperties;
+                zone = zone,
+                triggers = triggers,
+                triggerIDs = triggerIDs
+            };
         }
 
         public void Setup(ModelProperties modelProperties, ModelSharedProperties modelSharedProperties)
@@ -288,12 +302,13 @@ namespace Arcade
                 // if we only have one or zero images we dont have to setup videoplayer/image cycling
                 if (url == null && textureList.Count <= 1)
                 {
-                    var marquee = thisChildren[0].GetComponent<ModelImageSetup>();
+                    ModelImageSetup marquee = thisChildren[0].GetComponent<ModelImageSetup>();
                     if (marquee == null)
                     {
                         marquee = thisChildren[0].AddComponent<ModelImageSetup>();
                     }
-                    if (textureList.Count > 0) { tex = textureList[0]; }
+                    if (textureList.Count > 0)
+                    { tex = textureList[0]; }
                     marquee.Setup(tex, modelSharedProperties.renderSettings, modelProperties, (gameObject.CompareTag("gamemodel") || gameObject.CompareTag("propmodel") ? ModelComponentType.Marquee : ModelComponentType.Generic));
                 }
                 else
@@ -315,7 +330,7 @@ namespace Arcade
                 }
                 if (textureList.Count <= 1)
                 {
-                    var tList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.titlePath), id);
+                    List<Texture2D> tList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.titlePath), id);
                     if (tList.Count < 1)
                     {
                         tList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.titlePath), idParent);
@@ -363,12 +378,12 @@ namespace Arcade
                 // if we only have one or zero images we dont have to setup videoplayer/image cycling
                 if (url == null && textureList.Count == 1)
                 {
-                    var generic = thisChildren[2].GetComponent<ModelImageSetup>();
+                    ModelImageSetup generic = thisChildren[2].GetComponent<ModelImageSetup>();
                     if (generic == null)
                     {
                         generic = thisChildren[2].AddComponent<ModelImageSetup>();
                     }
-                    var tex = textureList[0];
+                    Texture2D tex = textureList[0];
                     generic.Setup(tex, modelSharedProperties.renderSettings, modelProperties, ModelComponentType.Generic);
                 }
                 else if (url != null || textureList.Count > 1)
@@ -380,26 +395,34 @@ namespace Arcade
 
         private void SetupVideo(GameObject child, List<Texture2D> textureList, string url, ModelComponentType modelComponentType, ModelSharedProperties modelSharedProperties)
         {
-            var modelVideoSetup = child.GetComponent<ModelVideoSetup>();
-            if (modelVideoSetup == null) { modelVideoSetup = child.AddComponent<ModelVideoSetup>(); }
-            var video = child.GetComponent<UnityEngine.Video.VideoPlayer>();
-            var taudio = child.GetComponent<UnityEngine.AudioSource>();
+            ModelVideoSetup modelVideoSetup = child.GetComponent<ModelVideoSetup>();
+            if (modelVideoSetup == null)
+            {
+                modelVideoSetup = child.AddComponent<ModelVideoSetup>();
+            }
+            UnityEngine.Video.VideoPlayer video = child.GetComponent<UnityEngine.Video.VideoPlayer>();
+            AudioSource taudio = child.GetComponent<AudioSource>();
             if (taudio == null && modelSharedProperties.spatialSound == true)
             {
                 if (url != null)
                 {
-                    taudio = child.AddComponent<UnityEngine.AudioSource>();
+                    taudio = child.AddComponent<AudioSource>();
                     taudio.playOnAwake = false;
-                    taudio.spatialBlend = 1;
+                    taudio.spatialBlend = 1f;
                     taudio.spatialize = true;
-                    taudio.minDistance = 1;
-                    taudio.maxDistance = 20;
+                    taudio.minDistance = 0f;
+                    taudio.maxDistance = 3f;
                     taudio.enabled = false;
+                    taudio.rolloffMode = AudioRolloffMode.Custom;
+                    taudio.SetCustomCurve(AudioSourceCurveType.CustomRolloff, volumeCurve);
                 }
             }
             if (video == null)
             {
-                if (url != null) { video = child.AddComponent<UnityEngine.Video.VideoPlayer>(); }
+                if (url != null)
+                {
+                    video = child.AddComponent<UnityEngine.Video.VideoPlayer>();
+                }
             }
             else
             {
@@ -444,10 +467,13 @@ namespace Arcade
                 }
             }
 
-            var tMeshCollider = gameObject.GetComponent(typeof(MeshCollider)) as MeshCollider;
-            var tChildrenMeshColliders = gameObject.GetComponentInChildren(typeof(MeshCollider)) as MeshCollider;
-            var tChildrenBoxColliders = gameObject.GetComponentInChildren(typeof(BoxCollider)) as BoxCollider;
-            if (tMeshCollider != null || tChildrenMeshColliders != null || tChildrenBoxColliders != null) { return; }
+            MeshCollider tMeshCollider = gameObject.GetComponent(typeof(MeshCollider)) as MeshCollider;
+            MeshCollider tChildrenMeshColliders = gameObject.GetComponentInChildren(typeof(MeshCollider)) as MeshCollider;
+            BoxCollider tChildrenBoxColliders = gameObject.GetComponentInChildren(typeof(BoxCollider)) as BoxCollider;
+            if (tMeshCollider != null || tChildrenMeshColliders != null || tChildrenBoxColliders != null)
+            {
+                return;
+            }
             boxCol = gameObject.GetComponent(typeof(BoxCollider)) as BoxCollider;
             if (boxCol == null)
             {
@@ -457,7 +483,10 @@ namespace Arcade
             t.transform.position = new Vector3(0, 0, 0);
             Renderer[] rr = t.GetComponentsInChildren<Renderer>();
             Bounds b = rr[0].bounds;
-            foreach (Renderer r in rr) { b.Encapsulate(r.bounds); }
+            foreach (Renderer r in rr)
+            {
+                b.Encapsulate(r.bounds);
+            }
             boxCol.center = new Vector3(0, b.size.y / 2, 0);
             boxCol.size = new Vector3(b.size.x, b.size.y, b.size.z);
         }
@@ -466,16 +495,19 @@ namespace Arcade
         {
             if (ArcadeManager.emulatorsConfigurationList.Count < 1)
             {
-                ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
+                _ = ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
             }
             List<EmulatorConfiguration> emulatorConfiguration = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id == emulatorID).ToList();
             if (emulatorConfiguration.Count < 1)
             {
                 return;
             }
-            List<ModelProperties> modelList = emulatorConfiguration[0].masterGamelist.Where(x => x.id.ToLower() == nameID.ToLower()).ToList<ModelProperties>();
-            if (modelList.Count < 1) { return; }
-            var modelProperties = modelList[0];
+            List<ModelProperties> modelList = emulatorConfiguration[0].masterGamelist.Where(x => x.id.ToLower() == nameID.ToLower()).ToList();
+            if (modelList.Count < 1)
+            {
+                return;
+            }
+            ModelProperties modelProperties = modelList[0];
             SetModelProperties(modelProperties);
         }
     }

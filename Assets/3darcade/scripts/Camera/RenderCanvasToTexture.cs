@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 namespace Arcade
 {
-
     public class RenderCanvasToTexture : MonoBehaviour
     {
         public TextMeshPro defaultMarqueeText;
         public Image defaultMarqueeImage;
-        private int i = 0;
 
         public Camera renderCanvasCamera;
 
@@ -26,17 +24,19 @@ namespace Arcade
         // Take a "screenshot" of a camera's Render Texture.
         public Texture2D RenderToTexture(float aspectRatio, ModelProperties modelProperties)
         {
-            var defaultMarqueeImages = new Sprite[] { defaultMarqueeImage_1, defaultMarqueeImage_2, defaultMarqueeImage_3, defaultMarqueeImage_4, defaultMarqueeImage_5, defaultMarqueeImage_6, defaultMarqueeImage_7, defaultMarqueeImage_8 };
+            Sprite[] defaultMarqueeImages = new Sprite[] { defaultMarqueeImage_1, defaultMarqueeImage_2, defaultMarqueeImage_3, defaultMarqueeImage_4, defaultMarqueeImage_5, defaultMarqueeImage_6, defaultMarqueeImage_7, defaultMarqueeImage_8 };
             System.Random rnd = new System.Random();
 
-            var defaultMarqueeTextColors = new Color[] { Color.green, Color.yellow, Color.white, Color.magenta, Color.blue, Color.cyan };
+            Color[] defaultMarqueeTextColors = new Color[] { Color.green, Color.yellow, Color.white, Color.magenta, Color.blue, Color.cyan };
 
             // The Render Texture in RenderTexture.active is the one that will be read by ReadPixels.
-            var currentRT = RenderTexture.active;
+            RenderTexture currentRT = RenderTexture.active;
             RenderTexture.active = renderCanvasCamera.targetTexture;
 
-            if (aspectRatio > 0.6) { aspectRatio = 0.6f; }
-            if (aspectRatio < 0.2) { aspectRatio = 0.2f; }
+            if (aspectRatio > 0.6)
+            { aspectRatio = 0.6f; }
+            if (aspectRatio < 0.2)
+            { aspectRatio = 0.2f; }
             if (ArcadeManager.currentOS == OS.MacOS)
             {
                 renderCanvasCamera.aspect = 1 / aspectRatio;
@@ -45,7 +45,7 @@ namespace Arcade
             {
                 renderCanvasCamera.rect = new Rect(0, 0, 1, aspectRatio); // windows? test
             }
-            var descriptiveName = modelProperties.descriptiveName;
+            string descriptiveName = modelProperties.descriptiveName;
             int index = descriptiveName.IndexOf("(", StringComparison.Ordinal);
             if (index > 0)
             {

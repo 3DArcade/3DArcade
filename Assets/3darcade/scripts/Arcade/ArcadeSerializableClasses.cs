@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Arcade
@@ -70,7 +69,7 @@ namespace Arcade
         public float sprocketLocalEularAngleY = 180;
         public float sprocketLocalEularAngleZ = 0;
     }
-    
+
     [System.Serializable]
     public class Zone
     {
@@ -86,4 +85,3 @@ namespace Arcade
         public List<string> prop = new List<string>();
     }
 }
-

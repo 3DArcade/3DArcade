@@ -12,4 +12,3 @@ namespace Arcade
         public List<ModelProperties> masterGamelist;
     }
 }
-

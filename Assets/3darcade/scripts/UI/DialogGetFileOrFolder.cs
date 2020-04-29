@@ -25,50 +25,50 @@ namespace Arcade
             switch (dialogType)
             {
                 case DialogType.Executable:
-                    var executable = Arcade.FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Name_Extension, "exe");
+                    string executable = FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Name_Extension, "exe");
                     if (executable != null)
                     {
                         Target.text = executable;
                     }
                     break;
                 case DialogType.Dll:
-                    var dll = Arcade.FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Name, "dll,dylib");
+                    string dll = FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Name, "dll,dylib");
                     if (dll != null)
                     {
                         Target.text = dll;
                     }
                     break;
                 case DialogType.Ini:
-                    var ini = Arcade.FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "ini");
+                    string ini = FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "ini");
                     if (ini != null)
                     {
                         Target.text = ini;
                     }
                     break;
                 case DialogType.MasterGamelist:
-                    var masterGamelist = Arcade.FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "atf,xml");
+                    string masterGamelist = FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "atf,xml");
                     if (masterGamelist != null)
                     {
                         Target.text = masterGamelist;
                     }
                     break;
                 case DialogType.Image:
-                    var image = Arcade.FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "jpg,png");
+                    string image = FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "jpg,png");
                     if (image != null)
                     {
                         if (ArcadeManager.arcadeState == ArcadeStates.ArcadesConfigurationMenu)
                         {
                             string destinationFolder = ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath;
-                            string destinationFilename = ArcadeManager.arcadeConfiguration.id + FileManager.getFilePart(FileManager.FilePart.Extension, null, null, image);
-                            FileManager.DeleteFile(destinationFolder, ArcadeManager.arcadeConfiguration.id + ".jpg");
-                            FileManager.DeleteFile(destinationFolder, ArcadeManager.arcadeConfiguration.id + ".png");
+                            string destinationFilename = ArcadeManager.arcadeConfiguration.id + FileManager.GetFilePart(FileManager.FilePart.Extension, null, null, image);
+                            _ = FileManager.DeleteFile(destinationFolder, ArcadeManager.arcadeConfiguration.id + ".jpg");
+                            _ = FileManager.DeleteFile(destinationFolder, ArcadeManager.arcadeConfiguration.id + ".png");
                             FileManager.CopyFile(image, destinationFolder, destinationFilename);
-                            Target.text = FileManager.getFilePart(FileManager.FilePart.Name_Extension, destinationFolder, destinationFilename);
+                            Target.text = FileManager.GetFilePart(FileManager.FilePart.Name_Extension, destinationFolder, destinationFilename);
                         }
                     }
                     break;
                 default:
-                    var folder = Arcade.FileManager.DialogGetFolderPath(true);
+                    string folder = FileManager.DialogGetFolderPath(true);
                     if (folder != null)
                     {
                         Target.text = folder;

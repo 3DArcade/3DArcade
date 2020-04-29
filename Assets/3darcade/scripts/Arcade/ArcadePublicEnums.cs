@@ -1,6 +1,5 @@
 ﻿namespace Arcade
 {
-
     public enum ArcadeType
     {
         FpsArcade, CylArcade, FpsMenu, CylMenu, None

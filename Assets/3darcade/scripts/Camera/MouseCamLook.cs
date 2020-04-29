@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
-using UnityEngine.EventSystems;
-using Arcade;
+﻿using UnityEngine;
 
 namespace Arcade
 {
@@ -40,16 +35,20 @@ namespace Arcade
 
         void Update()
         {
-            if ((arcadeControl == ArcadeManager.arcadeControls[ArcadeType.FpsArcade] || arcadeControl == ArcadeManager.arcadeControls[ArcadeType.CylArcade]) && ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu) { return; }
-            if ((arcadeControl == ArcadeManager.arcadeControls[ArcadeType.FpsMenu] || arcadeControl == ArcadeManager.arcadeControls[ArcadeType.CylMenu]) && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu)) { return; }
+            if ((arcadeControl == ArcadeManager.arcadeControls[ArcadeType.FpsArcade] || arcadeControl == ArcadeManager.arcadeControls[ArcadeType.CylArcade]) && ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu)
+            { return; }
+            if ((arcadeControl == ArcadeManager.arcadeControls[ArcadeType.FpsMenu] || arcadeControl == ArcadeManager.arcadeControls[ArcadeType.CylMenu]) && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
+            { return; }
 
             if (!(ArcadeManager.arcadeState == ArcadeStates.Running || ArcadeManager.arcadeState == ArcadeStates.Game || ArcadeManager.arcadeState == ArcadeStates.MoveCabs || ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
             {
                 return;
             }
             // If fps is active return
-            if (ArcadeManager.activeArcadeType != arcadeType && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu)) { return; }
-            if (ArcadeManager.activeMenuType != arcadeType && (ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu)) { return; }
+            if (ArcadeManager.activeArcadeType != arcadeType && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
+            { return; }
+            if (ArcadeManager.activeMenuType != arcadeType && (ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
+            { return; }
             if (Cursor.lockState != CursorLockMode.Locked)
             {
                 return;
@@ -86,7 +85,7 @@ namespace Arcade
             {
                 updateMouse = true;
             }
-            //if (touch.position.x < Screen.width/2) 
+            //if (touch.position.x < Screen.width/2)
             //{
             //    return;
             //}
@@ -124,7 +123,8 @@ namespace Arcade
             //print("mouse hier x " + mouseDelta.x + " y " + mouseDelta.y);
             if ((ArcadeManager.activeArcadeType == ArcadeType.CylArcade && ArcadeManager.arcadeState != ArcadeStates.ArcadeMenu) || (arcadeType == ArcadeType.CylMenu && ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
             {
-                if (mouseDelta.y == 0 && mouseDelta.x == 0) { return; }
+                if (mouseDelta.y == 0 && mouseDelta.x == 0)
+                { return; }
                 CylController c = arcadeControl.GetComponent<CylController>();
                 if (c.cylArcadeProperties.cameraLocalEularAngleRotation)
                 {
@@ -134,10 +134,14 @@ namespace Arcade
                     mouseLook.x = c.cylArcadeProperties.cameraLocalEularAngleX;
                     mouseLook.y = c.cylArcadeProperties.cameraLocalEularAngleX;
                     mouseLook += smoothV;
-                    if (mouseLook.y > c.cylArcadeProperties.cameraLocalMaxEularAngleRotation) { mouseLook.y = c.cylArcadeProperties.cameraLocalMaxEularAngleRotation; }
-                    if (mouseLook.y < c.cylArcadeProperties.cameraLocalMinEularAngleRotation) { mouseLook.y = c.cylArcadeProperties.cameraLocalMinEularAngleRotation; }
-                    if (mouseLook.x > c.cylArcadeProperties.cameraLocalMaxEularAngleRotation) { mouseLook.x = c.cylArcadeProperties.cameraLocalMaxEularAngleRotation; }
-                    if (mouseLook.x < c.cylArcadeProperties.cameraLocalMinEularAngleRotation) { mouseLook.x = c.cylArcadeProperties.cameraLocalMinEularAngleRotation; }
+                    if (mouseLook.y > c.cylArcadeProperties.cameraLocalMaxEularAngleRotation)
+                    { mouseLook.y = c.cylArcadeProperties.cameraLocalMaxEularAngleRotation; }
+                    if (mouseLook.y < c.cylArcadeProperties.cameraLocalMinEularAngleRotation)
+                    { mouseLook.y = c.cylArcadeProperties.cameraLocalMinEularAngleRotation; }
+                    if (mouseLook.x > c.cylArcadeProperties.cameraLocalMaxEularAngleRotation)
+                    { mouseLook.x = c.cylArcadeProperties.cameraLocalMaxEularAngleRotation; }
+                    if (mouseLook.x < c.cylArcadeProperties.cameraLocalMinEularAngleRotation)
+                    { mouseLook.x = c.cylArcadeProperties.cameraLocalMinEularAngleRotation; }
 
                     c.cylArcadeProperties.cameraLocalEularAngleX = (c.cylArcadeProperties.mouseLookAxisY ? mouseLook.y : mouseLook.x);
                     c.UpdateCamera();
@@ -150,16 +154,13 @@ namespace Arcade
                 smoothV.y = Mathf.Lerp(smoothV.y, mouseDelta.y, 1f / smoothing);
                 // Incrementally add to the camera look
                 mouseLook += smoothV;
-                if (mouseLook.y < -70) { mouseLook.y = -70f; }
-                if (mouseLook.y > 70) { mouseLook.y = 70f; }
+                if (mouseLook.y < -70)
+                { mouseLook.y = -70f; }
+                if (mouseLook.y > 70)
+                { mouseLook.y = 70f; }
                 transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
                 arcadeControl.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, arcadeControl.transform.up);
             }
         }
     }
 }
-
-
-
-
-

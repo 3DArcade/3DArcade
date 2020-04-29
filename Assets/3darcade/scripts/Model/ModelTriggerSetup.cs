@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Arcade
@@ -69,9 +67,11 @@ namespace Arcade
         public void NewEvent(Event triggerEvent, GameObject triggerSource)
         {
             //print("New event: " + triggerEvent.ToString());
-            if (!triggerEvents.ContainsKey(triggerEvent)) { return; }
-            var triggerWrappers = triggerEvents[triggerEvent];
-            if (triggerWrappers.Count < 1) { return; }
+            if (!triggerEvents.ContainsKey(triggerEvent))
+            { return; }
+            List<TriggerWrapper> triggerWrappers = triggerEvents[triggerEvent];
+            if (triggerWrappers.Count < 1)
+            { return; }
             ActionSetup(triggerWrappers, triggerSource);
         }
 
@@ -79,28 +79,30 @@ namespace Arcade
         {
             foreach (TriggerWrapper triggerWrapper in triggerWrappers)
             {
-                Event triggerEvent;
-                if (System.Enum.TryParse(triggerWrapper.trigger.triggerEvent, true, out triggerEvent))
+                if (System.Enum.TryParse(triggerWrapper.trigger.triggerEvent, true, out Event triggerEvent))
                 {
                     if (triggerEvent == Event.ModelCollisionEnter || triggerEvent == Event.ModelCollisionExit)
                     {
-                        var ok = false;
+                        bool ok = false;
                         foreach (GameObject sourceObject in triggerWrapper.triggerSourceGameObjects)
                         {
-                            if (sourceObject == triggerSource) { ok = true; }
+                            if (sourceObject == triggerSource)
+                            { ok = true; }
                         }
-                        if (ok == false) { continue; }
+                        if (ok == false)
+                        { continue; }
                     }
-                }        
+                }
                 foreach (GameObject targetObject in triggerWrapper.triggerTargetGameObjects)
                 {
                     // Check if there is a target for this action
-                    if (targetObject == null) { continue; }
+                    if (targetObject == null)
+                    { continue; }
                     GameObject targetObjectParent = targetObject.transform.parent.gameObject; // Every model has a dummy parent!
-                    if (targetObjectParent == null) { continue; }
+                    if (targetObjectParent == null)
+                    { continue; }
 
-                    Action triggerAction;
-                    if (System.Enum.TryParse(triggerWrapper.trigger.triggerAction, true, out triggerAction))
+                    if (System.Enum.TryParse(triggerWrapper.trigger.triggerAction, true, out Action triggerAction))
                     {
                         switch (triggerAction)
                         {
@@ -145,12 +147,14 @@ namespace Arcade
 
         private void ActionPlayAudio(List<AudioProperties> audioPropertiesList, GameObject targetObject)
         {
-            if (audioPropertiesList.Count < 1) { return; }
+            if (audioPropertiesList.Count < 1)
+            { return; }
             AudioProperties audioProperties = audioPropertiesList[0];
             if (audioProperties.name.Trim() != "")
             {
-                if (!Application.isPlaying) { return; }
-                var modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
+                if (!Application.isPlaying)
+                { return; }
+                ModelAudioSetup modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
                 if (modelAudioSetup == null)
                 {
                     modelAudioSetup = targetObject.AddComponent<ModelAudioSetup>();
@@ -161,17 +165,19 @@ namespace Arcade
 
         private void ActionPauseAudio(List<AudioProperties> audioPropertiesList, GameObject targetObject)
         {
-            if (audioPropertiesList.Count < 1) { return; }
+            if (audioPropertiesList.Count < 1)
+            { return; }
             AudioProperties audioProperties = audioPropertiesList[0];
             if (audioProperties.name.Trim() != "")
             {
-                if (!Application.isPlaying) { return; }
-                var modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
+                if (!Application.isPlaying)
+                { return; }
+                ModelAudioSetup modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
                 if (modelAudioSetup != null)
                 {
                     modelAudioSetup.JukeboxEnabled = false;
                 }
-                var audioSource = targetObject.GetComponent<UnityEngine.AudioSource>();
+                AudioSource audioSource = targetObject.GetComponent<UnityEngine.AudioSource>();
                 if (audioSource != null)
                 {
                     audioSource.Pause();
@@ -181,18 +187,20 @@ namespace Arcade
 
         private void ActionStopAudio(List<AudioProperties> audioPropertiesList, GameObject targetObject)
         {
-            if (audioPropertiesList.Count < 1) { return; }
+            if (audioPropertiesList.Count < 1)
+            { return; }
             AudioProperties audioProperties = audioPropertiesList[0];
             if (audioProperties.name.Trim() != "")
             {
-                if (!Application.isPlaying) { return; }
-                var modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
+                if (!Application.isPlaying)
+                { return; }
+                ModelAudioSetup modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
                 if (modelAudioSetup != null)
                 {
                     modelAudioSetup.JukeboxEnabled = false;
                     modelAudioSetup.audioProperties = null;
                 }
-                var audioSource = targetObject.GetComponent<UnityEngine.AudioSource>();
+                AudioSource audioSource = targetObject.GetComponent<UnityEngine.AudioSource>();
                 if (audioSource != null)
                 {
                     audioSource.Stop();
@@ -204,7 +212,7 @@ namespace Arcade
         {
             foreach (AnimationProperties animationItem in animationProperties)
             {
-                var animationComponent = targetObject.GetComponent<Animation>();
+                Animation animationComponent = targetObject.GetComponent<Animation>();
                 if (animationComponent == null)
                 {
                     animationComponent = targetObject.GetComponentInChildren<Animation>();
@@ -212,16 +220,18 @@ namespace Arcade
                 bool ok = false;
                 if (animationComponent != null)
                 {
-                    var animationString = animationItem.name;
+                    string animationString = animationItem.name;
                     foreach (AnimationState clip in animationComponent)
                     {
-                        if (clip.name == animationString) { ok = true; }
+                        if (clip.name == animationString)
+                        { ok = true; }
                     }
-                    if (ok == false) { return; }
+                    if (ok == false)
+                    { return; }
                     animationComponent.enabled = true;
                     //print("startanimation " + animationItem.name + " on " + targetObject.name);
                     animationComponent[animationItem.name].layer = animationItem.layer;
-                    animationComponent.Play(animationItem.name);
+                    _ = animationComponent.Play(animationItem.name);
                     animationComponent[animationItem.name].speed = animationItem.speed;
                     animationComponent[animationItem.name].wrapMode = animationItem.loop ? WrapMode.Loop : WrapMode.Once;
                 }
@@ -232,16 +242,18 @@ namespace Arcade
         {
             foreach (AnimationProperties animationItem in animationProperties)
             {
-                var animationComponent = targetObject.GetComponent<Animation>();
+                Animation animationComponent = targetObject.GetComponent<Animation>();
                 bool ok = false;
                 if (animationComponent != null)
                 {
-                    var animationString = animationItem.name;
+                    string animationString = animationItem.name;
                     foreach (AnimationState clip in animationComponent)
                     {
-                        if (clip.name == animationString) { ok = true; }
+                        if (clip.name == animationString)
+                        { ok = true; }
                     }
-                    if (ok == false) { return; }
+                    if (ok == false)
+                    { return; }
 
                     animationComponent[animationItem.name].speed = 0;
                 }
@@ -252,16 +264,18 @@ namespace Arcade
         {
             foreach (AnimationProperties animationItem in animationProperties)
             {
-                var animationComponent = targetObject.GetComponent<Animation>();
+                Animation animationComponent = targetObject.GetComponent<Animation>();
                 bool ok = false;
                 if (animationComponent != null)
                 {
-                    var animationString = animationItem.name;
+                    string animationString = animationItem.name;
                     foreach (AnimationState clip in animationComponent)
                     {
-                        if (clip.name == animationString) { ok = true; }
+                        if (clip.name == animationString)
+                        { ok = true; }
                     }
-                    if (ok == false) { return; }
+                    if (ok == false)
+                    { return; }
 
                     animationComponent.Stop(animationString);
                 }
@@ -274,7 +288,7 @@ namespace Arcade
             {
                 if (triggerTransformItem.setParent)
                 {
-                    
+
 
                     // TODO: Implement setting parent to a triggerID.
                     string parent = triggerTransformItem.parent.Trim().ToLower();
@@ -353,11 +367,12 @@ namespace Arcade
 
         private void ActionGetArtworkFromSelectedModel(GameObject targetObjectParent)
         {
-            if (ArcadeStateManager.selectedModelSetup == null || !(Application.isPlaying) || !(targetObjectParent.activeSelf)) { return; }
+            if (ArcadeStateManager.selectedModelSetup == null || !(Application.isPlaying) || !(targetObjectParent.activeSelf))
+            { return; }
             ModelProperties modelProperties = ArcadeStateManager.selectedModelSetup.GetModelProperties();
             ModelSharedProperties modelSharedProperties = ArcadeStateManager.selectedModelSetup.modelSharedProperties;
             ModelSetup objModelSetup = targetObjectParent.GetComponent<ModelSetup>();
-            if (objModelSetup != null )
+            if (objModelSetup != null)
             {
                 targetObjectParent.tag = "gamemodel";
                 objModelSetup.Setup(modelProperties, modelSharedProperties);
@@ -366,5 +381,3 @@ namespace Arcade
         }
     }
 }
-
-

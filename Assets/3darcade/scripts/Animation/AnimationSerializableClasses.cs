@@ -13,4 +13,3 @@ namespace Arcade
         public int layer = 0;
     }
 }
-

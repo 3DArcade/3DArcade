@@ -32,7 +32,7 @@ namespace Arcade
                 {
                     if (activeObj.GetComponent<ModelSetup>() == null)
                     {
-                        activeObj.AddComponent<ModelSetup>();
+                        _ = activeObj.AddComponent<ModelSetup>();
                         Debug.Log(name + " was added to the scene in " + parentTransform.gameObject.name);
                     }
                 }

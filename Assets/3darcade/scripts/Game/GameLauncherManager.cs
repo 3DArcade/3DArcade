@@ -1,21 +1,20 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System;
+using System.Linq;
+using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Arcade
 {
-
     public class GameLauncherManager
     {
         // Uses Statics from ArcadeManager for arcadeState, arcadeConfiguration, menuConfiguration and emulatorsConfigurationList, applicationPath.
 
         private static ModelSetup selectedModelSetup;
         private static ModelSetup gameModelSetup;
-        private static List<ModelLibretroGameSetup> modelLibretroGameSetupsList = new List<ModelLibretroGameSetup>();
+        private static readonly List<ModelLibretroGameSetup> modelLibretroGameSetupsList = new List<ModelLibretroGameSetup>();
 
         public static void LoadGame(ModelSetup game, ModelSetup selected)
         {
@@ -49,15 +48,15 @@ namespace Arcade
                 return;
             }
             selectedModelSetup.isPlaying = true;
-            var launcherMethod = GameLauncherMethod.None;
+            GameLauncherMethod launcherMethod = GameLauncherMethod.None;
             launcherMethod = gameModelSetup.gameLauncherMethod;
             if (launcherMethod == GameLauncherMethod.None)
             {
-                System.Enum.TryParse(emulatorConfiguration[0].emulator.gameLauncherMethod, true, out launcherMethod);
+                _ = Enum.TryParse(emulatorConfiguration[0].emulator.gameLauncherMethod, true, out launcherMethod);
             }
             if (launcherMethod == GameLauncherMethod.None)
             {
-                System.Enum.TryParse(selectedModelSetup == gameModelSetup ? ArcadeManager.arcadeConfiguration.gameLauncherMethod : ArcadeManager.menuConfiguration.gameLauncherMethod, true, out launcherMethod);
+                _ = Enum.TryParse(selectedModelSetup == gameModelSetup ? ArcadeManager.arcadeConfiguration.gameLauncherMethod : ArcadeManager.menuConfiguration.gameLauncherMethod, true, out launcherMethod);
             }
             switch (launcherMethod)
             {
@@ -101,16 +100,21 @@ namespace Arcade
                     workingDir = path + workingDir;
                 }
 
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = emulatorPath + executable;
-                startInfo.Arguments = options + gamePath + gameModelSetup.id.Trim() + extension; // space char after -File
-                if (workingDir != "") { startInfo.WorkingDirectory = workingDir; }
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = emulatorPath + executable,
+                    Arguments = options + gamePath + gameModelSetup.id.Trim() + extension // space char after -File
+                };
+                if (workingDir != "")
+                { startInfo.WorkingDirectory = workingDir; }
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 startInfo.CreateNoWindow = true;
                 startInfo.UseShellExecute = false;
                 bool started = false;
-                Process process = new Process();
-                process.StartInfo = startInfo;
+                Process process = new Process
+                {
+                    StartInfo = startInfo
+                };
                 started = process.Start();
                 try
                 {
@@ -203,7 +207,7 @@ namespace Arcade
                 ArcadeManager.arcadeState = ArcadeStates.Game;
             }
         }
-       
+
         public static void UnLoadGame()
         {
             TriggerManager.SendEvent(Event.GameEnded);
@@ -224,15 +228,15 @@ namespace Arcade
                 return;
             }
             selectedModelSetup.isPlaying = false;
-            var launcherMethod = GameLauncherMethod.None;
+            GameLauncherMethod launcherMethod = GameLauncherMethod.None;
             launcherMethod = gameModelSetup.gameLauncherMethod;
             if (launcherMethod == GameLauncherMethod.None)
             {
-                System.Enum.TryParse(emulatorConfiguration[0].emulator.gameLauncherMethod, true, out launcherMethod);
+                _ = Enum.TryParse(emulatorConfiguration[0].emulator.gameLauncherMethod, true, out launcherMethod);
             }
             if (launcherMethod == GameLauncherMethod.None)
             {
-                System.Enum.TryParse(selectedModelSetup == gameModelSetup ? ArcadeManager.arcadeConfiguration.gameLauncherMethod : ArcadeManager.menuConfiguration.gameLauncherMethod, true, out launcherMethod);
+                _ = Enum.TryParse(selectedModelSetup == gameModelSetup ? ArcadeManager.arcadeConfiguration.gameLauncherMethod : ArcadeManager.menuConfiguration.gameLauncherMethod, true, out launcherMethod);
             }
             switch (launcherMethod)
             {

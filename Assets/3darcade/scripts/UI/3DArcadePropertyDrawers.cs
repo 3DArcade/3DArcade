@@ -1,8 +1,7 @@
 ﻿using System;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace Arcade
@@ -13,7 +12,7 @@ namespace Arcade
         {
             List = list;
         }
-        
+
         public ArcadePopUp(Type type)
         {
             if (type.IsEnum)
@@ -48,7 +47,7 @@ namespace Arcade
         {
             if (name == "Arcade")
             {
-             List = ArcadeManager.arcadesConfigurationList.Select(x => x.id).ToList().ToArray();
+                List = ArcadeManager.arcadesConfigurationList.Select(x => x.id).ToList().ToArray();
             }
         }
 
@@ -76,4 +75,3 @@ namespace Arcade
         }
     }
 }
-

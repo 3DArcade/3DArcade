@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arcade
 {
@@ -38,23 +38,32 @@ namespace Arcade
         void Start()
         {
             print("1 maal is genoeg");
-            emulators.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(emulators); });
-            genre.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(genre); });
-            manufacturer.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(manufacturer); });
-            decade.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(decade); });
-            original.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(original); });
-            available.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(available); });
-            screen.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(screen); });
-            orientation.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(orientation); });
-            search.onValueChanged.AddListener(delegate { SearchValueChangedHandler(search); });
+            emulators.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(emulators); });
+            genre.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(genre); });
+            manufacturer.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(manufacturer); });
+            decade.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(decade); });
+            original.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(original); });
+            available.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(available); });
+            screen.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(screen); });
+            orientation.onValueChanged.AddListener(delegate
+            { DropdownValueChangedHandler(orientation); });
+            search.onValueChanged.AddListener(delegate
+            { SearchValueChangedHandler(search); });
 
             // Emulators
             if (ArcadeManager.emulatorsConfigurationList.Count > 0)
             {
 
                 emulators.options.Clear();
-                String selectedName = "";
-                var selectedEmulatorConfiguration = ArcadeManager.emulatorsConfigurationList[0];
+                string selectedName = "";
+                EmulatorConfiguration selectedEmulatorConfiguration = ArcadeManager.emulatorsConfigurationList[0];
                 foreach (EmulatorConfiguration item in ArcadeManager.emulatorsConfigurationList)
                 {
                     emulators.options.Add(new Dropdown.OptionData(item.emulator.descriptiveName));
@@ -82,7 +91,7 @@ namespace Arcade
             List<string> itemsList = new List<string>();
             foreach (ModelProperties item in filteredSelectedGamelist)
             {
-                var titem = Regex.Replace(item.genre.Split()[0], @"[^0-9a-zA-Z\ ]+", "").Trim();
+                string titem = Regex.Replace(item.genre.Split()[0], @"[^0-9a-zA-Z\ ]+", "").Trim();
                 if (!itemsList.Contains(titem) && titem != "")
                 {
                     itemsList.Add(titem);
@@ -93,7 +102,7 @@ namespace Arcade
             itemsList = new List<string>();
             foreach (ModelProperties item in filteredSelectedGamelist)
             {
-                var titem = item.manufacturer.Trim();
+                string titem = item.manufacturer.Trim();
                 if (!itemsList.Contains(titem) && titem != "")
                 {
                     itemsList.Add(titem);
@@ -224,27 +233,27 @@ namespace Arcade
             {
                 if (currentDecadeSelection == "<70s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (Int32.TryParse(x.year.Trim(), out int number) ? number < 1970 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number < 1970 : false)).ToList();
                 }
                 if (currentDecadeSelection == "70s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (Int32.TryParse(x.year.Trim(), out int number) ? number >= 1970 && number < 1980 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 1970 && number < 1980 : false)).ToList();
                 }
                 if (currentDecadeSelection == "80s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (Int32.TryParse(x.year.Trim(), out int number) ? number >= 1980 && number < 1990 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 1980 && number < 1990 : false)).ToList();
                 }
                 if (currentDecadeSelection == "90s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (Int32.TryParse(x.year.Trim(), out int number) ? number >= 1990 && number < 2000 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 1990 && number < 2000 : false)).ToList();
                 }
                 if (currentDecadeSelection == ">90s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (Int32.TryParse(x.year.Trim(), out int number) ? number >= 2000 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 2000 : false)).ToList();
                 }
             }
-            var scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();
-            var ls = scrollRects;
+            LoopScrollRect scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();
+            LoopScrollRect ls = scrollRects;
             ls.totalCount = filteredSelectedGamelist.Count;
             ls.RefillCells();
             //print("listcount " + filteredSelectedGamelist.Count);
@@ -268,7 +277,7 @@ namespace Arcade
             if (target == emulators)
             {
                 currentEmulatorSelection = target.options[target.value].text;
-                var list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == currentEmulatorSelection.ToLower()).ToList<EmulatorConfiguration>();
+                List<EmulatorConfiguration> list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == currentEmulatorSelection.ToLower()).ToList<EmulatorConfiguration>();
                 if (list.Count > 0)
                 {
                     SetupList(list[0].masterGamelist);
@@ -308,7 +317,7 @@ namespace Arcade
 
         }
 
-        public ModelProperties getSelectedGame()
+        public ModelProperties GetSelectedGame()
         {
             ModelProperties modelProperties = new ModelProperties();
 
@@ -324,4 +333,3 @@ namespace Arcade
         }
     }
 }
-

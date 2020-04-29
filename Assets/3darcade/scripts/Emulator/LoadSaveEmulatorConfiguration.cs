@@ -11,7 +11,8 @@ namespace Arcade
         public void SaveEmulators()
         {
             List<EmulatorProperties> emulatorsList = GetListOfEmulatorProperties();
-            if (emulatorsList == null) { return; }
+            if (emulatorsList == null)
+            { return; }
             List<EmulatorConfiguration> tempEmulatorsConfigurationList = new List<EmulatorConfiguration>();
             foreach (EmulatorProperties emulatorProperties in emulatorsList)
             {
@@ -35,7 +36,7 @@ namespace Arcade
                     Debug.Log("no items found");
                     return null;
                 }
-                var obj = objParent.GetComponents<EmulatorSetup>();
+                EmulatorSetup[] obj = objParent.GetComponents<EmulatorSetup>();
                 foreach (EmulatorSetup item in obj)
                 {
                     EmulatorProperties emulator = item.GetEmulatorSetup();
@@ -48,19 +49,19 @@ namespace Arcade
         public void SaveEmulatorConfiguration(EmulatorConfiguration emulatorConfiguration)
         {
             string filePath = ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath;
-            var fileName = emulatorConfiguration.emulator.id + ".json";
+            string fileName = emulatorConfiguration.emulator.id + ".json";
             Debug.Log("Save Emulator Configuration " + filePath + fileName);
             FileManager.SaveJSONData(emulatorConfiguration, filePath, fileName);
         }
 
         public void SaveEmulatorsConfigurationList()
         {
-            var files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath, "*.json");
+            List<FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath, "*.json");
             if (files != null)
             {
                 foreach (FileInfo file in files)
                 {
-                    FileManager.DeleteFile(file.DirectoryName, file.Name);
+                    _ = FileManager.DeleteFile(file.DirectoryName, file.Name);
                 }
             }
             foreach (EmulatorConfiguration emulatorConfiguration in ArcadeManager.emulatorsConfigurationList)
@@ -85,8 +86,7 @@ namespace Arcade
 
             void SetListOfEmulatorProperties(List<EmulatorConfiguration> list)
             {
-                var obj = emulators.GetComponents<EmulatorSetup>();
-                int count = obj.Count();
+                EmulatorSetup[] obj = emulators.GetComponents<EmulatorSetup>();
                 // Destroy the current list of emulators in the editor...
                 foreach (EmulatorSetup item in obj)
                 {
@@ -102,7 +102,7 @@ namespace Arcade
                 // Set the new list of emulators
                 foreach (EmulatorConfiguration item in list)
                 {
-                    var component = emulators.AddComponent<EmulatorSetup>();
+                    EmulatorSetup component = emulators.AddComponent<EmulatorSetup>();
                     component.SetEmulatorSetup(item.emulator);
                 }
             }
@@ -112,7 +112,7 @@ namespace Arcade
         {
             string filePath = ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath;
             ArcadeManager.emulatorsConfigurationList = new List<EmulatorConfiguration>();
-            var files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath, "*.json", SearchOption.AllDirectories);
+            List<FileInfo> files = FileManager.FilesFromDirectory(filePath, "*.json", SearchOption.AllDirectories);
             if (files != null)
             {
                 foreach (FileInfo file in files)
@@ -129,7 +129,7 @@ namespace Arcade
         {
             if (ArcadeManager.emulatorsConfigurationList.Count < 1)
             {
-                LoadEmulatorsConfigurationList();
+                _ = LoadEmulatorsConfigurationList();
             }
             List<EmulatorConfiguration> emulatorConfiguration = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id == emulatorID).ToList();
             if (emulatorConfiguration.Count > 0)
@@ -143,49 +143,49 @@ namespace Arcade
         {
             string filePath = ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath;
             Debug.Log("Delete! " + emulatorConfiguration.emulator.id);
-            var fileName = emulatorConfiguration.emulator.id + ".json";
-            FileManager.DeleteFile(filePath, fileName);
+            string fileName = emulatorConfiguration.emulator.id + ".json";
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".json.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             filePath = ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/mame/";
             fileName = emulatorConfiguration.emulator.id + ".xml";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".ini";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".dat";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".xml.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".ini.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".dat.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             filePath = ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/hyperspin/";
             fileName = emulatorConfiguration.emulator.id + ".xml";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".ini";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".dat";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".xml.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".ini.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".dat.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             filePath = ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/atf/";
             fileName = emulatorConfiguration.emulator.id + ".atf";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".ini";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".dat";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".atf.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".ini.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = emulatorConfiguration.emulator.id + ".dat.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
         }
     }
 }

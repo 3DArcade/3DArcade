@@ -6,7 +6,6 @@ namespace Arcade
 {
     public class DialogAddEmulatorConfiguration : MonoBehaviour
     {
-
         public InputField descriptiveName;
         public InputField id;
         public InputField masterGamelist;
@@ -23,4 +22,3 @@ namespace Arcade
         }
     }
 }
-

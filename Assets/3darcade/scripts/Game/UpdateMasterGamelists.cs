@@ -1,16 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Arcade;
-using System.IO;
-using System.Xml.Serialization;
-using System.Linq;
+﻿using IniParser;
 using System;
-using HyperspinXML;
-using Mame2003XML;
-using System.Text;
+using System.Collections.Generic;
 using System.Globalization;
-using IniParser;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml.Serialization;
+using UnityEngine;
 
 namespace Arcade
 {
@@ -20,7 +16,7 @@ namespace Arcade
         {
             if (ArcadeManager.emulatorsConfigurationList.Count < 1)
             {
-                ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
+                _ = ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
             }
             if (ArcadeManager.emulatorsConfigurationList.Count > 0)
             {
@@ -43,7 +39,7 @@ namespace Arcade
             string filePath = ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/mame/";
             if (FileManager.FileExists(filePath, fileName) != null)
             {
-                var md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
+                string md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
                 if (md5 != null)
                 {
                     masterGamelist = GetGamelistFromMameXML(filePath, fileName, emulatorConfiguration.emulator, slider);
@@ -71,7 +67,7 @@ namespace Arcade
             filePath = ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/hyperspin/";
             if (FileManager.FileExists(filePath, fileName) != null)
             {
-                var md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
+                string md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
                 if (md5 != null)
                 {
                     masterGamelist = GetGamelistFromHyperspinXML(filePath, fileName, emulatorConfiguration.emulator, slider);
@@ -99,7 +95,7 @@ namespace Arcade
             filePath = ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/atf/";
             if (FileManager.FileExists(filePath, fileName) != null)
             {
-                var md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
+                string md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
                 if (md5 != null)
                 {
                     masterGamelist = GetGamelistFrom3DArcadeATF(filePath, fileName, emulatorConfiguration.emulator, slider);
@@ -125,24 +121,24 @@ namespace Arcade
             // from folder?
             string gamePath = emulatorConfiguration.emulator.gamePath.Trim();
             filePath = ArcadeManager.applicationPath + gamePath;
-           
-          
+
+
             // if (FileManager.DirectoryExists(filePath) != null)
             //  {
             masterGamelist = GetGamelistFromGamePath(filePath, emulatorConfiguration.emulator, slider);
-                if (masterGamelist != null)
-                {
-                    emulatorConfiguration.lastMasterGamelistUpdate = DateTime.Now.ToString();
-                    emulatorConfiguration.masterGamelist = masterGamelist;
-                    emulatorConfiguration.md5MasterGamelist = "";
-                    Debug.Log("MasterGamelist updated from game path");
-                    return emulatorConfiguration;
-                }
-                else
-                {
-                    Debug.Log("MasterGamelist update failed from game path");
-                }
-          //  }
+            if (masterGamelist != null)
+            {
+                emulatorConfiguration.lastMasterGamelistUpdate = DateTime.Now.ToString();
+                emulatorConfiguration.masterGamelist = masterGamelist;
+                emulatorConfiguration.md5MasterGamelist = "";
+                Debug.Log("MasterGamelist updated from game path");
+                return emulatorConfiguration;
+            }
+            else
+            {
+                Debug.Log("MasterGamelist update failed from game path");
+            }
+            //  }
             Debug.Log("MasterGamelist not found");
             return emulatorConfiguration;
         }
@@ -161,23 +157,25 @@ namespace Arcade
             string emulatorExtension = emulatorProperties.extension;
             string emulatorID = emulatorProperties.id;
             string emulatorGamePath = ArcadeManager.applicationPath + emulatorProperties.gamePath;
-            var gamesCollection = Mame2003XML.Mame.Load(Path.Combine(filePath, fileName));
+            Mame2003XML.Mame gamesCollection = Mame2003XML.Mame.Load(Path.Combine(filePath, fileName));
             INIFile ini = new INIFile(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/mame/", emulatorID + ".ini"));
             //Debug.Log("mame " + gamesCollection.Game.Count);
             // Debug.Log("invaders is " + gamesCollection.Game.Where(x => x.Name.ToLower() == "invaders").ToList<mame2003XML.Game>()[0].Genre);
             List<ModelProperties> gamelist = new List<ModelProperties>();
             foreach (Mame2003XML.Game game in gamesCollection.Game)
             {
-                ModelProperties model = new ModelProperties();
-                model.descriptiveName = game.Description;
-                model.id = game.Name;
-                model.idParent = game.Cloneof;
-                model.emulator = emulatorID.Replace(" ", String.Empty).ToLower();
-                //model.animationType = "Never";
-                model.animatedTextureSpeed = 2.0f;
-                model.screen = (game.Video != null ? game.Video.Screen + " " : "") + (game.Video != null ? game.Video.Orientation : "");
-                model.manufacturer = game.Manufacturer;
-                model.year = game.Year;
+                ModelProperties model = new ModelProperties
+                {
+                    descriptiveName = game.Description,
+                    id = game.Name,
+                    idParent = game.Cloneof,
+                    emulator = emulatorID.Replace(" ", string.Empty).ToLower(),
+                    //model.animationType = "Never";
+                    animatedTextureSpeed = 2.0f,
+                    screen = (game.Video != null ? game.Video.Screen + " " : "") + (game.Video != null ? game.Video.Orientation : ""),
+                    manufacturer = game.Manufacturer,
+                    year = game.Year
+                };
                 model.genre = ini.GetValue("Category", model.id, "").Replace("* Mature *", "");
                 model.mature = ini.GetValue("Category", model.id, "").Contains("Mature") ? true : false;
                 model.runnable = game.Driver != null ? game.Driver.Status == "good" : false;
@@ -197,21 +195,23 @@ namespace Arcade
             string emulatorID = emulatorProperties.id;
             string emulatorGamePath = ArcadeManager.applicationPath + emulatorProperties.gamePath;
 
-            var gamesCollection = HyperspinXML.Menu.Load(Path.Combine(filePath, fileName));
+            HyperspinXML.Menu gamesCollection = HyperspinXML.Menu.Load(Path.Combine(filePath, fileName));
             //Debug.Log("invaders is " + gamesCollection.Game.Where(x => x.Name.ToLower() == "invaders").ToList<HyperspinXML.Game>()[0].Genre);
             List<ModelProperties> gamelist = new List<ModelProperties>();
             foreach (HyperspinXML.Game game in gamesCollection.Game)
             {
-                ModelProperties model = new ModelProperties();
-                model.descriptiveName = game.Description;
-                model.id = game.Name;
-                model.idParent = game.Cloneof;
-                model.emulator = emulatorID.Replace(" ", String.Empty).ToLower();
-                //model.animationType = "Never";
-                model.animatedTextureSpeed = 2.0f;
-                model.manufacturer = game.Manufacturer;
-                model.year = game.Year;
-                model.genre = game.Genre;
+                ModelProperties model = new ModelProperties
+                {
+                    descriptiveName = game.Description,
+                    id = game.Name,
+                    idParent = game.Cloneof,
+                    emulator = emulatorID.Replace(" ", string.Empty).ToLower(),
+                    //model.animationType = "Never";
+                    animatedTextureSpeed = 2.0f,
+                    manufacturer = game.Manufacturer,
+                    year = game.Year,
+                    genre = game.Genre
+                };
                 model.available = IsGameAvailable(emulatorGamePath, model.id, emulatorExtension);
                 // model.mature = game.Rating;
                 gamelist.Add(model);
@@ -229,31 +229,34 @@ namespace Arcade
             string emulatorID = emulatorProperties.id;
             string emulatorGamePath = ArcadeManager.applicationPath + emulatorProperties.gamePath;
 
-            var text = FileManager.LoadTextFromFile(filePath, fileName);
-            if (text == null) { return null; }
-            var lines = text.Split(Environment.NewLine.ToCharArray());
+            string text = FileManager.LoadTextFromFile(filePath, fileName);
+            if (text == null)
+            { return null; }
+            string[] lines = text.Split(Environment.NewLine.ToCharArray());
             //   | Description | Name | Year | Manufacturer | Clone | Romof | Category | VersionAdded | Available | Emulator | Type | Model | Favorites | Video | Orientation | Resolution | Aspect | Frequency | Depth | Stereo | Controltype | Buttons | Players | Coins | Driver | DriverStatus | SoundStatus | ColorStatus | HtmlLinks | TimesPlayed | DurationPlayed | Rating |||||
             List<ModelProperties> gamelist = new List<ModelProperties>();
             foreach (string line in lines)
             {
-                var items = line.Split("|".ToCharArray());
-                if (items.Count() < 35) { continue; }
-                ModelProperties model = new ModelProperties();
-                model.descriptiveName = items[1];
-                model.id = items[2];
-                model.idParent = items[5] != "none" && items[5] != "" ? items[5] : "";
-                model.emulator = emulatorID.Replace(" ", String.Empty).ToLower();
-                model.model = items[12] != "none" && items[12] != "" ? items[12] : "";
-                //model.animationType = "Never";
-                model.animatedTextureSpeed = 2.0f;
-                model.screen = (items[14] != "none" && items[14] != "" ? items[14] + " " : "") + items[15] != "none" && items[15] != "" ? items[15] : "";
-                model.manufacturer = items[4] != "none" && items[4] != "" ? items[4] : "";
-                model.year = items[3] != "none" && items[3] != "" ? items[3] : "";
-                model.genre = items[7] != "none" && items[7] != "" ? items[7].Replace("*Mature*", "") : "";
-                model.available = items[9].ToLower() != "no" ? true : false;
-                int number;
-                model.playCount = int.TryParse(items[30], out number) ? number : 0;
-                model.mature = items[7].ToLower().Contains("mature") ? true : false;
+                string[] items = line.Split("|".ToCharArray());
+                if (items.Count() < 35)
+                { continue; }
+                ModelProperties model = new ModelProperties
+                {
+                    descriptiveName = items[1],
+                    id = items[2],
+                    idParent = items[5] != "none" && items[5] != "" ? items[5] : "",
+                    emulator = emulatorID.Replace(" ", string.Empty).ToLower(),
+                    model = items[12] != "none" && items[12] != "" ? items[12] : "",
+                    //model.animationType = "Never";
+                    animatedTextureSpeed = 2.0f,
+                    screen = (items[14] != "none" && items[14] != "" ? items[14] + " " : "") + items[15] != "none" && items[15] != "" ? items[15] : "",
+                    manufacturer = items[4] != "none" && items[4] != "" ? items[4] : "",
+                    year = items[3] != "none" && items[3] != "" ? items[3] : "",
+                    genre = items[7] != "none" && items[7] != "" ? items[7].Replace("*Mature*", "") : "",
+                    available = items[9].ToLower() != "no" ? true : false,
+                    playCount = int.TryParse(items[30], out int number) ? number : 0,
+                    mature = items[7].ToLower().Contains("mature") ? true : false
+                };
                 model.available = IsGameAvailable(emulatorGamePath, model.id, emulatorExtension);
                 gamelist.Add(model);
             }
@@ -268,23 +271,27 @@ namespace Arcade
         {
             string emulatorExtension = emulatorProperties.extension;
             string emulatorID = emulatorProperties.id;
-           
-            if (!emulatorExtension.Contains(".") && emulatorExtension != "") { emulatorExtension = "." + emulatorExtension; }
-            if (emulatorExtension == "") { emulatorExtension = "*.*"; }
-            var files = FileManager.FilesFromDirectory(filePath, emulatorExtension);
+
+            if (!emulatorExtension.Contains(".") && emulatorExtension != "")
+            { emulatorExtension = "." + emulatorExtension; }
+            if (emulatorExtension == "")
+            { emulatorExtension = "*.*"; }
+            List<FileInfo> files = FileManager.FilesFromDirectory(filePath, emulatorExtension);
             if (files != null)
             {
                 List<ModelProperties> gamelist = new List<ModelProperties>();
                 foreach (FileInfo file in files)
                 {
                     string fileName = Path.GetFileNameWithoutExtension(file.FullName);
-                    ModelProperties model = new ModelProperties();
-                    model.descriptiveName = fileName;
-                    model.id = fileName;
-                    model.idParent = "";
-                    model.emulator = emulatorID.Replace(" ", String.Empty).ToLower();
-                    //model.animationType = "Never";
-                    model.animatedTextureSpeed = 2.0f;
+                    ModelProperties model = new ModelProperties
+                    {
+                        descriptiveName = fileName,
+                        id = fileName,
+                        idParent = "",
+                        emulator = emulatorID.Replace(" ", string.Empty).ToLower(),
+                        //model.animationType = "Never";
+                        animatedTextureSpeed = 2.0f
+                    };
                     gamelist.Add(model);
                 }
                 if (gamelist.Count > 0)
@@ -461,8 +468,8 @@ namespace Mame2003XML
 
         public static Mame Load(string path)
         {
-            var serializer = new XmlSerializer(typeof(Mame));
-            using (var stream = new FileStream(path, FileMode.Open))
+            XmlSerializer serializer = new XmlSerializer(typeof(Mame));
+            using (FileStream stream = new FileStream(path, FileMode.Open))
             {
                 return serializer.Deserialize(stream) as Mame;
             }
@@ -525,8 +532,8 @@ namespace HyperspinXML
 
         public static Menu Load(string path)
         {
-            var serializer = new XmlSerializer(typeof(Menu));
-            using (var stream = new FileStream(path, FileMode.Open))
+            XmlSerializer serializer = new XmlSerializer(typeof(Menu));
+            using (FileStream stream = new FileStream(path, FileMode.Open))
             {
                 return serializer.Deserialize(stream) as Menu;
             }
@@ -535,7 +542,6 @@ namespace HyperspinXML
 
 
 }
-
 
 namespace IniParser
 {
@@ -551,17 +557,9 @@ namespace IniParser
         #region "Declarations"
 
         // *** Lock for thread-safe access to file and local cache ***
-        private object m_Lock = new object();
+        private readonly object m_Lock = new object();
 
-        // *** File name ***
-        private string m_FileName = null;
-        internal string FileName
-        {
-            get
-            {
-                return m_FileName;
-            }
-        }
+        internal string FileName { get; private set; } = null;
 
         // *** Lazy loading flag ***
         private bool m_Lazy = false;
@@ -570,8 +568,8 @@ namespace IniParser
         private bool m_AutoFlush = false;
 
         // *** Local cache ***
-        private Dictionary<string, Dictionary<string, string>> m_Sections = new Dictionary<string, Dictionary<string, string>>();
-        private Dictionary<string, Dictionary<string, string>> m_Modified = new Dictionary<string, Dictionary<string, string>>();
+        private readonly Dictionary<string, Dictionary<string, string>> m_Sections = new Dictionary<string, Dictionary<string, string>>();
+        private readonly Dictionary<string, Dictionary<string, string>> m_Modified = new Dictionary<string, Dictionary<string, string>>();
 
         // *** Local cache modified flag ***
         private bool m_CacheModified = false;
@@ -594,18 +592,33 @@ namespace IniParser
         // *** Initialization ***
         private void Initialize(string FileName, bool Lazy, bool AutoFlush)
         {
-            m_FileName = FileName;
+            this.FileName = FileName;
             m_Lazy = Lazy;
             m_AutoFlush = AutoFlush;
-            if (!m_Lazy) Refresh();
+            if (!m_Lazy)
+            {
+                Refresh();
+            }
         }
 
         // *** Parse section name ***
         private string ParseSectionName(string Line)
         {
-            if (!Line.StartsWith("[")) return null;
-            if (!Line.EndsWith("]")) return null;
-            if (Line.Length < 3) return null;
+            if (!Line.StartsWith("["))
+            {
+                return null;
+            }
+
+            if (!Line.EndsWith("]"))
+            {
+                return null;
+            }
+
+            if (Line.Length < 3)
+            {
+                return null;
+            }
+
             return Line.Substring(1, Line.Length - 2);
         }
 
@@ -614,11 +627,17 @@ namespace IniParser
         {
             // *** Check for key+value pair ***
             int i;
-            if ((i = Line.IndexOf('=')) <= 0) return false;
+            if ((i = Line.IndexOf('=')) <= 0)
+            {
+                return false;
+            }
 
             int j = Line.Length - i - 1;
             Key = Line.Substring(0, i).Trim();
-            if (Key.Length <= 0) return false;
+            if (Key.Length <= 0)
+            {
+                return false;
+            }
 
             Value = (j > 0) ? (Line.Substring(i + 1, j).Trim()) : ("");
             return true;
@@ -639,7 +658,7 @@ namespace IniParser
                     // *** Open the INI file ***
                     try
                     {
-                        sr = new StreamReader(m_FileName);
+                        sr = new StreamReader(FileName);
                     }
                     catch (FileNotFoundException)
                     {
@@ -688,7 +707,11 @@ namespace IniParser
                 finally
                 {
                     // *** Cleanup: close file ***
-                    if (sr != null) sr.Close();
+                    if (sr != null)
+                    {
+                        sr.Close();
+                    }
+
                     sr = null;
                 }
             }
@@ -706,20 +729,22 @@ namespace IniParser
         private void PerformFlush()
         {
             // *** If local cache was not modified, exit ***
-            if (!m_CacheModified) return;
+            if (!m_CacheModified)
+            {
+                return;
+            }
+
             m_CacheModified = false;
 
             // *** Check if original file exists ***
-            bool OriginalFileExists = File.Exists(m_FileName);
+            bool OriginalFileExists = File.Exists(FileName);
 
             // *** Get temporary file name ***
-            string TmpFileName = Path.ChangeExtension(m_FileName, "$n$");
+            string TmpFileName = Path.ChangeExtension(FileName, "$n$");
 
             // *** Copy content of original file to temporary file, replace modified values ***
-            StreamWriter sw = null;
-
             // *** Create the temporary file ***
-            sw = new StreamWriter(TmpFileName);
+            StreamWriter sw = new StreamWriter(TmpFileName);
 
             try
             {
@@ -730,7 +755,7 @@ namespace IniParser
                     try
                     {
                         // *** Open the original file ***
-                        sr = new StreamReader(m_FileName);
+                        sr = new StreamReader(FileName);
 
                         // *** Read the file original content, replace changes with local cache values ***
                         string s;
@@ -797,7 +822,7 @@ namespace IniParser
                                     {
                                         // *** Write modified value to temporary file ***
                                         Unmodified = false;
-                                        CurrentSection.Remove(Key);
+                                        _ = CurrentSection.Remove(Key);
 
                                         sw.Write(Key);
                                         sw.Write('=');
@@ -819,8 +844,12 @@ namespace IniParser
                     }
                     finally
                     {
-                        // *** Cleanup: close files ***                  
-                        if (sr != null) sr.Close();
+                        // *** Cleanup: close files ***
+                        if (sr != null)
+                        {
+                            sr.Close();
+                        }
+
                         sr = null;
                     }
                 }
@@ -856,16 +885,18 @@ namespace IniParser
                 sw = null;
 
                 // *** Rename the temporary file ***
-                File.Copy(TmpFileName, m_FileName, true);
+                File.Copy(TmpFileName, FileName, true);
 
                 // *** Delete the temporary file ***
                 File.Delete(TmpFileName);
             }
             finally
             {
-                // *** Cleanup: close files ***                  
-                if (sw != null) sw.Close();
-                sw = null;
+                // *** Cleanup: close files ***
+                if (sw != null)
+                {
+                    sw.Close();
+                }
             }
         }
 
@@ -882,12 +913,16 @@ namespace IniParser
             lock (m_Lock)
             {
                 // *** Check if the section exists ***
-                Dictionary<string, string> Section;
-                if (!m_Sections.TryGetValue(SectionName, out Section)) return DefaultValue;
+                if (!m_Sections.TryGetValue(SectionName, out Dictionary<string, string> Section))
+                {
+                    return DefaultValue;
+                }
 
                 // *** Check if the key exists ***
-                string Value;
-                if (!Section.TryGetValue(Key, out Value)) return DefaultValue;
+                if (!Section.TryGetValue(Key, out string Value))
+                {
+                    return DefaultValue;
+                }
 
                 // *** Return the found value ***
                 return Value;
@@ -910,8 +945,7 @@ namespace IniParser
                 m_CacheModified = true;
 
                 // *** Check if the section exists ***
-                Dictionary<string, string> Section;
-                if (!m_Sections.TryGetValue(SectionName, out Section))
+                if (!m_Sections.TryGetValue(SectionName, out Dictionary<string, string> Section))
                 {
                     // *** If it doesn't, add it ***
                     Section = new Dictionary<string, string>();
@@ -919,7 +953,11 @@ namespace IniParser
                 }
 
                 // *** Modify the value ***
-                if (Section.ContainsKey(Key)) Section.Remove(Key);
+                if (Section.ContainsKey(Key))
+                {
+                    _ = Section.Remove(Key);
+                }
+
                 Section.Add(Key, Value);
 
                 // *** Add the modified value to local modified values cache ***
@@ -929,18 +967,28 @@ namespace IniParser
                     m_Modified.Add(SectionName, Section);
                 }
 
-                if (Section.ContainsKey(Key)) Section.Remove(Key);
+                if (Section.ContainsKey(Key))
+                {
+                    _ = Section.Remove(Key);
+                }
+
                 Section.Add(Key, Value);
 
                 // *** Automatic flushing : immediately write any modification to the file ***
-                if (m_AutoFlush) PerformFlush();
+                if (m_AutoFlush)
+                {
+                    PerformFlush();
+                }
             }
         }
 
         // *** Encode byte array ***
         private string EncodeByteArray(byte[] Value)
         {
-            if (Value == null) return null;
+            if (Value == null)
+            {
+                return null;
+            }
 
             StringBuilder sb = new StringBuilder();
             foreach (byte b in Value)
@@ -949,12 +997,16 @@ namespace IniParser
                 int l = hex.Length;
                 if (l > 2)
                 {
-                    sb.Append(hex.Substring(l - 2, 2));
+                    _ = sb.Append(hex.Substring(l - 2, 2));
                 }
                 else
                 {
-                    if (l < 2) sb.Append("0");
-                    sb.Append(hex);
+                    if (l < 2)
+                    {
+                        _ = sb.Append("0");
+                    }
+
+                    _ = sb.Append(hex);
                 }
             }
             return sb.ToString();
@@ -963,14 +1015,24 @@ namespace IniParser
         // *** Decode byte array ***
         private byte[] DecodeByteArray(string Value)
         {
-            if (Value == null) return null;
+            if (Value == null)
+            {
+                return null;
+            }
 
             int l = Value.Length;
-            if (l < 2) return new byte[] { };
+            if (l < 2)
+            {
+                return new byte[] { };
+            }
 
             l /= 2;
             byte[] Result = new byte[l];
-            for (int i = 0; i < l; i++) Result[i] = Convert.ToByte(Value.Substring(i * 2, 2), 16);
+            for (int i = 0; i < l; i++)
+            {
+                Result[i] = Convert.ToByte(Value.Substring(i * 2, 2), 16);
+            }
+
             return Result;
         }
 
@@ -978,32 +1040,44 @@ namespace IniParser
         internal bool GetValue(string SectionName, string Key, bool DefaultValue)
         {
             string StringValue = GetValue(SectionName, Key, DefaultValue.ToString(System.Globalization.CultureInfo.InvariantCulture));
-            int Value;
-            if (int.TryParse(StringValue, out Value)) return (Value != 0);
+            if (int.TryParse(StringValue, out int Value))
+            {
+                return (Value != 0);
+            }
+
             return DefaultValue;
         }
 
         internal int GetValue(string SectionName, string Key, int DefaultValue)
         {
             string StringValue = GetValue(SectionName, Key, DefaultValue.ToString(CultureInfo.InvariantCulture));
-            int Value;
-            if (int.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out Value)) return Value;
+            if (int.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out int Value))
+            {
+                return Value;
+            }
+
             return DefaultValue;
         }
 
         internal long GetValue(string SectionName, string Key, long DefaultValue)
         {
             string StringValue = GetValue(SectionName, Key, DefaultValue.ToString(CultureInfo.InvariantCulture));
-            long Value;
-            if (long.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out Value)) return Value;
+            if (long.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out long Value))
+            {
+                return Value;
+            }
+
             return DefaultValue;
         }
 
         internal double GetValue(string SectionName, string Key, double DefaultValue)
         {
             string StringValue = GetValue(SectionName, Key, DefaultValue.ToString(CultureInfo.InvariantCulture));
-            double Value;
-            if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out Value)) return Value;
+            if (double.TryParse(StringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out double Value))
+            {
+                return Value;
+            }
+
             return DefaultValue;
         }
 
@@ -1023,8 +1097,11 @@ namespace IniParser
         internal DateTime GetValue(string SectionName, string Key, DateTime DefaultValue)
         {
             string StringValue = GetValue(SectionName, Key, DefaultValue.ToString(CultureInfo.InvariantCulture));
-            DateTime Value;
-            if (DateTime.TryParse(StringValue, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.NoCurrentDateDefault | DateTimeStyles.AssumeLocal, out Value)) return Value;
+            if (DateTime.TryParse(StringValue, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.NoCurrentDateDefault | DateTimeStyles.AssumeLocal, out DateTime Value))
+            {
+                return Value;
+            }
+
             return DefaultValue;
         }
 

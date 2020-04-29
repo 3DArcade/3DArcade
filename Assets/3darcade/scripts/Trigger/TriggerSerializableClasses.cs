@@ -44,4 +44,3 @@ namespace Arcade
         public bool isActive = true;
     }
 }
-

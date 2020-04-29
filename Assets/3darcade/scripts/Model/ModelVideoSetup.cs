@@ -33,7 +33,7 @@ namespace Arcade
         // Public so that Arcade Audio Manager can access these.
         public bool arcadeLayer = true;
         public float distance = 100000000000f;
-        
+
         private float maxDistance = 3f;
 
         // Using Global Variables
@@ -46,21 +46,16 @@ namespace Arcade
             renderer = GetComponent<Renderer>();
         }
 
-        void Start()
-        {
-           // thisCamera = Camera.main;
-        }
-
         public void Setup(List<Texture2D> textureList, string videoURL, float? animatedTextureSpeed, ModelComponentType modelComponentType, ModelProperties modelProperties, ModelSharedProperties modelSharedProperties)
         {
             //Debug.Log("videosetup " + gameObject.transform.parent.name + " imagecount " + textureList.Count + " " + videoURL + " " + (videoPlayer == null));
 
             this.modelProperties = modelProperties;
             this.modelComponentType = modelComponentType;
-            this.imageList = null;
+            imageList = null;
             this.modelSharedProperties = modelSharedProperties;
-            this.dummyNode = gameObject.transform.parent.transform.parent.gameObject;
-          
+            dummyNode = gameObject.transform.parent.transform.parent.gameObject;
+
             string layer = LayerMask.LayerToName(gameObject.layer);
             if (layer.StartsWith("Arcade"))
             {
@@ -88,9 +83,11 @@ namespace Arcade
 
             // Setup image, nescessary for magic pixels and to get an unique material instance.
             Texture2D tex = null;
-            if (textureList.Count > 0) { tex = textureList[0]; }
+            if (textureList.Count > 0)
+            { tex = textureList[0]; }
             ModelImageSetup modelImageSetup = GetComponent<ModelImageSetup>();
-            if (modelImageSetup == null) { modelImageSetup = gameObject.AddComponent<ModelImageSetup>(); }
+            if (modelImageSetup == null)
+            { modelImageSetup = gameObject.AddComponent<ModelImageSetup>(); }
             modelImageSetup.Setup(tex, modelSharedProperties.renderSettings, modelProperties, modelComponentType);
 
             if (videoURL != null && videoPlayer == null)
@@ -127,7 +124,7 @@ namespace Arcade
             {
                 if (renderer != null && transform.parent.CompareTag("gamemodel") && modelComponentType == ModelComponentType.Screen)
                 {
-                   renderer.material.mainTexture = Texture2D.blackTexture;
+                    renderer.material.mainTexture = Texture2D.blackTexture;
                 }
             }
             if (renderer != null && (textureList.Count > 0 || videoEnabled != ModelVideoEnabled.Never))
@@ -140,14 +137,20 @@ namespace Arcade
         {
             if (videoEnabled == ModelVideoEnabled.Never || videoPlayer == null)
             {
-                if (videoPlayer != null) { videoPlayer.enabled = false; }
+                if (videoPlayer != null)
+                {
+                    videoPlayer.enabled = false;
+                }
                 SetupImageMaterial();
-                if (imageList == null) { this.enabled = false; }
+                if (imageList == null)
+                {
+                    enabled = false;
+                }
                 return;
             }
-           
-             ArcadeAudioManager.activeVideos.Add(gameObject.GetComponent<ModelVideoSetup>());
-            
+
+            ArcadeAudioManager.ActiveVideos.Add(gameObject.GetComponent<ModelVideoSetup>());
+
             // Setup videoplayer properties
             ulong frameCount = videoPlayer.frameCount;
             int frameCountInt = (int)frameCount;
@@ -161,8 +164,8 @@ namespace Arcade
             if (renderer != null)
             {
                 // TODO: This fixes black textures when some prefabs are loaded from an assetbundle
-                var shaderName = renderer.material.shader.name;
-                var newShader = Shader.Find(shaderName);
+                string shaderName = renderer.material.shader.name;
+                Shader newShader = Shader.Find(shaderName);
                 if (newShader != null)
                 {
                     renderer.material.shader = newShader;
@@ -172,7 +175,7 @@ namespace Arcade
                     Debug.LogWarning("unable to refresh shader: " + shaderName + " in material " + renderer.material.name);
                 }
 
-                // TODO: Setup material, resize to better fit the screen. Should we still do this? I think we did this because the mame32 screenshots had a white border. 
+                // TODO: Setup material, resize to better fit the screen. Should we still do this? I think we did this because the mame32 screenshots had a white border.
                 if (modelComponentType == ModelComponentType.Screen)
                 {
                     //renderer.material.SetTextureOffset("_MainTex", new Vector2(-0.075f, -0.075f));
@@ -220,7 +223,7 @@ namespace Arcade
                 videoPlayer.Prepare();
                 videoPlayer.frame = 10;
                 videoPlayer.Play();
-                StartCoroutine("PrepareVideo");
+                _ = StartCoroutine("PrepareVideo");
             }
             else if (videoEnabled == ModelVideoEnabled.VisibleEnable || videoEnabled == ModelVideoEnabled.Selected)
             {
@@ -308,14 +311,15 @@ namespace Arcade
         private void OnBecameVisible()
         {
             visible = true;
-            if (videoPlayer == null) { return; }
+            if (videoPlayer == null)
+            { return; }
             if (videoEnabled == ModelVideoEnabled.VisiblePlay)
             {
                 videoPlayer.Play();
             }
             if (videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
             {
-             //   if (prepareDone) { videoPlayer.Pause(); }
+                //   if (prepareDone) { videoPlayer.Pause(); }
             }
             if (videoEnabled == ModelVideoEnabled.VisibleEnable)
             {
@@ -328,7 +332,8 @@ namespace Arcade
         private void OnBecameInvisible()
         {
             visible = false;
-            if (videoPlayer == null) { return; }
+            if (videoPlayer == null)
+            { return; }
 
             if (videoEnabled == ModelVideoEnabled.VisiblePlay)
             {
@@ -336,7 +341,7 @@ namespace Arcade
             }
             if (videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
             {
-            //    if (prepareDone) { videoPlayer.Pause(); }
+                //    if (prepareDone) { videoPlayer.Pause(); }
             }
             if (videoEnabled == ModelVideoEnabled.VisibleEnable)
             {
@@ -349,7 +354,8 @@ namespace Arcade
             if (ArcadeManager.arcadeState == ArcadeStates.Game)
             {
                 setupVideoAfterGameDisable = true;
-                if (videoPlayer == null) { return; }
+                if (videoPlayer == null)
+                { return; }
                 if (videoPlayer.enabled == true)
                 {
                     videoPlayer.Pause();
@@ -361,9 +367,11 @@ namespace Arcade
                 if (setupVideoAfterGameDisable && dummyNode.GetComponent<ModelLibretroGameSetup>() == null)
                 {
                     setupVideoAfterGameDisable = false;
-                    if (videoPlayer == null) { return; }
+                    if (videoPlayer == null)
+                    { return; }
                     // videoPlayer.enabled = false; // TODO: Why did i have that here???
-                    if (videoEnabled == ModelVideoEnabled.Never) { return; }
+                    if (videoEnabled == ModelVideoEnabled.Never)
+                    { return; }
                     videoPlayer.enabled = true;
                     videoPlayer.Play();
                     return;
@@ -374,7 +382,7 @@ namespace Arcade
             if (videoPlayer != null && videoPlayer.isPlaying != videoIsActive)
             {
                 videoIsActive = videoPlayer.isPlaying;
-                if (videoIsActive.HasValue ? videoIsActive.Value : true)
+                if (videoIsActive ?? true)
                 {
                     videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.MaterialOverride;
                 }
@@ -383,8 +391,9 @@ namespace Arcade
                     videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.APIOnly;
                 }
             }
-          
-            distance = Vector3.Distance(gameObject.transform.position, thisCamera.transform.position);
+
+            // distance = Vector3.Distance(gameObject.transform.position, thisCamera.transform.position);
+            distance = (gameObject.transform.position - thisCamera.transform.position).sqrMagnitude;
             //Debug.Log(modelProperties.descriptiveName + " distance " + distance);
 
             // if I am the savedArcadeModel when cylmenu or fpsmenu are active then dont put the video on me
@@ -451,7 +460,8 @@ namespace Arcade
                 if (timer > waitTime)
                 {
                     index += 1;
-                    if (index > (imageList.Count - 1)) { index = 0; }
+                    if (index > (imageList.Count - 1))
+                    { index = 0; }
                     renderer.material.mainTexture = imageList[index];
                     if (renderer.material.globalIlluminationFlags == MaterialGlobalIlluminationFlags.RealtimeEmissive)
                     {
@@ -461,21 +471,25 @@ namespace Arcade
                 }
             }
 
-            if (videoPlayer == null) { return; }
-            if (!videoPlayer.isPlaying) { return; }
+            if (videoPlayer == null)
+            { return; }
+            if (!videoPlayer.isPlaying)
+            { return; }
 
-            if (modelSharedProperties.spatialSound) { return; }
+            if (modelSharedProperties.spatialSound)
+            { return; }
+
             // Fake sound by distance.
-            float max = 10f;
-            float min = 2f;
-            float volumeByDistance = Mathf.Clamp(Mathf.Pow((distance - max) / (min - max), 2f), 0f, 1f);
-            videoPlayer.SetDirectAudioVolume(0, volumeByDistance);
+            //float max = 10f;
+            //float min = 2f;
+            //float volumeByDistance = Mathf.Clamp(Mathf.Pow((distance - max) / (min - max), 2f), 0f, 1f);
+            //videoPlayer.SetDirectAudioVolume(0, volumeByDistance);
         }
 
         private bool IsInView(GameObject toCheck)
         {
-            if (distance > maxDistance) { return false;}
-            return true;
+            return distance <= maxDistance;
+
             Vector3 pointOnScreen = thisCamera.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
             //if (arcadeLayer) { Debug.Log("check: " + modelProperties.id); }
 
@@ -492,20 +506,22 @@ namespace Arcade
                 if ((pointOnScreen.x < 0) || (pointOnScreen.x > Screen.width) ||
                     (pointOnScreen.y < 0) || (pointOnScreen.y > Screen.height))
                 {
-                    if (arcadeLayer) { Debug.Log("checkOutOfBounds: " + modelProperties.id); }
+                    if (arcadeLayer)
+                    { Debug.Log("checkOutOfBounds: " + modelProperties.id); }
                     //return false;
                 }
             }
 
-            RaycastHit hit;
             // Vector3 heading = toCheck.transform.position - thisCamera.transform.position;
             // Vector3 direction = heading.normalized;// / heading.magnitude;
-            if (Physics.Linecast(thisCamera.transform.position, toCheck.GetComponentInChildren<Renderer>().bounds.center, out hit, layerMask))
+            if (Physics.Linecast(thisCamera.transform.position, toCheck.GetComponentInChildren<Renderer>().bounds.center, out RaycastHit hit, layerMask))
             {
                 ModelSetup hitModelSetup = hit.transform.parent.gameObject.GetComponent<ModelSetup>();
-                if (hitModelSetup == null) { return false; }
+                if (hitModelSetup == null)
+                { return false; }
                 // Debug.LogError(modelProperties.id + " occluded by " + hitModelSetup.id);
-                if (modelProperties.id == hitModelSetup.id) { return true; }
+                if (modelProperties.id == hitModelSetup.id)
+                { return true; }
                 //  Debug.DrawLine(Camera.main.transform.position, toCheck.GetComponentInChildren<Renderer>().bounds.center, Color.red);
                 //  Debug.LogError(modelSetup.id + " occluded by " + hitModelSetup.id);
                 return false;

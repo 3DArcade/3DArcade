@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using Arcade;
 
-namespace Arcade 
+namespace Arcade
 {
     public class SetArcadeState : MonoBehaviour
     {
@@ -14,5 +13,3 @@ namespace Arcade
         }
     }
 }
-
-

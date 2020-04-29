@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections.Generic;
 using System.IO;
-using UnityEngine.Networking;
+using System.Linq;
 using UnityEditor;
-using System.Reflection;
+using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
-
 
 namespace Arcade
 {
@@ -53,7 +48,7 @@ namespace Arcade
         [Header("GENERAL CONFIGURATION")]
         public GeneralConfiguration generalConfiguration = new GeneralConfiguration();
         [Space]
- 
+
         // Arcade Configuration options
         [Header("ARCADE CONFIGURATION")]
         public string descriptiveName = "Default";
@@ -81,12 +76,12 @@ namespace Arcade
         [MenuItem("CONTEXT/ArcadeManager/Load Arcade Configuration")]
         private static void LoadArcadeConfigurationMenuOption(MenuCommand menuCommand)
         {
-            if (ShowSelectArcadeConfigurationWindow != null) ShowSelectArcadeConfigurationWindow();
+            ShowSelectArcadeConfigurationWindow?.Invoke();
         }
         [MenuItem("CONTEXT/ArcadeManager/Save Arcade Configuration")]
         private static void SaveArcadeConfigurationMenuOption(MenuCommand menuCommand)
         {
-            ArcadeManager.loadSaveArcadeConfiguration.SaveArcade();
+            loadSaveArcadeConfiguration.SaveArcade();
         }
         //[MenuItem("CONTEXT/ArcadeManager/Set Main Menu Preview Image")]
         //private static void GetArcadePreviewImage(MenuCommand menuCommand)
@@ -117,20 +112,22 @@ namespace Arcade
             arcadeConfiguration.externalModels = externalModels;
             arcadeConfiguration.showFPS = showFPS;
             arcadeConfiguration.modelSharedProperties = modelSharedProperties;
-            arcadeConfiguration.camera = new CameraProperties();
-            arcadeConfiguration.camera.position = arcadeControl.transform.position;
-            arcadeConfiguration.camera.rotation = arcadeControl.transform.GetChild(0).transform.rotation;
-            arcadeConfiguration.camera.height = arcadeControl.transform.GetChild(0).transform.localPosition.y;
+            arcadeConfiguration.camera = new CameraProperties
+            {
+                position = arcadeControl.transform.position,
+                rotation = arcadeControl.transform.GetChild(0).transform.rotation,
+                height = arcadeControl.transform.GetChild(0).transform.localPosition.y
+            };
             arcadeConfiguration.fpsArcadeProperties = fpsArcadeProperties;
             arcadeConfiguration.cylArcadeProperties = cylArcadeProperties;
             arcadeConfiguration.zones = zones;
             // Add arcadeconfigurations arcade, game and prop lists when nescessary
             if (arcadeType == ArcadeType.FpsArcade || !Application.isPlaying)
             {
-            List<ModelProperties> gameModelList = GetListOfModelProperties(ModelType.Game);
-            arcadeConfiguration.gameModelList = gameModelList;
+                List<ModelProperties> gameModelList = GetListOfModelProperties(ModelType.Game);
+                arcadeConfiguration.gameModelList = gameModelList;
             }
-            if (ArcadeManager.arcadeState != ArcadeStates.MoveCabs)
+            if (arcadeState != ArcadeStates.MoveCabs)
             {
                 List<ModelProperties> arcadeModelList = GetListOfModelProperties(ModelType.Arcade);
                 arcadeConfiguration.arcadeModelList = arcadeModelList;
@@ -151,7 +148,6 @@ namespace Arcade
                 int count = obj.transform.childCount;
                 for (int i = 0; i < count; i++)
                 {
-                    ModelProperties modelProperties = new ModelProperties();
                     GameObject child;
                     ModelSetup gameModelSetup;
                     if (!Application.isPlaying)
@@ -166,10 +162,11 @@ namespace Arcade
 
                         gameModelSetup = obj.transform.GetChild(i).gameObject.GetComponent<ModelSetup>();
                     }
-                   
+
                     // TODO: Null check should not be needed!
-                    if (gameModelSetup == null) { continue; }
-                    modelProperties = gameModelSetup.GetModelProperties();
+                    if (gameModelSetup == null)
+                    { continue; }
+                    ModelProperties modelProperties = gameModelSetup.GetModelProperties();
                     modelProperties.position = child.transform.position;
                     modelProperties.rotation = child.transform.rotation;
                     modelProperties.scale = child.transform.lossyScale;
@@ -184,8 +181,8 @@ namespace Arcade
         {
             descriptiveName = arcadeConfiguration.descriptiveName;
             id = arcadeConfiguration.id;
-            System.Enum.TryParse(arcadeConfiguration.arcadeType, true, out arcadeType);
-            System.Enum.TryParse(arcadeConfiguration.gameLauncherMethod, true, out gameLauncherMethod);
+            _ = System.Enum.TryParse(arcadeConfiguration.arcadeType, true, out arcadeType);
+            _ = System.Enum.TryParse(arcadeConfiguration.gameLauncherMethod, true, out gameLauncherMethod);
             externalModels = arcadeConfiguration.externalModels;
             showFPS = arcadeConfiguration.showFPS;
 
@@ -218,7 +215,7 @@ namespace Arcade
             loadSaveArcadeConfiguration = new LoadSaveArcadeConfiguration(this); // Is there no better way to get a refrence to our ArcadeManager class from the LoadSaveArcade class?
             loadSaveEmulatorConfiguration = new LoadSaveEmulatorConfiguration();
 
-            generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/GeneralConfiguration.json"));
+            generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(applicationPath + "/3darcade~/Configuration/GeneralConfiguration.json"));
             if (generalConfiguration == null)
             {
                 generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(Application.dataPath + "/Resources/cfg/GeneralConfiguration.json"));
@@ -233,26 +230,30 @@ namespace Arcade
             arcadeCameras[ArcadeType.FpsMenu] = menuControl.GetComponentInChildren<Camera>();
             arcadeCameras[ArcadeType.CylMenu] = menuControl.GetComponentInChildren<Camera>();
 
-            if (Application.platform.ToString().Contains("OSX")) { currentOS = OS.MacOS; }
-            if (Application.platform.ToString().Contains("Windows")) { currentOS = OS.Windows; }
-            if (Application.platform.ToString().Contains("Linux")) { currentOS = OS.Linux; }
+            if (Application.platform.ToString().Contains("OSX"))
+            { currentOS = OS.MacOS; }
+            if (Application.platform.ToString().Contains("Windows"))
+            { currentOS = OS.Windows; }
+            if (Application.platform.ToString().Contains("Linux"))
+            { currentOS = OS.Linux; }
             if (Application.platform == RuntimePlatform.IPhonePlayer)
             {
                 currentOS = OS.iOS;
                 applicationPath = Application.dataPath + "/Raw";
             }
-            if (Application.platform == RuntimePlatform.tvOS) { currentOS = OS.tvOS; }
+            if (Application.platform == RuntimePlatform.tvOS)
+            { currentOS = OS.tvOS; }
             print("Current OS = " + currentOS.ToString());
 #if UNITY_EDITOR
-            var availableGameModels = FileManager.GetListOfAssetNames(ModelType.Game.ToString(), true);
+            List<string> availableGameModels = FileManager.GetListOfAssetNames(ModelType.Game.ToString(), true);
             availableGameModels = availableGameModels.Concat(FileManager.GetListOfAssetNames(ModelType.Game.ToString(), false)).Distinct().ToList();
             availableGameModels.Sort();
             availableModels.game = availableGameModels;
-            FileManager.SaveJSONData<AvailableModels>(availableModels, Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/"),"AvailableModels.json");
+            FileManager.SaveJSONData(availableModels, Path.Combine(applicationPath + "/3darcade~/Configuration/"), "AvailableModels.json");
             //   FileManager
 #else
               availableModels = FileManager.LoadJSONData<AvailableModels>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/AvailableModels.json"));
-           
+
 #endif
             print("Available Game models " + availableModels.game.Count);
             // TODO: Arcade Configurations and Emulator Configurations can be large, preloading is faster but can take a large amount of memory... Change to Skurdt's database approach!
@@ -265,13 +266,13 @@ namespace Arcade
             print("Start State = " + arcadeState);
 
             //  string[] xy = typeof(ModelProperties).GetProperties().Select(x => x.Name).ToList().ToArray();
-          
+
         }
 
 #if UNITY_EDITOR
         void Update()
         {
-            if (ArcadeManager.loadSaveArcadeConfiguration == null)
+            if (loadSaveArcadeConfiguration == null)
             {
                 print("Saving a script caused a reload, calling Awake() in ArcadeManager to initialize some default properties again.");
                 Awake();
@@ -287,7 +288,7 @@ namespace Arcade
             if (!Application.isPlaying)
             {
                 loadSaveArcadeConfiguration.ResetArcade();
-                ArcadeManager.loadSaveArcadeConfiguration.LoadArcadesConfigurationList();
+                loadSaveArcadeConfiguration.LoadArcadesConfigurationList();
                 List<ArcadeConfiguration> arcadeConfigurations = arcadesConfigurationList.Where(x => x.id == id).ToList();
                 if (arcadeConfigurations.Count > 0)
                 {
@@ -346,9 +347,9 @@ namespace Arcade
                 Debug.Log("Paused");
                 if (EditorModeSaveChangesMadeOnPlay && EditorModeShowMainMenuOnPlay)
                 {
-                    ArcadeManager.loadSaveArcadeConfiguration.SaveArcade();
-                    ArcadeManager.loadSaveArcadeConfiguration.ResetArcade();
-                    ArcadeManager.loadSaveArcadeConfiguration.LoadArcade(ArcadeManager.arcadeConfiguration);
+                    loadSaveArcadeConfiguration.SaveArcade();
+                    loadSaveArcadeConfiguration.ResetArcade();
+                    _ = loadSaveArcadeConfiguration.LoadArcade(arcadeConfiguration);
                 }
             }
         }
@@ -362,8 +363,8 @@ namespace Arcade
         //{
         //}
 
-        // Load arcadeconfigurations from file and then show them in the main menu.    
-       
+        // Load arcadeconfigurations from file and then show them in the main menu.
+
         public static bool StartArcadeWith(string arcadeConfigurationID, GameObject selectedArcadeModel)
         {
             ArcadeConfiguration arcadeConfiguration = loadSaveArcadeConfiguration.GetArcadeConfigurationByID(arcadeConfigurationID);
@@ -376,6 +377,5 @@ namespace Arcade
         }
     }
 
-   
-}
 
+}

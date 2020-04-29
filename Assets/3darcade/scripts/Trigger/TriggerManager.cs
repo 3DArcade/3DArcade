@@ -42,30 +42,30 @@ namespace Arcade
 
             foreach (ModelSetup modelSetup in tempModelSetups)
             {
-                Add(modelSetup, arcadeType);
+                _ = Add(modelSetup, arcadeType);
             }
             modelSetups.AddRange(tempModelSetups);
-            modelSetups.RemoveAll(x => x == null);
+            _ = modelSetups.RemoveAll(x => x == null);
 
             void AddFromParent(GameObject objParent)
             {
-                var transform = objParent.transform;
+                Transform transform = objParent.transform;
                 for (int i = transform.childCount - 1; i >= 0; --i)
                 {
                     ModelSetup modelSetup = objParent.transform.GetChild(i).gameObject.GetComponent<ModelSetup>();
-                    if (modelSetup != null) { tempModelSetups.Add(modelSetup); }
+                    if (modelSetup != null)
+                    { tempModelSetups.Add(modelSetup); }
                 }
             }
         }
-
-        
 
         public static bool Add(ModelSetup modelSetup, ArcadeType arcadeType)
         {
             Dictionary<Event, List<TriggerWrapper>> triggerEvents = new Dictionary<Event, List<TriggerWrapper>>();
             ModelTriggerSetup modelTriggerSetup = null;
             GameObject obj = modelSetup.gameObject.transform.GetChild(0).gameObject; // Get the model from its dummy parent
-            if (obj == null) { return false; }
+            if (obj == null)
+            { return false; }
 
             if (modelSetup.triggers.Count > 0)
             {
@@ -83,10 +83,12 @@ namespace Arcade
 
                 foreach (Trigger trigger in modelSetup.triggers)
                 {
-                    TriggerWrapper triggerWrapper = new TriggerWrapper();
-                    triggerWrapper.triggerSourceGameObjects = new List<GameObject>();
-                    triggerWrapper.triggerTargetGameObjects = new List<GameObject>();
-                    triggerWrapper.trigger = trigger;
+                    TriggerWrapper triggerWrapper = new TriggerWrapper
+                    {
+                        triggerSourceGameObjects = new List<GameObject>(),
+                        triggerTargetGameObjects = new List<GameObject>(),
+                        trigger = trigger
+                    };
                     foreach (string source in trigger.triggerSource)
                     {
                         if (source.Trim().ToLower() == "self")
@@ -104,7 +106,8 @@ namespace Arcade
                             {
                                 foreach (ModelSetup modelSetupWithTriggerSource in modelSetupsWithTriggerSources)
                                 {
-                                    if (modelSetupWithTriggerSource == null) { continue; }
+                                    if (modelSetupWithTriggerSource == null)
+                                    { continue; }
                                     triggerWrapper.triggerSourceGameObjects.Add(modelSetupWithTriggerSource.gameObject.transform.GetChild(0).gameObject);
                                 }
                             }
@@ -115,7 +118,8 @@ namespace Arcade
 
                         }
                     }
-                    if (triggerWrapper.triggerSourceGameObjects.Count < 1) { triggerWrapper.triggerSourceGameObjects.Add(ArcadeManager.arcadeControls[arcadeType]); }
+                    if (triggerWrapper.triggerSourceGameObjects.Count < 1)
+                    { triggerWrapper.triggerSourceGameObjects.Add(ArcadeManager.arcadeControls[arcadeType]); }
                     foreach (string target in trigger.triggerTarget)
                     {
                         if (target.Trim().ToLower() == "self")
@@ -133,7 +137,8 @@ namespace Arcade
                             {
                                 foreach (ModelSetup modelSetupWithTriggerTarget in modelSetupsWithTriggerTargets)
                                 {
-                                    if (modelSetupWithTriggerTarget == null) { continue; }
+                                    if (modelSetupWithTriggerTarget == null)
+                                    { continue; }
                                     triggerWrapper.triggerTargetGameObjects.Add(modelSetupWithTriggerTarget.gameObject.transform.GetChild(0).gameObject);
                                 }
                             }
@@ -144,13 +149,15 @@ namespace Arcade
 
                         }
                     }
-                    if (triggerWrapper.triggerTargetGameObjects.Count < 1) { triggerWrapper.triggerTargetGameObjects.Add(obj); }
-                    Event triggerEvent;
-                    if (System.Enum.TryParse(trigger.triggerEvent, true, out triggerEvent))
+                    if (triggerWrapper.triggerTargetGameObjects.Count < 1)
+                    { triggerWrapper.triggerTargetGameObjects.Add(obj); }
+                    if (System.Enum.TryParse(trigger.triggerEvent, true, out Event triggerEvent))
                     {
 
-                        if (!triggerEvents.ContainsKey(triggerEvent)) { triggerEvents[triggerEvent] = new List<TriggerWrapper>(); }
-                        if (!triggersActive.ContainsKey(triggerEvent)) { triggersActive[triggerEvent] = new List<ModelTriggerSetup>(); }
+                        if (!triggerEvents.ContainsKey(triggerEvent))
+                        { triggerEvents[triggerEvent] = new List<TriggerWrapper>(); }
+                        if (!triggersActive.ContainsKey(triggerEvent))
+                        { triggersActive[triggerEvent] = new List<ModelTriggerSetup>(); }
                         triggerEvents[triggerEvent].Add(triggerWrapper);
                         if (modelTriggerSetup != null && !triggersActive[triggerEvent].Contains(modelTriggerSetup))
                         {
@@ -173,11 +180,5 @@ namespace Arcade
                 }
             }
         }
-
-        private void Update()
-        {
-            
-        }
     }
 }
-

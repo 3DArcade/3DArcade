@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using UnityEngine.UI;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arcade
 {
@@ -50,7 +50,7 @@ namespace Arcade
                     }
                 }
             }
-           
+
             // Arcade configurations
             if (ArcadeManager.arcadesConfigurationList.Count > 0)
             {
@@ -77,7 +77,8 @@ namespace Arcade
                     selectedModelList = ArcadeManager.arcadesConfigurationList[arcades.value].gameModelList;
                     selectedModelListType = ModelType.Game;
                 }
-                arcades.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(arcades); });
+                arcades.onValueChanged.AddListener(delegate
+                { DropdownValueChangedHandler(arcades); });
                 if (arcadeConfiguration != null)
                 {
                     //print("cfg is " + arcadeConfiguration.id);
@@ -97,13 +98,14 @@ namespace Arcade
                     showFPS.value = arcadeConfiguration.showFPS ? 1 : 0;
                     showFPS.RefreshShownValue();
                     SetupDropDownList(modelLists, new List<string>(new string[] { "Game Models", "Arcade Models", "Prop Models" }));
-                    modelLists.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(modelLists); });
+                    modelLists.onValueChanged.AddListener(delegate
+                    { DropdownValueChangedHandler(modelLists); });
                     arcades.RefreshShownValue();
                     modelLists.RefreshShownValue();
-                    var filePath = FileManager.FileExists(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, arcadeConfiguration.id + ".jpg");
+                    string filePath = FileManager.FileExists(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, arcadeConfiguration.id + ".jpg");
                     if (filePath != null)
                     {
-                        var fileName = FileManager.getFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
+                        string fileName = FileManager.GetFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
                         if (fileName != null)
                         {
                             previewImage.text = fileName;
@@ -112,7 +114,7 @@ namespace Arcade
                     filePath = FileManager.FileExists(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, arcadeConfiguration.id + ".png");
                     if (filePath != null)
                     {
-                        var fileName = FileManager.getFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
+                        string fileName = FileManager.GetFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
                         if (fileName != null)
                         {
                             previewImage.text = fileName;
@@ -125,12 +127,12 @@ namespace Arcade
             }
         }
 
-        private MasterGamelistConfiguration getMasterGameList(string fileName)
+        private MasterGamelistConfiguration GetMasterGameList(string fileName)
         {
             return FileManager.LoadJSONData<MasterGamelistConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/" + fileName + ".json"));
 
-
         }
+
         private void SetupDropDownList(Dropdown dropdown, List<string> list)
         {
             dropdown.options.Clear();
@@ -145,8 +147,8 @@ namespace Arcade
             filteredSelectedModelList = selectedModelList;
             listIndex = 0;
             modelProperties.SetModelProperties(filteredSelectedModelList.Count > 0 ? filteredSelectedModelList[listIndex] : new ModelProperties());
-            var scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();
-            var ls = scrollRects;
+            LoopScrollRect scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();
+            LoopScrollRect ls = scrollRects;
             ls.totalCount = filteredSelectedModelList.Count;
             ls.RefillCells();
         }
@@ -208,10 +210,10 @@ namespace Arcade
                 SetupDropDownList(modelLists, new List<string>(new string[] { "Game Models", "Arcade Models", "Prop Models" }));
                 modelLists.value = 0;
                 // TODO: get file preview image
-                var filePath = FileManager.FileExists(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, arcadeConfiguration.id + ".jpg");
+                string filePath = FileManager.FileExists(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, arcadeConfiguration.id + ".jpg");
                 if (filePath != null)
                 {
-                    var fileName = FileManager.getFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
+                    string fileName = FileManager.GetFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
                     if (fileName != null)
                     {
                         previewImage.text = fileName;
@@ -220,7 +222,7 @@ namespace Arcade
                 filePath = FileManager.FileExists(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, arcadeConfiguration.id + ".png");
                 if (filePath != null)
                 {
-                    var fileName = FileManager.getFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
+                    string fileName = FileManager.GetFilePart(FileManager.FilePart.Name_Extension, null, null, filePath);
                     if (fileName != null)
                     {
                         previewImage.text = fileName;
@@ -297,5 +299,3 @@ namespace Arcade
         }
     }
 }
-
-

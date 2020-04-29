@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Arcade;
-using System.Linq;
-using UnityEngine.UI;
+﻿using Arcade;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class GeneralConfigurationGeneralProperties : MonoBehaviour
 {
     public Dropdown mainMenuArcadeConfiguration;
-  
+
     private GeneralConfiguration generalConfiguration;
 
     public void Start()
@@ -17,7 +17,7 @@ public class GeneralConfigurationGeneralProperties : MonoBehaviour
     }
     public void SetupList()
     {
-    
+
         SetupDropDownList(mainMenuArcadeConfiguration, ArcadeManager.arcadesConfigurationList.Select(x => x.id).ToList());
         mainMenuArcadeConfiguration.RefreshShownValue();
         generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/GeneralConfiguration.json"));
@@ -42,7 +42,7 @@ public class GeneralConfigurationGeneralProperties : MonoBehaviour
 
     public void SaveGeneralConfiguration()
     {
-     if (generalConfiguration.mainMenuArcadeConfiguration != mainMenuArcadeConfiguration.options[mainMenuArcadeConfiguration.value].text)
+        if (generalConfiguration.mainMenuArcadeConfiguration != mainMenuArcadeConfiguration.options[mainMenuArcadeConfiguration.value].text)
         {
             generalConfiguration.mainMenuArcadeConfiguration = mainMenuArcadeConfiguration.options[mainMenuArcadeConfiguration.value].text;
             FileManager.SaveJSONData<GeneralConfiguration>(generalConfiguration, Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/"), "GeneralConfiguration.json");

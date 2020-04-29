@@ -1,37 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Video;
-using Arcade;
-using System.Linq;
 
 namespace Arcade
 {
     public class ArcadeAudioManager : MonoBehaviour
     {
-        public static List<ModelVideoSetup> activeVideos = new List<ModelVideoSetup>();
-        private static int frames = 0;
-        private static readonly int framesToSkip = 10;
-       
-        void Update()
+        public static List<ModelVideoSetup> ActiveVideos = new List<ModelVideoSetup>();
+
+        private const int FRAMES_TO_SKIP = 10;
+
+        private static List<ModelVideoSetup> tempVideosList = new List<ModelVideoSetup>();
+        private static int _frames = 0;
+
+        private void Update()
         {
             // No need to update every frame.
-            frames++;
-            if (frames < framesToSkip) { return; }
-            frames = 0;
-
-            activeVideos.RemoveAll(x => x == null);
-            List<ModelVideoSetup> temp = new List<ModelVideoSetup>();
-            temp.AddRange(activeVideos);
-            temp.RemoveAll(x => x.videoPlayer == null);
-            temp.RemoveAll(x => !x.videoPlayer.isActiveAndEnabled);
-            temp.RemoveAll(x => !x.videoPlayer.isPlaying);
-            temp.RemoveAll(x => x.videoPlayer.isPaused);
-            temp.RemoveAll(x => !x.videoPlayer.isPrepared);
-
-            foreach (ModelVideoSetup item in temp)
+            if (_frames++ % FRAMES_TO_SKIP != 0)
             {
-              //  print("sources " + item.modelProperties.id + " ispaused " + item.videoPlayer.isActiveAndEnabled);
+                _frames = 0;
+                return;
+            }
+
+            _ = ActiveVideos.RemoveAll(x => x == null);
+
+            tempVideosList = ActiveVideos
+                .Where(x =>
+                    x.videoPlayer != null
+                    && x.videoPlayer.isActiveAndEnabled
+                    && x.videoPlayer.isPlaying
+                    && !x.videoPlayer.isPaused
+                    && x.videoPlayer.isPrepared)
+                .ToList();
+
+            foreach (ModelVideoSetup item in tempVideosList)
+            {
+                //  print("sources " + item.modelProperties.id + " ispaused " + item.videoPlayer.isActiveAndEnabled);
                 if (item.videoPlayer.audioOutputMode == VideoAudioOutputMode.Direct)
                 {
                     item.videoPlayer.SetDirectAudioMute(0, true);
@@ -46,25 +51,25 @@ namespace Arcade
                     }
                 }
             }
-          //  print("sourcesC " + temp.Count);
-           temp.Sort((x,y) => x.distance.CompareTo(y.distance));
+            //  print("sourcesC " + temp.Count);
+            tempVideosList.Sort((x, y) => x.distance.CompareTo(y.distance));
             EnableAudio(3);
-            temp.RemoveAll(x => x.arcadeLayer == true);
+            _ = tempVideosList.RemoveAll(x => x.arcadeLayer == true);
             EnableAudio(1);
             void EnableAudio(int maximumVideosWithSound)
             {
                 int t = 0;
                 while (t < maximumVideosWithSound)
                 {
-                    if (temp.Count > t)
+                    if (tempVideosList.Count > t)
                     {
-                        if (temp[t].videoPlayer.audioOutputMode == VideoAudioOutputMode.Direct)
+                        if (tempVideosList[t].videoPlayer.audioOutputMode == VideoAudioOutputMode.Direct)
                         {
-                            temp[t].videoPlayer.SetDirectAudioMute(0, false);
+                            tempVideosList[t].videoPlayer.SetDirectAudioMute(0, false);
                         }
-                        else if (temp[t].videoPlayer.audioOutputMode == VideoAudioOutputMode.AudioSource)
+                        else if (tempVideosList[t].videoPlayer.audioOutputMode == VideoAudioOutputMode.AudioSource)
                         {
-                            AudioSource audioSource = temp[t].videoPlayer.GetTargetAudioSource(0);
+                            AudioSource audioSource = tempVideosList[t].videoPlayer.GetTargetAudioSource(0);
                             if (audioSource != null)
                             {
                                 audioSource.mute = false;
@@ -76,7 +81,7 @@ namespace Arcade
                     {
                         break;
                     }
-                    t += 1;
+                    ++t;
                 }
             }
         }

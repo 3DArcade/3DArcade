@@ -8,7 +8,7 @@ namespace Arcade
 {
     public class LoadSaveArcadeConfiguration
     {
-        ArcadeManager arcadeManager;
+        private readonly ArcadeManager arcadeManager;
 
         public LoadSaveArcadeConfiguration(ArcadeManager arcadeManager)
         {
@@ -53,9 +53,11 @@ namespace Arcade
                 menuCameraRigidBody.isKinematic = true;
             }
             CapsuleCollider arcadeCapsuleCollider = ArcadeManager.arcadeControls[ArcadeType.FpsArcade].GetComponent<CapsuleCollider>();
-            if (arcadeCapsuleCollider != null) { arcadeCapsuleCollider.enabled = false; }
+            if (arcadeCapsuleCollider != null)
+            { arcadeCapsuleCollider.enabled = false; }
             CapsuleCollider menuCapsuleCollider = ArcadeManager.arcadeControls[ArcadeType.FpsMenu].GetComponent<CapsuleCollider>();
-            if (menuCapsuleCollider != null) { menuCapsuleCollider.enabled = false; }
+            if (menuCapsuleCollider != null)
+            { menuCapsuleCollider.enabled = false; }
 
             // Arcade
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString())
@@ -67,7 +69,8 @@ namespace Arcade
                 {
                     UpdateController(ArcadeManager.activeArcadeType);
                     TriggerManager.SendEvent(Event.ArcadeStarted);
-                    if (ArcadeManager.arcadeHistory.Count == 1) { TriggerManager.SendEvent(Event.MainMenuStarted); }
+                    if (ArcadeManager.arcadeHistory.Count == 1)
+                    { TriggerManager.SendEvent(Event.MainMenuStarted); }
                     if (ArcadeManager.activeArcadeType == ArcadeType.FpsArcade)
                     {
                         arcadeCameraRigidBody.isKinematic = false;
@@ -182,18 +185,18 @@ namespace Arcade
         public void SaveArcadeConfiguration(ArcadeConfiguration arcadeConfiguration)
         {
             string filePath = ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath;
-            var fileName = arcadeConfiguration.id + ".json";
+            string fileName = arcadeConfiguration.id + ".json";
             FileManager.SaveJSONData(arcadeConfiguration, filePath, fileName);
         }
 
         public void SaveArcadesConfigurationList()
         {
-            var files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json");
+            List<FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json");
             if (files != null)
             {
                 foreach (FileInfo file in files)
                 {
-                    FileManager.DeleteFile(file.DirectoryName, file.Name);
+                    _ = FileManager.DeleteFile(file.DirectoryName, file.Name);
                 }
             }
             foreach (ArcadeConfiguration arcadeConfiguration in ArcadeManager.arcadesConfigurationList)
@@ -205,14 +208,14 @@ namespace Arcade
         public void DeleteArcadeConfiguration(ArcadeConfiguration arcadeConfiguration)
         {
             string filePath = ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath;
-            var fileName = arcadeConfiguration.id + ".json";
-            FileManager.DeleteFile(filePath, fileName);
+            string fileName = arcadeConfiguration.id + ".json";
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = arcadeConfiguration.id + ".json.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = arcadeConfiguration.id + ".jpg";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
             fileName = arcadeConfiguration.id + ".jpg.meta";
-            FileManager.DeleteFile(filePath, fileName);
+            _ = FileManager.DeleteFile(filePath, fileName);
         }
 
         public bool LoadArcade(ArcadeConfiguration arcadeConfiguration)
@@ -222,7 +225,8 @@ namespace Arcade
                 Debug.Log("No ArcadeManager reference found, create one...");
                 return false;
             }
-            if (arcadeConfiguration == null) { return false; }
+            if (arcadeConfiguration == null)
+            { return false; }
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString() || !Application.isPlaying)
             {
                 arcadeManager.SetArcadeConfiguration(arcadeConfiguration);
@@ -231,7 +235,7 @@ namespace Arcade
             {
                 ArcadeManager.menuConfiguration = arcadeConfiguration;
             }
-            System.Enum.TryParse(arcadeConfiguration.arcadeType, true, out ArcadeType arcadeType);
+            _ = System.Enum.TryParse(arcadeConfiguration.arcadeType, true, out ArcadeType arcadeType);
             if (arcadeType == ArcadeType.FpsArcade || arcadeType == ArcadeType.FpsMenu)
             {
                 ArcadeManager.allZones[arcadeType] = new Dictionary<int, List<int>>();
@@ -249,14 +253,15 @@ namespace Arcade
             }
             SetListOfModelProperties(ModelType.Prop, arcadeConfiguration.propModelList, "Props");
 
-            if (!Application.isPlaying) { return true; } // TODO: Why true?
+            if (!Application.isPlaying)
+            { return true; } // TODO: Why true?
 
             if (arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString())
             {
                 ArcadeManager.activeArcadeType = ArcadeType.CylArcade;
                 ArcadeManager.arcadeHistory.Add(arcadeConfiguration.id);
                 CylController cylController = ArcadeManager.arcadeControls[ArcadeType.CylArcade].GetComponentInChildren<CylController>();
-                cylController.SetupCylArcade(arcadeConfiguration);
+                _ = cylController.SetupCylArcade(arcadeConfiguration);
             }
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString())
             {
@@ -267,7 +272,7 @@ namespace Arcade
             {
                 ArcadeManager.activeMenuType = ArcadeType.CylMenu;
                 CylController cylController = ArcadeManager.arcadeControls[ArcadeType.CylMenu].GetComponentInChildren<CylController>();
-                cylController.SetupCylArcade(arcadeConfiguration);
+                _ = cylController.SetupCylArcade(arcadeConfiguration);
             }
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsMenu.ToString())
             {
@@ -284,7 +289,7 @@ namespace Arcade
                 for (int i = 0; i < count; i++)
                 {
                     ModelProperties modelProperties = list[i];
-                    AddModelToArcade(modelType, modelProperties, tempArcadeType, false);
+                    _ = AddModelToArcade(modelType, modelProperties, tempArcadeType, false);
                 }
             }
         }
@@ -292,41 +297,48 @@ namespace Arcade
         public bool FilterModel(ModelFilter modelFilter, ModelProperties modelProperties)
         {
             //Debug.Log(modelProperties.genre + " - " + modelFilter.modelProperty + " - " + modelFilter.modelPropertyValue);
-            ModelFilterOperator modelFilterOperator;
-            System.Enum.TryParse(modelFilter.modelFilterOperator, true, out modelFilterOperator);
+            _ = System.Enum.TryParse(modelFilter.modelFilterOperator, true, out ModelFilterOperator modelFilterOperator);
             string value = modelProperties.GetType().GetField(modelFilter.modelProperty).GetValue(modelProperties).ToString();
             float first;
             float second;
             switch (modelFilterOperator)
             {
                 case ModelFilterOperator.Contains:
-                    if (value != "" && value.ToLower().Contains(modelFilter.modelPropertyValue.ToLower())) { return true; }
+                    if (value != "" && value.ToLower().Contains(modelFilter.modelPropertyValue.ToLower()))
+                    { return true; }
                     return false;
                 case ModelFilterOperator.NotContains:
-                    if (value != "" && !value.ToLower().Contains(modelFilter.modelPropertyValue.ToLower())) { return true; }
+                    if (value != "" && !value.ToLower().Contains(modelFilter.modelPropertyValue.ToLower()))
+                    { return true; }
                     return false;
                 case ModelFilterOperator.Equals:
-                    if (value != "" && value.ToLower() == modelFilter.modelPropertyValue.ToLower()) { return true; }
+                    if (value != "" && value.ToLower() == modelFilter.modelPropertyValue.ToLower())
+                    { return true; }
                     return false;
                 case ModelFilterOperator.NotEquals:
-                    if (value != "" && !(value.ToLower() == modelFilter.modelPropertyValue.ToLower())) { return true; }
+                    if (value != "" && !(value.ToLower() == modelFilter.modelPropertyValue.ToLower()))
+                    { return true; }
                     return false;
                 case ModelFilterOperator.Starts:
-                    if (value != "" && value.ToLower().StartsWith(modelFilter.modelPropertyValue.ToLower(), System.StringComparison.Ordinal)) { return true; }
+                    if (value != "" && value.ToLower().StartsWith(modelFilter.modelPropertyValue.ToLower(), System.StringComparison.Ordinal))
+                    { return true; }
                     return false;
                 case ModelFilterOperator.NotStarts:
-                    if (value != "" && !value.ToLower().StartsWith(modelFilter.modelPropertyValue.ToLower(), System.StringComparison.Ordinal)) { return true; }
+                    if (value != "" && !value.ToLower().StartsWith(modelFilter.modelPropertyValue.ToLower(), System.StringComparison.Ordinal))
+                    { return true; }
                     return false;
                 case ModelFilterOperator.Smaller:
                     if (float.TryParse(value, out first) && float.TryParse(modelFilter.modelPropertyValue, out second))
                     {
-                        if (first < second) { return true; }
+                        if (first < second)
+                        { return true; }
                     }
                     return false;
                 case ModelFilterOperator.Larger:
                     if (float.TryParse(value, out first) && float.TryParse(modelFilter.modelPropertyValue, out second))
                     {
-                        if (first > second) { return true; }
+                        if (first > second)
+                        { return true; }
                     }
                     return false;
                 default:
@@ -441,10 +453,10 @@ namespace Arcade
                 List<AssetBundle> prefab = ArcadeManager.modelAssets.Where(x => x.name == modelName).ToList();
                 if (prefab.Count < 1)
                 {
-                    var file = FileManager.FileExists(ArcadeManager.applicationPath + "/3darcade~/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/" + modelType.ToString() + "s/", modelName + ".unity3d");
+                    string file = FileManager.FileExists(ArcadeManager.applicationPath + "/3darcade~/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/" + modelType.ToString() + "s/", modelName + ".unity3d");
                     if (file != null)
                     {
-                        var asset = AssetBundle.LoadFromFile(file);
+                        AssetBundle asset = AssetBundle.LoadFromFile(file);
                         if (asset != null && asset.name != null && asset.name != "")
                         {
                             ArcadeManager.modelAssets.Add(asset);
@@ -494,10 +506,10 @@ namespace Arcade
                     dummyNode = obj;
                 }
 
-                var modelSetup = dummyNode.GetComponent<ModelSetup>();
+                ModelSetup modelSetup = dummyNode.GetComponent<ModelSetup>();
                 if (modelSetup == null)
                 {
-                    dummyNode.AddComponent<ModelSetup>();
+                    _ = dummyNode.AddComponent<ModelSetup>();
                     modelSetup = dummyNode.GetComponent<ModelSetup>();
                 }
                 //Rigidbody rigidbody = obj.GetComponent<Rigidbody>();
@@ -508,9 +520,12 @@ namespace Arcade
                 dummyNode.transform.position = model.position; // model is redundant you aleady have access to modelProperties
                 dummyNode.transform.rotation = model.rotation;
                 dummyNode.transform.localScale = model.scale;
-                if (modelType == ModelType.Arcade) { dummyNode.tag = "arcademodel"; }
-                if (modelType == ModelType.Game) { dummyNode.tag = "gamemodel"; }
-                if (modelType == ModelType.Prop) { dummyNode.tag = "propmodel"; }
+                if (modelType == ModelType.Arcade)
+                { dummyNode.tag = "arcademodel"; }
+                if (modelType == ModelType.Game)
+                { dummyNode.tag = "gamemodel"; }
+                if (modelType == ModelType.Prop)
+                { dummyNode.tag = "propmodel"; }
                 bool isArcadeLayer = arcadeType == ArcadeType.FpsArcade || arcadeType == ArcadeType.CylArcade || arcadeType == ArcadeType.None ? true : false;
                 string layer = (isArcadeLayer ? "Arcade/" : "Menu/") + modelType.ToString() + "Models";
                 dummyNode.layer = LayerMask.NameToLayer(layer);
@@ -538,7 +553,8 @@ namespace Arcade
                 // Zoning
                 if (arcadeType == ArcadeType.FpsArcade || arcadeType == ArcadeType.FpsMenu)
                 {
-                    if (!ArcadeManager.visibleZones[arcadeType].ContainsKey(modelProperties.zone)) { ArcadeManager.visibleZones[arcadeType][modelProperties.zone] = new List<GameObject>(); }
+                    if (!ArcadeManager.visibleZones[arcadeType].ContainsKey(modelProperties.zone))
+                    { ArcadeManager.visibleZones[arcadeType][modelProperties.zone] = new List<GameObject>(); }
 
                     if (modelProperties.zone != 0)
                     {
@@ -566,7 +582,7 @@ namespace Arcade
                 modelSetup.Setup(model, arcadeConfiguration.modelSharedProperties);
                 if (addTrigger && modelSetup.triggers.Count > 0 && Application.isPlaying)
                 {
-                    TriggerManager.Add(modelSetup, arcadeType);
+                    _ = TriggerManager.Add(modelSetup, arcadeType);
                 }
                 return dummyNode;
             }
@@ -574,7 +590,7 @@ namespace Arcade
 
         public bool LoadArcadesConfigurationList()
         {
-            var files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json", SearchOption.AllDirectories);
+            List<FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json", SearchOption.AllDirectories);
             if (files != null)
             {
                 ArcadeManager.arcadesConfigurationList.Clear();
@@ -593,7 +609,7 @@ namespace Arcade
 
             if (ArcadeManager.arcadesConfigurationList.Count < 1)
             {
-                LoadArcadesConfigurationList();
+                _ = LoadArcadesConfigurationList();
             }
 
             if (ArcadeManager.arcadesConfigurationList.Count > 0)
@@ -646,7 +662,7 @@ namespace Arcade
                 Debug.Log("no game models found");
                 return;
             }
-            var transform = obj.transform;
+            Transform transform = obj.transform;
             for (int i = transform.childCount - 1; i >= 0; --i)
             {
                 DestroyModel(transform.GetChild(i).gameObject);
@@ -689,7 +705,7 @@ namespace Arcade
                     Object.DestroyImmediate(child);
                 }
             }
-            Resources.UnloadUnusedAssets();
+            _ = Resources.UnloadUnusedAssets();
             TriggerManager.UnLoadTriggers();
         }
 
@@ -707,13 +723,13 @@ namespace Arcade
                 }
             }
 
-            var obj = GameObject.Find("Menu/GameModels");
+            GameObject obj = GameObject.Find("Menu/GameModels");
             if (obj == null)
             {
                 Debug.Log("no game models found");
                 return;
             }
-            var transform = obj.transform;
+            Transform transform = obj.transform;
             for (int i = transform.childCount - 1; i >= 0; --i)
             {
                 DestroyModel(transform.GetChild(i).gameObject);

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 namespace Arcade
 {
@@ -38,20 +38,21 @@ namespace Arcade
             SetupDropDownList(gameLauncherMethod, System.Enum.GetNames(typeof(GameLauncherMethod)).ToList());
             gameLauncherMethod.value = gameLauncherMethod.options.FindIndex(option => option.text == gameModelProperties.gameLauncherMethod);
             gameLauncherMethod.RefreshShownValue();
-            var availableModels = ArcadeManager.availableModels.game;
+            List<string> availableModels = ArcadeManager.availableModels.game;
             if (availableModels.Count > 0 && availableModels[0] != "none")
             {
                 availableModels.Insert(0, "none");
             }
             SetupDropDownList(model, availableModels);
-            var index = 0;
+            int index = 0;
             if (gameModelProperties.model != "" && gameModelProperties.model != "none")
             {
                 index = availableModels.FindIndex(x => x == gameModelProperties.model);
                 if (index == -1)
                 {
-                   index = 0;
-                } index += 1;
+                    index = 0;
+                }
+                index += 1;
             }
             model.value = index;
             model.RefreshShownValue();
@@ -68,7 +69,8 @@ namespace Arcade
             currentModel.idParent = idParent.text;
             currentModel.gameLauncherMethod = gameLauncherMethod.options[gameLauncherMethod.value].text;
             currentModel.model = model.options[model.value].text;
-            if (currentModel.model == "none") { currentModel.model = ""; }
+            if (currentModel.model == "none")
+            { currentModel.model = ""; }
             //currentModel.modelType = ModelType.Game.ToString();
             //print("current id " + currentModel.id);
             //print("current emu " + currentModel.emulator);
@@ -77,9 +79,9 @@ namespace Arcade
 
         public void AddModel()
         {
-            var modelProperties = GetGameProperties();
+            ModelProperties modelProperties = GetGameProperties();
             ArcadeType arcadeType = ArcadeManager.activeMenuType == ArcadeType.None ? ArcadeManager.activeArcadeType : ArcadeManager.activeMenuType;
-            var myObj = ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(ModelType.Game, modelProperties, arcadeType, true);
+            GameObject myObj = ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(ModelType.Game, modelProperties, arcadeType, true);
             myObj.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2f;
             myObj.transform.LookAt(Camera.main.transform.parent.transform);
             myObj.transform.rotation = Quaternion.Euler(0, myObj.transform.eulerAngles.y, myObj.transform.eulerAngles.z);
@@ -88,13 +90,13 @@ namespace Arcade
 
         public void ReplaceModel(GameObject obj)
         {
-            var tranformPosition = obj.transform.parent.transform.position;
-            var tranformRotation = obj.transform.parent.transform.rotation;
-            var tranformScale = obj.transform.parent.transform.localScale;
+            Vector3 tranformPosition = obj.transform.parent.transform.position;
+            Quaternion tranformRotation = obj.transform.parent.transform.rotation;
+            Vector3 tranformScale = obj.transform.parent.transform.localScale;
             Destroy(obj.transform.parent.gameObject);
-            var modelProperties = GetGameProperties();
+            ModelProperties modelProperties = GetGameProperties();
             ArcadeType arcadeType = ArcadeManager.activeMenuType == ArcadeType.None ? ArcadeManager.activeArcadeType : ArcadeManager.activeMenuType;
-            var myObj = ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(ModelType.Game, modelProperties, arcadeType, true);
+            GameObject myObj = ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(ModelType.Game, modelProperties, arcadeType, true);
             myObj.transform.position = tranformPosition;
             myObj.transform.position = myObj.transform.position + new Vector3(0, 0.5f, 0);
             myObj.transform.rotation = tranformRotation;
@@ -102,4 +104,3 @@ namespace Arcade
         }
     }
 }
-

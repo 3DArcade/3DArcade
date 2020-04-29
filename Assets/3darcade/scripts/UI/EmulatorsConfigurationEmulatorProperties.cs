@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 namespace Arcade
 {
@@ -75,7 +75,8 @@ namespace Arcade
                 emulators.RefreshShownValue();
                 emulatorsIndex = emulators.value;
                 emulatorConfiguration = ArcadeManager.emulatorsConfigurationList[emulators.value];
-                emulators.onValueChanged.AddListener(delegate { DropdownValueChangedHandler(emulators); });
+                emulators.onValueChanged.AddListener(delegate
+                { DropdownValueChangedHandler(emulators); });
 
                 if (emulatorConfiguration != null)
                 {
@@ -90,7 +91,7 @@ namespace Arcade
             id.text = emulatorConfiguration.emulator.id;
             SetupDropDownList(gameLauncherMethod, Enum.GetNames(typeof(GameLauncherMethod)).ToList());
             gameLauncherMethod.value = gameLauncherMethod.options.FindIndex(option => option.text == emulatorConfiguration.emulator.gameLauncherMethod);
-            selectedModelList = emulatorConfiguration.masterGamelist != null ? emulatorConfiguration.masterGamelist : new List<ModelProperties>();
+            selectedModelList = emulatorConfiguration.masterGamelist ?? new List<ModelProperties>();
             selectedModelList = selectedModelList.OrderBy(x => x.descriptiveName).ToList();
             executable.text = emulatorConfiguration.emulator.executable;
             libretroCore.text = emulatorConfiguration.emulator.libretroCore;
@@ -128,8 +129,8 @@ namespace Arcade
             print("works? " + filteredSelectedModelList.Count);
             modelProperties.SetModelProperties(filteredSelectedModelList.Count > 0 ? filteredSelectedModelList[listIndex] : new ModelProperties());
 
-            var scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();
-            var ls = scrollRects;
+            LoopScrollRect scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();
+            LoopScrollRect ls = scrollRects;
             ls.totalCount = filteredSelectedModelList.Count;
             ls.RefillCells();
             //print("listcount " + filteredSelectedGamelist.Count);
@@ -152,7 +153,7 @@ namespace Arcade
             if (target == emulators)
             {
                 UpdateEmulatorConfiguration();
-                var list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == target.options[target.value].text.ToLower()).ToList<EmulatorConfiguration>();
+                List<EmulatorConfiguration> list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == target.options[target.value].text.ToLower()).ToList<EmulatorConfiguration>();
                 if (list.Count > 0)
                 {
                     emulatorConfiguration = ArcadeManager.emulatorsConfigurationList[target.value];
@@ -199,7 +200,7 @@ namespace Arcade
             ArcadeManager.loadSaveEmulatorConfiguration.DeleteEmulatorConfiguration(emulatorConfiguration);
         }
 
-        public ModelProperties getSelectedGame()
+        public ModelProperties GetSelectedGame()
         {
             ModelProperties modelProperties = new ModelProperties();
             return null;

@@ -20,9 +20,9 @@ namespace Arcade
         private float _frameTimer;
 
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-        private bool useUnityAudio = true;
+        private readonly bool useUnityAudio = true;
 #else
-        private bool useUnityAudio = false;
+        private readonly bool useUnityAudio = false;
 #endif
 
         private bool useRunLoop = true;
@@ -102,7 +102,7 @@ namespace Arcade
                                 ActivateAudio();
                                 ActivateInput();
                                 _originalMaterial = _rendererComponent.material;
-                                var _newMaterial = new Material(_rendererComponent.material);
+                                Material _newMaterial = new Material(_rendererComponent.material);
                                 _rendererComponent.material = _newMaterial;
                                 _rendererComponent.material.mainTextureScale = new Vector2(1f, -1f);
                                 _rendererComponent.material.color = Color.black;
