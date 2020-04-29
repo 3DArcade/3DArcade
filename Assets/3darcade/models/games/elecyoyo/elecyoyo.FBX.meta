@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 68356865f0e1b7146b5d33d28fa902f8
+guid: bbe8eea8fbea67044a6f9058a93bf74e
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: elecyoyo-bezel
-    second: {fileID: 2100000, guid: d2873680696c2c04e807a2c8b2c1307f, type: 2}
+    second: {fileID: 2100000, guid: e4e597a01f8d85941bba52ed95e597b6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: elecyoyo-marquee
-    second: {fileID: 2100000, guid: 4d3a977cbfec0a345856eda65afcd388, type: 2}
+    second: {fileID: 2100000, guid: 28cc7449f1a847a4995d26d27643ed12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elecyoyo-metal
+    second: {fileID: 2100000, guid: 5642e5ff6e0761643ae60a11303c4897, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: elecyoyo-monitor
-    second: {fileID: 2100000, guid: 3367ebaa6f56d674f8e1d58ae4d219ab, type: 2}
+    second: {fileID: 2100000, guid: 2f04cd427339563488daaaf92c061685, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: elecyoyo-shiny
-    second: {fileID: 2100000, guid: d76b5907e2fe90c46a34a2257d9b4188, type: 2}
+    second: {fileID: 2100000, guid: e7f6b7d0cce3d9f4b8f9c297baaebebb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elecyoyo-shinyred
+    second: {fileID: 2100000, guid: 11597eb33ac34ca4f907e7fdc888a4ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: elecyoyo-shinywhite
+    second: {fileID: 2100000, guid: 7d59bf507e79af440983f7f13d31dc01, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: elecyoyo-textures
-    second: {fileID: 2100000, guid: 4e31daf1fae54c24dbd24b876d328c9d, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-bezel
-    second: {fileID: 2800000, guid: f53bc0c1f32e44e498eebf22f0cf47d3, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-marquee
-    second: {fileID: 2800000, guid: b289e8df52a87c541b1d3dfc853f87f0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-snap
-    second: {fileID: 2800000, guid: 04e6a34da00116d41bf0d5b910f90e49, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-textures
-    second: {fileID: 2800000, guid: 163db1ec043877d41ac57ad06cb4c006, type: 3}
+    second: {fileID: 2100000, guid: 88de0aa3fc2a01846991ac95c5c45aba, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +62,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +77,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +95,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

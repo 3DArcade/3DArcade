@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ede0da1de93f0145bc59e91b5f1ac25
+guid: c8ec55e03e52ebd43b66693b3a3907e6
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sdungeon-bezel
-    second: {fileID: 2100000, guid: 7c22252e0d74fdb40b681d60f8b0a1e7, type: 2}
+    second: {fileID: 2100000, guid: dade219637ee125449072ddbea15b2de, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sdungeon-marquee
-    second: {fileID: 2100000, guid: 961e4df4d568a1c49ac5aaaf57fa7073, type: 2}
+    second: {fileID: 2100000, guid: cffbabe0c738a5a4a9041bc06af703ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sdungeon-metal
+    second: {fileID: 2100000, guid: 91eba5c09f2d7444e89e464eb260e834, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sdungeon-monitor
-    second: {fileID: 2100000, guid: 9fe4e8f75d68d38429ab4478df2bebdd, type: 2}
+    second: {fileID: 2100000, guid: c021e08a65f4d5d4c8926c2bab904956, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sdungeon-shiny
-    second: {fileID: 2100000, guid: a89a2c71ccfc15f4fba3442cfbea6185, type: 2}
+    second: {fileID: 2100000, guid: 3e69f7b6dac44fd4b9815891c8fca2a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sdungeon-shinywhite
+    second: {fileID: 2100000, guid: 3bcca7c5d9f942147ad16c991b641c87, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sdungeon-textures
-    second: {fileID: 2100000, guid: e4bfacbeeae39f74a9014643f5afec26, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-bezel
-    second: {fileID: 2800000, guid: 30993050236e85246a31efef9aa3497b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-marquee
-    second: {fileID: 2800000, guid: aa8896772a17aca40907b21173b1eed7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-snap
-    second: {fileID: 2800000, guid: b038f5e8e08576b4d8ce7217a9c20ee8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-textures
-    second: {fileID: 2800000, guid: 045699f65a375f7459a856daff976f7d, type: 3}
+    second: {fileID: 2100000, guid: 55bf7ba85b0b4d843ad80c44edd1ba1b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +57,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +72,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +90,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1bedbe070a14e654fb223734bd8a09a1
+guid: 37890c48058640c4daa11a338ea2c8be
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,53 +7,38 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: jungleh-metal
+    second: {fileID: 2100000, guid: 6c58df24f4dc3e24ea90a7e9044699dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: sfootbalbezel
-    second: {fileID: 2100000, guid: 3c4339d2c6c00a54ab78a89f39563333, type: 2}
+    second: {fileID: 2100000, guid: ef426d8bfc666614093f67a82ec1d8c0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sfootbalblue
-    second: {fileID: 2100000, guid: 8cec5e47e6771a045a5369122b8a61f8, type: 2}
+    second: {fileID: 2100000, guid: f7e50a445d3ce034cacb95a6fb5233e2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sfootbalmarquee
-    second: {fileID: 2100000, guid: f79afd04b6048a54fad78df0a913ef64, type: 2}
+    second: {fileID: 2100000, guid: bd9453d7728657748838f797ab2e9f4e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sfootbalmonitor
-    second: {fileID: 2100000, guid: ed8adbfca97478547a71a5c7a812b951, type: 2}
+    second: {fileID: 2100000, guid: d5d28a51f3519cb478cc92db6e30b9e4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sfootbalred
-    second: {fileID: 2100000, guid: 9231a1d4912d8824681f37449bc12809, type: 2}
+    second: {fileID: 2100000, guid: 24551887be5647446b3c1878525795c3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sfootbalsideart
-    second: {fileID: 2100000, guid: accce19d36a373b48a31efc5dab2266a, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sfootbalbezel
-    second: {fileID: 2800000, guid: 19c9f0f28ada648458ac8f3e7dd623d8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sfootbalmarquee
-    second: {fileID: 2800000, guid: 4f941d5fdb9d45d4e933eb78bb5812b2, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sfootbalmonitor
-    second: {fileID: 2800000, guid: 86ea29cd6bacb2d44aaf2dfd29cde209, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: sfootbalsideart
-    second: {fileID: 2800000, guid: 4daa6279d4b5b7a40b795596a234ba3b, type: 3}
+    second: {fileID: 2100000, guid: e99ab876931833242bf5a586cc371e25, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +57,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,16 +72,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -105,9 +90,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

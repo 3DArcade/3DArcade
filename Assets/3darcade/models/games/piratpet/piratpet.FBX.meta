@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: afb6e384af6884d44bd357e074955242
+guid: ccf5cb432a4675b4bb86d5bcaf070b40
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: piratpet-bezel
-    second: {fileID: 2100000, guid: a854f672d949d4649993ce1fc0da90e3, type: 2}
+    second: {fileID: 2100000, guid: acd2f7af027dc0a4b83463ccdfead510, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: piratpet-marquee
-    second: {fileID: 2100000, guid: 268e239140ff2344598e85358b1df1ef, type: 2}
+    second: {fileID: 2100000, guid: 8443ab7f3f1de9046b993e58ffc43c7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: piratpet-metal
+    second: {fileID: 2100000, guid: 85bb1613da602b740981643c98babe62, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: piratpet-monitor
-    second: {fileID: 2100000, guid: 2407b27958852b54d92e1cfe9f3ce0f4, type: 2}
+    second: {fileID: 2100000, guid: 72c13fa9bf57a8543b6eccb4144d1eaa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: piratpet-shiny
-    second: {fileID: 2100000, guid: 6ae8114aa06d9aa4087d403f53d80edd, type: 2}
+    second: {fileID: 2100000, guid: 59d1f6f0669b6be4a8fee32ab6ce1ddc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: piratpet-shinyred
+    second: {fileID: 2100000, guid: 41ff248a70bd822409af188f3fdb1d12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: piratpet-shinywhite
+    second: {fileID: 2100000, guid: f725abee910c11946bf39c3a3fd4572d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: piratpet-textures
-    second: {fileID: 2100000, guid: fda4a9fda5228034696a5feb74893ff7, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: piratpet-bezel
-    second: {fileID: 2800000, guid: a24d5bed3e210304aa6d54956f817261, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: piratpet-marquee
-    second: {fileID: 2800000, guid: 8dca39aeedfe97249a36280cdb15eb79, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: piratpet-snap
-    second: {fileID: 2800000, guid: a609a46dc85a6f1419cdf0502b50e62d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: piratpet-textures
-    second: {fileID: 2800000, guid: 4c8eb2470ec31f74689c71f3f67af483, type: 3}
+    second: {fileID: 2100000, guid: d121a354776a2bd449f2572bc470f966, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +62,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +77,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +95,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
