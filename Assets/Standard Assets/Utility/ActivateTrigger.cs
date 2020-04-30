@@ -31,7 +31,7 @@ namespace UnityStandardAssets.Utility
 
             if (triggerCount == 0 || repeatTrigger)
             {
-                Object currentTarget = target ?? gameObject;
+                Object currentTarget = target != null ? target : gameObject;
                 Behaviour targetBehaviour = currentTarget as Behaviour;
                 GameObject targetGameObject = currentTarget as GameObject;
                 if (targetBehaviour != null)
@@ -52,9 +52,9 @@ namespace UnityStandardAssets.Utility
                         {
                             if (targetGameObject != null)
                             {
-                                Instantiate(source, targetGameObject.transform.position,
+                                _ = Instantiate(source, targetGameObject.transform.position,
                                             targetGameObject.transform.rotation);
-                                DestroyObject(targetGameObject);
+                                Destroy(targetGameObject);
                             }
                         }
                         break;
@@ -73,7 +73,7 @@ namespace UnityStandardAssets.Utility
                     case Mode.Animate:
                         if (targetGameObject != null)
                         {
-                            targetGameObject.GetComponent<Animation>().Play();
+                            _ = targetGameObject.GetComponent<Animation>().Play();
                         }
                         break;
                     case Mode.Deactivate:

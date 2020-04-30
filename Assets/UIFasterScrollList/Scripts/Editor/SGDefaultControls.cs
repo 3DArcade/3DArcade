@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-
-namespace UnityEngine.UI
+﻿namespace UnityEngine.UI
 {
     public static class SGDefaultControls
     {
@@ -40,7 +37,7 @@ namespace UnityEngine.UI
         static GameObject CreateUIObject(string name, GameObject parent)
         {
             GameObject go = new GameObject(name);
-            go.AddComponent<RectTransform>();
+            _ = go.AddComponent<RectTransform>();
             SetParentAndAlign(go, parent);
             return go;
         }
@@ -64,7 +61,9 @@ namespace UnityEngine.UI
         private static void SetParentAndAlign(GameObject child, GameObject parent)
         {
             if (parent == null)
+            {
                 return;
+            }
 
             child.transform.SetParent(parent.transform, false);
             SetLayerRecursively(child, parent.layer);
@@ -75,14 +74,16 @@ namespace UnityEngine.UI
             go.layer = layer;
             Transform t = go.transform;
             for (int i = 0; i < t.childCount; i++)
+            {
                 SetLayerRecursively(t.GetChild(i).gameObject, layer);
+            }
         }
         #endregion
-        
+
         public static GameObject CreateLoopHorizontalScrollRect(DefaultControls.Resources resources)
         {
             GameObject root = CreateUIElementRoot("Loop Horizontal Scroll Rect", new Vector2(200, 200));
-            
+
             GameObject content = CreateUIObject("Content", root);
 
             RectTransform contentRT = content.GetComponent<RectTransform>();
@@ -104,8 +105,8 @@ namespace UnityEngine.UI
             scrollRect.verticalScrollbarVisibility = LoopScrollRect.ScrollbarVisibility.Permanent;
             scrollRect.horizontalScrollbarSpacing = 0;
             scrollRect.verticalScrollbarSpacing = 0;
-            
-            root.AddComponent<RectMask2D>();
+
+            _ = root.AddComponent<RectMask2D>();
 
             HorizontalLayoutGroup layoutGroup = content.AddComponent<HorizontalLayoutGroup>();
             layoutGroup.childAlignment = TextAnchor.MiddleLeft;
@@ -122,9 +123,9 @@ namespace UnityEngine.UI
         public static GameObject CreateLoopVerticalScrollRect(DefaultControls.Resources resources)
         {
             GameObject root = CreateUIElementRoot("Loop Vertical Scroll Rect", new Vector2(200, 200));
-            
+
             GameObject content = CreateUIObject("Content", root);
-            
+
             RectTransform contentRT = content.GetComponent<RectTransform>();
             contentRT.anchorMin = new Vector2(0.5f, 1);
             contentRT.anchorMax = new Vector2(0.5f, 1);
@@ -145,7 +146,7 @@ namespace UnityEngine.UI
             scrollRect.horizontalScrollbarSpacing = 0;
             scrollRect.verticalScrollbarSpacing = 0;
 
-            root.AddComponent<RectMask2D>();
+            _ = root.AddComponent<RectMask2D>();
 
             VerticalLayoutGroup layoutGroup = content.AddComponent<VerticalLayoutGroup>();
             layoutGroup.childAlignment = TextAnchor.UpperCenter;
