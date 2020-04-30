@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UnityEditor.UI
@@ -39,21 +38,24 @@ namespace UnityEditor.UI
             // Find the best scene view
             SceneView sceneView = SceneView.lastActiveSceneView;
             if (sceneView == null && SceneView.sceneViews.Count > 0)
+            {
                 sceneView = SceneView.sceneViews[0] as SceneView;
+            }
 
             // Couldn't find a SceneView. Don't set position.
             if (sceneView == null || sceneView.camera == null)
+            {
                 return;
+            }
 
             // Create world space Plane from canvas position.
-            Vector2 localPlanePosition;
             Camera camera = sceneView.camera;
             Vector3 position = Vector3.zero;
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRTransform, new Vector2(camera.pixelWidth / 2, camera.pixelHeight / 2), camera, out localPlanePosition))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRTransform, new Vector2(camera.pixelWidth / 2, camera.pixelHeight / 2), camera, out Vector2 localPlanePosition))
             {
                 // Adjust for canvas pivot
-                localPlanePosition.x = localPlanePosition.x + canvasRTransform.sizeDelta.x * canvasRTransform.pivot.x;
-                localPlanePosition.y = localPlanePosition.y + canvasRTransform.sizeDelta.y * canvasRTransform.pivot.y;
+                localPlanePosition.x += canvasRTransform.sizeDelta.x * canvasRTransform.pivot.x;
+                localPlanePosition.y += canvasRTransform.sizeDelta.y * canvasRTransform.pivot.y;
 
                 localPlanePosition.x = Mathf.Clamp(localPlanePosition.x, 0, canvasRTransform.sizeDelta.x);
                 localPlanePosition.y = Mathf.Clamp(localPlanePosition.y, 0, canvasRTransform.sizeDelta.y);
@@ -93,7 +95,9 @@ namespace UnityEditor.UI
             Undo.SetTransformParent(element.transform, parent.transform, "Parent " + element.name);
             GameObjectUtility.SetParentAndAlign(element, parent);
             if (parent != menuCommand.context) // not a context click, so center in sceneview
+            {
                 SetPositionVisibleinSceneView(parent.GetComponent<RectTransform>(), element.GetComponent<RectTransform>());
+            }
 
             Selection.activeGameObject = element;
         }
@@ -101,12 +105,14 @@ namespace UnityEditor.UI
         static public GameObject CreateNewUI()
         {
             // Root for the UI
-            var root = new GameObject("Canvas");
-            root.layer = LayerMask.NameToLayer(kUILayerName);
+            GameObject root = new GameObject("Canvas")
+            {
+                layer = LayerMask.NameToLayer(kUILayerName)
+            };
             Canvas canvas = root.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            root.AddComponent<CanvasScaler>();
-            root.AddComponent<GraphicRaycaster>();
+            _ = root.AddComponent<CanvasScaler>();
+            _ = root.AddComponent<GraphicRaycaster>();
             Undo.RegisterCreatedObjectUndo(root, "Create " + root.name);
 
             // if there is no event system add one...
@@ -120,20 +126,24 @@ namespace UnityEditor.UI
             GameObject selectedGo = Selection.activeGameObject;
 
             // Try to find a gameobject that is the selected GO or one if its parents.
-            Canvas canvas = (selectedGo != null) ? selectedGo.GetComponentInParent<Canvas>() : null;
+            Canvas canvas = selectedGo.GetComponentInParent<Canvas>();
             if (canvas != null && canvas.gameObject.activeInHierarchy)
+            {
                 return canvas.gameObject;
+            }
 
             // No canvas in selection or its parents? Then use just any canvas..
             canvas = Object.FindObjectOfType(typeof(Canvas)) as Canvas;
             if (canvas != null && canvas.gameObject.activeInHierarchy)
+            {
                 return canvas.gameObject;
+            }
 
             // No canvas in the scene at all? Then create a new one.
-            return SGMenuOptions.CreateNewUI();
+            return CreateNewUI();
         }
         #endregion
-        
+
         [MenuItem("GameObject/UI/Loop Horizontal Scroll Rect", false, 2151)]
         static public void AddLoopHorizontalScrollRect(MenuCommand menuCommand)
         {
