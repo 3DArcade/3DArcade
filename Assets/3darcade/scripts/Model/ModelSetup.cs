@@ -8,7 +8,8 @@ namespace Arcade
     [SelectionBase]
     public class ModelSetup : MonoBehaviour
     {
-        // Editor UI
+        #region EditorUI
+#pragma warning disable IDE0051 // Remove unused private members
         public delegate void ShowSelectEmulatorWindowDelegate(GameObject obj);
         public static ShowSelectEmulatorWindowDelegate ShowSelectEmulatorWindow;
         public delegate void ShowSelectModelWindowDelegate(GameObject obj);
@@ -18,8 +19,6 @@ namespace Arcade
         public delegate void ShowSelectGameWindowDelegate(GameObject obj, List<ModelProperties> gameList);
         public static ShowSelectGameWindowDelegate ShowSelectGameWindow;
 
-        [ContextMenuItem("Select a Game from Master Gamelist", "GetGame")]
-        public string descriptiveName;
         private void GetGame()
         {
             EmulatorConfiguration emulatorConfiguration = ArcadeManager.loadSaveEmulatorConfiguration.GetEmulatorConfiguration(emulator);
@@ -29,32 +28,30 @@ namespace Arcade
                 ShowSelectGameWindow?.Invoke(gameObject, gamelist);
             }
         }
-        [Arcade("Game")]
-        public string id;
-        public string idParent;
-        [ContextMenuItem("Select an Emulator Configuration", "GetEmulator")]
-        [Arcade("Emulator")]
-        public string emulator;
+
         private void GetEmulator()
         {
             ShowSelectEmulatorWindow?.Invoke(gameObject);
         }
-        [ContextMenuItem("Select Model", "GetModel")]
-        [Arcade("Model")]
-        public string model;
+
         private void GetModel()
         {
             ShowSelectModelWindow?.Invoke(gameObject);
         }
-        //public ModelAnimationMethod animationType = ModelAnimationMethod.Never;
+#pragma warning restore IDE0051 // Remove unused private members
+        #endregion
+
+        [ContextMenuItem("Select a Game from Master Gamelist", "GetGame")]
+        public string descriptiveName;
+        [Arcade("Game")]
+        public string id;
+        public string idParent;
+        [Arcade("Emulator"), ContextMenuItem("Select an Emulator Configuration", "GetEmulator")]
+        public string emulator;
+        [Arcade("Model"), ContextMenuItem("Select Model", "GetModel")]
+        public string model;
         public bool grabbable = false;
-        //public bool lightmap = false;
-        //public bool animatedTextureSequence = false;
         public float animatedTextureSpeed = 2.0f;
-        //public bool attachToCamera = false; // TODO: Move to TriggerEvent System? setParent to, set Transform
-        //public bool hideWhenArcadeIsActive = false;
-        //public bool receiveSelectedModelArtWork = false; //  TODO: Move to TriggerEvent System?
-        //public bool receiveActiveMenuRenderTexture = false; // TODO: Move to TriggerEvent System?
         public string screen;
         public string manufacturer;
         public string year;
@@ -64,46 +61,34 @@ namespace Arcade
         public bool runnable;
         public GameLauncherMethod gameLauncherMethod = GameLauncherMethod.None;
         public int playCount;
-        //public AudioProperties audioProperties;
         public int zone;
         public List<Trigger> triggers;
         public List<string> triggerIDs;
 
-        [HideInInspector]
-        public bool isSelected = false;
-        [HideInInspector]
-        public bool isPlaying = false;
-        [HideInInspector]
-        public ModelSharedProperties modelSharedProperties;
+        [HideInInspector] public bool isSelected = false;
+        [HideInInspector] public bool isPlaying = false;
+        [HideInInspector] public ModelSharedProperties modelSharedProperties;
 
-        private List<GameObject> children;
-        private new Renderer renderer;
+        //private List<GameObject> children;
+        //private new Renderer renderer;
         private BoxCollider boxCol;
         private Rigidbody rigid;
-        private Texture2D tempTexture = null;
+        //private Texture2D tempTexture = null;
 
-        private Keyframe[] volumeCurveKeyFrames;
-        private AnimationCurve volumeCurve;
-
-        // Global Variables
-        // ArcadeManager.applicationPath
-        // ArcadeManager.emulatorsConfigurationList
-        // ArcadeManager.loadSaveArcade.LoadEmulatorsConfigurationList
-        // ArcadeManager.loadSaveArcade.GetEmulatorConfiguration
+        public AnimationCurve volumeCurve;
 
         private void Awake()
         {
-            volumeCurveKeyFrames = new Keyframe[]
+            volumeCurve = new AnimationCurve(new Keyframe[]
             {
-                new Keyframe(0.8f, 1f),
-                new Keyframe(1.8f, 0.3f),
-                new Keyframe(3f, 0f)
-            };
-            volumeCurve = new AnimationCurve(volumeCurveKeyFrames);
+                new Keyframe(0.8f, 1.0f, -2.6966875f,  -2.6966875f,  0.2f,        0.10490462f),
+                new Keyframe(1.5f, 0.3f, -0.49866775f, -0.49866775f, 0.28727788f, 0.2f),
+                new Keyframe(3.0f, 0.0f, -0.08717632f, -0.08717632f, 0.5031141f,  0.2f)
+            });
         }
 
 #if UNITY_EDITOR
-        void Reset()
+        private void Reset()
         {
             if ((id == null && emulator == null) || (id == "" && emulator == ""))
             {

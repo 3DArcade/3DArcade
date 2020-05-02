@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -10,7 +11,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 namespace Arcade
 {
     // This enum is used by input (gamepad/keyboard) and ui buttons to set the correct buttonClicked.
-    enum UIButtons
+    internal enum UIButtons
     {
         Select = 0,
         Cancel,
@@ -120,7 +121,7 @@ namespace Arcade
         public Button dialogAddEmulatorConfigurationSelect;
         public Button dialogAddEmulatorConfigurationCancel;
 
-        void Start()
+        private void Start()
         {
             rayLength = 100.0f;
             isGrabbed = false;
@@ -187,26 +188,25 @@ namespace Arcade
             activeCamera = ArcadeManager.arcadeCameras[ArcadeType.FpsArcade];
         }
 
-        void ButtonClicked(UIButtons button)
-        {
-            buttonClicked = button;
-        }
+        private void ButtonClicked(UIButtons button) => buttonClicked = button;
 
-        void LateUpdate()
+        private void LateUpdate()
         {
             if (frames == 0)
-            { buttonClicked = null; }
+            {
+                buttonClicked = null;
+            }
         }
 
         private void OnApplicationFocus(bool focus)
         {
-            if (focus && (ArcadeManager.arcadeState == ArcadeStates.Game))
+            if (focus && ArcadeManager.arcadeState == ArcadeStates.Game)
             {
                 GameLauncherManager.UnLoadGame();
             }
         }
 
-        void Update()
+        private void Update()
         {
             // fps
             if (ArcadeManager.arcadeConfiguration.showFPS)
@@ -226,7 +226,7 @@ namespace Arcade
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) || Input.GetKeyDown("tab"))
+            if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Tab))
             {
                 if (Cursor.lockState == CursorLockMode.Locked || Cursor.visible == false)
                 {
@@ -244,7 +244,9 @@ namespace Arcade
             //No need to update every frame.
             frames++;
             if (frames < framesToSkip)
-            { return; }
+            {
+                return;
+            }
             frames = 0;
 
             if (GetSelectedModel())
@@ -394,11 +396,15 @@ namespace Arcade
                     {
                         buttonClicked = null;
                         if (ArcadeManager.arcadeState == ArcadeStates.MoveCabs)
-                        { return; }
+                        {
+                            return;
+                        }
                         if (!Information.isActiveAndEnabled)
                         {
                             if (selectedModel == null)
-                            { return; }
+                            {
+                                return;
+                            }
                             GetGameInformation(selectedModel);
                             Information.gameObject.SetActive(true);
                         }
@@ -411,7 +417,9 @@ namespace Arcade
                     {
                         buttonClicked = null;
                         if (ArcadeManager.arcadeState == ArcadeStates.MoveCabs)
-                        { return; }
+                        {
+                            return;
+                        }
 
                         // Toplevel menu then go to settings
                         if (ArcadeManager.arcadeHistory.Count < 2)
@@ -441,9 +449,13 @@ namespace Arcade
                     {
                         buttonClicked = null;
                         if (ArcadeManager.arcadeState == ArcadeStates.Information)
-                        { return; }
+                        {
+                            return;
+                        }
                         if (ArcadeManager.activeArcadeType != ArcadeType.FpsArcade)
-                        { return; }
+                        {
+                            return;
+                        }
                         // Switch to MoveCabs State
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabs;
                         MoveCabs.gameObject.SetActive(true);
@@ -562,7 +574,9 @@ namespace Arcade
                     break;
                 case ArcadeStates.MoveCabs:
                     if (ArcadeManager.activeMenuType != ArcadeType.None)
-                    { return; }
+                    {
+                        return;
+                    }
                     if (buttonClicked == UIButtons.MoveCabs)
                     {
                         // If selected model is grabbed release it, then Switch to Running State.
@@ -577,10 +591,14 @@ namespace Arcade
                     else if (buttonClicked == UIButtons.Edit)
                     {
                         if (selectedModel == null)
-                        { return; }
+                        {
+                            return;
+                        }
                         ModelSetup gameModelSetup = selectedModel.transform.parent.GetComponent<ModelSetup>();
                         if (gameModelSetup == null)
-                        { return; }
+                        {
+                            return;
+                        }
                         MoveCabs.gameObject.SetActive(false);
                         MoveCabsEdit.gameObject.SetActive(true);
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabsEdit;
@@ -596,10 +614,14 @@ namespace Arcade
                     else if (buttonClicked == UIButtons.Delete)
                     {
                         if (selectedModel == null)
-                        { return; }
+                        {
+                            return;
+                        }
                         ModelSetup gameModelSetup = selectedModel.transform.parent.GetComponent<ModelSetup>();
                         if (gameModelSetup == null)
-                        { return; }
+                        {
+                            return;
+                        }
                         dialogConfirm.text = "Delete " + gameModelSetup.descriptiveName + " from this arcade?";
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabsDelete;
                         MoveCabs.gameObject.SetActive(false);
@@ -639,7 +661,9 @@ namespace Arcade
                         MoveCabsEdit.gameObject.SetActive(false);
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabs;
                         if (selectedModel == null)
-                        { return; }
+                        {
+                            return;
+                        }
                         MoveCabsEditGameProperties props = MoveCabsEdit.GetComponent<MoveCabsEditGameProperties>();
                         props.ReplaceModel(selectedModel);
                     }
@@ -676,7 +700,10 @@ namespace Arcade
                         print("model delete is selected at it to the scene");
 
                         if (selectedModel == null)
-                        { return; }
+                        {
+                            return;
+                        }
+
                         Destroy(selectedModel.transform.parent.gameObject);
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabs;
                         MoveCabs.gameObject.SetActive(true);
@@ -1025,7 +1052,7 @@ namespace Arcade
             }
         }
 
-        bool GetSelectedModel()
+        private bool GetSelectedModel()
         {
             GameObject obj = null;
             ModelSetup modelSetup = null;
@@ -1095,10 +1122,13 @@ namespace Arcade
             return false;
         }
 
-        void AdjustTransformSelectedModel()
+        private void AdjustTransformSelectedModel()
         {
             if (selectedModel == null)
-            { return; }
+            {
+                return;
+            }
+
             if (buttonClicked == UIButtons.MoveCabsRotateRight)
             {
                 selectedModel.transform.Rotate(new Vector3(0, 10, 0));
@@ -1107,7 +1137,7 @@ namespace Arcade
                     selectedModel.transform.Rotate(new Vector3(0, -180, 0));
                 }
             }
-            if (buttonClicked == UIButtons.MoveCabsRotateLeft)
+            else if (buttonClicked == UIButtons.MoveCabsRotateLeft)
             {
                 selectedModel.transform.Rotate(new Vector3(0, -10, 0));
                 if ((int)Mathf.Round(selectedModel.transform.eulerAngles.y) == -180)
@@ -1115,31 +1145,37 @@ namespace Arcade
                     selectedModel.transform.Rotate(new Vector3(0, 180, 0));
                 }
             }
-            if (buttonClicked == UIButtons.MoveCabsForward)
+            else if (buttonClicked == UIButtons.MoveCabsForward)
             {
                 selectedModel.transform.Translate(0, 0, -0.1f);
             }
-            if (buttonClicked == UIButtons.MoveCabsBackward)
+            else if (buttonClicked == UIButtons.MoveCabsBackward)
             {
                 selectedModel.transform.Translate(0, 0, 0.1f);
             }
-            if (buttonClicked == UIButtons.MoveCabsLeft)
+            else if (buttonClicked == UIButtons.MoveCabsLeft)
             {
                 selectedModel.transform.Translate(0.1f, 0, 0);
             }
-            if (buttonClicked == UIButtons.MoveCabsRight)
+            else if (buttonClicked == UIButtons.MoveCabsRight)
             {
                 selectedModel.transform.Translate(-0.1f, 0, 0);
             }
         }
 
-        void GrabSelectedObject()
+        private void GrabSelectedObject()
         {
             if (selectedModel == null)
-            { return; }
+            {
+                return;
+            }
+
             grabbedObject = selectedModel.GetComponent<Rigidbody>();
             if (grabbedObject == null)
-            { return; }
+            {
+                return;
+            }
+
             grabbedObject.isKinematic = true;
             grabbedObject.GetComponent<Collider>().enabled = false;
             grabbedObject.transform.parent.SetParent(activeCamera.transform);
@@ -1148,7 +1184,7 @@ namespace Arcade
             isGrabbed = true;
         }
 
-        void ReleaseGrabSelectedObject()
+        private void ReleaseGrabSelectedObject()
         {
             Transform trans = grabbedObject.transform;
             grabbedObject.transform.parent.parent = GameObject.Find("Arcade/GameModels").transform;
@@ -1159,7 +1195,7 @@ namespace Arcade
             isGrabbed = false;
         }
 
-        void GetZone(ArcadeType arcadeType)
+        private void GetZone(ArcadeType arcadeType)
         {
             if (Physics.Raycast(activeCamera.transform.parent.transform.position, -activeCamera.transform.parent.transform.up, out RaycastHit vision, rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? arcadeLayers : menuLayers))
             {
@@ -1176,7 +1212,7 @@ namespace Arcade
                     {
                         foreach (KeyValuePair<int, List<GameObject>> entry in ArcadeManager.visibleZones[arcadeType])
                         {
-                            // Zone 0 is allways visible
+                            // Zone 0 is always visible
                             if (modelSetup.zone == 0)
                             {
                                 foreach (GameObject obj in entry.Value)
@@ -1205,7 +1241,7 @@ namespace Arcade
             }
         }
 
-        IEnumerator StartNewArcade(string arcadeConfigurationID, GameObject selectedArcadeModel)
+        private IEnumerator StartNewArcade(string arcadeConfigurationID, GameObject selectedArcadeModel)
         {
             ArcadeConfiguration arcadeConfiguration = ArcadeManager.loadSaveArcadeConfiguration.GetArcadeConfigurationByID(arcadeConfigurationID);
             if (arcadeConfiguration != null)
@@ -1228,32 +1264,34 @@ namespace Arcade
         private void GetGameInformation(GameObject obj)
         {
             ModelSetup gameModelSetup = obj.transform.parent.GetComponent<ModelSetup>();
-            List<EmulatorConfiguration> emulatorConfiguration = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id == gameModelSetup.emulator).ToList();
-            string path = "";
+            if (gameModelSetup == null)
+            {
+                return;
+            }
+
+            List<EmulatorConfiguration> emulatorConfiguration = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id.Equals(gameModelSetup.emulator)).ToList();
             if (emulatorConfiguration.Count < 1)
             {
                 print("Launcher: no emulator configuration found");
+                return;
             }
-            else
-            {
-                path = emulatorConfiguration[0].emulator.infoPath;
-            }
-            string tex = null;
-            tex = FileManager.LoadTextFromFile(ArcadeManager.applicationPath + FileManager.CorrectFilePath(path), gameModelSetup.id.Trim() + ".txt");
+
+            string infoPath = emulatorConfiguration[0].emulator.infoPath;
+            infoPath = $"{ArcadeManager.applicationPath}{FileManager.CorrectFilePath(infoPath)}";
+
+            string tex = FileManager.LoadTextFromFile(infoPath, $"{gameModelSetup.id.Trim()}.txt");
             if (tex == null)
             {
-                tex = FileManager.LoadTextFromFile(ArcadeManager.applicationPath + FileManager.CorrectFilePath(path), gameModelSetup.idParent.Trim() + ".txt");
+                tex = FileManager.LoadTextFromFile(infoPath, $"{gameModelSetup.idParent.Trim()}.txt");
             }
-            if (tex == null)
-            {
-                tex = "";
-            }
-            string details = "";
-            details = details + "Name: " + gameModelSetup.descriptiveName + Environment.NewLine + Environment.NewLine;
-            details = details + "Manufacturer: " + gameModelSetup.manufacturer + Environment.NewLine + Environment.NewLine;
-            details = details + "Year: " + gameModelSetup.year + Environment.NewLine + Environment.NewLine;
-            details = details + "Gnere: " + gameModelSetup.genre + Environment.NewLine + Environment.NewLine;
-            gameHistory.text = details + Environment.NewLine + tex;
+
+            StringBuilder sb = new StringBuilder();
+            _ = sb.AppendLine($"Name: {gameModelSetup.descriptiveName}{Environment.NewLine}")
+                  .AppendLine($"Manufacturer: {gameModelSetup.manufacturer}{Environment.NewLine}")
+                  .AppendLine($"Year: {gameModelSetup.year}{Environment.NewLine}")
+                  .AppendLine($"Genre: {gameModelSetup.genre}{Environment.NewLine}{Environment.NewLine}")
+                  .AppendLine(tex ?? string.Empty);
+            gameHistory.text = sb.ToString();
             // gameDetails.enabled = false;
         }
     }

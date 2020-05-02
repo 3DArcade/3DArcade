@@ -355,7 +355,9 @@ namespace Arcade
             {
                 setupVideoAfterGameDisable = true;
                 if (videoPlayer == null)
-                { return; }
+                {
+                    return;
+                }
                 if (videoPlayer.enabled == true)
                 {
                     videoPlayer.Pause();
