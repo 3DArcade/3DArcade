@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using Arcade;
 namespace SG
 {
-    [RequireComponent(typeof(UnityEngine.UI.LoopScrollRect))]
+    [RequireComponent(typeof(LoopScrollRect))]
     [DisallowMultipleComponent]
     public class InitOnStart : MonoBehaviour
     {

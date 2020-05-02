@@ -77,7 +77,7 @@ namespace Arcade
         }
 
 #if UNITY_EDITOR
-        [UnityEditor.MenuItem("3DArcade/Save Baked Lightmaps to Prefabs", false, 10000)]
+        [MenuItem("3DArcade/Save Baked Lightmaps to Prefabs", false, 10000)]
         static void SaveLightmapInfo()
         {
             if (Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand)

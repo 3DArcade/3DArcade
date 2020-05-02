@@ -177,7 +177,7 @@ namespace Arcade
                 {
                     modelAudioSetup.JukeboxEnabled = false;
                 }
-                AudioSource audioSource = targetObject.GetComponent<UnityEngine.AudioSource>();
+                AudioSource audioSource = targetObject.GetComponent<AudioSource>();
                 if (audioSource != null)
                 {
                     audioSource.Pause();
@@ -200,7 +200,7 @@ namespace Arcade
                     modelAudioSetup.JukeboxEnabled = false;
                     modelAudioSetup.audioProperties = null;
                 }
-                AudioSource audioSource = targetObject.GetComponent<UnityEngine.AudioSource>();
+                AudioSource audioSource = targetObject.GetComponent<AudioSource>();
                 if (audioSource != null)
                 {
                     audioSource.Stop();

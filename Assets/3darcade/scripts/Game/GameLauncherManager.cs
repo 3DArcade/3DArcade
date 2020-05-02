@@ -272,7 +272,7 @@ namespace Arcade
                 ArcadeManager.arcadeState = ArcadeStates.Running;
                 if (ArcadeManager.activeMenuType != ArcadeType.None || (ArcadeManager.activeMenuType == ArcadeType.None && ArcadeManager.activeArcadeType == ArcadeType.FpsArcade))
                 {
-                    UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController arcadeRigidbodyFirstPersonController = ArcadeManager.arcadeControls[ArcadeType.FpsArcade].GetComponent<RigidbodyFirstPersonController>();
+                    RigidbodyFirstPersonController arcadeRigidbodyFirstPersonController = ArcadeManager.arcadeControls[ArcadeType.FpsArcade].GetComponent<RigidbodyFirstPersonController>();
                     if (arcadeRigidbodyFirstPersonController != null)
                     {
                         arcadeRigidbodyFirstPersonController.pause = false;

@@ -249,7 +249,7 @@ namespace Arcade
                 };
                 propType.transform.parent = editorModelcache.transform;
                 ArcadeManager.modelAssets = new List<AssetBundle>();
-                List<System.IO.FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + "/3darcade/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/Arcades/", "*.unity3d");
+                string[] files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + "/3darcade/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/Arcades/", "*.unity3d");
                 if (files != null)
                 { AddObject("Arcades", arcadeType); }
                 files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + "/3darcade/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/Games/", "*.unity3d");
@@ -266,13 +266,13 @@ namespace Arcade
 
                 void AddObject(string type, GameObject gameObject)
                 {
-                    foreach (System.IO.FileInfo file in files)
+                    foreach (string file in files)
                     {
-                        string assetName = System.IO.Path.GetFileNameWithoutExtension(file.Name);
+                        string assetName = System.IO.Path.GetFileNameWithoutExtension(file);
                         List<AssetBundle> prefab = ArcadeManager.modelAssets.Where(x => x.name == assetName).ToList();
                         if (prefab.Count < 1)
                         {
-                            string path = FileManager.FileExists(ArcadeManager.applicationPath + "/3darcade/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/" + type + "/", file.Name);
+                            string path = FileManager.FileExists(ArcadeManager.applicationPath + "/3darcade/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/" + type + "/", file);
                             if (path != null)
                             {
                                 AssetBundle asset = AssetBundle.LoadFromFile(path);
@@ -419,7 +419,7 @@ namespace Arcade
     {
         private static ModelSetup modelSetup;
         private static ModelType modelType;
-        private static List<string> assetNames = new List<string>();
+        private static string[] assetNames;
         Vector2 scrollPos;
 
         [InitializeOnLoadMethod]
@@ -443,7 +443,7 @@ namespace Arcade
             if (obj.CompareTag("propmodel"))
             { modelType = ModelType.Prop; }
             assetNames = FileManager.GetListOfAssetNames(modelType.ToString(), true);
-            assetNames = assetNames.Concat(FileManager.GetListOfAssetNames(modelType.ToString(), false)).Distinct().ToList();
+            assetNames = assetNames.Concat(FileManager.GetListOfAssetNames(modelType.ToString(), false)).Distinct().ToArray();
             EditorWindow window = GetWindow(typeof(EditorModelSetupSelectModel)) as EditorModelSetupSelectModel;
             window.Show();
         }

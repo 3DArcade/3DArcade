@@ -32,11 +32,12 @@ namespace Arcade
             SetupDropDownList(gameLauncherMethod, Enum.GetNames(typeof(GameLauncherMethod)).ToList());
             gameLauncherMethod.value = gameLauncherMethod.options.FindIndex(option => option.text == modelProperties.gameLauncherMethod);
             gameLauncherMethod.RefreshShownValue();
-            List<string> availableModels = ArcadeManager.availableModels.game;
+            List<string> availableModels = ArcadeManager.availableModels.game.ToList();
             if (availableModels.Count > 0 && availableModels[0] != "none")
             {
                 availableModels.Insert(0, "none");
             }
+
             SetupDropDownList(model, availableModels);
             //print("id " + id.text + " parent " + idParent.text);
             int index = 0;

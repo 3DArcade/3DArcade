@@ -56,14 +56,12 @@ namespace Arcade
 
         public void SaveEmulatorsConfigurationList()
         {
-            List<FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath, "*.json");
-            if (files != null)
+            string[] files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath, "*.json");
+            foreach (string file in files)
             {
-                foreach (FileInfo file in files)
-                {
-                    _ = FileManager.DeleteFile(file.DirectoryName, file.Name);
-                }
+                File.Delete(file);
             }
+
             foreach (EmulatorConfiguration emulatorConfiguration in ArcadeManager.emulatorsConfigurationList)
             {
                 SaveEmulatorConfiguration(emulatorConfiguration);
@@ -112,17 +110,14 @@ namespace Arcade
         {
             string filePath = ArcadeManager.applicationPath + ArcadeManager.emulatorsConfigurationPath;
             ArcadeManager.emulatorsConfigurationList = new List<EmulatorConfiguration>();
-            List<FileInfo> files = FileManager.FilesFromDirectory(filePath, "*.json", SearchOption.AllDirectories);
-            if (files != null)
+            string[] files = FileManager.FilesFromDirectory(filePath, "*.json", SearchOption.AllDirectories);
+            foreach (string file in files)
             {
-                foreach (FileInfo file in files)
-                {
-                    EmulatorConfiguration cfg = FileManager.LoadJSONData<EmulatorConfiguration>(file.FullName);
-                    ArcadeManager.emulatorsConfigurationList.Add(cfg);
-                }
-                return true;
+                EmulatorConfiguration cfg = FileManager.LoadJSONData<EmulatorConfiguration>(file);
+                ArcadeManager.emulatorsConfigurationList.Add(cfg);
             }
-            return false;
+
+            return files.Length > 0;
         }
 
         public EmulatorConfiguration GetEmulatorConfiguration(string emulatorID)

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -47,9 +46,9 @@ namespace Arcade
         // General Configuration TODO: move this to a better place
         [Header("GENERAL CONFIGURATION")]
         public GeneralConfiguration generalConfiguration = new GeneralConfiguration();
-        [Space]
 
         // Arcade Configuration options
+        [Space]
         [Header("ARCADE CONFIGURATION")]
         public string descriptiveName = "Default";
         [Tooltip("To add a new Arcade Configuration change the name and id of this Arcade Configuration and then save it.")]
@@ -68,21 +67,23 @@ namespace Arcade
         public GameObject menuControl;
 
         //Editor options
-        private bool EditorModeShowMainMenuOnPlay = true;
-        private bool EditorModeSaveChangesMadeOnPlay = false;
-
+        private static readonly bool EditorModeShowMainMenuOnPlay = true;
+        private static readonly bool EditorModeSaveChangesMadeOnPlay = false;
 
 #if UNITY_EDITOR
-        [MenuItem("CONTEXT/ArcadeManager/Load Arcade Configuration")]
-        private static void LoadArcadeConfigurationMenuOption(MenuCommand menuCommand)
+#pragma warning disable IDE0051 // Remove unused private members
+        [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Load Arcade Configuration")]
+        private static void LoadArcadeConfigurationMenuOption()
         {
             ShowSelectArcadeConfigurationWindow?.Invoke();
         }
-        [MenuItem("CONTEXT/ArcadeManager/Save Arcade Configuration")]
-        private static void SaveArcadeConfigurationMenuOption(MenuCommand menuCommand)
+
+        [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Save Arcade Configuration")]
+        private static void SaveArcadeConfigurationMenuOption()
         {
             loadSaveArcadeConfiguration.SaveArcade();
         }
+
         //[MenuItem("CONTEXT/ArcadeManager/Set Main Menu Preview Image")]
         //private static void GetArcadePreviewImage(MenuCommand menuCommand)
         //{
@@ -99,6 +100,7 @@ namespace Arcade
         //        }
         //    }
         //}
+#pragma warning restore IDE0051 // Remove unused private members
 #endif
 
         // NB Only use this and the next function to get and set the current arcadeconfiguration.
@@ -165,7 +167,9 @@ namespace Arcade
 
                     // TODO: Null check should not be needed!
                     if (gameModelSetup == null)
-                    { continue; }
+                    {
+                        continue;
+                    }
                     ModelProperties modelProperties = gameModelSetup.GetModelProperties();
                     modelProperties.position = child.transform.position;
                     modelProperties.rotation = child.transform.rotation;
@@ -208,7 +212,7 @@ namespace Arcade
             ArcadeManager.arcadeConfiguration = arcadeConfiguration;
         }
 
-        void Awake()
+        private void Awake()
         {
             // Setup statics for easy access to the current arcade configuaration and importent gameObjects. Use singleton instead? I do it with swift why not here?
 
@@ -231,37 +235,45 @@ namespace Arcade
             arcadeCameras[ArcadeType.CylMenu] = menuControl.GetComponentInChildren<Camera>();
 
             if (Application.platform.ToString().Contains("OSX"))
-            { currentOS = OS.MacOS; }
+            {
+                currentOS = OS.MacOS;
+            }
             if (Application.platform.ToString().Contains("Windows"))
-            { currentOS = OS.Windows; }
+            {
+                currentOS = OS.Windows;
+            }
             if (Application.platform.ToString().Contains("Linux"))
-            { currentOS = OS.Linux; }
+            {
+                currentOS = OS.Linux;
+            }
             if (Application.platform == RuntimePlatform.IPhonePlayer)
             {
                 currentOS = OS.iOS;
                 applicationPath = Application.dataPath + "/Raw";
             }
             if (Application.platform == RuntimePlatform.tvOS)
-            { currentOS = OS.tvOS; }
+            {
+                currentOS = OS.tvOS;
+            }
             print("Current OS = " + currentOS.ToString());
 #if UNITY_EDITOR
-            List<string> availableGameModels = FileManager.GetListOfAssetNames(ModelType.Game.ToString(), true);
-            availableGameModels = availableGameModels.Concat(FileManager.GetListOfAssetNames(ModelType.Game.ToString(), false)).Distinct().ToList();
-            availableGameModels.Sort();
-            availableModels.game = availableGameModels;
-            FileManager.SaveJSONData(availableModels, Path.Combine(applicationPath + "/3darcade~/Configuration/"), "AvailableModels.json");
-            //   FileManager
+            availableModels.game = FileManager.GetListOfAssetNames(ModelType.Game.ToString(), true)
+                                              .Concat(FileManager.GetListOfAssetNames(ModelType.Game.ToString(), false))
+                                              .Distinct()
+                                              .OrderBy(x => x)
+                                              .ToArray();
+            FileManager.SaveJSONData(availableModels, Path.Combine(applicationPath, "3darcade~/Configuration"), "AvailableModels.json");
+            // FileManager
 #else
-              availableModels = FileManager.LoadJSONData<AvailableModels>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/AvailableModels.json"));
-
+            availableModels = FileManager.LoadJSONData<AvailableModels>(Path.Combine(ArcadeManager.applicationPath, "3darcade~/Configuration/AvailableModels.json"));
 #endif
-            print("Available Game models " + availableModels.game.Count);
+            print("Available Game models " + availableModels.game.Length);
             // TODO: Arcade Configurations and Emulator Configurations can be large, preloading is faster but can take a large amount of memory... Change to Skurdt's database approach!
             loadSaveEmulatorConfiguration.LoadEmulators();
             loadSaveArcadeConfiguration.LoadArcadesConfigurationList();
 
             //Clean up Libretro
-            FileManager.DeleteFilesInfolder(applicationPath + "/3darcade~/Libretro/temp/");
+            FileManager.DeleteFiles(applicationPath + "/3darcade~/Libretro/temp/");
 
             print("Start State = " + arcadeState);
 
@@ -315,7 +327,7 @@ namespace Arcade
             {
                 arcadeConfiguration = GetArcadeConfiguration();
                 loadSaveArcadeConfiguration.ResetArcade();
-                loadSaveArcadeConfiguration.StartArcade(arcadeConfiguration, null);
+                loadSaveArcadeConfiguration.StartArcade(arcadeConfiguration);
             }
 #else
 
@@ -329,7 +341,7 @@ namespace Arcade
 #endif
             bool ShowMainMenu()
             {
-                if (StartArcadeWith(generalConfiguration.mainMenuArcadeConfiguration, null))
+                if (StartArcadeWith(generalConfiguration.mainMenuArcadeConfiguration))
                 {
                     return true;
                 }
@@ -365,12 +377,12 @@ namespace Arcade
 
         // Load arcadeconfigurations from file and then show them in the main menu.
 
-        public static bool StartArcadeWith(string arcadeConfigurationID, GameObject selectedArcadeModel)
+        public static bool StartArcadeWith(string arcadeConfigurationID)
         {
             ArcadeConfiguration arcadeConfiguration = loadSaveArcadeConfiguration.GetArcadeConfigurationByID(arcadeConfigurationID);
             if (arcadeConfiguration != null)
             {
-                loadSaveArcadeConfiguration.StartArcade(arcadeConfiguration, selectedArcadeModel);
+                loadSaveArcadeConfiguration.StartArcade(arcadeConfiguration);
                 return true;
             }
             return false;

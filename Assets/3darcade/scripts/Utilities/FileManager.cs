@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -23,227 +22,185 @@ namespace Arcade
             Extension
         }
 
+        private const string VIDEO_EXTENSIONS = ".mp4|.m4v|.avi|.mkv|.mov|.mpg|.mpeg|.ogv|.webm";
+        private const string AUDIO_EXTENSIONS = ".wav|.mp3|.ogg|.aif|.aiff";
+        private const string IMAGE_EXTENSIONS = ".png|.jpg|.jpeg";
+
         public enum ListType
         {
             Mame, Hyperspin, ATF, CatVer, History
         }
 
         // json
-        public static T LoadJSONData<T>(string filePath)
+        public static T LoadJSONData<T>(string path)
         {
-            if (File.Exists(filePath))
-            {
-                string dataAsJson = File.ReadAllText(filePath);
-                object resultValue = JsonUtility.FromJson<T>(dataAsJson);
-                return (T)Convert.ChangeType(resultValue, typeof(T));
-            }
-            else
-            {
-                Debug.Log("Failed to load from " + filePath);
-                return default;
-            }
+            string json = File.ReadAllText(path);
+            return JsonUtility.FromJson<T>(json);
         }
 
-        public static void SaveJSONData<T>(T data, string filePath, string fileName)
+        public static void SaveJSONData<T>(T data, string directoryPath, string fileName)
         {
-            if (!Directory.Exists(filePath))
+            if (Directory.Exists(directoryPath))
             {
-                _ = Directory.CreateDirectory(filePath);
+                _ = Directory.CreateDirectory(directoryPath);
             }
-            string file = Path.Combine(filePath, fileName);
-            string dataAsJson = JsonUtility.ToJson(data, true);
-            File.WriteAllText(file, dataAsJson);
-        }
 
-        // text
-        public static string LoadTextFromFile(string fileFolder, string fileName, string filePath = null)
-        {
-            string path = filePath;
-            if (path == null)
-            {
-                path = Path.Combine(fileFolder, fileName);
-            }
-            if (!File.Exists(path))
-            { return null; }
-            string text = File.ReadAllText(path);
-            return text;
+            string filePath = Path.Combine(directoryPath, fileName);
+            string json     = JsonUtility.ToJson(data, true);
+            File.WriteAllText(filePath, json);
         }
 
         // path to video if exists
-        public static string GetVideoPathFromFolder(string fileFolder, string fileName)
+        public static string GetVideoPathFromFolder(string directoryPath, string fileName)
         {
-            string path = DirectoryExists(fileFolder);
-            if (path == null)
-            { return null; }
-            List<string> list = Directory.GetFiles(path).ToList();
-            list = list.Where(file => Regex.IsMatch(Path.GetFileName(file).ToLower(), "^" + fileName.Trim().ToLower() + "\\.(mp4|m4v|mov|mpg|mpeg|ogv)$")).ToList();
-            if (list.Count > 0)
-            { return list[0]; }
-            return null;
+            if (!Directory.Exists(directoryPath))
+            {
+                return null;
+            }
+
+            fileName = fileName.Trim().ToLowerInvariant();
+            return Directory.GetFiles(directoryPath)
+                            .FirstOrDefault(file => Path.GetFileNameWithoutExtension(file).Equals(fileName, StringComparison.OrdinalIgnoreCase)
+                                                 && VIDEO_EXTENSIONS.Contains(Path.GetExtension(file).ToLowerInvariant()));
         }
 
         // paths to audio files if exists
-        public static List<string> GetAudioPathsFromFolder(string fileFolder)
+        public static string[] GetAudioPathsFromFolder(string directoryPath)
         {
-            List<string> audioList = new List<string>();
-            string path = DirectoryExists(fileFolder);
-            if (path == null)
-            { return audioList; }
+            if (!Directory.Exists(directoryPath))
+            {
+                return new string[0];
+            }
 
-            audioList = Directory.GetFiles(path).Where(file => Regex.IsMatch(Path.GetFileName(file).ToLower(), ".*\\.(wav|mp3|ogg|aif|aiff)$")).ToList();
-            Debug.Log("audioyes " + audioList.Count);
-            return audioList;
+            return Directory.GetFiles(directoryPath)
+                            .Where(file => AUDIO_EXTENSIONS.Contains(Path.GetExtension(file).ToLowerInvariant()))
+                            .ToArray();
         }
 
         // textures from images
-        public static List<Texture2D> LoadImagesFromFolder(string fileFolder, string fileName)
+        public static List<Texture2D> LoadImagesFromFolder(string directoryPath, string fileName)
         {
             List<Texture2D> textureList = new List<Texture2D>();
-            string path = DirectoryExists(fileFolder);
-            if (path == null)
-            { return textureList; }
 
-            List<string> list = Directory.GetFiles(path).ToList();
-            List<string> filteredList = list.Where(file => Regex.IsMatch(Path.GetFileName(file).ToLower(), "^" + fileName.Trim().ToLower() + "_.*\\.(png|jpg|jpeg)$")).ToList();
-            if (filteredList.Count < 1)
+            if (!Directory.Exists(directoryPath))
             {
-                filteredList = list.Where(file => Regex.IsMatch(Path.GetFileName(file).ToLower(), "^" + fileName.Trim().ToLower() + "\\.(png|jpg|jpeg)$")).ToList();
+                return textureList;
             }
 
-            foreach (string file in filteredList)
+            fileName = fileName.Trim().ToLowerInvariant();
+            IEnumerable<string> files = Directory.GetFiles(directoryPath)
+                                                 .Where(file => Path.GetFileNameWithoutExtension(file).ToLowerInvariant().Contains(fileName)
+                                                             && IMAGE_EXTENSIONS.Contains(Path.GetExtension(file).ToLowerInvariant()));
+            foreach (string file in files)
             {
-                Texture2D texture = LoadImageFromFile(null, null, file);
+                Texture2D texture = LoadImageFromFile(file);
                 if (texture != null)
                 {
                     textureList.Add(texture);
                 }
             }
+
             return textureList;
         }
 
         // texture from image
-        public static Texture2D LoadImageFromFile(string fileFolder, string fileName, string filePath = null)
+        public static Texture2D LoadImageFromFile(string filePath)
         {
-            string url = filePath;
-            if (url == null)
+            if (!File.Exists(filePath))
             {
-                if (fileFolder == null || fileName == null)
-                { return null; }
-                url = FileExists(fileFolder, fileName);
+                return null;
             }
-            if (url == null)
-            { return null; }
-            byte[] imgData;
-            Texture2D tex = new Texture2D(1, 1);
 
             //Check if we should use UnityWebRequest or File.ReadAllBytes.
-            if (url.Contains("://") || url.Contains(":///"))
+            byte[] imgData;
+            if (filePath.StartsWith("://"))
             {
-                UnityWebRequest www = UnityWebRequest.Get(url);
+                UnityWebRequest www = UnityWebRequest.Get(filePath);
                 _ = www.SendWebRequest();
                 imgData = www.downloadHandler.data;
             }
             else
             {
-                imgData = File.ReadAllBytes(url);
+                imgData = File.ReadAllBytes(filePath);
             }
+
             //Debug.Log("DataLength" + imgData.Length + url);
             if (imgData.Length > 0)
             {
-                _ = tex.LoadImage(imgData);
-                return tex;
+                Texture2D tex = new Texture2D(1, 1);
+                if (tex.LoadImage(imgData))
+                {
+                    return tex;
+                }
             }
+
             return null;
         }
 
         // file handling
-        public static List<FileInfo> FilesFromDirectory(string fileFolder, string extension, SearchOption searchOption = SearchOption.TopDirectoryOnly)
+        public static string[] FilesFromDirectory(string directoryPath, string fileExtension = "", SearchOption searchOption = SearchOption.TopDirectoryOnly)
         {
-            string path = DirectoryExists(fileFolder);
-            if (path != null)
+            if (directoryPath == null || !Directory.Exists(directoryPath))
             {
-                //Debug.Log("directory does exist " + path);
-                DirectoryInfo directoryInfo = new DirectoryInfo(path);
-                FileInfo[] files;
-                if (extension != null && extension.Trim() != "")
-                {
-                    files = directoryInfo.GetFiles(extension);
-                }
-                else
-                {
-                    files = directoryInfo.GetFiles();
-                }
-                List<FileInfo> list = files.ToList();
-                list = (System.Collections.Generic.List<System.IO.FileInfo>)list.Where(x => x.Name.StartsWith("._", StringComparison.Ordinal) == false).ToList();
-                list = (System.Collections.Generic.List<System.IO.FileInfo>)list.Where(x => x.Name.EndsWith(".meta", StringComparison.Ordinal) == false).ToList();
-                list = (System.Collections.Generic.List<System.IO.FileInfo>)list.Where(x => x.Name.EndsWith(".manifest", StringComparison.Ordinal) == false).ToList();
-                if (list.Count > 0)
-                {
-                    return list;
-                }
-                Debug.Log("No Files found");
-                return null;
+                return new string[0];
             }
-            Debug.Log("Directory does not exist " + fileFolder);
-            return null;
+
+            return Directory.GetFiles(directoryPath, fileExtension, searchOption)
+                            .Where(file => !file.StartsWith("._", StringComparison.Ordinal)
+                                        && !file.EndsWith(".meta", StringComparison.Ordinal)
+                                        && !file.EndsWith(".manifest", StringComparison.Ordinal))
+                            .ToArray();
         }
 
-        public static void CopyFile(string originalPath, string destinationFolder, string destinationFileName)
+        public static void CopyFile(string sourcePath, string destinationDirectory, string destinationFileName)
         {
-            string destinationPath = Path.Combine(destinationFolder, destinationFileName);
-            if (!Directory.Exists(destinationFolder))
+            string destinationPath = Path.Combine(destinationDirectory, destinationFileName);
+            if (!Directory.Exists(destinationDirectory))
             {
-                _ = Directory.CreateDirectory(destinationFolder);
+                _ = Directory.CreateDirectory(destinationDirectory);
             }
-            File.Copy(originalPath, destinationPath, true);
+            File.Copy(sourcePath, destinationPath, true);
         }
 
-        public static bool DeleteFile(string filePath, string fileName)
+        public static bool DeleteFile(string directoryPath, string fileName)
         {
             // TODO: Optionally first find file in subfolders too, needed for arcade configurations and emulator configurations
-            string path = Path.Combine(filePath, fileName);
-            Debug.Log("deletepath " + path);
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                    return true;
-                }
-                catch (System.Exception ex)
-                {
-                    Debug.Log("Delete file error: " + ex);
-                    return false;
-                }
+                string filePath = Path.Combine(directoryPath, fileName);
+                Debug.Log($"DeleteFile: {filePath}");
+                File.Delete(filePath);
+                return true;
             }
-            else
+            catch (Exception e)
             {
-                return false;
+                Debug.Log($"DeleteFile exception: {e.Message}");
             }
+
+            return false;
         }
 
-        public static bool DeleteFilesInfolder(string path)
+        public static bool DeleteFiles(string directoryPath)
         {
             try
             {
-                System.IO.DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                DirectoryInfo directoryInfo = new DirectoryInfo(directoryPath);
+                foreach (DirectoryInfo directory in directoryInfo.EnumerateDirectories())
+                {
+                    directory.Delete(true);
+                }
                 foreach (FileInfo file in directoryInfo.EnumerateFiles())
                 {
                     file.Delete();
                 }
-                foreach (DirectoryInfo dir in directoryInfo.EnumerateDirectories())
-                {
-                    dir.Delete(true);
-                }
                 return true;
             }
-            catch (System.Exception ex)
+            catch (Exception e)
             {
-                Debug.Log("Delete file error: " + ex);
+                Debug.Log($"DeleteFiles exception: {e.Message}");
                 return false;
             }
         }
-
 
         public static string FileExists(string fileFolder, string fileName, string filePath = null)
         {
@@ -251,48 +208,47 @@ namespace Arcade
             if (path == null)
             {
                 if (fileFolder == null || fileName == null)
-                { return null; }
+                {
+                    return null;
+                }
                 path = Path.Combine(fileFolder, fileName);
             }
-            if (!File.Exists(path))
-            { return null; }
-            return path;
+
+            return File.Exists(path) ? path : null;
         }
 
-        public static string DirectoryExists(string fileFolder)
-        {
-            if (!Directory.Exists(fileFolder))
-            { return null; }
-            return fileFolder;
-        }
+        public static string DirectoryExists(string directorypath) => Directory.Exists(directorypath) ? directorypath : null;
 
-        public static string CorrectFilePath(string path, bool ignoreEnd = false, bool ignoreStart = false)
+        public static string CorrectFilePath(string filePath, bool ignoreEnd = false, bool ignoreStart = false)
         {
-            path = path.Replace(@"\", "/");
-            string filePath = path.Trim();
-            if (filePath != "")
+            if (!string.IsNullOrEmpty(filePath))
             {
-                if (filePath.Substring(filePath.Length - 1, 1) != "/" && ignoreEnd == false)
+                filePath = filePath.Replace(@"\", "/").Trim();
+                if (!ignoreEnd && filePath.Substring(filePath.Length - 1, 1) != "/")
                 {
                     filePath += "/";
                 }
-                if (filePath.Substring(0, 1) != "/" && ignoreStart == false)
+                if (!ignoreStart && filePath.Substring(0, 1) != "/")
                 {
                     filePath = "/" + filePath;
                 }
             }
+
             return filePath;
         }
 
-        public static string GetFilePart(FilePart filePart, string fileFolder, string fileName, string filePath = null)
+        public static string GetFilePart(FilePart filePart, string directoryPath, string fileName, string filePath = null)
         {
             string path = filePath;
             if (path == null)
             {
-                if (fileFolder == null || fileName == null)
-                { return null; }
-                path = Path.Combine(fileFolder, fileName);
+                if (directoryPath == null || fileName == null)
+                {
+                    return null;
+                }
+                path = Path.Combine(directoryPath, fileName);
             }
+
             switch (filePart)
             {
                 case FilePart.Path_Name_Extension:
@@ -300,13 +256,13 @@ namespace Arcade
                 case FilePart.RelativePath_Name_Extension:
                     path = CorrectFilePath(path, true, true);
                     path = StripPrefix(path, ArcadeManager.applicationPath);
-                    return path == null ? null : CorrectFilePath(path, true);
+                    return CorrectFilePath(path, true);
                 case FilePart.Path:
                     return CorrectFilePath(Path.GetDirectoryName(path), false, true);
                 case FilePart.RelativePath:
                     path = CorrectFilePath(path, true, true);
                     path = StripPrefix(Path.GetDirectoryName(path), ArcadeManager.applicationPath);
-                    return path == null ? null : CorrectFilePath(path);
+                    return CorrectFilePath(path);
                 case FilePart.Name_Extension:
                     return Path.GetFileName(path);
                 case FilePart.Name:
@@ -318,25 +274,18 @@ namespace Arcade
             }
         }
 
-        public static string StripPrefix(string text, string prefix)
-        {
-            return text.StartsWith(prefix, StringComparison.CurrentCulture) ? text.Substring(prefix.Length) : null;
-        }
+        public static string StripPrefix(string text, string prefix) => text.StartsWith(prefix, StringComparison.CurrentCulture) ? text.Substring(prefix.Length) : null;
 
-        public static string FileMD5Changed(string MD5, string filePath, string fileName)
+        public static string FileMD5Changed(string md5, string directoryPath, string fileName)
         {
-            string path = FileExists(filePath, fileName);
-            if (path == null)
-            { return null; }
-            string newMD5 = CalculateMD5(path);
-            if (newMD5 != MD5)
-            {
-                return newMD5;
-            }
-            else
+            string filePath = FileExists(directoryPath, fileName);
+            if (filePath == null)
             {
                 return null;
             }
+
+            string md5File = CalculateMD5(filePath);
+            return md5File != md5 ? md5File : null;
         }
 
         private static string CalculateMD5(string filename)
@@ -346,7 +295,7 @@ namespace Arcade
                 using (FileStream stream = File.OpenRead(filename))
                 {
                     byte[] hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    return BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
                 }
             }
         }
@@ -354,14 +303,15 @@ namespace Arcade
         // file dialogs
         public static string DialogGetFolderPath(bool relativePath)
         {
-            string[] paths = StandaloneFileBrowser.OpenFolderPanel("Select Folder", Path.Combine(ArcadeManager.applicationPath + "/3darcade~/"), false);
-            if (paths != null && paths.Length > 0 && paths[0] != "")
+            string[] paths = StandaloneFileBrowser.OpenFolderPanel("Select Folder", relativePath ? Path.Combine(ArcadeManager.applicationPath, "3darcade~") : string.Empty, false);
+            if (paths != null && paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
             {
                 string path = paths[0];
                 path = CorrectFilePath(path, true, true);
                 path = StripPrefix(path, ArcadeManager.applicationPath);
-                return path == null ? null : CorrectFilePath(path);
+                return CorrectFilePath(path);
             }
+
             return null;
         }
 
@@ -369,17 +319,21 @@ namespace Arcade
         {
             if (filePath == null)
             {
-                filePath = Path.Combine(ArcadeManager.applicationPath + "/3darcade~/");
+                filePath = Path.Combine(ArcadeManager.applicationPath, "3darcade~");
             }
-            ExtensionFilter[] extensions = new[] {
-                new SFB.ExtensionFilter("extensions", fileExtension.Split(','))
+
+            ExtensionFilter[] extensions = new[]
+            {
+                new ExtensionFilter("extensions", fileExtension.Split(','))
             };
+
             string[] paths = StandaloneFileBrowser.OpenFilePanel(fileName, filePath, extensions, false);
-            string path = null;
             if (paths.Length < 1)
-            { return path; }
-            path = paths[0];
-            return GetFilePart(filePart, null, null, path);
+            {
+                return null;
+            }
+
+            return GetFilePart(filePart, null, null, paths[0]);
         }
 
         // mastergamelists
@@ -391,51 +345,55 @@ namespace Arcade
 
         public static Tuple<string, ListType> GetMasterGamelist(string filePath, string id)
         {
-            if (filePath == null)
-            { return null; }
-            if (FileExists(null, null, filePath) == null)
-            { return null; }
-            string text = LoadTextFromFile(Path.GetDirectoryName(filePath), Path.GetFileName(filePath));
-            if (text == null)
-            { return null; }
-            if (Path.GetExtension(filePath) == "ini")
+            if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
             {
-                if (text.Contains("[Category]"))
-                {
-                    CopyFile(filePath, ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/mame/", id + ".ini");
-                    return new Tuple<string, ListType>(filePath, ListType.Mame);
-                }
-                else
+                return null;
+            }
+
+            string text = File.ReadAllText(filePath);
+            if (string.IsNullOrEmpty(text))
+            {
+                return null;
+            }
+
+            if (Path.GetExtension(filePath).Equals(".ini", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!text.Contains("[Category]"))
                 {
                     return null;
                 }
-
+                CopyFile(filePath, ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/mame/", id + ".ini");
+                return new Tuple<string, ListType>(filePath, ListType.Mame);
             }
+
             if (text.Contains("<mame>") && text.Contains("<dipswitch"))
             {
                 CopyFile(filePath, ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/mame/", id + ".xml");
                 return new Tuple<string, ListType>(filePath, ListType.Mame);
             }
+
             if (text.Contains("<menu>") && text.Contains("<game"))
             {
                 CopyFile(filePath, ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/hyperspin/", id + ".xml");
                 return new Tuple<string, ListType>(filePath, ListType.Hyperspin);
             }
+
             string[] lines = text.Split(Environment.NewLine.ToCharArray());
-            if (lines.Count() > 0)
+            if (lines.Length > 0)
             {
-                string[] items = lines[0].Split("|".ToCharArray());
-                if (items.Count() > 10)
+                string[] items = lines[0].Split('|');
+                if (items.Length > 10)
                 {
                     CopyFile(filePath, ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/atf/", id + ".atf");
                     return new Tuple<string, ListType>(filePath, ListType.ATF);
                 }
             }
+
             return null;
         }
 
         // assets
-        public static List<string> GetListOfAssetNames(string modelType, bool external)
+        public static string[] GetListOfAssetNames(string modelType, bool external)
         {
             string path;
             string extension;
@@ -449,46 +407,14 @@ namespace Arcade
                 path = ArcadeManager.applicationPath + "/3darcade~/Configuration/Assets/" + ArcadeManager.currentOS.ToString() + "/" + modelType + "s/";
                 extension = "*.unity3d";
             }
-            List<FileInfo> myGamesAssets = FilesFromDirectory(path, extension);
-            List<string> myGamesAssetNames = new List<string>();
-            if (myGamesAssets == null)
-            { return new List<string>(); }
-            foreach (FileInfo asset in myGamesAssets)
-            {
-                myGamesAssetNames.Add(Path.GetFileNameWithoutExtension(asset.Name));
-            }
-            return myGamesAssetNames;
-        }
-    }
 
-    public static class UnityExtensions
-    {
-        public static void RunOnChildrenRecursive(this GameObject go, Action<GameObject> action)
-        {
-            if (go == null)
+            string[] assetNames = FilesFromDirectory(path, extension);
+            for (int i = 0; i < assetNames.Length; ++i)
             {
-                return;
+                assetNames[i] = Path.GetFileNameWithoutExtension(assetNames[i]);
             }
 
-            foreach (Transform trans in go.GetComponentsInChildren<Transform>(true))
-            {
-                action(trans.gameObject);
-            }
-        }
-
-        public static List<GameObject> GetChildren(this GameObject gameObject)
-        {
-            List<GameObject> thisChildren = new List<GameObject>();
-            if (gameObject == null)
-            { return thisChildren; }
-            foreach (Transform child in gameObject.transform)
-            {
-                if (child.gameObject != null)
-                {
-                    thisChildren.Add(child.gameObject);
-                }
-            }
-            return thisChildren;
+            return assetNames;
         }
     }
 }

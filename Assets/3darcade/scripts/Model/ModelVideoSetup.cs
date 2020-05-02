@@ -154,7 +154,7 @@ namespace Arcade
             // Setup videoplayer properties
             ulong frameCount = videoPlayer.frameCount;
             int frameCountInt = (int)frameCount;
-            long randomFrame = (long)Random.Range(0, frameCountInt);
+            long randomFrame = Random.Range(0, frameCountInt);
             videoPlayer.frame = randomFrame;
             videoPlayer.isLooping = true;
             videoPlayer.waitForFirstFrame = true;
@@ -248,7 +248,7 @@ namespace Arcade
                 {
                     ulong frameCount = videoPlayer.frameCount;
                     int frameCountInt = (int)frameCount;
-                    long randomFrame = (long)Random.Range(0, frameCountInt);
+                    long randomFrame = Random.Range(0, frameCountInt);
                     videoPlayer.frame = randomFrame;
                 }
                 yield return null;

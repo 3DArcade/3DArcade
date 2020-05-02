@@ -7,7 +7,7 @@
 
     public enum ArcadeStates
     {
-        LoadingAssets, LoadingArcade, MainMenu, ArcadeMenu, SettingsMenu, GeneralConfigurationmenu, ArcadesConfigurationMenu, AlertArcadesConfigurationMenuError, EmulatorsConfigurationMenu, AlertEmulatorsConfigurationMenuError, DialogAddEmulatorConfiguration, AlertAddEmulatorConfigurationError, DialogUpdateMasterGamelist, Running, MoveCabs, MoveCabsAdd, MoveCabsEdit, MoveCabsDelete, Information, Game
+        LoadingAssets, LoadingArcade, ArcadeMenu, SettingsMenu, GeneralConfigurationmenu, ArcadesConfigurationMenu, AlertArcadesConfigurationMenuError, EmulatorsConfigurationMenu, AlertEmulatorsConfigurationMenuError, DialogAddEmulatorConfiguration, AlertAddEmulatorConfigurationError, DialogUpdateMasterGamelist, Running, MoveCabs, MoveCabsAdd, MoveCabsEdit, MoveCabsDelete, Information, Game
     }
 
     public enum MenuType

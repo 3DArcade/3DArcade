@@ -14,7 +14,7 @@ namespace Arcade
         public GameLauncherMethod gameLauncherMethod = GameLauncherMethod.None;
         [ContextMenuItem("Select Executable + Fill Default Paths", "SelectExecutableAndFillDefaultPaths")]
         [ContextMenuItem("Select Executable", "SelectExecutable")]
-        [ArcadeAttribute("Exe")]
+        [Arcade("Exe")]
         public string executable;
         private void SelectExecutableAndFillDefaultPaths()
         {
@@ -35,7 +35,7 @@ namespace Arcade
         public string extension;
         [ContextMenuItem("Select libretroCore + Fill Default Paths", "SelectlibretroCoreAndFillDefaultPaths")]
         [ContextMenuItem("Select libretroCore", "SelectlibretroCore")]
-        [ArcadeAttribute("Exe")]
+        [Arcade("Exe")]
         public string libretroCore;
         private void SelectlibretroCoreAndFillDefaultPaths()
         {
@@ -56,7 +56,7 @@ namespace Arcade
         public string arguments;
         public string options;
         [ContextMenuItem("Select Folder Path", "EmulatorPathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string emulatorPath;
         private void EmulatorPathGetFolderPath()
         {
@@ -67,7 +67,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "GamePathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string gamePath;
         private void GamePathGetFolderPath()
         {
@@ -78,7 +78,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "WorkingDirGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string workingDir;
         private void WorkingDirGetFolderPath()
         {
@@ -89,7 +89,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "MarqueePathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string marqueePath;
         private void MarqueePathGetFolderPath()
         {
@@ -100,7 +100,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "ScreenPathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string screenPath;
         private void ScreenPathGetFolderPath()
         {
@@ -111,7 +111,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "ScreenVideoPathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string screenVideoPath;
         private void ScreenVideoPathGetFolderPath()
         {
@@ -122,7 +122,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "GenericPathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string genericPath;
         private void GenericPathGetFolderPath()
         {
@@ -133,7 +133,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "TitlePathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string titlePath;
         private void TitlePathGetFolderPath()
         {
@@ -144,7 +144,7 @@ namespace Arcade
             }
         }
         [ContextMenuItem("Select Folder Path", "InfoPathGetFolderPath")]
-        [ArcadeAttribute("Folder")]
+        [Arcade("Folder")]
         public string infoPath;
         private void InfoPathGetFolderPath()
         {

@@ -153,7 +153,7 @@ namespace Arcade
             if (target == emulators)
             {
                 UpdateEmulatorConfiguration();
-                List<EmulatorConfiguration> list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == target.options[target.value].text.ToLower()).ToList<EmulatorConfiguration>();
+                List<EmulatorConfiguration> list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == target.options[target.value].text.ToLower()).ToList();
                 if (list.Count > 0)
                 {
                     emulatorConfiguration = ArcadeManager.emulatorsConfigurationList[target.value];

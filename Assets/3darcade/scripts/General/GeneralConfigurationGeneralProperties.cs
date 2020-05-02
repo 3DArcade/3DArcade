@@ -11,19 +11,20 @@ public class GeneralConfigurationGeneralProperties : MonoBehaviour
 
     private GeneralConfiguration generalConfiguration;
 
-    public void Start()
+    private void Start()
     {
         SetupList();
     }
+
     public void SetupList()
     {
 
         SetupDropDownList(mainMenuArcadeConfiguration, ArcadeManager.arcadesConfigurationList.Select(x => x.id).ToList());
         mainMenuArcadeConfiguration.RefreshShownValue();
-        generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/GeneralConfiguration.json"));
+        generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(ArcadeManager.applicationPath, "3darcade~/Configuration/GeneralConfiguration.json"));
         if (generalConfiguration == null)
         {
-            generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(Application.dataPath + "/Resources/cfg/GeneralConfiguration.json"));
+            generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(Application.dataPath, "Resources/cfg/GeneralConfiguration.json"));
         }
         if (generalConfiguration != null)
         {
@@ -45,7 +46,7 @@ public class GeneralConfigurationGeneralProperties : MonoBehaviour
         if (generalConfiguration.mainMenuArcadeConfiguration != mainMenuArcadeConfiguration.options[mainMenuArcadeConfiguration.value].text)
         {
             generalConfiguration.mainMenuArcadeConfiguration = mainMenuArcadeConfiguration.options[mainMenuArcadeConfiguration.value].text;
-            FileManager.SaveJSONData<GeneralConfiguration>(generalConfiguration, Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/"), "GeneralConfiguration.json");
+            FileManager.SaveJSONData(generalConfiguration, Path.Combine(ArcadeManager.applicationPath, "3darcade~/Configuration"), "GeneralConfiguration.json");
             // Now reset arcade and load this new one!
             GameObject arcadeObject = GameObject.Find("Arcade");
             if (arcadeObject != null)
@@ -55,7 +56,7 @@ public class GeneralConfigurationGeneralProperties : MonoBehaviour
                 {
                     arcadeManager.generalConfiguration = generalConfiguration;
                     ArcadeManager.arcadeHistory.Clear();
-                    ArcadeManager.loadSaveArcadeConfiguration.StartArcade(ArcadeManager.loadSaveArcadeConfiguration.GetArcadeConfigurationByID(generalConfiguration.mainMenuArcadeConfiguration), null);
+                    ArcadeManager.loadSaveArcadeConfiguration.StartArcade(ArcadeManager.loadSaveArcadeConfiguration.GetArcadeConfigurationByID(generalConfiguration.mainMenuArcadeConfiguration));
                 }
 
             }

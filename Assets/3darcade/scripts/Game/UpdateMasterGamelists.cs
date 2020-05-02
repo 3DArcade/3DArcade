@@ -30,7 +30,7 @@ namespace Arcade
             }
         }
 
-        public static EmulatorConfiguration UpdateMasterGamelistFromEmulatorConfiguration(EmulatorConfiguration emulatorConfiguration, UnityEngine.UI.Slider slider = null)
+        public static EmulatorConfiguration UpdateMasterGamelistFromEmulatorConfiguration(EmulatorConfiguration emulatorConfiguration)
         {
             List<ModelProperties> masterGamelist;
             Debug.Log("Updating emulator configuration " + emulatorConfiguration.emulator.descriptiveName + " with id " + emulatorConfiguration.emulator.id);
@@ -42,7 +42,7 @@ namespace Arcade
                 string md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
                 if (md5 != null)
                 {
-                    masterGamelist = GetGamelistFromMameXML(filePath, fileName, emulatorConfiguration.emulator, slider);
+                    masterGamelist = GetGamelistFromMameXML(filePath, fileName, emulatorConfiguration.emulator);
                     if (masterGamelist != null)
                     {
                         emulatorConfiguration.lastMasterGamelistUpdate = DateTime.Now.ToString();
@@ -70,7 +70,7 @@ namespace Arcade
                 string md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
                 if (md5 != null)
                 {
-                    masterGamelist = GetGamelistFromHyperspinXML(filePath, fileName, emulatorConfiguration.emulator, slider);
+                    masterGamelist = GetGamelistFromHyperspinXML(filePath, fileName, emulatorConfiguration.emulator);
                     if (masterGamelist != null)
                     {
                         emulatorConfiguration.lastMasterGamelistUpdate = DateTime.Now.ToString();
@@ -98,7 +98,7 @@ namespace Arcade
                 string md5 = FileManager.FileMD5Changed(emulatorConfiguration.md5MasterGamelist, filePath, fileName);
                 if (md5 != null)
                 {
-                    masterGamelist = GetGamelistFrom3DArcadeATF(filePath, fileName, emulatorConfiguration.emulator, slider);
+                    masterGamelist = GetGamelistFrom3DArcadeATF(filePath, fileName, emulatorConfiguration.emulator);
                     if (masterGamelist != null)
                     {
                         emulatorConfiguration.lastMasterGamelistUpdate = DateTime.Now.ToString();
@@ -125,7 +125,7 @@ namespace Arcade
 
             // if (FileManager.DirectoryExists(filePath) != null)
             //  {
-            masterGamelist = GetGamelistFromGamePath(filePath, emulatorConfiguration.emulator, slider);
+            masterGamelist = GetGamelistFromGamePath(filePath, emulatorConfiguration.emulator);
             if (masterGamelist != null)
             {
                 emulatorConfiguration.lastMasterGamelistUpdate = DateTime.Now.ToString();
@@ -143,7 +143,7 @@ namespace Arcade
             return emulatorConfiguration;
         }
 
-        private static List<ModelProperties> GetGamelistFromMameXML(string filePath, string fileName, EmulatorProperties emulatorProperties, UnityEngine.UI.Slider slider = null)
+        private static List<ModelProperties> GetGamelistFromMameXML(string filePath, string fileName, EmulatorProperties emulatorProperties)
         {
             if (filePath == null)
             {
@@ -189,7 +189,7 @@ namespace Arcade
             return null;
         }
 
-        private static List<ModelProperties> GetGamelistFromHyperspinXML(string filePath, string fileName, EmulatorProperties emulatorProperties, UnityEngine.UI.Slider slider = null)
+        private static List<ModelProperties> GetGamelistFromHyperspinXML(string filePath, string fileName, EmulatorProperties emulatorProperties)
         {
             string emulatorExtension = emulatorProperties.extension;
             string emulatorID = emulatorProperties.id;
@@ -223,15 +223,17 @@ namespace Arcade
             return null;
         }
 
-        private static List<ModelProperties> GetGamelistFrom3DArcadeATF(string filePath, string fileName, EmulatorProperties emulatorProperties, UnityEngine.UI.Slider slider = null)
+        private static List<ModelProperties> GetGamelistFrom3DArcadeATF(string filePath, string fileName, EmulatorProperties emulatorProperties)
         {
             string emulatorExtension = emulatorProperties.extension;
             string emulatorID = emulatorProperties.id;
             string emulatorGamePath = ArcadeManager.applicationPath + emulatorProperties.gamePath;
 
-            string text = FileManager.LoadTextFromFile(filePath, fileName);
+            string text = File.ReadAllText(Path.Combine(filePath, fileName));
             if (text == null)
-            { return null; }
+            {
+                return null;
+            }
             string[] lines = text.Split(Environment.NewLine.ToCharArray());
             //   | Description | Name | Year | Manufacturer | Clone | Romof | Category | VersionAdded | Available | Emulator | Type | Model | Favorites | Video | Orientation | Resolution | Aspect | Frequency | Depth | Stereo | Controltype | Buttons | Players | Coins | Driver | DriverStatus | SoundStatus | ColorStatus | HtmlLinks | TimesPlayed | DurationPlayed | Rating |||||
             List<ModelProperties> gamelist = new List<ModelProperties>();
@@ -239,7 +241,9 @@ namespace Arcade
             {
                 string[] items = line.Split("|".ToCharArray());
                 if (items.Count() < 35)
-                { continue; }
+                {
+                    continue;
+                }
                 ModelProperties model = new ModelProperties
                 {
                     descriptiveName = items[1],
@@ -267,53 +271,47 @@ namespace Arcade
             return null;
         }
 
-        private static List<ModelProperties> GetGamelistFromGamePath(string filePath, EmulatorProperties emulatorProperties, UnityEngine.UI.Slider slider = null)
+        private static List<ModelProperties> GetGamelistFromGamePath(string filePath, EmulatorProperties emulatorProperties)
         {
             string emulatorExtension = emulatorProperties.extension;
             string emulatorID = emulatorProperties.id;
 
             if (!emulatorExtension.Contains(".") && emulatorExtension != "")
-            { emulatorExtension = "." + emulatorExtension; }
-            if (emulatorExtension == "")
-            { emulatorExtension = "*.*"; }
-            List<FileInfo> files = FileManager.FilesFromDirectory(filePath, emulatorExtension);
-            if (files != null)
             {
-                List<ModelProperties> gamelist = new List<ModelProperties>();
-                foreach (FileInfo file in files)
-                {
-                    string fileName = Path.GetFileNameWithoutExtension(file.FullName);
-                    ModelProperties model = new ModelProperties
-                    {
-                        descriptiveName = fileName,
-                        id = fileName,
-                        idParent = "",
-                        emulator = emulatorID.Replace(" ", string.Empty).ToLower(),
-                        //model.animationType = "Never";
-                        animatedTextureSpeed = 2.0f
-                    };
-                    gamelist.Add(model);
-                }
-                if (gamelist.Count > 0)
-                {
-                    return gamelist;
-                }
+                emulatorExtension = "." + emulatorExtension;
             }
-            return null;
+
+            if (emulatorExtension == "")
+            {
+                emulatorExtension = "*.*";
+            }
+
+            string[] files = FileManager.FilesFromDirectory(filePath, emulatorExtension);
+            List<ModelProperties> gamelist = new List<ModelProperties>();
+            foreach (string file in files)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(file);
+                ModelProperties model = new ModelProperties
+                {
+                    descriptiveName = fileName,
+                    id = fileName,
+                    idParent = "",
+                    emulator = emulatorID.Replace(" ", string.Empty).ToLower(),
+                    //model.animationType = "Never";
+                    animatedTextureSpeed = 2.0f
+                };
+                gamelist.Add(model);
+            }
+
+            return gamelist.Count > 0 ? gamelist : null;
         }
 
         private static bool IsGameAvailable(string filePath, string fileName, string extension)
         {
-            string[] path = Directory.GetFiles(filePath, fileName + ".*");
-            if (path.Count() > 0)
-            {
-                return true;
-            }
-            return false;
+            return File.Exists(Path.Combine(filePath, $"{fileName}.{extension}"));
         }
     }
 }
-
 
 namespace Mame2003XML
 {
@@ -539,8 +537,6 @@ namespace HyperspinXML
             }
         }
     }
-
-
 }
 
 namespace IniParser
@@ -1139,5 +1135,4 @@ namespace IniParser
         #endregion
 
     }
-
 }

@@ -19,11 +19,11 @@ namespace Arcade
         {
             if (ArcadeManager.arcadesConfigurationList.Count >= (arcadeIndex + 1))
             {
-                StartArcade(ArcadeManager.arcadesConfigurationList[arcadeIndex], null);
+                StartArcade(ArcadeManager.arcadesConfigurationList[arcadeIndex]);
             }
         }
 
-        public void StartArcade(ArcadeConfiguration arcadeConfiguration, GameObject selectedArcadeModel)
+        public void StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
             Debug.Log("Loading Arcade Configuration " + arcadeConfiguration.id + " in ArcadeType " + arcadeConfiguration.arcadeType);
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString())
@@ -54,10 +54,14 @@ namespace Arcade
             }
             CapsuleCollider arcadeCapsuleCollider = ArcadeManager.arcadeControls[ArcadeType.FpsArcade].GetComponent<CapsuleCollider>();
             if (arcadeCapsuleCollider != null)
-            { arcadeCapsuleCollider.enabled = false; }
+            {
+                arcadeCapsuleCollider.enabled = false;
+            }
             CapsuleCollider menuCapsuleCollider = ArcadeManager.arcadeControls[ArcadeType.FpsMenu].GetComponent<CapsuleCollider>();
             if (menuCapsuleCollider != null)
-            { menuCapsuleCollider.enabled = false; }
+            {
+                menuCapsuleCollider.enabled = false;
+            }
 
             // Arcade
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString())
@@ -70,7 +74,9 @@ namespace Arcade
                     UpdateController(ArcadeManager.activeArcadeType);
                     TriggerManager.SendEvent(Event.ArcadeStarted);
                     if (ArcadeManager.arcadeHistory.Count == 1)
-                    { TriggerManager.SendEvent(Event.MainMenuStarted); }
+                    {
+                        TriggerManager.SendEvent(Event.MainMenuStarted);
+                    }
                     if (ArcadeManager.activeArcadeType == ArcadeType.FpsArcade)
                     {
                         arcadeCameraRigidBody.isKinematic = false;
@@ -191,12 +197,12 @@ namespace Arcade
 
         public void SaveArcadesConfigurationList()
         {
-            List<FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json");
+            string[] files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json");
             if (files != null)
             {
-                foreach (FileInfo file in files)
+                foreach (string file in files)
                 {
-                    _ = FileManager.DeleteFile(file.DirectoryName, file.Name);
+                    File.Delete(file);
                 }
             }
             foreach (ArcadeConfiguration arcadeConfiguration in ArcadeManager.arcadesConfigurationList)
@@ -226,7 +232,9 @@ namespace Arcade
                 return false;
             }
             if (arcadeConfiguration == null)
-            { return false; }
+            {
+                return false;
+            }
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString() || !Application.isPlaying)
             {
                 arcadeManager.SetArcadeConfiguration(arcadeConfiguration);
@@ -246,15 +254,17 @@ namespace Arcade
                 }
             }
 
-            SetListOfModelProperties(ModelType.Arcade, arcadeConfiguration.arcadeModelList, "Arcades");
+            SetListOfModelProperties(ModelType.Arcade, arcadeConfiguration.arcadeModelList);
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || !Application.isPlaying)
             {
-                SetListOfModelProperties(ModelType.Game, arcadeConfiguration.gameModelList, "Games");
+                SetListOfModelProperties(ModelType.Game, arcadeConfiguration.gameModelList);
             }
-            SetListOfModelProperties(ModelType.Prop, arcadeConfiguration.propModelList, "Props");
+            SetListOfModelProperties(ModelType.Prop, arcadeConfiguration.propModelList);
 
             if (!Application.isPlaying)
-            { return true; } // TODO: Why true?
+            {
+                return true;
+            } // TODO: Why true?
 
             if (arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString())
             {
@@ -282,7 +292,7 @@ namespace Arcade
 
             return true;
 
-            void SetListOfModelProperties(ModelType modelType, List<ModelProperties> list, string resourceFolder)
+            void SetListOfModelProperties(ModelType modelType, List<ModelProperties> list)
             {
                 ArcadeType tempArcadeType = !Application.isPlaying ? ArcadeType.None : arcadeType;
                 int count = list.Count;
@@ -305,40 +315,56 @@ namespace Arcade
             {
                 case ModelFilterOperator.Contains:
                     if (value != "" && value.ToLower().Contains(modelFilter.modelPropertyValue.ToLower()))
-                    { return true; }
+                    {
+                        return true;
+                    }
                     return false;
                 case ModelFilterOperator.NotContains:
                     if (value != "" && !value.ToLower().Contains(modelFilter.modelPropertyValue.ToLower()))
-                    { return true; }
+                    {
+                        return true;
+                    }
                     return false;
                 case ModelFilterOperator.Equals:
                     if (value != "" && value.ToLower() == modelFilter.modelPropertyValue.ToLower())
-                    { return true; }
+                    {
+                        return true;
+                    }
                     return false;
                 case ModelFilterOperator.NotEquals:
                     if (value != "" && !(value.ToLower() == modelFilter.modelPropertyValue.ToLower()))
-                    { return true; }
+                    {
+                        return true;
+                    }
                     return false;
                 case ModelFilterOperator.Starts:
                     if (value != "" && value.ToLower().StartsWith(modelFilter.modelPropertyValue.ToLower(), System.StringComparison.Ordinal))
-                    { return true; }
+                    {
+                        return true;
+                    }
                     return false;
                 case ModelFilterOperator.NotStarts:
                     if (value != "" && !value.ToLower().StartsWith(modelFilter.modelPropertyValue.ToLower(), System.StringComparison.Ordinal))
-                    { return true; }
+                    {
+                        return true;
+                    }
                     return false;
                 case ModelFilterOperator.Smaller:
                     if (float.TryParse(value, out first) && float.TryParse(modelFilter.modelPropertyValue, out second))
                     {
                         if (first < second)
-                        { return true; }
+                        {
+                            return true;
+                        }
                     }
                     return false;
                 case ModelFilterOperator.Larger:
                     if (float.TryParse(value, out first) && float.TryParse(modelFilter.modelPropertyValue, out second))
                     {
                         if (first > second)
-                        { return true; }
+                        {
+                            return true;
+                        }
                     }
                     return false;
                 default:
@@ -477,12 +503,12 @@ namespace Arcade
 
             GameObject GetInternalModel(string modelName)
             {
-                GameObject obj = (UnityEngine.GameObject)Resources.Load(modelType.ToString() + "s/" + modelName, typeof(GameObject));
+                GameObject obj = (GameObject)Resources.Load(modelType.ToString() + "s/" + modelName, typeof(GameObject));
 
                 // TODO: NBNB remove this hack to be able to use gamelist models as prop models
                 if (obj == null)
                 {
-                    obj = (UnityEngine.GameObject)Resources.Load(ModelType.Game.ToString() + "s/" + modelName, typeof(GameObject));
+                    obj = (GameObject)Resources.Load(ModelType.Game.ToString() + "s/" + modelName, typeof(GameObject));
                 }
                 return obj == null ? null : obj;
             }
@@ -590,18 +616,15 @@ namespace Arcade
 
         public bool LoadArcadesConfigurationList()
         {
-            List<FileInfo> files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json", SearchOption.AllDirectories);
-            if (files != null)
+            string[] files = FileManager.FilesFromDirectory(ArcadeManager.applicationPath + ArcadeManager.arcadesConfigurationPath, "*.json", SearchOption.AllDirectories);
+            ArcadeManager.arcadesConfigurationList.Clear();
+            foreach (string file in files)
             {
-                ArcadeManager.arcadesConfigurationList.Clear();
-                foreach (FileInfo file in files)
-                {
-                    ArcadeConfiguration cfg = FileManager.LoadJSONData<ArcadeConfiguration>(file.FullName);
-                    ArcadeManager.arcadesConfigurationList.Add(cfg);
-                }
-                return true;
+                ArcadeConfiguration cfg = FileManager.LoadJSONData<ArcadeConfiguration>(file);
+                ArcadeManager.arcadesConfigurationList.Add(cfg);
             }
-            return false;
+
+            return files.Length > 0;
         }
 
         public ArcadeConfiguration GetArcadeConfigurationByID(string arcadeConfigurationID)

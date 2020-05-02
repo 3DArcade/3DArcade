@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -12,8 +11,9 @@ namespace Arcade
         private static string assetPath;
         private static string assetName;
 
+#pragma warning disable IDE0051 // Remove unused private members
         [MenuItem("Assets/Build Prefab")]
-        private static void MenuOptionGetAssetPath(MenuCommand menuCommand)
+        private static void MenuOptionGetAssetPath()
         {
             UnityEngine.Object obj = Selection.activeObject;
             //Debug.Log("path is " + AssetDatabase.GetAssetPath(obj));
@@ -24,12 +24,13 @@ namespace Arcade
             window.Show();
         }
         [MenuItem("Assets/Build Prefab", true)]
-        private static bool MenuOptionGetAssetPathValidation(MenuCommand menuCommand)
+        private static bool MenuOptionGetAssetPathValidation()
         {
             return AssetDatabase.GetAssetPath(Selection.activeObject).Contains("Assets/Resources") ? true : false;
         }
+#pragma warning restore IDE0051 // Remove unused private members
 
-        void OnGUI()
+        private void OnGUI()
         {
             GUILayout.Label("Build Asset Bundle from Model Prefab");
             GUILayout.BeginVertical();
@@ -212,23 +213,27 @@ namespace Arcade
             _ = BuildPipeline.BuildAssetBundles(tempPath, buildMap, BuildAssetBundleOptions.None, buildTarget);
             Debug.Log("Done...");
 
-            List<FileInfo> myAssets = FileManager.FilesFromDirectory(tempPath, null);
-            if (myAssets == null)
-            { return false; }
-            print("Build Asset number " + myAssets.Count());
-            foreach (FileInfo file in myAssets)
+            string[] myAssets = FileManager.FilesFromDirectory(tempPath, null);
+            if (myAssets.Length < 1)
             {
-                Debug.Log(file.FullName);
-                if (file.FullName.Contains("/Temp/Temp"))
-                { continue; }
-                string name = Path.GetFileNameWithoutExtension(file.Name);
+                return false;
+            }
+            print("Build Asset number " + myAssets.Count());
+            foreach (string file in myAssets)
+            {
+                Debug.Log(file);
+                if (file.Contains("/Temp/Temp"))
+                {
+                    continue;
+                }
+                string name = Path.GetFileNameWithoutExtension(file);
                 string existingFile = (FileManager.FileExists(targetPath, name + ".unity3d"));
                 if (existingFile != null)
                 {
                     File.Delete(existingFile);
                 }
                 Debug.Log("target " + targetPath + name + ".unity3d");
-                File.Move(file.FullName, targetPath + name + ".unity3d");
+                File.Move(file, targetPath + name + ".unity3d");
             }
             Directory.Delete(tempPath, true);
             return true;
@@ -236,12 +241,12 @@ namespace Arcade
 
         public static void BuildAllForTargetOS(OS selectedOS)
         {
-            List<string> myArcadesAssetNames = FileManager.GetListOfAssetNames(ModelType.Arcade.ToString(), false);
-            print("arcades nr is " + myArcadesAssetNames.Count);
-            List<string> myGamesAssetNames = FileManager.GetListOfAssetNames(ModelType.Game.ToString(), false);
-            print("games nr is " + myGamesAssetNames.Count);
-            List<string> myPropsAssetNames = FileManager.GetListOfAssetNames(ModelType.Prop.ToString(), false);
-            print("props nr is " + myGamesAssetNames.Count);
+            string[] myArcadesAssetNames = FileManager.GetListOfAssetNames(ModelType.Arcade.ToString(), false);
+            print("arcades nr is " + myArcadesAssetNames.Length);
+            string[] myGamesAssetNames = FileManager.GetListOfAssetNames(ModelType.Game.ToString(), false);
+            print("games nr is " + myGamesAssetNames.Length);
+            string[] myPropsAssetNames = FileManager.GetListOfAssetNames(ModelType.Prop.ToString(), false);
+            print("props nr is " + myGamesAssetNames.Length);
             if (selectedOS == OS.MacOS)
             {
                 string assetPath = Application.streamingAssetsPath + "/3darcade/Configuration/Assets/" + OS.MacOS.ToString() + "/Temp/";
@@ -287,14 +292,16 @@ namespace Arcade
                     Directory.Delete(propsPath, true);
                 }
 
-                List<FileInfo> myAssets = FileManager.FilesFromDirectory(targetPath, null);
-                if (myAssets == null)
-                { return; }
-
-                foreach (FileInfo file in myAssets)
+                string[] myAssets = FileManager.FilesFromDirectory(targetPath, null);
+                if (myAssets.Length < 1)
                 {
-                    print(file.Name);
-                    string name = Path.GetFileNameWithoutExtension(file.Name);
+                    return;
+                }
+
+                foreach (string file in myAssets)
+                {
+                    print(file);
+                    string name = Path.GetFileNameWithoutExtension(file);
                     string path = Application.streamingAssetsPath + "/3darcade/Configuration/Assets/" + targetOS.ToString() + "/Misc/";
 
                     if (myGamesAssetNames.Contains(name))
@@ -318,7 +325,7 @@ namespace Arcade
                     {
                         File.Delete(existingFile);
                     }
-                    File.Move(file.FullName, path + name + ".unity3d");
+                    File.Move(file, path + name + ".unity3d");
                 }
                 Directory.Delete(targetPath, true);
             }

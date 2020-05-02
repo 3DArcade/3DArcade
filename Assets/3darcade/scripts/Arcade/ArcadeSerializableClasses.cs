@@ -80,8 +80,8 @@ namespace Arcade
     [System.Serializable]
     public class AvailableModels
     {
-        public List<string> arcade = new List<string>();
-        public List<string> game = new List<string>();
-        public List<string> prop = new List<string>();
+        public string[] arcade;
+        public string[] game;
+        public string[] prop;
     }
 }

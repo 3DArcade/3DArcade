@@ -252,7 +252,7 @@ namespace UnityEngine.UI
         private float m_HSliderHeight;
         private float m_VSliderWidth;
 
-        [System.NonSerialized]
+        [NonSerialized]
         private RectTransform m_Rect;
         private RectTransform rectTransform
         {

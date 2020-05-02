@@ -76,7 +76,6 @@ namespace Arcade
         public Canvas Dialog;
         public Canvas Information;
         public Canvas Loading;
-        public Canvas MainMenu;
         public Canvas Running;
         public Canvas Settings;
         public Canvas GeneralConfigurationMenu;
@@ -132,7 +131,6 @@ namespace Arcade
             MoveCabsEdit.gameObject.SetActive(false);
             Information.gameObject.SetActive(false);
             Dialog.gameObject.SetActive(false);
-            MainMenu.gameObject.SetActive(false);
             Running.gameObject.SetActive(false);
             Settings.gameObject.SetActive(false);
             Loading.gameObject.SetActive(true);
@@ -383,7 +381,7 @@ namespace Arcade
                         }
                         if (selectedModelSetup.gameLauncherMethod == GameLauncherMethod.ArcadeConfiguration)
                         {   // Run new Arcade Configuration
-                            _ = StartCoroutine(StartNewArcade(selectedModelSetup.id, selectedModel));
+                            _ = StartCoroutine(StartNewArcade(selectedModelSetup.id));
                         }
                         else
                         {
@@ -443,7 +441,7 @@ namespace Arcade
                         }
                         string newArcade = ArcadeManager.arcadeHistory[ArcadeManager.arcadeHistory.Count - 2];
                         ArcadeManager.arcadeHistory.RemoveRange(ArcadeManager.arcadeHistory.Count - 2, 2);
-                        _ = StartCoroutine(StartNewArcade(newArcade, selectedModel));
+                        _ = StartCoroutine(StartNewArcade(newArcade));
                     }
                     else if (buttonClicked == UIButtons.MoveCabs)
                     {
@@ -549,7 +547,7 @@ namespace Arcade
 
                         if (selectedModelSetup.gameLauncherMethod == GameLauncherMethod.ArcadeConfiguration)
                         {   // Run new Arcade Configuration
-                            _ = StartCoroutine(StartNewArcade(selectedModelSetup.id, savedArcadeModel));
+                            _ = StartCoroutine(StartNewArcade(selectedModelSetup.id));
                         }
                         else
                         {
@@ -725,19 +723,9 @@ namespace Arcade
                         Loading.gameObject.SetActive(true);
                         return;
                     }
-                    if (MainMenu.isActiveAndEnabled)
-                    {
-                        MainMenu.gameObject.SetActive(false);
-                    }
                     if (Settings.isActiveAndEnabled)
                     {
                         Settings.gameObject.SetActive(false);
-                    }
-                    break;
-                case ArcadeStates.MainMenu:
-                    if (buttonClicked == UIButtons.Quit)
-                    {
-                        Application.Quit();
                     }
                     break;
                 case ArcadeStates.SettingsMenu:
@@ -745,7 +733,6 @@ namespace Arcade
                     {
                         buttonClicked = null;
                         ArcadeManager.arcadeState = ArcadeStates.Running;
-                        MainMenu.gameObject.SetActive(false);
                         Settings.gameObject.SetActive(false);
                         GeneralConfigurationMenu.gameObject.SetActive(false);
                         ArcadesConfigurationMenu.gameObject.SetActive(false);
@@ -1036,7 +1023,7 @@ namespace Arcade
                     {
 
                         EmulatorConfiguration emulatorConfiguration =
-                            UpdateMasterGamelists.UpdateMasterGamelistFromEmulatorConfiguration(temulatorsConfigurationEmulatorProperties.emulatorConfiguration, null);
+                            UpdateMasterGamelists.UpdateMasterGamelistFromEmulatorConfiguration(temulatorsConfigurationEmulatorProperties.emulatorConfiguration);
 
                         temulatorsConfigurationEmulatorProperties.emulatorConfiguration.masterGamelist = emulatorConfiguration.masterGamelist;
                         temulatorsConfigurationEmulatorProperties.emulatorConfiguration.lastMasterGamelistUpdate = emulatorConfiguration.lastMasterGamelistUpdate;
@@ -1241,7 +1228,7 @@ namespace Arcade
             }
         }
 
-        private IEnumerator StartNewArcade(string arcadeConfigurationID, GameObject selectedArcadeModel)
+        private IEnumerator StartNewArcade(string arcadeConfigurationID)
         {
             ArcadeConfiguration arcadeConfiguration = ArcadeManager.loadSaveArcadeConfiguration.GetArcadeConfigurationByID(arcadeConfigurationID);
             if (arcadeConfiguration != null)
@@ -1256,7 +1243,7 @@ namespace Arcade
                     Loading.gameObject.SetActive(true);
                 }
                 yield return new WaitForSeconds(0);
-                _ = ArcadeManager.StartArcadeWith(arcadeConfigurationID, selectedArcadeModel);
+                _ = ArcadeManager.StartArcadeWith(arcadeConfigurationID);
             }
             yield return null;
         }
@@ -1279,10 +1266,10 @@ namespace Arcade
             string infoPath = emulatorConfiguration[0].emulator.infoPath;
             infoPath = $"{ArcadeManager.applicationPath}{FileManager.CorrectFilePath(infoPath)}";
 
-            string tex = FileManager.LoadTextFromFile(infoPath, $"{gameModelSetup.id.Trim()}.txt");
+            string tex = File.ReadAllText(Path.Combine(infoPath, $"{gameModelSetup.id.Trim()}.txt"));
             if (tex == null)
             {
-                tex = FileManager.LoadTextFromFile(infoPath, $"{gameModelSetup.idParent.Trim()}.txt");
+                tex = File.ReadAllText(Path.Combine(infoPath, $"{gameModelSetup.idParent.Trim()}.txt"));
             }
 
             StringBuilder sb = new StringBuilder();

@@ -36,10 +36,10 @@ namespace Arcade
                 //print("setupaudio");
                 clips = new List<string>();
                 this.audioProperties = audioProperties;
-                audioSource = gameObject.GetComponent<UnityEngine.AudioSource>();
+                audioSource = gameObject.GetComponent<AudioSource>();
                 if (audioSource == null)
                 {
-                    audioSource = gameObject.AddComponent<UnityEngine.AudioSource>();
+                    audioSource = gameObject.AddComponent<AudioSource>();
                 }
                 audioSource.priority = audioProperties.priority;
                 audioSource.volume = audioProperties.volume;
@@ -59,7 +59,7 @@ namespace Arcade
                     }
                     else
                     {
-                        List<string> files = FileManager.GetAudioPathsFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(audioFile.path.Trim()));
+                        string[] files = FileManager.GetAudioPathsFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(audioFile.path.Trim()));
                         //print(files[0]);
                         foreach (string i in files)
                         {
@@ -146,7 +146,7 @@ namespace Arcade
         {
             if (audioSource != null)
             {
-                DestroyImmediate(gameObject.GetComponent<UnityEngine.AudioSource>());
+                DestroyImmediate(gameObject.GetComponent<AudioSource>());
             }
         }
     }

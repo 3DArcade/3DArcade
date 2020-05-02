@@ -7,16 +7,16 @@ namespace Arcade
     {
         void Reset()
         {
-            if (gameObject.GetComponent<Arcade.ModelSetup>() != null)
+            if (gameObject.GetComponent<ModelSetup>() != null)
             {
-                DestroyImmediate(gameObject.GetComponent<Arcade.ModelSetup>());
+                DestroyImmediate(gameObject.GetComponent<ModelSetup>());
             }
-            ModelImageSetup[] comp = gameObject.GetComponentsInChildren<Arcade.ModelImageSetup>();
+            ModelImageSetup[] comp = gameObject.GetComponentsInChildren<ModelImageSetup>();
             if (comp.Length > 0)
             {
                 DestroyImmediate(comp[0]);
             }
-            ModelVideoSetup[] comp2 = gameObject.GetComponentsInChildren<Arcade.ModelVideoSetup>();
+            ModelVideoSetup[] comp2 = gameObject.GetComponentsInChildren<ModelVideoSetup>();
             if (comp.Length > 0)
             {
                 DestroyImmediate(comp2[0]);

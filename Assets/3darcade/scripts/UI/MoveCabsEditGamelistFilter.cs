@@ -277,7 +277,7 @@ namespace Arcade
             if (target == emulators)
             {
                 currentEmulatorSelection = target.options[target.value].text;
-                List<EmulatorConfiguration> list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == currentEmulatorSelection.ToLower()).ToList<EmulatorConfiguration>();
+                List<EmulatorConfiguration> list = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.descriptiveName.ToLower() == currentEmulatorSelection.ToLower()).ToList();
                 if (list.Count > 0)
                 {
                     SetupList(list[0].masterGamelist);
