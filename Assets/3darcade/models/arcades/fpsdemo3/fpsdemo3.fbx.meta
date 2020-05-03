@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 617bc026a2d4b44d7b02661ef3b9d27f
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19300
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -85,7 +85,7 @@ ModelImporter:
       name: fpsdemo3_0014_0_dds
     second: {fileID: 2100000, guid: 844831b368cb34f7cab5814f06e0f680, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -149,7 +149,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -167,8 +166,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
