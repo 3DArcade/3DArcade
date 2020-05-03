@@ -87,6 +87,22 @@ namespace Arcade.ArcadeEditorExtensions
         }
     }
 
+    internal sealed class ModelAssetProcessor : AssetPostprocessor
+    {
+        private void OnPostprocessModel(GameObject obj)
+        {
+            if (GlobalSettings.UseParticleViewsFix)
+            {
+                Utils.RemoveParticleViews(obj);
+            }
+
+            if (GlobalSettings.UseUnwantedNodeFix)
+            {
+                Utils.FixUnwantedNode(obj);
+            }
+        }
+    }
+
     internal sealed class ImportAssistantWindow : EditorWindow
     {
         private static string _savedBrowseDir = string.Empty;
@@ -179,16 +195,6 @@ namespace Arcade.ArcadeEditorExtensions
                         ModelImporter modelImporter = AssetImporter.GetAtPath(assetPath) as ModelImporter;
                         if (modelImporter != null)
                         {
-                            if (GlobalSettings.UseParticleViewsFix)
-                            {
-                                Utils.RemoveParticleViews(asset);
-                            }
-
-                            if (GlobalSettings.UseUnwantedNodeFix)
-                            {
-                                Utils.FixUnwantedNode(asset);
-                            }
-
                             if (Utils.ExtractTextures(assetPath, modelImporter))
                             {
                                 Utils.ExtractMaterials(assetPath);
