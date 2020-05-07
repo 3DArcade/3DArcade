@@ -25,48 +25,48 @@ using UnityEngine.InputSystem;
 
 namespace Arcade_r.Player
 {
-    public class NormalState : State
+    public class MoveCabNormalState : State
     {
         [SerializeField] private Vector3 _raycastOffset    = Vector3.zero;
         [SerializeField] private float _raycastMaxDistance = 2.5f;
         [SerializeField] private LayerMask _raycastLayers  = 0;
 
-        private Transform _interactable = null;
+        private MoveCabData _data = null;
 
         public override void OnEnter()
         {
-            Debug.Log("Entered Normal State");
-            _raycastLayers                 = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
             _playerControls.EnableMovement = true;
             _playerControls.EnableLook     = true;
+
+            _raycastLayers = LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels");
+
+            if (_data == null)
+            {
+                _data = Resources.Load<MoveCabData>("ScriptableObjects/MoveCabData");
+            }
         }
 
         public override void OnUpdate(float dt)
         {
-            if (Time.frameCount % 10 == 0)
-            {
-                _interactable = FindInteractable();
-            }
-
             if (Mouse.current.rightButton.wasPressedThisFrame)
             {
                 Utils.ToggleMouseCursor();
                 _playerControls.EnableLook = !_playerControls.EnableLook;
             }
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            if (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.mKey.wasPressedThisFrame)
             {
-                Utils.ExitApp();
+                _stateController.TransitionTo<NormalState>();
             }
 
-            if (Keyboard.current.mKey.wasPressedThisFrame)
+            if (Time.frameCount % 10 == 0)
             {
-                _stateController.TransitionTo<MoveCabNormalState>();
+                FindMovable();
             }
 
-            if ((Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && _interactable != null)
+            if ((Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && _data.Transform != null)
             {
-                Debug.Log("<color=red>Like mentioned, it's not implemented :D</color>");
+                _stateController.TransitionTo<MoveCabMovingState>();
             }
         }
 
@@ -74,30 +74,41 @@ namespace Arcade_r.Player
         {
             _playerControls.EnableMovement = false;
             _playerControls.EnableLook     = false;
-            Debug.Log("Exited Normal State");
         }
 
         public override void OnDrawDebugUI()
         {
-            GUILayout.Label("Current state: Normal State");
+            GUILayout.Label("Current state: MoveCabNormal State");
             GUILayout.Label("\nPlayer controls: WASD to move, <Mouse> to look around, Shift to sprint, Space to jump, right click to toggle cursor");
-            GUILayout.Label("\nPress M to enter 'MoveCab Normal' state");
-            GUILayout.Label("Press ESC to quit/exit PlayMode");
-            GUILayout.Label($"\nSelected Interactable: {(_interactable != null ? _interactable.name : "none")}");
-            if (_interactable != null)
+            GUILayout.Label("\nPress M or ESC to go back to 'Normal' state");
+            GUILayout.Label($"\nSelected Movable: {(_data.Transform != null ? _data.Transform.name : "none")}");
+            if (_data.Transform != null)
             {
-                GUILayout.Label("<color=red>NOT IMPLEMENTED!</color> Press E or LeftMouse Button to invoke the interactable behavior (ie. start game, launch menu, etc...)");
+                GUILayout.Label("Press E or LeftMouse Button to grab this model and enter 'MoveCabMoving' state");
             }
         }
 
-        private Transform FindInteractable()
+        private void FindMovable()
         {
-            if (PhysicsUtils.RaycastFromScreen(out RaycastHit hitInfo, _camera, _raycastOffset, _raycastMaxDistance, _raycastLayers))
+            if (PhysicsUtils.RaycastFromScreen(out RaycastHit hitInfo,
+                                               _camera,
+                                               _raycastOffset,
+                                               _raycastMaxDistance,
+                                               _raycastLayers))
             {
-                return hitInfo.transform.GetComponent<IInteractable>() != null ? hitInfo.transform : null;
+                if (hitInfo.transform.GetComponent<IMoveCabMovable>() != null)
+                {
+                    _data.SetData(hitInfo.transform, hitInfo.collider, hitInfo.rigidbody);
+                }
+                else
+                {
+                    _data.ResetData();
+                }
             }
-
-            return null;
+            else
+            {
+                _data.ResetData();
+            }
         }
     }
 }

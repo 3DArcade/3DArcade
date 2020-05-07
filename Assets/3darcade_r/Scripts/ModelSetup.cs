@@ -21,46 +21,12 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.Assertions;
 
-namespace Arcade_r.Player
+namespace Arcade_r
 {
-    public abstract class State : MonoBehaviour
+    public abstract class ModelSetup : MonoBehaviour
     {
-        protected PlayerControls _playerControls;
-        protected Camera _camera;
-        protected StateController _stateController;
-
-        private void Awake()
-        {
-            _playerControls  = GetComponentInParent<PlayerControls>();
-            _camera          = Camera.main;
-            _stateController = GetComponentInParent<StateController>();
-
-            Assert.IsNotNull(_playerControls);
-            Assert.IsNotNull(_camera);
-            Assert.IsNotNull(_stateController);
-        }
-
-        public virtual void OnEnter()
-        {
-        }
-
-        public virtual void OnUpdate(float dt)
-        {
-        }
-
-        public virtual void OnFixedUpdate(float dt)
-        {
-        }
-
-        public virtual void OnExit()
-        {
-        }
-
-        public virtual void OnDrawDebugUI()
-        {
-
-        }
+        protected string _description;
+        protected string _id;
     }
 }

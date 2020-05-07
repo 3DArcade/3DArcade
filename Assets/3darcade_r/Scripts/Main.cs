@@ -28,7 +28,7 @@ namespace Arcade_r
     public class Main : MonoBehaviour
     {
         private VFS _vfs;
-        private GameObject[] _loadedModels;
+        public GameObject[] LoadedModels;
 
         private void Awake()
         {
@@ -37,11 +37,21 @@ namespace Arcade_r
 
         private void Start()
         {
-            LoadModels();
-            MaterialUtils.SetGPUInstancing(true, _loadedModels.Where(x => x != null));
+            Utils.HideMouseCursor();
 
-            GameObject model = Instantiate(_loadedModels[5], Vector3.zero, Quaternion.identity);
-            model.layer      = LayerMask.NameToLayer("Arcade/GameModels");
+            LoadModels();
+            MaterialUtils.SetGPUInstancing(true, LoadedModels.Where(x => x != null));
+
+            Vector3 position    = new Vector3(49.4f, 0f, 20f);
+            Quaternion rotation = Quaternion.LookRotation(Vector3.left, Vector3.up);
+
+            foreach (GameObject loadedModel in LoadedModels)
+            {
+                GameObject model = Instantiate(loadedModel, position, rotation);
+                _ = model.AddComponent<GameModelSetup>();
+                model.layer = LayerMask.NameToLayer("Arcade/GameModels");
+                position.z--;
+            }
         }
 
         private void InitVFS()
@@ -68,7 +78,7 @@ namespace Arcade_r
 
         private void LoadModels()
         {
-            _loadedModels = new GameObject[]
+            LoadedModels = new GameObject[]
             {
                 Resources.Load<GameObject>("Games/1942"),
                 Resources.Load<GameObject>("Games/1943"),

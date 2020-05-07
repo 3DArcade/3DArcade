@@ -71,7 +71,7 @@ namespace Arcade_r.Player
         {
             if (EnableMovement)
             {
-                GatherMoveInputValues();
+                GatherMovementInputValues();
             }
             HandleMovement();
 
@@ -82,18 +82,6 @@ namespace Arcade_r.Player
             }
 
             YouAreNotSupposedToBeHere();
-        }
-
-        private void HandleLook()
-        {
-            _lookHorizontal = _lookSensitivityHorizontal * _lookInputValueH;
-            _lookVertical  += _lookSensitivityVertical * _lookInputValueV;
-            _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
-            if (_camera != null)
-            {
-                _camera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
-            }
-            transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
         }
 
         private void HandleMovement()
@@ -121,7 +109,19 @@ namespace Arcade_r.Player
             _ = _characterController.Move(_moveVelocity * Time.deltaTime);
         }
 
-        private void GatherMoveInputValues()
+        private void HandleLook()
+        {
+            _lookHorizontal = _lookSensitivityHorizontal * _lookInputValueH;
+            _lookVertical  += _lookSensitivityVertical * _lookInputValueV;
+            _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
+            if (_camera != null)
+            {
+                _camera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
+            }
+            transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
+        }
+
+        private void GatherMovementInputValues()
         {
             _movementInputValueX = Input.GetAxisRaw("Horizontal");
             _movementInputValueY = Input.GetAxisRaw("Vertical");

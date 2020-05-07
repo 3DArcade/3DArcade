@@ -21,32 +21,31 @@
  * SOFTWARE. */
 
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Arcade_r.Player
 {
-    public class StateContext
+    [RequireComponent(typeof(PlayerControls))]
+    public class StateController : MonoBehaviour
     {
-        public State CurrentState { get; private set; }
-
-        private readonly PlayerControls _playerControls;
-        private readonly PlayerInteractions _interactions;
-
         private readonly List<State> _allStates = new List<State>();
+        private State _currentState;
 
-        public StateContext(PlayerControls controls, PlayerInteractions interactions)
+        private void Start()
         {
-            _playerControls = controls;
-            _interactions   = interactions;
+            TransitionTo<NormalState>();
         }
 
-        public void Update(float dt)
+        private void Update()
         {
-            CurrentState?.OnUpdate(dt);
+            if (_currentState != null)
+            {
+                _currentState.OnUpdate(Time.deltaTime);
+            }
         }
-
-        public void FixedUpdate(float dt)
+        private void OnGUI()
         {
-            CurrentState?.OnFixedUpdate(dt);
+            DrawCurrentStateDebugUI();
         }
 
         public void TransitionTo<T>() where T : State
@@ -54,21 +53,45 @@ namespace Arcade_r.Player
             State newState = _allStates.Find(x => x.GetType() == typeof(T));
             if (newState != null)
             {
-                if (CurrentState != newState)
+                if (_currentState != newState)
                 {
-                    if (CurrentState != null)
+                    if (_currentState != null)
                     {
-                        CurrentState.OnExit();
+                        _currentState.OnExit();
                     }
-                    CurrentState = newState;
-                    CurrentState.OnEnter();
+                    _currentState = newState;
+                    _currentState.OnEnter();
                 }
             }
             else
             {
-                _allStates.Add(System.Activator.CreateInstance(typeof(T), this, _playerControls, _interactions) as State);
-                TransitionTo<T>();
+                InitState<T>();
             }
+        }
+
+        public void DrawCurrentStateDebugUI()
+        {
+            if (_currentState != null)
+            {
+                _currentState.OnDrawDebugUI();
+            }
+        }
+
+        private void InitState<T>() where T : State
+        {
+            GameObject obj              = new GameObject(typeof(T).Name);
+            obj.transform.parent        = transform;
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localRotation = Quaternion.identity;
+            obj.transform.localScale    = Vector3.one;
+
+            T newState = obj.AddComponent<T>();
+            if (!_allStates.Contains(newState))
+            {
+                _allStates.Add(newState);
+            }
+
+            TransitionTo<T>();
         }
     }
 }
