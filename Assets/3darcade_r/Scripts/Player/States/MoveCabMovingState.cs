@@ -131,7 +131,7 @@ namespace Arcade_r.Player
                 {
                     Vector3 hitNormal = hitInfo.normal;
                     float dot         = Vector3.Dot(Vector3.up, hitNormal);
-                    if (dot > 0f)
+                    if (dot > 0.05f)
                     {
                         _moveCabData.Transform.position      = hitPosition;
                         _moveCabData.Transform.localRotation = Quaternion.FromToRotation(Vector3.up, hitNormal);

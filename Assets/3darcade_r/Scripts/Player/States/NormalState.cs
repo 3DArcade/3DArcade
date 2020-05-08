@@ -35,7 +35,6 @@ namespace Arcade_r.Player
 
         public override void OnEnter()
         {
-            Debug.Log("Entered Normal State");
             _raycastLayers                 = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
             _playerControls.EnableMovement = true;
             _playerControls.EnableLook     = true;
@@ -74,7 +73,6 @@ namespace Arcade_r.Player
         {
             _playerControls.EnableMovement = false;
             _playerControls.EnableLook     = false;
-            Debug.Log("Exited Normal State");
         }
 
         public override void OnDrawDebugUI()
