@@ -40,6 +40,7 @@ namespace Arcade_r
             Utils.HideMouseCursor();
 
             LoadModels();
+
             MaterialUtils.SetGPUInstancing(true, LoadedModels.Where(x => x != null));
 
             Vector3 position    = new Vector3(49.4f, 0f, 20f);

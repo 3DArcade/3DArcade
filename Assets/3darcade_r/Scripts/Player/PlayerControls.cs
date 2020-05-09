@@ -22,22 +22,85 @@
 
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Arcade_r.Player
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerControls : MonoBehaviour
     {
-        public bool EnableMovement{ get; set; }
-        public bool EnableLook { get; set; }
+        public bool EnableMovement
+        {
+            get => InputActions.FPSControls.Movement.enabled;
+            set
+            {
+                if (value)
+                {
+                    InputActions.FPSControls.Movement.Enable();
+                    InputActions.FPSControls.Sprint.Enable();
+                    InputActions.FPSControls.Jump.Enable();
+                }
+                else
+                {
+                    InputActions.FPSControls.Movement.Disable();
+                    InputActions.FPSControls.Sprint.Disable();
+                    InputActions.FPSControls.Jump.Disable();
+                }
+            }
+        }
+
+        public bool EnableLook
+        {
+            get => InputActions.FPSControls.Look.enabled;
+            set
+            {
+                if (value)
+                {
+                    InputActions.FPSControls.Look.Enable();
+                }
+                else
+                {
+                    InputActions.FPSControls.Look.Disable();
+                }
+            }
+        }
+
+        public bool EnableInteract
+        {
+            get => InputActions.FPSControls.Interact.enabled;
+            set
+            {
+                if (value)
+                {
+                    InputActions.FPSControls.Interact.Enable();
+                }
+                else
+                {
+                    InputActions.FPSControls.Interact.Disable();
+                }
+            }
+        }
+
+        public bool EnableToggleMoveCab
+        {
+            get => InputActions.FPSControls.ToggleMoveCab.enabled;
+            set
+            {
+                if (value)
+                {
+                    InputActions.FPSControls.ToggleMoveCab.Enable();
+                }
+                else
+                {
+                    InputActions.FPSControls.ToggleMoveCab.Disable();
+                }
+            }
+        }
+
+        public PlayerInputActions InputActions { get; private set; }
 
         [SerializeField] private float _walkSpeed = 2f;
         [SerializeField] private float _runSpeed  = 4f;
         [SerializeField] private float _jumpForce = 10f;
-
-        [SerializeField] private float _lookSensitivityHorizontal = 3f;
-        [SerializeField] private float _lookSensitivityVertical   = 2f;
 
         [SerializeField] private float _minVerticalLookAngle = -89f;
         [SerializeField] private float _maxVerticalLookAngle = 89f;
@@ -46,14 +109,12 @@ namespace Arcade_r.Player
         private CharacterController _characterController = null;
         private CinemachineVirtualCamera _camera = null;
 
+        private Vector2 _movementInputValue;
         private Vector3 _moveVelocity = Vector3.zero;
         private float _lookHorizontal = 0f;
-        private float _lookVertical = 0f;
+        private float _lookVertical   = 0f;
 
-        private float _movementInputValueX;
-        private float _movementInputValueY;
-        private float _lookInputValueH;
-        private float _lookInputValueV;
+        private Vector2 _lookInputValue;
         private bool _sprinting;
         private bool _performJump;
 
@@ -64,14 +125,25 @@ namespace Arcade_r.Player
         {
             _characterController = GetComponent<CharacterController>();
             _camera              = GetComponentInChildren<CinemachineVirtualCamera>();
+            InputActions         = new PlayerInputActions();
             _theAbyss            = Resources.Load<GameObject>("Misc/TheAbyss");
+        }
+
+        private void OnEnable()
+        {
+            InputActions.GlobalControls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            InputActions.GlobalControls.Disable();
         }
 
         private void Update()
         {
             if (EnableMovement)
             {
-                GatherMovementInputValues();
+                GatheMovementInputValues();
             }
             HandleMovement();
 
@@ -84,11 +156,25 @@ namespace Arcade_r.Player
             YouAreNotSupposedToBeHere();
         }
 
+        private void GatheMovementInputValues()
+        {
+            bool modifierIsDown_TEMP = InputActions.GlobalControls.TempModifierWorkaround.ReadValue<float>() > 0.5f;
+
+            _movementInputValue = InputActions.FPSControls.Movement.ReadValue<Vector2>();
+            _sprinting          = InputActions.FPSControls.Sprint.ReadValue<float>() > 0f;
+            _performJump        = !modifierIsDown_TEMP && InputActions.FPSControls.Jump.triggered;
+        }
+
+        private void GatherLookInputValues()
+        {
+            _lookInputValue = InputActions.FPSControls.Look.ReadValue<Vector2>();
+        }
+
         private void HandleMovement()
         {
             if (_characterController.isGrounded)
             {
-                _moveVelocity = new Vector3(_movementInputValueX, -0.1f, _movementInputValueY);
+                _moveVelocity = new Vector3(_movementInputValue.x, -0.1f, _movementInputValue.y);
                 _moveVelocity.Normalize();
 
                 float speed = _sprinting ? _runSpeed : _walkSpeed;
@@ -111,28 +197,14 @@ namespace Arcade_r.Player
 
         private void HandleLook()
         {
-            _lookHorizontal = _lookSensitivityHorizontal * _lookInputValueH;
-            _lookVertical  += _lookSensitivityVertical * _lookInputValueV;
+            _lookHorizontal = _lookInputValue.x;
+            _lookVertical  += _lookInputValue.y;
             _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
             if (_camera != null)
             {
                 _camera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
             }
             transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
-        }
-
-        private void GatherMovementInputValues()
-        {
-            _movementInputValueX = Input.GetAxisRaw("Horizontal");
-            _movementInputValueY = Input.GetAxisRaw("Vertical");
-            _sprinting           = Keyboard.current.leftShiftKey.isPressed;
-            _performJump         = Keyboard.current.spaceKey.wasPressedThisFrame;
-        }
-
-        private void GatherLookInputValues()
-        {
-            _lookInputValueH = Input.GetAxis("Mouse X");
-            _lookInputValueV = Input.GetAxis("Mouse Y");
         }
 
         private void YouAreNotSupposedToBeHere()

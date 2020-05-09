@@ -21,69 +21,70 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Assertions;
 
 namespace Arcade_r.Player
 {
     public class MoveCabMovingState : State
     {
-        [SerializeField] private Vector3 _raycastOffset    = new Vector3(0f, -200f, 0f);
         [SerializeField] private float _raycastMaxDistance = 12f;
-        [SerializeField] private LayerMask _raycastLayers  = 0;
+        [SerializeField] private LayerMask _raycastLayers  = 1 << 0;
 
-        [SerializeField] private bool _useMouseWheelForRotation = true;
-        [SerializeField] private float _mouseWheelSensitivity   = 2.0f;
+        private MoveCabData _data = null;
 
-        private MoveCabData _moveCabData    = null;
-        private bool _colliderWasTrigger    = false;
-        private bool _rigidBodyWasKinematic = false;
+        private bool _savedColliderTrigger = false;
+        private RigidbodyInterpolation _savedRigidbodyInterpolation;
+        private CollisionDetectionMode _savedRigidbodyMode;
+        private bool _savedRigidbodyKinematic = false;
 
-        private float _mouseWheelDelta = 0f;
+        private Vector3 _screenPoint;
 
         public override void OnEnter()
         {
-            _playerControls.EnableMovement = true;
-            _playerControls.EnableLook     = true;
+            _playerControls.EnableMovement      = true;
+            _playerControls.EnableLook          = true;
+            _playerControls.EnableInteract      = true;
+            _playerControls.EnableToggleMoveCab = true;
 
             _raycastLayers = LayerMask.GetMask("Arcade/ArcadeModels");
 
-            if (_moveCabData == null)
+            if (_data == null)
             {
-                _moveCabData = Resources.Load<MoveCabData>("ScriptableObjects/MoveCabData");
+                _data = Resources.Load<MoveCabData>("ScriptableObjects/MoveCabData");
             }
 
-            _colliderWasTrigger    = _moveCabData.Collider.isTrigger;
-            _rigidBodyWasKinematic = _moveCabData.Rigidbody.isKinematic;
+            Assert.IsNotNull(_data);
+            Assert.IsNotNull(_data.Transform);
+            Assert.IsNotNull(_data.Collider);
+            Assert.IsNotNull(_data.Rigidbody);
 
-            _moveCabData.Collider.isTrigger    = true;
-            _moveCabData.Rigidbody.isKinematic = true;
+            _savedColliderTrigger        = _data.Collider.isTrigger;
+            _savedRigidbodyInterpolation = _data.Rigidbody.interpolation;
+            _savedRigidbodyMode          = _data.Rigidbody.collisionDetectionMode;
+            _savedRigidbodyKinematic     = _data.Rigidbody.isKinematic;
+
+            _data.Collider.isTrigger               = true;
+            _data.Rigidbody.interpolation          = RigidbodyInterpolation.Interpolate;
+            _data.Rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+            _data.Rigidbody.isKinematic            = true;
+
+            _screenPoint = _camera.WorldToScreenPoint(_data.Transform.position);
         }
 
         public override void OnUpdate(float dt)
         {
-            if (Mouse.current.rightButton.wasPressedThisFrame)
+            if (_playerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
                 _playerControls.EnableLook = !_playerControls.EnableLook;
             }
 
-            if (Mouse.current.middleButton.wasPressedThisFrame)
-            {
-                _useMouseWheelForRotation = !_useMouseWheelForRotation;
-                _mouseWheelDelta          = _moveCabData.Transform.forward.z;
-            }
-
-            if (_useMouseWheelForRotation)
-            {
-                _mouseWheelDelta += Mouse.current.scroll.ReadValue().y * _mouseWheelSensitivity * Time.deltaTime;
-            }
-
-            if (Keyboard.current.escapeKey.wasPressedThisFrame || Keyboard.current.mKey.wasPressedThisFrame)
+            if (_playerControls.InputActions.GlobalControls.Quit.triggered || _playerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
             {
                 _stateController.TransitionTo<NormalState>();
             }
 
-            if ((Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame))
+            if (_playerControls.InputActions.FPSControls.Interact.triggered)
             {
                 _stateController.TransitionTo<MoveCabNormalState>();
             }
@@ -93,68 +94,57 @@ namespace Arcade_r.Player
 
         public override void OnExit()
         {
-            _playerControls.EnableMovement = false;
-            _playerControls.EnableLook = false;
+            _playerControls.EnableMovement      = false;
+            _playerControls.EnableLook          = false;
+            _playerControls.EnableInteract      = false;
+            _playerControls.EnableToggleMoveCab = false;
 
-            _moveCabData.Collider.isTrigger    = _colliderWasTrigger;
-            _moveCabData.Rigidbody.isKinematic = _rigidBodyWasKinematic;
+            _data.Collider.isTrigger               = _savedColliderTrigger;
+            _data.Rigidbody.isKinematic            = _savedRigidbodyKinematic;
+            _data.Rigidbody.interpolation          = _savedRigidbodyInterpolation;
+            _data.Rigidbody.collisionDetectionMode = _savedRigidbodyMode;
         }
 
         public override void OnDrawDebugUI()
         {
             GUILayout.Label("Current state: MoveCabMoving State");
 
-            GUILayout.Label("\nPlayer controls: WASD to move, <Mouse> to look around, Shift to sprint, Space to jump, right click to toggle cursor");
+            GUILayout.Label("\n## Player controls:");
+            GUILayout.Label("  Move: WASD, Arrows, LeftStick(GamePad)");
+            GUILayout.Label("  Look: Mouse, RFQE, RightStick(GamePad)");
+            GUILayout.Label("  Sprint: Shift, ButtonWest(GamePad)");
+            GUILayout.Label("  Jump: Space, ButtonNorth(GamePad)");
 
-            GUILayout.Label($"\nUsing mouse wheel for rotation: {_useMouseWheelForRotation}");
-            GUILayout.Label("Press MiddleMouse Button to toggle");
-            GUILayout.Label("-If false, always face the player");
-            GUILayout.Label("-Ignored when targeting a wall");
+            GUILayout.Label("\n## State controls:");
+            GUILayout.Label("  Leave: M, Select+ButtonNorth(GamePad)");
 
-            GUILayout.Label($"\nSelected Movable: {_moveCabData.Transform.name}");
-            GUILayout.Label("Press E or LeftMouse Button to release the model and bo back to 'MoveCabNormal' state");
-            GUILayout.Label("Press M or ESC to go back to 'Normal' state (will also release the model)");
+            GUILayout.Label($"\n## Selected Movable: {_data.Transform.name}");
+            GUILayout.Label("  Release Model: Ctrl, LeftButton(Mouse), ButtonSouth(GamePad)");
         }
 
         public void TrySetModelPosition()
         {
-            if (PhysicsUtils.RaycastFromScreen(out RaycastHit hitInfo,
-                                               _camera,
-                                               _raycastOffset,
-                                               _raycastMaxDistance,
-                                               _raycastLayers))
+            Ray ray = _camera.ScreenPointToRay(_screenPoint);
+            if (!Physics.Raycast(ray, out RaycastHit hitInfo, _raycastMaxDistance, _raycastLayers))
             {
-                Vector3 hitPosition       = hitInfo.point;
-                float distanceFromPlayer  = (hitPosition - transform.position).sqrMagnitude - 1f;
-                float entityColliderSizeZ = _moveCabData.Collider.bounds.size.z;
-                if (distanceFromPlayer > entityColliderSizeZ)
-                {
-                    Vector3 hitNormal = hitInfo.normal;
-                    float dot         = Vector3.Dot(Vector3.up, hitNormal);
-                    if (dot > 0.05f)
-                    {
-                        _moveCabData.Transform.position      = hitPosition;
-                        _moveCabData.Transform.localRotation = Quaternion.FromToRotation(Vector3.up, hitNormal);
+                return;
+            }
 
-                        if (_useMouseWheelForRotation)
-                        {
-                            _moveCabData.Transform.RotateAround(hitPosition, hitNormal, _mouseWheelDelta);
-                        }
-                        else
-                        {
-                            _moveCabData.Transform.localRotation *= Quaternion.LookRotation(-transform.forward);
-                        }
-                    }
-                    else
-                    {
-                        Vector3 positionOffset = new Vector3(hitNormal.x, 0f, hitNormal.z) * (entityColliderSizeZ * 0.7f);
-                        _moveCabData.Transform.position = new Vector3(hitPosition.x,
-                                                                      _moveCabData.Transform.position.y,
-                                                                      hitPosition.z)
-                                                        + positionOffset;
-                        _moveCabData.Transform.localRotation = Quaternion.LookRotation(hitNormal);
-                    }
-                }
+            Vector3 hitPosition = hitInfo.point;
+            Vector3 hitNormal   = hitInfo.normal;
+            float dot           = Vector3.Dot(Vector3.up, hitNormal);
+            if (dot > 0.05f)
+            {
+                _data.Transform.position      = Vector3.Lerp(_data.Transform.position, hitPosition, Time.deltaTime * 12f);
+                _data.Transform.localRotation = Quaternion.FromToRotation(Vector3.up, hitNormal)
+                                              * Quaternion.LookRotation(-transform.forward);
+            }
+            else
+            {
+                Vector3 positionOffset        = new Vector3(hitNormal.x, 0f, hitNormal.z) * (_data.Collider.bounds.size.z * 0.7f);
+                Vector3 newPosition           = new Vector3(hitPosition.x, _data.Transform.position.y, hitPosition.z) + positionOffset;
+                _data.Transform.position      = Vector3.Lerp(_data.Transform.position, newPosition, Time.deltaTime * 12f);
+                _data.Transform.localRotation = Quaternion.LookRotation(hitNormal);
             }
         }
     }

@@ -9,22 +9,28 @@ namespace Arcade_r
         public Collider Collider { get; private set; }
         public Rigidbody Rigidbody { get; private set; }
 
-        public void SetData(Transform transform, Collider collider, Rigidbody rigidbody)
+        public float DistanceFromPlayer { get; private set; }
+
+        public void Set(RaycastHit hitInfo)
         {
-            Transform = transform;
-            Collider  = collider;
-            Rigidbody = rigidbody;
+            Transform          = hitInfo.transform;
+            Collider           = hitInfo.collider;
+            Rigidbody          = hitInfo.rigidbody;
+            DistanceFromPlayer = hitInfo.distance + (hitInfo.point - Transform.position).sqrMagnitude;
         }
 
-        public void ResetData()
+        public void Reset()
         {
-            Transform = null;
-            Collider  = null;
-            Rigidbody = null;
+            Transform          = null;
+            Collider           = null;
+            Rigidbody          = null;
+            DistanceFromPlayer = 0f;
         }
 
-        private void OnEnable() => ResetData();
+        private void OnEnable() => Reset();
 
-        private void OnDisable() => ResetData();
+        private void OnDisable() => Reset();
+
+        private void OnDestroy() => Reset();
     }
 }

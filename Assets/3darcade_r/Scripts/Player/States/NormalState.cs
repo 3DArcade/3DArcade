@@ -21,7 +21,6 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Arcade_r.Player
 {
@@ -35,9 +34,11 @@ namespace Arcade_r.Player
 
         public override void OnEnter()
         {
-            _raycastLayers                 = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
-            _playerControls.EnableMovement = true;
-            _playerControls.EnableLook     = true;
+            _raycastLayers                      = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            _playerControls.EnableMovement      = true;
+            _playerControls.EnableLook          = true;
+            _playerControls.EnableInteract      = true;
+            _playerControls.EnableToggleMoveCab = true;
         }
 
         public override void OnUpdate(float dt)
@@ -47,44 +48,57 @@ namespace Arcade_r.Player
                 _interactable = FindInteractable();
             }
 
-            if (Mouse.current.rightButton.wasPressedThisFrame)
+            if (_playerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
                 _playerControls.EnableLook = !_playerControls.EnableLook;
             }
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            if (_playerControls.InputActions.GlobalControls.Quit.triggered)
             {
                 Utils.ExitApp();
             }
 
-            if (Keyboard.current.mKey.wasPressedThisFrame)
+            if (!Cursor.visible)
             {
-                _stateController.TransitionTo<MoveCabNormalState>();
-            }
+                if (_playerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
+                {
+                    _stateController.TransitionTo<MoveCabNormalState>();
+                }
 
-            if ((Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && _interactable != null)
-            {
-                Debug.Log("<color=red>Like mentioned, it's not implemented :D</color>");
+                if (_interactable != null && _playerControls.InputActions.FPSControls.Interact.triggered)
+                {
+                    Debug.Log("<color=red>It's not implemented :D</color>");
+                }
             }
         }
 
         public override void OnExit()
         {
-            _playerControls.EnableMovement = false;
-            _playerControls.EnableLook     = false;
+            _playerControls.EnableMovement      = false;
+            _playerControls.EnableLook          = false;
+            _playerControls.EnableInteract      = false;
+            _playerControls.EnableToggleMoveCab = false;
         }
 
         public override void OnDrawDebugUI()
         {
             GUILayout.Label("Current state: Normal State");
-            GUILayout.Label("\nPlayer controls: WASD to move, <Mouse> to look around, Shift to sprint, Space to jump, right click to toggle cursor");
-            GUILayout.Label("\nPress M to enter 'MoveCab Normal' state");
-            GUILayout.Label("Press ESC to quit/exit PlayMode");
-            GUILayout.Label($"\nSelected Interactable: {(_interactable != null ? _interactable.name : "none")}");
+
+            GUILayout.Label("\n## Player controls:");
+            GUILayout.Label("  Move: WASD, Arrows, LeftStick(GamePad)");
+            GUILayout.Label("  Look: Mouse, RFQE, RightStick(GamePad)");
+            GUILayout.Label("  Sprint: Shift, ButtonWest(GamePad)");
+            GUILayout.Label("  Jump: Space, ButtonNorth(GamePad)");
+
+            GUILayout.Label("\n## State controls:");
+            GUILayout.Label("  Enter MoveCab mode: M, Select+ButtonNorth(GamePad)");
+            GUILayout.Label("  Quit/Exit PlayMode: Esc, Select+Start(GamePad)");
+
+            GUILayout.Label($"\n## Selected Interactable: {(_interactable != null ? _interactable.name : "none")}");
             if (_interactable != null)
             {
-                GUILayout.Label("<color=red>NOT IMPLEMENTED!</color> Press E or LeftMouse Button to invoke the interactable behavior (ie. start game, launch menu, etc...)");
+                GUILayout.Label("  <color=red>NOT IMPLEMENTED!</color> Press Ctrl, LeftMouse Button or ButtonSouth(GamePad) to invoke the interactable behavior (ie. start game, launch menu, etc...)");
             }
         }
 

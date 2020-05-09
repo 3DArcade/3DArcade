@@ -43,9 +43,21 @@ namespace Arcade_r.Player
                 _currentState.OnUpdate(Time.deltaTime);
             }
         }
+
+        private void FixedUpdate()
+        {
+            if (_currentState != null)
+            {
+                _currentState.OnFixedUpdate(Time.fixedDeltaTime);
+            }
+        }
+
         private void OnGUI()
         {
-            DrawCurrentStateDebugUI();
+            if (_currentState != null)
+            {
+                _currentState.OnDrawDebugUI();
+            }
         }
 
         public void TransitionTo<T>() where T : State
@@ -66,14 +78,6 @@ namespace Arcade_r.Player
             else
             {
                 InitState<T>();
-            }
-        }
-
-        public void DrawCurrentStateDebugUI()
-        {
-            if (_currentState != null)
-            {
-                _currentState.OnDrawDebugUI();
             }
         }
 
