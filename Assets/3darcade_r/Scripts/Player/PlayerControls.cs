@@ -22,12 +22,21 @@
 
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-namespace Arcade_r.Player
+namespace Arcade_r
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerControls : MonoBehaviour
     {
+        [SerializeField] private float _walkSpeed = 3f;
+        [SerializeField] private float _runSpeed  = 6f;
+        [SerializeField] private float _jumpForce = 10f;
+
+        [SerializeField] private float _minVerticalLookAngle = -89f;
+        [SerializeField] private float _maxVerticalLookAngle = 89f;
+        [SerializeField] private float _extraGravity         = 40f;
+
         public bool EnableMovement
         {
             get => InputActions.FPSControls.Movement.enabled;
@@ -96,37 +105,36 @@ namespace Arcade_r.Player
             }
         }
 
-        public PlayerInputActions InputActions { get; private set; }
-
-        [SerializeField] private float _walkSpeed = 2f;
-        [SerializeField] private float _runSpeed  = 4f;
-        [SerializeField] private float _jumpForce = 10f;
-
-        [SerializeField] private float _minVerticalLookAngle = -89f;
-        [SerializeField] private float _maxVerticalLookAngle = 89f;
-        [SerializeField] private float _extraGravity         = 40f;
+        public InputSettingsActions InputActions { get; private set; }
 
         private CharacterController _characterController = null;
         private CinemachineVirtualCamera _camera = null;
 
         private Vector2 _movementInputValue;
-        private Vector3 _moveVelocity = Vector3.zero;
-        private float _lookHorizontal = 0f;
-        private float _lookVertical   = 0f;
-
         private Vector2 _lookInputValue;
         private bool _sprinting;
         private bool _performJump;
 
+        private Vector3 _moveVelocity = Vector3.zero;
+        private float _lookHorizontal;
+        private float _lookVertical;
+
         private GameObject _theAbyss;
         private bool _badLuck;
+
+        private bool _modifierIsDown_TEMP;
 
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
             _camera              = GetComponentInChildren<CinemachineVirtualCamera>();
-            InputActions         = new PlayerInputActions();
+            InputActions         = new InputSettingsActions();
             _theAbyss            = Resources.Load<GameObject>("Misc/TheAbyss");
+
+            Assert.IsNotNull(_characterController);
+            Assert.IsNotNull(_camera);
+            Assert.IsNotNull(InputActions);
+            Assert.IsNotNull(_theAbyss);
         }
 
         private void OnEnable()
@@ -141,6 +149,8 @@ namespace Arcade_r.Player
 
         private void Update()
         {
+            _modifierIsDown_TEMP = InputActions.GlobalControls.TempModifierWorkaround.ReadValue<float>() > 0.5f;
+
             if (EnableMovement)
             {
                 GatheMovementInputValues();
@@ -158,16 +168,14 @@ namespace Arcade_r.Player
 
         private void GatheMovementInputValues()
         {
-            bool modifierIsDown_TEMP = InputActions.GlobalControls.TempModifierWorkaround.ReadValue<float>() > 0.5f;
-
             _movementInputValue = InputActions.FPSControls.Movement.ReadValue<Vector2>();
-            _sprinting          = InputActions.FPSControls.Sprint.ReadValue<float>() > 0f;
-            _performJump        = !modifierIsDown_TEMP && InputActions.FPSControls.Jump.triggered;
+            _sprinting          = !_modifierIsDown_TEMP && InputActions.FPSControls.Sprint.ReadValue<float>() > 0f;
+            _performJump        = !_modifierIsDown_TEMP && InputActions.FPSControls.Jump.triggered;
         }
 
         private void GatherLookInputValues()
         {
-            _lookInputValue = InputActions.FPSControls.Look.ReadValue<Vector2>();
+            _lookInputValue = !_modifierIsDown_TEMP ? InputActions.FPSControls.Look.ReadValue<Vector2>() : Vector2.zero;
         }
 
         private void HandleMovement()

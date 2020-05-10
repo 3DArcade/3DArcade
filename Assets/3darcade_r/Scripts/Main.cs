@@ -27,12 +27,15 @@ namespace Arcade_r
 {
     public class Main : MonoBehaviour
     {
-        private VFS _vfs;
         public GameObject[] LoadedModels;
+
+        private VFS _vfs;
+        private PlayerStateContext _playerStateContext;
 
         private void Awake()
         {
             InitVFS();
+            _playerStateContext = new PlayerStateContext(FindObjectOfType<PlayerControls>(), Camera.main);
         }
 
         private void Start()
@@ -53,6 +56,18 @@ namespace Arcade_r
                 model.layer = LayerMask.NameToLayer("Arcade/GameModels");
                 position.z--;
             }
+
+            _playerStateContext.TransitionTo<PlayerNormalState>();
+        }
+
+        private void Update()
+        {
+            _playerStateContext.Update(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            _playerStateContext.FixedUpdate(Time.fixedDeltaTime);
         }
 
         private void InitVFS()
