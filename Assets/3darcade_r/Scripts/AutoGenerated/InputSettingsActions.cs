@@ -346,7 +346,7 @@ namespace Arcade_r
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e1fd1b17-d3f9-4457-b0d7-88b7ec5e2877"",
+                    ""id"": ""20db50ba-9db8-4968-b4fd-b8259ce69367"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -554,6 +554,14 @@ namespace Arcade_r
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""GrabRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""da98b889-a257-4260-bdb7-c2d25d037c14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""AddModel"",
                     ""type"": ""Button"",
                     ""id"": ""3b4cdfb5-a154-4ec7-af71-6918230a09a7"",
@@ -705,69 +713,37 @@ namespace Arcade_r
                     ""action"": ""AddModel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""FPSMoveCabGrabbed"",
-            ""id"": ""d39c6cf3-cb5a-4286-ba04-3386a0e7350e"",
-            ""actions"": [
-                {
-                    ""name"": ""StickToSurfaces"",
-                    ""type"": ""Button"",
-                    ""id"": ""c42c72b1-c6eb-4cac-92e8-2634f56d9392"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 },
-                {
-                    ""name"": ""Drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""ddbf0222-6f00-4139-9ca8-76b449760bd1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Throw"",
-                    ""type"": ""Button"",
-                    ""id"": ""1a9c5dd8-034a-4f18-bcfa-d66b891a0e42"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""1060f35a-dcf3-40be-a2b7-d658ff9cd346"",
-                    ""path"": """",
+                    ""id"": ""0990e09d-e138-4b42-8abe-72a9e4b5a367"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StickToSurfaces"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""GrabRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b439dec8-e337-49c0-a119-33a9e29e2470"",
-                    ""path"": """",
+                    ""id"": ""6741b1b1-5301-4dc5-81f1-d07abd193117"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throw"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""GrabRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c97bcb58-f937-44fe-83a2-e9f2b27543c3"",
-                    ""path"": """",
+                    ""id"": ""803e54e5-a269-486a-aa6a-8789717c70f5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""GrabRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -821,12 +797,8 @@ namespace Arcade_r
             m_FPSMoveCab = asset.FindActionMap("FPSMoveCab", throwIfNotFound: true);
             m_FPSMoveCab_MoveModel = m_FPSMoveCab.FindAction("MoveModel", throwIfNotFound: true);
             m_FPSMoveCab_RotateModel = m_FPSMoveCab.FindAction("RotateModel", throwIfNotFound: true);
+            m_FPSMoveCab_GrabRelease = m_FPSMoveCab.FindAction("GrabRelease", throwIfNotFound: true);
             m_FPSMoveCab_AddModel = m_FPSMoveCab.FindAction("AddModel", throwIfNotFound: true);
-            // FPSMoveCabGrabbed
-            m_FPSMoveCabGrabbed = asset.FindActionMap("FPSMoveCabGrabbed", throwIfNotFound: true);
-            m_FPSMoveCabGrabbed_StickToSurfaces = m_FPSMoveCabGrabbed.FindAction("StickToSurfaces", throwIfNotFound: true);
-            m_FPSMoveCabGrabbed_Drop = m_FPSMoveCabGrabbed.FindAction("Drop", throwIfNotFound: true);
-            m_FPSMoveCabGrabbed_Throw = m_FPSMoveCabGrabbed.FindAction("Throw", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1000,6 +972,7 @@ namespace Arcade_r
         private IFPSMoveCabActions m_FPSMoveCabActionsCallbackInterface;
         private readonly InputAction m_FPSMoveCab_MoveModel;
         private readonly InputAction m_FPSMoveCab_RotateModel;
+        private readonly InputAction m_FPSMoveCab_GrabRelease;
         private readonly InputAction m_FPSMoveCab_AddModel;
         public struct FPSMoveCabActions
         {
@@ -1007,6 +980,7 @@ namespace Arcade_r
             public FPSMoveCabActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @MoveModel => m_Wrapper.m_FPSMoveCab_MoveModel;
             public InputAction @RotateModel => m_Wrapper.m_FPSMoveCab_RotateModel;
+            public InputAction @GrabRelease => m_Wrapper.m_FPSMoveCab_GrabRelease;
             public InputAction @AddModel => m_Wrapper.m_FPSMoveCab_AddModel;
             public InputActionMap Get() { return m_Wrapper.m_FPSMoveCab; }
             public void Enable() { Get().Enable(); }
@@ -1023,6 +997,9 @@ namespace Arcade_r
                     @RotateModel.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnRotateModel;
                     @RotateModel.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnRotateModel;
                     @RotateModel.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnRotateModel;
+                    @GrabRelease.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnGrabRelease;
+                    @GrabRelease.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnGrabRelease;
+                    @GrabRelease.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnGrabRelease;
                     @AddModel.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnAddModel;
                     @AddModel.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnAddModel;
                     @AddModel.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnAddModel;
@@ -1036,6 +1013,9 @@ namespace Arcade_r
                     @RotateModel.started += instance.OnRotateModel;
                     @RotateModel.performed += instance.OnRotateModel;
                     @RotateModel.canceled += instance.OnRotateModel;
+                    @GrabRelease.started += instance.OnGrabRelease;
+                    @GrabRelease.performed += instance.OnGrabRelease;
+                    @GrabRelease.canceled += instance.OnGrabRelease;
                     @AddModel.started += instance.OnAddModel;
                     @AddModel.performed += instance.OnAddModel;
                     @AddModel.canceled += instance.OnAddModel;
@@ -1043,55 +1023,6 @@ namespace Arcade_r
             }
         }
         public FPSMoveCabActions @FPSMoveCab => new FPSMoveCabActions(this);
-
-        // FPSMoveCabGrabbed
-        private readonly InputActionMap m_FPSMoveCabGrabbed;
-        private IFPSMoveCabGrabbedActions m_FPSMoveCabGrabbedActionsCallbackInterface;
-        private readonly InputAction m_FPSMoveCabGrabbed_StickToSurfaces;
-        private readonly InputAction m_FPSMoveCabGrabbed_Drop;
-        private readonly InputAction m_FPSMoveCabGrabbed_Throw;
-        public struct FPSMoveCabGrabbedActions
-        {
-            private @InputSettingsActions m_Wrapper;
-            public FPSMoveCabGrabbedActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @StickToSurfaces => m_Wrapper.m_FPSMoveCabGrabbed_StickToSurfaces;
-            public InputAction @Drop => m_Wrapper.m_FPSMoveCabGrabbed_Drop;
-            public InputAction @Throw => m_Wrapper.m_FPSMoveCabGrabbed_Throw;
-            public InputActionMap Get() { return m_Wrapper.m_FPSMoveCabGrabbed; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(FPSMoveCabGrabbedActions set) { return set.Get(); }
-            public void SetCallbacks(IFPSMoveCabGrabbedActions instance)
-            {
-                if (m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface != null)
-                {
-                    @StickToSurfaces.started -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnStickToSurfaces;
-                    @StickToSurfaces.performed -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnStickToSurfaces;
-                    @StickToSurfaces.canceled -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnStickToSurfaces;
-                    @Drop.started -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnDrop;
-                    @Drop.performed -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnDrop;
-                    @Drop.canceled -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnDrop;
-                    @Throw.started -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnThrow;
-                    @Throw.performed -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnThrow;
-                    @Throw.canceled -= m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface.OnThrow;
-                }
-                m_Wrapper.m_FPSMoveCabGrabbedActionsCallbackInterface = instance;
-                if (instance != null)
-                {
-                    @StickToSurfaces.started += instance.OnStickToSurfaces;
-                    @StickToSurfaces.performed += instance.OnStickToSurfaces;
-                    @StickToSurfaces.canceled += instance.OnStickToSurfaces;
-                    @Drop.started += instance.OnDrop;
-                    @Drop.performed += instance.OnDrop;
-                    @Drop.canceled += instance.OnDrop;
-                    @Throw.started += instance.OnThrow;
-                    @Throw.performed += instance.OnThrow;
-                    @Throw.canceled += instance.OnThrow;
-                }
-            }
-        }
-        public FPSMoveCabGrabbedActions @FPSMoveCabGrabbed => new FPSMoveCabGrabbedActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1129,13 +1060,8 @@ namespace Arcade_r
         {
             void OnMoveModel(InputAction.CallbackContext context);
             void OnRotateModel(InputAction.CallbackContext context);
+            void OnGrabRelease(InputAction.CallbackContext context);
             void OnAddModel(InputAction.CallbackContext context);
-        }
-        public interface IFPSMoveCabGrabbedActions
-        {
-            void OnStickToSurfaces(InputAction.CallbackContext context);
-            void OnDrop(InputAction.CallbackContext context);
-            void OnThrow(InputAction.CallbackContext context);
         }
     }
 }

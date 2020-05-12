@@ -251,9 +251,8 @@ namespace Arcade
                 }
             }
 
-            List<EmulatorConfiguration> emulatorList = new List<EmulatorConfiguration>();
-            emulatorList = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id == emulator).ToList();
-            if (emulatorList.Count < 1)
+            EmulatorConfiguration[] emulatorList = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id == emulator).ToArray();
+            if (emulatorList.Length == 0)
             {
                 return;
             }
@@ -269,21 +268,20 @@ namespace Arcade
             // Marquee setup
             if (thisChildren.Count > 0)
             {
-                Texture2D tex = null;
-                List<Texture2D> textureList = new List<Texture2D>();
-                string url = null;
                 // image and image cylcing (cycling with id_*.ext)
-                textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.marqueePath), id);
+                List<Texture2D> textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.marqueePath), id);
                 if (textureList.Count < 1)
                 {
                     textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.marqueePath), idParent);
                 }
+
                 // video
-                url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.marqueePath), id);
+                string url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.marqueePath), id);
                 if (url == null)
                 {
                     url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.marqueePath), idParent);
                 }
+
                 // if we only have one or zero images we dont have to setup videoplayer/image cycling
                 if (url == null && textureList.Count <= 1)
                 {
@@ -292,8 +290,8 @@ namespace Arcade
                     {
                         marquee = thisChildren[0].AddComponent<ModelImageSetup>();
                     }
-                    if (textureList.Count > 0)
-                    { tex = textureList[0]; }
+
+                    Texture2D tex = textureList.Count > 0 ? textureList[0] : null;
                     marquee.Setup(tex, modelSharedProperties.renderSettings, modelProperties, (gameObject.CompareTag("gamemodel") || gameObject.CompareTag("propmodel") ? ModelComponentType.Marquee : ModelComponentType.Generic));
                 }
                 else
@@ -305,14 +303,13 @@ namespace Arcade
             // Screen setup
             if (thisChildren.Count > 1)
             {
-                List<Texture2D> textureList = new List<Texture2D>();
-                string url = null;
                 // image and image cycling (cycling with id_*.ext)
-                textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.screenPath), id);
+                List<Texture2D> textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.screenPath), id);
                 if (textureList.Count < 1)
                 {
                     textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.screenPath), idParent);
                 }
+
                 if (textureList.Count <= 1)
                 {
                     List<Texture2D> tList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.titlePath), id);
@@ -326,8 +323,9 @@ namespace Arcade
                     }
 
                 }
+
                 // video
-                url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.screenPath), id);
+                string url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.screenPath), id);
                 if (url == null)
                 {
                     url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.screenPath), idParent);
@@ -346,20 +344,20 @@ namespace Arcade
             // Generic Texture setup
             if (thisChildren.Count > 2)
             {
-                List<Texture2D> textureList = new List<Texture2D>();
-                string url = null;
                 // image and image cycling (cycling with id_*.ext)
-                textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.genericPath), id);
+                List<Texture2D> textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.genericPath), id);
                 if (textureList.Count < 1)
                 {
                     textureList = FileManager.LoadImagesFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.genericPath), idParent);
                 }
+
                 // video
-                url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.genericPath), id);
+                string url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.genericPath), id);
                 if (url == null)
                 {
                     url = FileManager.GetVideoPathFromFolder(ArcadeManager.applicationPath + FileManager.CorrectFilePath(emulatorSelected.genericPath), idParent);
                 }
+
                 // if we only have one or zero images we dont have to setup videoplayer/image cycling
                 if (url == null && textureList.Count == 1)
                 {
@@ -385,6 +383,7 @@ namespace Arcade
             {
                 modelVideoSetup = child.AddComponent<ModelVideoSetup>();
             }
+
             UnityEngine.Video.VideoPlayer video = child.GetComponent<UnityEngine.Video.VideoPlayer>();
             AudioSource taudio = child.GetComponent<AudioSource>();
             if (taudio == null && modelSharedProperties.spatialSound == true)
@@ -402,6 +401,7 @@ namespace Arcade
                     taudio.SetCustomCurve(AudioSourceCurveType.CustomRolloff, volumeCurve);
                 }
             }
+
             if (video == null)
             {
                 if (url != null)
@@ -423,6 +423,7 @@ namespace Arcade
                     }
                 }
             }
+
             if (video != null)
             {
                 video.Pause();
@@ -433,6 +434,7 @@ namespace Arcade
                 }
                 video.enabled = false;
             }
+
             if (modelVideoSetup != null)
             {
                 modelVideoSetup.Setup(textureList, url, animatedTextureSpeed, modelComponentType, GetModelProperties(), modelSharedProperties);
@@ -444,7 +446,7 @@ namespace Arcade
             // Add rigidbody to gameObject
             if (rigid == null)
             {
-                rigid = gameObject.GetComponent(typeof(Rigidbody)) as Rigidbody;
+                rigid = GetComponent<Rigidbody>();
                 if (rigid == null)
                 {
                     rigid = gameObject.AddComponent<Rigidbody>();
@@ -452,21 +454,19 @@ namespace Arcade
                 }
             }
 
-            MeshCollider tMeshCollider = gameObject.GetComponent(typeof(MeshCollider)) as MeshCollider;
-            MeshCollider tChildrenMeshColliders = gameObject.GetComponentInChildren(typeof(MeshCollider)) as MeshCollider;
-            BoxCollider tChildrenBoxColliders = gameObject.GetComponentInChildren(typeof(BoxCollider)) as BoxCollider;
-            if (tMeshCollider != null || tChildrenMeshColliders != null || tChildrenBoxColliders != null)
+            if (GetComponent<MeshCollider>() != null || GetComponentInChildren<MeshCollider>() != null || GetComponentInChildren<BoxCollider>() != null)
             {
                 return;
             }
-            boxCol = gameObject.GetComponent(typeof(BoxCollider)) as BoxCollider;
+
+            boxCol = gameObject.GetComponent<BoxCollider>();
             if (boxCol == null)
             {
                 boxCol = gameObject.AddComponent<BoxCollider>();
             }
-            Transform t = gameObject.transform;
-            t.transform.position = new Vector3(0, 0, 0);
-            Renderer[] rr = t.GetComponentsInChildren<Renderer>();
+
+            transform.position = new Vector3(0, 0, 0);
+            Renderer[] rr = GetComponentsInChildren<Renderer>();
             Bounds b = rr[0].bounds;
             foreach (Renderer r in rr)
             {
@@ -482,16 +482,19 @@ namespace Arcade
             {
                 _ = ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
             }
+
             List<EmulatorConfiguration> emulatorConfiguration = ArcadeManager.emulatorsConfigurationList.Where(x => x.emulator.id == emulatorID).ToList();
             if (emulatorConfiguration.Count < 1)
             {
                 return;
             }
+
             List<ModelProperties> modelList = emulatorConfiguration[0].masterGamelist.Where(x => x.id.ToLower() == nameID.ToLower()).ToList();
             if (modelList.Count < 1)
             {
                 return;
             }
+
             ModelProperties modelProperties = modelList[0];
             SetModelProperties(modelProperties);
         }

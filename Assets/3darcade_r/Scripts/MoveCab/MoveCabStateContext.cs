@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
@@ -28,21 +29,17 @@ namespace Arcade_r
     {
         public PlayerControls PlayerControls { get; private set; }
         public Camera Camera { get; private set; }
-
         public MoveCab.Data Data { get; private set; }
         public MoveCab.Input Input { get; private set; }
-
         public LayerMask RaycastLayers { get; private set; }
 
         public MoveCabStateContext(PlayerControls playerControls, Camera camera)
         {
             PlayerControls = playerControls;
             Camera         = camera;
-
-            Data  = new MoveCab.Data();
-            Input = new MoveCab.Input();
-
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            Data           = new MoveCab.Data();
+            Input          = new MoveCab.Input();
+            RaycastLayers  = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
 
         public override void TransitionTo<T>()
@@ -60,6 +57,7 @@ namespace Arcade_r
             else
             {
                 T newMoveCabState = System.Activator.CreateInstance(typeof(T), new object[] { this }) as T;
+                Assert.IsTrue(newMoveCabState is MoveCabState);
                 _allStates.Add(newMoveCabState);
                 TransitionTo<T>();
             }

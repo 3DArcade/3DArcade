@@ -37,9 +37,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 
             if(clampVerticalRotation)
+            {
                 m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
+            }
 
-            if(smooth)
+            if (smooth)
             {
                 character.localRotation = Quaternion.Slerp (character.localRotation, m_CharacterTargetRot,
                     smoothTime * Time.deltaTime);

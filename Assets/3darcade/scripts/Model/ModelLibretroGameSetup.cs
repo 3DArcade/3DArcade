@@ -55,7 +55,11 @@ namespace Arcade
             //    }
             //}
 
-            if (useRunLoop) { return; }
+            if (useRunLoop)
+            {
+                return;
+            }
+
             if (activateGraphics)
             {
                 ActivateGraphics();

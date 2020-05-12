@@ -140,16 +140,25 @@ namespace Arcade
         {
             ModelSetup modelSetup = root.GetComponent<ModelSetup>();
             if (modelSetup == null)
-            { return; }
+            {
+                return;
+            }
+
             PrefabLightmapData prefabLightmapData = root.GetComponent<PrefabLightmapData>();
             if (prefabLightmapData == null)
-            { return; }
+            {
+                return;
+            }
+
             List<RendererInfo> rendererInfos = new List<RendererInfo>();
             List<Texture2D> lightmaps = new List<Texture2D>();
             MeshRenderer[] renderers = root.GetComponentsInChildren<MeshRenderer>();
             print("Renderers count " + renderers.Length);
             if (renderers.Length < 1)
-            { return; }
+            {
+                return;
+            }
+
             foreach (MeshRenderer renderer in renderers)
             {
                 if (renderer.lightmapIndex != -1)

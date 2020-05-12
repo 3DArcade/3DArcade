@@ -28,45 +28,60 @@ namespace Arcade_r
     {
         private readonly MoveCabStateContext _moveCabStateContext;
 
-        public PlayerMoveCabState(PlayerStateContext stateController, PlayerControls playerControls, Camera camera)
-        : base(stateController, playerControls, camera)
+        public PlayerMoveCabState(PlayerStateContext stateController)
+        : base(stateController)
         {
-            _moveCabStateContext = new MoveCabStateContext(playerControls, camera);
+            _moveCabStateContext = new MoveCabStateContext(_stateContext.PlayerControls, _stateContext.Camera);
         }
 
         public override void OnEnter()
         {
             Debug.Log("<color=green>Entered</color> PlayerMoveCabState");
 
-            _playerControls.EnableMovement      = true;
-            _playerControls.EnableLook          = !Cursor.visible;
-            _playerControls.EnableInteract      = true;
-            _playerControls.EnableToggleMoveCab = true;
-            _playerControls.InputActions.FPSMoveCab.Enable();
+            _stateContext.PlayerControls.InputActions.FPSControls.Enable();
+            if (Cursor.visible)
+            {
+                _stateContext.PlayerControls.InputActions.FPSControls.Look.Disable();
+            }
+            _stateContext.PlayerControls.InputActions.FPSControls.Interact.Disable();
 
-            _moveCabStateContext.TransitionTo<MoveCabAimState>();
+            if (Cursor.visible)
+            {
+                _moveCabStateContext.TransitionTo<MoveCabFromCursorState>();
+            }
+            else
+            {
+                _moveCabStateContext.TransitionTo<MoveCabFromViewState>();
+            }
+
+            _stateContext.PlayerControls.InputActions.FPSMoveCab.Enable();
         }
 
         public override void OnExit()
         {
             Debug.Log("<color=orange>Exited</color> PlayerMoveCabState");
 
-            _playerControls.EnableMovement      = false;
-            _playerControls.EnableLook          = !Cursor.visible;
-            _playerControls.EnableInteract      = false;
-            _playerControls.EnableToggleMoveCab = false;
-            _playerControls.InputActions.FPSMoveCab.Disable();
+            _stateContext.PlayerControls.InputActions.FPSControls.Disable();
+
+            _stateContext.PlayerControls.InputActions.FPSMoveCab.Disable();
         }
 
         public override void OnUpdate(float dt)
         {
-            if (_playerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
+            if (_stateContext.PlayerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
-                _playerControls.EnableLook = !_playerControls.EnableLook;
+                if (!Cursor.visible)
+                {
+                    _stateContext.PlayerControls.InputActions.FPSControls.Look.Enable();
+                }
+                else
+                {
+                    _stateContext.PlayerControls.InputActions.FPSControls.Look.Disable();
+                }
             }
 
-            if (_playerControls.InputActions.GlobalControls.Quit.triggered || _playerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
+            if (_stateContext.PlayerControls.InputActions.GlobalControls.Quit.triggered || _stateContext.PlayerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
             {
                 _stateContext.TransitionTo<PlayerNormalState>();
             }

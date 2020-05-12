@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Arcade_r
 {
@@ -37,24 +38,36 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log("<color=green>Entered</color> MoveCabGrabState");
+            Debug.Log("  <color=green>Entered</color> MoveCabGrabState");
+
             _savedValues = MoveCab.InitGrabMode(_stateContext.Data, _stateContext.Camera);
         }
 
         public override void OnExit()
         {
-            Debug.Log("<color=orange>Exited</color> MoveCabGrabState");
+            Debug.Log("  <color=orange>Exited</color> MoveCabGrabState");
+
             MoveCab.RestoreSavedValues(_stateContext.Data, _savedValues);
             _savedValues = null;
         }
 
         public override void OnUpdate(float dt)
         {
-            MoveCab.AutoMoveAndRotate(_stateContext.Data, _stateContext.Camera, _stateContext.PlayerControls.transform.forward, _raycastMaxDistance, _stateContext.RaycastLayers);
+            bool useMousePosition = Mouse.current != null && Cursor.visible;
+            Vector2 rayPosition = useMousePosition ? Mouse.current.position.ReadValue() : _stateContext.Data.ScreenPoint;
+            Ray ray = _stateContext.Camera.ScreenPointToRay(rayPosition);
+            MoveCab.AutoMoveAndRotate(_stateContext.Data, ray, _stateContext.PlayerControls.transform.forward, _raycastMaxDistance, _stateContext.RaycastLayers);
 
-            if (_stateContext.PlayerControls.InputActions.FPSControls.Interact.triggered)
+            if (_stateContext.PlayerControls.InputActions.FPSMoveCab.GrabRelease.triggered)
             {
-                _stateContext.TransitionTo<MoveCabAimState>();
+                if (Cursor.visible && Mouse.current != null)
+                {
+                    _stateContext.TransitionTo<MoveCabFromCursorState>();
+                }
+                else
+                {
+                    _stateContext.TransitionTo<MoveCabFromViewState>();
+                }
             }
         }
     }

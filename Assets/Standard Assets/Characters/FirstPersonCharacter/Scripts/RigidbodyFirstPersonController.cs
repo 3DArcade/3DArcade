@@ -26,8 +26,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             public void UpdateDesiredTargetSpeed(Vector2 input)
             {
-	            if (input == Vector2.zero) return;
-				if (input.x > 0 || input.x < 0)
+	            if (input == Vector2.zero)
+                {
+                    return;
+                }
+
+                if (input.x > 0 || input.x < 0)
 				{
 					//strafe
 					CurrentTargetSpeed = StrafeSpeed;
@@ -240,7 +244,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void RotateView()
         {
             //avoids the mouse looking if the game is effectively paused
-            if (Mathf.Abs(Time.timeScale) < float.Epsilon) return;
+            if (Mathf.Abs(Time.timeScale) < float.Epsilon)
+            {
+                return;
+            }
 
             // get the rotation before it's changed
             float oldYRotation = transform.eulerAngles.y;
