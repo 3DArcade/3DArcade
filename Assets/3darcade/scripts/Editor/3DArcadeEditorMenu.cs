@@ -432,11 +432,17 @@ namespace Arcade
         {
             Debug.Log("show");
             if (obj == null)
-            { return; }
+            {
+                return;
+            }
+
             Debug.Log("me " + obj.name);
             modelSetup = obj.GetComponent<ModelSetup>();
             if (modelSetup == null)
-            { return; }
+            {
+                return;
+            }
+
             modelType = ModelType.Game;
             if (obj.CompareTag("arcademodel"))
             { modelType = ModelType.Arcade; }

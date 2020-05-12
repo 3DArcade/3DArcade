@@ -26,31 +26,33 @@ namespace Arcade_r
 {
     public class PlayerNormalState : PlayerState
     {
+        private readonly LayerMask _raycastLayers;
         private readonly float _raycastMaxDistance = 2.5f;
 
         private ModelSetup _currentModelSetup;
 
-        public PlayerNormalState(PlayerStateContext stateController, PlayerControls playerControls, Camera camera)
-        : base(stateController, playerControls, camera)
+        public PlayerNormalState(PlayerStateContext stateContext)
+        : base(stateContext)
         {
+            _raycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
 
         public override void OnEnter()
         {
             Debug.Log("<color=green>Entered</color> PlayerNormalState");
-            _playerControls.EnableMovement      = true;
-            _playerControls.EnableLook          = !Cursor.visible;
-            _playerControls.EnableInteract      = true;
-            _playerControls.EnableToggleMoveCab = true;
+
+            _stateContext.PlayerControls.InputActions.FPSControls.Enable();
+            if (Cursor.visible)
+            {
+                _stateContext.PlayerControls.InputActions.FPSControls.Look.Disable();
+            }
         }
 
         public override void OnExit()
         {
             Debug.Log("<color=orange>Exited</color> PlayerNormalState");
-            _playerControls.EnableMovement      = false;
-            _playerControls.EnableLook          = !Cursor.visible;
-            _playerControls.EnableInteract      = false;
-            _playerControls.EnableToggleMoveCab = false;
+
+            _stateContext.PlayerControls.InputActions.FPSControls.Disable();
         }
 
         public override void OnUpdate(float dt)
@@ -60,20 +62,27 @@ namespace Arcade_r
                 GetCurrentModelSetup();
             }
 
-            if (_playerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
+            if (_stateContext.PlayerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
-                _playerControls.EnableLook = !_playerControls.EnableLook;
+                if (!Cursor.visible)
+                {
+                    _stateContext.PlayerControls.InputActions.FPSControls.Look.Enable();
+                }
+                else
+                {
+                    _stateContext.PlayerControls.InputActions.FPSControls.Look.Disable();
+                }
             }
 
-            if (_playerControls.InputActions.GlobalControls.Quit.triggered)
+            if (_stateContext.PlayerControls.InputActions.GlobalControls.Quit.triggered)
             {
                 Utils.ExitApp();
             }
 
             if (!Cursor.visible)
             {
-                if (_playerControls.InputActions.FPSControls.Interact.triggered)
+                if (_stateContext.PlayerControls.InputActions.FPSControls.Interact.triggered)
                 {
                     if (_currentModelSetup != null && _currentModelSetup is Interaction.IInteractable interactable)
                     {
@@ -82,7 +91,7 @@ namespace Arcade_r
                 }
             }
 
-            if (_playerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
+            if (_stateContext.PlayerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
             {
                 _stateContext.TransitionTo<PlayerMoveCabState>();
             }
@@ -90,7 +99,7 @@ namespace Arcade_r
 
         private void GetCurrentModelSetup()
         {
-            Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
+            Ray ray = _stateContext.Camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
             if (Physics.Raycast(ray, out RaycastHit hitInfo, _raycastMaxDistance, _raycastLayers))
             {
                 ModelSetup targetModel = hitInfo.transform.GetComponent<ModelSetup>();

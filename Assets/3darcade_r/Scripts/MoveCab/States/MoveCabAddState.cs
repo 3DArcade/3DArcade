@@ -37,7 +37,7 @@ namespace Arcade_r
         {
             Debug.Log("<color=green>Entered</color> MoveCabAddState");
             MoveCab.AddModelSetup(_stateContext.Camera, _stateContext.PlayerControls.transform.position, _stateContext.PlayerControls.transform.forward, _raycastMaxDistance, _stateContext.RaycastLayers);
-            _stateContext.TransitionTo<MoveCabAimState>();
+            _stateContext.TransitionTo<MoveCabFromViewState>();
         }
 
         public override void OnExit()

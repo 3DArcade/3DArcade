@@ -37,74 +37,6 @@ namespace Arcade_r
         [SerializeField] private float _maxVerticalLookAngle = 89f;
         [SerializeField] private float _extraGravity         = 40f;
 
-        public bool EnableMovement
-        {
-            get => InputActions.FPSControls.Movement.enabled;
-            set
-            {
-                if (value)
-                {
-                    InputActions.FPSControls.Movement.Enable();
-                    InputActions.FPSControls.Sprint.Enable();
-                    InputActions.FPSControls.Jump.Enable();
-                }
-                else
-                {
-                    InputActions.FPSControls.Movement.Disable();
-                    InputActions.FPSControls.Sprint.Disable();
-                    InputActions.FPSControls.Jump.Disable();
-                }
-            }
-        }
-
-        public bool EnableLook
-        {
-            get => InputActions.FPSControls.Look.enabled;
-            set
-            {
-                if (value)
-                {
-                    InputActions.FPSControls.Look.Enable();
-                }
-                else
-                {
-                    InputActions.FPSControls.Look.Disable();
-                }
-            }
-        }
-
-        public bool EnableInteract
-        {
-            get => InputActions.FPSControls.Interact.enabled;
-            set
-            {
-                if (value)
-                {
-                    InputActions.FPSControls.Interact.Enable();
-                }
-                else
-                {
-                    InputActions.FPSControls.Interact.Disable();
-                }
-            }
-        }
-
-        public bool EnableToggleMoveCab
-        {
-            get => InputActions.FPSControls.ToggleMoveCab.enabled;
-            set
-            {
-                if (value)
-                {
-                    InputActions.FPSControls.ToggleMoveCab.Enable();
-                }
-                else
-                {
-                    InputActions.FPSControls.ToggleMoveCab.Disable();
-                }
-            }
-        }
-
         public InputSettingsActions InputActions { get; private set; }
 
         private CharacterController _characterController = null;
@@ -151,13 +83,13 @@ namespace Arcade_r
         {
             _modifierIsDown_TEMP = InputActions.GlobalControls.TempModifierWorkaround.ReadValue<float>() > 0.5f;
 
-            if (EnableMovement)
+            if (InputActions.FPSControls.Movement.enabled)
             {
-                GatheMovementInputValues();
+                GatherMovementInputValues();
             }
             HandleMovement();
 
-            if (EnableLook)
+            if (InputActions.FPSControls.Look.enabled)
             {
                 GatherLookInputValues();
                 HandleLook();
@@ -166,7 +98,7 @@ namespace Arcade_r
             YouAreNotSupposedToBeHere();
         }
 
-        private void GatheMovementInputValues()
+        private void GatherMovementInputValues()
         {
             _movementInputValue = InputActions.FPSControls.Movement.ReadValue<Vector2>();
             _sprinting          = !_modifierIsDown_TEMP && InputActions.FPSControls.Sprint.ReadValue<float>() > 0f;

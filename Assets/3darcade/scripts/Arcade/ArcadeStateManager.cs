@@ -1191,7 +1191,10 @@ namespace Arcade
                 {
                     GameObject objectHitParent = objectHit.transform.parent.gameObject;
                     if (objectHitParent != null && objectHitParent == selectZoneModel)
-                    { return; }
+                    {
+                        return;
+                    }
+
                     selectZoneModel = objectHitParent;
 
                     ModelSetup modelSetup = objectHitParent.GetComponent<ModelSetup>();

@@ -312,7 +312,10 @@ namespace Arcade
         {
             visible = true;
             if (videoPlayer == null)
-            { return; }
+            {
+                return;
+            }
+
             if (videoEnabled == ModelVideoEnabled.VisiblePlay)
             {
                 videoPlayer.Play();
@@ -333,7 +336,9 @@ namespace Arcade
         {
             visible = false;
             if (videoPlayer == null)
-            { return; }
+            {
+                return;
+            }
 
             if (videoEnabled == ModelVideoEnabled.VisiblePlay)
             {
@@ -370,10 +375,15 @@ namespace Arcade
                 {
                     setupVideoAfterGameDisable = false;
                     if (videoPlayer == null)
-                    { return; }
+                    {
+                        return;
+                    }
                     // videoPlayer.enabled = false; // TODO: Why did i have that here???
                     if (videoEnabled == ModelVideoEnabled.Never)
-                    { return; }
+                    {
+                        return;
+                    }
+
                     videoPlayer.enabled = true;
                     videoPlayer.Play();
                     return;
@@ -474,12 +484,19 @@ namespace Arcade
             }
 
             if (videoPlayer == null)
-            { return; }
+            {
+                return;
+            }
+
             if (!videoPlayer.isPlaying)
-            { return; }
+            {
+                return;
+            }
 
             if (modelSharedProperties.spatialSound)
-            { return; }
+            {
+                return;
+            }
 
             // Fake sound by distance.
             //float max = 10f;

@@ -34,11 +34,20 @@ namespace Arcade
         void Update()
         {
             if (!setupFinished)
-            { return; }
+            {
+                return;
+            }
+
             if (arcadeType == ArcadeType.CylArcade && !(ArcadeManager.arcadeState == ArcadeStates.Running && ArcadeManager.activeArcadeType == ArcadeType.CylArcade))
-            { return; }
+            {
+                return;
+            }
+
             if (arcadeType == ArcadeType.CylMenu && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu && ArcadeManager.activeMenuType == ArcadeType.CylMenu))
-            { return; }
+            {
+                return;
+            }
+
             thisCamera.transform.rotation = Quaternion.Lerp(thisCamera.transform.rotation, dummyCameraTransform.transform.rotation, timer);
             thisCamera.transform.position = Vector3.Lerp(thisCamera.transform.position, dummyCameraTransform.transform.position, timer);
 
@@ -66,7 +75,10 @@ namespace Arcade
                 }
                 jumps += 1;
                 if (jumps < jumpsCount)
-                { return; }
+                {
+                    return;
+                }
+
                 jump = false;
             }
             jumpsCount = 0;
@@ -244,7 +256,10 @@ namespace Arcade
         public void UpdateCamera()
         {
             if (!setupFinished)
-            { return; }
+            {
+                return;
+            }
+
             Vector3 direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
             direction.y = 0;
             dummyCameraTransform.transform.position = objects[cylArcadeProperties.selectedSprocket].transform.position;
@@ -261,7 +276,10 @@ namespace Arcade
         void UpdateCameraDistance()
         {
             if (!setupFinished)
-            { return; }
+            {
+                return;
+            }
+
             Vector3 direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
             direction.y = 0;
             thisCamera.transform.position = objects[cylArcadeProperties.selectedSprocket].transform.position;

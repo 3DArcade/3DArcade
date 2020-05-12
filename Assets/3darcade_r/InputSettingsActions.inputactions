@@ -331,7 +331,7 @@
                 },
                 {
                     "name": "",
-                    "id": "e1fd1b17-d3f9-4457-b0d7-88b7ec5e2877",
+                    "id": "20db50ba-9db8-4968-b4fd-b8259ce69367",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -539,6 +539,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "GrabRelease",
+                    "type": "Button",
+                    "id": "da98b889-a257-4260-bdb7-c2d25d037c14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "AddModel",
                     "type": "Button",
                     "id": "3b4cdfb5-a154-4ec7-af71-6918230a09a7",
@@ -690,69 +698,37 @@
                     "action": "AddModel",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "FPSMoveCabGrabbed",
-            "id": "d39c6cf3-cb5a-4286-ba04-3386a0e7350e",
-            "actions": [
-                {
-                    "name": "StickToSurfaces",
-                    "type": "Button",
-                    "id": "c42c72b1-c6eb-4cac-92e8-2634f56d9392",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 },
-                {
-                    "name": "Drop",
-                    "type": "Button",
-                    "id": "ddbf0222-6f00-4139-9ca8-76b449760bd1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Throw",
-                    "type": "Button",
-                    "id": "1a9c5dd8-034a-4f18-bcfa-d66b891a0e42",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "1060f35a-dcf3-40be-a2b7-d658ff9cd346",
-                    "path": "",
+                    "id": "0990e09d-e138-4b42-8abe-72a9e4b5a367",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "StickToSurfaces",
+                    "groups": "Keyboard & Mouse",
+                    "action": "GrabRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b439dec8-e337-49c0-a119-33a9e29e2470",
-                    "path": "",
+                    "id": "6741b1b1-5301-4dc5-81f1-d07abd193117",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Throw",
+                    "groups": "Keyboard & Mouse",
+                    "action": "GrabRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c97bcb58-f937-44fe-83a2-e9f2b27543c3",
-                    "path": "",
+                    "id": "803e54e5-a269-486a-aa6a-8789717c70f5",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Drop",
+                    "groups": "Gamepad",
+                    "action": "GrabRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

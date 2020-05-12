@@ -27,9 +27,13 @@ namespace UnityEngine.UI
             set
             {
                 if(value != null)
+                {
                     dataSource = new LoopScrollArraySource<object>(value);
+                }
                 else
+                {
                     dataSource = LoopScrollSendIndexSource.Instance;
+                }
             }
         }
 
@@ -168,10 +172,16 @@ namespace UnityEngine.UI
             set
             {
                 if (m_HorizontalScrollbar)
+                {
                     m_HorizontalScrollbar.onValueChanged.RemoveListener(SetHorizontalNormalizedPosition);
+                }
+
                 m_HorizontalScrollbar = value;
                 if (m_HorizontalScrollbar)
+                {
                     m_HorizontalScrollbar.onValueChanged.AddListener(SetHorizontalNormalizedPosition);
+                }
+
                 SetDirtyCaching();
             }
         }
@@ -187,10 +197,16 @@ namespace UnityEngine.UI
             set
             {
                 if (m_VerticalScrollbar)
+                {
                     m_VerticalScrollbar.onValueChanged.RemoveListener(SetVerticalNormalizedPosition);
+                }
+
                 m_VerticalScrollbar = value;
                 if (m_VerticalScrollbar)
+                {
                     m_VerticalScrollbar.onValueChanged.AddListener(SetVerticalNormalizedPosition);
+                }
+
                 SetDirtyCaching();
             }
         }
@@ -226,9 +242,15 @@ namespace UnityEngine.UI
             get
             {
                 if (m_ViewRect == null)
+                {
                     m_ViewRect = m_Viewport;
+                }
+
                 if (m_ViewRect == null)
+                {
                     m_ViewRect = (RectTransform)transform;
+                }
+
                 return m_ViewRect;
             }
         }
@@ -259,7 +281,10 @@ namespace UnityEngine.UI
             get
             {
                 if (m_Rect == null)
+                {
                     m_Rect = GetComponent<RectTransform>();
+                }
+
                 return m_Rect;
             }
         }
@@ -330,9 +355,13 @@ namespace UnityEngine.UI
                         var m_ItemBounds = GetBounds4Item(index);
                         var offset = 0.0f;
                         if (directionSign == -1)
+                        {
                             offset = reverseDirection ? (m_ViewBounds.min.y - m_ItemBounds.min.y) : (m_ViewBounds.max.y - m_ItemBounds.max.y);
+                        }
                         else if (directionSign == 1)
+                        {
                             offset = reverseDirection ? (m_ItemBounds.max.x - m_ViewBounds.max.x) : (m_ItemBounds.min.x - m_ViewBounds.min.x);
+                        }
                         // check if we cannot move on
                         if (totalCount >= 0)
                         {
@@ -366,7 +395,9 @@ namespace UnityEngine.UI
                             move = offset;
                          }
                          else
+                        {
                             move = Mathf.Sign(offset) * maxMove;
+                        }
                     }
                     if (move != 0)
                     {
@@ -406,14 +437,18 @@ namespace UnityEngine.UI
         public void RefillCellsFromEnd(int offset = 0)
         {
             if (!Application.isPlaying || prefabSource == null)
+            {
                 return;
-            
+            }
+
             StopMovement();
             itemTypeEnd = reverseDirection ? offset : totalCount - offset;
             itemTypeStart = itemTypeEnd;
 
             if (totalCount >= 0 && itemTypeStart % contentConstraintCount != 0)
+            {
                 Debug.LogWarning("Grid will become strange since we can't fill items in the last line");
+            }
 
             for (int i = m_Content.childCount - 1; i >= 0; i--)
             {
@@ -422,39 +457,59 @@ namespace UnityEngine.UI
 
             float sizeToFill = 0, sizeFilled = 0;
             if (directionSign == -1)
+            {
                 sizeToFill = viewRect.rect.size.y;
+            }
             else
+            {
                 sizeToFill = viewRect.rect.size.x;
-            
-            while(sizeToFill > sizeFilled)
+            }
+
+            while (sizeToFill > sizeFilled)
             {
                 float size = reverseDirection ? NewItemAtEnd() : NewItemAtStart();
-                if(size <= 0) break;
+                if(size <= 0)
+                {
+                    break;
+                }
+
                 sizeFilled += size;
             }
 
             Vector2 pos = m_Content.anchoredPosition;
             float dist = Mathf.Max(0, sizeFilled - sizeToFill);
             if (reverseDirection)
+            {
                 dist = -dist;
+            }
+
             if (directionSign == -1)
+            {
                 pos.y = dist;
+            }
             else if (directionSign == 1)
+            {
                 pos.x = -dist;
+            }
+
             m_Content.anchoredPosition = pos;
         }
 
         public void RefillCells(int offset = 0)
         {
             if (!Application.isPlaying || prefabSource == null)
+            {
                 return;
+            }
 
             StopMovement();
             itemTypeStart = reverseDirection ? totalCount - offset : offset;
             itemTypeEnd = itemTypeStart;
 
             if (totalCount >= 0 && itemTypeStart % contentConstraintCount != 0)
+            {
                 Debug.LogWarning("Grid will become strange since we can't fill items in the first line");
+            }
 
             // Don't `Canvas.ForceUpdateCanvases();` here, or it will new/delete cells to change itemTypeStart/End
             for (int i = m_Content.childCount - 1; i >= 0; i--)
@@ -465,22 +520,35 @@ namespace UnityEngine.UI
             float sizeToFill = 0, sizeFilled = 0;
             // m_ViewBounds may be not ready when RefillCells on Start
             if (directionSign == -1)
+            {
                 sizeToFill = viewRect.rect.size.y;
+            }
             else
+            {
                 sizeToFill = viewRect.rect.size.x;
-            
-            while(sizeToFill > sizeFilled)
+            }
+
+            while (sizeToFill > sizeFilled)
             {
                 float size = reverseDirection ? NewItemAtStart() : NewItemAtEnd();
-                if(size <= 0) break;
+                if(size <= 0)
+                {
+                    break;
+                }
+
                 sizeFilled += size;
             }
 
             Vector2 pos = m_Content.anchoredPosition;
             if (directionSign == -1)
+            {
                 pos.y = 0;
+            }
             else if (directionSign == 1)
+            {
                 pos.x = 0;
+            }
+
             m_Content.anchoredPosition = pos;
         }
 
@@ -666,9 +734,14 @@ namespace UnityEngine.UI
             base.OnEnable();
 
             if (m_HorizontalScrollbar)
+            {
                 m_HorizontalScrollbar.onValueChanged.AddListener(SetHorizontalNormalizedPosition);
+            }
+
             if (m_VerticalScrollbar)
+            {
                 m_VerticalScrollbar.onValueChanged.AddListener(SetVerticalNormalizedPosition);
+            }
 
             CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
         }
@@ -678,9 +751,14 @@ namespace UnityEngine.UI
             CanvasUpdateRegistry.UnRegisterCanvasElementForRebuild(this);
 
             if (m_HorizontalScrollbar)
+            {
                 m_HorizontalScrollbar.onValueChanged.RemoveListener(SetHorizontalNormalizedPosition);
+            }
+
             if (m_VerticalScrollbar)
+            {
                 m_VerticalScrollbar.onValueChanged.RemoveListener(SetVerticalNormalizedPosition);
+            }
 
             m_HasRebuiltLayout = false;
             m_Tracker.Clear();
@@ -697,7 +775,9 @@ namespace UnityEngine.UI
         private void EnsureLayoutHasRebuilt()
         {
             if (!m_HasRebuiltLayout && !CanvasUpdateRegistry.IsRebuildingLayout())
+            {
                 Canvas.ForceUpdateCanvases();
+            }
         }
 
         public virtual void StopMovement()
@@ -708,7 +788,9 @@ namespace UnityEngine.UI
         public virtual void OnScroll(PointerEventData data)
         {
             if (!IsActive())
+            {
                 return;
+            }
 
             EnsureLayoutHasRebuilt();
             UpdateBounds();
@@ -719,20 +801,28 @@ namespace UnityEngine.UI
             if (vertical && !horizontal)
             {
                 if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+                {
                     delta.y = delta.x;
+                }
+
                 delta.x = 0;
             }
             if (horizontal && !vertical)
             {
                 if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x))
+                {
                     delta.x = delta.y;
+                }
+
                 delta.y = 0;
             }
 
             Vector2 position = m_Content.anchoredPosition;
             position += delta * m_ScrollSensitivity;
             if (m_MovementType == MovementType.Clamped)
+            {
                 position += CalculateOffset(position - m_Content.anchoredPosition);
+            }
 
             SetContentAnchoredPosition(position);
             UpdateBounds();
@@ -741,7 +831,9 @@ namespace UnityEngine.UI
         public virtual void OnInitializePotentialDrag(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left)
+            {
                 return;
+            }
 
             m_Velocity = Vector2.zero;
         }
@@ -749,10 +841,14 @@ namespace UnityEngine.UI
         public virtual void OnBeginDrag(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left)
+            {
                 return;
+            }
 
             if (!IsActive())
+            {
                 return;
+            }
 
             UpdateBounds();
 
@@ -765,7 +861,9 @@ namespace UnityEngine.UI
         public virtual void OnEndDrag(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left)
+            {
                 return;
+            }
 
             m_Dragging = false;
         }
@@ -773,14 +871,20 @@ namespace UnityEngine.UI
         public virtual void OnDrag(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left)
+            {
                 return;
+            }
 
             if (!IsActive())
+            {
                 return;
+            }
 
             Vector2 localCursor;
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(viewRect, eventData.position, eventData.pressEventCamera, out localCursor))
+            {
                 return;
+            }
 
             UpdateBounds();
 
@@ -794,9 +898,14 @@ namespace UnityEngine.UI
             {
                 //==========LoopScrollRect==========
                 if (offset.x != 0)
+                {
                     position.x = position.x - RubberDelta(offset.x, m_ViewBounds.size.x) * rubberScale;
+                }
+
                 if (offset.y != 0)
+                {
                     position.y = position.y - RubberDelta(offset.y, m_ViewBounds.size.y) * rubberScale;
+                }
                 //==========LoopScrollRect==========
             }
 
@@ -806,9 +915,14 @@ namespace UnityEngine.UI
         protected virtual void SetContentAnchoredPosition(Vector2 position)
         {
             if (!m_Horizontal)
+            {
                 position.x = m_Content.anchoredPosition.x;
+            }
+
             if (!m_Vertical)
+            {
                 position.y = m_Content.anchoredPosition.y;
+            }
 
             if (position != m_Content.anchoredPosition)
             {
@@ -820,7 +934,9 @@ namespace UnityEngine.UI
         protected virtual void LateUpdate()
         {
             if (!m_Content)
+            {
                 return;
+            }
 
             EnsureLayoutHasRebuilt();
             UpdateScrollbarVisibility();
@@ -844,7 +960,10 @@ namespace UnityEngine.UI
                     {
                         m_Velocity[axis] *= Mathf.Pow(m_DecelerationRate, deltaTime);
                         if (Mathf.Abs(m_Velocity[axis]) < 1)
+                        {
                             m_Velocity[axis] = 0;
+                        }
+
                         position[axis] += m_Velocity[axis] * deltaTime;
                     }
                     // If we have neither elaticity or friction, there shouldn't be any velocity.
@@ -883,9 +1002,14 @@ namespace UnityEngine.UI
         private void UpdatePrevData()
         {
             if (m_Content == null)
+            {
                 m_PrevPosition = Vector2.zero;
+            }
             else
+            {
                 m_PrevPosition = m_Content.anchoredPosition;
+            }
+
             m_PrevViewBounds = m_ViewBounds;
             m_PrevContentBounds = m_ContentBounds;
         }
@@ -901,7 +1025,9 @@ namespace UnityEngine.UI
                 }
                 //==========LoopScrollRect==========
                 else
+                {
                     m_HorizontalScrollbar.size = 1;
+                }
 
                 m_HorizontalScrollbar.value = horizontalNormalizedPosition;
             }
@@ -915,7 +1041,9 @@ namespace UnityEngine.UI
                 }
                 //==========LoopScrollRect==========
                 else
+                {
                     m_VerticalScrollbar.size = 1;
+                }
 
                 m_VerticalScrollbar.value = verticalNormalizedPosition;
             }
@@ -948,11 +1076,16 @@ namespace UnityEngine.UI
                     float offset = m_ContentBounds.min.x - elementSize * itemTypeStart;
 
                     if (totalSize <= m_ViewBounds.size.x)
+                    {
                         return (m_ViewBounds.min.x > offset) ? 1 : 0;
+                    }
+
                     return (m_ViewBounds.min.x - offset) / (totalSize - m_ViewBounds.size.x);
                 }
                 else
+                {
                     return 0.5f;
+                }
                 //==========LoopScrollRect==========
             }
             set
@@ -975,11 +1108,16 @@ namespace UnityEngine.UI
                     float offset = m_ContentBounds.max.y + elementSize * itemTypeStart;
 
                     if (totalSize <= m_ViewBounds.size.y)
+                    {
                         return (offset > m_ViewBounds.max.y) ? 1 : 0;
+                    }
+
                     return (offset - m_ViewBounds.max.y) / (totalSize - m_ViewBounds.size.y);
                 }
                 else
+                {
                     return 0.5f;
+                }
                 //==========LoopScrollRect==========
             }
             set
@@ -995,7 +1133,9 @@ namespace UnityEngine.UI
         {
             //==========LoopScrollRect==========
             if (totalCount <= 0 || itemTypeEnd <= itemTypeStart)
+            {
                 return;
+            }
             //==========LoopScrollRect==========
 
             EnsureLayoutHasRebuilt();
@@ -1046,7 +1186,10 @@ namespace UnityEngine.UI
             get
             {
                 if (Application.isPlaying)
+                {
                     return m_ContentBounds.size.x > m_ViewBounds.size.x + 0.01f;
+                }
+
                 return true;
             }
         }
@@ -1055,7 +1198,10 @@ namespace UnityEngine.UI
             get
             {
                 if (Application.isPlaying)
+                {
                     return m_ContentBounds.size.y > m_ViewBounds.size.y + 0.01f;
+                }
+
                 return true;
             }
         }
@@ -1135,10 +1281,14 @@ namespace UnityEngine.UI
         void UpdateScrollbarVisibility()
         {
             if (m_VerticalScrollbar && m_VerticalScrollbarVisibility != ScrollbarVisibility.Permanent && m_VerticalScrollbar.gameObject.activeSelf != vScrollingNeeded)
+            {
                 m_VerticalScrollbar.gameObject.SetActive(vScrollingNeeded);
+            }
 
             if (m_HorizontalScrollbar && m_HorizontalScrollbarVisibility != ScrollbarVisibility.Permanent && m_HorizontalScrollbar.gameObject.activeSelf != hScrollingNeeded)
+            {
                 m_HorizontalScrollbar.gameObject.SetActive(hScrollingNeeded);
+            }
         }
 
         void UpdateScrollbarLayout()
@@ -1154,9 +1304,13 @@ namespace UnityEngine.UI
                 m_HorizontalScrollbarRect.anchorMax = new Vector2(1, m_HorizontalScrollbarRect.anchorMax.y);
                 m_HorizontalScrollbarRect.anchoredPosition = new Vector2(0, m_HorizontalScrollbarRect.anchoredPosition.y);
                 if (vScrollingNeeded)
+                {
                     m_HorizontalScrollbarRect.sizeDelta = new Vector2(-(m_VSliderWidth + m_VerticalScrollbarSpacing), m_HorizontalScrollbarRect.sizeDelta.y);
+                }
                 else
+                {
                     m_HorizontalScrollbarRect.sizeDelta = new Vector2(0, m_HorizontalScrollbarRect.sizeDelta.y);
+                }
             }
 
             if (m_HSliderExpand && m_VerticalScrollbar)
@@ -1170,9 +1324,13 @@ namespace UnityEngine.UI
                 m_VerticalScrollbarRect.anchorMax = new Vector2(m_VerticalScrollbarRect.anchorMax.x, 1);
                 m_VerticalScrollbarRect.anchoredPosition = new Vector2(m_VerticalScrollbarRect.anchoredPosition.x, 0);
                 if (hScrollingNeeded)
+                {
                     m_VerticalScrollbarRect.sizeDelta = new Vector2(m_VerticalScrollbarRect.sizeDelta.x, -(m_HSliderHeight + m_HorizontalScrollbarSpacing));
+                }
                 else
+                {
                     m_VerticalScrollbarRect.sizeDelta = new Vector2(m_VerticalScrollbarRect.sizeDelta.x, 0);
+                }
             }
         }
 
@@ -1182,7 +1340,9 @@ namespace UnityEngine.UI
             m_ContentBounds = GetBounds();
 
             if (m_Content == null)
+            {
                 return;
+            }
 
             // ============LoopScrollRect============
             // Don't do this in Rebuild
@@ -1222,7 +1382,9 @@ namespace UnityEngine.UI
         private Bounds GetBounds()
         {
             if (m_Content == null)
+            {
                 return new Bounds();
+            }
 
             var vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
             var vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
@@ -1244,7 +1406,9 @@ namespace UnityEngine.UI
         private Bounds GetBounds4Item(int index)
         {
             if (m_Content == null)
+            {
                 return new Bounds();
+            }
 
             var vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
             var vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
@@ -1252,10 +1416,16 @@ namespace UnityEngine.UI
             var toLocal = viewRect.worldToLocalMatrix;
             int offset = index - itemTypeStart;
             if (offset < 0 || offset >= m_Content.childCount)
+            {
                 return new Bounds();
+            }
+
             var rt = m_Content.GetChild(offset) as RectTransform;
             if (rt == null)
+            {
                 return new Bounds();
+            }
+
             rt.GetWorldCorners(m_Corners);
             for (int j = 0; j < 4; j++)
             {
@@ -1273,7 +1443,9 @@ namespace UnityEngine.UI
         {
             Vector2 offset = Vector2.zero;
             if (m_MovementType == MovementType.Unrestricted)
+            {
                 return offset;
+            }
 
             Vector2 min = m_ContentBounds.min;
             Vector2 max = m_ContentBounds.max;
@@ -1283,9 +1455,13 @@ namespace UnityEngine.UI
                 min.x += delta.x;
                 max.x += delta.x;
                 if (min.x > m_ViewBounds.min.x)
+                {
                     offset.x = m_ViewBounds.min.x - min.x;
+                }
                 else if (max.x < m_ViewBounds.max.x)
+                {
                     offset.x = m_ViewBounds.max.x - max.x;
+                }
             }
 
             if (m_Vertical)
@@ -1293,9 +1469,13 @@ namespace UnityEngine.UI
                 min.y += delta.y;
                 max.y += delta.y;
                 if (max.y < m_ViewBounds.max.y)
+                {
                     offset.y = m_ViewBounds.max.y - max.y;
+                }
                 else if (min.y > m_ViewBounds.min.y)
+                {
                     offset.y = m_ViewBounds.min.y - min.y;
+                }
             }
 
             return offset;
@@ -1304,7 +1484,9 @@ namespace UnityEngine.UI
         protected void SetDirty()
         {
             if (!IsActive())
+            {
                 return;
+            }
 
             LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
         }
@@ -1312,7 +1494,9 @@ namespace UnityEngine.UI
         protected void SetDirtyCaching()
         {
             if (!IsActive())
+            {
                 return;
+            }
 
             CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
             LayoutRebuilder.MarkLayoutForRebuild(rectTransform);

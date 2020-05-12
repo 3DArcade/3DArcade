@@ -55,7 +55,9 @@ namespace UnityEngine.UI
                     totalSize += size;
                 }
                 if (totalSize > 0)
+                {
                     changed = true;
+                }
             }
             else if (viewBounds.max.x < contentBounds.max.x - threshold)
             {
@@ -66,7 +68,9 @@ namespace UnityEngine.UI
                     totalSize += size;
                 }
                 if (totalSize > 0)
+                {
                     changed = true;
+                }
             }
 
             if (viewBounds.min.x < contentBounds.min.x)
@@ -78,7 +82,9 @@ namespace UnityEngine.UI
                     totalSize += size;
                 }
                 if (totalSize > 0)
+                {
                     changed = true;
+                }
             }
             else if (viewBounds.min.x > contentBounds.min.x + threshold)
             {
@@ -89,7 +95,9 @@ namespace UnityEngine.UI
                     totalSize += size;
                 }
                 if (totalSize > 0)
+                {
                     changed = true;
+                }
             }
             return changed;
         }

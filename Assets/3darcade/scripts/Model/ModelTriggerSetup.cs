@@ -68,10 +68,16 @@ namespace Arcade
         {
             //print("New event: " + triggerEvent.ToString());
             if (!triggerEvents.ContainsKey(triggerEvent))
-            { return; }
+            {
+                return;
+            }
+
             List<TriggerWrapper> triggerWrappers = triggerEvents[triggerEvent];
             if (triggerWrappers.Count < 1)
-            { return; }
+            {
+                return;
+            }
+
             ActionSetup(triggerWrappers, triggerSource);
         }
 
@@ -148,12 +154,18 @@ namespace Arcade
         private void ActionPlayAudio(List<AudioProperties> audioPropertiesList, GameObject targetObject)
         {
             if (audioPropertiesList.Count < 1)
-            { return; }
+            {
+                return;
+            }
+
             AudioProperties audioProperties = audioPropertiesList[0];
             if (audioProperties.name.Trim() != "")
             {
                 if (!Application.isPlaying)
-                { return; }
+                {
+                    return;
+                }
+
                 ModelAudioSetup modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
                 if (modelAudioSetup == null)
                 {
@@ -166,12 +178,18 @@ namespace Arcade
         private void ActionPauseAudio(List<AudioProperties> audioPropertiesList, GameObject targetObject)
         {
             if (audioPropertiesList.Count < 1)
-            { return; }
+            {
+                return;
+            }
+
             AudioProperties audioProperties = audioPropertiesList[0];
             if (audioProperties.name.Trim() != "")
             {
                 if (!Application.isPlaying)
-                { return; }
+                {
+                    return;
+                }
+
                 ModelAudioSetup modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
                 if (modelAudioSetup != null)
                 {
@@ -188,12 +206,18 @@ namespace Arcade
         private void ActionStopAudio(List<AudioProperties> audioPropertiesList, GameObject targetObject)
         {
             if (audioPropertiesList.Count < 1)
-            { return; }
+            {
+                return;
+            }
+
             AudioProperties audioProperties = audioPropertiesList[0];
             if (audioProperties.name.Trim() != "")
             {
                 if (!Application.isPlaying)
-                { return; }
+                {
+                    return;
+                }
+
                 ModelAudioSetup modelAudioSetup = targetObject.GetComponent<ModelAudioSetup>();
                 if (modelAudioSetup != null)
                 {
@@ -227,7 +251,10 @@ namespace Arcade
                         { ok = true; }
                     }
                     if (ok == false)
-                    { return; }
+                    {
+                        return;
+                    }
+
                     animationComponent.enabled = true;
                     //print("startanimation " + animationItem.name + " on " + targetObject.name);
                     animationComponent[animationItem.name].layer = animationItem.layer;
@@ -253,7 +280,9 @@ namespace Arcade
                         { ok = true; }
                     }
                     if (ok == false)
-                    { return; }
+                    {
+                        return;
+                    }
 
                     animationComponent[animationItem.name].speed = 0;
                 }
@@ -275,7 +304,9 @@ namespace Arcade
                         { ok = true; }
                     }
                     if (ok == false)
-                    { return; }
+                    {
+                        return;
+                    }
 
                     animationComponent.Stop(animationString);
                 }
@@ -368,7 +399,10 @@ namespace Arcade
         private void ActionGetArtworkFromSelectedModel(GameObject targetObjectParent)
         {
             if (ArcadeStateManager.selectedModelSetup == null || !(Application.isPlaying) || !(targetObjectParent.activeSelf))
-            { return; }
+            {
+                return;
+            }
+
             ModelProperties modelProperties = ArcadeStateManager.selectedModelSetup.GetModelProperties();
             ModelSharedProperties modelSharedProperties = ArcadeStateManager.selectedModelSetup.modelSharedProperties;
             ModelSetup objModelSetup = targetObjectParent.GetComponent<ModelSetup>();

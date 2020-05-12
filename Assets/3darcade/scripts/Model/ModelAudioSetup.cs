@@ -19,7 +19,9 @@ namespace Arcade
         public void Setup(AudioProperties audioProperties)
         {
             if (audioProperties == null || !Application.isPlaying)
-            { return; }
+            {
+                return;
+            }
 
             // Resume if not null
             if (this.audioProperties != null)

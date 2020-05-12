@@ -69,7 +69,10 @@ namespace Arcade
             MeshCollider tChildrenMeshColliders = gameObject.GetComponentInChildren(typeof(MeshCollider)) as MeshCollider;
             BoxCollider tChildrenBoxColliders = gameObject.GetComponentInChildren(typeof(BoxCollider)) as BoxCollider;
             if (tMeshCollider != null || tChildrenMeshColliders != null || tChildrenBoxColliders != null)
-            { return; }
+            {
+                return;
+            }
+
             BoxCollider boxCol = gameObject.GetComponent(typeof(BoxCollider)) as BoxCollider;
             if (boxCol == null)
             {

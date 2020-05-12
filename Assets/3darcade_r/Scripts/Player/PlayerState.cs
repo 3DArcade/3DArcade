@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Arcade_r
@@ -28,22 +27,11 @@ namespace Arcade_r
     public abstract class PlayerState : State
     {
         protected readonly PlayerStateContext _stateContext;
-        protected readonly PlayerControls _playerControls;
-        protected readonly Camera _camera;
 
-        protected LayerMask _raycastLayers;
-
-        public PlayerState(PlayerStateContext stateContext, PlayerControls playerControls, Camera camera)
+        public PlayerState(PlayerStateContext stateContext)
         {
             Assert.IsNotNull(stateContext);
-            Assert.IsNotNull(playerControls);
-            Assert.IsNotNull(camera);
-
-            _stateContext    = stateContext;
-            _playerControls  = playerControls;
-            _camera          = camera;
-
-            _raycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            _stateContext = stateContext;
         }
     }
 }

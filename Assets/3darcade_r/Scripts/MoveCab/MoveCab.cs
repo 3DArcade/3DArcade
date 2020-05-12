@@ -22,7 +22,6 @@
 
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.InputSystem;
 
 namespace Arcade_r
 {
@@ -71,47 +70,12 @@ namespace Arcade_r
             GameObject newModel = Object.Instantiate(_loadedModel, position + (forward * 2f), Quaternion.LookRotation(-forward));
             newModel.layer = LayerMask.NameToLayer("Arcade/GameModels");
             _ = newModel.AddComponent<GameModelSetup>();
-
-            //Assert.IsNotNull(camera);
-            //Vector2 raySource;
-            //if (Mouse.current != null && Cursor.visible)
-            //{
-            //    raySource = Mouse.current.position.ReadValue();
-            //}
-            //else
-            //{
-            //    raySource = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-            //}
-
-            //Ray ray = camera.ScreenPointToRay(raySource);
-            //if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layerMask))
-            //{
-            //    if (_loadedModel == null)
-            //    {
-            //        _loadedModel = Resources.Load<GameObject>("Games/starwarsc");
-            //    }
-            //    GameObject newModel = Object.Instantiate(_loadedModel, hitInfo.point, Quaternion.FromToRotation(Vector3.up, hitInfo.normal) * Quaternion.LookRotation(-forward));
-            //    newModel.layer = LayerMask.NameToLayer("Arcade/GameModels");
-            //    _ = newModel.AddComponent<GameModelSetup>();
-            //}
         }
 
-        public static void FindModelSetup(in Data data, in Camera camera, in float maxDistance, in LayerMask layerMask)
+        public static void FindModelSetup(in Data data, in Ray ray, in float maxDistance, in LayerMask layerMask)
         {
             Assert.IsNotNull(data);
-            Assert.IsNotNull(camera);
 
-            Vector2 raySource;
-            if (Mouse.current != null && Cursor.visible)
-            {
-                raySource = Mouse.current.position.ReadValue();
-            }
-            else
-            {
-                raySource = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-            }
-
-            Ray ray = camera.ScreenPointToRay(raySource);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layerMask))
             {
                 ModelSetup targetModel = hitInfo.transform.GetComponent<ModelSetup>();
@@ -191,17 +155,12 @@ namespace Arcade_r
             }
         }
 
-        public static void AutoMoveAndRotate(in Data data, in Camera camera, in Vector3 forward, in float maxDistance, in LayerMask layerMask)
+        public static void AutoMoveAndRotate(in Data data, in Ray ray, in Vector3 forward, in float maxDistance, in LayerMask layerMask)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Transform);
             Assert.IsNotNull(data.Collider);
-            Assert.IsNotNull(camera);
 
-            bool useMousePosition = Mouse.current != null && Cursor.visible;
-            Vector2 raySource = useMousePosition ? Mouse.current.position.ReadValue() : data.ScreenPoint;
-
-            Ray ray = camera.ScreenPointToRay(raySource);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layerMask))
             {
                 Transform transform = data.Transform;
@@ -211,7 +170,8 @@ namespace Arcade_r
                 float dot           = Vector3.Dot(Vector3.up, normal);
                 if (dot > 0.05f)
                 {
-                    transform.position      = Vector3.Lerp(transform.position, position, Time.deltaTime * 12f);
+                    Vector3 newPosition     = position + new Vector3(0f, 0.1f, 0f);
+                    transform.position      = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * 12f);
                     transform.localRotation = Quaternion.FromToRotation(Vector3.up, normal) * Quaternion.LookRotation(-forward);
                 }
                 else if (dot < -0.05f)
@@ -220,7 +180,7 @@ namespace Arcade_r
                     transform.position      = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * 12f);
                     transform.localRotation = Quaternion.FromToRotation(Vector3.up, -normal) * Quaternion.LookRotation(-forward);
                 }
-                else
+                else // Vertical surface
                 {
                     Vector3 positionOffset  = normal * Mathf.Max(collider.bounds.extents.x + 0.1f, collider.bounds.extents.z + 0.1f);
                     Vector3 newPosition     = new Vector3(position.x, transform.position.y, position.z) + positionOffset;
@@ -271,5 +231,29 @@ namespace Arcade_r
             data.Rigidbody.interpolation          = savedValues.RigidbodyInterpolation;
             data.Rigidbody.collisionDetectionMode = savedValues.CollisionDetectionMode;
         }
+
+        //public static void Throw(in Data data, in Camera camera)
+        //{
+        //    Assert.IsNotNull(data);
+        //    Assert.IsNotNull(data.Transform);
+        //    Assert.IsNotNull(data.Collider);
+        //    Assert.IsNotNull(data.Rigidbody);
+        //    Assert.IsNotNull(camera);
+
+        //    Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
+        //    bool didRayCast = Physics.Raycast(ray, out RaycastHit hitInfo, 5f, LayerMask.GetMask("Arcade/ArcadeModels"));
+        //    if (!didRayCast || !data.Collider.bounds.Intersects(hitInfo.collider.bounds))
+        //    {
+        //        data.Transform.position = camera.transform.position + (camera.transform.forward * 1.2f) - new Vector3(0f, data.Collider.bounds.extents.y, 0f);
+        //        data.Transform.localRotation = Quaternion.LookRotation(-camera.transform.forward);
+
+        //        data.Collider.isTrigger = false;
+        //        data.Rigidbody.isKinematic = false;
+        //        data.Rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        //        data.Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+        //        data.Rigidbody.AddForce(camera.transform.forward * 1000f, ForceMode.Impulse);
+        //    }
+        //}
     }
 }

@@ -28,10 +28,12 @@ namespace UnityStandardAssets.Utility
 		{
 			// Early out if we don't have a target
 			if (!target)
-				return;
+            {
+                return;
+            }
 
-			// Calculate the current rotation angles
-			var wantedRotationAngle = target.eulerAngles.y;
+            // Calculate the current rotation angles
+            var wantedRotationAngle = target.eulerAngles.y;
 			var wantedHeight = target.position.y + height;
 
 			var currentRotationAngle = transform.eulerAngles.y;

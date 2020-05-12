@@ -21,18 +21,19 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     public class PlayerStateContext : StateContext
     {
-        private readonly PlayerControls _playerControls = null;
-        private readonly Camera _camera                 = null;
+        public PlayerControls PlayerControls { get; private set; }
+        public Camera Camera { get; private set; }
 
         public PlayerStateContext(PlayerControls playerControls, Camera camera)
         {
-            _playerControls = playerControls;
-            _camera         = camera;
+            PlayerControls = playerControls;
+            Camera         = camera;
         }
 
         public override void TransitionTo<T>()
@@ -49,7 +50,8 @@ namespace Arcade_r
             }
             else
             {
-                T newPlayerState = System.Activator.CreateInstance(typeof(T), new object[] { this, _playerControls, _camera }) as T;
+                T newPlayerState = System.Activator.CreateInstance(typeof(T), new object[] { this }) as T;
+                Assert.IsTrue(newPlayerState is PlayerState);
                 _allStates.Add(newPlayerState);
                 TransitionTo<T>();
             }

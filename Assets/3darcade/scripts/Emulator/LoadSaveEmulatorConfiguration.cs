@@ -12,7 +12,10 @@ namespace Arcade
         {
             List<EmulatorProperties> emulatorsList = GetListOfEmulatorProperties();
             if (emulatorsList == null)
-            { return; }
+            {
+                return;
+            }
+
             List<EmulatorConfiguration> tempEmulatorsConfigurationList = new List<EmulatorConfiguration>();
             foreach (EmulatorProperties emulatorProperties in emulatorsList)
             {

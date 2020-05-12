@@ -3,9 +3,7 @@
     "id": "fpsdemo3",
     "arcadeType": "FpsArcade",
     "gameLauncherMethod": "External",
-    "videoOnModelEnabled": "VisibleUnobstructed",
     "externalModels": false,
-    "spatialSound": false,
     "showFPS": false,
     "camera": {
         "position": {
@@ -19,14 +17,31 @@
             "z": 0.0,
             "w": -0.963604211807251
         },
-        "height": 0.6
+        "height": 0.6000000238418579,
+        "aspectRatio": 0.0,
+        "orthographic": false,
+        "fieldOfView": 60.0,
+        "nearClipPlane": 0.10000000149011612,
+        "farClipPlane": 100.0,
+        "viewportRect": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+        },
+        "allowDynamicResolution": false
     },
-    "renderSettings": {
-        "ambientIntensity": 3.0,
-        "marqueeIntensity": 2.5999999046325685,
-        "screenRasterIntensity": 2.4000000953674318,
-        "screenVectorIntenstity": 6.0,
-        "screenPinballIntensity": 1.0
+    "modelSharedProperties": {
+        "spatialSound": false,
+        "videoOnModelEnabled": "VisibleUnobstructed",
+        "renderSettings": {
+            "ambientIntensity": 1.0,
+            "marqueeIntensity": 1.600000023841858,
+            "screenRasterIntensity": 2.4000000953674318,
+            "screenVectorIntenstity": 6.0,
+            "screenPinballIntensity": 1.0
+        }
     },
     "fpsArcadeProperties": [],
     "cylArcadeProperties": [],

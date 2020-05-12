@@ -36,9 +36,14 @@ namespace Arcade
         void Update()
         {
             if ((arcadeControl == ArcadeManager.arcadeControls[ArcadeType.FpsArcade] || arcadeControl == ArcadeManager.arcadeControls[ArcadeType.CylArcade]) && ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu)
-            { return; }
+            {
+                return;
+            }
+
             if ((arcadeControl == ArcadeManager.arcadeControls[ArcadeType.FpsMenu] || arcadeControl == ArcadeManager.arcadeControls[ArcadeType.CylMenu]) && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
-            { return; }
+            {
+                return;
+            }
 
             if (!(ArcadeManager.arcadeState == ArcadeStates.Running || ArcadeManager.arcadeState == ArcadeStates.Game || ArcadeManager.arcadeState == ArcadeStates.MoveCabs || ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
             {
@@ -46,9 +51,15 @@ namespace Arcade
             }
             // If fps is active return
             if (ArcadeManager.activeArcadeType != arcadeType && !(ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
-            { return; }
+            {
+                return;
+            }
+
             if (ArcadeManager.activeMenuType != arcadeType && (ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
-            { return; }
+            {
+                return;
+            }
+
             if (Cursor.lockState != CursorLockMode.Locked)
             {
                 return;
@@ -124,7 +135,10 @@ namespace Arcade
             if ((ArcadeManager.activeArcadeType == ArcadeType.CylArcade && ArcadeManager.arcadeState != ArcadeStates.ArcadeMenu) || (arcadeType == ArcadeType.CylMenu && ArcadeManager.arcadeState == ArcadeStates.ArcadeMenu))
             {
                 if (mouseDelta.y == 0 && mouseDelta.x == 0)
-                { return; }
+                {
+                    return;
+                }
+
                 CylController c = arcadeControl.GetComponent<CylController>();
                 if (c.cylArcadeProperties.cameraLocalEularAngleRotation)
                 {
