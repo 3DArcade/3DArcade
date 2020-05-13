@@ -37,77 +37,79 @@ namespace Arcade_r
         [SerializeField] private float _maxVerticalLookAngle = 89f;
         [SerializeField] private float _extraGravity         = 40f;
 
-        public InputSettingsActions InputActions { get; private set; }
+        public InputSettingsActions.GlobalActions GlobalActions { get; private set; }
+        public InputSettingsActions.FirstPersonActions FirstPersonActions { get; private set; }
+        public InputSettingsActions.FirstPersonMoveCabActions FirstPersonMoveCabActions { get; private set; }
+        public bool InputModifierIsDown_TEMP { get; private set; }
 
-        private CharacterController _characterController = null;
-        private CinemachineVirtualCamera _camera = null;
+        private CharacterController _characterController;
+        private CinemachineVirtualCamera _camera;
+
+        private InputSettingsActions _inputActions;
 
         private Vector2 _movementInputValue;
         private Vector2 _lookInputValue;
         private bool _sprinting;
         private bool _performJump;
 
-        private Vector3 _moveVelocity = Vector3.zero;
+        private Vector3 _moveVelocity;
         private float _lookHorizontal;
         private float _lookVertical;
 
-        private GameObject _theAbyss;
-        private bool _badLuck;
-
-        private bool _modifierIsDown_TEMP;
-
         private void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
-            _camera              = GetComponentInChildren<CinemachineVirtualCamera>();
-            InputActions         = new InputSettingsActions();
-            _theAbyss            = Resources.Load<GameObject>("Misc/TheAbyss");
+            _characterController= GetComponent<CharacterController>();
+            _camera             = GetComponentInChildren<CinemachineVirtualCamera>();
+
+            _inputActions             = new InputSettingsActions();
+            GlobalActions             = _inputActions.Global;
+            FirstPersonActions        = _inputActions.FirstPerson;
+            FirstPersonMoveCabActions = _inputActions.FirstPersonMoveCab;
 
             Assert.IsNotNull(_characterController);
             Assert.IsNotNull(_camera);
-            Assert.IsNotNull(InputActions);
-            Assert.IsNotNull(_theAbyss);
         }
 
         private void OnEnable()
         {
-            InputActions.GlobalControls.Enable();
+            GlobalActions.Enable();
         }
 
         private void OnDisable()
         {
-            InputActions.GlobalControls.Disable();
+            GlobalActions.Disable();
         }
 
         private void Update()
         {
-            _modifierIsDown_TEMP = InputActions.GlobalControls.TempModifierWorkaround.ReadValue<float>() > 0.5f;
+            InputModifierIsDown_TEMP = GlobalActions.TempModifierWorkaround.ReadValue<float>() > 0.5f;
 
-            if (InputActions.FPSControls.Movement.enabled)
+            if (FirstPersonActions.Movement.enabled)
             {
                 GatherMovementInputValues();
             }
             HandleMovement();
 
-            if (InputActions.FPSControls.Look.enabled)
+            if (FirstPersonActions.Look.enabled)
             {
                 GatherLookInputValues();
                 HandleLook();
             }
-
-            YouAreNotSupposedToBeHere();
         }
 
         private void GatherMovementInputValues()
         {
-            _movementInputValue = InputActions.FPSControls.Movement.ReadValue<Vector2>();
-            _sprinting          = !_modifierIsDown_TEMP && InputActions.FPSControls.Sprint.ReadValue<float>() > 0f;
-            _performJump        = !_modifierIsDown_TEMP && InputActions.FPSControls.Jump.triggered;
+            _movementInputValue = FirstPersonActions.Movement.ReadValue<Vector2>();
+            if (!InputModifierIsDown_TEMP)
+            {
+                _sprinting   = FirstPersonActions.Sprint.ReadValue<float>() > 0f;
+                _performJump = FirstPersonActions.Jump.triggered;
+            }
         }
 
         private void GatherLookInputValues()
         {
-            _lookInputValue = !_modifierIsDown_TEMP ? InputActions.FPSControls.Look.ReadValue<Vector2>() : Vector2.zero;
+            _lookInputValue = !InputModifierIsDown_TEMP ? FirstPersonActions.Look.ReadValue<Vector2>() : Vector2.zero;
         }
 
         private void HandleMovement()
@@ -145,16 +147,6 @@ namespace Arcade_r
                 _camera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
             }
             transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
-        }
-
-        private void YouAreNotSupposedToBeHere()
-        {
-            if (!_badLuck && transform.position.y < -340f)
-            {
-                transform.position = new Vector3(0f, transform.position.y, 0f);
-                _ = Instantiate(_theAbyss);
-                _badLuck = true;
-            }
         }
     }
 }

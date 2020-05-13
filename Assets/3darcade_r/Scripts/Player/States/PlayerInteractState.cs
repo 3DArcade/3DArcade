@@ -24,32 +24,24 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public class MoveCabAddState : MoveCabState
+    public class PlayerInteractState : PlayerState
     {
-        private const float _raycastMaxDistance = 22.0f;
-
-        public MoveCabAddState(MoveCabStateContext<MoveCabState> stateContext)
+        public PlayerInteractState(PlayerStateContext<PlayerState> stateContext)
         : base(stateContext)
         {
         }
 
         public override void OnEnter()
         {
-            Debug.Log("  <color=green>Entered</color> MoveCabAddState");
-            MoveCab.AddModelSetup(_stateContext.PlayerControls.transform.position, _stateContext.PlayerControls.transform.forward);
-            if (Cursor.visible)
-            {
-                _stateContext.TransitionTo<MoveCabFromCursorState>();
-            }
-            else
-            {
-                _stateContext.TransitionTo<MoveCabFromViewState>();
-            }
+            Debug.Log("<color=green>Entered</color> PlayerInteractState");
+
+            _stateContext.CurrentInteractable.OnInteract();
+            _stateContext.TransitionTo<PlayerNormalState>();
         }
 
         public override void OnExit()
         {
-            Debug.Log("  <color=orange>Exited</color> MoveCabAddState");
+            Debug.Log("<color=orange>Exited</color> PlayerInteractState");
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Arcade_r
         private const float _movementSpeedMultiplier = 0.8f;
         private const float _rotationSpeedMultiplier = 0.8f;
 
-        public MoveCabFromViewState(MoveCabStateContext stateContext)
+        public MoveCabFromViewState(MoveCabStateContext<MoveCabState> stateContext)
         : base(stateContext)
         {
         }
@@ -53,12 +53,12 @@ namespace Arcade_r
                 MoveCab.FindModelSetup(_stateContext.Data, ray, _raycastMaxDistance, _stateContext.RaycastLayers);
             }
 
-            Vector2 positionInput           = _stateContext.PlayerControls.InputActions.FPSMoveCab.MoveModel.ReadValue<Vector2>();
-            float rotationInput             = _stateContext.PlayerControls.InputActions.FPSMoveCab.RotateModel.ReadValue<float>();
+            Vector2 positionInput           = _stateContext.PlayerControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
+            float rotationInput             = _stateContext.PlayerControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
             _stateContext.Input.AimPosition = positionInput * _movementSpeedMultiplier;
             _stateContext.Input.AimRotation = rotationInput * _rotationSpeedMultiplier;
 
-            if (_stateContext.PlayerControls.InputActions.FPSMoveCab.GrabRelease.triggered)
+            if (_stateContext.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
             {
                 if (_stateContext.Data.ModelSetup != null && _stateContext.Data.ModelSetup is MoveCab.IGrabbable)
                 {
@@ -66,12 +66,12 @@ namespace Arcade_r
                 }
             }
 
-            if (_stateContext.PlayerControls.InputActions.FPSMoveCab.AddModel.triggered)
+            if (_stateContext.PlayerControls.FirstPersonMoveCabActions.AddModel.triggered)
             {
                 _stateContext.TransitionTo<MoveCabAddState>();
             }
 
-            if (_stateContext.PlayerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
+            if (_stateContext.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
                 if (Cursor.visible)
                 {

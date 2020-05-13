@@ -31,7 +31,7 @@ namespace Arcade_r
 
         private MoveCab.SavedValues _savedValues;
 
-        public MoveCabGrabState(MoveCabStateContext stateContext)
+        public MoveCabGrabState(MoveCabStateContext<MoveCabState> stateContext)
         : base(stateContext)
         {
         }
@@ -58,9 +58,9 @@ namespace Arcade_r
             Ray ray = _stateContext.Camera.ScreenPointToRay(rayPosition);
             MoveCab.AutoMoveAndRotate(_stateContext.Data, ray, _stateContext.PlayerControls.transform.forward, _raycastMaxDistance, _stateContext.RaycastLayers);
 
-            if (_stateContext.PlayerControls.InputActions.FPSMoveCab.GrabRelease.triggered)
+            if (_stateContext.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
             {
-                if (Cursor.visible && Mouse.current != null)
+                if (Cursor.visible)
                 {
                     _stateContext.TransitionTo<MoveCabFromCursorState>();
                 }

@@ -29,9 +29,7 @@ namespace Arcade_r
         private readonly LayerMask _raycastLayers;
         private readonly float _raycastMaxDistance = 2.5f;
 
-        private ModelSetup _currentModelSetup;
-
-        public PlayerNormalState(PlayerStateContext stateContext)
+        public PlayerNormalState(PlayerStateContext<PlayerState> stateContext)
         : base(stateContext)
         {
             _raycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
@@ -41,10 +39,10 @@ namespace Arcade_r
         {
             Debug.Log("<color=green>Entered</color> PlayerNormalState");
 
-            _stateContext.PlayerControls.InputActions.FPSControls.Enable();
-            if (Cursor.visible)
+            _stateContext.PlayerControls.FirstPersonActions.Enable();
+            if (!Cursor.visible)
             {
-                _stateContext.PlayerControls.InputActions.FPSControls.Look.Disable();
+                _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
             }
         }
 
@@ -52,7 +50,7 @@ namespace Arcade_r
         {
             Debug.Log("<color=orange>Exited</color> PlayerNormalState");
 
-            _stateContext.PlayerControls.InputActions.FPSControls.Disable();
+            _stateContext.PlayerControls.FirstPersonActions.Disable();
         }
 
         public override void OnUpdate(float dt)
@@ -62,36 +60,40 @@ namespace Arcade_r
                 GetCurrentModelSetup();
             }
 
-            if (_stateContext.PlayerControls.InputActions.GlobalControls.ToggleMouseCursor.triggered)
-            {
-                Utils.ToggleMouseCursor();
-                if (!Cursor.visible)
-                {
-                    _stateContext.PlayerControls.InputActions.FPSControls.Look.Enable();
-                }
-                else
-                {
-                    _stateContext.PlayerControls.InputActions.FPSControls.Look.Disable();
-                }
-            }
-
-            if (_stateContext.PlayerControls.InputActions.GlobalControls.Quit.triggered)
+            if (_stateContext.PlayerControls.GlobalActions.Quit.triggered)
             {
                 Utils.ExitApp();
             }
 
-            if (!Cursor.visible)
+            if (_stateContext.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
-                if (_stateContext.PlayerControls.InputActions.FPSControls.Interact.triggered)
+                Utils.ToggleMouseCursor();
+                if (!Cursor.visible)
                 {
-                    if (_currentModelSetup != null && _currentModelSetup is Interaction.IInteractable interactable)
+                    _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
+                }
+                else
+                {
+                    _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                }
+            }
+
+            if (_stateContext.PlayerControls.FirstPersonActions.Interact.triggered)
+            {
+                if (!Cursor.visible)
+                {
+                    if (_stateContext.CurrentGrabbable != null)
                     {
-                        interactable.OnInteract();
+                        _stateContext.TransitionTo<PlayerInteractGrabState>();
+                    }
+                    else if (_stateContext.CurrentInteractable != null)
+                    {
+                        _stateContext.TransitionTo<PlayerInteractState>();
                     }
                 }
             }
 
-            if (_stateContext.PlayerControls.InputActions.FPSControls.ToggleMoveCab.triggered)
+            if (_stateContext.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
                 _stateContext.TransitionTo<PlayerMoveCabState>();
             }
@@ -102,15 +104,17 @@ namespace Arcade_r
             Ray ray = _stateContext.Camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
             if (Physics.Raycast(ray, out RaycastHit hitInfo, _raycastMaxDistance, _raycastLayers))
             {
-                ModelSetup targetModel = hitInfo.transform.GetComponent<ModelSetup>();
-                if (targetModel != _currentModelSetup)
+                Interaction.IInteractable hitInteractable = hitInfo.transform.GetComponent<Interaction.IInteractable>();
+                if (hitInteractable != _stateContext.CurrentInteractable)
                 {
-                    _currentModelSetup = targetModel;
+                    _stateContext.CurrentInteractable = hitInteractable;
+                    _stateContext.CurrentGrabbable    = hitInfo.transform.GetComponent<Interaction.IGrabbable>();
                 }
             }
             else
             {
-                _currentModelSetup = null;
+                _stateContext.CurrentInteractable = null;
+                _stateContext.CurrentGrabbable    = null;
             }
         }
     }

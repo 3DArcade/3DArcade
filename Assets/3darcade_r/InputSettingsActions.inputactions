@@ -2,7 +2,7 @@
     "name": "InputSettingsActions",
     "maps": [
         {
-            "name": "GlobalControls",
+            "name": "Global",
             "id": "dcef0966-dff4-49e7-a970-23d5259d1a82",
             "actions": [
                 {
@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ToggleMouseCursor",
+                    "name": "ToggleCursor",
                     "type": "Button",
                     "id": "111e58fd-0332-48ec-a8c5-6a8f4028d3af",
                     "expectedControlType": "Button",
@@ -82,7 +82,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "ToggleMouseCursor",
+                    "action": "ToggleCursor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -93,7 +93,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "ToggleMouseCursor",
+                    "action": "ToggleCursor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -104,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ToggleMouseCursor",
+                    "action": "ToggleCursor",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -115,7 +115,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ToggleMouseCursor",
+                    "action": "ToggleCursor",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -126,7 +126,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ToggleMouseCursor",
+                    "action": "ToggleCursor",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -144,7 +144,7 @@
             ]
         },
         {
-            "name": "FPSControls",
+            "name": "FirstPerson",
             "id": "22122fb4-ab81-4a29-9a20-1efdb89252ad",
             "actions": [
                 {
@@ -519,7 +519,7 @@
             ]
         },
         {
-            "name": "FPSMoveCab",
+            "name": "FirstPersonMoveCab",
             "id": "826403ab-f082-4a58-8a51-3a726b972945",
             "actions": [
                 {
@@ -539,7 +539,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "GrabRelease",
+                    "name": "GrabReleaseModel",
                     "type": "Button",
                     "id": "da98b889-a257-4260-bdb7-c2d25d037c14",
                     "expectedControlType": "Button",
@@ -706,7 +706,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "GrabRelease",
+                    "action": "GrabReleaseModel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -717,7 +717,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "GrabRelease",
+                    "action": "GrabReleaseModel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -728,7 +728,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "GrabRelease",
+                    "action": "GrabReleaseModel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

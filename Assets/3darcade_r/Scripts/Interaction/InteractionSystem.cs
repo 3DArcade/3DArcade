@@ -29,8 +29,9 @@ namespace Arcade_r
             void OnInteract();
         }
 
-        public interface IGrabbable
+        public interface IGrabbable : IInteractable
         {
+            void OnGrab();
         }
     }
 }

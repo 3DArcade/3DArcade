@@ -21,11 +21,10 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public class MoveCabStateContext : StateContext
+    public class MoveCabStateContext<T> : StateContext<T> where T : MoveCabState
     {
         public PlayerControls PlayerControls { get; private set; }
         public Camera Camera { get; private set; }
@@ -33,34 +32,13 @@ namespace Arcade_r
         public MoveCab.Input Input { get; private set; }
         public LayerMask RaycastLayers { get; private set; }
 
-        public MoveCabStateContext(PlayerControls playerControls, Camera camera)
+        public MoveCabStateContext(PlayerControls playerControls)
         {
             PlayerControls = playerControls;
-            Camera         = camera;
+            Camera         = Camera.main;
             Data           = new MoveCab.Data();
             Input          = new MoveCab.Input();
             RaycastLayers  = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
-        }
-
-        public override void TransitionTo<T>()
-        {
-            State foundState = _allStates.Find(x => x.GetType() == typeof(T));
-            if (foundState is T foundMoveCabState)
-            {
-                if (_currentState != foundMoveCabState)
-                {
-                    _currentState?.OnExit();
-                    _currentState = foundMoveCabState;
-                    _currentState.OnEnter();
-                }
-            }
-            else
-            {
-                T newMoveCabState = System.Activator.CreateInstance(typeof(T), new object[] { this }) as T;
-                Assert.IsTrue(newMoveCabState is MoveCabState);
-                _allStates.Add(newMoveCabState);
-                TransitionTo<T>();
-            }
         }
     }
 }

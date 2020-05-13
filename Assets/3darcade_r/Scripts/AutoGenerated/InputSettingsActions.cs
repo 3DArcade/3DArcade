@@ -17,7 +17,7 @@ namespace Arcade_r
     ""name"": ""InputSettingsActions"",
     ""maps"": [
         {
-            ""name"": ""GlobalControls"",
+            ""name"": ""Global"",
             ""id"": ""dcef0966-dff4-49e7-a970-23d5259d1a82"",
             ""actions"": [
                 {
@@ -29,7 +29,7 @@ namespace Arcade_r
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ToggleMouseCursor"",
+                    ""name"": ""ToggleCursor"",
                     ""type"": ""Button"",
                     ""id"": ""111e58fd-0332-48ec-a8c5-6a8f4028d3af"",
                     ""expectedControlType"": ""Button"",
@@ -97,7 +97,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""ToggleMouseCursor"",
+                    ""action"": ""ToggleCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -108,7 +108,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""ToggleMouseCursor"",
+                    ""action"": ""ToggleCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -119,7 +119,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleMouseCursor"",
+                    ""action"": ""ToggleCursor"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -130,7 +130,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""ToggleMouseCursor"",
+                    ""action"": ""ToggleCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -141,7 +141,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""ToggleMouseCursor"",
+                    ""action"": ""ToggleCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -159,7 +159,7 @@ namespace Arcade_r
             ]
         },
         {
-            ""name"": ""FPSControls"",
+            ""name"": ""FirstPerson"",
             ""id"": ""22122fb4-ab81-4a29-9a20-1efdb89252ad"",
             ""actions"": [
                 {
@@ -534,7 +534,7 @@ namespace Arcade_r
             ]
         },
         {
-            ""name"": ""FPSMoveCab"",
+            ""name"": ""FirstPersonMoveCab"",
             ""id"": ""826403ab-f082-4a58-8a51-3a726b972945"",
             ""actions"": [
                 {
@@ -554,7 +554,7 @@ namespace Arcade_r
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""GrabRelease"",
+                    ""name"": ""GrabReleaseModel"",
                     ""type"": ""Button"",
                     ""id"": ""da98b889-a257-4260-bdb7-c2d25d037c14"",
                     ""expectedControlType"": ""Button"",
@@ -721,7 +721,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""GrabRelease"",
+                    ""action"": ""GrabReleaseModel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -732,7 +732,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""GrabRelease"",
+                    ""action"": ""GrabReleaseModel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -743,7 +743,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""GrabRelease"",
+                    ""action"": ""GrabReleaseModel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -780,25 +780,25 @@ namespace Arcade_r
         }
     ]
 }");
-            // GlobalControls
-            m_GlobalControls = asset.FindActionMap("GlobalControls", throwIfNotFound: true);
-            m_GlobalControls_Quit = m_GlobalControls.FindAction("Quit", throwIfNotFound: true);
-            m_GlobalControls_ToggleMouseCursor = m_GlobalControls.FindAction("ToggleMouseCursor", throwIfNotFound: true);
-            m_GlobalControls_TempModifierWorkaround = m_GlobalControls.FindAction("TempModifierWorkaround", throwIfNotFound: true);
-            // FPSControls
-            m_FPSControls = asset.FindActionMap("FPSControls", throwIfNotFound: true);
-            m_FPSControls_Movement = m_FPSControls.FindAction("Movement", throwIfNotFound: true);
-            m_FPSControls_Look = m_FPSControls.FindAction("Look", throwIfNotFound: true);
-            m_FPSControls_Sprint = m_FPSControls.FindAction("Sprint", throwIfNotFound: true);
-            m_FPSControls_Jump = m_FPSControls.FindAction("Jump", throwIfNotFound: true);
-            m_FPSControls_Interact = m_FPSControls.FindAction("Interact", throwIfNotFound: true);
-            m_FPSControls_ToggleMoveCab = m_FPSControls.FindAction("ToggleMoveCab", throwIfNotFound: true);
-            // FPSMoveCab
-            m_FPSMoveCab = asset.FindActionMap("FPSMoveCab", throwIfNotFound: true);
-            m_FPSMoveCab_MoveModel = m_FPSMoveCab.FindAction("MoveModel", throwIfNotFound: true);
-            m_FPSMoveCab_RotateModel = m_FPSMoveCab.FindAction("RotateModel", throwIfNotFound: true);
-            m_FPSMoveCab_GrabRelease = m_FPSMoveCab.FindAction("GrabRelease", throwIfNotFound: true);
-            m_FPSMoveCab_AddModel = m_FPSMoveCab.FindAction("AddModel", throwIfNotFound: true);
+            // Global
+            m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
+            m_Global_Quit = m_Global.FindAction("Quit", throwIfNotFound: true);
+            m_Global_ToggleCursor = m_Global.FindAction("ToggleCursor", throwIfNotFound: true);
+            m_Global_TempModifierWorkaround = m_Global.FindAction("TempModifierWorkaround", throwIfNotFound: true);
+            // FirstPerson
+            m_FirstPerson = asset.FindActionMap("FirstPerson", throwIfNotFound: true);
+            m_FirstPerson_Movement = m_FirstPerson.FindAction("Movement", throwIfNotFound: true);
+            m_FirstPerson_Look = m_FirstPerson.FindAction("Look", throwIfNotFound: true);
+            m_FirstPerson_Sprint = m_FirstPerson.FindAction("Sprint", throwIfNotFound: true);
+            m_FirstPerson_Jump = m_FirstPerson.FindAction("Jump", throwIfNotFound: true);
+            m_FirstPerson_Interact = m_FirstPerson.FindAction("Interact", throwIfNotFound: true);
+            m_FirstPerson_ToggleMoveCab = m_FirstPerson.FindAction("ToggleMoveCab", throwIfNotFound: true);
+            // FirstPersonMoveCab
+            m_FirstPersonMoveCab = asset.FindActionMap("FirstPersonMoveCab", throwIfNotFound: true);
+            m_FirstPersonMoveCab_MoveModel = m_FirstPersonMoveCab.FindAction("MoveModel", throwIfNotFound: true);
+            m_FirstPersonMoveCab_RotateModel = m_FirstPersonMoveCab.FindAction("RotateModel", throwIfNotFound: true);
+            m_FirstPersonMoveCab_GrabReleaseModel = m_FirstPersonMoveCab.FindAction("GrabReleaseModel", throwIfNotFound: true);
+            m_FirstPersonMoveCab_AddModel = m_FirstPersonMoveCab.FindAction("AddModel", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -845,103 +845,103 @@ namespace Arcade_r
             asset.Disable();
         }
 
-        // GlobalControls
-        private readonly InputActionMap m_GlobalControls;
-        private IGlobalControlsActions m_GlobalControlsActionsCallbackInterface;
-        private readonly InputAction m_GlobalControls_Quit;
-        private readonly InputAction m_GlobalControls_ToggleMouseCursor;
-        private readonly InputAction m_GlobalControls_TempModifierWorkaround;
-        public struct GlobalControlsActions
+        // Global
+        private readonly InputActionMap m_Global;
+        private IGlobalActions m_GlobalActionsCallbackInterface;
+        private readonly InputAction m_Global_Quit;
+        private readonly InputAction m_Global_ToggleCursor;
+        private readonly InputAction m_Global_TempModifierWorkaround;
+        public struct GlobalActions
         {
             private @InputSettingsActions m_Wrapper;
-            public GlobalControlsActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Quit => m_Wrapper.m_GlobalControls_Quit;
-            public InputAction @ToggleMouseCursor => m_Wrapper.m_GlobalControls_ToggleMouseCursor;
-            public InputAction @TempModifierWorkaround => m_Wrapper.m_GlobalControls_TempModifierWorkaround;
-            public InputActionMap Get() { return m_Wrapper.m_GlobalControls; }
+            public GlobalActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Quit => m_Wrapper.m_Global_Quit;
+            public InputAction @ToggleCursor => m_Wrapper.m_Global_ToggleCursor;
+            public InputAction @TempModifierWorkaround => m_Wrapper.m_Global_TempModifierWorkaround;
+            public InputActionMap Get() { return m_Wrapper.m_Global; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(GlobalControlsActions set) { return set.Get(); }
-            public void SetCallbacks(IGlobalControlsActions instance)
+            public static implicit operator InputActionMap(GlobalActions set) { return set.Get(); }
+            public void SetCallbacks(IGlobalActions instance)
             {
-                if (m_Wrapper.m_GlobalControlsActionsCallbackInterface != null)
+                if (m_Wrapper.m_GlobalActionsCallbackInterface != null)
                 {
-                    @Quit.started -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnQuit;
-                    @Quit.performed -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnQuit;
-                    @Quit.canceled -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnQuit;
-                    @ToggleMouseCursor.started -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnToggleMouseCursor;
-                    @ToggleMouseCursor.performed -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnToggleMouseCursor;
-                    @ToggleMouseCursor.canceled -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnToggleMouseCursor;
-                    @TempModifierWorkaround.started -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnTempModifierWorkaround;
-                    @TempModifierWorkaround.performed -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnTempModifierWorkaround;
-                    @TempModifierWorkaround.canceled -= m_Wrapper.m_GlobalControlsActionsCallbackInterface.OnTempModifierWorkaround;
+                    @Quit.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnQuit;
+                    @Quit.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnQuit;
+                    @Quit.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnQuit;
+                    @ToggleCursor.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnToggleCursor;
+                    @ToggleCursor.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnToggleCursor;
+                    @ToggleCursor.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnToggleCursor;
+                    @TempModifierWorkaround.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnTempModifierWorkaround;
+                    @TempModifierWorkaround.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnTempModifierWorkaround;
+                    @TempModifierWorkaround.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnTempModifierWorkaround;
                 }
-                m_Wrapper.m_GlobalControlsActionsCallbackInterface = instance;
+                m_Wrapper.m_GlobalActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Quit.started += instance.OnQuit;
                     @Quit.performed += instance.OnQuit;
                     @Quit.canceled += instance.OnQuit;
-                    @ToggleMouseCursor.started += instance.OnToggleMouseCursor;
-                    @ToggleMouseCursor.performed += instance.OnToggleMouseCursor;
-                    @ToggleMouseCursor.canceled += instance.OnToggleMouseCursor;
+                    @ToggleCursor.started += instance.OnToggleCursor;
+                    @ToggleCursor.performed += instance.OnToggleCursor;
+                    @ToggleCursor.canceled += instance.OnToggleCursor;
                     @TempModifierWorkaround.started += instance.OnTempModifierWorkaround;
                     @TempModifierWorkaround.performed += instance.OnTempModifierWorkaround;
                     @TempModifierWorkaround.canceled += instance.OnTempModifierWorkaround;
                 }
             }
         }
-        public GlobalControlsActions @GlobalControls => new GlobalControlsActions(this);
+        public GlobalActions @Global => new GlobalActions(this);
 
-        // FPSControls
-        private readonly InputActionMap m_FPSControls;
-        private IFPSControlsActions m_FPSControlsActionsCallbackInterface;
-        private readonly InputAction m_FPSControls_Movement;
-        private readonly InputAction m_FPSControls_Look;
-        private readonly InputAction m_FPSControls_Sprint;
-        private readonly InputAction m_FPSControls_Jump;
-        private readonly InputAction m_FPSControls_Interact;
-        private readonly InputAction m_FPSControls_ToggleMoveCab;
-        public struct FPSControlsActions
+        // FirstPerson
+        private readonly InputActionMap m_FirstPerson;
+        private IFirstPersonActions m_FirstPersonActionsCallbackInterface;
+        private readonly InputAction m_FirstPerson_Movement;
+        private readonly InputAction m_FirstPerson_Look;
+        private readonly InputAction m_FirstPerson_Sprint;
+        private readonly InputAction m_FirstPerson_Jump;
+        private readonly InputAction m_FirstPerson_Interact;
+        private readonly InputAction m_FirstPerson_ToggleMoveCab;
+        public struct FirstPersonActions
         {
             private @InputSettingsActions m_Wrapper;
-            public FPSControlsActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Movement => m_Wrapper.m_FPSControls_Movement;
-            public InputAction @Look => m_Wrapper.m_FPSControls_Look;
-            public InputAction @Sprint => m_Wrapper.m_FPSControls_Sprint;
-            public InputAction @Jump => m_Wrapper.m_FPSControls_Jump;
-            public InputAction @Interact => m_Wrapper.m_FPSControls_Interact;
-            public InputAction @ToggleMoveCab => m_Wrapper.m_FPSControls_ToggleMoveCab;
-            public InputActionMap Get() { return m_Wrapper.m_FPSControls; }
+            public FirstPersonActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_FirstPerson_Movement;
+            public InputAction @Look => m_Wrapper.m_FirstPerson_Look;
+            public InputAction @Sprint => m_Wrapper.m_FirstPerson_Sprint;
+            public InputAction @Jump => m_Wrapper.m_FirstPerson_Jump;
+            public InputAction @Interact => m_Wrapper.m_FirstPerson_Interact;
+            public InputAction @ToggleMoveCab => m_Wrapper.m_FirstPerson_ToggleMoveCab;
+            public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(FPSControlsActions set) { return set.Get(); }
-            public void SetCallbacks(IFPSControlsActions instance)
+            public static implicit operator InputActionMap(FirstPersonActions set) { return set.Get(); }
+            public void SetCallbacks(IFirstPersonActions instance)
             {
-                if (m_Wrapper.m_FPSControlsActionsCallbackInterface != null)
+                if (m_Wrapper.m_FirstPersonActionsCallbackInterface != null)
                 {
-                    @Movement.started -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnMovement;
-                    @Movement.performed -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnMovement;
-                    @Movement.canceled -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnMovement;
-                    @Look.started -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnLook;
-                    @Look.performed -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnLook;
-                    @Look.canceled -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnLook;
-                    @Sprint.started -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnSprint;
-                    @Sprint.performed -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnSprint;
-                    @Sprint.canceled -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnSprint;
-                    @Jump.started -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnJump;
-                    @Jump.performed -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnJump;
-                    @Jump.canceled -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnJump;
-                    @Interact.started -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnInteract;
-                    @Interact.performed -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnInteract;
-                    @Interact.canceled -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnInteract;
-                    @ToggleMoveCab.started -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnToggleMoveCab;
-                    @ToggleMoveCab.performed -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnToggleMoveCab;
-                    @ToggleMoveCab.canceled -= m_Wrapper.m_FPSControlsActionsCallbackInterface.OnToggleMoveCab;
+                    @Movement.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMovement;
+                    @Look.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnLook;
+                    @Look.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnLook;
+                    @Look.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnLook;
+                    @Sprint.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
+                    @Sprint.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
+                    @Sprint.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
+                    @Jump.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJump;
+                    @Interact.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInteract;
+                    @ToggleMoveCab.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnToggleMoveCab;
+                    @ToggleMoveCab.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnToggleMoveCab;
+                    @ToggleMoveCab.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnToggleMoveCab;
                 }
-                m_Wrapper.m_FPSControlsActionsCallbackInterface = instance;
+                m_Wrapper.m_FirstPersonActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Movement.started += instance.OnMovement;
@@ -965,46 +965,46 @@ namespace Arcade_r
                 }
             }
         }
-        public FPSControlsActions @FPSControls => new FPSControlsActions(this);
+        public FirstPersonActions @FirstPerson => new FirstPersonActions(this);
 
-        // FPSMoveCab
-        private readonly InputActionMap m_FPSMoveCab;
-        private IFPSMoveCabActions m_FPSMoveCabActionsCallbackInterface;
-        private readonly InputAction m_FPSMoveCab_MoveModel;
-        private readonly InputAction m_FPSMoveCab_RotateModel;
-        private readonly InputAction m_FPSMoveCab_GrabRelease;
-        private readonly InputAction m_FPSMoveCab_AddModel;
-        public struct FPSMoveCabActions
+        // FirstPersonMoveCab
+        private readonly InputActionMap m_FirstPersonMoveCab;
+        private IFirstPersonMoveCabActions m_FirstPersonMoveCabActionsCallbackInterface;
+        private readonly InputAction m_FirstPersonMoveCab_MoveModel;
+        private readonly InputAction m_FirstPersonMoveCab_RotateModel;
+        private readonly InputAction m_FirstPersonMoveCab_GrabReleaseModel;
+        private readonly InputAction m_FirstPersonMoveCab_AddModel;
+        public struct FirstPersonMoveCabActions
         {
             private @InputSettingsActions m_Wrapper;
-            public FPSMoveCabActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @MoveModel => m_Wrapper.m_FPSMoveCab_MoveModel;
-            public InputAction @RotateModel => m_Wrapper.m_FPSMoveCab_RotateModel;
-            public InputAction @GrabRelease => m_Wrapper.m_FPSMoveCab_GrabRelease;
-            public InputAction @AddModel => m_Wrapper.m_FPSMoveCab_AddModel;
-            public InputActionMap Get() { return m_Wrapper.m_FPSMoveCab; }
+            public FirstPersonMoveCabActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @MoveModel => m_Wrapper.m_FirstPersonMoveCab_MoveModel;
+            public InputAction @RotateModel => m_Wrapper.m_FirstPersonMoveCab_RotateModel;
+            public InputAction @GrabReleaseModel => m_Wrapper.m_FirstPersonMoveCab_GrabReleaseModel;
+            public InputAction @AddModel => m_Wrapper.m_FirstPersonMoveCab_AddModel;
+            public InputActionMap Get() { return m_Wrapper.m_FirstPersonMoveCab; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(FPSMoveCabActions set) { return set.Get(); }
-            public void SetCallbacks(IFPSMoveCabActions instance)
+            public static implicit operator InputActionMap(FirstPersonMoveCabActions set) { return set.Get(); }
+            public void SetCallbacks(IFirstPersonMoveCabActions instance)
             {
-                if (m_Wrapper.m_FPSMoveCabActionsCallbackInterface != null)
+                if (m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface != null)
                 {
-                    @MoveModel.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnMoveModel;
-                    @MoveModel.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnMoveModel;
-                    @MoveModel.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnMoveModel;
-                    @RotateModel.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnRotateModel;
-                    @RotateModel.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnRotateModel;
-                    @RotateModel.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnRotateModel;
-                    @GrabRelease.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnGrabRelease;
-                    @GrabRelease.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnGrabRelease;
-                    @GrabRelease.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnGrabRelease;
-                    @AddModel.started -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnAddModel;
-                    @AddModel.performed -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnAddModel;
-                    @AddModel.canceled -= m_Wrapper.m_FPSMoveCabActionsCallbackInterface.OnAddModel;
+                    @MoveModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnMoveModel;
+                    @MoveModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnMoveModel;
+                    @MoveModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnMoveModel;
+                    @RotateModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnRotateModel;
+                    @RotateModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnRotateModel;
+                    @RotateModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnRotateModel;
+                    @GrabReleaseModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnGrabReleaseModel;
+                    @GrabReleaseModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnGrabReleaseModel;
+                    @GrabReleaseModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnGrabReleaseModel;
+                    @AddModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnAddModel;
+                    @AddModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnAddModel;
+                    @AddModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnAddModel;
                 }
-                m_Wrapper.m_FPSMoveCabActionsCallbackInterface = instance;
+                m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @MoveModel.started += instance.OnMoveModel;
@@ -1013,16 +1013,16 @@ namespace Arcade_r
                     @RotateModel.started += instance.OnRotateModel;
                     @RotateModel.performed += instance.OnRotateModel;
                     @RotateModel.canceled += instance.OnRotateModel;
-                    @GrabRelease.started += instance.OnGrabRelease;
-                    @GrabRelease.performed += instance.OnGrabRelease;
-                    @GrabRelease.canceled += instance.OnGrabRelease;
+                    @GrabReleaseModel.started += instance.OnGrabReleaseModel;
+                    @GrabReleaseModel.performed += instance.OnGrabReleaseModel;
+                    @GrabReleaseModel.canceled += instance.OnGrabReleaseModel;
                     @AddModel.started += instance.OnAddModel;
                     @AddModel.performed += instance.OnAddModel;
                     @AddModel.canceled += instance.OnAddModel;
                 }
             }
         }
-        public FPSMoveCabActions @FPSMoveCab => new FPSMoveCabActions(this);
+        public FirstPersonMoveCabActions @FirstPersonMoveCab => new FirstPersonMoveCabActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1041,13 +1041,13 @@ namespace Arcade_r
                 return asset.controlSchemes[m_GamepadSchemeIndex];
             }
         }
-        public interface IGlobalControlsActions
+        public interface IGlobalActions
         {
             void OnQuit(InputAction.CallbackContext context);
-            void OnToggleMouseCursor(InputAction.CallbackContext context);
+            void OnToggleCursor(InputAction.CallbackContext context);
             void OnTempModifierWorkaround(InputAction.CallbackContext context);
         }
-        public interface IFPSControlsActions
+        public interface IFirstPersonActions
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
@@ -1056,11 +1056,11 @@ namespace Arcade_r
             void OnInteract(InputAction.CallbackContext context);
             void OnToggleMoveCab(InputAction.CallbackContext context);
         }
-        public interface IFPSMoveCabActions
+        public interface IFirstPersonMoveCabActions
         {
             void OnMoveModel(InputAction.CallbackContext context);
             void OnRotateModel(InputAction.CallbackContext context);
-            void OnGrabRelease(InputAction.CallbackContext context);
+            void OnGrabReleaseModel(InputAction.CallbackContext context);
             void OnAddModel(InputAction.CallbackContext context);
         }
     }

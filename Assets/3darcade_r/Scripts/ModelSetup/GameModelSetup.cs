@@ -20,22 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Collections;
 using UnityEngine;
 
 namespace Arcade_r
 {
     [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-    public class GameModelSetup : ModelSetup, Interaction.IInteractable, MoveCab.IMovable, MoveCab.IGrabbable
+    public class GameModelSetup : ModelSetup, Interaction.IGrabbable, MoveCab.IMovable, MoveCab.IGrabbable
     {
         private void Awake()
         {
             Id = transform.name.Substring(0, transform.name.Length - 7);
         }
 
-        public void OnInteract()
+        void Interaction.IInteractable.OnInteract()
         {
             Debug.Log($"<color=red>[NOT IMPLEMENTED]</color> OnInteract: {Id}");
+        }
+
+        void Interaction.IGrabbable.OnGrab()
+        {
+            Debug.Log($"<color=red>[NOT IMPLEMENTED]</color> OnGrab: {Id}");
         }
     }
 }

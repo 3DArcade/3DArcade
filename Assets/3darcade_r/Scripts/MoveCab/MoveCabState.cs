@@ -26,9 +26,9 @@ namespace Arcade_r
 {
     public abstract class MoveCabState : State
     {
-        protected readonly MoveCabStateContext _stateContext;
+        protected readonly MoveCabStateContext<MoveCabState> _stateContext;
 
-        public MoveCabState(MoveCabStateContext stateContext)
+        public MoveCabState(MoveCabStateContext<MoveCabState> stateContext)
         {
             Assert.IsNotNull(stateContext);
             _stateContext = stateContext;

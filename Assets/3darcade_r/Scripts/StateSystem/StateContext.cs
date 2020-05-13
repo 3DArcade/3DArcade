@@ -21,18 +21,39 @@
  * SOFTWARE. */
 
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public abstract class StateContext
+    public abstract class StateContext<T>
     {
         protected readonly List<State> _allStates = new List<State>();
         protected State _currentState             = null;
 
-        public void Update(float dt) => _currentState?.OnUpdate(dt);
+        public void UpdateState(float dt) => _currentState?.OnUpdate(dt);
 
-        public void FixedUpdate(float dt) => _currentState?.OnFixedUpdate(dt);
+        public void FixedUpdateState(float dt) => _currentState?.OnFixedUpdate(dt);
 
-        public abstract void TransitionTo<T>() where T : State;
+        public void TransitionTo<U>() where U : State
+        {
+            Assert.IsTrue(typeof(U).IsSubclassOf(typeof(T)));
+
+            State foundState = _allStates.Find(x => x.GetType() == typeof(U));
+            if (foundState != null && foundState is U foundConcreteState)
+            {
+                if (_currentState != foundConcreteState)
+                {
+                    _currentState?.OnExit();
+                    _currentState = foundConcreteState;
+                    _currentState.OnEnter();
+                }
+            }
+            else
+            {
+                U newState = System.Activator.CreateInstance(typeof(U), new object[] { this }) as U;
+                _allStates.Add(newState);
+                TransitionTo<U>();
+            }
+        }
     }
 }

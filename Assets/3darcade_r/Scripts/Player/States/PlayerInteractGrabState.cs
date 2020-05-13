@@ -24,32 +24,53 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public class MoveCabAddState : MoveCabState
+    public class PlayerInteractGrabState : PlayerState
     {
-        private const float _raycastMaxDistance = 22.0f;
-
-        public MoveCabAddState(MoveCabStateContext<MoveCabState> stateContext)
+        public PlayerInteractGrabState(PlayerStateContext<PlayerState> stateContext)
         : base(stateContext)
         {
         }
 
         public override void OnEnter()
         {
-            Debug.Log("  <color=green>Entered</color> MoveCabAddState");
-            MoveCab.AddModelSetup(_stateContext.PlayerControls.transform.position, _stateContext.PlayerControls.transform.forward);
+            Debug.Log("<color=green>Entered</color> PlayerInteractGrabState");
+
+            _stateContext.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
             {
-                _stateContext.TransitionTo<MoveCabFromCursorState>();
+                _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
             }
-            else
-            {
-                _stateContext.TransitionTo<MoveCabFromViewState>();
-            }
+
+            _stateContext.CurrentGrabbable.OnGrab();
         }
 
         public override void OnExit()
         {
-            Debug.Log("  <color=orange>Exited</color> MoveCabAddState");
+            Debug.Log("<color=orange>Exited</color> PlayerInteractGrabState");
+
+            _stateContext.PlayerControls.FirstPersonActions.Disable();
+        }
+
+        public override void OnUpdate(float dt)
+        {
+            if (_stateContext.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            {
+                Utils.ToggleMouseCursor();
+                if (!Cursor.visible)
+                {
+                    _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
+                }
+                else
+                {
+                    _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                }
+            }
+
+            if (_stateContext.PlayerControls.FirstPersonActions.Interact.triggered)
+            {
+                _stateContext.CurrentGrabbable.OnInteract();
+                _stateContext.TransitionTo<PlayerNormalState>();
+            }
         }
     }
 }

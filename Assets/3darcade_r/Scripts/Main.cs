@@ -22,20 +22,29 @@
 
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     public class Main : MonoBehaviour
     {
+        [SerializeField] private PlayerControls _player;
+        [SerializeField] private GameObject _theAbyss;
+
         public GameObject[] LoadedModels;
 
         private VFS _vfs;
-        private PlayerStateContext _playerStateContext;
+        private PlayerStateContext<PlayerState> _playerStateContext;
+
+        private bool _badLuck;
 
         private void Awake()
         {
+            Assert.IsNotNull(_player);
+            Assert.IsNotNull(_theAbyss);
+
             InitVFS();
-            _playerStateContext = new PlayerStateContext(FindObjectOfType<PlayerControls>(), Camera.main);
+            _playerStateContext = new PlayerStateContext<PlayerState>(_player);
         }
 
         private void Start()
@@ -62,12 +71,14 @@ namespace Arcade_r
 
         private void Update()
         {
-            _playerStateContext.Update(Time.deltaTime);
+            _playerStateContext.UpdateState(Time.deltaTime);
+
+            YouAreNotSupposedToBeHere();
         }
 
         private void FixedUpdate()
         {
-            _playerStateContext.FixedUpdate(Time.fixedDeltaTime);
+            _playerStateContext.FixedUpdateState(Time.fixedDeltaTime);
         }
 
         private void InitVFS()
@@ -103,6 +114,15 @@ namespace Arcade_r
                 Resources.Load<GameObject>("Games/arkanoid"),
                 Resources.Load<GameObject>("Games/asteroid")
             };
+        }
+        private void YouAreNotSupposedToBeHere()
+        {
+            if (!_badLuck && _player.transform.position.y < -340f)
+            {
+                _player.transform.position = new Vector3(0f, _player.transform.position.y, 0f);
+                _ = Instantiate(_theAbyss);
+                _badLuck = true;
+            }
         }
     }
 }

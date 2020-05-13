@@ -61,7 +61,7 @@ namespace Arcade_r
 
         private static GameObject _loadedModel;
 
-        public static void AddModelSetup(in Camera camera, in Vector3 position, in Vector3 forward, in float maxDistance, in LayerMask layerMask)
+        public static void AddModelSetup(in Vector3 position, in Vector3 forward)
         {
             if (_loadedModel == null)
             {

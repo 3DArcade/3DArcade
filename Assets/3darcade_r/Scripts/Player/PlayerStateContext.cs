@@ -21,40 +21,21 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public class PlayerStateContext : StateContext
+    public class PlayerStateContext<T> : StateContext<T> where T : PlayerState
     {
         public PlayerControls PlayerControls { get; private set; }
         public Camera Camera { get; private set; }
 
-        public PlayerStateContext(PlayerControls playerControls, Camera camera)
+        public Interaction.IInteractable CurrentInteractable { get; set; }
+        public Interaction.IGrabbable CurrentGrabbable { get; set; }
+
+        public PlayerStateContext(PlayerControls playerControls)
         {
             PlayerControls = playerControls;
-            Camera         = camera;
-        }
-
-        public override void TransitionTo<T>()
-        {
-            State foundState = _allStates.Find(x => x.GetType() == typeof(T));
-            if (foundState is T foundPlayerState)
-            {
-                if (_currentState != foundPlayerState)
-                {
-                    _currentState?.OnExit();
-                    _currentState = foundPlayerState;
-                    _currentState.OnEnter();
-                }
-            }
-            else
-            {
-                T newPlayerState = System.Activator.CreateInstance(typeof(T), new object[] { this }) as T;
-                Assert.IsTrue(newPlayerState is PlayerState);
-                _allStates.Add(newPlayerState);
-                TransitionTo<T>();
-            }
+            Camera         = Camera.main;
         }
     }
 }

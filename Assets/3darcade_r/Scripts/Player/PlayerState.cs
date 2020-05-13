@@ -26,9 +26,9 @@ namespace Arcade_r
 {
     public abstract class PlayerState : State
     {
-        protected readonly PlayerStateContext _stateContext;
+        protected readonly PlayerStateContext<PlayerState> _stateContext;
 
-        public PlayerState(PlayerStateContext stateContext)
+        public PlayerState(PlayerStateContext<PlayerState> stateContext)
         {
             Assert.IsNotNull(stateContext);
             _stateContext = stateContext;
