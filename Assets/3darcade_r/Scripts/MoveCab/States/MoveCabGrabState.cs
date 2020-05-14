@@ -29,10 +29,10 @@ namespace Arcade_r
     {
         private const float _raycastMaxDistance = 22.0f;
 
-        private MoveCab.SavedValues _savedValues;
+        private MoveCabSavedData _savedValues;
 
-        public MoveCabGrabState(MoveCabStateContext<MoveCabState> stateContext)
-        : base(stateContext)
+        public MoveCabGrabState(MoveCabStateContext context)
+        : base(context)
         {
         }
 
@@ -40,34 +40,27 @@ namespace Arcade_r
         {
             Debug.Log("  <color=green>Entered</color> MoveCabGrabState");
 
-            _savedValues = MoveCab.InitGrabMode(_stateContext.Data, _stateContext.Camera);
+            _savedValues = MoveCabSystem.InitGrabMode(_context.Data, _context.Camera);
         }
 
         public override void OnExit()
         {
             Debug.Log("  <color=orange>Exited</color> MoveCabGrabState");
 
-            MoveCab.RestoreSavedValues(_stateContext.Data, _savedValues);
+            MoveCabSystem.RestoreSavedValues(_context.Data, _savedValues);
             _savedValues = null;
         }
 
-        public override void OnUpdate(float dt)
+        public override void Update(float dt)
         {
             bool useMousePosition = Mouse.current != null && Cursor.visible;
-            Vector2 rayPosition = useMousePosition ? Mouse.current.position.ReadValue() : _stateContext.Data.ScreenPoint;
-            Ray ray = _stateContext.Camera.ScreenPointToRay(rayPosition);
-            MoveCab.AutoMoveAndRotate(_stateContext.Data, ray, _stateContext.PlayerControls.transform.forward, _raycastMaxDistance, _stateContext.RaycastLayers);
+            Vector2 rayPosition   = useMousePosition ? Mouse.current.position.ReadValue() : _context.Data.ScreenPoint;
+            Ray ray               = _context.Camera.ScreenPointToRay(rayPosition);
+            MoveCabSystem.AutoMoveAndRotate(_context.Data, ray, _context.PlayerControls.transform.forward, _raycastMaxDistance, _context.RaycastLayers);
 
-            if (_stateContext.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+            if (_context.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
             {
-                if (Cursor.visible)
-                {
-                    _stateContext.TransitionTo<MoveCabFromCursorState>();
-                }
-                else
-                {
-                    _stateContext.TransitionTo<MoveCabFromViewState>();
-                }
+                _context.TransitionTo<MoveCabAimState>();
             }
         }
     }

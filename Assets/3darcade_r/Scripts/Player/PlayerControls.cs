@@ -61,13 +61,13 @@ namespace Arcade_r
             _characterController= GetComponent<CharacterController>();
             _camera             = GetComponentInChildren<CinemachineVirtualCamera>();
 
+            Assert.IsNotNull(_characterController);
+            Assert.IsNotNull(_camera);
+
             _inputActions             = new InputSettingsActions();
             GlobalActions             = _inputActions.Global;
             FirstPersonActions        = _inputActions.FirstPerson;
             FirstPersonMoveCabActions = _inputActions.FirstPersonMoveCab;
-
-            Assert.IsNotNull(_characterController);
-            Assert.IsNotNull(_camera);
         }
 
         private void OnEnable()

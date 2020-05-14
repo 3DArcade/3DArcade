@@ -24,25 +24,21 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public class PlayerNormalState : PlayerState
+    public sealed class PlayerNormalState : PlayerState
     {
-        private readonly LayerMask _raycastLayers;
-        private readonly float _raycastMaxDistance = 2.5f;
-
-        public PlayerNormalState(PlayerStateContext<PlayerState> stateContext)
-        : base(stateContext)
+        public PlayerNormalState(PlayerStateContext context)
+        : base(context)
         {
-            _raycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
 
         public override void OnEnter()
         {
             Debug.Log("<color=green>Entered</color> PlayerNormalState");
 
-            _stateContext.PlayerControls.FirstPersonActions.Enable();
+            _context.PlayerControls.FirstPersonActions.Enable();
             if (!Cursor.visible)
             {
-                _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
+                _context.PlayerControls.FirstPersonActions.Look.Enable();
             }
         }
 
@@ -50,71 +46,71 @@ namespace Arcade_r
         {
             Debug.Log("<color=orange>Exited</color> PlayerNormalState");
 
-            _stateContext.PlayerControls.FirstPersonActions.Disable();
+            _context.PlayerControls.FirstPersonActions.Disable();
         }
 
-        public override void OnUpdate(float dt)
+        public override void Update(float dt)
         {
-            if (Time.frameCount % 10 == 0)
-            {
-                GetCurrentModelSetup();
-            }
-
-            if (_stateContext.PlayerControls.GlobalActions.Quit.triggered)
+            if (_context.PlayerControls.GlobalActions.Quit.triggered)
             {
                 Utils.ExitApp();
             }
 
-            if (_stateContext.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
+                    _context.PlayerControls.FirstPersonActions.Look.Enable();
                 }
                 else
                 {
-                    _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                    _context.PlayerControls.FirstPersonActions.Look.Disable();
                 }
             }
 
-            if (_stateContext.PlayerControls.FirstPersonActions.Interact.triggered)
+            if (Time.frameCount % 10 == 0)
+            {
+                FindTarget();
+            }
+
+            if (_context.PlayerControls.FirstPersonActions.Interact.triggered)
             {
                 if (!Cursor.visible)
                 {
-                    if (_stateContext.CurrentGrabbable != null)
+                    if (_context.CurrentGrabbable != null)
                     {
-                        _stateContext.TransitionTo<PlayerInteractGrabState>();
+                        _context.TransitionTo<PlayerInteractGrabState>();
                     }
-                    else if (_stateContext.CurrentInteractable != null)
+                    else if (_context.CurrentInteractable != null)
                     {
-                        _stateContext.TransitionTo<PlayerInteractState>();
+                        _context.TransitionTo<PlayerInteractState>();
                     }
                 }
             }
 
-            if (_stateContext.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_context.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
-                _stateContext.TransitionTo<PlayerMoveCabState>();
+                _context.TransitionTo<PlayerMoveCabState>();
             }
         }
 
-        private void GetCurrentModelSetup()
+        private void FindTarget()
         {
-            Ray ray = _stateContext.Camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, _raycastMaxDistance, _raycastLayers))
+            Ray ray = _context.Camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, _context.InteractMaxDistance, _context.RaycastLayers))
             {
-                Interaction.IInteractable hitInteractable = hitInfo.transform.GetComponent<Interaction.IInteractable>();
-                if (hitInteractable != _stateContext.CurrentInteractable)
+                IInteractable hitInteractable = hitInfo.transform.GetComponent<IInteractable>();
+                if (hitInteractable != null && hitInteractable != _context.CurrentInteractable)
                 {
-                    _stateContext.CurrentInteractable = hitInteractable;
-                    _stateContext.CurrentGrabbable    = hitInfo.transform.GetComponent<Interaction.IGrabbable>();
+                    _context.CurrentInteractable = hitInteractable;
+                    _context.CurrentGrabbable    = hitInfo.transform.GetComponent<IGrabbable>();
                 }
             }
             else
             {
-                _stateContext.CurrentInteractable = null;
-                _stateContext.CurrentGrabbable    = null;
+                _context.CurrentInteractable = null;
+                _context.CurrentGrabbable    = null;
             }
         }
     }

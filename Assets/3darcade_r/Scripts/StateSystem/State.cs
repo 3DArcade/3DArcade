@@ -22,7 +22,7 @@
 
 namespace Arcade_r
 {
-    public abstract class State
+    public abstract class State<T> where T : class
     {
         public virtual void OnEnter()
         {
@@ -32,11 +32,11 @@ namespace Arcade_r
         {
         }
 
-        public virtual void OnUpdate(float dt)
+        public virtual void Update(float dt)
         {
         }
 
-        public virtual void OnFixedUpdate(float dt)
+        public virtual void FixedUpdate(float dt)
         {
         }
     }

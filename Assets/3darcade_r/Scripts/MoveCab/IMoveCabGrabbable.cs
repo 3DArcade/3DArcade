@@ -22,7 +22,7 @@
 
 namespace Arcade_r
 {
-    public static class InteractionSystem
+    public interface IMoveCabGrabbable
     {
     }
 }

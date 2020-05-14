@@ -26,25 +26,18 @@ namespace Arcade_r
 {
     public class MoveCabAddState : MoveCabState
     {
-        private const float _raycastMaxDistance = 22.0f;
-
-        public MoveCabAddState(MoveCabStateContext<MoveCabState> stateContext)
-        : base(stateContext)
+        public MoveCabAddState(MoveCabStateContext context)
+        : base(context)
         {
         }
 
         public override void OnEnter()
         {
             Debug.Log("  <color=green>Entered</color> MoveCabAddState");
-            MoveCab.AddModelSetup(_stateContext.PlayerControls.transform.position, _stateContext.PlayerControls.transform.forward);
-            if (Cursor.visible)
-            {
-                _stateContext.TransitionTo<MoveCabFromCursorState>();
-            }
-            else
-            {
-                _stateContext.TransitionTo<MoveCabFromViewState>();
-            }
+
+            MoveCabSystem.AddModelSetup(_context.PlayerControls.transform.position, _context.PlayerControls.transform.forward);
+
+            _context.TransitionTo<MoveCabAimState>();
         }
 
         public override void OnExit()

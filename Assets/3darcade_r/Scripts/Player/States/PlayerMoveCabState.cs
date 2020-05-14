@@ -26,71 +26,64 @@ namespace Arcade_r
 {
     public class PlayerMoveCabState : PlayerState
     {
-        private readonly MoveCabStateContext<MoveCabState> _moveCabStateContext;
+        private readonly StateContext<MoveCabState> _subContext;
 
-        public PlayerMoveCabState(PlayerStateContext<PlayerState> stateContext)
-        : base(stateContext)
+        public PlayerMoveCabState(PlayerStateContext context)
+        : base(context)
         {
-            _moveCabStateContext = new MoveCabStateContext<MoveCabState>(_stateContext.PlayerControls);
+            _subContext = new MoveCabStateContext();
         }
 
         public override void OnEnter()
         {
             Debug.Log("<color=green>Entered</color> PlayerMoveCabState");
 
-            _stateContext.PlayerControls.FirstPersonActions.Enable();
+            _context.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
             {
-                _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                _context.PlayerControls.FirstPersonActions.Look.Disable();
             }
-            _stateContext.PlayerControls.FirstPersonActions.Interact.Disable();
+            _context.PlayerControls.FirstPersonActions.Interact.Disable();
 
-            _stateContext.PlayerControls.FirstPersonMoveCabActions.Enable();
+            _context.PlayerControls.FirstPersonMoveCabActions.Enable();
 
-            if (Cursor.visible)
-            {
-                _moveCabStateContext.TransitionTo<MoveCabFromCursorState>();
-            }
-            else
-            {
-                _moveCabStateContext.TransitionTo<MoveCabFromViewState>();
-            }
+            _subContext.TransitionTo<MoveCabAimState>();
         }
 
         public override void OnExit()
         {
             Debug.Log("<color=orange>Exited</color> PlayerMoveCabState");
 
-            _stateContext.PlayerControls.FirstPersonActions.Disable();
-            _stateContext.PlayerControls.FirstPersonMoveCabActions.Disable();
+            _context.PlayerControls.FirstPersonActions.Disable();
+            _context.PlayerControls.FirstPersonMoveCabActions.Disable();
         }
 
-        public override void OnUpdate(float dt)
+        public override void Update(float dt)
         {
-            if (_stateContext.PlayerControls.GlobalActions.Quit.triggered || _stateContext.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_context.PlayerControls.GlobalActions.Quit.triggered || _context.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
-                _stateContext.TransitionTo<PlayerNormalState>();
+                _context.TransitionTo<PlayerNormalState>();
             }
 
-            if (_stateContext.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
+                    _context.PlayerControls.FirstPersonActions.Look.Enable();
                 }
                 else
                 {
-                    _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                    _context.PlayerControls.FirstPersonActions.Look.Disable();
                 }
             }
 
-            _moveCabStateContext.UpdateState(dt);
+            _subContext.Update(dt);
         }
 
-        public override void OnFixedUpdate(float dt)
+        public override void FixedUpdate(float dt)
         {
-            _moveCabStateContext.FixedUpdateState(dt);
+            _subContext.FixedUpdate(dt);
         }
     }
 }

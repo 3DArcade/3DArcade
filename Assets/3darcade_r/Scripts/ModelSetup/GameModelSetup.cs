@@ -24,22 +24,17 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-    public class GameModelSetup : ModelSetup, Interaction.IGrabbable, MoveCab.IMovable, MoveCab.IGrabbable
+    [RequireComponent(typeof(Collider))]
+    public class GameModelSetup : ModelSetup, IInteractable, IMoveCabMovable, IMoveCabGrabbable
     {
         private void Awake()
         {
             Id = transform.name.Substring(0, transform.name.Length - 7);
         }
 
-        void Interaction.IInteractable.OnInteract()
+        void IInteractable.OnInteract()
         {
             Debug.Log($"<color=red>[NOT IMPLEMENTED]</color> OnInteract: {Id}");
-        }
-
-        void Interaction.IGrabbable.OnGrab()
-        {
-            Debug.Log($"<color=red>[NOT IMPLEMENTED]</color> OnGrab: {Id}");
         }
     }
 }

@@ -21,24 +21,31 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public class MoveCabStateContext<T> : StateContext<T> where T : MoveCabState
+    public sealed class MoveCabStateContext : StateContext<MoveCabState>
     {
-        public PlayerControls PlayerControls { get; private set; }
-        public Camera Camera { get; private set; }
-        public MoveCab.Data Data { get; private set; }
-        public MoveCab.Input Input { get; private set; }
-        public LayerMask RaycastLayers { get; private set; }
+        public readonly PlayerControls PlayerControls;
+        public readonly Camera Camera;
 
-        public MoveCabStateContext(PlayerControls playerControls)
+        public readonly MoveCabData Data;
+        public readonly MoveCabInputData Input;
+        public readonly LayerMask RaycastLayers;
+
+        public MoveCabStateContext()
         {
-            PlayerControls = playerControls;
+            PlayerControls = Object.FindObjectOfType<PlayerControls>();
             Camera         = Camera.main;
-            Data           = new MoveCab.Data();
-            Input          = new MoveCab.Input();
-            RaycastLayers  = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+
+            Assert.IsNotNull(PlayerControls);
+            Assert.IsNotNull(Camera);
+
+            Data  = new MoveCabData();
+            Input = new MoveCabInputData();
+
+            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
     }
 }

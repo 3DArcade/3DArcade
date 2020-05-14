@@ -20,9 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
-    public static class InteractionSystem
+    public sealed class MoveCabData
     {
+        public ModelSetup ModelSetup;
+        public Transform Transform;
+        public Collider Collider;
+        public Rigidbody Rigidbody;
+        public Vector2 ScreenPoint;
+    }
+
+    public sealed class MoveCabInputData
+    {
+        public Vector2 AimPosition;
+        public float AimRotation;
+    }
+
+    public sealed class MoveCabSavedData
+    {
+        public int Layer;
+        public bool ColliderIsTrigger;
+        public bool RigidbodyIsKinematic;
+        public RigidbodyInterpolation RigidbodyInterpolation;
+        public CollisionDetectionMode CollisionDetectionMode;
     }
 }

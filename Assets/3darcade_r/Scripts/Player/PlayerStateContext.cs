@@ -21,21 +21,29 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public class PlayerStateContext<T> : StateContext<T> where T : PlayerState
+    public sealed class PlayerStateContext: StateContext<PlayerState>
     {
-        public PlayerControls PlayerControls { get; private set; }
-        public Camera Camera { get; private set; }
+        public readonly PlayerControls PlayerControls;
+        public readonly Camera Camera;
 
-        public Interaction.IInteractable CurrentInteractable { get; set; }
-        public Interaction.IGrabbable CurrentGrabbable { get; set; }
+        public readonly LayerMask RaycastLayers;
+        public readonly float InteractMaxDistance = 2.5f;
+        public IInteractable CurrentInteractable  = null;
+        public IGrabbable CurrentGrabbable        = null;
 
-        public PlayerStateContext(PlayerControls playerControls)
+        public PlayerStateContext()
         {
-            PlayerControls = playerControls;
+            PlayerControls = Object.FindObjectOfType<PlayerControls>();
             Camera         = Camera.main;
+
+            Assert.IsNotNull(PlayerControls);
+            Assert.IsNotNull(Camera);
+
+            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
     }
 }

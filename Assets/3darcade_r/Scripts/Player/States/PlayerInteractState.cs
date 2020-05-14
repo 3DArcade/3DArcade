@@ -26,8 +26,8 @@ namespace Arcade_r
 {
     public class PlayerInteractState : PlayerState
     {
-        public PlayerInteractState(PlayerStateContext<PlayerState> stateContext)
-        : base(stateContext)
+        public PlayerInteractState(PlayerStateContext context)
+        : base(context)
         {
         }
 
@@ -35,8 +35,8 @@ namespace Arcade_r
         {
             Debug.Log("<color=green>Entered</color> PlayerInteractState");
 
-            _stateContext.CurrentInteractable.OnInteract();
-            _stateContext.TransitionTo<PlayerNormalState>();
+            _context.CurrentInteractable.OnInteract();
+            _context.TransitionTo<PlayerNormalState>();
         }
 
         public override void OnExit()

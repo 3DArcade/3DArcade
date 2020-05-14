@@ -24,14 +24,14 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public abstract class MoveCabState : State
+    public abstract class MoveCabState : State<MoveCabState>
     {
-        protected readonly MoveCabStateContext<MoveCabState> _stateContext;
+        protected readonly MoveCabStateContext _context;
 
-        public MoveCabState(MoveCabStateContext<MoveCabState> stateContext)
+        public MoveCabState(MoveCabStateContext context)
         {
-            Assert.IsNotNull(stateContext);
-            _stateContext = stateContext;
+            Assert.IsNotNull(context);
+            _context = context;
         }
     }
 }

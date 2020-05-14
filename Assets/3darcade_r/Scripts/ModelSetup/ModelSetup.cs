@@ -24,6 +24,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
+    [RequireComponent(typeof(Rigidbody))]
     public abstract class ModelSetup : MonoBehaviour
     {
         public string Description { get; protected set; }

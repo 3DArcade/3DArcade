@@ -26,8 +26,8 @@ namespace Arcade_r
 {
     public class PlayerInteractGrabState : PlayerState
     {
-        public PlayerInteractGrabState(PlayerStateContext<PlayerState> stateContext)
-        : base(stateContext)
+        public PlayerInteractGrabState(PlayerStateContext context)
+        : base(context)
         {
         }
 
@@ -35,41 +35,40 @@ namespace Arcade_r
         {
             Debug.Log("<color=green>Entered</color> PlayerInteractGrabState");
 
-            _stateContext.PlayerControls.FirstPersonActions.Enable();
+            _context.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
             {
-                _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                _context.PlayerControls.FirstPersonActions.Look.Disable();
             }
 
-            _stateContext.CurrentGrabbable.OnGrab();
+            _context.CurrentGrabbable.OnGrab();
         }
 
         public override void OnExit()
         {
             Debug.Log("<color=orange>Exited</color> PlayerInteractGrabState");
 
-            _stateContext.PlayerControls.FirstPersonActions.Disable();
+            _context.PlayerControls.FirstPersonActions.Disable();
         }
 
-        public override void OnUpdate(float dt)
+        public override void Update(float dt)
         {
-            if (_stateContext.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
                 Utils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _stateContext.PlayerControls.FirstPersonActions.Look.Enable();
+                    _context.PlayerControls.FirstPersonActions.Look.Enable();
                 }
                 else
                 {
-                    _stateContext.PlayerControls.FirstPersonActions.Look.Disable();
+                    _context.PlayerControls.FirstPersonActions.Look.Disable();
                 }
             }
 
-            if (_stateContext.PlayerControls.FirstPersonActions.Interact.triggered)
+            if (_context.PlayerControls.FirstPersonActions.Interact.triggered)
             {
-                _stateContext.CurrentGrabbable.OnInteract();
-                _stateContext.TransitionTo<PlayerNormalState>();
+                _context.TransitionTo<PlayerInteractState>();
             }
         }
     }

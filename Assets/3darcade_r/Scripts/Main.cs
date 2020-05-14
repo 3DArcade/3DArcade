@@ -34,7 +34,7 @@ namespace Arcade_r
         public GameObject[] LoadedModels;
 
         private VFS _vfs;
-        private PlayerStateContext<PlayerState> _playerStateContext;
+        private StateContext<PlayerState> _playerStateContext;
 
         private bool _badLuck;
 
@@ -44,7 +44,7 @@ namespace Arcade_r
             Assert.IsNotNull(_theAbyss);
 
             InitVFS();
-            _playerStateContext = new PlayerStateContext<PlayerState>(_player);
+            _playerStateContext = new PlayerStateContext();
         }
 
         private void Start()
@@ -71,14 +71,14 @@ namespace Arcade_r
 
         private void Update()
         {
-            _playerStateContext.UpdateState(Time.deltaTime);
+            _playerStateContext.Update(Time.deltaTime);
 
             YouAreNotSupposedToBeHere();
         }
 
         private void FixedUpdate()
         {
-            _playerStateContext.FixedUpdateState(Time.fixedDeltaTime);
+            _playerStateContext.FixedUpdate(Time.fixedDeltaTime);
         }
 
         private void InitVFS()

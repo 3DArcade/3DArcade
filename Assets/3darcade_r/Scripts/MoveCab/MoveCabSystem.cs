@@ -25,40 +25,8 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public static class MoveCab
+    public static class MoveCabSystem
     {
-        public interface IMovable
-        {
-        }
-
-        public interface IGrabbable
-        {
-        }
-
-        public sealed class Data
-        {
-            public ModelSetup ModelSetup;
-            public Transform Transform;
-            public Collider Collider;
-            public Rigidbody Rigidbody;
-            public Vector2 ScreenPoint;
-        }
-
-        public sealed class Input
-        {
-            public Vector2 AimPosition;
-            public float AimRotation;
-        }
-
-        public sealed class SavedValues
-        {
-            public int Layer;
-            public bool ColliderIsTrigger;
-            public bool RigidbodyIsKinematic;
-            public RigidbodyInterpolation RigidbodyInterpolation;
-            public CollisionDetectionMode CollisionDetectionMode;
-        }
-
         private static GameObject _loadedModel;
 
         public static void AddModelSetup(in Vector3 position, in Vector3 forward)
@@ -72,7 +40,7 @@ namespace Arcade_r
             _ = newModel.AddComponent<GameModelSetup>();
         }
 
-        public static void FindModelSetup(in Data data, in Ray ray, in float maxDistance, in LayerMask layerMask)
+        public static void FindModelSetup(in MoveCabData data, in Ray ray, in float maxDistance, in LayerMask layerMask)
         {
             Assert.IsNotNull(data);
 
@@ -104,7 +72,7 @@ namespace Arcade_r
             }
         }
 
-        public static void ManualMoveAndRotate(in Data data, in Input input)
+        public static void ManualMoveAndRotate(in MoveCabData data, in MoveCabInputData input)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Transform);
@@ -155,7 +123,7 @@ namespace Arcade_r
             }
         }
 
-        public static void AutoMoveAndRotate(in Data data, in Ray ray, in Vector3 forward, in float maxDistance, in LayerMask layerMask)
+        public static void AutoMoveAndRotate(in MoveCabData data, in Ray ray, in Vector3 forward, in float maxDistance, in LayerMask layerMask)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Transform);
@@ -190,7 +158,7 @@ namespace Arcade_r
             }
         }
 
-        public static SavedValues InitGrabMode(in Data data, in Camera camera)
+        public static MoveCabSavedData InitGrabMode(in MoveCabData data, in Camera camera)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Transform);
@@ -200,7 +168,7 @@ namespace Arcade_r
 
             data.ScreenPoint = camera.WorldToScreenPoint(data.Transform.position);
 
-            SavedValues result = new SavedValues
+            MoveCabSavedData result = new MoveCabSavedData
             {
                 Layer                  = data.ModelSetup.gameObject.layer,
                 ColliderIsTrigger      = data.Collider.isTrigger,
@@ -218,7 +186,7 @@ namespace Arcade_r
             return result;
         }
 
-        public static void RestoreSavedValues(in Data data, SavedValues savedValues)
+        public static void RestoreSavedValues(in MoveCabData data, MoveCabSavedData savedValues)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Collider);

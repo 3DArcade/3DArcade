@@ -24,14 +24,14 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public abstract class PlayerState : State
+    public abstract class PlayerState : State<PlayerState>
     {
-        protected readonly PlayerStateContext<PlayerState> _stateContext;
+        protected readonly PlayerStateContext _context;
 
-        public PlayerState(PlayerStateContext<PlayerState> stateContext)
+        public PlayerState(PlayerStateContext context)
         {
-            Assert.IsNotNull(stateContext);
-            _stateContext = stateContext;
+            Assert.IsNotNull(context);
+            _context = context;
         }
     }
 }
