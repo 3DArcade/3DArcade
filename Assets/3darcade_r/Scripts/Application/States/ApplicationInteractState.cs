@@ -21,31 +21,35 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public sealed class MoveCabStateContext : FSM.Context<MoveCabState>
+    public sealed class ApplicationInteractState : ApplicationState
     {
-        public readonly PlayerControls PlayerControls;
-        public readonly Camera Camera;
-
-        public readonly MoveCabData Data;
-        public readonly MoveCabInputData Input;
-        public readonly LayerMask RaycastLayers;
-
-        public MoveCabStateContext()
+        public ApplicationInteractState(ApplicationStateContext context)
+        : base(context)
         {
-            PlayerControls = Object.FindObjectOfType<PlayerControls>();
-            Camera         = Camera.main;
+        }
 
-            Assert.IsNotNull(PlayerControls);
-            Assert.IsNotNull(Camera);
+        public override void OnEnter()
+        {
+            Debug.Log(">> <color=green>Entered</color> ApplicationInteractState");
 
-            Data  = new MoveCabData();
-            Input = new MoveCabInputData();
+            if (_context.CurrentGrabbable != null)
+            {
+                _context.CurrentGrabbable.OnGrab();
+            }
+            else if (_context.CurrentInteractable != null)
+            {
+                _context.CurrentInteractable.OnInteract();
+            }
 
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            _context.TransitionTo<ApplicationRunningState>();
+        }
+
+        public override void OnExit()
+        {
+            Debug.Log(">> <color=orange>Exited</color> ApplicationInteractState");
         }
     }
 }

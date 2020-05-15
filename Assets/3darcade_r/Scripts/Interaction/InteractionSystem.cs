@@ -20,9 +20,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
     public static class InteractionSystem
     {
+        public static void FindInteractable(ref IInteractable interactable, ref IGrabbable grabbable, Camera camera, float maxDistance, LayerMask layers)
+        {
+            Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layers))
+            {
+                IInteractable hitInteractable = hitInfo.transform.GetComponent<IInteractable>();
+                if (hitInteractable != null)
+                {
+                    if (hitInteractable != interactable)
+                    {
+                        interactable = hitInteractable;
+                        grabbable    = hitInfo.transform.GetComponent<IGrabbable>();
+                    }
+                }
+                else
+                {
+                    interactable = null;
+                    grabbable    = null;
+                }
+            }
+            else
+            {
+                interactable = null;
+                grabbable    = null;
+            }
+        }
     }
 }

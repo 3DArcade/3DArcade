@@ -20,32 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
-using UnityEngine.Assertions;
+using System.Collections.Generic;
 
-namespace Arcade_r
+namespace Arcade_r.FSM
 {
-    public sealed class MoveCabStateContext : FSM.Context<MoveCabState>
+    public abstract class Context<T> where T : State<T>
     {
-        public readonly PlayerControls PlayerControls;
-        public readonly Camera Camera;
+        private readonly List<T> _states;
+        private T _currentState;
 
-        public readonly MoveCabData Data;
-        public readonly MoveCabInputData Input;
-        public readonly LayerMask RaycastLayers;
-
-        public MoveCabStateContext()
+        public Context()
         {
-            PlayerControls = Object.FindObjectOfType<PlayerControls>();
-            Camera         = Camera.main;
+            _states       = new List<T>();
+            _currentState = null;
+        }
 
-            Assert.IsNotNull(PlayerControls);
-            Assert.IsNotNull(Camera);
+        public virtual void Update(float dt) => _currentState?.Update(dt);
 
-            Data  = new MoveCabData();
-            Input = new MoveCabInputData();
+        public virtual void FixedUpdate(float dt) => _currentState?.FixedUpdate(dt);
 
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+        public void TransitionTo<U>() where U : T
+        {
+            T foundState = _states.Find(x => x.GetType() == typeof(U));
+            if (foundState != null)
+            {
+                if (_currentState != foundState)
+                {
+                    _currentState?.OnExit();
+                    _currentState = foundState;
+                    _currentState.OnEnter();
+                }
+            }
+            else
+            {
+                U newState = System.Activator.CreateInstance(typeof(U), new object[] { this }) as U;
+                _states.Add(newState);
+                TransitionTo<U>();
+            }
         }
     }
 }

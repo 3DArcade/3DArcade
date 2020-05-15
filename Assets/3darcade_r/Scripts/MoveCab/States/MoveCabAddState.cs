@@ -33,7 +33,7 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log("  <color=green>Entered</color> MoveCabAddState");
+            Debug.Log(">>> <color=green>Entered</color> MoveCabAddState");
 
             MoveCabSystem.AddModelSetup(_context.PlayerControls.transform.position, _context.PlayerControls.transform.forward);
 
@@ -42,7 +42,7 @@ namespace Arcade_r
 
         public override void OnExit()
         {
-            Debug.Log("  <color=orange>Exited</color> MoveCabAddState");
+            Debug.Log(">>> <color=orange>Exited</color> MoveCabAddState");
         }
     }
 }

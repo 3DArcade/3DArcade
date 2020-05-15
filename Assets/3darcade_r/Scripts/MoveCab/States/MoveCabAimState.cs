@@ -38,12 +38,12 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log("  <color=green>Entered</color> MoveCabAimState");
+            Debug.Log(">>> <color=green>Entered</color> MoveCabAimState");
         }
 
         public override void OnExit()
         {
-            Debug.Log("  <color=orange>Exited</color> MoveCabAimState");
+            Debug.Log(">>> <color=orange>Exited</color> MoveCabAimState");
         }
 
         public override void Update(float dt)

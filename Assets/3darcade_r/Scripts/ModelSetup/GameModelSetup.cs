@@ -24,7 +24,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    [RequireComponent(typeof(Collider))]
+    [SelectionBase]
     public class GameModelSetup : ModelSetup, IInteractable, IMoveCabMovable, IMoveCabGrabbable
     {
         private void Awake()

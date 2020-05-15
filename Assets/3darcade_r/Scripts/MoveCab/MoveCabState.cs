@@ -24,7 +24,7 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public abstract class MoveCabState : State<MoveCabState>
+    public abstract class MoveCabState : FSM.State<MoveCabState>
     {
         protected readonly MoveCabStateContext _context;
 

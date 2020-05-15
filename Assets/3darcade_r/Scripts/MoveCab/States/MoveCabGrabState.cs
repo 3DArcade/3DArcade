@@ -38,14 +38,14 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log("  <color=green>Entered</color> MoveCabGrabState");
+            Debug.Log(">>> <color=green>Entered</color> MoveCabGrabState");
 
             _savedValues = MoveCabSystem.InitGrabMode(_context.Data, _context.Camera);
         }
 
         public override void OnExit()
         {
-            Debug.Log("  <color=orange>Exited</color> MoveCabGrabState");
+            Debug.Log(">>> <color=orange>Exited</color> MoveCabGrabState");
 
             MoveCabSystem.RestoreSavedValues(_context.Data, _savedValues);
             _savedValues = null;

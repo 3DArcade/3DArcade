@@ -21,31 +21,27 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public sealed class MoveCabStateContext : FSM.Context<MoveCabState>
+    public sealed class ApplicationLoadingAssetsState : ApplicationState
     {
-        public readonly PlayerControls PlayerControls;
-        public readonly Camera Camera;
-
-        public readonly MoveCabData Data;
-        public readonly MoveCabInputData Input;
-        public readonly LayerMask RaycastLayers;
-
-        public MoveCabStateContext()
+        public ApplicationLoadingAssetsState(ApplicationStateContext context)
+        : base(context)
         {
-            PlayerControls = Object.FindObjectOfType<PlayerControls>();
-            Camera         = Camera.main;
+        }
 
-            Assert.IsNotNull(PlayerControls);
-            Assert.IsNotNull(Camera);
+        public override void OnEnter()
+        {
+            Debug.Log("> <color=green>Entered</color> ApplicationLoadingAssetsState");
 
-            Data  = new MoveCabData();
-            Input = new MoveCabInputData();
+            // TODO: When done ->
+            _context.TransitionTo<ApplicationLoadingWorldState>();
+        }
 
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+        public override void OnExit()
+        {
+            Debug.Log("> <color=orange>Exited</color> ApplicationLoadingAssetsState");
         }
     }
 }

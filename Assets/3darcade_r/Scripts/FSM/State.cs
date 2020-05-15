@@ -20,32 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
-using UnityEngine.Assertions;
-
-namespace Arcade_r
+namespace Arcade_r.FSM
 {
-    public sealed class MoveCabStateContext : FSM.Context<MoveCabState>
+    public abstract class State<T> where T : State<T>
     {
-        public readonly PlayerControls PlayerControls;
-        public readonly Camera Camera;
-
-        public readonly MoveCabData Data;
-        public readonly MoveCabInputData Input;
-        public readonly LayerMask RaycastLayers;
-
-        public MoveCabStateContext()
+        public virtual void OnEnter()
         {
-            PlayerControls = Object.FindObjectOfType<PlayerControls>();
-            Camera         = Camera.main;
+        }
 
-            Assert.IsNotNull(PlayerControls);
-            Assert.IsNotNull(Camera);
+        public virtual void OnExit()
+        {
+        }
 
-            Data  = new MoveCabData();
-            Input = new MoveCabInputData();
+        public virtual void Update(float dt)
+        {
+        }
 
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+        public virtual void FixedUpdate(float dt)
+        {
         }
     }
 }

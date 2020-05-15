@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -29,56 +28,41 @@ namespace Arcade_r
     public class Main : MonoBehaviour
     {
         [SerializeField] private PlayerControls _player;
+        [SerializeField] private Camera _camera;
         [SerializeField] private GameObject _theAbyss;
 
-        public GameObject[] LoadedModels;
-
         private VFS _vfs;
-        private StateContext<PlayerState> _playerStateContext;
-
-        private bool _badLuck;
+        private ApplicationStateContext _applicationContext;
 
         private void Awake()
         {
             Assert.IsNotNull(_player);
+            Assert.IsNotNull(_camera);
             Assert.IsNotNull(_theAbyss);
 
             InitVFS();
-            _playerStateContext = new PlayerStateContext();
+
+            _player.gameObject.SetActive(true);
+            _camera.gameObject.SetActive(true);
+
+            _applicationContext = new ApplicationStateContext(_player, _camera, _theAbyss);
         }
 
         private void Start()
         {
             Utils.HideMouseCursor();
 
-            LoadModels();
-
-            MaterialUtils.SetGPUInstancing(true, LoadedModels.Where(x => x != null));
-
-            Vector3 position    = new Vector3(49.4f, 0f, 20f);
-            Quaternion rotation = Quaternion.LookRotation(Vector3.left, Vector3.up);
-
-            foreach (GameObject loadedModel in LoadedModels)
-            {
-                GameObject model = Instantiate(loadedModel, position, rotation);
-                _ = model.AddComponent<GameModelSetup>();
-                model.layer = LayerMask.NameToLayer("Arcade/GameModels");
-                position.z--;
-            }
-
-            _playerStateContext.TransitionTo<PlayerNormalState>();
+            _applicationContext.TransitionTo<ApplicationLoadingAssetsState>();
         }
 
         private void Update()
         {
-            _playerStateContext.Update(Time.deltaTime);
-
-            YouAreNotSupposedToBeHere();
+            _applicationContext.Update(Time.deltaTime);
         }
 
         private void FixedUpdate()
         {
-            _playerStateContext.FixedUpdate(Time.fixedDeltaTime);
+            _applicationContext.FixedUpdate(Time.fixedDeltaTime);
         }
 
         private void InitVFS()
@@ -101,28 +85,6 @@ namespace Arcade_r
             _vfs.MountDirectory("media", $"{streamingAssetsPath}/Media");
 
             _vfs.MountFile("general_cfg", "cfg/GeneralConfiguration.json");
-        }
-
-        private void LoadModels()
-        {
-            LoadedModels = new GameObject[]
-            {
-                Resources.Load<GameObject>("Games/1942"),
-                Resources.Load<GameObject>("Games/1943"),
-                Resources.Load<GameObject>("Games/alpine"),
-                Resources.Load<GameObject>("Games/amidar"),
-                Resources.Load<GameObject>("Games/arkanoid"),
-                Resources.Load<GameObject>("Games/asteroid")
-            };
-        }
-        private void YouAreNotSupposedToBeHere()
-        {
-            if (!_badLuck && _player.transform.position.y < -340f)
-            {
-                _player.transform.position = new Vector3(0f, _player.transform.position.y, 0f);
-                _ = Instantiate(_theAbyss);
-                _badLuck = true;
-            }
         }
     }
 }

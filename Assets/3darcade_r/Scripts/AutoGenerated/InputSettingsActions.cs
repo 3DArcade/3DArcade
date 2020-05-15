@@ -147,7 +147,7 @@ namespace Arcade_r
                 },
                 {
                     ""name"": """",
-                    ""id"": ""509f5c27-c7e9-4e10-b690-9f5207bac653"",
+                    ""id"": ""a088d958-41df-46d7-84ed-9ea270586de3"",
                     ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
