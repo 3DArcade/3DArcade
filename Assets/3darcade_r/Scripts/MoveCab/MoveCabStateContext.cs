@@ -31,20 +31,17 @@ namespace Arcade_r
         public readonly Camera Camera;
 
         public readonly MoveCabData Data;
-        public readonly MoveCabInputData Input;
         public readonly LayerMask RaycastLayers;
 
-        public MoveCabStateContext()
+        public MoveCabStateContext(PlayerControls playerControls, Camera camera)
         {
-            PlayerControls = Object.FindObjectOfType<PlayerControls>();
-            Camera         = Camera.main;
+            Assert.IsNotNull(playerControls);
+            Assert.IsNotNull(camera);
 
-            Assert.IsNotNull(PlayerControls);
-            Assert.IsNotNull(Camera);
+            PlayerControls = playerControls;
+            Camera         = camera;
 
-            Data  = new MoveCabData();
-            Input = new MoveCabInputData();
-
+            Data          = new MoveCabData();
             RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
     }

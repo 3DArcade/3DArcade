@@ -24,8 +24,10 @@ using UnityEngine;
 
 namespace Arcade_r
 {
+
     public sealed class ApplicationInteractState : ApplicationState
     {
+
         public ApplicationInteractState(ApplicationStateContext context)
         : base(context)
         {
@@ -35,13 +37,13 @@ namespace Arcade_r
         {
             Debug.Log(">> <color=green>Entered</color> ApplicationInteractState");
 
-            if (_context.CurrentGrabbable != null)
+            if (_data.CurrentGrabbable != null)
             {
-                _context.CurrentGrabbable.OnGrab();
+                _data.CurrentGrabbable.OnGrab();
             }
-            else if (_context.CurrentInteractable != null)
+            else if (_data.CurrentInteractable != null)
             {
-                _context.CurrentInteractable.OnInteract();
+                _data.CurrentInteractable.OnInteract();
             }
 
             _context.TransitionTo<ApplicationRunningState>();

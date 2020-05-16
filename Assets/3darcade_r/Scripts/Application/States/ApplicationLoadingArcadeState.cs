@@ -26,6 +26,8 @@ namespace Arcade_r
 {
     public sealed class ApplicationLoadingArcadeState : ApplicationState
     {
+        private GameObject[] _loadedModels;
+
         public ApplicationLoadingArcadeState(ApplicationStateContext context)
         : base(context)
         {
@@ -35,7 +37,7 @@ namespace Arcade_r
         {
             Debug.Log("> <color=green>Entered</color> ApplicationLoadingWorldState");
 
-            _context.LoadedModels = new GameObject[]
+            _loadedModels = new GameObject[]
             {
                 Resources.Load<GameObject>("Games/1942"),
                 Resources.Load<GameObject>("Games/1943"),
@@ -44,12 +46,12 @@ namespace Arcade_r
                 Resources.Load<GameObject>("Games/arkanoid"),
                 Resources.Load<GameObject>("Games/asteroid")
             };
-            MaterialUtils.SetGPUInstancing(true, _context.LoadedModels);
+            MaterialUtils.SetGPUInstancing(true, _loadedModels);
 
             Vector3 position    = new Vector3(49.4f, 0f, 20f);
             Quaternion rotation = Quaternion.LookRotation(Vector3.left, Vector3.up);
 
-            foreach (GameObject loadedModel in _context.LoadedModels)
+            foreach (GameObject loadedModel in _loadedModels)
             {
                 GameObject model = Object.Instantiate(loadedModel, position, rotation);
                 _ = model.AddComponent<GameModelSetup>();

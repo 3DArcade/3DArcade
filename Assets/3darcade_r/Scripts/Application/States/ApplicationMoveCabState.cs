@@ -31,21 +31,21 @@ namespace Arcade_r
         public ApplicationMoveCabState(ApplicationStateContext context)
         : base(context)
         {
-            _moveCabSubContext = new MoveCabStateContext();
+            _moveCabSubContext = new MoveCabStateContext(_data.PlayerControls, _data.Camera);
         }
 
         public override void OnEnter()
         {
             Debug.Log("> <color=green>Entered</color> ApplicationMoveCabState");
 
-            _context.PlayerControls.FirstPersonActions.Enable();
+            _data.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
             {
-                _context.PlayerControls.FirstPersonActions.Look.Disable();
+                _data.PlayerControls.FirstPersonActions.Look.Disable();
             }
-            _context.PlayerControls.FirstPersonActions.Interact.Disable();
+            _data.PlayerControls.FirstPersonActions.Interact.Disable();
 
-            _context.PlayerControls.FirstPersonMoveCabActions.Enable();
+            _data.PlayerControls.FirstPersonMoveCabActions.Enable();
 
             _moveCabSubContext.TransitionTo<MoveCabAimState>();
         }
@@ -54,27 +54,27 @@ namespace Arcade_r
         {
             Debug.Log("> <color=orange>Exited</color> ApplicationMoveCabState");
 
-            _context.PlayerControls.FirstPersonActions.Disable();
-            _context.PlayerControls.FirstPersonMoveCabActions.Disable();
+            _data.PlayerControls.FirstPersonActions.Disable();
+            _data.PlayerControls.FirstPersonMoveCabActions.Disable();
         }
 
         public override void Update(float dt)
         {
-            if (_context.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered || _context.PlayerControls.GlobalActions.Quit.triggered)
+            if (_data.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered || _data.PlayerControls.GlobalActions.Quit.triggered)
             {
                 _context.TransitionTo<ApplicationRunningState>();
             }
 
-            if (_context.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            if (_data.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.PlayerControls.FirstPersonActions.Look.Enable();
+                    _data.PlayerControls.FirstPersonActions.Look.Enable();
                 }
                 else
                 {
-                    _context.PlayerControls.FirstPersonActions.Look.Disable();
+                    _data.PlayerControls.FirstPersonActions.Look.Disable();
                 }
             }
 

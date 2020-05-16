@@ -37,10 +37,10 @@ namespace Arcade_r
         {
             Debug.Log("> <color=green>Entered</color> ApplicationRunningState");
 
-            _context.PlayerControls.FirstPersonActions.Enable();
+            _data.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
             {
-                _context.PlayerControls.FirstPersonActions.Look.Disable();
+                _data.PlayerControls.FirstPersonActions.Look.Disable();
             }
         }
 
@@ -48,50 +48,50 @@ namespace Arcade_r
         {
             Debug.Log("> <color=orange>Exited</color> ApplicationRunningState");
 
-            _context.PlayerControls.FirstPersonActions.Disable();
+            _data.PlayerControls.FirstPersonActions.Disable();
         }
 
         public override void Update(float dt)
         {
-            if (_context.PlayerControls.GlobalActions.Quit.triggered)
+            if (_data.PlayerControls.GlobalActions.Quit.triggered)
             {
                 _context.TransitionTo<ApplicationExitingState>();
             }
 
-            if (_context.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            if (_data.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.PlayerControls.FirstPersonActions.Look.Enable();
+                    _data.PlayerControls.FirstPersonActions.Look.Enable();
                 }
                 else
                 {
-                    _context.PlayerControls.FirstPersonActions.Look.Disable();
+                    _data.PlayerControls.FirstPersonActions.Look.Disable();
                 }
             }
 
             if (Time.frameCount % 10 == 0)
             {
-                InteractionSystem.FindInteractable(ref _context.CurrentInteractable,
-                                                   ref _context.CurrentGrabbable,
-                                                   _context.Camera,
+                InteractionSystem.FindInteractable(ref _data.CurrentInteractable,
+                                                   ref _data.CurrentGrabbable,
+                                                   _data.Camera,
                                                    _interactMaxDistance,
-                                                   _context.RaycastLayers);
+                                                   _data.RaycastLayers);
             }
 
-            if (_context.PlayerControls.FirstPersonActions.Interact.triggered)
+            if (_data.PlayerControls.FirstPersonActions.Interact.triggered)
             {
                 if (!Cursor.visible)
                 {
-                    if (_context.CurrentGrabbable != null || _context.CurrentInteractable != null)
+                    if (_data.CurrentGrabbable != null || _data.CurrentInteractable != null)
                     {
                         _context.TransitionTo<ApplicationInteractState>();
                     }
                 }
             }
 
-            if (_context.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_data.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
                 _context.TransitionTo<ApplicationMoveCabState>();
             }

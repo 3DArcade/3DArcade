@@ -38,22 +38,22 @@ namespace Arcade_r
 
             try
             {
-                _context.CurrentOS = SystemUtils.GetCurrentOS();
+                _data.CurrentOS = SystemUtils.GetCurrentOS();
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
                 return;
             }
-            Debug.Log($"Current OS: {_context.CurrentOS}");
+            Debug.Log($"Current OS: {_data.CurrentOS}");
 
             string vfsRootDirectory = SystemUtils.GetDataPath();
-            _context.VirtualFileSystem = InitVFS(vfsRootDirectory);
+            _data.VirtualFileSystem = InitVFS(vfsRootDirectory);
             Debug.Log($"Data path: {vfsRootDirectory}");
 
-            _context.ArcadeRootObject = SetupGameObjectHierarchy();
+            _data.ArcadeRootObject = SetupGameObjectHierarchy();
 
-            _context.RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            _data.RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
 
             _context.TransitionTo<ApplicationLoadingArcadeState>();
         }

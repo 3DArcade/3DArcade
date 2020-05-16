@@ -31,15 +31,12 @@ namespace Arcade_r
         public Collider Collider;
         public Rigidbody Rigidbody;
         public Vector2 ScreenPoint;
-    }
 
-    public sealed class MoveCabInputData
-    {
         public Vector2 AimPosition;
         public float AimRotation;
     }
 
-    public sealed class MoveCabSavedData
+    public sealed class MoveCabGrabSavedData
     {
         public int Layer;
         public bool ColliderIsTrigger;

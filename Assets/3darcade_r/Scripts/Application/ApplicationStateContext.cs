@@ -26,31 +26,18 @@ namespace Arcade_r
 {
     public sealed class ApplicationStateContext : FSM.Context<ApplicationState>
     {
-        public readonly PlayerControls PlayerControls;
-        public readonly Camera Camera;
-        public readonly GameObject TheAbyss;
+        public readonly ApplicationData Data;
 
-        // Set in ApplicationInitState
-        public OS CurrentOS;
-        public VFS VirtualFileSystem;
-        public GameObject ArcadeRootObject;
-        public LayerMask RaycastLayers;
-
-        // Set in ApplicationLoadingArcadeState
-        public GameObject[] LoadedModels;
-
-        // Set in ApplicationRunningState
-        public IInteractable CurrentInteractable;
-        public IGrabbable CurrentGrabbable;
-
-        // Misc...
         private bool _badLuck;
 
         public ApplicationStateContext(PlayerControls playerControls, Camera camera, GameObject theAbyss)
         {
-            PlayerControls = playerControls;
-            Camera         = camera;
-            TheAbyss       = theAbyss;
+            Data = new ApplicationData
+            {
+                PlayerControls = playerControls,
+                Camera         = camera,
+                TheAbyss       = theAbyss
+            };
         }
 
         public override void Update(float dt)
@@ -61,10 +48,10 @@ namespace Arcade_r
 
         private void YouAreNotSupposedToBeHere()
         {
-            if (!_badLuck && PlayerControls.transform.position.y < -340f)
+            if (!_badLuck && Data.PlayerControls.transform.position.y < -340f)
             {
-                PlayerControls.transform.position = new Vector3(0f, PlayerControls.transform.position.y, 0f);
-                _ = Object.Instantiate(TheAbyss);
+                Data.PlayerControls.transform.position = new Vector3(0f, Data.PlayerControls.transform.position.y, 0f);
+                _ = Object.Instantiate(Data.TheAbyss);
                 _badLuck = true;
             }
         }

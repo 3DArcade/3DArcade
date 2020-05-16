@@ -20,20 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine.Assertions;
+using UnityEngine;
 
 namespace Arcade_r
 {
-    public abstract class ApplicationState : FSM.State<ApplicationState>
+    public class ApplicationData
     {
-        protected readonly ApplicationStateContext _context;
-        protected ApplicationData _data;
+        public PlayerControls PlayerControls;
+        public Camera Camera;
+        public GameObject TheAbyss;
 
-        public ApplicationState(ApplicationStateContext context)
-        {
-            Assert.IsNotNull(context);
-            _context = context;
-            _data    = _context.Data;
-        }
+        public OS CurrentOS;
+        public VFS VirtualFileSystem;
+        public GameObject ArcadeRootObject;
+        public LayerMask RaycastLayers;
+
+        public IInteractable CurrentInteractable;
+        public IGrabbable CurrentGrabbable;
+
+        public GameObject[] LoadedModels;
     }
 }

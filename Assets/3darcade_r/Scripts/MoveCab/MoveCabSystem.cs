@@ -72,20 +72,14 @@ namespace Arcade_r
             }
         }
 
-        public static void ManualMoveAndRotate(in MoveCabData data, in MoveCabInputData input)
+        public static void ManualMoveAndRotate(in Transform transform, in Rigidbody rigidbody, in Vector2 positionInput, in float rotationInput)
         {
-            Assert.IsNotNull(data);
-            Assert.IsNotNull(data.Transform);
-            Assert.IsNotNull(data.Rigidbody);
-            Assert.IsNotNull(input);
-
-            Transform transform = data.Transform;
-            Rigidbody rigidbody = data.Rigidbody;
+            Assert.IsNotNull(transform);
+            Assert.IsNotNull(rigidbody);
 
             rigidbody.constraints = RigidbodyConstraints.None;
 
             // Position
-            Vector2 positionInput = input.AimPosition;
             if (positionInput.sqrMagnitude > 0.001f)
             {
                 rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
@@ -97,7 +91,6 @@ namespace Arcade_r
             rigidbody.AddForce(Vector3.forward * -rigidbody.velocity.z, ForceMode.VelocityChange);
 
             // Rotation
-            float rotationInput = input.AimRotation;
             if (rotationInput < -0.5f || rotationInput > 0.5f)
             {
                 rigidbody.constraints = RigidbodyConstraints.FreezeAll;
@@ -158,7 +151,7 @@ namespace Arcade_r
             }
         }
 
-        public static MoveCabSavedData InitGrabMode(in MoveCabData data, in Camera camera)
+        public static MoveCabGrabSavedData InitGrabMode(in MoveCabData data, in Camera camera)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Transform);
@@ -168,7 +161,7 @@ namespace Arcade_r
 
             data.ScreenPoint = camera.WorldToScreenPoint(data.Transform.position);
 
-            MoveCabSavedData result = new MoveCabSavedData
+            MoveCabGrabSavedData result = new MoveCabGrabSavedData
             {
                 Layer                  = data.ModelSetup.gameObject.layer,
                 ColliderIsTrigger      = data.Collider.isTrigger,
@@ -186,7 +179,7 @@ namespace Arcade_r
             return result;
         }
 
-        public static void RestoreSavedValues(in MoveCabData data, MoveCabSavedData savedValues)
+        public static void RestoreSavedValues(in MoveCabData data, MoveCabGrabSavedData savedValues)
         {
             Assert.IsNotNull(data);
             Assert.IsNotNull(data.Collider);
