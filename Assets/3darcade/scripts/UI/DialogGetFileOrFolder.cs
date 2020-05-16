@@ -15,10 +15,8 @@ namespace Arcade
             MasterGamelist
         }
 
-        [SerializeField]
-        private DialogType dialogType;
-        [SerializeField]
-        private InputField Target;
+        [SerializeField] private DialogType dialogType = default;
+        [SerializeField] private InputField Target     = default;
 
         public void Show()
         {

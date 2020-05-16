@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -21,20 +20,16 @@ namespace UnityStandardAssets.Utility
             Mobile
         }
 
-        [SerializeField]
-        private BuildTargetGroup m_BuildTargetGroup;
-        [SerializeField]
-        private GameObject[] m_Content = new GameObject[0];
-        [SerializeField]
-        private MonoBehaviour[] m_MonoBehaviours = new MonoBehaviour[0];
-        [SerializeField]
-        private bool m_ChildrenOfThisObject;
+        [SerializeField] private BuildTargetGroup m_BuildTargetGroup = default;
+        [SerializeField] private GameObject[] m_Content = new GameObject[0];
+        [SerializeField] private MonoBehaviour[] m_MonoBehaviours = new MonoBehaviour[0];
+        [SerializeField] private bool m_ChildrenOfThisObject = default;
 
 #if !UNITY_EDITOR
-	void OnEnable()
-	{
-		CheckEnableContent();
-	}
+	    private void OnEnable()
+	    {
+		    CheckEnableContent();
+	    }
 #else
         public int callbackOrder
         {
@@ -46,12 +41,10 @@ namespace UnityStandardAssets.Utility
 #endif
 
 #if UNITY_EDITOR
-
         private void OnEnable()
         {
             EditorApplication.update += Update;
         }
-
 
         private void OnDisable()
         {
@@ -69,36 +62,21 @@ namespace UnityStandardAssets.Utility
         }
 #endif
 
-
         private void CheckEnableContent()
         {
 #if (UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_TIZEN)
-		if (m_BuildTargetGroup == BuildTargetGroup.Mobile)
-		{
-			EnableContent(true);
-		} else {
-			EnableContent(false);
-		}
+			EnableContent(m_BuildTargetGroup == BuildTargetGroup.Mobile);
 #endif
-
 #if !(UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_TIZEN)
-            if (m_BuildTargetGroup == BuildTargetGroup.Mobile)
-            {
-                EnableContent(false);
-            }
-            else
-            {
-                EnableContent(true);
-            }
+            EnableContent(m_BuildTargetGroup != BuildTargetGroup.Mobile);
 #endif
         }
-
 
         private void EnableContent(bool enabled)
         {
             if (m_Content.Length > 0)
             {
-                foreach (var g in m_Content)
+                foreach (GameObject g in m_Content)
                 {
                     if (g != null)
                     {
@@ -115,7 +93,7 @@ namespace UnityStandardAssets.Utility
             }
             if (m_MonoBehaviours.Length > 0)
             {
-                foreach (var monoBehaviour in m_MonoBehaviours)
+                foreach (MonoBehaviour monoBehaviour in m_MonoBehaviours)
                 {
                     monoBehaviour.enabled = enabled;
                 }

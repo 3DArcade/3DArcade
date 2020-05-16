@@ -329,7 +329,7 @@ namespace UnityEngine.UI
                 return;
             }
             StopAllCoroutines();
-            StartCoroutine(ScrollToCellCoroutine(index, speed));
+            _ = StartCoroutine(ScrollToCellCoroutine(index, speed));
         }
 
         IEnumerator ScrollToCellCoroutine(int index, float speed)
@@ -352,8 +352,8 @@ namespace UnityEngine.UI
                     else
                     {
                         m_ViewBounds = new Bounds(viewRect.rect.center, viewRect.rect.size);
-                        var m_ItemBounds = GetBounds4Item(index);
-                        var offset = 0.0f;
+                        Bounds m_ItemBounds = GetBounds4Item(index);
+                        float offset = 0.0f;
                         if (directionSign == -1)
                         {
                             offset = reverseDirection ? (m_ViewBounds.min.y - m_ItemBounds.min.y) : (m_ViewBounds.max.y - m_ItemBounds.max.y);
@@ -853,7 +853,7 @@ namespace UnityEngine.UI
             UpdateBounds();
 
             m_PointerStartLocalCursor = Vector2.zero;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(viewRect, eventData.position, eventData.pressEventCamera, out m_PointerStartLocalCursor);
+            _ = RectTransformUtility.ScreenPointToLocalPointInRectangle(viewRect, eventData.position, eventData.pressEventCamera, out m_PointerStartLocalCursor);
             m_ContentStartPosition = m_Content.anchoredPosition;
             m_Dragging = true;
         }
@@ -888,7 +888,7 @@ namespace UnityEngine.UI
 
             UpdateBounds();
 
-            var pointerDelta = localCursor - m_PointerStartLocalCursor;
+            Vector2 pointerDelta = localCursor - m_PointerStartLocalCursor;
             Vector2 position = m_ContentStartPosition + pointerDelta;
 
             // Offset to get content into place in the view.
@@ -1386,10 +1386,10 @@ namespace UnityEngine.UI
                 return new Bounds();
             }
 
-            var vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-            var vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+            Vector3 vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+            Vector3 vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 
-            var toLocal = viewRect.worldToLocalMatrix;
+            Matrix4x4 toLocal = viewRect.worldToLocalMatrix;
             m_Content.GetWorldCorners(m_Corners);
             for (int j = 0; j < 4; j++)
             {
@@ -1398,7 +1398,7 @@ namespace UnityEngine.UI
                 vMax = Vector3.Max(v, vMax);
             }
 
-            var bounds = new Bounds(vMin, Vector3.zero);
+            Bounds bounds = new Bounds(vMin, Vector3.zero);
             bounds.Encapsulate(vMax);
             return bounds;
         }
@@ -1410,17 +1410,17 @@ namespace UnityEngine.UI
                 return new Bounds();
             }
 
-            var vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-            var vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+            Vector3 vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+            Vector3 vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 
-            var toLocal = viewRect.worldToLocalMatrix;
+            Matrix4x4 toLocal = viewRect.worldToLocalMatrix;
             int offset = index - itemTypeStart;
             if (offset < 0 || offset >= m_Content.childCount)
             {
                 return new Bounds();
             }
 
-            var rt = m_Content.GetChild(offset) as RectTransform;
+            RectTransform rt = m_Content.GetChild(offset) as RectTransform;
             if (rt == null)
             {
                 return new Bounds();
@@ -1434,7 +1434,7 @@ namespace UnityEngine.UI
                 vMax = Vector3.Max(v, vMax);
             }
 
-            var bounds = new Bounds(vMin, Vector3.zero);
+            Bounds bounds = new Bounds(vMin, Vector3.zero);
             bounds.Encapsulate(vMax);
             return bounds;
         }

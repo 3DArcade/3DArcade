@@ -46,17 +46,17 @@ namespace UnityStandardAssets.Utility
                 switch (entry.action)
                 {
                     case Action.Activate:
-                        StartCoroutine(Activate(entry));
+                        _ = StartCoroutine(Activate(entry));
                         break;
                     case Action.Deactivate:
-                        StartCoroutine(Deactivate(entry));
+                        _ = StartCoroutine(Deactivate(entry));
                         break;
                     case Action.Destroy:
                         Destroy(entry.target, entry.delay);
                         break;
 
                     case Action.ReloadLevel:
-                        StartCoroutine(ReloadLevel(entry));
+                        _ = StartCoroutine(ReloadLevel(entry));
                         break;
                 }
             }
@@ -98,20 +98,20 @@ namespace UnityStandardAssets.Utility.Inspector
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.BeginProperty(position, label, property);
+            _ = EditorGUI.BeginProperty(position, label, property);
 
             float x = position.x;
             float y = position.y;
             float width = position.width;
 
             // Draw label
-            EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+            _ = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
             // Don't make child fields be indented
-            var indent = EditorGUI.indentLevel;
+            int indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
-            var entries = property.FindPropertyRelative("entries");
+            SerializedProperty entries = property.FindPropertyRelative("entries");
 
             if (entries.arraySize > 0)
             {
@@ -124,7 +124,7 @@ namespace UnityStandardAssets.Utility.Inspector
                 {
                     y += k_LineHeight + k_Spacing;
 
-                    var entry = entries.GetArrayElementAtIndex(i);
+                    SerializedProperty entry = entries.GetArrayElementAtIndex(i);
 
                     float rowX = x;
 
@@ -146,16 +146,16 @@ namespace UnityStandardAssets.Utility.Inspector
                     if (entry.FindPropertyRelative("action").enumValueIndex !=
                         (int) TimedObjectActivator.Action.ReloadLevel)
                     {
-                        EditorGUI.PropertyField(actionRect, entry.FindPropertyRelative("action"), GUIContent.none);
-                        EditorGUI.PropertyField(targetRect, entry.FindPropertyRelative("target"), GUIContent.none);
+                        _ = EditorGUI.PropertyField(actionRect, entry.FindPropertyRelative("action"), GUIContent.none);
+                        _ = EditorGUI.PropertyField(targetRect, entry.FindPropertyRelative("target"), GUIContent.none);
                     }
                     else
                     {
                         actionRect.width = actionRect.width + targetRect.width;
-                        EditorGUI.PropertyField(actionRect, entry.FindPropertyRelative("action"), GUIContent.none);
+                        _ = EditorGUI.PropertyField(actionRect, entry.FindPropertyRelative("action"), GUIContent.none);
                     }
 
-                    EditorGUI.PropertyField(delayRect, entry.FindPropertyRelative("delay"), GUIContent.none);
+                    _ = EditorGUI.PropertyField(delayRect, entry.FindPropertyRelative("delay"), GUIContent.none);
                     if (GUI.Button(buttonRect, "-"))
                     {
                         entries.DeleteArrayElementAtIndex(i);
@@ -167,13 +167,13 @@ namespace UnityStandardAssets.Utility.Inspector
             // add & sort buttons
             y += k_LineHeight + k_Spacing;
 
-            var addButtonRect = new Rect(position.x + position.width - 120, y, 60, k_LineHeight);
+            Rect addButtonRect = new Rect(position.x + position.width - 120, y, 60, k_LineHeight);
             if (GUI.Button(addButtonRect, "Add"))
             {
                 entries.InsertArrayElementAtIndex(entries.arraySize);
             }
 
-            var sortButtonRect = new Rect(position.x + position.width - 60, y, 60, k_LineHeight);
+            Rect sortButtonRect = new Rect(position.x + position.width - 60, y, 60, k_LineHeight);
             if (GUI.Button(sortButtonRect, "Sort"))
             {
                 bool changed = true;
@@ -182,12 +182,12 @@ namespace UnityStandardAssets.Utility.Inspector
                     changed = false;
                     for (int i = 0; i < entries.arraySize - 1; ++i)
                     {
-                        var e1 = entries.GetArrayElementAtIndex(i);
-                        var e2 = entries.GetArrayElementAtIndex(i + 1);
+                        SerializedProperty e1 = entries.GetArrayElementAtIndex(i);
+                        SerializedProperty e2 = entries.GetArrayElementAtIndex(i + 1);
 
                         if (e1.FindPropertyRelative("delay").floatValue > e2.FindPropertyRelative("delay").floatValue)
                         {
-                            entries.MoveArrayElement(i + 1, i);
+                            _ = entries.MoveArrayElement(i + 1, i);
                             changed = true;
                             break;
                         }

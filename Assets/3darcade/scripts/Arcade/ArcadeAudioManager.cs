@@ -9,9 +9,9 @@ namespace Arcade
     {
         public static List<ModelVideoSetup> ActiveVideos = new List<ModelVideoSetup>();
 
-        [SerializeField] private Transform _player;
-        [SerializeField] private float  _radius = 1.4f;
-        [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private Transform _player    = default;
+        [SerializeField] private float  _radius       = 1.4f;
+        [SerializeField] private LayerMask _layerMask = default;
 
         private const int NUM_VIDEOS_WITH_SOUND    = 3;
         private const int NUM_COLLIDERS_TO_PROCESS = 10;
@@ -19,14 +19,11 @@ namespace Arcade
 
         private readonly Collider[] _overlapSphereHits = new Collider[NUM_COLLIDERS_TO_PROCESS];
 
-        private int _skipFrameCounter = 0;
-
         private void Update()
         {
             // No need to update every frame.
-            if (_skipFrameCounter++ % NUM_FRAMES_TO_SKIP != 0)
+            if (Time.frameCount % NUM_FRAMES_TO_SKIP != 0)
             {
-                _skipFrameCounter = 0;
                 return;
             }
 

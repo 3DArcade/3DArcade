@@ -15,7 +15,7 @@ namespace Arcade
         private float waitTime = 2.0f;
         private float timer = 0.0f;
         private int index = 0;
-        private int frames = 0;
+        //private int frames = 0;
         private bool selectedDone = false;
         private bool? videoIsActive;
 
@@ -26,9 +26,9 @@ namespace Arcade
         private ModelComponentType modelComponentType = ModelComponentType.Screen;
         private Camera thisCamera;
         private GameObject dummyNode;
-        private bool isCylArcade = false;
+        //private bool isCylArcade = false;
 
-        private LayerMask layerMask;
+        //private LayerMask layerMask;
 
         // Public so that Arcade Audio Manager can access these.
         public bool arcadeLayer = true;
@@ -59,25 +59,25 @@ namespace Arcade
             string layer = LayerMask.LayerToName(gameObject.layer);
             if (layer.StartsWith("Arcade"))
             {
-                layerMask = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+                //layerMask = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
                 thisCamera = ArcadeManager.arcadeCameras[ArcadeType.FpsArcade];
                 arcadeLayer = true;
             }
             else
             {
-                layerMask = LayerMask.GetMask("Menu/ArcadeModels", "Menu/GameModels", "Menu/PropModels");
+                //layerMask = LayerMask.GetMask("Menu/ArcadeModels", "Menu/GameModels", "Menu/PropModels");
                 thisCamera = ArcadeManager.arcadeCameras[ArcadeType.CylMenu];
                 arcadeLayer = false;
             }
 
             if (ArcadeManager.arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || ArcadeManager.arcadeConfiguration.arcadeType == ArcadeType.FpsMenu.ToString())
             {
-                isCylArcade = false;
+                //isCylArcade = false;
                 maxDistance = 5f;
             }
             else
             {
-                isCylArcade = true;
+                //isCylArcade = true;
                 maxDistance = 10000f;
             }
 
@@ -416,7 +416,7 @@ namespace Arcade
 
             if (visible == true && !setupVideoAfterGameDisable && (videoEnabled == ModelVideoEnabled.Always || (videoEnabled == ModelVideoEnabled.VisibleUnobstructed && prepareDone)))
             {
-                if (IsInView(gameObject))
+                if (IsInView(/*gameObject*/))
                 {
                     if (!videoPlayer.isPlaying)
                     {
@@ -431,7 +431,7 @@ namespace Arcade
                         videoPlayer.Pause();
                     }
                 }
-                frames = 0;
+                //frames = 0;
             }
 
             if (!setupVideoAfterGameDisable && videoEnabled == ModelVideoEnabled.Selected)
@@ -505,11 +505,12 @@ namespace Arcade
             //videoPlayer.SetDirectAudioVolume(0, volumeByDistance);
         }
 
-        private bool IsInView(GameObject toCheck)
+        private bool IsInView(/*GameObject toCheck*/)
         {
             return distance <= maxDistance;
 
-            Vector3 pointOnScreen = thisCamera.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
+            /*
+             * Vector3 pointOnScreen = thisCamera.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);
             //if (arcadeLayer) { Debug.Log("check: " + modelProperties.id); }
 
             //Is in front
@@ -546,6 +547,7 @@ namespace Arcade
                 return false;
             }
             return true;
+            */
         }
     }
 }

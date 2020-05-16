@@ -22,7 +22,7 @@ namespace SFB {
         private static extern IntPtr GetActiveWindow();
 
         public string[] OpenFilePanel(string title, string directory, ExtensionFilter[] extensions, bool multiselect) {
-            var fd = new VistaOpenFileDialog();
+            VistaOpenFileDialog fd = new VistaOpenFileDialog();
             fd.Title = title;
             if (extensions != null) {
                 fd.Filter = GetFilterFromFileExtensionList(extensions);
@@ -35,8 +35,8 @@ namespace SFB {
             if (!string.IsNullOrEmpty(directory)) {
                 fd.FileName = GetDirectoryPath(directory);
             }
-            var res = fd.ShowDialog(new WindowWrapper(GetActiveWindow()));
-            var filenames = res == DialogResult.OK ? fd.FileNames : new string[0];
+            DialogResult res = fd.ShowDialog(new WindowWrapper(GetActiveWindow()));
+            string[] filenames = res == DialogResult.OK ? fd.FileNames : new string[0];
             fd.Dispose();
             return filenames;
         }
@@ -46,13 +46,13 @@ namespace SFB {
         }
 
         public string[] OpenFolderPanel(string title, string directory, bool multiselect) {
-            var fd = new VistaFolderBrowserDialog();
+            VistaFolderBrowserDialog fd = new VistaFolderBrowserDialog();
             fd.Description = title;
             if (!string.IsNullOrEmpty(directory)) {
                 fd.SelectedPath = GetDirectoryPath(directory);
             }
-            var res = fd.ShowDialog(new WindowWrapper(GetActiveWindow()));
-            var filenames = res == DialogResult.OK ? new []{ fd.SelectedPath } : new string[0];
+            DialogResult res = fd.ShowDialog(new WindowWrapper(GetActiveWindow()));
+            string[] filenames = res == DialogResult.OK ? new []{ fd.SelectedPath } : new string[0];
             fd.Dispose();
             return filenames;
         }
@@ -62,10 +62,10 @@ namespace SFB {
         }
 
         public string SaveFilePanel(string title, string directory, string defaultName, ExtensionFilter[] extensions) {
-            var fd = new VistaSaveFileDialog();
+            VistaSaveFileDialog fd = new VistaSaveFileDialog();
             fd.Title = title;
 
-            var finalFilename = "";
+            string finalFilename = "";
 
             if (!string.IsNullOrEmpty(directory)) {
                 finalFilename = GetDirectoryPath(directory);
@@ -87,8 +87,8 @@ namespace SFB {
                 fd.Filter = string.Empty;
                 fd.AddExtension = false;
             }
-            var res = fd.ShowDialog(new WindowWrapper(GetActiveWindow()));
-            var filename = res == DialogResult.OK ? fd.FileName : "";
+            DialogResult res = fd.ShowDialog(new WindowWrapper(GetActiveWindow()));
+            string filename = res == DialogResult.OK ? fd.FileName : "";
             fd.Dispose();
             return filename;
         }
@@ -100,18 +100,18 @@ namespace SFB {
         // .NET Framework FileDialog Filter format
         // https://msdn.microsoft.com/en-us/library/microsoft.win32.filedialog.filter
         private static string GetFilterFromFileExtensionList(ExtensionFilter[] extensions) {
-            var filterString = "";
-            foreach (var filter in extensions) {
+            string filterString = "";
+            foreach (ExtensionFilter filter in extensions) {
                 filterString += filter.Name + "(";
 
-                foreach (var ext in filter.Extensions) {
+                foreach (string ext in filter.Extensions) {
                     filterString += "*." + ext + ",";
                 }
 
                 filterString = filterString.Remove(filterString.Length - 1);
                 filterString += ") |";
 
-                foreach (var ext in filter.Extensions) {
+                foreach (string ext in filter.Extensions) {
                     filterString += "*." + ext + "; ";
                 }
 
@@ -122,7 +122,7 @@ namespace SFB {
         }
 
         private static string GetDirectoryPath(string directory) {
-            var directoryPath = Path.GetFullPath(directory);
+            string directoryPath = Path.GetFullPath(directory);
             if (!directoryPath.EndsWith("\\")) {
                 directoryPath += "\\";
             }

@@ -29,6 +29,22 @@ namespace Arcade
             }
             return true;
         }
+
+        public override int GetHashCode()
+        {
+            return 363513814 + EqualityComparer<string>.Default.GetHashCode(name);
+        }
+
+        public static bool operator ==(AudioProperties left, AudioProperties right)
+        {
+            return EqualityComparer<AudioProperties>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(AudioProperties left, AudioProperties right)
+        {
+            return !(left == right);
+        }
+
         //public override int GetHashCode()
         //{
         //    var hashCode = 1342805303;

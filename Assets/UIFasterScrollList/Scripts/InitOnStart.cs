@@ -10,8 +10,8 @@ namespace SG
     {
         public int totalCount = -1;
         void Start()
-        { 
-            var ls = GetComponent<LoopScrollRect>();
+        {
+            LoopScrollRect ls = GetComponent<LoopScrollRect>();
             ls.totalCount = 0;
             ls.RefillCells();
         }

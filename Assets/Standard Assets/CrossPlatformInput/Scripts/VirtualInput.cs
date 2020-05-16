@@ -77,7 +77,7 @@ namespace UnityStandardAssets.CrossPlatformInput
             // if we have an axis with that name then remove it from our dictionary of registered axes
             if (m_VirtualAxes.ContainsKey(name))
             {
-                m_VirtualAxes.Remove(name);
+                _ = m_VirtualAxes.Remove(name);
             }
         }
 
@@ -87,7 +87,7 @@ namespace UnityStandardAssets.CrossPlatformInput
             // if we have a button with this name then remove it from our dictionary of registered buttons
             if (m_VirtualButtons.ContainsKey(name))
             {
-                m_VirtualButtons.Remove(name);
+                _ = m_VirtualButtons.Remove(name);
             }
         }
 

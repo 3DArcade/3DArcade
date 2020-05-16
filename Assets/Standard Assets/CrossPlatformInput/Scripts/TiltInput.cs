@@ -106,18 +106,18 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUI.BeginProperty(position, label, property);
+            _ = EditorGUI.BeginProperty(position, label, property);
 
             float x = position.x;
             float y = position.y;
             float inspectorWidth = position.width;
 
             // Don't make child fields be indented
-            var indent = EditorGUI.indentLevel;
+            int indent = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
 
-            var props = new[] {"type", "axisName"};
-            var widths = new[] {.4f, .6f};
+            string[] props = new[] {"type", "axisName"};
+            float[] widths = new[] {.4f, .6f};
             if (property.FindPropertyRelative("type").enumValueIndex > 0)
             {
                 // hide name if not a named axis
@@ -133,7 +133,7 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
                 Rect rect = new Rect(x, y, w, lineHeight);
                 x += w;
 
-                EditorGUI.PropertyField(rect, property.FindPropertyRelative(props[n]), GUIContent.none);
+                _ = EditorGUI.PropertyField(rect, property.FindPropertyRelative(props[n]), GUIContent.none);
             }
 
             // Set indent back to what it was

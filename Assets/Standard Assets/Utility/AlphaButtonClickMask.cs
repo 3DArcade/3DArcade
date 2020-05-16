@@ -17,7 +17,7 @@ public class AlphaButtonClickMask : MonoBehaviour, ICanvasRaycastFilter
         {
             try
             {
-                tex.GetPixels32();
+                _ = tex.GetPixels32();
             }
             catch (UnityException e)
             {
@@ -39,7 +39,7 @@ public class AlphaButtonClickMask : MonoBehaviour, ICanvasRaycastFilter
     public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)
     {
         Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(_image.rectTransform, sp, eventCamera, out localPoint);
+        _ = RectTransformUtility.ScreenPointToLocalPointInRectangle(_image.rectTransform, sp, eventCamera, out localPoint);
 
 		Vector2 pivot = _image.rectTransform.pivot;
 		Vector2 normalizedLocal = new Vector2(pivot.x + localPoint.x / _image.rectTransform.rect.width, pivot.y + localPoint.y / _image.rectTransform.rect.height);

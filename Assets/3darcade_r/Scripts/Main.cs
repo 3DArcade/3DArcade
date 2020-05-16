@@ -27,9 +27,9 @@ namespace Arcade_r
 {
     public class Main : MonoBehaviour
     {
-        [SerializeField] private PlayerControls _player;
-        [SerializeField] private Camera _camera;
-        [SerializeField] private GameObject _theAbyss;
+        [SerializeField] private PlayerControls _player = default;
+        [SerializeField] private Camera _camera         = default;
+        [SerializeField] private GameObject _theAbyss   = default;
 
         private ApplicationStateContext _applicationContext;
 

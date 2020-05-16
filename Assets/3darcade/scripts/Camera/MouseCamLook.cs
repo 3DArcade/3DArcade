@@ -4,14 +4,12 @@ namespace Arcade
 {
     public class MouseCamLook : MonoBehaviour
     {
-        [SerializeField]
-        public float sensitivity = 5.0f;
-        [SerializeField]
-        public float smoothing = 2.0f;
+        [SerializeField] private float sensitivity = 5.0f;
+        [SerializeField] private float smoothing   = 2.0f;
         // The Arcade Type this instance is used with, TODO: auto find this?
-        public ArcadeType arcadeType;
+        [SerializeField] private ArcadeType arcadeType = default;
         // The character is the capsule
-        public GameObject arcadeControl;
+        [SerializeField] private GameObject arcadeControl = default;
 
         // Get the incremental value of mouse moving
         [HideInInspector]
@@ -20,8 +18,9 @@ namespace Arcade
         private Vector2 smoothV;
         private Vector2 mouseDelta;
 
+#if MOBILE_INPUT
         private int fingerSaved = -1;
-
+#endif
         // Global Variables:
         // ArcadeManager.arcadeControls
         // ArcadeManager.arcadeState
