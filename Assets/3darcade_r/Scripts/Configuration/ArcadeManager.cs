@@ -20,28 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
-
 namespace Arcade_r
 {
-    public sealed class ApplicationLoadingAssetsState : ApplicationState
+    public static class ArcadeManager
     {
-        public ApplicationLoadingAssetsState(ApplicationStateContext context)
-        : base(context)
-        {
-        }
-
-        public override void OnEnter()
-        {
-            Debug.Log("> <color=green>Entered</color> ApplicationLoadingAssetsState");
-
-            // TODO: When done ->
-            _context.TransitionTo<ApplicationLoadingWorldState>();
-        }
-
-        public override void OnExit()
-        {
-            Debug.Log("> <color=orange>Exited</color> ApplicationLoadingAssetsState");
-        }
     }
 }

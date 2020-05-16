@@ -26,31 +26,10 @@ namespace Arcade_r
 {
     public sealed class VFS
     {
-        public static VFS Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    lock (_syncRoot)
-                    {
-                        if (_instance == null)
-                        {
-                            _instance = new VFS();
-                        }
-                    }
-                }
-                return _instance;
-            }
-        }
-
         private readonly Dictionary<string, string> _mountedDirectories;
         private readonly Dictionary<string, string> _mountedFiles;
 
-        private static volatile VFS _instance;
-        private static readonly object _syncRoot = new object();
-
-        private VFS()
+        public VFS()
         {
             _mountedDirectories = new Dictionary<string, string>();
             _mountedFiles       = new Dictionary<string, string>();
@@ -62,6 +41,7 @@ namespace Arcade_r
             _ = _mountedDirectories.TryGetValue(alias, out string result);
             return !string.IsNullOrEmpty(result) ? result : null;
         }
+
         public string GetFile(string alias)
         {
             _ = _mountedFiles.TryGetValue(alias, out string result);

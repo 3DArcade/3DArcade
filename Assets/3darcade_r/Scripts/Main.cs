@@ -31,7 +31,6 @@ namespace Arcade_r
         [SerializeField] private Camera _camera;
         [SerializeField] private GameObject _theAbyss;
 
-        private VFS _vfs;
         private ApplicationStateContext _applicationContext;
 
         private void Awake()
@@ -39,8 +38,6 @@ namespace Arcade_r
             Assert.IsNotNull(_player);
             Assert.IsNotNull(_camera);
             Assert.IsNotNull(_theAbyss);
-
-            InitVFS();
 
             _player.gameObject.SetActive(true);
             _camera.gameObject.SetActive(true);
@@ -50,9 +47,9 @@ namespace Arcade_r
 
         private void Start()
         {
-            Utils.HideMouseCursor();
+            SystemUtils.HideMouseCursor();
 
-            _applicationContext.TransitionTo<ApplicationLoadingAssetsState>();
+            _applicationContext.TransitionTo<ApplicationInitState>();
         }
 
         private void Update()
@@ -63,28 +60,6 @@ namespace Arcade_r
         private void FixedUpdate()
         {
             _applicationContext.FixedUpdate(Time.fixedDeltaTime);
-        }
-
-        private void InitVFS()
-        {
-            _vfs = VFS.Instance;
-
-            if (Application.isEditor)
-            {
-                _vfs.MountDirectory("models", "3darcade/models");
-                _vfs.MountDirectory("arcade_models", "3darcade/models/arcades");
-                _vfs.MountDirectory("game_models", "3darcade/models/games");
-                _vfs.MountDirectory("prop_models", "3darcade/models/props");
-            }
-
-            string streamingAssetsPath = Application.streamingAssetsPath;
-            _vfs.MountDirectory("cfgs", $"{streamingAssetsPath}/Configuration");
-            _vfs.MountDirectory("arcade_cfgs", $"{streamingAssetsPath}/Configuration/Arcades");
-            _vfs.MountDirectory("emulator_cfgs", $"{streamingAssetsPath}/Configuration/Emulators");
-            _vfs.MountDirectory("emulators", $"{streamingAssetsPath}/Emulators");
-            _vfs.MountDirectory("media", $"{streamingAssetsPath}/Media");
-
-            _vfs.MountFile("general_cfg", "cfg/GeneralConfiguration.json");
         }
     }
 }

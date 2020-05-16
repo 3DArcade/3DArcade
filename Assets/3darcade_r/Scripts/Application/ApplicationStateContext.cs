@@ -30,12 +30,20 @@ namespace Arcade_r
         public readonly Camera Camera;
         public readonly GameObject TheAbyss;
 
-        public readonly GameObject[] LoadedModels;
+        // Set in ApplicationInitState
+        public OS CurrentOS;
+        public VFS VirtualFileSystem;
+        public GameObject ArcadeRootObject;
+        public LayerMask RaycastLayers;
 
-        public readonly LayerMask RaycastLayers;
+        // Set in ApplicationLoadingArcadeState
+        public GameObject[] LoadedModels;
+
+        // Set in ApplicationRunningState
         public IInteractable CurrentInteractable;
         public IGrabbable CurrentGrabbable;
 
+        // Misc...
         private bool _badLuck;
 
         public ApplicationStateContext(PlayerControls playerControls, Camera camera, GameObject theAbyss)
@@ -43,20 +51,6 @@ namespace Arcade_r
             PlayerControls = playerControls;
             Camera         = camera;
             TheAbyss       = theAbyss;
-
-            LoadedModels = new GameObject[]
-            {
-                Resources.Load<GameObject>("Games/1942"),
-                Resources.Load<GameObject>("Games/1943"),
-                Resources.Load<GameObject>("Games/alpine"),
-                Resources.Load<GameObject>("Games/amidar"),
-                Resources.Load<GameObject>("Games/arkanoid"),
-                Resources.Load<GameObject>("Games/asteroid")
-            };
-
-            MaterialUtils.SetGPUInstancing(true, LoadedModels);
-
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         }
 
         public override void Update(float dt)

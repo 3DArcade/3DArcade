@@ -60,7 +60,7 @@ namespace Arcade_r
 
             if (_context.PlayerControls.GlobalActions.ToggleCursor.triggered)
             {
-                Utils.ToggleMouseCursor();
+                SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
                     _context.PlayerControls.FirstPersonActions.Look.Enable();

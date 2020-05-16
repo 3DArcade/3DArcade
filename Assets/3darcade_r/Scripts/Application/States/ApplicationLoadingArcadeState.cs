@@ -24,9 +24,9 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ApplicationLoadingWorldState : ApplicationState
+    public sealed class ApplicationLoadingArcadeState : ApplicationState
     {
-        public ApplicationLoadingWorldState(ApplicationStateContext context)
+        public ApplicationLoadingArcadeState(ApplicationStateContext context)
         : base(context)
         {
         }
@@ -34,6 +34,17 @@ namespace Arcade_r
         public override void OnEnter()
         {
             Debug.Log("> <color=green>Entered</color> ApplicationLoadingWorldState");
+
+            _context.LoadedModels = new GameObject[]
+            {
+                Resources.Load<GameObject>("Games/1942"),
+                Resources.Load<GameObject>("Games/1943"),
+                Resources.Load<GameObject>("Games/alpine"),
+                Resources.Load<GameObject>("Games/amidar"),
+                Resources.Load<GameObject>("Games/arkanoid"),
+                Resources.Load<GameObject>("Games/asteroid")
+            };
+            MaterialUtils.SetGPUInstancing(true, _context.LoadedModels);
 
             Vector3 position    = new Vector3(49.4f, 0f, 20f);
             Quaternion rotation = Quaternion.LookRotation(Vector3.left, Vector3.up);

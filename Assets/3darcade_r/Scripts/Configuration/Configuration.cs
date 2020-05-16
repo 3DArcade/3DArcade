@@ -20,43 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
-
 namespace Arcade_r
 {
-    public static class Utils
-    {
-        public static void ToggleMouseCursor()
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                ShowMouseCursor();
-            }
-            else
-            {
-                HideMouseCursor();
-            }
-        }
-
-        public static void ShowMouseCursor()
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible   = true;
-        }
-
-        public static void HideMouseCursor()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible   = false;
-        }
-
-        public static void ExitApp()
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit(0);
-#endif
-        }
-    }
 }

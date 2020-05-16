@@ -20,22 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
-
 namespace Arcade_r
 {
-    public sealed class ApplicationExitingState : ApplicationState
+    public static class EmulatorManager
     {
-        public ApplicationExitingState(ApplicationStateContext context)
-        : base(context)
-        {
-        }
-
-        public override void OnEnter()
-        {
-            Debug.Log("> <color=green>Entered</color> ApplicationExitingState");
-
-            SystemUtils.ExitApp();
-        }
     }
 }
