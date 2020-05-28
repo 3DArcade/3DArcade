@@ -1,0 +1,413 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: vanguard_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: b31bea385244cb542a4400728dcc387c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_backjoust
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: b0770f8c225d8104abe2c69bd2cf5d42, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0048828125
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_buttonbin1-robotron
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 4f0e28d80a637cc49806a484afd67aab, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0087890625
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_buttonbinnen2-robotrn05
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: c2b21893a2f40de4a992de6747adaddb, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.0009765625
+      width: 0.49804688
+      height: 0.49804688
+    srcObjName: vanguard_cp-robotron
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 52d1e58432af3cc44aad10e6ac7459a2, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.50097656
+      width: 0.123046875
+      height: 0.123046875
+    srcObjName: vanguard_front joust2
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: cc0b3bd961096f04b9441356ca0317a0, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0126953125
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_joyball1-r
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: ccabbd8ff7c59b84b8befc969201208b, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.016601562
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_joystick1-
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: ec549d91b9de6f84ebd2a167a2214050, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.020507812
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_sideartleft-mpatrolblack
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 7f3ef6bf565c3fa4fa694e607fa6ebc0, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.024414062
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_sideartleft-mpatrolblack
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: bcd387f6b3200a443a0e380f9b39400d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.024414062
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_sideartleft-mpatrolblack
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 988ad88036d2e374d8e33810f0a2d412, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50097656
+      y: 0.0009765625
+      width: 0.24804688
+      height: 0.49804688
+    srcObjName: vanguard_sideartleft-mpatrolblack
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 843ca16c20744c34bbe53c56398c88f4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.028320312
+      y: 0.62597656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: vanguard_sideartright-mpatrolblack
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 64427adb5a7032a4ea70b0368e73b82c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.75097656
+      y: 0.0009765625
+      width: 0.24804688
+      height: 0.49804688
+    srcObjName: vanguard_sideartright-mpatrolblack
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 76ef4aed993f74500a551c4d442a95d0, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: b31bea385244cb542a4400728dcc387c, type: 2}
+    - {fileID: 2100000, guid: b0770f8c225d8104abe2c69bd2cf5d42, type: 2}
+    - {fileID: 2100000, guid: 4f0e28d80a637cc49806a484afd67aab, type: 2}
+    - {fileID: 2100000, guid: c2b21893a2f40de4a992de6747adaddb, type: 2}
+    - {fileID: 2100000, guid: 52d1e58432af3cc44aad10e6ac7459a2, type: 2}
+    - {fileID: 2100000, guid: cc0b3bd961096f04b9441356ca0317a0, type: 2}
+    - {fileID: 2100000, guid: ccabbd8ff7c59b84b8befc969201208b, type: 2}
+    - {fileID: 2100000, guid: ec549d91b9de6f84ebd2a167a2214050, type: 2}
+    - {fileID: 2100000, guid: 7f3ef6bf565c3fa4fa694e607fa6ebc0, type: 2}
+    - {fileID: 2100000, guid: bcd387f6b3200a443a0e380f9b39400d, type: 2}
+    - {fileID: 2100000, guid: 988ad88036d2e374d8e33810f0a2d412, type: 2}
+    - {fileID: 2100000, guid: 843ca16c20744c34bbe53c56398c88f4, type: 2}
+    - {fileID: 2100000, guid: 64427adb5a7032a4ea70b0368e73b82c, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

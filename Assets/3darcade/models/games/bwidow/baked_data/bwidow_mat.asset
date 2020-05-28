@@ -1,0 +1,533 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: bwidow_mat
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 6e70082142db1684abfa1234167d09b9, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3486328
+      y: 0.51171875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh02
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.15918
+      width: 1
+      height: 0.477417
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 87ea11c4da7dfbf46a75dbdb2de49935, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.34472656
+      y: 0.51171875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.15918
+      width: 1
+      height: 0.477417
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8713a0d3fa2cf00468ee3bc940bc9370, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.34472656
+      y: 0.50390625
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh04
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 129a32b26b5350b4dbe6fc8b34ba1d38, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25585938
+      y: 0.001953125
+      width: 0.119140625
+      height: 0.49804688
+    srcObjName: bwidow_Mesh05
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.034119
+      y: -0.000671
+      width: 0.960266
+      height: 0.99768
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 503461c55ab5ee148975e2027d7a9a1d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.5019531
+      width: 0.25
+      height: 0.49609375
+    srcObjName: bwidow_Mesh06
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.004822
+      width: 1
+      height: 0.995178
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 4dba04efab38e684e8a258e3640cb7b6, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6201172
+      y: 0.001953125
+      width: 0.25
+      height: 0.125
+    srcObjName: bwidow_Mesh07
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9d5bf55c78c0e2146984c3928090dcf2, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3408203
+      y: 0.51171875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh08
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 0.636597
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 7bf7cc2a8edbf41449cde8af1066d0b8, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3408203
+      y: 0.50390625
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh09
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -1
+      y: 0
+      width: 3
+      height: 4
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: a40cdaa0e8c953340bb2a8c250c0b0e3, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.33691406
+      y: 0.51171875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh10
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.15918
+      width: 1
+      height: 0.477417
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: bd9ef11c4938a45429cf1b566c073b69, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.31933594
+      y: 0.50390625
+      width: 0.01171875
+      height: 0.017578125
+    srcObjName: bwidow_Mesh11
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.100647
+      y: 0.148804
+      width: 0.79870605
+      height: 0.60809296
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 4714e0f8554df2f4f84bf154070054b5, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3486328
+      y: 0.50390625
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh12
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.477478
+      width: 1
+      height: 0.15911898
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 016d0bf64729e5840b2cf4ff883e66ee, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.33691406
+      y: 0.50390625
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh13
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.002869
+      y: -0.096436
+      width: 0.999512
+      height: 0.573914
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 197a2cb5eab710247bf2d91220ab6cf7, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25585938
+      y: 0.50390625
+      width: 0.061523438
+      height: 0.125
+    srcObjName: bwidow_Mesh15
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0.998108
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 2ae7bce96ce4e2648bb17b1b3608cca8, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3330078
+      y: 0.51171875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh16
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.15918
+      width: 1
+      height: 0.31829798
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8f41509b68866984db8601677b756ce1, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.3330078
+      y: 0.50390625
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: bwidow_Mesh17
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 4
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 94f7b2c2aa2f35f42b1b288faf7e8e04, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.001953125
+      width: 0.2529297
+      height: 0.49609375
+    srcObjName: bwidow_Mesh18
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.005798
+      y: -0.004272
+      width: 1.0142831
+      height: 0.995788
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 046338aa900ef2f489ebcb2671609498, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.001953125
+      width: 0.24121094
+      height: 0.13671875
+    srcObjName: bwidow_Mesh19
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.029297
+      y: -0.020264
+      width: 0.968689
+      height: 1.1004031
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: f30062a40f23d4187921dfce8f87bf32, type: 2}
+    considerMeshUVs: 1
+    sourceMaterials:
+    - {fileID: 2100000, guid: 6e70082142db1684abfa1234167d09b9, type: 2}
+    - {fileID: 2100000, guid: 87ea11c4da7dfbf46a75dbdb2de49935, type: 2}
+    - {fileID: 2100000, guid: 8713a0d3fa2cf00468ee3bc940bc9370, type: 2}
+    - {fileID: 2100000, guid: 129a32b26b5350b4dbe6fc8b34ba1d38, type: 2}
+    - {fileID: 2100000, guid: 503461c55ab5ee148975e2027d7a9a1d, type: 2}
+    - {fileID: 2100000, guid: 4dba04efab38e684e8a258e3640cb7b6, type: 2}
+    - {fileID: 2100000, guid: 9d5bf55c78c0e2146984c3928090dcf2, type: 2}
+    - {fileID: 2100000, guid: 7bf7cc2a8edbf41449cde8af1066d0b8, type: 2}
+    - {fileID: 2100000, guid: a40cdaa0e8c953340bb2a8c250c0b0e3, type: 2}
+    - {fileID: 2100000, guid: bd9ef11c4938a45429cf1b566c073b69, type: 2}
+    - {fileID: 2100000, guid: 4714e0f8554df2f4f84bf154070054b5, type: 2}
+    - {fileID: 2100000, guid: 016d0bf64729e5840b2cf4ff883e66ee, type: 2}
+    - {fileID: 2100000, guid: 197a2cb5eab710247bf2d91220ab6cf7, type: 2}
+    - {fileID: 2100000, guid: 2ae7bce96ce4e2648bb17b1b3608cca8, type: 2}
+    - {fileID: 2100000, guid: 8f41509b68866984db8601677b756ce1, type: 2}
+    - {fileID: 2100000, guid: 94f7b2c2aa2f35f42b1b288faf7e8e04, type: 2}
+    - {fileID: 2100000, guid: 046338aa900ef2f489ebcb2671609498, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

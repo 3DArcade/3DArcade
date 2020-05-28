@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81da5ac997ceff5499807e9f20a8b53e
+guid: 93eb7401bb9e4c247a8efd521307be37
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: frontlin-bezel
-    second: {fileID: 2100000, guid: c6b420c750048264188e05442d344c94, type: 2}
+    second: {fileID: 2100000, guid: a3aaa892ab424e2419441a646d35c1d1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: frontlin-marquee
-    second: {fileID: 2100000, guid: d0a8e096cbe406d4b90b9187c5d17965, type: 2}
+    second: {fileID: 2100000, guid: 7b4f65559178e8a4fa012b3e75ebac7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: frontlin-metal
+    second: {fileID: 2100000, guid: 1f33028a738d92241be4af632cc69a63, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: frontlin-monitor
-    second: {fileID: 2100000, guid: 86b7df6d8157b6e41a6d9706587d71cb, type: 2}
+    second: {fileID: 2100000, guid: 788682969c2149f499a9bd69457ad49c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: frontlin-shiny
-    second: {fileID: 2100000, guid: 7cc5b871c7138a84f820f5ce087eb0c6, type: 2}
+    second: {fileID: 2100000, guid: 6ff2ca3220047f14f8202385eaed749a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: frontlin-shinyred
+    second: {fileID: 2100000, guid: 63673c7431445fc4c86dbcb75902a28f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: frontlin-shinywhite
+    second: {fileID: 2100000, guid: f3e2b61bb2f754546a6ae48e6092e20b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: frontlin-textures
-    second: {fileID: 2100000, guid: a6bdaa9e451cc474b947be54c1903240, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: frontlin-bezel
-    second: {fileID: 2800000, guid: a439a1410cbdbc64288fd92669b31456, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: frontlin-marquee
-    second: {fileID: 2800000, guid: 248c1c932174f0846be0c74c0f6bf1fa, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: frontlin-snap
-    second: {fileID: 2800000, guid: bb49c565bee532c4b8e57412109d6b72, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: frontlin-textures
-    second: {fileID: 2800000, guid: 969578daef87c6546942f29bf3ffc82d, type: 3}
+    second: {fileID: 2100000, guid: 2b9f023aa4291744a94c32aec183b93c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +62,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +77,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +95,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

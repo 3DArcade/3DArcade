@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 174dfb973ebc6054db196e5ee2d46089
+guid: 0db0845b49c23c440964a27b2c3bbe5c
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,52 +8,47 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yard-bezel
-    second: {fileID: 2100000, guid: 51337c0fe11e8124ab5e45f50f45c211, type: 2}
+    second: {fileID: 2100000, guid: 5e3a0debff62a5a48bf862dad08b07e5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yard-marquee
-    second: {fileID: 2100000, guid: ad8e15727e8346241b2c5578d939c152, type: 2}
+    second: {fileID: 2100000, guid: 2738f2f8a95ecc14b9edef8e49598079, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yard-metal
+    second: {fileID: 2100000, guid: a1068a0c5a6020c47a29397fbae6e3ae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yard-monitor
-    second: {fileID: 2100000, guid: 82f938b49c912da439eb4538ed6398ab, type: 2}
+    second: {fileID: 2100000, guid: 5c97b548b0bd46c4f81ff32e9ccb0013, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yard-shiny1
-    second: {fileID: 2100000, guid: 135f736b58351f848a4f08ac0cfcc220, type: 2}
+    second: {fileID: 2100000, guid: ea1999027a84f5046ba2dc22ca9d0f1a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yard-shiny2
-    second: {fileID: 2100000, guid: 547a74a0279d51740a03e66f7449c91b, type: 2}
+    second: {fileID: 2100000, guid: 0f30e214fca6fda49a98390f473b0ee4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yard-shinyred
+    second: {fileID: 2100000, guid: 2c520b522932a1f479fea6df3c72a612, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yard-shinywhite
+    second: {fileID: 2100000, guid: da393dc501fc98f4ebeb6d240ec80dd1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: yard-textures
-    second: {fileID: 2100000, guid: ac69673f54c7aef4bb61b2e73d81f686, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: yard-bezel
-    second: {fileID: 2800000, guid: c12d349fa5240994eacfcc4fc1fc0030, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: yard-marquee
-    second: {fileID: 2800000, guid: 9e9286f72b6125046bc51d56b5cd89b8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: yard-snap
-    second: {fileID: 2800000, guid: 9193caab85f5ae049985edfdbd6c79cd, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: yard-textures
-    second: {fileID: 2800000, guid: f9d4d31f45175fc4594efd2e2e014378, type: 3}
+    second: {fileID: 2100000, guid: 7b51b8c6b02c5c24da1efa954f25dd73, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +67,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,16 +82,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -105,9 +100,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

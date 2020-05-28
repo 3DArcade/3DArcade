@@ -1,0 +1,383 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: starwarsc
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 65a0f0f2072fca347ad056d17fc9bb35, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5004883
+      y: 0.25341797
+      width: 0.2109375
+      height: 0.24267578
+    srcObjName: starwarsc_backsides
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.094333135
+      y: 0.017950542
+      width: 0.84537613
+      height: 0.9714942
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 6c6bfbfd9011d584d88b6bcb37733562, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00048828125
+      y: 0.7475586
+      width: 0.06201172
+      height: 0.13134766
+    srcObjName: starwarsc_Cone02
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: -0.05259926
+      width: 0.9952838
+      height: 1.0525993
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 665e845d7574ee04abe6edeec33b855d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5004883
+      y: 0.00048828125
+      width: 0.2421875
+      height: 0.25195312
+    srcObjName: starwarsc_frontsides
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.019451275
+      y: -0.014352358
+      width: 0.9696898
+      height: 1.0080596
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 68f515fd348daca4a8e8aed623781c7d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5004883
+      y: 0.4970703
+      width: 0.0009765625
+      height: 0.0009765625
+    srcObjName: starwarsc_Line03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: d2470fd54978c744d8259dac4065adef, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.74365234
+      y: 0.00048828125
+      width: 0.24560547
+      height: 0.24560547
+    srcObjName: starwarsc_Object04
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.01
+      y: 0.009999989
+      width: 0.9837411
+      height: 0.9828382
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 97ea7743906385f41b4db1ff4a05b945, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.85839844
+      y: 0.24707031
+      width: 0.12207031
+      height: 0.12451172
+    srcObjName: starwarsc_Object07
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.00859558
+      y: 0.001920373
+      width: 0.97964764
+      height: 0.9989677
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9541db2d2ce666e41b1156358d7f0af9, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.85839844
+      y: 0.3725586
+      width: 0.12207031
+      height: 0.11767578
+    srcObjName: starwarsc_Object08
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.0043883277
+      y: 0.018581068
+      width: 0.98
+      height: 0.94372195
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: a7504f334e7f6684ba1b32066ce22137, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.71240234
+      y: 0.25341797
+      width: 0.009277344
+      height: 0.0087890625
+    srcObjName: starwarsc_Plane05
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -3.0729997
+      y: -2.229504
+      width: 9.863576
+      height: 9.457818
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 0d95c41879bf81244a87e4061b51e299, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.74365234
+      y: 0.24707031
+      width: 0.11376953
+      height: 0.2421875
+    srcObjName: starwarsc_Rectangle01
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.01
+      y: 0.01983045
+      width: 0.91164124
+      height: 0.97016954
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 6e72a5d6a5922544da797818863c4756, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00048828125
+      y: 0.00048828125
+      width: 0.49902344
+      height: 0.49902344
+    srcObjName: starwarsc_toparches
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -8.581823
+      y: -6.631642
+      width: 18.160442
+      height: 14.267361
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: a05c5bbc0d920d641bd4509f3c0ac32f, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00048828125
+      y: 0.5004883
+      width: 0.14648438
+      height: 0.13427734
+    srcObjName: starwarsc_toparches
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -59.59189
+      y: -66.6186
+      width: 150.17516
+      height: 137.71188
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 091ae484099ae25449d4588944793f26, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00048828125
+      y: 0.6357422
+      width: 0.11669922
+      height: 0.110839844
+    srcObjName: starwarsc_toparches
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.06886819
+      y: 0.1444904
+      width: 0.93489516
+      height: 0.88694257
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 8b22bd236cd7c49999c09f81857dc504, type: 2}
+    considerMeshUVs: 1
+    sourceMaterials:
+    - {fileID: 2100000, guid: 65a0f0f2072fca347ad056d17fc9bb35, type: 2}
+    - {fileID: 2100000, guid: 6c6bfbfd9011d584d88b6bcb37733562, type: 2}
+    - {fileID: 2100000, guid: 665e845d7574ee04abe6edeec33b855d, type: 2}
+    - {fileID: 2100000, guid: 68f515fd348daca4a8e8aed623781c7d, type: 2}
+    - {fileID: 2100000, guid: d2470fd54978c744d8259dac4065adef, type: 2}
+    - {fileID: 2100000, guid: 97ea7743906385f41b4db1ff4a05b945, type: 2}
+    - {fileID: 2100000, guid: 9541db2d2ce666e41b1156358d7f0af9, type: 2}
+    - {fileID: 2100000, guid: a7504f334e7f6684ba1b32066ce22137, type: 2}
+    - {fileID: 2100000, guid: 0d95c41879bf81244a87e4061b51e299, type: 2}
+    - {fileID: 2100000, guid: 6e72a5d6a5922544da797818863c4756, type: 2}
+    - {fileID: 2100000, guid: a05c5bbc0d920d641bd4509f3c0ac32f, type: 2}
+    - {fileID: 2100000, guid: 091ae484099ae25449d4588944793f26, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

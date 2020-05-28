@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e7d96227b01c9e49be60c7c5cca3f56
+guid: 12d5e7646100e4a45bdfc28fd8491cbe
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -8,47 +8,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: qix-bezel
-    second: {fileID: 2100000, guid: 2c38f77d65893df4381bf190f6a132de, type: 2}
+    second: {fileID: 2100000, guid: 224e9a571e5166443b690ca863d2dfaa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: qix-marquee
-    second: {fileID: 2100000, guid: 088b02711a862b941bb18707bb9c58b1, type: 2}
+    second: {fileID: 2100000, guid: c598c677d6150314790a47d48f2d1e30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: qix-metal
+    second: {fileID: 2100000, guid: 15819d334354fb64c83f51e57d0e9bef, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: qix-monitor
-    second: {fileID: 2100000, guid: a9dffe3ccab48b145a46cf72de2181aa, type: 2}
+    second: {fileID: 2100000, guid: 809ac38428b35184995eaf332e3cbb2f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: qix-shiny
-    second: {fileID: 2100000, guid: 5d85f1b89e7f31a4c83de5bc024a199a, type: 2}
+    second: {fileID: 2100000, guid: 977d603f133fd2d4bb85d8dd147fb97c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: qix-shinyred
+    second: {fileID: 2100000, guid: 940a93cbd5499e44e8d5d77d77c3a020, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: qix-shinywhite
+    second: {fileID: 2100000, guid: e85cccb00841e9146b9ca11ffcbc7f04, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: qix-textures
-    second: {fileID: 2100000, guid: 9eee6ef317a60e74983005038dad1953, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: qix-bezel
-    second: {fileID: 2800000, guid: 61283c1441807b54d8fee797459adae1, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: qix-marquee
-    second: {fileID: 2800000, guid: 78343127b99ec294b9d4801daa9a0205, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: qix-snap
-    second: {fileID: 2800000, guid: 78a9157301f93304c94dde26850e1468, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: qix-textures
-    second: {fileID: 2800000, guid: bced4ab943a2deb468e643be03e6dc93, type: 3}
+    second: {fileID: 2100000, guid: 31d3e1972848e9348b6bf88d2c7b7ba2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,8 +62,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -82,16 +77,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
+    useSRGBMaterialColor: 0
+    sortHierarchyByName: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -100,9 +95,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60

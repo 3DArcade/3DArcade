@@ -1,0 +1,563 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: mplanets_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 22f69e7572e00424d8a51f8177b86463, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.9941406
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: dc26d214a9ed6429f90348d77a0f6f04, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25195312
+      y: 0.7519531
+      width: 0.12109375
+      height: 0.12109375
+    srcObjName: mplanets_Mesh04
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 1f9bbc3ec19d64915b1b8cfe6ffb8506, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5019531
+      y: 0.5019531
+      width: 0.24609375
+      height: 0.49609375
+    srcObjName: mplanets_Mesh05
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: cc04133b1ff264b0ea7b7b6e6ae4350b, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.001953125
+      width: 0.49609375
+      height: 0.49609375
+    srcObjName: mplanets_Mesh06
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 75e2f569d42f34f5f8255b54023f6d42, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.9785156
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh07
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 2b9c6026d36eb4cf983e90569e6e9d10, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.7519531
+      width: 0.12109375
+      height: 0.12109375
+    srcObjName: mplanets_Mesh08
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: f8fc1b673cbd84addb68423c1a6d8db3, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.43945312
+      y: 0.8769531
+      width: 0.05859375
+      height: 0.05859375
+    srcObjName: mplanets_Mesh09
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: eede30b93b9d04e9c9c6ec52c0763ffc, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.39257812
+      y: 0.9707031
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh10
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 30fe7b6a0a0c247239fcbb4eea679450, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.9394531
+      width: 0.02734375
+      height: 0.02734375
+    srcObjName: mplanets_Mesh11
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 833c77f502c8a46efbb0b87b58a2fa5a, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.9863281
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh12
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 8ab7ef1b6ec3a4e0ab5d2314428d4d1d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25195312
+      y: 0.8769531
+      width: 0.12109375
+      height: 0.12109375
+    srcObjName: mplanets_Mesh13
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 95646308d7aa042b1bdf1651facbe4a9, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.9707031
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh14
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 4602ac6795da14cf391da45027e1325c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5019531
+      y: 0.001953125
+      width: 0.49609375
+      height: 0.49609375
+    srcObjName: mplanets_Mesh15
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 2731546d9d51b4b928e009708efb5937, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.7519531
+      width: 0.24609375
+      height: 0.24609375
+    srcObjName: mplanets_Mesh16
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 50fe4c9e0610641a0a86fc09b8bf7bc1, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.40039062
+      y: 0.9707031
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh17
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: cd7976707ee8f42b0a9210a06ceb1dbe, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.37695312
+      y: 0.8769531
+      width: 0.05859375
+      height: 0.05859375
+    srcObjName: mplanets_Mesh18
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: babeb96a0d5ab45c681c21e10794bae2, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.38476562
+      y: 0.9707031
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: mplanets_Mesh19
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: b06bfe6101c0e46c7bbe4fa7fcec9b93, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.5019531
+      width: 0.49609375
+      height: 0.24609375
+    srcObjName: mplanets_Mesh20
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: d932f93fe37e94abdafd9c1214eed95d, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: 22f69e7572e00424d8a51f8177b86463, type: 2}
+    - {fileID: 2100000, guid: dc26d214a9ed6429f90348d77a0f6f04, type: 2}
+    - {fileID: 2100000, guid: 1f9bbc3ec19d64915b1b8cfe6ffb8506, type: 2}
+    - {fileID: 2100000, guid: cc04133b1ff264b0ea7b7b6e6ae4350b, type: 2}
+    - {fileID: 2100000, guid: 75e2f569d42f34f5f8255b54023f6d42, type: 2}
+    - {fileID: 2100000, guid: 2b9c6026d36eb4cf983e90569e6e9d10, type: 2}
+    - {fileID: 2100000, guid: f8fc1b673cbd84addb68423c1a6d8db3, type: 2}
+    - {fileID: 2100000, guid: eede30b93b9d04e9c9c6ec52c0763ffc, type: 2}
+    - {fileID: 2100000, guid: 30fe7b6a0a0c247239fcbb4eea679450, type: 2}
+    - {fileID: 2100000, guid: 833c77f502c8a46efbb0b87b58a2fa5a, type: 2}
+    - {fileID: 2100000, guid: 8ab7ef1b6ec3a4e0ab5d2314428d4d1d, type: 2}
+    - {fileID: 2100000, guid: 95646308d7aa042b1bdf1651facbe4a9, type: 2}
+    - {fileID: 2100000, guid: 4602ac6795da14cf391da45027e1325c, type: 2}
+    - {fileID: 2100000, guid: 2731546d9d51b4b928e009708efb5937, type: 2}
+    - {fileID: 2100000, guid: 50fe4c9e0610641a0a86fc09b8bf7bc1, type: 2}
+    - {fileID: 2100000, guid: cd7976707ee8f42b0a9210a06ceb1dbe, type: 2}
+    - {fileID: 2100000, guid: babeb96a0d5ab45c681c21e10794bae2, type: 2}
+    - {fileID: 2100000, guid: b06bfe6101c0e46c7bbe4fa7fcec9b93, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

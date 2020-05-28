@@ -1,0 +1,563 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: starfire_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: d59683fc10cac7a4aae3cf46e2b170bc, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.4951172
+      y: 0.3930664
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-button
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -36.64496
+      y: -0.24395381
+      width: 73.28992
+      height: 44.646816
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9f6c2d94e82e4644cb28380dc8f1b445, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.49902344
+      y: 0.3930664
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-cabinet
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -58
+      y: 0
+      width: 116
+      height: 70
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: f33569d3a256e7b4cadad6482136e678, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00024414062
+      y: 0.00048828125
+      width: 0.24951172
+      height: 0.49902344
+    srcObjName: starfire-carpet
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 4.9591484
+      y: -10.75
+      width: 4.930148
+      height: 25.5
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 4925feff99609eb4daff0e4d9ed02072, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.4326172
+      y: 0.7050781
+      width: 0.036621094
+      height: 0.04638672
+    srcObjName: starfire-coindoor
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.2202108
+      y: 0.40298125
+      width: 0.58750933
+      height: 0.37314805
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8176c0fa454321f40a0438c44a770b9f, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25024414
+      y: 0.7675781
+      width: 0.24951172
+      height: 0.09082031
+    srcObjName: starfire-control
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.052
+      y: -0.048
+      width: 1.052
+      height: 0.728
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8d7502e181a04144aa8a228c983f1ab0, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.49804688
+      y: 0.3930664
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-darkgrey
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -56.75
+      y: -51.027763
+      width: 113.5
+      height: 126.7193
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 3ff85976235975940b9e79f057b25fca, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00024414062
+      y: 0.5004883
+      width: 0.24951172
+      height: 0.49902344
+    srcObjName: starfire-grain
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -32.25
+      y: -0.00000023841858
+      width: 64.5
+      height: 41.972725
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9613c31b00a8bf840908f8ccdfbdf70f, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.4970703
+      y: 0.3930664
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-lightmetal
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -36.60106
+      y: -0.3024872
+      width: 73.20212
+      height: 44.67614
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: f1b1a9597c354424bb847dfb9441f171, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.4326172
+      y: 0.6430664
+      width: 0.03955078
+      height: 0.061035156
+    srcObjName: starfire-logo
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.41592735
+      y: 0.14873289
+      width: 0.15905273
+      height: 0.24607466
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: acaaa47471c65714e80552ef7c48a111, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.49609375
+      y: 0.3930664
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-medgrey
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.75
+      y: 17.401834
+      width: 31.5
+      height: 39.85183
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: fd133a6411dd79847bee4e5f544cb56d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.4951172
+      y: 0.39501953
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-metal
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.041666687
+      y: 0
+      width: 1.0416667
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 19aa9efc40b398b418d81ff58574009e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.4326172
+      y: 0.3930664
+      width: 0.06201172
+      height: 0.24902344
+    srcObjName: starfire-rear
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: f549e642c9bc74a4e9e3a6f08f84f6aa, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25024414
+      y: 0.00048828125
+      width: 0.24951172
+      height: 0.39160156
+    srcObjName: starfire-shroud
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.8752347
+      y: -0.000016986285
+      width: 1.8752755
+      height: 1.5675079
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 2765237b77f650e499a1b29ee129e7a4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7429199
+      y: 0.00048828125
+      width: 0.100097656
+      height: 0.15429688
+    srcObjName: starfire-side1
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.052825615
+      y: 0.2852342
+      width: 0.8011833
+      height: 0.61896974
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9066f072d810743498d8501ed4cb0b85, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.62475586
+      y: 0.00048828125
+      width: 0.11767578
+      height: 0.17675781
+    srcObjName: starfire-side2
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.0023709899
+      y: 0.18504548
+      width: 0.9424521
+      height: 0.70824164
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8960aaa2c4ed3e74d8c4762b7aee0295, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50024414
+      y: 0.00048828125
+      width: 0.12402344
+      height: 0.24804688
+    srcObjName: starfire-sideL
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.003295267
+      y: 0.0027457941
+      width: 0.9939643
+      height: 0.9939839
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 4024ef3ca70b2c3478a0f2b1130194b3, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25024414
+      y: 0.3930664
+      width: 0.18188477
+      height: 0.37353516
+    srcObjName: starfire-speaker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.9381007
+      y: -0.98442656
+      width: 2.910946
+      height: 2.9920163
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8d7502e181a04144aa8a228c983f1ab0, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.49609375
+      y: 0.39501953
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: starfire-yoke
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -11.388029
+      y: -7.329384
+      width: 22.605537
+      height: 19.10151
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 1a651644f21464444b41feb5df143a6b, type: 2}
+    considerMeshUVs: 1
+    sourceMaterials:
+    - {fileID: 2100000, guid: d59683fc10cac7a4aae3cf46e2b170bc, type: 2}
+    - {fileID: 2100000, guid: 9f6c2d94e82e4644cb28380dc8f1b445, type: 2}
+    - {fileID: 2100000, guid: f33569d3a256e7b4cadad6482136e678, type: 2}
+    - {fileID: 2100000, guid: 4925feff99609eb4daff0e4d9ed02072, type: 2}
+    - {fileID: 2100000, guid: 8176c0fa454321f40a0438c44a770b9f, type: 2}
+    - {fileID: 2100000, guid: 8d7502e181a04144aa8a228c983f1ab0, type: 2}
+    - {fileID: 2100000, guid: 3ff85976235975940b9e79f057b25fca, type: 2}
+    - {fileID: 2100000, guid: 9613c31b00a8bf840908f8ccdfbdf70f, type: 2}
+    - {fileID: 2100000, guid: f1b1a9597c354424bb847dfb9441f171, type: 2}
+    - {fileID: 2100000, guid: acaaa47471c65714e80552ef7c48a111, type: 2}
+    - {fileID: 2100000, guid: fd133a6411dd79847bee4e5f544cb56d, type: 2}
+    - {fileID: 2100000, guid: 19aa9efc40b398b418d81ff58574009e, type: 2}
+    - {fileID: 2100000, guid: f549e642c9bc74a4e9e3a6f08f84f6aa, type: 2}
+    - {fileID: 2100000, guid: 2765237b77f650e499a1b29ee129e7a4, type: 2}
+    - {fileID: 2100000, guid: 9066f072d810743498d8501ed4cb0b85, type: 2}
+    - {fileID: 2100000, guid: 8960aaa2c4ed3e74d8c4762b7aee0295, type: 2}
+    - {fileID: 2100000, guid: 4024ef3ca70b2c3478a0f2b1130194b3, type: 2}
+    - {fileID: 2100000, guid: 8d7502e181a04144aa8a228c983f1ab0, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

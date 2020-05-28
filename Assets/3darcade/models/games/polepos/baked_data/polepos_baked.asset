@@ -1,0 +1,623 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: polepos_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 5b332008dc2d985418cbd02aebefc958, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.88183594
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_back
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: f552d652f0588744a909ebd50918ff99, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7548828
+      y: 0.0009765625
+      width: 0.125
+      height: 0.125
+    srcObjName: polepos_coin
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: c87ef05036b69b748b44064dd43bc218, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8857422
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 0ec14e19b27047443b0f1236d40d4caa, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8857422
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 38a391168a62d0840875e02d6e8e7457, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8857422
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 3a9ac3bede84aff49b4078bdd6ed7075, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8857422
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 2764210237b14af48adf5f7d5d332bab, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8857422
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 7ce94edb56910fb46a60cc0dfd019066, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.0009765625
+      width: 0.5
+      height: 0.25
+    srcObjName: polepos_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 6c7cf0baced0a0d45814595721fb5779, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.88964844
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_cptop
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 3b864e5dcc8031e44a922c30e18cf109, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.7548828
+      width: 0.5
+      height: 0.125
+    srcObjName: polepos_cptop
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 4e01f267948997847b440966a67720d9, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8935547
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_gearball
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 6d6b7578beb5a3541bc397539e9ab90e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.89746094
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_gearshaft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: fb6c2d1d831109e479d5540739341fea, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.9013672
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: f6c3046043dda664992a651db0631240, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.90527344
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 428f01b10fde7384789600efe9c71e7e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.90527344
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 187e999aa0972fb4d98afef5b762f015, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.2529297
+      width: 0.25
+      height: 0.5
+    srcObjName: polepos_sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 97b1bdbab05c4d34ebb7a6cb524c9f76, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.9091797
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_sideright
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 76f1e3a27931bc94f9235f8c706d069f, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.2529297
+      y: 0.2529297
+      width: 0.25
+      height: 0.5
+    srcObjName: polepos_sideright
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 51811549ccd6d644bb810cc4d9f9a294, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.91308594
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: polepos_wheelshaft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: e66d1366abb265f468d98b89620403bd, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5029297
+      y: 0.0009765625
+      width: 0.25
+      height: 0.25
+    srcObjName: polepos_wheelshaft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 486e5c9df0299431db173b39af6c02c5, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: 5b332008dc2d985418cbd02aebefc958, type: 2}
+    - {fileID: 2100000, guid: f552d652f0588744a909ebd50918ff99, type: 2}
+    - {fileID: 2100000, guid: c87ef05036b69b748b44064dd43bc218, type: 2}
+    - {fileID: 2100000, guid: 0ec14e19b27047443b0f1236d40d4caa, type: 2}
+    - {fileID: 2100000, guid: 38a391168a62d0840875e02d6e8e7457, type: 2}
+    - {fileID: 2100000, guid: 3a9ac3bede84aff49b4078bdd6ed7075, type: 2}
+    - {fileID: 2100000, guid: 2764210237b14af48adf5f7d5d332bab, type: 2}
+    - {fileID: 2100000, guid: 7ce94edb56910fb46a60cc0dfd019066, type: 2}
+    - {fileID: 2100000, guid: 6c7cf0baced0a0d45814595721fb5779, type: 2}
+    - {fileID: 2100000, guid: 3b864e5dcc8031e44a922c30e18cf109, type: 2}
+    - {fileID: 2100000, guid: 4e01f267948997847b440966a67720d9, type: 2}
+    - {fileID: 2100000, guid: 6d6b7578beb5a3541bc397539e9ab90e, type: 2}
+    - {fileID: 2100000, guid: fb6c2d1d831109e479d5540739341fea, type: 2}
+    - {fileID: 2100000, guid: f6c3046043dda664992a651db0631240, type: 2}
+    - {fileID: 2100000, guid: 428f01b10fde7384789600efe9c71e7e, type: 2}
+    - {fileID: 2100000, guid: 187e999aa0972fb4d98afef5b762f015, type: 2}
+    - {fileID: 2100000, guid: 97b1bdbab05c4d34ebb7a6cb524c9f76, type: 2}
+    - {fileID: 2100000, guid: 76f1e3a27931bc94f9235f8c706d069f, type: 2}
+    - {fileID: 2100000, guid: 51811549ccd6d644bb810cc4d9f9a294, type: 2}
+    - {fileID: 2100000, guid: e66d1366abb265f468d98b89620403bd, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0
