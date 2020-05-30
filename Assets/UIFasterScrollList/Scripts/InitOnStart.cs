@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 namespace SG
 {
-    [RequireComponent(typeof(LoopScrollRect))]
-    [DisallowMultipleComponent]
+    [RequireComponent(typeof(LoopScrollRect)), DisallowMultipleComponent]
     public class InitOnStart : MonoBehaviour
     {
         public int totalCount = -1;

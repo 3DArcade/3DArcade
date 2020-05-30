@@ -1,7 +1,3 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-
 namespace UnityEngine.UI
 {
     [AddComponentMenu("UI/Loop Vertical Scroll Rect", 51)]
@@ -50,7 +46,7 @@ namespace UnityEngine.UI
             if (viewBounds.min.y < contentBounds.min.y)
             {
                 float size = NewItemAtEnd(), totalSize = size;
-                while(size > 0 && viewBounds.min.y < contentBounds.min.y - totalSize)
+                while (size > 0 && viewBounds.min.y < contentBounds.min.y - totalSize)
                 {
                     size = NewItemAtEnd();
                     totalSize += size;

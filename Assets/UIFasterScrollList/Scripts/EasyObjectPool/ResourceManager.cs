@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SG
 {
@@ -10,25 +8,25 @@ namespace SG
     public class ResourceManager : MonoBehaviour
     {
         //obj pool
-        private Dictionary<string, Pool> poolDict = new Dictionary<string, Pool>();
+        private readonly Dictionary<string, Pool> _poolDict = new Dictionary<string, Pool>();
 
-        private static ResourceManager mInstance = null;
+        private static ResourceManager _instance = null;
 
         public static ResourceManager Instance
         {
             get
             {
-                if (mInstance == null)
+                if (_instance == null)
                 {
                     GameObject go = new GameObject("ResourceManager", typeof(ResourceManager));
                     go.transform.localPosition = new Vector3(9999999, 9999999, 9999999);
                     // Kanglai: if we have `GO.hideFlags |= HideFlags.DontSave;`, we will encounter Destroy problem when exit playing
                     // However we should keep using this in Play mode only!
-                    mInstance = go.GetComponent<ResourceManager>();
+                    _instance = go.GetComponent<ResourceManager>();
 
                     if (Application.isPlaying)
                     {
-                        DontDestroyOnLoad(mInstance.gameObject);
+                        DontDestroyOnLoad(_instance.gameObject);
                     }
                     else
                     {
@@ -36,12 +34,13 @@ namespace SG
                     }
                 }
 
-                return mInstance;
+                return _instance;
             }
         }
+
         public void InitPool(string poolName, int size, PoolInflationType type = PoolInflationType.DOUBLE)
         {
-            if (poolDict.ContainsKey(poolName))
+            if (_poolDict.ContainsKey(poolName))
             {
                 return;
             }
@@ -53,12 +52,12 @@ namespace SG
                     Debug.LogError("[ResourceManager] Invalide prefab name for pooling :" + poolName);
                     return;
                 }
-                poolDict[poolName] = new Pool(poolName, pb, gameObject, size, type);
+                _poolDict[poolName] = new Pool(poolName, pb, gameObject, size, type);
             }
         }
 
         /// <summary>
-        /// Returns an available object from the pool 
+        /// Returns an available object from the pool
         /// OR null in case the pool does not have any object available & can grow size is false.
         /// </summary>
         /// <param name="poolName"></param>
@@ -67,14 +66,14 @@ namespace SG
         {
             GameObject result = null;
 
-            if (!poolDict.ContainsKey(poolName) && autoCreate > 0)
+            if (!_poolDict.ContainsKey(poolName) && autoCreate > 0)
             {
                 InitPool(poolName, autoCreate, PoolInflationType.INCREMENT);
             }
 
-            if (poolDict.ContainsKey(poolName))
+            if (_poolDict.ContainsKey(poolName))
             {
-                Pool pool = poolDict[poolName];
+                Pool pool = _poolDict[poolName];
                 result = pool.NextAvailableObject(autoActive);
                 //scenario when no available object is found in pool
 #if UNITY_EDITOR
@@ -108,15 +107,14 @@ namespace SG
             }
             else
             {
-                Pool pool = null;
-                if (poolDict.TryGetValue(po.poolName, out pool))
+                if (_poolDict.TryGetValue(po.PoolName, out Pool pool))
                 {
                     pool.ReturnObjectToPool(po);
                 }
 #if UNITY_EDITOR
                 else
                 {
-                    Debug.LogWarning("No pool available with name: " + po.poolName);
+                    Debug.LogWarning("No pool available with name: " + po.PoolName);
                 }
 #endif
             }

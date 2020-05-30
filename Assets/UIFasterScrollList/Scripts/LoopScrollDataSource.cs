@@ -1,18 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace UnityEngine.UI
+﻿namespace UnityEngine.UI
 {
     public abstract class LoopScrollDataSource
     {
         public abstract void ProvideData(Transform transform, int idx);
     }
 
-	public class LoopScrollSendIndexSource : LoopScrollDataSource
+    public class LoopScrollSendIndexSource : LoopScrollDataSource
     {
-		public static readonly LoopScrollSendIndexSource Instance = new LoopScrollSendIndexSource();
-
-		LoopScrollSendIndexSource(){}
+        public static readonly LoopScrollSendIndexSource Instance = new LoopScrollSendIndexSource();
 
         public override void ProvideData(Transform transform, int idx)
         {
@@ -20,11 +15,11 @@ namespace UnityEngine.UI
         }
     }
 
-	public class LoopScrollArraySource<T> : LoopScrollDataSource
+    public class LoopScrollArraySource<T> : LoopScrollDataSource
     {
-        T[] objectsToFill;
+        private readonly T[] objectsToFill;
 
-		public LoopScrollArraySource(T[] objectsToFill)
+        public LoopScrollArraySource(T[] objectsToFill)
         {
             this.objectsToFill = objectsToFill;
         }
