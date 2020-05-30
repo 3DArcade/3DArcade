@@ -544,7 +544,7 @@ namespace Arcade
                 //    rigidbody.isKinematic = true;
                 //}
                 dummyNode.transform.position = model.position; // model is redundant you aleady have access to modelProperties
-                dummyNode.transform.rotation = model.rotation;
+                dummyNode.transform.localRotation = model.rotation;
                 dummyNode.transform.localScale = model.scale;
                 if (modelType == ModelType.Arcade)
                 {

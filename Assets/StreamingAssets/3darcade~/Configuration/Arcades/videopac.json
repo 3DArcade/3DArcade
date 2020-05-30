@@ -1,665 +1,733 @@
 {
-    "DescriptiveName": "Philips VideoPac",
-    "Id": "videopac",
-    "ArcadeType": "CylArcade",
-    "RenderSettings": {
-        "AmbientIntensity": 3.0,
-        "MarqueeIntensity": 1.6,
-        "ScreenRasterIntensity": 2.4,
-        "ScreenVectorIntenstity": 6.0,
-        "ScreenPinballIntensity": 1.0
-    },
-    "AudioSettings": {
-        "SpatialSound": false
-    },
-    "VideoSettings": {
-        "VideoOnModelEnabled": "VisibleUnobstructed"
-    },
-    "CameraSettings": {
-        "Position": {
+    "descriptiveName": "Philips VideoPac",
+    "id": "videopac",
+    "arcadeType": "CylArcade",
+    "gameLauncherMethod": "None",
+    "externalModels": false,
+    "showFPS": false,
+    "camera": {
+        "position": {
             "x": 0.0,
             "y": 0.0,
             "z": 0.0
         },
-        "Rotation": {
+        "rotation": {
             "x": 0.0,
             "y": 0.0,
-            "z": 0.0
+            "z": 0.0,
+            "w": 1.0
         },
-        "Height": 0.0,
-        "Orthographic": false,
-        "FieldOfView": 60.0,
-        "AspectRatio": 0.0,
-        "NearClipPlane": 0.1,
-        "FarClipPlane": 100.0,
-        "ViewportRect": {
+        "height": 0.0,
+        "aspectRatio": 0.0,
+        "orthographic": false,
+        "fieldOfView": 60.0,
+        "nearClipPlane": 0.10000000149011612,
+        "farClipPlane": 100.0,
+        "viewportRect": {
+            "serializedVersion": "2",
             "x": 0.0,
             "y": 0.0,
             "width": 1.0,
             "height": 1.0
+        },
+        "allowDynamicResolution": false
+    },
+    "modelSharedProperties": {
+        "spatialSound": false,
+        "videoOnModelEnabled": "VisibleUnobstructed",
+        "renderSettings": {
+            "ambientIntensity": 3.0,
+            "marqueeIntensity": 1.600000023841858,
+            "screenRasterIntensity": 2.4000000953674318,
+            "screenVectorIntenstity": 6.0,
+            "screenPinballIntensity": 1.0
         }
     },
-    "FpsArcadeProperties": [],
-    "CylArcadeProperties": [
+    "fpsArcadeProperties": [],
+    "cylArcadeProperties": [
         {
-            "GamePosition": 2,
-            "Sprockets": 7,
-            "SelectedSprocket": 1,
-            "Radius": 100,
-            "ModelSpacing": 0.02,
-            "ModelWidthAxisY": false,
-            "ModelIsKinemtatic": true,
-            "CylArcadeOnScreenSelectedModel": false,
-            "CameraAspectRatio": 1.0,
-            "CameraTranslation": 0.95,
-            "CameraMinTranslation": 0.0,
-            "CameraMaxTranslation": 2.0,
-            "CameraTranslationDirectionAxisY": false,
-            "CameraTranslationReverse": false,
-            "CameraTranslationdamping": 4.0,
-            "CameraRotationdamping": 8.0,
-            "CameraLocalEularAngleX": 10.0,
-            "CameraLocalEularAngleY": 130.0,
-            "CameraLocalEularAngleZ": 94.0,
-            "CameraLocalEularAngleRotation": false,
-            "CameraLocalDefaultEularAngleRotation": 0.0,
-            "CameraLocalMinEularAngleRotation": -90.0,
-            "CameraLocalMaxEularAngleRotation": 90.0,
-            "MouseLook": false,
-            "MouseLookAxisY": true,
-            "MouseLookReverse": true,
-            "CameraLocalTranslation": {
-                "x": -0.2,
-                "y": -3.6,
+            "gamePosition": 2,
+            "sprockets": 7,
+            "selectedSprocket": 1,
+            "radius": 100,
+            "modelSpacing": 0.019999999552965165,
+            "modelWidthAxisY": false,
+            "modelIsKinemtatic": true,
+            "cylArcadeOnScreenSelectedModel": false,
+            "cameraAspectRatio": 1.0,
+            "cameraTranslation": 0.949999988079071,
+            "cameraMinTranslation": 0.0,
+            "cameraMaxTranslation": 2.0,
+            "cameraTranslationDirectionAxisY": false,
+            "cameraTranslationReverse": false,
+            "cameraTranslationdamping": 4.0,
+            "cameraRotationdamping": 8.0,
+            "cameraLocalEularAngleX": 10.0,
+            "cameraLocalEularAngleY": 130.0,
+            "cameraLocalEularAngleZ": 94.0,
+            "cameraLocalEularAngleRotation": false,
+            "cameraLocalDefaultEularAngleRotation": 0.0,
+            "cameraLocalMinEularAngleRotation": -90.0,
+            "cameraLocalMaxEularAngleRotation": 90.0,
+            "mouseLook": false,
+            "mouseLookAxisY": true,
+            "mouseLookReverse": true,
+            "cameraLocalTranslation": {
+                "x": -0.20000000298023225,
+                "y": -3.5999999046325685,
                 "z": 1.0
             },
-            "SprocketLocalEularAngleX": 0.0,
-            "SprocketLocalEularAngleY": 90.0,
-            "SprocketLocalEularAngleZ": -90.0
+            "sprocketLocalEularAngleX": 0.0,
+            "sprocketLocalEularAngleY": 90.0,
+            "sprocketLocalEularAngleZ": -90.0
         }
     ],
-    "Zones": [],
-    "ArcadeModelList": [
+    "zones": [],
+    "gameModelList": [
         {
-            "DescriptiveName": "Cylinder Arcade",
-            "Id": "cylinderarcade",
-            "IdParent": "",
-            "Emulator": "mame",
-            "Model": "defaultCylinder",
-            "Grabbable": true,
-            "AnimatedTextureSpeed": 0.2,
-            "Position": {
+            "descriptiveName": "Gyruss (Konami)",
+            "id": "gyruss",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "a2600_cartridge",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 1.8342998027801514,
+                "y": 0.0,
+                "z": 4.651381015777588
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9824144244194031,
+                "z": 0.0,
+                "w": -0.18671342730522157
+            },
+            "scale": {
+                "x": 1.0000011920928956,
+                "y": 1.0,
+                "z": 1.0000011920928956
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1983",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pengo (set 1 rev c)",
+            "id": "pengo",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "a2600_cartridge",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.0000267028808594,
+                "y": 1.0,
+                "z": 1.0000267028808594
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "raster vertical",
+            "manufacturer": "Sega",
+            "year": "1982",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Mr. Do!",
+            "id": "mrdo",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "a2600_cartridge",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.0000267028808594,
+                "y": 1.0,
+                "z": 1.0000267028808594
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "raster vertical",
+            "manufacturer": "Universal",
+            "year": "1982",
+            "genre": "Maze / Digging",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Bomb Jack (set 1)",
+            "id": "bombjack",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "a2600_cartridge",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.0000267028808594,
+                "y": 1.0,
+                "z": 1.0000267028808594
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "raster vertical",
+            "manufacturer": "Tehkan",
+            "year": "1984",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Ms. Pac-Man",
+            "id": "mspacman",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "a2600_cartridge",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.0000267028808594,
+                "y": 1.0,
+                "z": 1.0000267028808594
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "raster vertical",
+            "manufacturer": "Midway",
+            "year": "1981",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        }
+    ],
+    "arcadeModelList": [
+        {
+            "descriptiveName": "Cylinder Arcade",
+            "id": "cylinderarcade",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "defaultCylinder",
+            "grabbable": true,
+            "animatedTextureSpeed": 0.20000000298023225,
+            "position": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
-            "Rotation": {
+            "rotation": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 0.0
+                "z": 0.0,
+                "w": 1.0
             },
-            "Scale": {
+            "scale": {
                 "x": 2.0,
                 "y": 2.0,
                 "z": 2.0
             },
-            "Screen": "",
-            "Manufacturer": "",
-            "Year": "",
-            "Genre": "",
-            "Mature": false,
-            "Runnable": false,
-            "Available": false,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [],
-            "TriggerIDs": []
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
         }
     ],
-    "GameModelList": [
+    "propModelList": [
         {
-            "DescriptiveName": "Gyruss (Konami)",
-            "Id": "gyruss",
-            "IdParent": "",
-            "Emulator": "mame",
-            "Model": "a2600_cartridge",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": 1.8342998,
-                "y": 0.0,
-                "z": 4.651381
-            },
-            "Rotation": {
+            "descriptiveName": "Menu title",
+            "id": "menu_title",
+            "idParent": "",
+            "emulator": "defaultmenu",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
                 "x": 0.0,
-                "y": -158.4779,
-                "z": 0.0
+                "y": 0.15000000596046449,
+                "z": 0.30000001192092898
             },
-            "Scale": {
-                "x": 1.00000119,
-                "y": 1.0,
-                "z": 1.00000119
-            },
-            "Screen": "raster vertical",
-            "Manufacturer": "Konami",
-            "Year": "1983",
-            "Genre": "Shooter / Gallery",
-            "Mature": false,
-            "Runnable": true,
-            "Available": true,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Pengo (set 1 rev c)",
-            "Id": "pengo",
-            "IdParent": "",
-            "Emulator": "mame",
-            "Model": "a2600_cartridge",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": 2.70159149,
-                "y": 0.0,
-                "z": 4.207304
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": -147.2947,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0000267,
-                "y": 1.0,
-                "z": 1.0000267
-            },
-            "Screen": "raster vertical",
-            "Manufacturer": "Sega",
-            "Year": "1982",
-            "Genre": "Maze",
-            "Mature": false,
-            "Runnable": true,
-            "Available": true,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Mr. Do!",
-            "Id": "mrdo",
-            "IdParent": "",
-            "Emulator": "mame",
-            "Model": "a2600_cartridge",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": 2.70159149,
-                "y": 0.0,
-                "z": 4.207304
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": -147.2947,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0000267,
-                "y": 1.0,
-                "z": 1.0000267
-            },
-            "Screen": "raster vertical",
-            "Manufacturer": "Universal",
-            "Year": "1982",
-            "Genre": "Maze / Digging",
-            "Mature": false,
-            "Runnable": true,
-            "Available": true,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Bomb Jack (set 1)",
-            "Id": "bombjack",
-            "IdParent": "",
-            "Emulator": "mame",
-            "Model": "a2600_cartridge",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": 2.70159149,
-                "y": 0.0,
-                "z": 4.207304
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": -147.2947,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0000267,
-                "y": 1.0,
-                "z": 1.0000267
-            },
-            "Screen": "raster vertical",
-            "Manufacturer": "Tehkan",
-            "Year": "1984",
-            "Genre": "Platform / Run Jump",
-            "Mature": false,
-            "Runnable": true,
-            "Available": true,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Ms. Pac-Man",
-            "Id": "mspacman",
-            "IdParent": "",
-            "Emulator": "mame",
-            "Model": "a2600_cartridge",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": 2.70159149,
-                "y": 0.0,
-                "z": 4.207304
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": -147.2947,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0000267,
-                "y": 1.0,
-                "z": 1.0000267
-            },
-            "Screen": "raster vertical",
-            "Manufacturer": "Midway",
-            "Year": "1981",
-            "Genre": "Maze",
-            "Mature": false,
-            "Runnable": true,
-            "Available": true,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [],
-            "TriggerIDs": []
-        }
-    ],
-    "PropModelList": [
-        {
-            "DescriptiveName": "Menu title",
-            "Id": "menu_title",
-            "IdParent": "",
-            "Emulator": "defaultmenu",
-            "Model": "",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": 0.0,
-                "y": 0.15,
-                "z": 0.3
-            },
-            "Rotation": {
+            "rotation": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 0.0
+                "z": 0.0,
+                "w": 1.0
             },
-            "Scale": {
+            "scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
             },
-            "Screen": "",
-            "Manufacturer": "",
-            "Year": "",
-            "Genre": "",
-            "Mature": false,
-            "Runnable": false,
-            "Available": false,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
                 {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": [
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "SetTransform",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": [
                         {
-                            "SetParent": true,
-                            "SetIsKinematic": false,
-                            "SetPosition": false,
-                            "SetRotation": false,
-                            "SetScale": false,
-                            "SetIsActive": false,
-                            "Parent": "arcadecamera",
-                            "IsKinematic": false,
-                            "Position": {
+                            "setParent": true,
+                            "setIsKinematic": false,
+                            "setPosition": false,
+                            "setRotation": false,
+                            "setScale": false,
+                            "setIsActive": false,
+                            "parent": "arcadecamera",
+                            "isKinematic": false,
+                            "position": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Rotation": {
+                            "rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "scale": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Scale": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "IsActive": false
+                            "isActive": false
                         }
                     ]
                 },
                 {
-                    "TriggerEvent": "MainMenuStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
+                    "triggerEvent": "MainMenuStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
                         {
-                            "Name": "menu_title_move",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
+                            "name": "menu_title_move",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
                         }
                     ],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": []
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
                 }
             ],
-            "TriggerIDs": []
+            "triggerIDs": []
         },
         {
-            "DescriptiveName": "Background",
-            "Id": "default_mainmenu_background",
-            "IdParent": "neon",
-            "Emulator": "defaultmenu",
-            "Model": "",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
+            "descriptiveName": "Background",
+            "id": "default_mainmenu_background",
+            "idParent": "neon",
+            "emulator": "defaultmenu",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 22.0
             },
-            "Rotation": {
+            "rotation": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 180.0
+                "z": 1.0,
+                "w": 0.0
             },
-            "Scale": {
+            "scale": {
                 "x": 0.5,
                 "y": 1.0,
                 "z": 1.0
             },
-            "Screen": "",
-            "Manufacturer": "",
-            "Year": "",
-            "Genre": "",
-            "Mature": false,
-            "Runnable": false,
-            "Available": false,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
                 {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": [
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "SetTransform",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": [
                         {
-                            "SetParent": true,
-                            "SetIsKinematic": false,
-                            "SetPosition": false,
-                            "SetRotation": false,
-                            "SetScale": false,
-                            "SetIsActive": false,
-                            "Parent": "arcadecamera",
-                            "IsKinematic": false,
-                            "Position": {
+                            "setParent": true,
+                            "setIsKinematic": false,
+                            "setPosition": false,
+                            "setRotation": false,
+                            "setScale": false,
+                            "setIsActive": false,
+                            "parent": "arcadecamera",
+                            "isKinematic": false,
+                            "position": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Rotation": {
+                            "rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "scale": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Scale": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "IsActive": false
+                            "isActive": false
                         }
                     ]
                 }
             ],
-            "TriggerIDs": []
+            "triggerIDs": []
         },
         {
-            "DescriptiveName": "Atari 2600",
-            "Id": "a2600",
-            "IdParent": "",
-            "Emulator": "",
-            "Model": "",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": -0.4,
+            "descriptiveName": "Atari 2600",
+            "id": "a2600",
+            "idParent": "",
+            "emulator": "",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.4000000059604645,
                 "y": -1.0,
                 "z": 2.0
             },
-            "Rotation": {
+            "rotation": {
                 "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
+                "y": 1.0,
+                "z": 0.0,
+                "w": 0.0
             },
-            "Scale": {
+            "scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
             },
-            "Screen": "",
-            "Manufacturer": "",
-            "Year": "",
-            "Genre": "",
-            "Mature": false,
-            "Runnable": false,
-            "Available": false,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
                 {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": [
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "SetTransform",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": [
                         {
-                            "SetParent": true,
-                            "SetIsKinematic": true,
-                            "SetPosition": false,
-                            "SetRotation": false,
-                            "SetScale": false,
-                            "SetIsActive": false,
-                            "Parent": "arcadecamera",
-                            "IsKinematic": true,
-                            "Position": {
+                            "setParent": true,
+                            "setIsKinematic": true,
+                            "setPosition": false,
+                            "setRotation": false,
+                            "setScale": false,
+                            "setIsActive": false,
+                            "parent": "arcadecamera",
+                            "isKinematic": true,
+                            "position": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Rotation": {
+                            "rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "scale": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Scale": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "IsActive": false
+                            "isActive": false
                         }
                     ]
                 },
                 {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
+                    "triggerEvent": "GameStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
                         {
-                            "Name": "a2600_up",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
+                            "name": "a2600_up",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
                         }
                     ],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": []
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
                 },
                 {
-                    "TriggerEvent": "ModelSelectedChanged",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "GetArtworkFromSelectedModel",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": []
+                    "triggerEvent": "ModelSelectedChanged",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "GetArtworkFromSelectedModel",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
                 }
             ],
-            "TriggerIDs": []
+            "triggerIDs": []
         },
         {
-            "DescriptiveName": "Cart Statiic",
-            "Id": "a2600_cart_static",
-            "IdParent": "",
-            "Emulator": "",
-            "Model": "a2600_cartridge",
-            "Grabbable": false,
-            "AnimatedTextureSpeed": 2.0,
-            "Position": {
-                "x": -0.4,
+            "descriptiveName": "Cart Statiic",
+            "id": "a2600_cart_static",
+            "idParent": "",
+            "emulator": "",
+            "model": "a2600_cartridge",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.4000000059604645,
                 "y": 1.0,
-                "z": 1.7
+                "z": 1.7000000476837159
             },
-            "Rotation": {
+            "rotation": {
                 "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
+                "y": 1.0,
+                "z": 0.0,
+                "w": 0.0
             },
-            "Scale": {
+            "scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
             },
-            "Screen": "",
-            "Manufacturer": "",
-            "Year": "",
-            "Genre": "",
-            "Mature": false,
-            "Runnable": false,
-            "Available": false,
-            "GameLauncherMethod": "None",
-            "PlayCount": 0,
-            "Zone": 0,
-            "Triggers": [
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
                 {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": [
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "SetTransform",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": [
                         {
-                            "SetParent": true,
-                            "SetIsKinematic": true,
-                            "SetPosition": false,
-                            "SetRotation": false,
-                            "SetScale": false,
-                            "SetIsActive": false,
-                            "Parent": "arcadecamera",
-                            "IsKinematic": true,
-                            "Position": {
+                            "setParent": true,
+                            "setIsKinematic": true,
+                            "setPosition": false,
+                            "setRotation": false,
+                            "setScale": false,
+                            "setIsActive": false,
+                            "parent": "arcadecamera",
+                            "isKinematic": true,
+                            "position": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Rotation": {
+                            "rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "scale": {
                                 "x": 0.0,
                                 "y": 0.0,
                                 "z": 0.0
                             },
-                            "Scale": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "IsActive": false
+                            "isActive": false
                         }
                     ]
                 },
                 {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
+                    "triggerEvent": "GameStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
                         {
-                            "Name": "a2600_cartridge_down",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
+                            "name": "a2600_cartridge_down",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
                         }
                     ],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": []
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
                 },
                 {
-                    "TriggerEvent": "ModelSelectedChanged",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "GetArtworkFromSelectedModel",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTansformProperties": []
+                    "triggerEvent": "ModelSelectedChanged",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "GetArtworkFromSelectedModel",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
                 }
             ],
-            "TriggerIDs": []
+            "triggerIDs": []
         }
     ]
 }

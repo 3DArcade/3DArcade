@@ -70,17 +70,12 @@ namespace Arcade
         [HideInInspector] public bool isPlaying = false;
         [HideInInspector] public ModelSharedProperties modelSharedProperties;
 
-        public AnimationCurve volumeCurve;
-
-        private void Awake()
+        public static readonly AnimationCurve VolumeCurve = new AnimationCurve(new Keyframe[]
         {
-            volumeCurve = new AnimationCurve(new Keyframe[]
-            {
-                new Keyframe(0.8f, 1.0f, -2.6966875f,  -2.6966875f,  0.2f,        0.10490462f),
-                new Keyframe(1.5f, 0.3f, -0.49866775f, -0.49866775f, 0.28727788f, 0.2f),
-                new Keyframe(3.0f, 0.0f, -0.08717632f, -0.08717632f, 0.5031141f,  0.2f)
-            });
-        }
+            new Keyframe(0.8f, 1.0f, -2.6966875f,  -2.6966875f,  0.2f,        0.10490462f),
+            new Keyframe(1.5f, 0.3f, -0.49866775f, -0.49866775f, 0.28727788f, 0.2f),
+            new Keyframe(3.0f, 0.0f, -0.08717632f, -0.08717632f, 0.5031141f,  0.2f)
+        });
 
 #if UNITY_EDITOR
         private void Reset()
@@ -357,7 +352,7 @@ namespace Arcade
                     taudio.maxDistance = 3f;
                     taudio.enabled = false;
                     taudio.rolloffMode = AudioRolloffMode.Custom;
-                    taudio.SetCustomCurve(AudioSourceCurveType.CustomRolloff, volumeCurve);
+                    taudio.SetCustomCurve(AudioSourceCurveType.CustomRolloff, VolumeCurve);
                 }
             }
 

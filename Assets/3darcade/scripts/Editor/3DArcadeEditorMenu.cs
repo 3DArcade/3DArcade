@@ -17,8 +17,7 @@ namespace Arcade
             {
                 return;
             }
-            EditorWindow window = GetWindow(typeof(EditorLoadArcadeConfiguration)) as EditorLoadArcadeConfiguration;
-            window.Show();
+            _ = GetWindow<EditorLoadArcadeConfiguration>();
         }
 
         void OnGUI()
@@ -26,7 +25,6 @@ namespace Arcade
             GUILayout.Label("Load arcade configuration from file");
 
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, false);
-            GUILayout.BeginVertical();
             foreach (ArcadeConfiguration arcadeConfiguration in ArcadeManager.arcadesConfigurationList)
             {
                 if (GUILayout.Button(arcadeConfiguration.descriptiveName))
@@ -34,11 +32,9 @@ namespace Arcade
                     ArcadeManager.arcadeConfiguration = arcadeConfiguration;
                     ArcadeManager.loadSaveArcadeConfiguration.ResetArcade();
                     _ = ArcadeManager.loadSaveArcadeConfiguration.LoadArcade(arcadeConfiguration);
-                    EditorWindow window = GetWindow(typeof(EditorLoadArcadeConfiguration)) as EditorLoadArcadeConfiguration;
-                    window.Close();
+                    GetWindow<EditorLoadArcadeConfiguration>().Close();
                 }
             }
-            GUILayout.EndVertical();
             GUILayout.EndScrollView();
         }
     }
@@ -55,8 +51,7 @@ namespace Arcade
 
         public static void ShowWindow()
         {
-            EditorWindow window = GetWindow(typeof(EditorLoadArcadeConfigurationPopUP)) as EditorLoadArcadeConfigurationPopUP;
-            window.Show();
+            _ = GetWindow<EditorLoadArcadeConfigurationPopUP>();
         }
 
         void OnGUI()
@@ -71,7 +66,6 @@ namespace Arcade
                 }
             }
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, false);
-            GUILayout.BeginVertical();
             foreach (ArcadeConfiguration arcadeConfiguration in ArcadeManager.arcadesConfigurationList)
             {
                 if (GUILayout.Button(arcadeConfiguration.descriptiveName))
@@ -79,11 +73,9 @@ namespace Arcade
                     ArcadeManager.arcadeConfiguration = arcadeConfiguration;
                     ArcadeManager.loadSaveArcadeConfiguration.ResetArcade();
                     _ = ArcadeManager.loadSaveArcadeConfiguration.LoadArcade(arcadeConfiguration);
-                    EditorWindow window = GetWindow(typeof(EditorLoadArcadeConfigurationPopUP)) as EditorLoadArcadeConfigurationPopUP;
-                    window.Close();
+                    GetWindow<EditorLoadArcadeConfigurationPopUP>().Close();
                 }
             }
-            GUILayout.EndVertical();
             GUILayout.EndScrollView();
         }
     }

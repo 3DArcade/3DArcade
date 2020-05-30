@@ -22,6 +22,7 @@
 
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Arcade_r
 {
@@ -30,6 +31,11 @@ namespace Arcade_r
     {
         static HierarchyMonitor()
         {
+            if (SceneManager.GetActiveScene().name != "3darcade_r")
+            {
+                return;
+            }
+
             EditorApplication.hierarchyChanged += OnHierarchyChanged;
         }
 
