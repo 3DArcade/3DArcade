@@ -108,22 +108,19 @@ namespace Arcade_r
         private static VirtualFileSystem InitVFS(string rootDirectory)
         {
             VirtualFileSystem result = new VirtualFileSystem();
+#if UNITY_EDITOR
+            result.MountDirectory("models", "3darcade/models");
+            result.MountDirectory("arcade_models", "3darcade/models/arcades");
+            result.MountDirectory("game_models", "3darcade/models/games");
+            result.MountDirectory("prop_models", "3darcade/models/props");
+#endif
+            result.MountDirectory("cfgs", $"{rootDirectory}/3darcade_r~/Configuration");
+            result.MountDirectory("arcade_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Arcades");
+            result.MountDirectory("emulator_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Emulators");
+            result.MountDirectory("emulators", $"{rootDirectory}/3darcade_r~/Emulators");
+            result.MountDirectory("media", $"{rootDirectory}/3darcade_r~/Media");
 
-            if (Application.isEditor)
-            {
-                result.MountDirectory("models", "3darcade/models");
-                result.MountDirectory("arcade_models", "3darcade/models/arcades");
-                result.MountDirectory("game_models", "3darcade/models/games");
-                result.MountDirectory("prop_models", "3darcade/models/props");
-            }
-
-            result.MountDirectory("cfgs", $"{rootDirectory}/3darcade~/Configuration");
-            result.MountDirectory("arcade_cfgs", $"{rootDirectory}/3darcade~/Configuration/Arcades");
-            result.MountDirectory("emulator_cfgs", $"{rootDirectory}/3darcade~/Configuration/Emulators");
-            result.MountDirectory("emulators", $"{rootDirectory}/3darcade~/Emulators");
-            result.MountDirectory("media", $"{rootDirectory}/3darcade~/Media");
-
-            result.MountFile("general_cfg", $"{rootDirectory}/3darcade~/Configuration/GeneralConfiguration.json");
+            result.MountFile("general_cfg", $"{rootDirectory}/3darcade_r~/Configuration/GeneralConfiguration.json");
 
             return result;
         }

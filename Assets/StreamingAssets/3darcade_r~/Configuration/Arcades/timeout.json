@@ -1,0 +1,2237 @@
+{
+    "descriptiveName": "Time Out",
+    "id": "timeout",
+    "arcadeType": "FpsArcade",
+    "gameLauncherMethod": "External",
+    "externalModels": false,
+    "showFPS": true,
+    "camera": {
+        "position": {
+            "x": -0.32857465744018557,
+            "y": 0.8000004291534424,
+            "z": -20.64236068725586
+        },
+        "rotation": {
+            "x": -0.01987309753894806,
+            "y": 0.14991357922554017,
+            "z": 0.0030139191076159479,
+            "w": 0.9884948134422302
+        },
+        "height": 0.6000000238418579,
+        "aspectRatio": 0.0,
+        "orthographic": false,
+        "fieldOfView": 60.0,
+        "nearClipPlane": 0.10000000149011612,
+        "farClipPlane": 100.0,
+        "viewportRect": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+        },
+        "allowDynamicResolution": false
+    },
+    "modelSharedProperties": {
+        "spatialSound": true,
+        "videoOnModelEnabled": "VisibleUnobstructed",
+        "renderSettings": {
+            "ambientIntensity": 2.0,
+            "marqueeIntensity": 1.600000023841858,
+            "screenRasterIntensity": 2.4000000953674318,
+            "screenVectorIntenstity": 6.0,
+            "screenPinballIntensity": 1.0
+        }
+    },
+    "fpsArcadeProperties": [],
+    "cylArcadeProperties": [],
+    "zones": [],
+    "gameModelList": [
+        {
+            "descriptiveName": "Vanguard (SNK)",
+            "id": "vanguard",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "alpine",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -2.8429019451141359,
+                "y": 0.002958834171295166,
+                "z": -3.413360118865967
+            },
+            "rotation": {
+                "x": 1.8107033383785166e-7,
+                "y": 0.7071071863174439,
+                "z": 0.0000053696840041084218,
+                "w": 0.7071064710617065
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "SNK",
+            "year": "1981",
+            "genre": "Shooter / Flying",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Super Zaxxon",
+            "id": "szaxxon",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 1.1569037437438965,
+                "y": 0.0029581785202026369,
+                "z": 9.129135131835938
+            },
+            "rotation": {
+                "x": 0.000005166699793335283,
+                "y": 1.0,
+                "z": 0.000006113212293712422,
+                "w": -0.0000021895020836382175
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Sega",
+            "year": "1982",
+            "genre": "Shooter / Flying Diagonal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Smash T.V. (rev 8.00)",
+            "id": "smashtv",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.035399913787842,
+                "y": 0.0029600858688354494,
+                "z": -7.874760150909424
+            },
+            "rotation": {
+                "x": 3.3045225222849697e-8,
+                "y": 0.7071067094802856,
+                "z": -3.614446342226074e-8,
+                "w": 0.7071069478988648
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1990",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Mappy (US)",
+            "id": "mappy",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -2.9724996089935304,
+                "y": 0.0029602646827697756,
+                "z": -9.005559921264649
+            },
+            "rotation": {
+                "x": 0.0000010048407830254292,
+                "y": 0.7071062922477722,
+                "z": -0.00000240827330344473,
+                "w": 0.7071073055267334
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Namco",
+            "year": "1983",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Crystal Castles (version 4)",
+            "id": "ccastles",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -2.9999988079071047,
+                "y": 0.0029606223106384279,
+                "z": -6.7752580642700199
+            },
+            "rotation": {
+                "x": 0.000001428864493391302,
+                "y": 0.7071059942245483,
+                "z": -0.000002734120926106698,
+                "w": 0.707107663154602
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Atari",
+            "year": "1983",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Defender (Red label)",
+            "id": "defender",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.093402147293091,
+                "y": 0.0029566287994384767,
+                "z": -13.176859855651856
+            },
+            "rotation": {
+                "x": 0.0000010643545920174802,
+                "y": 0.7071071863174439,
+                "z": 0.00000768060090194922,
+                "w": 0.7071064710617065
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1980",
+            "genre": "Shooter / Flying",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Arkanoid (World)",
+            "id": "arkanoid",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -2.8931000232696535,
+                "y": 0.002960801124572754,
+                "z": -10.213860511779786
+            },
+            "rotation": {
+                "x": 3.845279650249722e-10,
+                "y": 0.7071065306663513,
+                "z": -1.8929688394564438e-7,
+                "w": 0.7071071267127991
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Taito Corporation Japan",
+            "year": "1986",
+            "genre": "Ball & Paddle / Breakout",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Battle Zone (set 1)",
+            "id": "bzone",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.4321024417877199,
+                "y": 0.0029566287994384767,
+                "z": -8.920762062072754
+            },
+            "rotation": {
+                "x": -0.000007630914296896663,
+                "y": -0.7071064710617065,
+                "z": 0.0000010231617579847808,
+                "w": 0.7071071267127991
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "vector horizontal",
+            "manufacturer": "Atari",
+            "year": "1980",
+            "genre": "Shooter / Driving 1st Person",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Commando (World)",
+            "id": "commando",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.179302453994751,
+                "y": 0.0029572248458862306,
+                "z": -7.92616081237793
+            },
+            "rotation": {
+                "x": -0.000007687125616939738,
+                "y": -0.7071062922477722,
+                "z": 3.636057783751312e-7,
+                "w": 0.7071073651313782
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Capcom",
+            "year": "1985",
+            "genre": "Shooter / Walking",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "R-Type (Japan)",
+            "id": "rtype",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.193002223968506,
+                "y": 0.0029562711715698244,
+                "z": -6.755361557006836
+            },
+            "rotation": {
+                "x": -0.000007711496436968446,
+                "y": -0.7071064114570618,
+                "z": 0.0000011406101521060919,
+                "w": 0.7071071863174439
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Irem",
+            "year": "1987",
+            "genre": "Shooter / Flying Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Scramble",
+            "id": "scramble",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.0808026790618898,
+                "y": 0.002957940101623535,
+                "z": -5.257859706878662
+            },
+            "rotation": {
+                "x": 4.08957845365876e-7,
+                "y": 0.7071071863174439,
+                "z": 0.000007729250683041755,
+                "w": 0.7071064710617065
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1981",
+            "genre": "Shooter / Flying Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Gyruss (Konami)",
+            "id": "gyruss",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.333402156829834,
+                "y": 0.0029569268226623537,
+                "z": -5.522260665893555
+            },
+            "rotation": {
+                "x": -0.00000771162194723729,
+                "y": -0.707106351852417,
+                "z": 5.04008824009361e-7,
+                "w": 0.7071073055267334
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1983",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Marble Madness (set 1)",
+            "id": "marble",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.367802143096924,
+                "y": 0.0029567480087280275,
+                "z": -3.242161273956299
+            },
+            "rotation": {
+                "x": -0.000007723632734268904,
+                "y": -0.7071064710617065,
+                "z": 0.0000010142100563825807,
+                "w": 0.7071071267127991
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Atari Games",
+            "year": "1984",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Zoo Keeper (set 1)",
+            "id": "zookeep",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -2.870110511779785,
+                "y": 0.0029585957527160646,
+                "z": -2.140639543533325
+            },
+            "rotation": {
+                "x": 1.787642247563781e-7,
+                "y": 0.7076448798179627,
+                "z": 0.0000052320251597848259,
+                "w": 0.7065683007240295
+            },
+            "scale": {
+                "x": 1.000002145767212,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Taito America Corporation",
+            "year": "1982",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Time Pilot",
+            "id": "timeplt",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.0863025188446047,
+                "y": 0.002957582473754883,
+                "z": -1.1984593868255616
+            },
+            "rotation": {
+                "x": 3.8787814560237168e-7,
+                "y": 0.7071073055267334,
+                "z": 0.00000763309344620211,
+                "w": 0.707106351852417
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1982",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Tempest (rev 3)",
+            "id": "tempest",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.1381025314331056,
+                "y": 0.002957940101623535,
+                "z": -0.05774932727217674
+            },
+            "rotation": {
+                "x": 3.8068398566792896e-7,
+                "y": 0.7071071267127991,
+                "z": 0.0000076248306868365038,
+                "w": 0.7071065306663513
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "vector vertical",
+            "manufacturer": "Atari",
+            "year": "1980",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Bomb Jack (set 1)",
+            "id": "bombjack",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.25470232963562,
+                "y": 0.0029578804969787599,
+                "z": 1.3821306228637696
+            },
+            "rotation": {
+                "x": 3.702973572217161e-7,
+                "y": 0.7071073055267334,
+                "z": 0.000007689021913392935,
+                "w": 0.707106351852417
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Tehkan",
+            "year": "1984",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Berzerk (set 1)",
+            "id": "berzerk",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.141202211380005,
+                "y": 0.002957582473754883,
+                "z": 2.3389410972595217
+            },
+            "rotation": {
+                "x": 9.803949296838255e-7,
+                "y": 0.7071073055267334,
+                "z": 0.0000076188543971511539,
+                "w": 0.707106351852417
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Stern",
+            "year": "1980",
+            "genre": "Maze / Shooter Small",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Space Invaders - The Original Game (J)",
+            "id": "Space Invaders - The Original Game (J).smc",
+            "idParent": "",
+            "emulator": "supernintendoentertainmentsystem",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.112502336502075,
+                "y": 0.0029581189155578615,
+                "z": 3.4192402362823488
+            },
+            "rotation": {
+                "x": -1.1453394677118922e-7,
+                "y": 0.707107424736023,
+                "z": 0.000006998942808422726,
+                "w": 0.7071062326431274
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Midway",
+            "year": "1978",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "Internal",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Robotron (Solid Blue label)",
+            "id": "robotron",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.3492023944854738,
+                "y": 0.0029567480087280275,
+                "z": 1.4797388315200806
+            },
+            "rotation": {
+                "x": -0.000007696946340729482,
+                "y": -0.7071064114570618,
+                "z": 0.000001000754195956688,
+                "w": 0.7071071863174439
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1982",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Ms. Pac-Man",
+            "id": "mspacman",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.4657020568847658,
+                "y": 0.002956986427307129,
+                "z": 0.14841939508914948
+            },
+            "rotation": {
+                "x": -0.000007697235560044646,
+                "y": -0.707106351852417,
+                "z": 3.824507359695417e-7,
+                "w": 0.7071072459220886
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Midway",
+            "year": "1981",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pengo (set 1 rev c)",
+            "id": "pengo",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.4580023288726808,
+                "y": 0.0029569268226623537,
+                "z": -2.077460765838623
+            },
+            "rotation": {
+                "x": -0.000007744739377812948,
+                "y": -0.7071064114570618,
+                "z": 3.9247501604222636e-7,
+                "w": 0.7071072459220886
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Sega",
+            "year": "1982",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Tutankham (Stern)",
+            "id": "tutankst",
+            "idParent": "tutankhm",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.5813026428222658,
+                "y": 0.0029567480087280275,
+                "z": -4.427260875701904
+            },
+            "rotation": {
+                "x": -0.000007599798664159607,
+                "y": -0.7071064114570618,
+                "z": 3.734784854714235e-7,
+                "w": 0.7071072459220886
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "[Konami] (Stern license)",
+            "year": "1982",
+            "genre": "Maze / Shooter Large",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Robotron (Solid Blue label)",
+            "id": "robotron",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.2681021690368654,
+                "y": 0.0029578804969787599,
+                "z": -4.365758419036865
+            },
+            "rotation": {
+                "x": 0.0000010765842262117076,
+                "y": 0.7071072459220886,
+                "z": 0.000007640582225576509,
+                "w": 0.7071064114570618
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1982",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pac-Man (Midway)",
+            "id": "pacman",
+            "idParent": "puckman",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -1.7136964797973633,
+                "y": 0.0029582977294921877,
+                "z": 9.28703498840332
+            },
+            "rotation": {
+                "x": 0.000005145844170328928,
+                "y": 1.0,
+                "z": 0.000006085986115067499,
+                "w": -0.000002152747129002819
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster vertical",
+            "manufacturer": "[Namco] (Midway license)",
+            "year": "1980",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Tron (set 1)",
+            "id": "tron",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.601900815963745,
+                "y": 0.002960681915283203,
+                "z": 4.848440170288086
+            },
+            "rotation": {
+                "x": 7.961020855873358e-7,
+                "y": -0.7071071863174439,
+                "z": -0.0000042346646296209659,
+                "w": 0.7071064710617065
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Bally Midway",
+            "year": "1982",
+            "genre": "Multiplay",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Galaga (Namco)",
+            "id": "galaga",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.1792023181915285,
+                "y": 0.0029602646827697756,
+                "z": 9.251937866210938
+            },
+            "rotation": {
+                "x": 0.0000019332953797857046,
+                "y": 1.0,
+                "z": 0.0000026309410259273138,
+                "w": -0.0000014158808880893048
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Namco",
+            "year": "1981",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Frogger",
+            "id": "frogger",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.3732006549835207,
+                "y": 0.002961099147796631,
+                "z": 3.3940398693084719
+            },
+            "rotation": {
+                "x": 7.681185252295109e-7,
+                "y": -0.7071073055267334,
+                "z": -0.000005003816568205366,
+                "w": 0.707106351852417
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1981",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pooyan",
+            "id": "pooyan",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.214702606201172,
+                "y": 0.002957761287689209,
+                "z": 5.970740795135498
+            },
+            "rotation": {
+                "x": 4.2515716813795736e-7,
+                "y": 0.7071071863174439,
+                "z": 0.000007718460437899921,
+                "w": 0.7071064710617065
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1982",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Asteroids (rev 2)",
+            "id": "asteroid",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.0713021755218508,
+                "y": 0.002957761287689209,
+                "z": 4.95164155960083
+            },
+            "rotation": {
+                "x": 0.000001075636987479811,
+                "y": 0.7071073055267334,
+                "z": 0.000007636954251211137,
+                "w": 0.707106351852417
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "vector horizontal",
+            "manufacturer": "Atari",
+            "year": "1979",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Dig Dug (set 1)",
+            "id": "digdug",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.228102445602417,
+                "y": 0.002957582473754883,
+                "z": 6.928640365600586
+            },
+            "rotation": {
+                "x": 4.009940255400579e-7,
+                "y": 0.7071071863174439,
+                "z": 0.00000773592182667926,
+                "w": 0.7071064710617065
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Namco",
+            "year": "1982",
+            "genre": "Maze / Digging",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Centipede (revision 3)",
+            "id": "centiped",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.19027000665664674,
+                "y": 0.002960205078125,
+                "z": 9.424539566040039
+            },
+            "rotation": {
+                "x": -8.039795496017632e-10,
+                "y": 1.0,
+                "z": -9.958980484725544e-8,
+                "w": -1.837635288381989e-8
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Atari",
+            "year": "1980",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Mr. Do!",
+            "id": "mrdo",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.0953023433685304,
+                "y": 0.002957642078399658,
+                "z": 7.94834041595459
+            },
+            "rotation": {
+                "x": 3.2437566233056716e-7,
+                "y": 0.7071073651313782,
+                "z": 0.000007671004823350813,
+                "w": 0.7071062922477722
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Universal",
+            "year": "1982",
+            "genre": "Maze / Digging",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Space Invaders - The Original Game (J)",
+            "id": "Space Invaders - The Original Game (J).smc",
+            "idParent": "",
+            "emulator": "supernintendoentertainmentsystem",
+            "model": "invaders",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.3470003604888918,
+                "y": 0.0029601454734802248,
+                "z": 6.7523393630981449
+            },
+            "rotation": {
+                "x": -0.000001193637217511423,
+                "y": -0.7071066498756409,
+                "z": -0.000001320973751717247,
+                "w": 0.7071070075035095
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "",
+            "manufacturer": "Nintendo",
+            "year": "1997",
+            "genre": "Shooter",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "Internal",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Asteroids (rev 1)",
+            "id": "asteroi1",
+            "idParent": "asteroid",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.5493011474609377,
+                "y": 0.0029604434967041017,
+                "z": 5.907838344573975
+            },
+            "rotation": {
+                "x": -0.0000023777224669174758,
+                "y": -0.7071061730384827,
+                "z": -0.000003695870191222639,
+                "w": 0.7071074843406677
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "vector horizontal",
+            "manufacturer": "Atari",
+            "year": "1979",
+            "genre": "Shooter / Field",
+            "mature": false,
+            "runnable": true,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Moon Patrol",
+            "id": "mpatrol",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.3045969009399416,
+                "y": 0.002957582473754883,
+                "z": 2.4580435752868654
+            },
+            "rotation": {
+                "x": -3.5751148175222627e-7,
+                "y": -0.7071053385734558,
+                "z": 0.000006284265055001015,
+                "w": 0.7071083188056946
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Irem",
+            "year": "1982",
+            "genre": "Shooter / Driving Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Mappy (US)",
+            "id": "mappy",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.6710762977600098,
+                "y": 0.0029581785202026369,
+                "z": 9.378437042236329
+            },
+            "rotation": {
+                "x": 0.00000514537305207341,
+                "y": 1.0,
+                "z": 0.00000606906814937247,
+                "w": -0.0000021927437501290116
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Namco",
+            "year": "1983",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Missile Command (set 1)",
+            "id": "missile",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.4458586275577545,
+                "y": 0.002961456775665283,
+                "z": 0.7799978852272034
+            },
+            "rotation": {
+                "x": -0.0000040047157199296638,
+                "y": 1.0,
+                "z": -2.160128786954374e-7,
+                "w": 7.195716307251132e-7
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Atari",
+            "year": "1980",
+            "genre": "Shooter / Command",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Galaga (Namco)",
+            "id": "galaga",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.2176997661590578,
+                "y": 0.0029591917991638185,
+                "z": -12.117859840393067
+            },
+            "rotation": {
+                "x": -7.599954443548995e-8,
+                "y": 0.7071067690849304,
+                "z": -1.7734868151819684e-7,
+                "w": 0.70710688829422
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Namco",
+            "year": "1981",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Ms. Pac-Man",
+            "id": "mspacman",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -3.2330994606018068,
+                "y": 0.002960503101348877,
+                "z": -11.156859397888184
+            },
+            "rotation": {
+                "x": 6.042930635885568e-7,
+                "y": 0.7071062922477722,
+                "z": -0.000001776761337168864,
+                "w": 0.7071073651313782
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Midway",
+            "year": "1981",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Missile Command (set 1)",
+            "id": "missile",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.4537010192871095,
+                "y": 0.002958834171295166,
+                "z": -10.365860939025879
+            },
+            "rotation": {
+                "x": -0.0000010904610689976835,
+                "y": -0.7071066498756409,
+                "z": -8.205252015613951e-7,
+                "w": 0.7071070075035095
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Atari",
+            "year": "1980",
+            "genre": "Shooter / Command",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pole Position",
+            "id": "polepos",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.6529899835586548,
+                "y": 0.002959907054901123,
+                "z": -5.076659679412842
+            },
+            "rotation": {
+                "x": -0.000005433071237348486,
+                "y": 0.7071071267127991,
+                "z": 0.000001061182729245047,
+                "w": 0.7071065306663513
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Namco",
+            "year": "1982",
+            "genre": "Driving / Race (chase view)",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Star Wars (rev 2)",
+            "id": "starwars",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.3164699971675873,
+                "y": 0.0029606223106384279,
+                "z": -8.549360275268555
+            },
+            "rotation": {
+                "x": -0.000002310497848156956,
+                "y": 1.0,
+                "z": 0.0000017949378161574714,
+                "w": 2.4810276499920293e-8
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "vector horizontal",
+            "manufacturer": "Atari",
+            "year": "1983",
+            "genre": "Shooter / Flying 1st Person",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pac-Man (Midway)",
+            "id": "pacman",
+            "idParent": "puckman",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.620096206665039,
+                "y": 0.0029557347297668459,
+                "z": -11.493857383728028
+            },
+            "rotation": {
+                "x": -0.0000062945041463535748,
+                "y": 0.000002277585963383899,
+                "z": 0.000005162816250958713,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster vertical",
+            "manufacturer": "[Namco] (Midway license)",
+            "year": "1980",
+            "genre": "Maze",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Tron (set 1)",
+            "id": "tron",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.336902379989624,
+                "y": -0.000002562999725341797,
+                "z": -15.084860801696778
+            },
+            "rotation": {
+                "x": -0.000007677394023630768,
+                "y": -0.7071062922477722,
+                "z": 3.752758459540928e-7,
+                "w": 0.7071073651313782
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Bally Midway",
+            "year": "1982",
+            "genre": "Multiplay",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Moon Patrol",
+            "id": "mpatrol",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.596302032470703,
+                "y": 0.0029565095901489259,
+                "z": -12.256861686706543
+            },
+            "rotation": {
+                "x": -0.000007638890565431211,
+                "y": -0.7071067094802856,
+                "z": 0.000001103045974559791,
+                "w": 0.7071069478988648
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Irem",
+            "year": "1982",
+            "genre": "Shooter / Driving Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Joust (White/Green label)",
+            "id": "joust",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 3.5973024368286135,
+                "y": 0.0029556751251220705,
+                "z": -13.225861549377442
+            },
+            "rotation": {
+                "x": -0.0000074980339377361819,
+                "y": -0.7071065306663513,
+                "z": 0.00000102482738384424,
+                "w": 0.7071070671081543
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1982",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Dig Dug (set 1)",
+            "id": "digdug",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.8995776176452637,
+                "y": 0.00295865535736084,
+                "z": 5.933140754699707
+            },
+            "rotation": {
+                "x": 3.075721792811237e-7,
+                "y": 0.7071073651313782,
+                "z": 0.000007589545020891819,
+                "w": 0.7071062922477722
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Namco",
+            "year": "1982",
+            "genre": "Maze / Digging",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Gyruss (Konami)",
+            "id": "gyruss",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.8923476338386536,
+                "y": 0.0029587149620056154,
+                "z": 4.936040878295898
+            },
+            "rotation": {
+                "x": 4.183174837635306e-7,
+                "y": 0.7071073651313782,
+                "z": 0.000007722956979705486,
+                "w": 0.7071062922477722
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1983",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Zoo Keeper (set 1)",
+            "id": "zookeep",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.7393903732299805,
+                "y": 0.0029606223106384279,
+                "z": 4.182240009307861
+            },
+            "rotation": {
+                "x": -7.96527999114005e-9,
+                "y": 0.7071070075035095,
+                "z": -6.751806580496123e-8,
+                "w": 0.7071066498756409
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Taito America Corporation",
+            "year": "1982",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Space Invaders - The Original Game (J)",
+            "id": "Space Invaders - The Original Game (J).smc",
+            "idParent": "",
+            "emulator": "supernintendoentertainmentsystem",
+            "model": "invaders",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.5099275708198547,
+                "y": 0.002957165241241455,
+                "z": -5.058560371398926
+            },
+            "rotation": {
+                "x": -0.000007103560619725613,
+                "y": -0.707106351852417,
+                "z": 5.3925777621088858e-8,
+                "w": 0.7071072459220886
+            },
+            "scale": {
+                "x": 1.0000009536743165,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Midway",
+            "year": "1978",
+            "genre": "Shooter / Gallery",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "Internal",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Q*bert (US)",
+            "id": "qbert",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.03199892118573189,
+                "y": 0.002959609031677246,
+                "z": 4.287240028381348
+            },
+            "rotation": {
+                "x": 5.067748887199741e-8,
+                "y": -0.7071070075035095,
+                "z": -7.266365287250665e-10,
+                "w": 0.7071066498756409
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Gottlieb",
+            "year": "1982",
+            "genre": "Platform / Run Jump",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Scramble",
+            "id": "scramble",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.046855926513671878,
+                "y": 0.0029568076133728029,
+                "z": 5.104290962219238
+            },
+            "rotation": {
+                "x": -0.000003654881766124163,
+                "y": -0.7067671418190002,
+                "z": -0.0000034704462450463326,
+                "w": 0.707446277141571
+            },
+            "scale": {
+                "x": 1.000002145767212,
+                "y": 1.0,
+                "z": 1.0000009536743165
+            },
+            "screen": "raster vertical",
+            "manufacturer": "Konami",
+            "year": "1981",
+            "genre": "Shooter / Flying Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Defender (Red label)",
+            "id": "defender",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": -0.13824982941150666,
+                "y": 0.0029597878456115724,
+                "z": 5.942240238189697
+            },
+            "rotation": {
+                "x": -5.0775931015323297e-8,
+                "y": -0.70710688829422,
+                "z": 4.7407674230726118e-8,
+                "w": 0.7071067690849304
+            },
+            "scale": {
+                "x": 1.000004768371582,
+                "y": 1.0,
+                "z": 1.000004768371582
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Williams",
+            "year": "1980",
+            "genre": "Shooter / Flying",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Discs of Tron (Upright)",
+            "id": "dotron",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.5309500098228455,
+                "y": 0.002960205078125,
+                "z": 3.2908403873443605
+            },
+            "rotation": {
+                "x": 2.8757263237366716e-9,
+                "y": 1.0,
+                "z": -7.535076207432212e-8,
+                "w": -8.050863087305516e-9
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Bally Midway",
+            "year": "1983",
+            "genre": "Misc.",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Pole Position",
+            "id": "polepos",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.40717998147010805,
+                "y": 0.0029610395431518556,
+                "z": 7.127540111541748
+            },
+            "rotation": {
+                "x": -6.677448993741564e-8,
+                "y": -9.865791383845135e-8,
+                "z": 4.205093162568119e-8,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Namco",
+            "year": "1982",
+            "genre": "Driving / Race (chase view)",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Moon Patrol",
+            "id": "mpatrol",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.22814999520778657,
+                "y": 0.0029574036598205568,
+                "z": -4.335859775543213
+            },
+            "rotation": {
+                "x": -3.667190640044282e-7,
+                "y": 4.182680868325406e-8,
+                "z": 0.000005813261395815061,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Irem",
+            "year": "1982",
+            "genre": "Shooter / Driving Horizontal",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "M.A.C.H. 3",
+            "id": "mach3",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.43950000405311587,
+                "y": 0.00295943021774292,
+                "z": -1.768359899520874
+            },
+            "rotation": {
+                "x": -8.723575888325286e-7,
+                "y": 4.563191779993758e-8,
+                "z": 7.949802238726988e-7,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "screen": "raster horizontal",
+            "manufacturer": "Mylstar",
+            "year": "1983",
+            "genre": "Shooter / Flying (chase view)",
+            "mature": false,
+            "runnable": true,
+            "available": true,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        }
+    ],
+    "arcadeModelList": [
+        {
+            "descriptiveName": "Time Tunnels Test",
+            "id": "togaTest",
+            "idParent": "",
+            "emulator": "",
+            "model": "toga",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.39370080828666689,
+                "y": 0.39370080828666689,
+                "z": 0.39370080828666689
+            },
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        }
+    ],
+    "propModelList": []
+}

@@ -83,7 +83,7 @@ namespace Arcade_r
             if (_virtualFileSystem == null)
             {
                 _virtualFileSystem = new VirtualFileSystem();
-                _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Arcades");
+                _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
             }
 
             if (_arcadeManager == null)
@@ -155,7 +155,7 @@ namespace Arcade_r
             if (_virtualFileSystem == null)
             {
                 _virtualFileSystem = new VirtualFileSystem();
-                _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Arcades");
+                _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
             }
 
             if (_arcadeManager == null)

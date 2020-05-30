@@ -1,0 +1,730 @@
+{
+    "descriptiveName": "Main Menu",
+    "id": "mainmenu",
+    "arcadeType": "CylArcade",
+    "gameLauncherMethod": "None",
+    "externalModels": false,
+    "showFPS": false,
+    "camera": {
+        "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+        },
+        "height": 0.0,
+        "aspectRatio": 0.0,
+        "orthographic": false,
+        "fieldOfView": 60.0,
+        "nearClipPlane": 0.10000000149011612,
+        "farClipPlane": 100.0,
+        "viewportRect": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0
+        },
+        "allowDynamicResolution": false
+    },
+    "modelSharedProperties": {
+        "spatialSound": false,
+        "videoOnModelEnabled": "VisibleUnobstructed",
+        "renderSettings": {
+            "ambientIntensity": 3.0,
+            "marqueeIntensity": 1.600000023841858,
+            "screenRasterIntensity": 2.4000000953674318,
+            "screenVectorIntenstity": 6.0,
+            "screenPinballIntensity": 1.0
+        }
+    },
+    "fpsArcadeProperties": [],
+    "cylArcadeProperties": [
+        {
+            "gamePosition": 2,
+            "sprockets": 5,
+            "selectedSprocket": 2,
+            "radius": 1000,
+            "modelSpacing": 0.25,
+            "modelWidthAxisY": false,
+            "modelIsKinemtatic": true,
+            "cylArcadeOnScreenSelectedModel": false,
+            "cameraAspectRatio": 1.0,
+            "cameraTranslation": 0.996999979019165,
+            "cameraMinTranslation": 0.996999979019165,
+            "cameraMaxTranslation": 0.996999979019165,
+            "cameraTranslationDirectionAxisY": false,
+            "cameraTranslationReverse": false,
+            "cameraTranslationdamping": 4.0,
+            "cameraRotationdamping": 8.0,
+            "cameraLocalEularAngleX": 0.0,
+            "cameraLocalEularAngleY": 0.0,
+            "cameraLocalEularAngleZ": 180.0,
+            "cameraLocalEularAngleRotation": false,
+            "cameraLocalDefaultEularAngleRotation": 0.0,
+            "cameraLocalMinEularAngleRotation": -90.0,
+            "cameraLocalMaxEularAngleRotation": 90.0,
+            "mouseLook": false,
+            "mouseLookAxisY": true,
+            "mouseLookReverse": true,
+            "cameraLocalTranslation": {
+                "x": 0.0,
+                "y": 0.800000011920929,
+                "z": 0.0
+            },
+            "sprocketLocalEularAngleX": 0.0,
+            "sprocketLocalEularAngleY": 0.0,
+            "sprocketLocalEularAngleZ": 180.0
+        }
+    ],
+    "zones": [],
+    "gameModelList": [
+        {
+            "descriptiveName": "CylArcade Demo",
+            "id": "cylarcade_demo",
+            "idParent": "defaultmenu_sprocket",
+            "emulator": "defaultmenu",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 1.8342998027801514,
+                "y": 0.0,
+                "z": 4.651381015777588
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9824144244194031,
+                "z": 0.0,
+                "w": -0.18671342730522157
+            },
+            "scale": {
+                "x": 1.0000011920928956,
+                "y": 1.0,
+                "z": 1.0000011920928956
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "ArcadeConfiguration",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_selected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_deselected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "GameStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_zoom",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Zoning",
+            "id": "zone",
+            "idParent": "defaultmenu_sprocket",
+            "emulator": "defaultmenu",
+            "model": "defaultmenu_sprocket",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.000018835067749,
+                "y": 1.0,
+                "z": 1.000018835067749
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "ArcadeConfiguration",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_selected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_deselected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Triggers Demo",
+            "id": "triggers",
+            "idParent": "defaultmenu_sprocket",
+            "emulator": "defaultmenu",
+            "model": "defaultmenu_sprocket",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.000018835067749,
+                "y": 1.0,
+                "z": 1.000018835067749
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "ArcadeConfiguration",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_selected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_deselected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "GameStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_zoom",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Space Port",
+            "id": "spaceport",
+            "idParent": "defaultmenu_sprocket",
+            "emulator": "defaultmenu",
+            "model": "defaultmenu_sprocket",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.000018835067749,
+                "y": 1.0,
+                "z": 1.000018835067749
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "ArcadeConfiguration",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_selected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_deselected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Time Out",
+            "id": "timeout",
+            "idParent": "defaultmenu_sprocket",
+            "emulator": "defaultmenu",
+            "model": "defaultmenu_sprocket",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 2.7015914916992189,
+                "y": 0.0,
+                "z": 4.207304000854492
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.9595469832420349,
+                "z": 0.0,
+                "w": -0.2815486192703247
+            },
+            "scale": {
+                "x": 1.000018835067749,
+                "y": 1.0,
+                "z": 1.000018835067749
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "ArcadeConfiguration",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ModelSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_selected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                },
+                {
+                    "triggerEvent": "ModelDeSelected",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "defaultmenu_sprocket_deselected",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        }
+    ],
+    "arcadeModelList": [
+        {
+            "descriptiveName": "Cylinder Arcade",
+            "id": "cylinderarcade",
+            "idParent": "",
+            "emulator": "mame",
+            "model": "defaultCylinder",
+            "grabbable": true,
+            "animatedTextureSpeed": 0.20000000298023225,
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [],
+            "triggerIDs": []
+        }
+    ],
+    "propModelList": [
+        {
+            "descriptiveName": "Menu title",
+            "id": "menu_title",
+            "idParent": "",
+            "emulator": "defaultmenu",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.0,
+                "y": 0.15000000596046449,
+                "z": 0.30000001192092898
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "SetTransform",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": [
+                        {
+                            "setParent": true,
+                            "setIsKinematic": false,
+                            "setPosition": false,
+                            "setRotation": false,
+                            "setScale": false,
+                            "setIsActive": false,
+                            "parent": "arcadecamera",
+                            "isKinematic": false,
+                            "position": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "scale": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "isActive": false
+                        }
+                    ]
+                },
+                {
+                    "triggerEvent": "MainMenuStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "PlayAnimation",
+                    "animationProperties": [
+                        {
+                            "name": "menu_title_move",
+                            "loop": false,
+                            "speed": 1.0,
+                            "playMode": "",
+                            "layer": 0
+                        }
+                    ],
+                    "audioProperties": [],
+                    "triggerTansformProperties": []
+                }
+            ],
+            "triggerIDs": []
+        },
+        {
+            "descriptiveName": "Background",
+            "id": "default_mainmenu_background",
+            "idParent": "neon",
+            "emulator": "defaultmenu",
+            "model": "",
+            "grabbable": false,
+            "animatedTextureSpeed": 2.0,
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 22.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0,
+                "w": 0.0
+            },
+            "scale": {
+                "x": 0.5,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "attachToCamera": false,
+            "attachToSelectedModel": false,
+            "hideWhenArcadeIsActive": false,
+            "receiveSelectedModelArtWork": false,
+            "receiveActiveMenuRenderTexture": false,
+            "screen": "",
+            "manufacturer": "",
+            "year": "",
+            "genre": "",
+            "mature": false,
+            "runnable": false,
+            "available": false,
+            "gameLauncherMethod": "None",
+            "playCount": 0,
+            "zone": 0,
+            "triggers": [
+                {
+                    "triggerEvent": "ArcadeStarted",
+                    "triggerSource": [],
+                    "triggerTarget": [],
+                    "triggerAction": "SetTransform",
+                    "animationProperties": [],
+                    "audioProperties": [],
+                    "triggerTansformProperties": [
+                        {
+                            "setParent": true,
+                            "setIsKinematic": false,
+                            "setPosition": false,
+                            "setRotation": false,
+                            "setScale": false,
+                            "setIsActive": false,
+                            "parent": "arcadecamera",
+                            "isKinematic": false,
+                            "position": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "scale": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "isActive": false
+                        }
+                    ]
+                }
+            ],
+            "triggerIDs": []
+        }
+    ]
+}

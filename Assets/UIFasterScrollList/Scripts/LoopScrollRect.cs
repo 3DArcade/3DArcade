@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+#pragma warning disable IDE1006 // Naming Styles
 namespace UnityEngine.UI
 {
     [AddComponentMenu("")]
@@ -1508,3 +1509,4 @@ namespace UnityEngine.UI
 #endif
     }
 }
+#pragma warning restore IDE1006 // Naming Styles

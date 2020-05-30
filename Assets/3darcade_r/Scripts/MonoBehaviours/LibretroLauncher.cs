@@ -154,7 +154,7 @@ namespace Arcade_r
                     _screenTransform = transform.GetChild(1);
                     if (_screenTransform.TryGetComponent(out _rendererComponent))
                     {
-                        Wrapper = new Wrapper((TargetPlatform)Application.platform, $"{Application.streamingAssetsPath}/3darcade~/Libretro");
+                        Wrapper = new Wrapper((TargetPlatform)Application.platform, $"{Application.streamingAssetsPath}/3darcade_r~/Libretro");
 
                         if (Wrapper.StartGame(core, gameDirectory, gameName))
                         {
