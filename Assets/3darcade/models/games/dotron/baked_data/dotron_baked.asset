@@ -1,0 +1,684 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: dotron_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 4867c057908b5a047a6a1fec3e6f3a7e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.96972656
+      y: 0.0048828125
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-backblocker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 20bc86abfdecebf49a82b45ab4c9285d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.96972656
+      y: 0.0048828125
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-backblocker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: c559f3f46862e6941a3d03ebf5300621, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.96972656
+      y: 0.0048828125
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-backblocker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: b2cf5750a6b5cf844a195ae04aff5efe, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.96972656
+      y: 0.0048828125
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-backblocker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 43d514c4df22d0e4684e3bd3125a6e97, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.87597656
+      y: 0.0009765625
+      width: 0.060546875
+      height: 0.24804688
+    srcObjName: dotron-bezebottom
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 1e916614db892d345a4183c4de4d36ff, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.99316406
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-bezelinsideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 227c010698b1d754cbdd754c36ee2e7c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50097656
+      y: 0.25097656
+      width: 0.060546875
+      height: 0.060546875
+    srcObjName: dotron-bezelinsideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 885bdc7cc6ec6d741a12698f49b81a18, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.9892578
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-blacklight
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 5f0a5a10e6cb681498c75ae56abf07a4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.93847656
+      y: 0.0009765625
+      width: 0.029296875
+      height: 0.24804688
+    srcObjName: dotron-blacklightcover
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: bd8fb83970edba740ab35bc909d6f234, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.98535156
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-button01
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: eb1879f7135a5bc4882839605ce1a7c6, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.9970703
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-button03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: e38731cefa2b9934b87a25876231700f, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.9814453
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-button03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 2754a38d7d60a154888f55bea9a2fecb, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50097656
+      y: 0.0009765625
+      width: 0.24804688
+      height: 0.24804688
+    srcObjName: dotron-coindoor
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: fb6fe4b15736ad345b9f9b40f8d57c69, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.75097656
+      y: 0.0009765625
+      width: 0.123046875
+      height: 0.24804688
+    srcObjName: dotron-cpo
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 8a4f413bcdc54bb448109fe936654d9c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25097656
+      y: 0.25097656
+      width: 0.24804688
+      height: 0.123046875
+    srcObjName: dotron-joystickinsert
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 8a0a8d0eb2e2ccf4cb0cf82ddeae724f, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.97753906
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-joystickpost
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 09f82da9508f5e34fb4008398ee137d7, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.9736328
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-joysticktrigger
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: d907904ff4efbff4ab6a7b8957dc0493, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25097656
+      y: 0.0009765625
+      width: 0.24804688
+      height: 0.24804688
+    srcObjName: dotron-marqueebottom
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 11b8f9285c17cdd4d930799ef33f30d0, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.96972656
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 6d8526bc1561fd64cb3b7ac64f143b5e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.96972656
+      y: 0.0009765625
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: dotron-sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: a14d329184afc73499b5ab4fe5d3a9de, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.50097656
+      width: 0.24804688
+      height: 0.49804688
+    srcObjName: dotron-sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 54789908207471165, guid: 0255f331fd6492b438113411a2e2ef44,
+      type: 3}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.0009765625
+      width: 0.24804688
+      height: 0.49804688
+    srcObjName: dotron-sideright
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 6bbca676bbfaf4a18ad610fbd8a67573, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: 4867c057908b5a047a6a1fec3e6f3a7e, type: 2}
+    - {fileID: 2100000, guid: 20bc86abfdecebf49a82b45ab4c9285d, type: 2}
+    - {fileID: 2100000, guid: c559f3f46862e6941a3d03ebf5300621, type: 2}
+    - {fileID: 2100000, guid: b2cf5750a6b5cf844a195ae04aff5efe, type: 2}
+    - {fileID: 2100000, guid: 43d514c4df22d0e4684e3bd3125a6e97, type: 2}
+    - {fileID: 2100000, guid: 1e916614db892d345a4183c4de4d36ff, type: 2}
+    - {fileID: 2100000, guid: 227c010698b1d754cbdd754c36ee2e7c, type: 2}
+    - {fileID: 2100000, guid: 885bdc7cc6ec6d741a12698f49b81a18, type: 2}
+    - {fileID: 2100000, guid: 5f0a5a10e6cb681498c75ae56abf07a4, type: 2}
+    - {fileID: 2100000, guid: bd8fb83970edba740ab35bc909d6f234, type: 2}
+    - {fileID: 2100000, guid: eb1879f7135a5bc4882839605ce1a7c6, type: 2}
+    - {fileID: 2100000, guid: e38731cefa2b9934b87a25876231700f, type: 2}
+    - {fileID: 2100000, guid: 2754a38d7d60a154888f55bea9a2fecb, type: 2}
+    - {fileID: 2100000, guid: fb6fe4b15736ad345b9f9b40f8d57c69, type: 2}
+    - {fileID: 2100000, guid: 8a4f413bcdc54bb448109fe936654d9c, type: 2}
+    - {fileID: 2100000, guid: 8a0a8d0eb2e2ccf4cb0cf82ddeae724f, type: 2}
+    - {fileID: 2100000, guid: 09f82da9508f5e34fb4008398ee137d7, type: 2}
+    - {fileID: 2100000, guid: d907904ff4efbff4ab6a7b8957dc0493, type: 2}
+    - {fileID: 2100000, guid: 11b8f9285c17cdd4d930799ef33f30d0, type: 2}
+    - {fileID: 2100000, guid: 6d8526bc1561fd64cb3b7ac64f143b5e, type: 2}
+    - {fileID: 2100000, guid: a14d329184afc73499b5ab4fe5d3a9de, type: 2}
+    - {fileID: 54789908207471165, guid: 0255f331fd6492b438113411a2e2ef44, type: 3}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

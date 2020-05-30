@@ -6,33 +6,33 @@ namespace Arcade
 {
     public static class UnityExtensionMethods
     {
-        public static void RunOnChildrenRecursive(this GameObject gameObject, Action<GameObject> action)
+        public static void RunOnChildrenRecursive(this GameObject gameObject, in Action<GameObject> action)
         {
-            if (gameObject != null)
+            if (gameObject == null)
             {
-                foreach (Transform transform in gameObject.GetComponentsInChildren<Transform>(true))
-                {
-                    action(transform.gameObject);
-                }
+                return;
+            }
+
+            Transform[] childTransforms = gameObject.GetComponentsInChildren<Transform>(true);
+            foreach (Transform childTransform in childTransforms)
+            {
+                action(childTransform.gameObject);
             }
         }
 
-        public static List<GameObject> GetChildren(this GameObject gameObject)
+        public static GameObject[] GetChildren(this GameObject gameObject)
         {
-            if (gameObject != null)
+            if (gameObject == null)
             {
-                List<GameObject> children = new List<GameObject>();
-                foreach (Transform childTransform in gameObject.transform)
-                {
-                    if (childTransform.gameObject != null)
-                    {
-                        children.Add(childTransform.gameObject);
-                    }
-                }
-                return children;
+                return null;
             }
 
-            return default;
+            GameObject[] result = new GameObject[gameObject.transform.childCount];
+            for (int i = 0; i < gameObject.transform.childCount; ++i)
+            {
+                result[i] = gameObject.transform.GetChild(i).gameObject;
+            }
+            return result;
         }
     }
 }

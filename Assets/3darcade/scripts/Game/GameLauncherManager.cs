@@ -18,7 +18,7 @@ namespace Arcade
 
         public static void LoadGame(ModelSetup game, ModelSetup selected)
         {
-            TriggerManager.SendEvent(Event.GameStarted);
+            TriggerManager.SendEvent(TriggerEvent.GameStarted);
 
             selectedModelSetup = selected; // The model not its dummy node
             gameModelSetup = game; // Different from selected when game was choosen in CylMenu or FpsMenu.
@@ -210,7 +210,7 @@ namespace Arcade
 
         public static void UnLoadGame()
         {
-            TriggerManager.SendEvent(Event.GameEnded);
+            TriggerManager.SendEvent(TriggerEvent.GameEnded);
 
             if (selectedModelSetup == null)
             {

@@ -72,10 +72,10 @@ namespace Arcade
                 if (LoadArcade(arcadeConfiguration))
                 {
                     UpdateController(ArcadeManager.activeArcadeType);
-                    TriggerManager.SendEvent(Event.ArcadeStarted);
+                    TriggerManager.SendEvent(TriggerEvent.ArcadeStarted);
                     if (ArcadeManager.arcadeHistory.Count == 1)
                     {
-                        TriggerManager.SendEvent(Event.MainMenuStarted);
+                        TriggerManager.SendEvent(TriggerEvent.MainMenuStarted);
                     }
                     if (ArcadeManager.activeArcadeType == ArcadeType.FpsArcade)
                     {
@@ -133,7 +133,7 @@ namespace Arcade
                     }
                     ArcadeManager.activeMenuType = ArcadeType.CylMenu;
                     ArcadeManager.arcadeState = ArcadeStates.ArcadeMenu;
-                    TriggerManager.SendEvent(Event.MenuStarted);
+                    TriggerManager.SendEvent(TriggerEvent.MenuStarted);
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
                     return;
@@ -547,12 +547,18 @@ namespace Arcade
                 dummyNode.transform.rotation = model.rotation;
                 dummyNode.transform.localScale = model.scale;
                 if (modelType == ModelType.Arcade)
-                { dummyNode.tag = "arcademodel"; }
+                {
+                    dummyNode.tag = "arcademodel";
+                }
                 if (modelType == ModelType.Game)
-                { dummyNode.tag = "gamemodel"; }
+                {
+                    dummyNode.tag = "gamemodel";
+                }
                 if (modelType == ModelType.Prop)
-                { dummyNode.tag = "propmodel"; }
-                bool isArcadeLayer = arcadeType == ArcadeType.FpsArcade || arcadeType == ArcadeType.CylArcade || arcadeType == ArcadeType.None ? true : false;
+                {
+                    dummyNode.tag = "propmodel";
+                }
+                bool isArcadeLayer = arcadeType == ArcadeType.FpsArcade || arcadeType == ArcadeType.CylArcade || arcadeType == ArcadeType.None;
                 string layer = (isArcadeLayer ? "Arcade/" : "Menu/") + modelType.ToString() + "Models";
                 dummyNode.layer = LayerMask.NameToLayer(layer);
                 dummyNode.RunOnChildrenRecursive(tChild => tChild.layer = LayerMask.NameToLayer(layer));
@@ -646,17 +652,16 @@ namespace Arcade
             return null;
         }
 
-
         public void ResetArcade()
         {
-            TriggerManager.SendEvent(Event.ArcadeEnded);
-            TriggerManager.triggersActive = new Dictionary<Event, List<ModelTriggerSetup>>();
+            TriggerManager.SendEvent(TriggerEvent.ArcadeEnded);
+            TriggerManager.triggersActive = new Dictionary<TriggerEvent, List<ModelTriggerSetup>>();
 
             ResetMenu();
 
             // Destroy the models attached to the camera
             GameObject tobj = ArcadeManager.arcadeCameras[ArcadeType.FpsArcade].transform.gameObject;
-            List<GameObject> gameObjects = tobj.GetChildren();
+            GameObject[] gameObjects = tobj.GetChildren();
             foreach (GameObject child in gameObjects)
             {
                 ModelSetup modelSetup = child.GetComponent<ModelSetup>();
@@ -736,7 +741,7 @@ namespace Arcade
         {
             // Destroy the models attached to the camera
             GameObject tobj = ArcadeManager.arcadeCameras[ArcadeType.CylMenu].transform.gameObject;
-            List<GameObject> gameObjects = tobj.GetChildren();
+            GameObject[] gameObjects = tobj.GetChildren();
             foreach (GameObject child in gameObjects)
             {
                 ModelSetup modelSetup = child.GetComponent<ModelSetup>();

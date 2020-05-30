@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-	[RequireComponent(typeof(Image))]
+    [RequireComponent(typeof(Image))]
 	public class TouchPad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
 		// Options for which axes to use
@@ -16,14 +15,12 @@ namespace UnityStandardAssets.CrossPlatformInput
 			OnlyVertical // Only vertical
 		}
 
-
 		public enum ControlStyle
 		{
 			Absolute, // operates from teh center of the image
 			Relative, // operates from the center of the initial touch
 			Swipe, // swipe to touch touch no maintained center
 		}
-
 
 		public AxisOption axesToUse = AxisOption.Both; // The options for the axes that the still will use
 		public ControlStyle controlStyle = ControlStyle.Absolute; // control style to use
@@ -32,37 +29,39 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public float Xsensitivity = 1f;
 		public float Ysensitivity = 1f;
 
-		Vector3 m_StartPos;
-		Vector2 m_PreviousDelta;
-		Vector3 m_JoytickOutput;
+		//Vector3 m_StartPos;
+		//Vector2 m_PreviousDelta;
+		//Vector3 m_JoytickOutput;
 		bool m_UseX; // Toggle for using the x axis
 		bool m_UseY; // Toggle for using the Y axis
 		CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
 		CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
 		bool m_Dragging;
 		int m_Id = -1;
+#if !UNITY_EDITOR
 		Vector2 m_PreviousTouchPos; // swipe style control touch
+#endif
 
 
 #if !UNITY_EDITOR
-    private Vector3 m_Center;
-    private Image m_Image;
+        private Vector3 m_Center;
+        private Image m_Image;
 #else
 		Vector3 m_PreviousMouse;
 #endif
 
-		void OnEnable()
+		private void OnEnable()
 		{
 			CreateVirtualAxes();
 		}
 
+#if !UNITY_EDITOR
         void Start()
         {
-#if !UNITY_EDITOR
             m_Image = GetComponent<Image>();
             m_Center = m_Image.transform.position;
-#endif
         }
+#endif
 
 		void CreateVirtualAxes()
 		{

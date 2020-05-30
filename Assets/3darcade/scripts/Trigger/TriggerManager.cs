@@ -6,7 +6,7 @@ namespace Arcade
 {
     public class TriggerManager : MonoBehaviour
     {
-        public static Dictionary<Event, List<ModelTriggerSetup>> triggersActive = new Dictionary<Event, List<ModelTriggerSetup>>();
+        public static Dictionary<TriggerEvent, List<ModelTriggerSetup>> triggersActive = new Dictionary<TriggerEvent, List<ModelTriggerSetup>>();
         public static List<ModelSetup> modelSetups = new List<ModelSetup>();
 
         // Global Variables:
@@ -14,7 +14,7 @@ namespace Arcade
 
         public static void UnLoadTriggers()
         {
-            triggersActive = new Dictionary<Event, List<ModelTriggerSetup>>();
+            triggersActive = new Dictionary<TriggerEvent, List<ModelTriggerSetup>>();
             modelSetups = new List<ModelSetup>();
         }
 
@@ -61,7 +61,7 @@ namespace Arcade
 
         public static bool Add(ModelSetup modelSetup, ArcadeType arcadeType)
         {
-            Dictionary<Event, List<TriggerWrapper>> triggerEvents = new Dictionary<Event, List<TriggerWrapper>>();
+            Dictionary<TriggerEvent, List<TriggerWrapper>> triggerEvents = new Dictionary<TriggerEvent, List<TriggerWrapper>>();
             ModelTriggerSetup modelTriggerSetup = null;
             GameObject obj = modelSetup.gameObject.transform.GetChild(0).gameObject; // Get the model from its dummy parent
             if (obj == null)
@@ -151,7 +151,7 @@ namespace Arcade
                     }
                     if (triggerWrapper.triggerTargetGameObjects.Count < 1)
                     { triggerWrapper.triggerTargetGameObjects.Add(obj); }
-                    if (System.Enum.TryParse(trigger.triggerEvent, true, out Event triggerEvent))
+                    if (System.Enum.TryParse(trigger.triggerEvent, true, out TriggerEvent triggerEvent))
                     {
 
                         if (!triggerEvents.ContainsKey(triggerEvent))
@@ -170,7 +170,7 @@ namespace Arcade
             return true;
         }
 
-        public static void SendEvent(Event triggerEvent)
+        public static void SendEvent(TriggerEvent triggerEvent)
         {
             if (triggersActive.ContainsKey(triggerEvent))
             {

@@ -71,20 +71,19 @@ namespace Arcade
         private static readonly bool EditorModeSaveChangesMadeOnPlay = false;
 
 #if UNITY_EDITOR
-#pragma warning disable IDE0051 // Remove unused private members
-        [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Load Arcade Configuration")]
+        [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Load Arcade Configuration"), System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void LoadArcadeConfigurationMenuOption()
         {
             ShowSelectArcadeConfigurationWindow?.Invoke();
         }
 
-        [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Save Arcade Configuration")]
+        [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Save Arcade Configuration"), System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void SaveArcadeConfigurationMenuOption()
         {
             loadSaveArcadeConfiguration.SaveArcade();
         }
 
-        //[MenuItem("CONTEXT/ArcadeManager/Set Main Menu Preview Image")]
+        //[UnityEditor.MenuItem("CONTEXT/ArcadeManager/Set Main Menu Preview Image"), System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         //private static void GetArcadePreviewImage(MenuCommand menuCommand)
         //{
         //    var image = Arcade.FileManager.DialogGetFilePart(null, ArcadeManager.applicationPath, FileManager.FilePart.Path_Name_Extension, "jpg,png");
@@ -100,7 +99,6 @@ namespace Arcade
         //        }
         //    }
         //}
-#pragma warning restore IDE0051 // Remove unused private members
 #endif
 
         // NB Only use this and the next function to get and set the current arcadeconfiguration.
@@ -219,10 +217,10 @@ namespace Arcade
             loadSaveArcadeConfiguration = new LoadSaveArcadeConfiguration(this); // Is there no better way to get a refrence to our ArcadeManager class from the LoadSaveArcade class?
             loadSaveEmulatorConfiguration = new LoadSaveEmulatorConfiguration();
 
-            generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(applicationPath + "/3darcade~/Configuration/GeneralConfiguration.json"));
+            generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(applicationPath, "3darcade~/Configuration/GeneralConfiguration.json"));
             if (generalConfiguration == null)
             {
-                generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(Application.dataPath + "/Resources/cfg/GeneralConfiguration.json"));
+                generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(Application.dataPath, "Resources/cfg/GeneralConfiguration.json"));
             }
 
             arcadeControls[ArcadeType.FpsArcade] = arcadeControl;
@@ -263,7 +261,6 @@ namespace Arcade
                                               .OrderBy(x => x)
                                               .ToArray();
             FileManager.SaveJSONData(availableModels, Path.Combine(applicationPath, "3darcade~/Configuration"), "AvailableModels.json");
-            // FileManager
 #else
             availableModels = FileManager.LoadJSONData<AvailableModels>(Path.Combine(ArcadeManager.applicationPath, "3darcade~/Configuration/AvailableModels.json"));
 #endif
@@ -282,7 +279,7 @@ namespace Arcade
         }
 
 #if UNITY_EDITOR
-        void Update()
+        private void Update()
         {
             if (loadSaveArcadeConfiguration == null)
             {
@@ -295,7 +292,6 @@ namespace Arcade
         private void Start()
         {
 #if UNITY_EDITOR
-
             // When we return from play mode Start() is called again, we use that to reset and load our arcade configuration. We need to do this because we loose our script references when we exit play mode. That will cause lots of havoc, if you then try to save an arcadeconfiguration.
             if (!Application.isPlaying)
             {
@@ -330,7 +326,6 @@ namespace Arcade
                 loadSaveArcadeConfiguration.StartArcade(arcadeConfiguration);
             }
 #else
-
             // Show the main menu
             loadSaveArcadeConfiguration.ResetArcade();
             if (!ShowMainMenu())
@@ -341,14 +336,7 @@ namespace Arcade
 #endif
             bool ShowMainMenu()
             {
-                if (StartArcadeWith(generalConfiguration.mainMenuArcadeConfiguration))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return StartArcadeWith(generalConfiguration.mainMenuArcadeConfiguration);
             }
         }
 
@@ -371,12 +359,7 @@ namespace Arcade
             Debug.Log("Quited!");
         }
 
-        //void OnDestroy()
-        //{
-        //}
-
         // Load arcadeconfigurations from file and then show them in the main menu.
-
         public static bool StartArcadeWith(string arcadeConfigurationID)
         {
             ArcadeConfiguration arcadeConfiguration = loadSaveArcadeConfiguration.GetArcadeConfigurationByID(arcadeConfigurationID);

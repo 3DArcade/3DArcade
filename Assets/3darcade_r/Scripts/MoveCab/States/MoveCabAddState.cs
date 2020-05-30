@@ -26,23 +26,23 @@ namespace Arcade_r
 {
     public class MoveCabAddState : MoveCabState
     {
-        public MoveCabAddState(MoveCabStateContext context)
+        public MoveCabAddState(MoveCabContext context)
         : base(context)
         {
         }
 
         public override void OnEnter()
         {
-            Debug.Log(">>> <color=green>Entered</color> MoveCabAddState");
+            Debug.Log(">> <color=green>Entered</color> MoveCabAddState");
 
-            MoveCabSystem.AddModelSetup(_context.PlayerControls.transform.position, _context.PlayerControls.transform.forward);
+            MoveCabController.AddModelSetup(_context.PlayerControls.transform.position, _context.PlayerControls.transform.forward);
 
             _context.TransitionTo<MoveCabAimState>();
         }
 
         public override void OnExit()
         {
-            Debug.Log(">>> <color=orange>Exited</color> MoveCabAddState");
+            Debug.Log(">> <color=orange>Exited</color> MoveCabAddState");
         }
     }
 }

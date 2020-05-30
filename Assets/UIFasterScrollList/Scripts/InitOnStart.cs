@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using Arcade;
+
 namespace SG
 {
     [RequireComponent(typeof(LoopScrollRect))]

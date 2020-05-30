@@ -177,8 +177,8 @@ namespace Arcade
                     year = game.Year
                 };
                 model.genre = ini.GetValue("Category", model.id, "").Replace("* Mature *", "");
-                model.mature = ini.GetValue("Category", model.id, "").Contains("Mature") ? true : false;
-                model.runnable = game.Driver != null ? game.Driver.Status == "good" : false;
+                model.mature = ini.GetValue("Category", model.id, "").Contains("Mature");
+                model.runnable = game.Driver != null && game.Driver.Status == "good";
                 model.available = IsGameAvailable(emulatorGamePath, model.id, emulatorExtension);
                 gamelist.Add(model);
             }
@@ -257,9 +257,9 @@ namespace Arcade
                     manufacturer = items[4] != "none" && items[4] != "" ? items[4] : "",
                     year = items[3] != "none" && items[3] != "" ? items[3] : "",
                     genre = items[7] != "none" && items[7] != "" ? items[7].Replace("*Mature*", "") : "",
-                    available = items[9].ToLower() != "no" ? true : false,
+                    available = items[9].ToLower() != "no",
                     playCount = int.TryParse(items[30], out int number) ? number : 0,
-                    mature = items[7].ToLower().Contains("mature") ? true : false
+                    mature = items[7].ToLower().Contains("mature")
                 };
                 model.available = IsGameAvailable(emulatorGamePath, model.id, emulatorExtension);
                 gamelist.Add(model);

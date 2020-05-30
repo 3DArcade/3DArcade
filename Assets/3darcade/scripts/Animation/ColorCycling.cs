@@ -3,10 +3,10 @@
 [RequireComponent(typeof(Light))]
 public class ColorCycling : MonoBehaviour
 {
+    private const float PINGPONG_LENGTH = 4f;
+
     [SerializeField] private Color _colorA = Color.red;
     [SerializeField] private Color _colorB = Color.blue;
-
-    private const float PINGPONG_LENGTH = 4f;
 
     private Light _light;
 

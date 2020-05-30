@@ -1,23 +1,14 @@
 fileFormatVersion: 2
 guid: 8d64aa435677a064ca9f3accc6aa6c9f
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19300
   internalIDToNameTable:
   - first:
       43: 4300000
     second: Body
   - first:
-      74: 7400000
-    second: Default Take //// PinguinSkelet
-  - first:
-      74: 7400002
-    second: Default Take //// Pinguin
-  - first:
-      74: 7400004
-    second: Default Take //// PinguinFBX
-  - first:
       74: 7400006
-    second: Default Take //// PenguinFBX
+    second: Default Take
   - first:
       1001: 100100000
     second: DataTemplate __Singleton__
@@ -29,11 +20,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: PinguinBody__Pinguin_Skin__png
-    second: {fileID: 2100000, guid: 1cc2ea9c80c274b0989695e4d7ba7c71, type: 2}
+    second: {fileID: 2100000, guid: e51d72c8cb934184faf1b1daf0aab75d, type: 2}
   materials:
-    importMaterials: 1
-    materialName: 3
-    materialSearch: 1
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 0
     materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
@@ -95,7 +86,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -113,8 +103,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 1
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

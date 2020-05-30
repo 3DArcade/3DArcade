@@ -41,11 +41,11 @@ namespace UnityStandardAssets.Utility
 
             if (m_CyclePositionX > m_Time)
             {
-                m_CyclePositionX = m_CyclePositionX - m_Time;
+                m_CyclePositionX -= m_Time;
             }
             if (m_CyclePositionY > m_Time)
             {
-                m_CyclePositionY = m_CyclePositionY - m_Time;
+                m_CyclePositionY -= m_Time;
             }
 
             return new Vector3(xPos, yPos, 0f);

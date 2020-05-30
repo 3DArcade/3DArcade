@@ -1,0 +1,533 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: irobot_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 7c48c19451436ea4b99a3b856fa6cba4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25097656
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_ataristartbuttonbottom-1
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 5ef19cae082af074c84927dd7f3e88eb, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.2783203
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_ataristartbuttontop-1
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 7b8c16645d161624da342cf270fd482b, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.0009765625
+      width: 0.9980469
+      height: 0.24804688
+    srcObjName: irobot_bezelsmall
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 29e624c0f44a63140b6ce7bb5259748c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.27441406
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_bottom
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 7534ac669bda0a34db927f05f65d66c3, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.2705078
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_buttonbin1-robotron
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 438830f093d8f254ea6b3c75a8879458, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.26660156
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 7bff7705d9cc85643963e6f8ed5180a4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25097656
+      y: 0.50097656
+      width: 0.24804688
+      height: 0.060546875
+    srcObjName: irobot_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: fbec8a7528e1b924d9ac94eaad5c125e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.25097656
+      width: 0.49804688
+      height: 0.24804688
+    srcObjName: irobot_cp
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 9f55941ca9876e64e88f798790421cee, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.2626953
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_joyball1-robotron
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 840ca2d7afc1ff643a7984121253289d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.28222656
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_joystick1-robotron
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: c0167d133e12a6046afdf7354519068a, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25878906
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_mainbody
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: af22e2905fc94b942a48dfb5c2ccdfb1, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.75097656
+      y: 0.25097656
+      width: 0.24804688
+      height: 0.24804688
+    srcObjName: irobot_mainbody
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 3245c44b94b25d847b1368cff3229884, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50097656
+      y: 0.25097656
+      width: 0.24804688
+      height: 0.24804688
+    srcObjName: irobot_mainbody
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: feef054fb827b094d8a0b0a1e5c6b515, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.50097656
+      width: 0.123046875
+      height: 0.49804688
+    srcObjName: irobot_mainbody
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 7ab4a40d7b960494f8d2748873ad6391, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.2548828
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_marquee-cyl1
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: d8f263733cb46194fa6ff0f5a354f759, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.12597656
+      y: 0.50097656
+      width: 0.123046875
+      height: 0.49804688
+    srcObjName: irobot_monitorenclosure
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 3581375c0a08c87429a1721b0dc8f064, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.2861328
+      y: 0.56347656
+      width: 0.001953125
+      height: 0.001953125
+    srcObjName: irobot_monitorenclosure
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: c2dd02216ae1c40c684fa6c425e613f7, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: 7c48c19451436ea4b99a3b856fa6cba4, type: 2}
+    - {fileID: 2100000, guid: 5ef19cae082af074c84927dd7f3e88eb, type: 2}
+    - {fileID: 2100000, guid: 7b8c16645d161624da342cf270fd482b, type: 2}
+    - {fileID: 2100000, guid: 29e624c0f44a63140b6ce7bb5259748c, type: 2}
+    - {fileID: 2100000, guid: 7534ac669bda0a34db927f05f65d66c3, type: 2}
+    - {fileID: 2100000, guid: 438830f093d8f254ea6b3c75a8879458, type: 2}
+    - {fileID: 2100000, guid: 7bff7705d9cc85643963e6f8ed5180a4, type: 2}
+    - {fileID: 2100000, guid: fbec8a7528e1b924d9ac94eaad5c125e, type: 2}
+    - {fileID: 2100000, guid: 9f55941ca9876e64e88f798790421cee, type: 2}
+    - {fileID: 2100000, guid: 840ca2d7afc1ff643a7984121253289d, type: 2}
+    - {fileID: 2100000, guid: c0167d133e12a6046afdf7354519068a, type: 2}
+    - {fileID: 2100000, guid: af22e2905fc94b942a48dfb5c2ccdfb1, type: 2}
+    - {fileID: 2100000, guid: 3245c44b94b25d847b1368cff3229884, type: 2}
+    - {fileID: 2100000, guid: feef054fb827b094d8a0b0a1e5c6b515, type: 2}
+    - {fileID: 2100000, guid: 7ab4a40d7b960494f8d2748873ad6391, type: 2}
+    - {fileID: 2100000, guid: d8f263733cb46194fa6ff0f5a354f759, type: 2}
+    - {fileID: 2100000, guid: 3581375c0a08c87429a1721b0dc8f064, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

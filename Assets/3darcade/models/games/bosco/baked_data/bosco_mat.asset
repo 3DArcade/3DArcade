@@ -1,0 +1,383 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: bosco_mat
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 9ee4911bef4538548a9639f737b809c8, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7519531
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: da6f4e10bcb4bd74184bc48e6f1d1740, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7597656
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh04
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: d4825768dda72c946bbbaae2f8afdab1, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5019531
+      y: 0.5019531
+      width: 0.24609375
+      height: 0.49609375
+    srcObjName: bosco_Mesh08
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 174ef68c1122fbc45926fd0e33ad5793, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.001953125
+      width: 0.49609375
+      height: 0.49609375
+    srcObjName: bosco_Mesh09
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 91c269377e9d9134f94f1c5996f99240, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7675781
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh11
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 757eb47cb0b973e4eae154229660b900, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5019531
+      y: 0.001953125
+      width: 0.49609375
+      height: 0.49609375
+    srcObjName: bosco_Mesh12
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 24551f7c300a3f84980ac682cfb734e5, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7753906
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh13
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 73a0ac19d965b8946987874abe561bf5, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7832031
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh14
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 95d58ff35fcdc9f43b191aee78298a64, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7832031
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh14
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 0a63e2aa0ca2f8d4d8fded5cc5d014d1, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7519531
+      y: 0.5019531
+      width: 0.24609375
+      height: 0.12109375
+    srcObjName: bosco_Mesh18
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 1e0cfb311ec479047b8b235c2f57c6c7, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.5019531
+      width: 0.49609375
+      height: 0.49609375
+    srcObjName: bosco_Mesh19
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: c48d062b23ef86c4880d06e9cdeca817, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7910156
+      y: 0.6269531
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: bosco_Mesh20
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 343fc8b20e8484ff188cd41d6c102bc0, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: 9ee4911bef4538548a9639f737b809c8, type: 2}
+    - {fileID: 2100000, guid: da6f4e10bcb4bd74184bc48e6f1d1740, type: 2}
+    - {fileID: 2100000, guid: d4825768dda72c946bbbaae2f8afdab1, type: 2}
+    - {fileID: 2100000, guid: 174ef68c1122fbc45926fd0e33ad5793, type: 2}
+    - {fileID: 2100000, guid: 91c269377e9d9134f94f1c5996f99240, type: 2}
+    - {fileID: 2100000, guid: 757eb47cb0b973e4eae154229660b900, type: 2}
+    - {fileID: 2100000, guid: 24551f7c300a3f84980ac682cfb734e5, type: 2}
+    - {fileID: 2100000, guid: 73a0ac19d965b8946987874abe561bf5, type: 2}
+    - {fileID: 2100000, guid: 95d58ff35fcdc9f43b191aee78298a64, type: 2}
+    - {fileID: 2100000, guid: 0a63e2aa0ca2f8d4d8fded5cc5d014d1, type: 2}
+    - {fileID: 2100000, guid: 1e0cfb311ec479047b8b235c2f57c6c7, type: 2}
+    - {fileID: 2100000, guid: c48d062b23ef86c4880d06e9cdeca817, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

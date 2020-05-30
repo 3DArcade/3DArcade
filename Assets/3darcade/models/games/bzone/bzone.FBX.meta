@@ -1,141 +1,11 @@
 fileFormatVersion: 2
 guid: af1e9ecaec03bb44da24905c57e366cc
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-black
-    second: {fileID: 2100000, guid: 7b5bed2ba41bef54c912e0c31d4ed36a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-blackbuttons
-    second: {fileID: 2100000, guid: 175bb1c8cf52f9540b6c136575cd9ace, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-blackbuttons2
-    second: {fileID: 2100000, guid: 71b1270ab729aed459a6dcf92dd0b281, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-coin
-    second: {fileID: 2100000, guid: 8b063328d38e11847b116e6b3afc075d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-cpo
-    second: {fileID: 2100000, guid: 35d2a54a1a0dd7c4d8c370ad4ff04140, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-cpoblack
-    second: {fileID: 2100000, guid: 5026e310dd816cd4b8a5c57227571982, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-instructions
-    second: {fileID: 2100000, guid: 7ac521950cf470d4ab872d7e500aef08, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-marquee
-    second: {fileID: 2100000, guid: 95f15d630e009fc4788a1e42fe9f9299, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-monitor
-    second: {fileID: 2100000, guid: b7c1361036faa634da7f685d2747cee2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-periscopeblack
-    second: {fileID: 2100000, guid: d0b4c5b739b0a2f4ba95f2e6a58d0350, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-red
-    second: {fileID: 2100000, guid: 404eb7f153dd4d748b91a7a3c5f65ff0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-shaft
-    second: {fileID: 2100000, guid: 518502ffd888c95438e2fb3b30275d28, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-side-left-l
-    second: {fileID: 2100000, guid: 2b0f4643b20d6844d8e3dca2d93f8762, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-side-left-m
-    second: {fileID: 2100000, guid: 7b7880382d42b2b4f8a7262804948923, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-side-left-r
-    second: {fileID: 2100000, guid: ed0adbaa2ba5bf1479ee2e89aa52f9a0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-side-right-l
-    second: {fileID: 2100000, guid: c457a51201883584aa550d5ec63fe9f2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-side-right-m
-    second: {fileID: 2100000, guid: 92c47bc5387ef1940a1d7a729ce473fb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-side-right-r
-    second: {fileID: 2100000, guid: ebc6bb34b1a83454d81db6e8baea2b1b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-transparent
-    second: {fileID: 2100000, guid: f06870684e0fe604ebcb2a227b8b87f2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bzone-whitebuttons
-    second: {fileID: 2100000, guid: 9680a304147413a4cb5f7ba79eeef23f, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bzone-coin
-    second: {fileID: 2800000, guid: c281ef758e6ff074aa8ffea45774d75e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bzone-cpo
-    second: {fileID: 2800000, guid: 7cfb2ddde2756c242a18de40ea3224ce, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bzone-instructions
-    second: {fileID: 2800000, guid: eb278ecf1d1021b4fb4de1fc7df83e26, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bzone-marquee
-    second: {fileID: 2800000, guid: 5fd315a3f13ec9247ae19033f83ac472, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bzone-screen
-    second: {fileID: 2800000, guid: dc91c7ece3e54c748acd5c09fb1cc95b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bzone-sideart
-    second: {fileID: 2800000, guid: bfd33155355ff6b4483347d6ca57aada, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -152,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -167,16 +37,16 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -185,9 +55,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -199,7 +69,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -217,8 +86,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

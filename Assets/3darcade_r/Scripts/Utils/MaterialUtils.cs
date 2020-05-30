@@ -47,7 +47,10 @@ namespace Arcade_r
         {
             for (int materialIndex = 0; materialIndex < materials.Length; ++materialIndex)
             {
-                materials[materialIndex].enableInstancing = active;
+                if (materials[materialIndex] != null)
+                {
+                    materials[materialIndex].enableInstancing = active;
+                }
             }
         }
 
@@ -71,7 +74,10 @@ namespace Arcade_r
         {
             foreach (Material material in materials)
             {
-                material.enableInstancing = active;
+                if (material != null)
+                {
+                    material.enableInstancing = active;
+                }
             }
         }
     }

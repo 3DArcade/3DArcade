@@ -26,10 +26,10 @@ namespace Arcade_r
 {
     public abstract class MoveCabState : FSM.State<MoveCabState>
     {
-        protected readonly MoveCabStateContext _context;
+        protected readonly MoveCabContext _context;
         protected MoveCabData _data;
 
-        public MoveCabState(MoveCabStateContext context)
+        public MoveCabState(MoveCabContext context)
         {
             Assert.IsNotNull(context);
             _context = context;

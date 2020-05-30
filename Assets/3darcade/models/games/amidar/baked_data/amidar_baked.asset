@@ -1,0 +1,413 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: amidar_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: e185f08fef9606348a70cd75342bd216, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6542969
+      y: 0.06298828
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: amidar-back
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: bdae1e8aed04b364e8ac8605a6f05308, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6254883
+      y: 0.06298828
+      width: 0.028320312
+      height: 0.037597656
+    srcObjName: amidar-button02
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.027685493
+      y: 0.6847545
+      width: 0.22849756
+      height: 0.30417144
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 65ef7423f7f44d441b3a69a9ca08b521, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50024414
+      y: 0.123535156
+      width: 0.08520508
+      height: 0.171875
+    srcObjName: amidar-coinpanel
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.18209505
+      y: -0.10880846
+      width: 1.3641901
+      height: 1.3779695
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 3784a4f9358f2d1418edc53862cb62c8, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.50024414
+      y: 0.00048828125
+      width: 0.12475586
+      height: 0.12207031
+    srcObjName: amidar-cpo
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.00049960613
+      y: 0.010537505
+      width: 0.9990008
+      height: 0.978925
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9f336cd6c3b5fc84db285f68a778d635, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.65527344
+      y: 0.06298828
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: amidar-joystick
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 97c810ced49300c48ad5a4cd80e0ae10, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6542969
+      y: 0.064941406
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: amidar-joystickball
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 1c358e34055c13847baf40ebe12b1ba3, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.65527344
+      y: 0.064941406
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: amidar-sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.0004994869
+      y: 0.0004994869
+      width: 0.999001
+      height: 0.999001
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 369171ff767372c478d53f3431ea4421, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00024414062
+      y: 0.00048828125
+      width: 0.24951172
+      height: 0.49902344
+    srcObjName: amidar-sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.0004994869
+      y: 0.0004994869
+      width: 0.999001
+      height: 0.999001
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 34a6ee253b4dcbf479a70983251e6e76, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00024414062
+      y: 0.5004883
+      width: 0.24951172
+      height: 0.49902344
+    srcObjName: amidar-sideleft
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.0004994869
+      y: 0.0004994869
+      width: 0.999001
+      height: 0.999001
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 81faffdeec35ad24585e85fe2f744be5, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6542969
+      y: 0.06689453
+      width: 0.00048828125
+      height: 0.0009765625
+    srcObjName: amidar-sideright
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.30002576
+      y: 0.0004995167
+      width: 0.999001
+      height: 0.999001
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: a1026036b7ef19543b7877e943c3c970, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25024414
+      y: 0.00048828125
+      width: 0.24951172
+      height: 0.49902344
+    srcObjName: amidar-sideright
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.30002576
+      y: 0.0004995167
+      width: 0.999001
+      height: 0.999001
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8e27f4a7304683b44b1dd26bd431ceee, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.25024414
+      y: 0.5004883
+      width: 0.24951172
+      height: 0.49902344
+    srcObjName: amidar-sideright
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.30002576
+      y: 0.0004995167
+      width: 0.999001
+      height: 0.999001
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 6ff169a274f5432428fdc77e6dc77c8c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6254883
+      y: 0.00048828125
+      width: 0.030761719
+      height: 0.061523438
+    srcObjName: amidar-speaker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.2750225
+      y: 0
+      width: 1.2750225
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: f98035c29fae549699fc529fef15ed43, type: 2}
+    considerMeshUVs: 1
+    sourceMaterials:
+    - {fileID: 2100000, guid: e185f08fef9606348a70cd75342bd216, type: 2}
+    - {fileID: 2100000, guid: bdae1e8aed04b364e8ac8605a6f05308, type: 2}
+    - {fileID: 2100000, guid: 65ef7423f7f44d441b3a69a9ca08b521, type: 2}
+    - {fileID: 2100000, guid: 3784a4f9358f2d1418edc53862cb62c8, type: 2}
+    - {fileID: 2100000, guid: 9f336cd6c3b5fc84db285f68a778d635, type: 2}
+    - {fileID: 2100000, guid: 97c810ced49300c48ad5a4cd80e0ae10, type: 2}
+    - {fileID: 2100000, guid: 1c358e34055c13847baf40ebe12b1ba3, type: 2}
+    - {fileID: 2100000, guid: 369171ff767372c478d53f3431ea4421, type: 2}
+    - {fileID: 2100000, guid: 34a6ee253b4dcbf479a70983251e6e76, type: 2}
+    - {fileID: 2100000, guid: 81faffdeec35ad24585e85fe2f744be5, type: 2}
+    - {fileID: 2100000, guid: a1026036b7ef19543b7877e943c3c970, type: 2}
+    - {fileID: 2100000, guid: 8e27f4a7304683b44b1dd26bd431ceee, type: 2}
+    - {fileID: 2100000, guid: 6ff169a274f5432428fdc77e6dc77c8c, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

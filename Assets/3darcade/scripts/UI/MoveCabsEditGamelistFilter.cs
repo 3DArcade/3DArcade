@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -319,7 +319,7 @@ namespace Arcade
 
         public ModelProperties GetSelectedGame()
         {
-            ModelProperties modelProperties = new ModelProperties();
+            //ModelProperties modelProperties = new ModelProperties();
 
             return null;
         }

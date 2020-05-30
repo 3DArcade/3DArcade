@@ -34,7 +34,6 @@ namespace Arcade
 
     public class ArcadeStateManager : MonoBehaviour
     {
-        private int frames = 0;
         public int framesToSkip = 15;
         private float deltaTime;
         private ArcadeStates savedArcadeState;
@@ -190,10 +189,7 @@ namespace Arcade
 
         private void LateUpdate()
         {
-            if (frames == 0)
-            {
-                buttonClicked = null;
-            }
+            buttonClicked = null;
         }
 
         private void OnApplicationFocus(bool focus)
@@ -240,16 +236,14 @@ namespace Arcade
             }
 
             //No need to update every frame.
-            frames++;
-            if (frames < framesToSkip)
+            if (framesToSkip != 0 && Time.frameCount % framesToSkip != 0)
             {
                 return;
             }
-            frames = 0;
 
             if (GetSelectedModel())
             {
-                TriggerManager.SendEvent(Event.ModelSelectedChanged);
+                TriggerManager.SendEvent(TriggerEvent.ModelSelectedChanged);
             }
 
             // Zoning
@@ -266,7 +260,7 @@ namespace Arcade
             {
                 arcadeStateHasChanged = true;
                 savedArcadeState = ArcadeManager.arcadeState;
-                TriggerManager.SendEvent(Event.ArcadeStateChanged);
+                TriggerManager.SendEvent(TriggerEvent.ArcadeStateChanged);
             }
             else
             {
@@ -310,8 +304,8 @@ namespace Arcade
                         Loading.gameObject.SetActive(false);
                         Settings.gameObject.SetActive(false);
                         runningCancel.gameObject.SetActive(false);
-                        runningMainMenu.gameObject.SetActive(ArcadeManager.arcadeHistory.Count > 1 ? true : false);
-                        mainMenuSettings.gameObject.SetActive(ArcadeManager.arcadeHistory.Count <= 1 ? true : false);
+                        runningMainMenu.gameObject.SetActive(ArcadeManager.arcadeHistory.Count > 1);
+                        mainMenuSettings.gameObject.SetActive(ArcadeManager.arcadeHistory.Count <= 1);
                         if (!menuIsVisible)
                         {
                             Running.gameObject.SetActive(false);
@@ -504,7 +498,7 @@ namespace Arcade
                         savedArcadeModel = null;
                         savedArcadeModelSetup = null;
                         ArcadeManager.activeMenuType = ArcadeType.None;
-                        TriggerManager.SendEvent(Event.MenuEnded);
+                        TriggerManager.SendEvent(TriggerEvent.MenuEnded);
                         ArcadeManager.arcadeState = ArcadeStates.Running;
                         buttonClicked = null;
                     }
@@ -542,7 +536,7 @@ namespace Arcade
                         //savedArcadeModel = null;
                         //savedArcadeModelSetup = null;
                         ArcadeManager.activeMenuType = ArcadeType.None;
-                        TriggerManager.SendEvent(Event.MenuEnded);
+                        TriggerManager.SendEvent(TriggerEvent.MenuEnded);
                         ArcadeManager.arcadeState = ArcadeStates.Running;
 
                         if (selectedModelSetup.gameLauncherMethod == GameLauncherMethod.ArcadeConfiguration)
@@ -1049,7 +1043,7 @@ namespace Arcade
                 if (obj != null)
                 {
                     modelSetup = obj.transform.parent.GetComponent<ModelSetup>();
-                    frames = framesToSkip; // We want updates as fast as possible in Cyl mode/
+                    framesToSkip = 0; // We want updates as fast as possible in Cyl mode/
                 }
             }
             else if (ArcadeManager.activeArcadeType == ArcadeType.CylArcade && ArcadeManager.activeMenuType == ArcadeType.None)
@@ -1058,7 +1052,7 @@ namespace Arcade
                 if (obj != null)
                 {
                     modelSetup = obj.transform.parent.GetComponent<ModelSetup>();
-                    frames = framesToSkip; // We want updates as fast as possible in Cyl mode/
+                    framesToSkip = 0; // We want updates as fast as possible in Cyl mode/
                 }
             }
             else if (Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out RaycastHit vision, rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? arcadeGameAndPropLayers : menuGameAndPropLayers))
@@ -1069,6 +1063,10 @@ namespace Arcade
                 {
                     modelSetup = objectHit.transform.parent.gameObject.GetComponent<ModelSetup>();
                 }
+            }
+            else
+            {
+                framesToSkip = 15;
             }
 
             if (modelSetup != null)
@@ -1098,6 +1096,7 @@ namespace Arcade
                 }
                 return false;
             }
+
             // Nothing Selected
             if (selectedModelSetup != null)
             {
@@ -1184,48 +1183,46 @@ namespace Arcade
 
         private void GetZone(ArcadeType arcadeType)
         {
-            if (Physics.Raycast(activeCamera.transform.parent.transform.position, -activeCamera.transform.parent.transform.up, out RaycastHit vision, rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? arcadeLayers : menuLayers))
+            if (!Physics.Raycast(activeCamera.transform.parent.transform.position, -activeCamera.transform.parent.transform.up, out RaycastHit vision, rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? arcadeLayers : menuLayers))
             {
-                GameObject objectHit = vision.transform.gameObject;
-                if (objectHit != null)
+                return;
+            }
+
+            GameObject objectHit = vision.transform.gameObject;
+            if (objectHit == null)
+            {
+                return;
+            }
+
+            Transform objectHitParent = objectHit.transform.parent;
+            if (objectHitParent != null && objectHitParent.gameObject == selectZoneModel)
+            {
+                return;
+            }
+
+            selectZoneModel = objectHitParent.gameObject;
+
+            ModelSetup modelSetup = objectHitParent.GetComponent<ModelSetup>();
+            if (modelSetup == null)
+            {
+                return;
+            }
+
+            foreach (KeyValuePair<int, List<GameObject>> entry in ArcadeManager.visibleZones[arcadeType])
+            {
+                // Zone 0 is always visible
+                if (modelSetup.zone == 0 || (ArcadeManager.allZones[arcadeType].ContainsKey(modelSetup.zone) && ArcadeManager.allZones[arcadeType][modelSetup.zone].Contains(entry.Key)))
                 {
-                    GameObject objectHitParent = objectHit.transform.parent.gameObject;
-                    if (objectHitParent != null && objectHitParent == selectZoneModel)
+                    foreach (GameObject obj in entry.Value)
                     {
-                        return;
+                        obj.SetActive(true);
                     }
-
-                    selectZoneModel = objectHitParent;
-
-                    ModelSetup modelSetup = objectHitParent.GetComponent<ModelSetup>();
-                    if (modelSetup != null)
+                }
+                else if (entry.Key != 0)
+                {
+                    foreach (GameObject obj in entry.Value)
                     {
-                        foreach (KeyValuePair<int, List<GameObject>> entry in ArcadeManager.visibleZones[arcadeType])
-                        {
-                            // Zone 0 is always visible
-                            if (modelSetup.zone == 0)
-                            {
-                                foreach (GameObject obj in entry.Value)
-                                {
-                                    obj.SetActive(true);
-                                }
-
-                            }
-                            else if (ArcadeManager.allZones[arcadeType].ContainsKey(modelSetup.zone) && ArcadeManager.allZones[arcadeType][modelSetup.zone].Contains(entry.Key))
-                            {
-                                foreach (GameObject obj in entry.Value)
-                                {
-                                    obj.SetActive(true);
-                                }
-                            }
-                            else if (entry.Key != 0)
-                            {
-                                foreach (GameObject obj in entry.Value)
-                                {
-                                    obj.SetActive(false);
-                                }
-                            }
-                        }
+                        obj.SetActive(false);
                     }
                 }
             }
@@ -1245,10 +1242,9 @@ namespace Arcade
                     savedArcadeState = ArcadeStates.LoadingArcade;
                     Loading.gameObject.SetActive(true);
                 }
-                yield return new WaitForSeconds(0);
+                yield return null;
                 _ = ArcadeManager.StartArcadeWith(arcadeConfigurationID);
             }
-            yield return null;
         }
 
         private void GetGameInformation(GameObject obj)
@@ -1266,23 +1262,18 @@ namespace Arcade
                 return;
             }
 
-            string infoPath = emulatorConfiguration[0].emulator.infoPath;
-            infoPath = $"{ArcadeManager.applicationPath}{FileManager.CorrectFilePath(infoPath)}";
+            string infoPath = $"{ArcadeManager.applicationPath}{FileManager.CorrectFilePath(emulatorConfiguration[0].emulator.infoPath)}";
 
-            string tex = File.ReadAllText(Path.Combine(infoPath, $"{gameModelSetup.id.Trim()}.txt"));
-            if (tex == null)
-            {
-                tex = File.ReadAllText(Path.Combine(infoPath, $"{gameModelSetup.idParent.Trim()}.txt"));
-            }
+            string infoText = File.ReadAllText(Path.Combine(infoPath, $"{gameModelSetup.id.Trim()}.txt"))
+                           ?? File.ReadAllText(Path.Combine(infoPath, $"{gameModelSetup.idParent.Trim()}.txt"));
 
             StringBuilder sb = new StringBuilder();
             _ = sb.AppendLine($"Name: {gameModelSetup.descriptiveName}{Environment.NewLine}")
                   .AppendLine($"Manufacturer: {gameModelSetup.manufacturer}{Environment.NewLine}")
                   .AppendLine($"Year: {gameModelSetup.year}{Environment.NewLine}")
                   .AppendLine($"Genre: {gameModelSetup.genre}{Environment.NewLine}{Environment.NewLine}")
-                  .AppendLine(tex ?? string.Empty);
+                  .AppendLine(infoText ?? string.Empty);
             gameHistory.text = sb.ToString();
-            // gameDetails.enabled = false;
         }
     }
 }

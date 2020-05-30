@@ -1,0 +1,323 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: bombjack_
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: ce5cb1716089bb544a0dd122e3d90af9, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7504883
+      y: 0.0009765625
+      width: 0.0009765625
+      height: 0.001953125
+    srcObjName: bombjack-back
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 73f2f82595752e843b171c95d8d92d1e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7504883
+      y: 0.0048828125
+      width: 0.0009765625
+      height: 0.001953125
+    srcObjName: bombjack-button02
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 519f6abea703fd94aa895e4260b225eb, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7504883
+      y: 0.0087890625
+      width: 0.0009765625
+      height: 0.001953125
+    srcObjName: bombjack-button03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: a27fe2c43c96fd045a433d98981d5456, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6254883
+      y: 0.0009765625
+      width: 0.12402344
+      height: 0.24804688
+    srcObjName: bombjack-coinpanel
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: badc580695966ff47b3eb6a89aacfb4e, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.00048828125
+      y: 0.0009765625
+      width: 0.49902344
+      height: 0.9980469
+    srcObjName: bombjack-cpo
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: d5d576a185bc19e45abf51ad1224720a, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7504883
+      y: 0.0126953125
+      width: 0.0009765625
+      height: 0.001953125
+    srcObjName: bombjack-leftside
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: f187cd4bb23192a4dba8e955372c8e7d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7504883
+      y: 0.016601562
+      width: 0.0009765625
+      height: 0.001953125
+    srcObjName: bombjack-leftside
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: ebba57d8436877948bd0d6a4846fdbb7, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5004883
+      y: 0.0009765625
+      width: 0.12402344
+      height: 0.49804688
+    srcObjName: bombjack-leftside
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 62b4da9c8ad42cb459a42810212d8f8a, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5004883
+      y: 0.50097656
+      width: 0.12402344
+      height: 0.49804688
+    srcObjName: bombjack-leftsideartpanel
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  - material: {fileID: 2100000, guid: 0c2d742c848ac8d469e1924c2bf0fbd6, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7504883
+      y: 0.020507812
+      width: 0.0009765625
+      height: 0.001953125
+    srcObjName: bombjack-speaker
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 0
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 93fe0bcbe80c34c349e2a92cec6889c6, type: 2}
+    considerMeshUVs: 0
+    sourceMaterials:
+    - {fileID: 2100000, guid: ce5cb1716089bb544a0dd122e3d90af9, type: 2}
+    - {fileID: 2100000, guid: 73f2f82595752e843b171c95d8d92d1e, type: 2}
+    - {fileID: 2100000, guid: 519f6abea703fd94aa895e4260b225eb, type: 2}
+    - {fileID: 2100000, guid: a27fe2c43c96fd045a433d98981d5456, type: 2}
+    - {fileID: 2100000, guid: badc580695966ff47b3eb6a89aacfb4e, type: 2}
+    - {fileID: 2100000, guid: d5d576a185bc19e45abf51ad1224720a, type: 2}
+    - {fileID: 2100000, guid: f187cd4bb23192a4dba8e955372c8e7d, type: 2}
+    - {fileID: 2100000, guid: ebba57d8436877948bd0d6a4846fdbb7, type: 2}
+    - {fileID: 2100000, guid: 62b4da9c8ad42cb459a42810212d8f8a, type: 2}
+    - {fileID: 2100000, guid: 0c2d742c848ac8d469e1924c2bf0fbd6, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

@@ -1,276 +1,266 @@
 {
-    "descriptiveName": "Fps Demo 3",
-    "id": "fpsdemo3",
-    "arcadeType": "FpsArcade",
-    "gameLauncherMethod": "External",
-    "externalModels": false,
-    "showFPS": false,
-    "camera": {
-        "position": {
-            "x": 8.102171897888184,
-            "y": -0.6739862561225891,
-            "z": -14.3511962890625
+    "DescriptiveName": "Fps Demo 3",
+    "Id": "fpsdemo3",
+    "ArcadeType": "FpsArcade",
+    "RenderSettings": {
+        "AmbientIntensity": 1.0,
+        "MarqueeIntensity": 1.6,
+        "ScreenRasterIntensity": 2.4,
+        "ScreenVectorIntenstity": 6.0,
+        "ScreenPinballIntensity": 1.0
+    },
+    "AudioSettings": {
+        "SpatialSound": false
+    },
+    "VideoSettings": {
+        "VideoOnModelEnabled": "VisibleUnobstructed"
+    },
+    "CameraSettings": {
+        "Position": {
+            "x": 8.102172,
+            "y": -0.673986256,
+            "z": -14.3511963
         },
-        "rotation": {
+        "Rotation": {
             "x": 0.0,
-            "y": 0.26733309030532839,
-            "z": 0.0,
-            "w": -0.963604211807251
+            "y": -31.011261,
+            "z": 0.0
         },
-        "height": 0.6000000238418579,
-        "aspectRatio": 0.0,
-        "orthographic": false,
-        "fieldOfView": 60.0,
-        "nearClipPlane": 0.10000000149011612,
-        "farClipPlane": 100.0,
-        "viewportRect": {
-            "serializedVersion": "2",
+        "Height": 0.6,
+        "Orthographic": false,
+        "FieldOfView": 60.0,
+        "AspectRatio": 0.0,
+        "NearClipPlane": 0.1,
+        "FarClipPlane": 100.0,
+        "ViewportRect": {
             "x": 0.0,
             "y": 0.0,
             "width": 1.0,
             "height": 1.0
-        },
-        "allowDynamicResolution": false
-    },
-    "modelSharedProperties": {
-        "spatialSound": false,
-        "videoOnModelEnabled": "VisibleUnobstructed",
-        "renderSettings": {
-            "ambientIntensity": 1.0,
-            "marqueeIntensity": 1.600000023841858,
-            "screenRasterIntensity": 2.4000000953674318,
-            "screenVectorIntenstity": 6.0,
-            "screenPinballIntensity": 1.0
         }
     },
-    "fpsArcadeProperties": [],
-    "cylArcadeProperties": [],
-    "zones": [],
-    "gameModelList": [
+    "FpsArcadeProperties": [],
+    "CylArcadeProperties": [],
+    "Zones": [],
+    "ArcadeModelList": [
         {
-            "descriptiveName": "1941 - Counter Attack (Japan)",
-            "id": "1941j",
-            "idParent": "1941",
-            "emulator": "mame",
-            "model": "default70hor",
-            "grabbable": false,
-            "animatedTextureSpeed": 2.0,
-            "position": {
-                "x": 7.94087028503418,
-                "y": -1.073984146118164,
-                "z": -8.84327220916748
-            },
-            "rotation": {
-                "x": 0.000004179498318990227,
-                "y": 0.9970119595527649,
-                "z": 0.000004980729499948211,
-                "w": 0.07724706828594208
-            },
-            "scale": {
-                "x": 1.000004529953003,
-                "y": 1.0,
-                "z": 1.000004529953003
-            },
-            "screen": "raster vertical",
-            "manufacturer": "Capcom",
-            "year": "1990",
-            "genre": "Shooter / Flying Vertical",
-            "mature": false,
-            "runnable": true,
-            "available": false,
-            "gameLauncherMethod": "None",
-            "playCount": 0,
-            "zone": 0,
-            "triggers": [],
-            "triggerIDs": []
-        },
-        {
-            "descriptiveName": "1942 (set 1)",
-            "id": "1942",
-            "idParent": "",
-            "emulator": "mame",
-            "model": "80hor",
-            "grabbable": false,
-            "animatedTextureSpeed": 2.0,
-            "position": {
-                "x": -7.098759651184082,
-                "y": -1.0739883184432984,
-                "z": 4.303797245025635
-            },
-            "rotation": {
-                "x": -6.791151463403367e-8,
-                "y": 0.6483362913131714,
-                "z": 0.000007768483555992134,
-                "w": 0.7613541483879089
-            },
-            "scale": {
-                "x": 1.0000033378601075,
-                "y": 1.0,
-                "z": 1.0000030994415284
-            },
-            "screen": "raster vertical",
-            "manufacturer": "Capcom",
-            "year": "1984",
-            "genre": "Shooter / Flying Vertical",
-            "mature": false,
-            "runnable": true,
-            "available": false,
-            "gameLauncherMethod": "None",
-            "playCount": 0,
-            "zone": 0,
-            "triggers": [],
-            "triggerIDs": []
-        },
-        {
-            "descriptiveName": "Gyruss (Centuri)",
-            "id": "gyrussce",
-            "idParent": "gyruss",
-            "emulator": "mame",
-            "model": "gyruss",
-            "grabbable": false,
-            "animatedTextureSpeed": 2.0,
-            "position": {
-                "x": -5.756619930267334,
-                "y": -1.073987603187561,
-                "z": 0.711876392364502
-            },
-            "rotation": {
-                "x": 3.435996234202321e-7,
-                "y": 0.6870174407958984,
-                "z": 0.000007705418283876497,
-                "w": 0.7266409993171692
-            },
-            "scale": {
-                "x": 1.0000014305114747,
-                "y": 1.0,
-                "z": 1.0000014305114747
-            },
-            "screen": "raster vertical",
-            "manufacturer": "Konami (Centuri license)",
-            "year": "1983",
-            "genre": "Shooter / Gallery",
-            "mature": false,
-            "runnable": true,
-            "available": false,
-            "gameLauncherMethod": "None",
-            "playCount": 0,
-            "zone": 0,
-            "triggers": [],
-            "triggerIDs": []
-        },
-        {
-            "descriptiveName": "005",
-            "id": "005",
-            "idParent": "",
-            "emulator": "mame",
-            "model": "80hor",
-            "grabbable": false,
-            "animatedTextureSpeed": 2.0,
-            "position": {
-                "x": -1.7643228769302369,
-                "y": -1.0739877223968506,
-                "z": 0.85904860496521
-            },
-            "rotation": {
-                "x": 0.00000771860868553631,
-                "y": 0.7133191823959351,
-                "z": -3.622191968588595e-7,
-                "w": -0.7008394002914429
-            },
-            "scale": {
-                "x": 1.000002384185791,
-                "y": 1.0,
-                "z": 1.000002384185791
-            },
-            "screen": "raster vertical",
-            "manufacturer": "Sega",
-            "year": "1981",
-            "genre": "Maze / Shooter Small",
-            "mature": false,
-            "runnable": true,
-            "available": false,
-            "gameLauncherMethod": "None",
-            "playCount": 0,
-            "zone": 0,
-            "triggers": [],
-            "triggerIDs": []
-        },
-        {
-            "descriptiveName": "'88 Games",
-            "id": "88games",
-            "idParent": "",
-            "emulator": "mame",
-            "model": "80hor",
-            "grabbable": false,
-            "animatedTextureSpeed": 2.0,
-            "position": {
-                "x": -3.9631307125091554,
-                "y": -1.0739881992340088,
-                "z": 2.8027048110961916
-            },
-            "rotation": {
-                "x": 0.000005550478817895055,
-                "y": 0.9987196922302246,
-                "z": 0.0000059674775911844339,
-                "w": 0.05058750882744789
-            },
-            "scale": {
-                "x": 1.0000026226043702,
-                "y": 1.0,
-                "z": 1.0000026226043702
-            },
-            "screen": "raster horizontal",
-            "manufacturer": "Konami",
-            "year": "1988",
-            "genre": "Sports / Track & Field",
-            "mature": false,
-            "runnable": true,
-            "available": false,
-            "gameLauncherMethod": "None",
-            "playCount": 0,
-            "zone": 0,
-            "triggers": [],
-            "triggerIDs": []
-        }
-    ],
-    "arcadeModelList": [
-        {
-            "descriptiveName": "fps demo 3",
-            "id": "fpsdemo3",
-            "idParent": "",
-            "emulator": "",
-            "model": "",
-            "grabbable": false,
-            "animatedTextureSpeed": 2.0,
-            "position": {
+            "DescriptiveName": "fps demo 3",
+            "Id": "fpsdemo3",
+            "IdParent": "",
+            "Emulator": "",
+            "Model": "",
+            "Grabbable": false,
+            "AnimatedTextureSpeed": 2.0,
+            "Position": {
                 "x": 0.0,
                 "y": 0.0,
                 "z": 0.0
             },
-            "rotation": {
+            "Rotation": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 0.0,
-                "w": 1.0
+                "z": 0.0
             },
-            "scale": {
+            "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
             },
-            "screen": "",
-            "manufacturer": "",
-            "year": "",
-            "genre": "",
-            "mature": false,
-            "runnable": false,
-            "available": false,
-            "gameLauncherMethod": "None",
-            "playCount": 0,
-            "zone": 0,
-            "triggers": [],
-            "triggerIDs": []
+            "Screen": "",
+            "Manufacturer": "",
+            "Year": "",
+            "Genre": "",
+            "Mature": false,
+            "Runnable": false,
+            "Available": false,
+            "GameLauncherMethod": "None",
+            "PlayCount": 0,
+            "Zone": 0,
+            "Triggers": [],
+            "TriggerIDs": []
         }
     ],
-    "propModelList": []
+    "GameModelList": [
+        {
+            "DescriptiveName": "1941 - Counter Attack (Japan)",
+            "Id": "1941j",
+            "IdParent": "1941",
+            "Emulator": "mame",
+            "Model": "default70hor",
+            "Grabbable": false,
+            "AnimatedTextureSpeed": 2.0,
+            "Position": {
+                "x": 7.94087029,
+                "y": -1.07398415,
+                "z": -8.843272
+            },
+            "Rotation": {
+                "x": -0.0005320478,
+                "y": 171.139313,
+                "z": 0.0005215929
+            },
+            "Scale": {
+                "x": 1.00000453,
+                "y": 1.0,
+                "z": 1.00000453
+            },
+            "Screen": "raster vertical",
+            "Manufacturer": "Capcom",
+            "Year": "1990",
+            "Genre": "Shooter / Flying Vertical",
+            "Mature": false,
+            "Runnable": true,
+            "Available": false,
+            "GameLauncherMethod": "None",
+            "PlayCount": 0,
+            "Zone": 0,
+            "Triggers": [],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "1942 (set 1)",
+            "Id": "1942",
+            "IdParent": "",
+            "Emulator": "mame",
+            "Model": "80hor",
+            "Grabbable": false,
+            "AnimatedTextureSpeed": 2.0,
+            "Position": {
+                "x": -7.09875965,
+                "y": -1.07398832,
+                "z": 4.30379725
+            },
+            "Rotation": {
+                "x": -0.0005830756,
+                "y": 80.8325653,
+                "z": 0.0006727141
+            },
+            "Scale": {
+                "x": 1.00000334,
+                "y": 1.0,
+                "z": 1.0000031
+            },
+            "Screen": "raster vertical",
+            "Manufacturer": "Capcom",
+            "Year": "1984",
+            "Genre": "Shooter / Flying Vertical",
+            "Mature": false,
+            "Runnable": true,
+            "Available": false,
+            "GameLauncherMethod": "None",
+            "PlayCount": 0,
+            "Zone": 0,
+            "Triggers": [],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "Gyruss (Centuri)",
+            "Id": "gyrussce",
+            "IdParent": "gyruss",
+            "Emulator": "mame",
+            "Model": "gyruss",
+            "Grabbable": false,
+            "AnimatedTextureSpeed": 2.0,
+            "Position": {
+                "x": -5.75662,
+                "y": -1.0739876,
+                "z": 0.7118764
+            },
+            "Rotation": {
+                "x": -0.000578009349,
+                "y": 86.78895,
+                "z": 0.0006686567
+            },
+            "Scale": {
+                "x": 1.00000143,
+                "y": 1.0,
+                "z": 1.00000143
+            },
+            "Screen": "raster vertical",
+            "Manufacturer": "Konami (Centuri license)",
+            "Year": "1983",
+            "Genre": "Shooter / Gallery",
+            "Mature": false,
+            "Runnable": true,
+            "Available": false,
+            "GameLauncherMethod": "None",
+            "PlayCount": 0,
+            "Zone": 0,
+            "Triggers": [],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "005",
+            "Id": "005",
+            "IdParent": "",
+            "Emulator": "mame",
+            "Model": "80hor",
+            "Grabbable": false,
+            "AnimatedTextureSpeed": 2.0,
+            "Position": {
+                "x": -1.76432288,
+                "y": -1.07398772,
+                "z": 0.8590486
+            },
+            "Rotation": {
+                "x": -0.0005902757,
+                "y": -91.01123,
+                "z": 0.000660011661
+            },
+            "Scale": {
+                "x": 1.00000238,
+                "y": 1.0,
+                "z": 1.00000238
+            },
+            "Screen": "raster vertical",
+            "Manufacturer": "Sega",
+            "Year": "1981",
+            "Genre": "Maze / Shooter Small",
+            "Mature": false,
+            "Runnable": true,
+            "Available": false,
+            "GameLauncherMethod": "None",
+            "PlayCount": 0,
+            "Zone": 0,
+            "Triggers": [],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "'88 Games",
+            "Id": "88games",
+            "IdParent": "",
+            "Emulator": "mame",
+            "Model": "80hor",
+            "Grabbable": false,
+            "AnimatedTextureSpeed": 2.0,
+            "Position": {
+                "x": -3.96313071,
+                "y": -1.0739882,
+                "z": 2.80270481
+            },
+            "Rotation": {
+                "x": -0.0006507715,
+                "y": 174.200623,
+                "z": 0.0006698165
+            },
+            "Scale": {
+                "x": 1.00000262,
+                "y": 1.0,
+                "z": 1.00000262
+            },
+            "Screen": "raster horizontal",
+            "Manufacturer": "Konami",
+            "Year": "1988",
+            "Genre": "Sports / Track & Field",
+            "Mature": false,
+            "Runnable": true,
+            "Available": false,
+            "GameLauncherMethod": "None",
+            "PlayCount": 0,
+            "Zone": 0,
+            "Triggers": [],
+            "TriggerIDs": []
+        }
+    ],
+    "PropModelList": []
 }

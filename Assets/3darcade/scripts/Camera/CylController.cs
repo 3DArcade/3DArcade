@@ -19,13 +19,13 @@ namespace Arcade
 
         // Jump to a new game position properties
         private bool jump;
-        private bool jumpForwards = true;
+        private readonly bool jumpForwards = true;
         private int jumps;
         private float jumpsCount = 0;
 
         private int tempTargetModelGamePosition;
         private float cameraRotationDeltaDamping = 2f;
-        private bool cameraOrientationVertical;
+        //private bool cameraOrientationVertical;
         public bool setupFinished;
         GameObject dummyCameraTransform;
 
@@ -170,77 +170,77 @@ namespace Arcade
             UpdateCamera();
         }
 
-        void GoToGamePosition(int goToGamePosition)
-        {
-            //print("goto " + goToGamePosition);
-            jumpsCount = cylArcadeProperties.sprockets;
-            jumpForwards = true;
-            int cw; //
-            if (cylArcadeProperties.gamePosition - goToGamePosition > 0)
-            {
-                cw = cylArcadeProperties.gamePosition - goToGamePosition;
-            }
-            else
-            {
-                cw = games.Count - goToGamePosition + cylArcadeProperties.gamePosition;
-            }
-            int ccw;
-            if (goToGamePosition - cylArcadeProperties.gamePosition > 0)
-            {
-                ccw = goToGamePosition - cylArcadeProperties.gamePosition;
-            }
-            else
-            {
-                ccw = games.Count - cylArcadeProperties.gamePosition + goToGamePosition;
-            }
-            int tjump;
-            if (cw < ccw)
-            {
-                tjump = cw;
-                jumpForwards = false;
-                jumpsCount = cw;
+        //private void GoToGamePosition(int goToGamePosition)
+        //{
+        //    //print("goto " + goToGamePosition);
+        //    jumpsCount = cylArcadeProperties.sprockets;
+        //    jumpForwards = true;
+        //    int cw; //
+        //    if (cylArcadeProperties.gamePosition - goToGamePosition > 0)
+        //    {
+        //        cw = cylArcadeProperties.gamePosition - goToGamePosition;
+        //    }
+        //    else
+        //    {
+        //        cw = games.Count - goToGamePosition + cylArcadeProperties.gamePosition;
+        //    }
+        //    int ccw;
+        //    if (goToGamePosition - cylArcadeProperties.gamePosition > 0)
+        //    {
+        //        ccw = goToGamePosition - cylArcadeProperties.gamePosition;
+        //    }
+        //    else
+        //    {
+        //        ccw = games.Count - cylArcadeProperties.gamePosition + goToGamePosition;
+        //    }
+        //    int tjump;
+        //    if (cw < ccw)
+        //    {
+        //        tjump = cw;
+        //        jumpForwards = false;
+        //        jumpsCount = cw;
 
-                if (tjump <= cylArcadeProperties.sprockets)
-                {
-                    tempTargetModelGamePosition = cylArcadeProperties.gamePosition;
-                    cylArcadeProperties.gamePosition = goToGamePosition;
-                }
-                else
-                {
-                    jumpsCount = cylArcadeProperties.sprockets;
-                    tempTargetModelGamePosition = goToGamePosition + cylArcadeProperties.sprockets;
-                    cylArcadeProperties.gamePosition = goToGamePosition;
-                    if (tempTargetModelGamePosition > games.Count - 1)
-                    {
-                        tempTargetModelGamePosition -= games.Count;
-                    }
-                }
-            }
-            else
-            {
-                tjump = ccw;
-                jumpForwards = true; // forwards in list is ccw
-                jumpsCount = ccw;
-                if (tjump <= cylArcadeProperties.sprockets)
-                {
-                    tempTargetModelGamePosition = cylArcadeProperties.gamePosition;
-                    cylArcadeProperties.gamePosition = goToGamePosition;
-                }
-                else
-                {
-                    jumpsCount = cylArcadeProperties.sprockets;
-                    tempTargetModelGamePosition = goToGamePosition - cylArcadeProperties.sprockets;
-                    cylArcadeProperties.gamePosition = goToGamePosition;
-                    if (tempTargetModelGamePosition < 0)
-                    {
-                        tempTargetModelGamePosition = games.Count + tempTargetModelGamePosition;
-                    }
-                }
-            }
-            jump = true;
-            jumps = 0;
-            cameraRotationDeltaDamping = 2 + cylArcadeProperties.cameraRotationdamping;
-        }
+        //        if (tjump <= cylArcadeProperties.sprockets)
+        //        {
+        //            tempTargetModelGamePosition = cylArcadeProperties.gamePosition;
+        //            cylArcadeProperties.gamePosition = goToGamePosition;
+        //        }
+        //        else
+        //        {
+        //            jumpsCount = cylArcadeProperties.sprockets;
+        //            tempTargetModelGamePosition = goToGamePosition + cylArcadeProperties.sprockets;
+        //            cylArcadeProperties.gamePosition = goToGamePosition;
+        //            if (tempTargetModelGamePosition > games.Count - 1)
+        //            {
+        //                tempTargetModelGamePosition -= games.Count;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        tjump = ccw;
+        //        jumpForwards = true; // forwards in list is ccw
+        //        jumpsCount = ccw;
+        //        if (tjump <= cylArcadeProperties.sprockets)
+        //        {
+        //            tempTargetModelGamePosition = cylArcadeProperties.gamePosition;
+        //            cylArcadeProperties.gamePosition = goToGamePosition;
+        //        }
+        //        else
+        //        {
+        //            jumpsCount = cylArcadeProperties.sprockets;
+        //            tempTargetModelGamePosition = goToGamePosition - cylArcadeProperties.sprockets;
+        //            cylArcadeProperties.gamePosition = goToGamePosition;
+        //            if (tempTargetModelGamePosition < 0)
+        //            {
+        //                tempTargetModelGamePosition = games.Count + tempTargetModelGamePosition;
+        //            }
+        //        }
+        //    }
+        //    jump = true;
+        //    jumps = 0;
+        //    cameraRotationDeltaDamping = 2 + cylArcadeProperties.cameraRotationdamping;
+        //}
 
         void UpdateModelTransform(int index, GameObject model, bool forwards)
         {

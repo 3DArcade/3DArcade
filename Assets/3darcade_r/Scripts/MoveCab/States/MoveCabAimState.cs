@@ -27,11 +27,13 @@ namespace Arcade_r
 {
     public class MoveCabAimState : MoveCabState
     {
+        private const int NUM_FRAMES_TO_SKIP = 10;
+
         private const float _raycastMaxDistance      = 22.0f;
         private const float _movementSpeedMultiplier = 0.8f;
         private const float _rotationSpeedMultiplier = 0.8f;
 
-        public MoveCabAimState(MoveCabStateContext context)
+        public MoveCabAimState(MoveCabContext context)
         : base(context)
         {
         }
@@ -48,7 +50,7 @@ namespace Arcade_r
 
         public override void Update(float dt)
         {
-            if (Time.frameCount % 10 == 0)
+            if (Time.frameCount % NUM_FRAMES_TO_SKIP == 0)
             {
                 Vector2 rayPosition;
                 if (Cursor.visible && Mouse.current != null)
@@ -60,19 +62,22 @@ namespace Arcade_r
                     rayPosition = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
                 }
                 Ray ray = _context.Camera.ScreenPointToRay(rayPosition);
-                MoveCabSystem.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
+                MoveCabController.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
             }
 
-            Vector2 positionInput      = _context.PlayerControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
-            float rotationInput        = _context.PlayerControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
-            _data.AimPosition = positionInput * _movementSpeedMultiplier;
-            _data.AimRotation = rotationInput * _rotationSpeedMultiplier;
-
-            if (_context.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+            if (_data.ModelSetup is IMoveCabMovable)
             {
-                if (_data.ModelSetup != null && _data.ModelSetup is IMoveCabGrabbable)
+                Vector2 positionInput = _context.PlayerControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
+                float rotationInput   = _context.PlayerControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
+                _data.AimPosition     = positionInput * _movementSpeedMultiplier;
+                _data.AimRotation     = rotationInput * _rotationSpeedMultiplier;
+
+                if (_data.ModelSetup is IMoveCabGrabbable)
                 {
-                    _context.TransitionTo<MoveCabGrabState>();
+                    if (_context.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+                    {
+                        _context.TransitionTo<MoveCabGrabState>();
+                    }
                 }
             }
 
@@ -84,9 +89,9 @@ namespace Arcade_r
 
         public override void FixedUpdate(float dt)
         {
-            if (_data.ModelSetup != null && _data.ModelSetup is IMoveCabMovable)
+            if (_data.ModelSetup is IMoveCabMovable && _data.Transform != null)
             {
-                MoveCabSystem.ManualMoveAndRotate(_data.Transform, _data.Rigidbody, _data.AimPosition, _data.AimRotation);
+                MoveCabController.ManualMoveAndRotate(_data.Transform, _data.Rigidbody, _data.AimPosition, _data.AimRotation);
             }
         }
     }

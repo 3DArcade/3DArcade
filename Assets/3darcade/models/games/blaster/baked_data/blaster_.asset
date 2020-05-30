@@ -1,0 +1,563 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: blaster_
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 7e15e148984d85e46b3b0a250918fea4, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.515625
+      y: 0.28125
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: blaster_Mesh02
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -1
+      y: 0
+      width: 3
+      height: 4
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8e718ec5f9ca47f40a2531b5d35c6f06, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.60546875
+      y: 0.20898438
+      width: 0.060546875
+      height: 0.056640625
+    srcObjName: blaster_Mesh03
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.000366
+      y: 0.047974
+      width: 0.99926805
+      height: 0.92602503
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 29f815582346a824e8299e146b5302ae, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.81640625
+      y: 0.12695312
+      width: 0.12109375
+      height: 0.12109375
+    srcObjName: blaster_Mesh04
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 34d7e47d19a654549b5e932455ec24af, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.001953125
+      width: 0.5097656
+      height: 0.28320312
+    srcObjName: blaster_Mesh05
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.010742
+      y: -0.072388
+      width: 1.0214839
+      height: 1.140015
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 13dff28e5789bee479a6dea98f028989, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.515625
+      y: 0.001953125
+      width: 0.1796875
+      height: 0.203125
+    srcObjName: blaster_Mesh06
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.158936
+      y: 0.039917
+      width: 0.724548
+      height: 0.40979
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: d6127d49ea9d04742a7cc58ed50baee6, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.2890625
+      width: 0.5058594
+      height: 0.234375
+    srcObjName: blaster_Mesh07
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.004089
+      y: 0.044434
+      width: 1.01239
+      height: 0.943969
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 25f7b46c81efe194f9da40c2b9e83f52, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.001953125
+      y: 0.52734375
+      width: 0.2578125
+      height: 0.42578125
+    srcObjName: blaster_Mesh08
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.052551
+      y: -0.369446
+      width: 1.033752
+      height: 1.710633
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8e2a18c3fcdbcde468f5a43cd5b24371, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.515625
+      y: 0.20898438
+      width: 0.0859375
+      height: 0.046875
+    srcObjName: blaster_Mesh09
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.05835
+      y: -0.065796
+      width: 1.385315
+      height: 1.520935
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 322e8122526723a44ac02f3f5b486151, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.5234375
+      y: 0.28125
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: blaster_Mesh10
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 0.636597
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 36416a486379d744fb068c195bfe1ea5, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.69921875
+      y: 0.001953125
+      width: 0.11328125
+      height: 0.24023438
+    srcObjName: blaster_Mesh11
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.018677
+      y: -0.008057
+      width: 0.914856
+      height: 0.961731
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 0acbf882002db504697dc0fa593a80db, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.515625
+      y: 0.25976562
+      width: 0.0234375
+      height: 0.017578125
+    srcObjName: blaster_Mesh12
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.100647
+      y: 0.148804
+      width: 0.79870605
+      height: 0.60809296
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: e80678489848b594388fbd6cabd14c4c, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.26367188
+      y: 0.52734375
+      width: 0.22265625
+      height: 0.107421875
+    srcObjName: blaster_Mesh13
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.052734
+      y: 0.055786
+      width: 0.890992
+      height: 0.874451
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: fbcbb73956c4a204097d636a6cb50780, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.54296875
+      y: 0.25976562
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: blaster_Mesh14
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.477478
+      width: 1
+      height: 0.15911898
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 8b0b6c342c274a4479552b79eddd63be, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.81640625
+      y: 0.001953125
+      width: 0.12695312
+      height: 0.12109375
+    srcObjName: blaster_Mesh15
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1.026794
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: eb8f3ddcd74320047a75627b41e9ca53, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.26367188
+      y: 0.6386719
+      width: 0.12109375
+      height: 0.12109375
+    srcObjName: blaster_Mesh17
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 7ca5dd9847990e846aea584fed770970, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.51171875
+      y: 0.2890625
+      width: 0.30859375
+      height: 0.31835938
+    srcObjName: blaster_Mesh18
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: -0.118591
+      y: -0.138916
+      width: 1.2371819
+      height: 1.277832
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c82b38b704228cd4b92126279bf022d6, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.53125
+      y: 0.28125
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: blaster_Mesh19
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 0.636597
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 52a483c8aad65bf478dec32a2e31ee94, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.54296875
+      y: 0.26757812
+      width: 0.00390625
+      height: 0.00390625
+    srcObjName: blaster_Mesh20
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 65f327c5a36dd4f0baab0c6921ff373a, type: 2}
+    considerMeshUVs: 1
+    sourceMaterials:
+    - {fileID: 2100000, guid: 7e15e148984d85e46b3b0a250918fea4, type: 2}
+    - {fileID: 2100000, guid: 8e718ec5f9ca47f40a2531b5d35c6f06, type: 2}
+    - {fileID: 2100000, guid: 29f815582346a824e8299e146b5302ae, type: 2}
+    - {fileID: 2100000, guid: 34d7e47d19a654549b5e932455ec24af, type: 2}
+    - {fileID: 2100000, guid: 13dff28e5789bee479a6dea98f028989, type: 2}
+    - {fileID: 2100000, guid: d6127d49ea9d04742a7cc58ed50baee6, type: 2}
+    - {fileID: 2100000, guid: 25f7b46c81efe194f9da40c2b9e83f52, type: 2}
+    - {fileID: 2100000, guid: 8e2a18c3fcdbcde468f5a43cd5b24371, type: 2}
+    - {fileID: 2100000, guid: 322e8122526723a44ac02f3f5b486151, type: 2}
+    - {fileID: 2100000, guid: 36416a486379d744fb068c195bfe1ea5, type: 2}
+    - {fileID: 2100000, guid: 0acbf882002db504697dc0fa593a80db, type: 2}
+    - {fileID: 2100000, guid: e80678489848b594388fbd6cabd14c4c, type: 2}
+    - {fileID: 2100000, guid: fbcbb73956c4a204097d636a6cb50780, type: 2}
+    - {fileID: 2100000, guid: 8b0b6c342c274a4479552b79eddd63be, type: 2}
+    - {fileID: 2100000, guid: eb8f3ddcd74320047a75627b41e9ca53, type: 2}
+    - {fileID: 2100000, guid: 7ca5dd9847990e846aea584fed770970, type: 2}
+    - {fileID: 2100000, guid: c82b38b704228cd4b92126279bf022d6, type: 2}
+    - {fileID: 2100000, guid: 52a483c8aad65bf478dec32a2e31ee94, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

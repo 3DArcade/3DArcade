@@ -11,7 +11,7 @@ namespace UnityStandardAssets.Utility
         const float k_Drag = 10.0f;
         const float k_AngularDrag = 5.0f;
         const float k_Distance = 0.2f;
-        const bool k_AttachToCenterOfMass = false;
+        //const bool k_AttachToCenterOfMass = false;
 
         private SpringJoint m_SpringJoint;
 
@@ -26,15 +26,15 @@ namespace UnityStandardAssets.Utility
 
             Camera mainCamera = FindCamera();
 
+
             // We need to actually hit an object
-            RaycastHit hit = new RaycastHit();
-            if (
-                !Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition).origin,
-                                 mainCamera.ScreenPointToRay(Input.mousePosition).direction, out hit, 100,
+            if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition).origin,
+                                 mainCamera.ScreenPointToRay(Input.mousePosition).direction, out RaycastHit hit, 100,
                                  Physics.DefaultRaycastLayers))
             {
                 return;
             }
+
             // We need to hit a rigidbody that is not kinematic
             if (!hit.rigidbody || hit.rigidbody.isKinematic)
             {

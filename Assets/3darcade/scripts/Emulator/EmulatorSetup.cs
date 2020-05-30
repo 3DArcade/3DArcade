@@ -5,17 +5,91 @@ namespace Arcade
 {
     public class EmulatorSetup : MonoBehaviour
     {
-        public delegate void ShowSelectMasterGamelistWindowDelegate(EmulatorSetup emulatorSetup);
-        public static ShowSelectMasterGamelistWindowDelegate ShowSelectMasterGamelistWindow;
-
         public string descriptiveName;
         public string id;
         public string about;
-        public GameLauncherMethod gameLauncherMethod = GameLauncherMethod.None;
-        [ContextMenuItem("Select Executable + Fill Default Paths", "SelectExecutableAndFillDefaultPaths")]
-        [ContextMenuItem("Select Executable", "SelectExecutable")]
-        [Arcade("Exe")]
+        [Arcade("Exe"), ContextMenuItem("Select Executable", nameof(SelectExecutable)), ContextMenuItem("Select Executable & Fill Default Paths", nameof(SelectExecutableAndFillDefaultPaths))]
         public string executable;
+        public string extension;
+        [Arcade("Exe"), ContextMenuItem("Select Libretro Core", nameof(SelectlibretroCore)), ContextMenuItem("Select Libretro Core & Fill Default Paths", nameof(SelectlibretroCoreAndFillDefaultPaths))]
+        public string libretroCore;
+        public string arguments;
+        public string options;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(EmulatorPathGetFolderPath))]
+        public string emulatorPath;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(GamePathGetFolderPath))]
+        public string gamePath;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(WorkingDirGetFolderPath))]
+        public string workingDir;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(MarqueePathGetFolderPath))]
+        public string marqueePath;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(ScreenPathGetFolderPath))]
+        public string screenPath;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(ScreenVideoPathGetFolderPath))]
+        public string screenVideoPath;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(GenericPathGetFolderPath))]
+        public string genericPath;
+        [ContextMenuItem("Select Folder Path", nameof(TitlePathGetFolderPath))]
+        [Arcade("Folder")]
+        public string titlePath;
+        [Arcade("Folder"), ContextMenuItem("Select Folder Path", nameof(InfoPathGetFolderPath))]
+        public string infoPath;
+        public GameLauncherMethod gameLauncherMethod = GameLauncherMethod.None;
+        public bool outputCommandLine;
+
+        public void SetEmulatorSetup(EmulatorProperties emulatorProperties)
+        {
+            descriptiveName   = emulatorProperties.descriptiveName;
+            id                = emulatorProperties.id;
+            about             = emulatorProperties.about;
+            _ = System.Enum.TryParse(emulatorProperties.gameLauncherMethod, true, out gameLauncherMethod);
+            executable        = emulatorProperties.executable;
+            extension         = emulatorProperties.extension;
+            libretroCore      = emulatorProperties.libretroCore;
+            arguments         = emulatorProperties.arguments;
+            options           = emulatorProperties.options;
+            emulatorPath      = emulatorProperties.emulatorPath;
+            gamePath          = emulatorProperties.gamePath;
+            workingDir        = emulatorProperties.workingDir;
+            marqueePath       = emulatorProperties.marqueePath;
+            screenPath        = emulatorProperties.screenPath;
+            screenVideoPath   = emulatorProperties.screenVideoPath;
+            genericPath       = emulatorProperties.genericPath;
+            titlePath         = emulatorProperties.titlePath;
+            infoPath          = emulatorProperties.infoPath;
+            outputCommandLine = emulatorProperties.outputCommandLine;
+        }
+
+        public EmulatorProperties GetEmulatorSetup()
+        {
+            return new EmulatorProperties
+            {
+                descriptiveName    = descriptiveName,
+                id                 = id,
+                about              = about,
+                gameLauncherMethod = gameLauncherMethod.ToString(),
+                executable         = executable,
+                extension          = extension,
+                libretroCore       = libretroCore,
+                arguments          = arguments,
+                options            = options,
+                emulatorPath       = emulatorPath,
+                gamePath           = gamePath,
+                workingDir         = workingDir,
+                outputCommandLine  = outputCommandLine,
+                marqueePath        = marqueePath,
+                screenPath         = screenPath,
+                screenVideoPath    = screenVideoPath,
+                genericPath        = genericPath,
+                titlePath          = titlePath,
+                infoPath           = infoPath
+            };
+        }
+
+        #region UnityMenus
+        public delegate void ShowSelectMasterGamelistWindowDelegate(EmulatorSetup emulatorSetup);
+        public static ShowSelectMasterGamelistWindowDelegate ShowSelectMasterGamelistWindow;
+
         private void SelectExecutableAndFillDefaultPaths()
         {
             string exe = FileManager.DialogGetFilePart("Select Emulator Executable", null, FileManager.FilePart.Name_Extension);
@@ -24,6 +98,7 @@ namespace Arcade
                 executable = exe;
             }
         }
+
         private void SelectExecutable()
         {
             string exe = FileManager.DialogGetFilePart("Select Emulator Executable", null, FileManager.FilePart.Name_Extension);
@@ -32,11 +107,7 @@ namespace Arcade
                 executable = exe;
             }
         }
-        public string extension;
-        [ContextMenuItem("Select libretroCore + Fill Default Paths", "SelectlibretroCoreAndFillDefaultPaths")]
-        [ContextMenuItem("Select libretroCore", "SelectlibretroCore")]
-        [Arcade("Exe")]
-        public string libretroCore;
+
         private void SelectlibretroCoreAndFillDefaultPaths()
         {
             string exe = FileManager.DialogGetFilePart("Select LibretroCore Executable", null, FileManager.FilePart.Name_Extension);
@@ -45,6 +116,7 @@ namespace Arcade
                 libretroCore = exe;
             }
         }
+
         private void SelectlibretroCore()
         {
             string exe = FileManager.DialogGetFilePart("Select LibretroCore Executable", null, FileManager.FilePart.Name_Extension);
@@ -53,11 +125,7 @@ namespace Arcade
                 libretroCore = exe;
             }
         }
-        public string arguments;
-        public string options;
-        [ContextMenuItem("Select Folder Path", "EmulatorPathGetFolderPath")]
-        [Arcade("Folder")]
-        public string emulatorPath;
+
         private void EmulatorPathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -66,9 +134,7 @@ namespace Arcade
                 emulatorPath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "GamePathGetFolderPath")]
-        [Arcade("Folder")]
-        public string gamePath;
+
         private void GamePathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -77,9 +143,7 @@ namespace Arcade
                 gamePath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "WorkingDirGetFolderPath")]
-        [Arcade("Folder")]
-        public string workingDir;
+
         private void WorkingDirGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -88,9 +152,7 @@ namespace Arcade
                 workingDir = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "MarqueePathGetFolderPath")]
-        [Arcade("Folder")]
-        public string marqueePath;
+
         private void MarqueePathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -99,9 +161,7 @@ namespace Arcade
                 marqueePath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "ScreenPathGetFolderPath")]
-        [Arcade("Folder")]
-        public string screenPath;
+
         private void ScreenPathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -110,9 +170,7 @@ namespace Arcade
                 screenPath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "ScreenVideoPathGetFolderPath")]
-        [Arcade("Folder")]
-        public string screenVideoPath;
+
         private void ScreenVideoPathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -121,9 +179,7 @@ namespace Arcade
                 screenVideoPath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "GenericPathGetFolderPath")]
-        [Arcade("Folder")]
-        public string genericPath;
+
         private void GenericPathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -132,9 +188,7 @@ namespace Arcade
                 genericPath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "TitlePathGetFolderPath")]
-        [Arcade("Folder")]
-        public string titlePath;
+
         private void TitlePathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -143,9 +197,7 @@ namespace Arcade
                 titlePath = folder;
             }
         }
-        [ContextMenuItem("Select Folder Path", "InfoPathGetFolderPath")]
-        [Arcade("Folder")]
-        public string infoPath;
+
         private void InfoPathGetFolderPath()
         {
             string folder = FileManager.DialogGetFolderPath(true);
@@ -154,7 +206,7 @@ namespace Arcade
                 infoPath = folder;
             }
         }
-        public bool outputCommandLine;
+        #endregion
 
 #if UNITY_EDITOR
         [MenuItem("CONTEXT/EmulatorSetup/Save Emulator Configuration")]
@@ -171,6 +223,7 @@ namespace Arcade
             //TODO: Change so that we update ArcadeManager.EmulatorsConfigurationList for save cfg instead of reloading all
             _ = ArcadeManager.loadSaveEmulatorConfiguration.LoadEmulatorsConfigurationList();
         }
+
         [MenuItem("CONTEXT/EmulatorSetup/Select MasterGamelist")]
         private static void SelectMasterGamelistMenuOption(MenuCommand menuCommand)
         {
@@ -178,6 +231,7 @@ namespace Arcade
             GameObject obj = emulatorSetup.transform.gameObject;
             ShowSelectMasterGamelistWindow?.Invoke(emulatorSetup);
         }
+
         [MenuItem("CONTEXT/EmulatorSetup/Update MasterGamelist")]
         private static void UpdateMasterGamelistMenuOption(MenuCommand menuCommand)
         {
@@ -190,54 +244,5 @@ namespace Arcade
             }
         }
 #endif
-
-        public void SetEmulatorSetup(EmulatorProperties emulatorProperties)
-        {
-            descriptiveName = emulatorProperties.descriptiveName;
-            id = emulatorProperties.id;
-            about = emulatorProperties.about;
-            _ = System.Enum.TryParse(emulatorProperties.gameLauncherMethod, true, out gameLauncherMethod);
-            executable = emulatorProperties.executable;
-            extension = emulatorProperties.extension;
-            libretroCore = emulatorProperties.libretroCore;
-            arguments = emulatorProperties.arguments;
-            options = emulatorProperties.options;
-            emulatorPath = emulatorProperties.emulatorPath;
-            gamePath = emulatorProperties.gamePath;
-            workingDir = emulatorProperties.workingDir;
-            marqueePath = emulatorProperties.marqueePath;
-            screenPath = emulatorProperties.screenPath;
-            screenVideoPath = emulatorProperties.screenVideoPath;
-            genericPath = emulatorProperties.genericPath;
-            titlePath = emulatorProperties.titlePath;
-            infoPath = emulatorProperties.infoPath;
-            outputCommandLine = emulatorProperties.outputCommandLine;
-        }
-
-        public EmulatorProperties GetEmulatorSetup()
-        {
-            return new EmulatorProperties
-            {
-                descriptiveName = descriptiveName,
-                id = id,
-                about = about,
-                gameLauncherMethod = gameLauncherMethod.ToString(),
-                executable = executable,
-                extension = extension,
-                libretroCore = libretroCore,
-                arguments = arguments,
-                options = options,
-                emulatorPath = emulatorPath,
-                gamePath = gamePath,
-                workingDir = workingDir,
-                outputCommandLine = outputCommandLine,
-                marqueePath = marqueePath,
-                screenPath = screenPath,
-                screenVideoPath = screenVideoPath,
-                genericPath = genericPath,
-                titlePath = titlePath,
-                infoPath = infoPath
-            };
-        }
     }
 }

@@ -1,0 +1,563 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d41887b1546f5c44ab54e7e65aad3bc, type: 3}
+  m_Name: contra_baked
+  m_EditorClassIdentifier: 
+  version: 3252
+  resultType: 0
+  materialsAndUVRects:
+  - material: {fileID: 2100000, guid: 9fdf3092223594781a4d1bd6426e1afa, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.953125
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh02
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.001368
+      y: 0.001368
+      width: 0
+      height: 0
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7441406
+      y: 0.50390625
+      width: 0.056640625
+      height: 0.15234375
+    srcObjName: contra_Mesh04
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.029263
+      y: 0.022289
+      width: 0.226651
+      height: 0.306851
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7441406
+      y: 0.66015625
+      width: 0.056640625
+      height: 0.15234375
+    srcObjName: contra_Mesh05
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.269862
+      y: 0.022289
+      width: 0.22665101
+      height: 0.306851
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7441406
+      y: 0.81640625
+      width: 0.056640625
+      height: 0.15039062
+    srcObjName: contra_Mesh06
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.510461
+      y: 0.360522
+      width: 0.22665101
+      height: 0.303364
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.8027344
+      y: 0.50390625
+      width: 0.056640625
+      height: 0.15039062
+    srcObjName: contra_Mesh07
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.029263
+      y: 0.684808
+      width: 0.226651
+      height: 0.30336398
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 7bb0acf692207489baa5ec0609fc7810, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.49316406
+      y: 0.001953125
+      width: 0.24902344
+      height: 0.49804688
+    srcObjName: contra_Mesh11
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.001368
+      y: 0.001368
+      width: 0.997264
+      height: 0.997264
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 850695e21718c432390eb4347f210ed7, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.6220703
+      y: 0.50390625
+      width: 0.111328125
+      height: 0.47070312
+    srcObjName: contra_Mesh12
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.20361
+      y: 0.029263
+      width: 0.892657
+      height: 0.94147396
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 9512b288833b444e4a6dc74c1787bf34, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.49316406
+      y: 0.50390625
+      width: 0.12695312
+      height: 0.47070312
+    srcObjName: contra_Mesh13
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.161767
+      y: 0.029263
+      width: 0.509093
+      height: 0.94496095
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c9c977a112a444b58b1ec0e56e77e979, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.9765625
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh14
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.67086
+      y: 0.029263
+      width: 0.034869015
+      height: 0.94147396
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: b2a604f47d1ba4339a45d12051a1b8d0, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.9921875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh15
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.001368
+      y: 0.001368
+      width: 0
+      height: 0
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: c9c977a112a444b58b1ec0e56e77e979, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.984375
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh16
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.001368
+      y: 0.001368
+      width: 0
+      height: 0
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 23a58df295d0d4f6586fd3272352f3f5, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.7441406
+      y: 0.001953125
+      width: 0.24902344
+      height: 0.49804688
+    srcObjName: contra_Mesh19
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.001368
+      y: 0.001368
+      width: 0.997264
+      height: 0.997264
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 98b2e38d2d23f45de96fd2b76a8fcd65, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.001953125
+      width: 0.24609375
+      height: 0.9472656
+    srcObjName: contra_Mesh22
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.405853
+      y: 0.092028
+      width: 0.986804
+      height: 1.8968949
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: e4187f09f896746c882e7e3a410b5c2d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0048828125
+      y: 0.953125
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh23
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.608095
+      y: 0.092028
+      width: 0.98331696
+      height: 1.8968949
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: b378e7b76df984a97b7617be56bb4cce, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.96875
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh24
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.011828
+      y: 0.001368
+      width: 1.893409
+      height: 1.998016
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: 5dbe0ef03e02e4702acada962d9e2611, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0009765625
+      y: 0.9609375
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh25
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.611582
+      y: 0.085054
+      width: 0.972856
+      height: 1.8759739
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: b022f0572d51d4955874f2f67ea62d2d, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.24902344
+      y: 0.001953125
+      width: 0.2421875
+      height: 0.9375
+    srcObjName: contra_Mesh26
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.416313
+      y: 0.085054
+      width: 0.96936995
+      height: 1.8759739
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  - material: {fileID: 2100000, guid: e7d649dde2e8a40dc84b4a124ba2e75b, type: 2}
+    atlasRect:
+      serializedVersion: 2
+      x: 0.0048828125
+      y: 0.9609375
+      width: 0.001953125
+      height: 0.00390625
+    srcObjName: contra_Mesh27
+    textureArraySliceIdx: -1
+    allPropsUseSameTiling: 1
+    allPropsUseSameTiling_sourceMaterialTiling:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    allPropsUseSameTiling_samplingEncapsulatinRect:
+      serializedVersion: 2
+      x: 0.085054
+      y: -34.697174
+      width: 1.8759739
+      height: 1.9980164
+    propsUseDifferntTiling_srcUVsamplingRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    tilingTreatment: 1
+  resultMaterials:
+  - combinedMaterial: {fileID: 2100000, guid: 0ccdcdde498b0439eabb10a0c41a0ae8, type: 2}
+    considerMeshUVs: 1
+    sourceMaterials:
+    - {fileID: 2100000, guid: 9fdf3092223594781a4d1bd6426e1afa, type: 2}
+    - {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    - {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    - {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    - {fileID: 2100000, guid: c3a7de04ff5d7427a8f819539ee4b817, type: 2}
+    - {fileID: 2100000, guid: 7bb0acf692207489baa5ec0609fc7810, type: 2}
+    - {fileID: 2100000, guid: 850695e21718c432390eb4347f210ed7, type: 2}
+    - {fileID: 2100000, guid: 9512b288833b444e4a6dc74c1787bf34, type: 2}
+    - {fileID: 2100000, guid: c9c977a112a444b58b1ec0e56e77e979, type: 2}
+    - {fileID: 2100000, guid: b2a604f47d1ba4339a45d12051a1b8d0, type: 2}
+    - {fileID: 2100000, guid: c9c977a112a444b58b1ec0e56e77e979, type: 2}
+    - {fileID: 2100000, guid: 23a58df295d0d4f6586fd3272352f3f5, type: 2}
+    - {fileID: 2100000, guid: 98b2e38d2d23f45de96fd2b76a8fcd65, type: 2}
+    - {fileID: 2100000, guid: e4187f09f896746c882e7e3a410b5c2d, type: 2}
+    - {fileID: 2100000, guid: b378e7b76df984a97b7617be56bb4cce, type: 2}
+    - {fileID: 2100000, guid: 5dbe0ef03e02e4702acada962d9e2611, type: 2}
+    - {fileID: 2100000, guid: b022f0572d51d4955874f2f67ea62d2d, type: 2}
+    - {fileID: 2100000, guid: e7d649dde2e8a40dc84b4a124ba2e75b, type: 2}
+  resultMaterialsTexArray: []
+  doMultiMaterial: 0

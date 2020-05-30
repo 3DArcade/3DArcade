@@ -8,7 +8,7 @@ namespace Arcade
     {
         public UnityEngine.Video.VideoPlayer videoPlayer = null;
         private ModelVideoEnabled videoEnabled;
-        private new Renderer renderer;
+        private Renderer _renderer;
         private bool setupVideoAfterGameDisable = false;
         private List<Texture2D> imageList = null;
         private bool visible = false;
@@ -43,7 +43,7 @@ namespace Arcade
 
         private void Awake()
         {
-            renderer = GetComponent<Renderer>();
+            _renderer = GetComponent<Renderer>();
         }
 
         public void Setup(List<Texture2D> textureList, string videoURL, float? animatedTextureSpeed, ModelComponentType modelComponentType, ModelProperties modelProperties, ModelSharedProperties modelSharedProperties)
@@ -115,19 +115,19 @@ namespace Arcade
             if (textureList.Count > 0)
             {
                 imageList = textureList;
-                if (renderer != null)
+                if (_renderer != null)
                 {
-                    renderer.material.mainTexture = textureList[0];
+                    _renderer.material.mainTexture = textureList[0];
                 }
             }
             else
             {
-                if (renderer != null && transform.parent.CompareTag("gamemodel") && modelComponentType == ModelComponentType.Screen)
+                if (_renderer != null && transform.parent.CompareTag("gamemodel") && modelComponentType == ModelComponentType.Screen)
                 {
-                    renderer.material.mainTexture = Texture2D.blackTexture;
+                    _renderer.material.mainTexture = Texture2D.blackTexture;
                 }
             }
-            if (renderer != null && (textureList.Count > 0 || videoEnabled != ModelVideoEnabled.Never))
+            if (_renderer != null && (textureList.Count > 0 || videoEnabled != ModelVideoEnabled.Never))
             {
                 SetupVideoPlayer();
             }
@@ -161,18 +161,18 @@ namespace Arcade
             videoPlayer.targetMaterialProperty = "_EmissionMap";
             videoPlayer.SetDirectAudioMute(0, true);
 
-            if (renderer != null)
+            if (_renderer != null)
             {
                 // TODO: This fixes black textures when some prefabs are loaded from an assetbundle
-                string shaderName = renderer.material.shader.name;
+                string shaderName = _renderer.material.shader.name;
                 Shader newShader = Shader.Find(shaderName);
                 if (newShader != null)
                 {
-                    renderer.material.shader = newShader;
+                    _renderer.material.shader = newShader;
                 }
                 else
                 {
-                    Debug.LogWarning("unable to refresh shader: " + shaderName + " in material " + renderer.material.name);
+                    Debug.LogWarning("unable to refresh shader: " + shaderName + " in material " + _renderer.material.name);
                 }
 
                 // TODO: Setup material, resize to better fit the screen. Should we still do this? I think we did this because the mame32 screenshots had a white border.
@@ -184,29 +184,29 @@ namespace Arcade
                 if (modelComponentType != ModelComponentType.Generic)
                 {
                     //renderer.material.SetTexture("_MainTex", null);
-                    renderer.material.color = Color.black;
-                    renderer.material.SetColor("_EmissionColor", Color.white);
-                    renderer.material.EnableKeyword("_EMISSION");
-                    renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                    _renderer.material.color = Color.black;
+                    _renderer.material.SetColor("_EmissionColor", Color.white);
+                    _renderer.material.EnableKeyword("_EMISSION");
+                    _renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
                 }
                 if (modelComponentType == ModelComponentType.Screen)
                 {
                     if (modelProperties.genre.ToLower().Contains("vector"))
                     {
-                        renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenVectorIntenstity);
+                        _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenVectorIntenstity);
                     }
                     else if (modelProperties.screen.ToLower().Contains("pinball"))
                     {
-                        renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenPinballIntensity);
+                        _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenPinballIntensity);
                     }
                     else
                     {
-                        renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenRasterIntensity);
+                        _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenRasterIntensity);
                     }
                 }
                 if (modelComponentType == ModelComponentType.Marquee)
                 {
-                    renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.marqueeIntensity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.marqueeIntensity);
                 }
             }
 
@@ -265,12 +265,12 @@ namespace Arcade
         {
             if (modelComponentType == ModelComponentType.Screen || modelComponentType == ModelComponentType.Marquee)
             {
-                Texture myTexture = renderer.material.GetTexture("_MainTex");
-                renderer.material.SetTexture("_EmissionMap", myTexture);
-                renderer.material.color = Color.black;
-                renderer.material.SetColor("_EmissionColor", Color.white);
-                renderer.material.EnableKeyword("_EMISSION");
-                renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+                Texture myTexture = _renderer.material.GetTexture("_MainTex");
+                _renderer.material.SetTexture("_EmissionMap", myTexture);
+                _renderer.material.color = Color.black;
+                _renderer.material.SetColor("_EmissionColor", Color.white);
+                _renderer.material.EnableKeyword("_EMISSION");
+                _renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             }
             if (modelComponentType == ModelComponentType.Screen)
             {
@@ -278,20 +278,20 @@ namespace Arcade
                 //renderer.material.SetTextureScale("_MainTex", new Vector2(1.15f, 1.15f));
                 if (modelProperties.genre.ToLower().Contains("vector"))
                 {
-                    renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenVectorIntenstity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenVectorIntenstity);
                 }
                 else if (modelProperties.screen.ToLower().Contains("pinball"))
                 {
-                    renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenPinballIntensity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenPinballIntensity);
                 }
                 else
                 {
-                    renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenRasterIntensity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenRasterIntensity);
                 }
             }
             if (modelComponentType == ModelComponentType.Marquee)
             {
-                renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.marqueeIntensity);
+                _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.marqueeIntensity);
             }
         }
 
@@ -474,10 +474,10 @@ namespace Arcade
                     index += 1;
                     if (index > (imageList.Count - 1))
                     { index = 0; }
-                    renderer.material.mainTexture = imageList[index];
-                    if (renderer.material.globalIlluminationFlags == MaterialGlobalIlluminationFlags.RealtimeEmissive)
+                    _renderer.material.mainTexture = imageList[index];
+                    if (_renderer.material.globalIlluminationFlags == MaterialGlobalIlluminationFlags.RealtimeEmissive)
                     {
-                        renderer.material.SetTexture("_EmissionMap", imageList[index]);
+                        _renderer.material.SetTexture("_EmissionMap", imageList[index]);
                     }
                     timer = 0f;
                 }

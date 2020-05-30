@@ -5,7 +5,7 @@ namespace Arcade
 {
     public class ModelTriggerSetup : MonoBehaviour
     {
-        public Dictionary<Event, List<TriggerWrapper>> triggerEvents = new Dictionary<Event, List<TriggerWrapper>>();
+        public Dictionary<TriggerEvent, List<TriggerWrapper>> triggerEvents = new Dictionary<TriggerEvent, List<TriggerWrapper>>();
         ModelSetup modelSetup;
         public bool savedSelected; // Public because we need it when we replace the model mesh.
 
@@ -24,7 +24,7 @@ namespace Arcade
             }
         }
 
-        public void Setup(Dictionary<Event, List<TriggerWrapper>> triggerEvents)
+        public void Setup(Dictionary<TriggerEvent, List<TriggerWrapper>> triggerEvents)
         {
             this.triggerEvents = triggerEvents;
         }
@@ -36,12 +36,12 @@ namespace Arcade
                 if (modelSetup.isSelected == true)
                 {
                     savedSelected = true;
-                    NewEvent(Event.ModelSelected, null);
+                    NewEvent(TriggerEvent.ModelSelected, null);
                 }
                 else
                 {
                     savedSelected = false;
-                    NewEvent(Event.ModelDeSelected, null);
+                    NewEvent(TriggerEvent.ModelDeSelected, null);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace Arcade
         {
             if (ArcadeManager.arcadeState == ArcadeStates.Running)
             {
-                NewEvent(Event.ModelCollisionEnter, other.collider.gameObject);
+                NewEvent(TriggerEvent.ModelCollisionEnter, other.collider.gameObject);
             }
             Debug.Log(other.collider.name);
         }
@@ -59,12 +59,12 @@ namespace Arcade
         {
             if (ArcadeManager.arcadeState == ArcadeStates.Running)
             {
-                NewEvent(Event.ModelCollisionExit, other.collider.gameObject);
+                NewEvent(TriggerEvent.ModelCollisionExit, other.collider.gameObject);
             }
             Debug.Log(other.collider.name);
         }
 
-        public void NewEvent(Event triggerEvent, GameObject triggerSource)
+        public void NewEvent(TriggerEvent triggerEvent, GameObject triggerSource)
         {
             //print("New event: " + triggerEvent.ToString());
             if (!triggerEvents.ContainsKey(triggerEvent))
@@ -85,9 +85,9 @@ namespace Arcade
         {
             foreach (TriggerWrapper triggerWrapper in triggerWrappers)
             {
-                if (System.Enum.TryParse(triggerWrapper.trigger.triggerEvent, true, out Event triggerEvent))
+                if (System.Enum.TryParse(triggerWrapper.trigger.triggerEvent, true, out TriggerEvent triggerEvent))
                 {
-                    if (triggerEvent == Event.ModelCollisionEnter || triggerEvent == Event.ModelCollisionExit)
+                    if (triggerEvent == TriggerEvent.ModelCollisionEnter || triggerEvent == TriggerEvent.ModelCollisionExit)
                     {
                         bool ok = false;
                         foreach (GameObject sourceObject in triggerWrapper.triggerSourceGameObjects)
@@ -108,38 +108,38 @@ namespace Arcade
                     if (targetObjectParent == null)
                     { continue; }
 
-                    if (System.Enum.TryParse(triggerWrapper.trigger.triggerAction, true, out Action triggerAction))
+                    if (System.Enum.TryParse(triggerWrapper.trigger.triggerAction, true, out TriggerAction triggerAction))
                     {
                         switch (triggerAction)
                         {
-                            case Action.PlayAudio:
+                            case TriggerAction.PlayAudio:
                                 ActionPlayAudio(triggerWrapper.trigger.audioProperties, targetObject);
                                 break;
-                            case Action.StopAudio:
+                            case TriggerAction.StopAudio:
                                 ActionStopAudio(triggerWrapper.trigger.audioProperties, targetObject);
                                 break;
-                            case Action.PauseAudio:
+                            case TriggerAction.PauseAudio:
                                 ActionPauseAudio(triggerWrapper.trigger.audioProperties, targetObject);
                                 break;
-                            case Action.PlayAnimation:
+                            case TriggerAction.PlayAnimation:
                                 ActionPlayAnimation(triggerWrapper.trigger.animationProperties, targetObject);
                                 break;
-                            case Action.PauseAnimation:
+                            case TriggerAction.PauseAnimation:
                                 ActionPauseAnimation(triggerWrapper.trigger.animationProperties, targetObject);
                                 break;
-                            case Action.StopAnimation:
+                            case TriggerAction.StopAnimation:
                                 ActionStopAnimation(triggerWrapper.trigger.animationProperties, targetObject);
                                 break;
-                            case Action.SetTransform:
+                            case TriggerAction.SetTransform:
                                 ActionSetTransform(triggerWrapper.trigger.triggerTansformProperties, targetObject, targetObjectParent);
                                 break;
-                            case Action.SetActiveEnabled:
+                            case TriggerAction.SetActiveEnabled:
                                 ActionSetActiveEnabled(targetObjectParent);
                                 break;
-                            case Action.SetActiveDisabled:
+                            case TriggerAction.SetActiveDisabled:
                                 ActionSetActiveDisabled(targetObjectParent);
                                 break;
-                            case Action.GetArtworkFromSelectedModel:
+                            case TriggerAction.GetArtworkFromSelectedModel:
                                 ActionGetArtworkFromSelectedModel(targetObjectParent);
                                 break;
                             default:

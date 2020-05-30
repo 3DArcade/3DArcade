@@ -11,10 +11,9 @@ namespace UnityStandardAssets.Utility
     {
         [SerializeField] private ReplacementList m_ReplacementList;
 
-        // Use this for initialization
+#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_TIZEN
         private void OnEnable()
         {
-#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_TIZEN
 			var renderers = FindObjectsOfType<Renderer>();
 			Debug.Log (renderers.Length+" renderers");
 			var oldMaterials = new List<Material>();
@@ -62,9 +61,8 @@ namespace UnityStandardAssets.Utility
 			{
 				Debug.Log (oldMaterials[n].name+" ("+oldMaterials[n].shader.name+")"+" replaced with "+newMaterials[n].name+" ("+newMaterials[n].shader.name+")");
 			}
-#endif
         }
-
+#endif
 
         [Serializable]
         public class ReplacementDefinition
@@ -180,13 +178,12 @@ namespace UnityStandardAssets.Utility.Inspector
                 items.InsertArrayElementAtIndex(items.arraySize);
             }
 
-            y += lineHeight + k_Spacing;
+            // y += lineHeight + k_Spacing;
 
             // Set indent back to what it was
             EditorGUI.indentLevel = indent;
             EditorGUI.EndProperty();
         }
-
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {

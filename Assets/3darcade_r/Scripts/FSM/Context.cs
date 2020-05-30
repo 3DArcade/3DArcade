@@ -35,9 +35,9 @@ namespace Arcade_r.FSM
             _currentState = null;
         }
 
-        public virtual void Update(float dt) => _currentState?.Update(dt);
+        public void Update(float dt) => _currentState?.Update(dt);
 
-        public virtual void FixedUpdate(float dt) => _currentState?.FixedUpdate(dt);
+        public void FixedUpdate(float dt) => _currentState?.FixedUpdate(dt);
 
         public void TransitionTo<U>() where U : T
         {

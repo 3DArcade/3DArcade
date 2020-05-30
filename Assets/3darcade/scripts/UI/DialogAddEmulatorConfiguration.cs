@@ -13,11 +13,13 @@ namespace Arcade
 
         public Dictionary<string, string> GetEmulatorProperties()
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict["descriptiveName"] = descriptiveName.text;
-            dict["id"] = id.text;
-            dict["masterGamelist"] = masterGamelist.text;
-            dict["catVer"] = catVer.text;
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                ["descriptiveName"] = descriptiveName.text,
+                ["id"] = id.text,
+                ["masterGamelist"] = masterGamelist.text,
+                ["catVer"] = catVer.text
+            };
             return dict;
         }
     }

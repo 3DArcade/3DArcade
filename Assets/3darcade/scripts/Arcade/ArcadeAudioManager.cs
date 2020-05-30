@@ -21,7 +21,6 @@ namespace Arcade
 
         private void Update()
         {
-            // No need to update every frame.
             if (Time.frameCount % NUM_FRAMES_TO_SKIP != 0)
             {
                 return;

@@ -15,8 +15,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		private static VirtualInput activeInput;
 
-		private static VirtualInput s_TouchInput;
-		private static VirtualInput s_HardwareInput;
+		private static readonly VirtualInput s_TouchInput;
+		private static readonly VirtualInput s_HardwareInput;
 
 
 		static CrossPlatformInputManager()
@@ -194,8 +194,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public class VirtualAxis
 		{
 			public string name { get; private set; }
-			private float m_Value;
-			public bool matchWithInputManager { get; private set; }
+            public bool matchWithInputManager { get; private set; }
 
 
 			public VirtualAxis(string name)
@@ -221,19 +220,16 @@ namespace UnityStandardAssets.CrossPlatformInput
 			// a controller gameobject (eg. a virtual thumbstick) should update this class
 			public void Update(float value)
 			{
-				m_Value = value;
+				GetValue = value;
 			}
 
 
-			public float GetValue
-			{
-				get { return m_Value; }
-			}
+            public float GetValue { get; private set; }
 
 
-			public float GetValueRaw
+            public float GetValueRaw
 			{
-				get { return m_Value; }
+				get { return GetValue; }
 			}
 		}
 
@@ -247,10 +243,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 			private int m_LastPressedFrame = -5;
 			private int m_ReleasedFrame = -5;
-			private bool m_Pressed;
 
-
-			public VirtualButton(string name)
+            public VirtualButton(string name)
 				: this(name, true)
 			{
 			}
@@ -266,11 +260,11 @@ namespace UnityStandardAssets.CrossPlatformInput
 			// A controller gameobject should call this function when the button is pressed down
 			public void Pressed()
 			{
-				if (m_Pressed)
+				if (GetButton)
 				{
 					return;
 				}
-				m_Pressed = true;
+				GetButton = true;
 				m_LastPressedFrame = Time.frameCount;
 			}
 
@@ -278,7 +272,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			// A controller gameobject should call this function when the button is released
 			public void Released()
 			{
-				m_Pressed = false;
+				GetButton = false;
 				m_ReleasedFrame = Time.frameCount;
 			}
 
@@ -290,14 +284,11 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 
 
-			// these are the states of the button which can be read via the cross platform input system
-			public bool GetButton
-			{
-				get { return m_Pressed; }
-			}
+            // these are the states of the button which can be read via the cross platform input system
+            public bool GetButton { get; private set; }
 
 
-			public bool GetButtonDown
+            public bool GetButtonDown
 			{
 				get
 				{

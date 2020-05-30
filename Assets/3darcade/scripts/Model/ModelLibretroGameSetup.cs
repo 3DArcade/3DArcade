@@ -1,94 +1,131 @@
 ﻿using SK.Libretro;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Arcade
 {
     public class ModelLibretroGameSetup : MonoBehaviour
     {
-        [Range(0.5f, 2f)]
-        [SerializeField] private float _timeScale = 1.0f;
-
-        ModelSetup modelSetup;
+        [SerializeField, Range(0.5f, 2f)] private float _timeScale = 1.0f;
+        [SerializeField] private bool _useAudioRateForSync = false;
+        [SerializeField] private float _audioMaxVolume = 1f;
+        [SerializeField] private float _audioMinDistance = 2f;
+        [SerializeField] private float _audioMaxDistance = 10f;
+        [SerializeField] private FilterMode _videoFilterMode = FilterMode.Point;
 
         public Wrapper Wrapper { get; private set; }
 
-        private Renderer _rendererComponent = null;
-        private Material _originalMaterial = null;
-
-        private float _frameTimer;
-
-#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-        private readonly bool useUnityAudio = true;
-#else
-        private readonly bool useUnityAudio = false;
-#endif
-
-        private bool useRunLoop = true;
-        private bool activateGraphics = true; // When Update() is used we need to activate graphics there so unityGraphics.TextureUpdated is at least once true
-
-        void Start()
+        public bool VideoEnabled
         {
-            modelSetup = gameObject.GetComponent<ModelSetup>();
-            if (modelSetup == null)
+            get => _graphicsEnabled;
+            set
             {
-                print("Error - no modelsetup found for " + gameObject.name);
+                if (value)
+                {
+                    ActivateGraphics();
+                }
+                else
+                {
+                    DeactivateGraphics();
+                }
             }
+        }
+
+        public bool AudioEnabled
+        {
+            get => _audioEnabled;
+            set
+            {
+                if (value)
+                {
+                    ActivateAudio();
+                }
+                else
+                {
+                    DeactivateAudio();
+                }
+            }
+        }
+
+        public bool InputEnabled
+        {
+            get => _inputEnabled;
+            set
+            {
+                if (value)
+                {
+                    ActivateInput();
+                }
+                else
+                {
+                    DeactivateInput();
+                }
+            }
+        }
+
+        public bool AudioVolumeControlledByDistance { get; set; } = true;
+
+        public float AudioMaxVolume
+        {
+            get => _audioMaxVolume;
+            set
+            {
+                _audioMaxVolume = value;
+                AudioSetVolume(value);
+            }
+        }
+
+        private Transform _player;
+
+        private Transform _screenTransform  = null;
+        private Renderer _rendererComponent = null;
+        private Material _originalMaterial  = null;
+
+        private float _gameFps        = 0f;
+        private float _gameSampleRate = 0f;
+
+        private float _frameTimer = 0f;
+
+        private bool _graphicsEnabled = false;
+        private bool _audioEnabled    = false;
+        private bool _inputEnabled    = false;
+
+        private void Awake()
+        {
+            _player = FindObjectOfType<RigidbodyFirstPersonController>().transform;
         }
 
         private void Update()
         {
-            //if (savedSelected != modelSetup.isSelected)
-            //{
-            //    if (modelSetup.isSelected == true)
-            //    {
-            //        savedSelected = true;
-            //      //  ResumeGame();
-            //       // print("Resume " + modelSetup.descriptiveName);
-            //    }
-            //    else
-            //    {
-            //        savedSelected = false;
-            //        PauseGame(false, true, true);
-            //      //  print("Pause " + modelSetup.descriptiveName);
-            //    }
-            //}
-
-            if (useRunLoop)
-            {
-                return;
-            }
-
-            if (activateGraphics)
-            {
-                ActivateGraphics();
-                activateGraphics = false;
-            }
-
-            if (Wrapper != null && Wrapper.Game.SystemAVInfo.timing.fps > 0.0)
+            if (Wrapper != null && _gameFps > 0f && _gameSampleRate > 0f)
             {
                 _frameTimer += Time.deltaTime;
-                float timePerFrame = 1f / (float)Wrapper.Game.SystemAVInfo.timing.fps / _timeScale;
-
-                while (_frameTimer >= timePerFrame)
+                float targetFrameTime = 1f / (_useAudioRateForSync ? _gameSampleRate / 1000f : _gameFps) / _timeScale;
+                while (_frameTimer >= targetFrameTime)
                 {
                     Wrapper.Update();
-                    _frameTimer -= timePerFrame;
+                    _frameTimer -= targetFrameTime;
                 }
-                if (Wrapper.GraphicsProcessor != null && Wrapper.GraphicsProcessor is UnityGraphicsProcessor unityGraphics)
+
+                GraphicsSetFilterMode(_videoFilterMode);
+
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+                if (AudioVolumeControlledByDistance && Wrapper.AudioProcessor != null && Wrapper.AudioProcessor is SK.Libretro.NAudio.AudioProcessor NAudioAudio)
                 {
-                    if (unityGraphics.TextureUpdated)
+                    float distance = Vector3.Distance(transform.position, _player.transform.position);
+                    if (distance > 0f)
                     {
-                        _rendererComponent.material.SetTexture("_EmissionMap", unityGraphics.Texture);
+                        float volume = Mathf.Clamp(Mathf.Pow((distance - _audioMaxDistance) / (_audioMinDistance - _audioMaxDistance), 2f), 0f, _audioMaxVolume);
+                        NAudioAudio.SetVolume(volume);
                     }
                 }
+#endif
             }
         }
 
-        public void StartGame(string core, string gameDirectory, string gameName, bool runLoop = true)
+        public void StartGame(string core, string gameDirectory, string gameName)
         {
-            useRunLoop = runLoop;
             if (!string.IsNullOrEmpty(core) && !string.IsNullOrEmpty(gameDirectory) && !string.IsNullOrEmpty(gameName))
             {
                 if (transform.childCount > 0)
@@ -96,24 +133,23 @@ namespace Arcade
                     Transform modelTransform = transform.GetChild(0);
                     if (modelTransform != null && modelTransform.childCount > 1)
                     {
-                        Transform screenTransform = modelTransform.GetChild(1);
-                        if (screenTransform.TryGetComponent(out _rendererComponent))
+                        _screenTransform = modelTransform.GetChild(1);
+                        if (_screenTransform.TryGetComponent(out _rendererComponent))
                         {
-                            Wrapper = new Wrapper();
+                            Wrapper = new Wrapper((TargetPlatform)Application.platform, $"{Application.streamingAssetsPath}/3darcade~/Libretro");
+
                             if (Wrapper.StartGame(core, gameDirectory, gameName))
                             {
+                                _gameFps = (float)Wrapper.Game.SystemAVInfo.timing.fps;
+                                _gameSampleRate = (float)Wrapper.Game.SystemAVInfo.timing.sample_rate;
+
                                 ActivateGraphics();
                                 ActivateAudio();
-                                ActivateInput();
-                                _originalMaterial = _rendererComponent.material;
-                                Material _newMaterial = new Material(_rendererComponent.material);
-                                _rendererComponent.material = _newMaterial;
-                                _rendererComponent.material.mainTextureScale = new Vector2(1f, -1f);
+
+                                _originalMaterial = _rendererComponent.sharedMaterial;
                                 _rendererComponent.material.color = Color.black;
                                 _rendererComponent.material.EnableKeyword("_EMISSION");
-                                _rendererComponent.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-                                _rendererComponent.material.SetColor("_EmissionColor", Color.white);
-                                if (useRunLoop) { InvokeRepeating("LibretroRunLoop", 0f, 1f / (float)Wrapper.Game.SystemAVInfo.timing.fps); }
+                                _rendererComponent.material.SetColor("_EmissionColor", Color.white * 1.2f);
                             }
                             else
                             {
@@ -126,22 +162,6 @@ namespace Arcade
             }
         }
 
-        [SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "Called by InvokeRepeating")]
-        private void LibretroRunLoop()
-        {
-            if (Wrapper != null)
-            {
-                Wrapper.Update();
-                if (Wrapper.GraphicsProcessor != null && Wrapper.GraphicsProcessor is UnityGraphicsProcessor unityGraphics)
-                {
-                    if (unityGraphics.TextureUpdated)
-                    {
-                        _rendererComponent.material.SetTexture("_EmissionMap", unityGraphics.Texture);
-                    }
-                }
-            }
-        }
-
         public void StopGame()
         {
             if (_rendererComponent != null && _rendererComponent.material != null && _originalMaterial != null)
@@ -149,17 +169,20 @@ namespace Arcade
                 _rendererComponent.material = _originalMaterial;
                 _originalMaterial = null;
             }
+
             if (Wrapper == null)
             {
                 return;
             }
-            CancelInvoke();
+
             Wrapper?.StopGame();
             Wrapper = null;
-            DeactivateInput();
-            DeactivateAudio();
-            UnityAudioProcessorComponent unityAudio = GetComponent<UnityAudioProcessorComponent>();
-            if (unityAudio != null) { Destroy(unityAudio); }
+
+            if (TryGetComponent(out SK.Libretro.Unity.AudioProcessor unityAudio))
+            {
+                Destroy(unityAudio);
+            }
+
             Destroy(this);
         }
 
@@ -174,6 +197,14 @@ namespace Arcade
             if (pauseAudio) { DeactivateAudio(); }
         }
 
+        public void GraphicsSetFilterMode(FilterMode filterMode)
+        {
+            if (Wrapper != null && Wrapper.GraphicsProcessor != null && Wrapper.GraphicsProcessor is SK.Libretro.Unity.GraphicsProcessor unityGraphics)
+            {
+                unityGraphics.VideoFilterMode = filterMode;
+            }
+        }
+
         public void ResumeGame()
         {
             if (Wrapper == null)
@@ -185,44 +216,87 @@ namespace Arcade
             ActivateInput();
         }
 
-        public void ActivateGraphics()
+        private void ActivateGraphics()
         {
-            Wrapper?.ActivateGraphics(new UnityGraphicsProcessor());
+            SK.Libretro.Unity.GraphicsProcessor unityGraphics = new SK.Libretro.Unity.GraphicsProcessor
+            {
+                OnTextureRecreated = GraphicsSetTextureCallback,
+                VideoFilterMode = _videoFilterMode
+            };
+            Wrapper?.ActivateGraphics(unityGraphics);
+            _graphicsEnabled = true;
         }
 
-        public void DeactivateGraphics()
+        private void DeactivateGraphics()
         {
             Wrapper?.DeactivateGraphics();
+            _graphicsEnabled = false;
         }
 
-        public void ActivateAudio()
+        private void ActivateAudio()
         {
-            //  var unityAudioProcessorComponent = gameObject.AddComponent<UnityAudioProcessorComponent>();
-            UnityAudioProcessorComponent unityAudio = GetComponent<UnityAudioProcessorComponent>();
-            if (unityAudio == null && useUnityAudio) { unityAudio = gameObject.AddComponent<UnityAudioProcessorComponent>(); }
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+            SK.Libretro.Unity.AudioProcessor unityAudio = GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>();
             if (unityAudio != null)
             {
                 Wrapper?.ActivateAudio(unityAudio);
             }
             else
             {
-                Wrapper?.ActivateAudio(new NAudioAudioProcessor());
+                Wrapper?.ActivateAudio(new SK.Libretro.NAudio.AudioProcessor());
+            }
+#else
+            Libretro.UnityAudioProcessorComponent unityAudio = GetComponentInChildren<Libretro.UnityAudioProcessorComponent>(true);
+            if (unityAudio != null)
+            {
+                unityAudio.gameObject.SetActive(true);
+                Wrapper?.ActivateAudio(unityAudio);
+            }
+            else
+            {
+                GameObject audioProcessorGameObject = new GameObject("AudioProcessor");
+                audioProcessorGameObject.transform.SetParent(_screenTransform);
+                Libretro.UnityAudioProcessorComponent audioProcessorComponent = audioProcessorGameObject.AddComponent<Libretro.UnityAudioProcessorComponent>();
+                Wrapper?.ActivateAudio(audioProcessorComponent);
+            }
+#endif
+            _audioEnabled = true;
+        }
+
+        private void DeactivateAudio()
+        {
+            Wrapper?.DeactivateAudio();
+            _audioEnabled = false;
+        }
+
+        private void ActivateInput()
+        {
+            Wrapper?.ActivateInput(FindObjectOfType<PlayerInputManager>().GetComponent<SK.Libretro.IInputProcessor>());
+            _inputEnabled = true;
+        }
+
+        private void DeactivateInput()
+        {
+            Wrapper?.DeactivateInput();
+            _inputEnabled = false;
+        }
+
+        private void GraphicsSetTextureCallback(Texture2D texture)
+        {
+            if (_rendererComponent != null)
+            {
+                _rendererComponent.material.SetTexture("_EmissionMap", texture);
             }
         }
 
-        public void DeactivateAudio()
+        private void AudioSetVolume(float volume)
         {
-            Wrapper?.DeactivateAudio();
-        }
-
-        public void ActivateInput()
-        {
-            Wrapper?.ActivateInput(FindObjectOfType<PlayerInputManager>().GetComponent<IInputProcessor>());
-        }
-
-        public void DeactivateInput()
-        {
-            Wrapper?.DeactivateInput();
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+            if (Wrapper.AudioProcessor != null && Wrapper.AudioProcessor is SK.Libretro.NAudio.AudioProcessor NAudioAudio)
+            {
+                NAudioAudio.SetVolume(Mathf.Clamp(volume, 0f, _audioMaxVolume));
+            }
+#endif
         }
     }
 }

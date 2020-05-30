@@ -1,44 +1,34 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
-#if UNITY_EDITOR
-#endif
 
 namespace Arcade
 {
     public class ArcadePopUp : PropertyAttribute
     {
-        public ArcadePopUp(params string[] list)
-        {
-            List = list;
-        }
+        public readonly string[] List;
+
+        public ArcadePopUp(params string[] list) => List = list;
 
         public ArcadePopUp(Type type)
         {
             if (type.IsEnum)
             {
-                List = Enum.GetNames(type) as string[];
+                List = Enum.GetNames(type);
             }
             else
             {
                 try
                 {
                     List = type.GetProperties().Select(x => x.Name).ToArray();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Exception : {0} ", e.Message);
-                }
-                if (List.Length < 1)
-                {
-                    try
+                    if (List.Length < 1)
                     {
                         List = type.GetFields().Select(x => x.Name).ToArray();
                     }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Exception : {0} ", e.Message);
-                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
                 }
             }
         }
@@ -49,12 +39,6 @@ namespace Arcade
             {
                 List = ArcadeManager.arcadesConfigurationList.Select(x => x.id).ToList().ToArray();
             }
-        }
-
-        public string[] List
-        {
-            get;
-            private set;
         }
     }
 

@@ -40,8 +40,8 @@ namespace Arcade_r
     {
         public int Layer;
         public bool ColliderIsTrigger;
-        public bool RigidbodyIsKinematic;
-        public RigidbodyInterpolation RigidbodyInterpolation;
         public CollisionDetectionMode CollisionDetectionMode;
+        public RigidbodyInterpolation RigidbodyInterpolation;
+        public bool RigidbodyIsKinematic;
     }
 }

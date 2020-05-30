@@ -26,7 +26,7 @@ namespace Arcade
         [MenuItem("Assets/Build Prefab", true)]
         private static bool MenuOptionGetAssetPathValidation()
         {
-            return AssetDatabase.GetAssetPath(Selection.activeObject).Contains("Assets/Resources") ? true : false;
+            return AssetDatabase.GetAssetPath(Selection.activeObject).Contains("Assets/Resources");
         }
 #pragma warning restore IDE0051 // Remove unused private members
 
@@ -112,7 +112,7 @@ namespace Arcade
 
     public class BuildAssetBundleWindow : EditorWindow
     {
-        private static ModelSetup modelSetup;
+        //private static ModelSetup modelSetup;
         private static string assetPath;
         private static string assetName;
 
@@ -127,7 +127,7 @@ namespace Arcade
             Debug.Log("show me now");
             BuildAssetBundleWindow.assetPath = assetPath;
             BuildAssetBundleWindow.assetName = assetName;
-            modelSetup = gameObject.GetComponent<ModelSetup>();
+            // modelSetup = gameObject.GetComponent<ModelSetup>();
             EditorWindow window = GetWindow(typeof(BuildAssetBundleWindow)) as BuildAssetBundleWindow;
             window.Show();
         }

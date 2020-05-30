@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/3darcade_r/InputSettingsActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/3darcade_r/InputSystemSettings/InputSettingsActions.inputactions'
 
 using System;
 using System.Collections;

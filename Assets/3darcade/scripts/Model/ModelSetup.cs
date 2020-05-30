@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -69,12 +70,6 @@ namespace Arcade
         [HideInInspector] public bool isPlaying = false;
         [HideInInspector] public ModelSharedProperties modelSharedProperties;
 
-        //private List<GameObject> children;
-        //private new Renderer renderer;
-        private BoxCollider boxCol;
-        private Rigidbody rigid;
-        //private Texture2D tempTexture = null;
-
         public AnimationCurve volumeCurve;
 
         private void Awake()
@@ -100,19 +95,9 @@ namespace Arcade
                 }
                 SetupModelPropertiesFromEmulatorMasterGameList(thisName, "mame");
             }
-            //  SetupModel();
         }
 
-        //void OnValidate()
-        //{
-        //    if (updateModelPropertiesFromMasterGamelist)
-        //    {
-        //        updateModelPropertiesFromMasterGamelist = false;
-        //        SetupPropertiesFromEmulatorMasterGameList(id, emulator);
-        //    }
-        //}
-
-        [MenuItem("CONTEXT/ModelSetup/Update from MasterGamelist")]
+        [MenuItem("CONTEXT/ModelSetup/Update from MasterGamelist"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuOptionUpdateFromMasterGamelist(MenuCommand menuCommand)
         {
             ModelSetup modelSetup = menuCommand.context as ModelSetup;
@@ -125,7 +110,7 @@ namespace Arcade
             modelSetup.SetupModelPropertiesFromEmulatorMasterGameList(model, modelSetup.emulator);
         }
 
-        [MenuItem("CONTEXT/ModelSetup/Build Prefab(s)")]
+        [MenuItem("CONTEXT/ModelSetup/Build Prefab(s)"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuOptionGetAssetPath(MenuCommand menuCommand)
         {
             ModelSetup modelSetup = menuCommand.context as ModelSetup;
@@ -137,13 +122,13 @@ namespace Arcade
             print(assetPath + assetName + ".prefab");
             ShowBuildAssetBundleWindow?.Invoke(obj, assetPath, assetName);
         }
-        [MenuItem("CONTEXT/ModelSetup/Build Prefab(s)", true)]
+
+        [MenuItem("CONTEXT/ModelSetup/Build Prefab(s)", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static bool MenuOptionGetAssetPathValidation(MenuCommand menuCommand)
         {
             ModelSetup modelSetup = menuCommand.context as ModelSetup;
             GameObject obj = modelSetup.transform.gameObject;
-            return AssetDatabase.GetAssetPath(obj).Contains("Assets/Resources") ? true : false;
-            // modelSetup.SetupPropertiesFromEmulatorMasterGameList(modelSetup.id, modelSetup.emulator);
+            return AssetDatabase.GetAssetPath(obj).Contains("Assets/Resources");
         }
 #endif
 
@@ -154,17 +139,8 @@ namespace Arcade
             idParent = modelProperties.idParent;
             emulator = modelProperties.emulator;
             model = modelProperties.model;
-            //System.Enum.TryParse(modelProperties.animationType, true, out animationType);
             grabbable = modelProperties.grabbable;
-            //lightmap = modelProperties.lightmap;
-            //animatedTextureSequence = modelProperties.animatedTextureSequence;
             animatedTextureSpeed = modelProperties.animatedTextureSpeed;
-
-            //attachToCamera = modelProperties.attachToCamera; // TODO: Move to TriggerEvent System? setParent to, set Transform
-            //hideWhenArcadeIsActive = modelProperties.hideWhenArcadeIsActive;
-            //receiveSelectedModelArtWork = modelProperties.receiveSelectedModelArtWork; //  TODO: Move to TriggerEvent System?
-            //receiveActiveMenuRenderTexture = modelProperties.receiveActiveMenuRenderTexture; // TODO: Move to TriggerEvent System?
-
             screen = modelProperties.screen;
             manufacturer = modelProperties.manufacturer;
             year = modelProperties.year;
@@ -174,16 +150,9 @@ namespace Arcade
             runnable = modelProperties.runnable;
             _ = System.Enum.TryParse(modelProperties.gameLauncherMethod, true, out gameLauncherMethod);
             playCount = modelProperties.playCount;
-            //audioProperties = modelProperties.audioProperties;
             zone = modelProperties.zone;
             triggers = modelProperties.triggers;
-            //print("trigger " + triggers.Count);
-            //if (triggers.Count > 0)
-            //{
-            //    print("animation " + triggers[0].animationProperties.name);
-            //}
             triggerIDs = modelProperties.triggerIDs;
-
         }
 
         public ModelProperties GetModelProperties()
@@ -195,17 +164,8 @@ namespace Arcade
                 idParent = idParent,
                 emulator = emulator,
                 model = model,
-                //modelProperties.animationType = animationType.ToString();
                 grabbable = grabbable,
-                //modelProperties.lightmap = lightmap;
-                //modelProperties.animatedTextureSequence = animatedTextureSequence;
                 animatedTextureSpeed = animatedTextureSpeed,
-
-                //modelProperties.attachToCamera = attachToCamera; // TODO: Move to TriggerEvent System? setParent to, set Transform
-                //modelProperties.hideWhenArcadeIsActive = hideWhenArcadeIsActive;
-                //modelProperties.receiveSelectedModelArtWork = receiveSelectedModelArtWork; //  TODO: Move to TriggerEvent System?
-                //modelProperties.receiveActiveMenuRenderTexture = receiveActiveMenuRenderTexture; // TODO: Move to TriggerEvent System?
-
                 screen = screen,
                 manufacturer = manufacturer,
                 year = year,
@@ -215,7 +175,6 @@ namespace Arcade
                 runnable = runnable,
                 gameLauncherMethod = gameLauncherMethod.ToString(),
                 playCount = playCount,
-                //modelProperties.audioProperties = audioProperties;
                 zone = zone,
                 triggers = triggers,
                 triggerIDs = triggerIDs
@@ -439,41 +398,6 @@ namespace Arcade
             {
                 modelVideoSetup.Setup(textureList, url, animatedTextureSpeed, modelComponentType, GetModelProperties(), modelSharedProperties);
             }
-        }
-
-        private void SetupModel()
-        {
-            // Add rigidbody to gameObject
-            if (rigid == null)
-            {
-                rigid = GetComponent<Rigidbody>();
-                if (rigid == null)
-                {
-                    rigid = gameObject.AddComponent<Rigidbody>();
-                    rigid.mass = 20;
-                }
-            }
-
-            if (GetComponent<MeshCollider>() != null || GetComponentInChildren<MeshCollider>() != null || GetComponentInChildren<BoxCollider>() != null)
-            {
-                return;
-            }
-
-            boxCol = gameObject.GetComponent<BoxCollider>();
-            if (boxCol == null)
-            {
-                boxCol = gameObject.AddComponent<BoxCollider>();
-            }
-
-            transform.position = new Vector3(0, 0, 0);
-            Renderer[] rr = GetComponentsInChildren<Renderer>();
-            Bounds b = rr[0].bounds;
-            foreach (Renderer r in rr)
-            {
-                b.Encapsulate(r.bounds);
-            }
-            boxCol.center = new Vector3(0, b.size.y / 2, 0);
-            boxCol.size = new Vector3(b.size.x, b.size.y, b.size.z);
         }
 
         public void SetupModelPropertiesFromEmulatorMasterGameList(string nameID, string emulatorID)

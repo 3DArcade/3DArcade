@@ -24,6 +24,7 @@ namespace Arcade_r
 {
     public interface IInteractable
     {
-        void OnInteract();
+        string DescriptiveName { get; }
+        string Id { get; }
     }
 }

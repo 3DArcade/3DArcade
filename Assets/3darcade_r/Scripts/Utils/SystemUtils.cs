@@ -26,7 +26,12 @@ namespace Arcade_r
 {
     public enum OS
     {
-        MacOS, iOS, tvOS, Windows, Linux, Android
+        MacOS,
+        iOS,
+        tvOS,
+        Windows,
+        Linux,
+        Android
     }
 
     public static class SystemUtils

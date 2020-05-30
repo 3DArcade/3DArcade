@@ -95,7 +95,7 @@ namespace UnityStandardAssets.Utility
                 // 2nd point may have been the 'last' point - a dupe of the first,
                 // (to give a value of max track distance instead of zero)
                 // but now it must be wrapped back to zero if that was the case.
-                p2n = p2n%numPoints;
+                p2n %= numPoints;
 
                 P0 = points[p0n];
                 P1 = points[p1n];
@@ -225,8 +225,8 @@ namespace UnityStandardAssets.Utility.Inspector
     [CustomPropertyDrawer(typeof (WaypointCircuit.WaypointList))]
     public class WaypointListDrawer : PropertyDrawer
     {
-        private float lineHeight = 18;
-        private float spacing = 4;
+        private readonly float lineHeight = 18;
+        private readonly float spacing = 4;
 
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -355,7 +355,7 @@ namespace UnityStandardAssets.Utility.Inspector
                     child.name = "Waypoint " + (n++).ToString("000");
                 }
             }
-            y += lineHeight + spacing;
+            //y += lineHeight + spacing;
 
             // Set indent back to what it was
             EditorGUI.indentLevel = indent;

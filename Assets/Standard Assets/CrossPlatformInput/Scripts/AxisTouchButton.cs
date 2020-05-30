@@ -35,19 +35,18 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
             // find the other button witch which this button should be paired
             // (it should have the same axisName)
-            AxisTouchButton[] otherAxisButtons = FindObjectsOfType(typeof(AxisTouchButton)) as AxisTouchButton[];
 
-			if (otherAxisButtons != null)
-			{
-				for (int i = 0; i < otherAxisButtons.Length; i++)
-				{
-					if (otherAxisButtons[i].axisName == axisName && otherAxisButtons[i] != this)
-					{
-						m_PairedWith = otherAxisButtons[i];
-					}
-				}
-			}
-		}
+            if (FindObjectsOfType(typeof(AxisTouchButton)) is AxisTouchButton[] otherAxisButtons)
+            {
+                for (int i = 0; i < otherAxisButtons.Length; i++)
+                {
+                    if (otherAxisButtons[i].axisName == axisName && otherAxisButtons[i] != this)
+                    {
+                        m_PairedWith = otherAxisButtons[i];
+                    }
+                }
+            }
+        }
 
 		void OnDisable()
 		{
