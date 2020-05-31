@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6115320735400772200}
-  - component: {fileID: 2491593810551585506}
   - component: {fileID: 1605844494808472733}
+  - component: {fileID: 2491593810551585506}
   m_Layer: 0
   m_Name: bosco
   m_TagString: Untagged
@@ -36,22 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2491593810551585506
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078398865262776790}
-  serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1605844494808472733
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65,6 +49,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.62686026, y: 1.704691, z: 0.8363054}
   m_Center: {x: 0, y: 0.8523455, z: 0}
+--- !u!54 &2491593810551585506
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078398865262776790}
+  serializedVersion: 2
+  m_Mass: 80
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1709846068959573433
 GameObject:
   m_ObjectHideFlags: 0

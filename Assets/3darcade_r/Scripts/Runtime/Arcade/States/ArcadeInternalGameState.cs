@@ -60,16 +60,14 @@ namespace Arcade_r
 
             if (Keyboard.current.f1Key.wasPressedThisFrame)
             {
-                if (_context.App.PlayerControls.FirstPersonActions.enabled)
+                if (_context.App.PlayerControls.FirstPersonActions.Look.enabled)
                 {
-                    _context.App.PlayerControls.FirstPersonActions.Disable();
+                    _context.App.PlayerControls.FirstPersonActions.Look.Disable();
                 }
                 else
                 {
-                    _context.App.PlayerControls.FirstPersonActions.Enable();
+                    _context.App.PlayerControls.FirstPersonActions.Look.Enable();
                 }
-                _context.App.PlayerControls.FirstPersonActions.Interact.Disable();
-                _context.App.PlayerControls.FirstPersonActions.ToggleMoveCab.Disable();
             }
         }
     }

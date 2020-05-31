@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3109875749734293505}
-  - component: {fileID: 7582394089662258003}
   - component: {fileID: 2648951995751264538}
+  - component: {fileID: 7582394089662258003}
   m_Layer: 0
   m_Name: pacman
   m_TagString: Untagged
@@ -194,22 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &7582394089662258003
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4944526792194576041}
-  serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2648951995751264538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -223,6 +207,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.62927914, y: 1.7370441, z: 0.8518324}
   m_Center: {x: 0, y: 0.86852205, z: 0}
+--- !u!54 &7582394089662258003
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944526792194576041}
+  serializedVersion: 2
+  m_Mass: 80
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7966838470582468620
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,28 +28,22 @@ namespace Arcade_r
     [RequireComponent(typeof(TextMeshProUGUI)), DisallowMultipleComponent]
     public sealed class UIMoveCabCurrentModelText : MonoBehaviour
     {
-        private TextMeshProUGUI _currentModelText;
+        private TextMeshProUGUI _text;
 
-        private void Awake()
-        {
-            _currentModelText = GetComponent<TextMeshProUGUI>();
-        }
+        private void Awake() => _text = GetComponent<TextMeshProUGUI>();
 
         private void OnEnable()
         {
-            _currentModelText.text = string.Empty;
+            _text.text = string.Empty;
             MoveCabController.OnCurrentModelChanged += OnTargetChange;
         }
 
         private void OnDisable()
         {
-            _currentModelText.text = string.Empty;
+            _text.text = string.Empty;
             MoveCabController.OnCurrentModelChanged -= OnTargetChange;
         }
 
-        private void OnTargetChange(string name)
-        {
-            _currentModelText.text = name;
-        }
+        private void OnTargetChange(string name) => _text.text = name;
     }
 }

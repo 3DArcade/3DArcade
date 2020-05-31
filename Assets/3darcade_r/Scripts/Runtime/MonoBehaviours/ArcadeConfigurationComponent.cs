@@ -40,6 +40,22 @@ namespace Arcade_r
 
         public string Id => _id;
 
+        public void FromArcadeConfiguration(ArcadeConfiguration arcadeConfiguration)
+        {
+            _descriptiveName       = arcadeConfiguration.DescriptiveName;
+            _id                    = arcadeConfiguration.Id;
+            if (!System.Enum.TryParse(arcadeConfiguration.ArcadeType, true, out _arcadeType))
+            {
+                _arcadeType = ArcadeType.None;
+            }
+            _renderSettings        = arcadeConfiguration.RenderSettings;
+            _audioSettings         = arcadeConfiguration.AudioSettings;
+            _videoSettings         = arcadeConfiguration.VideoSettings;
+            _fpsArcadeProperties   = arcadeConfiguration.FpsArcadeProperties;
+            _cylArcadeProperties   = arcadeConfiguration.CylArcadeProperties;
+            _zones                 = arcadeConfiguration.Zones;
+        }
+
         public ArcadeConfiguration ToArcadeConfiguration(Transform player, Camera mainCamera, CinemachineVirtualCamera vCamera)
         {
             return new ArcadeConfiguration
@@ -71,20 +87,15 @@ namespace Arcade_r
             };
         }
 
-        public void FromArcadeConfiguration(ArcadeConfiguration arcadeConfiguration)
+        public (ModelConfiguration[] games, ModelConfiguration[] props) GetGamesAndProps()
         {
-            _descriptiveName       = arcadeConfiguration.DescriptiveName;
-            _id                    = arcadeConfiguration.Id;
-            if (!System.Enum.TryParse(arcadeConfiguration.ArcadeType, true, out _arcadeType))
-            {
-                _arcadeType = ArcadeType.None;
-            }
-            _renderSettings        = arcadeConfiguration.RenderSettings;
-            _audioSettings         = arcadeConfiguration.AudioSettings;
-            _videoSettings         = arcadeConfiguration.VideoSettings;
-            _fpsArcadeProperties   = arcadeConfiguration.FpsArcadeProperties;
-            _cylArcadeProperties   = arcadeConfiguration.CylArcadeProperties;
-            _zones                 = arcadeConfiguration.Zones;
+            return (GetModelConfigurations(transform.GetChild(1)), GetModelConfigurations(transform.GetChild(2)));
+        }
+
+        public void SetGamesAndPropsTransforms(ModelConfiguration[] games, ModelConfiguration[] props)
+        {
+            SetModelsTransforms(transform.GetChild(1), games);
+            SetModelsTransforms(transform.GetChild(2), props);
         }
 
         private static ModelConfiguration[] GetModelConfigurations(Transform node)
@@ -93,12 +104,23 @@ namespace Arcade_r
 
             for (int i = 0; i < result.Length; ++i)
             {
-                Transform child = node.GetChild(i);
+                Transform child       = node.GetChild(i);
                 ModelSetup modelSetup = child.GetComponent<ModelSetup>();
-                result[i] = modelSetup.ToModelConfiguration();
+                result[i]             = modelSetup.ToModelConfiguration();
             }
 
             return result;
+        }
+
+        private static void SetModelsTransforms(Transform node, ModelConfiguration[] modelConfigurations)
+        {
+            for (int i = 0; i < node.childCount; ++i)
+            {
+                Transform child = node.GetChild(i);
+                ModelConfiguration modelConfiguration = modelConfigurations[i];
+                child.SetPositionAndRotation(modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation));
+                child.localScale = modelConfiguration.Scale;
+            }
         }
     }
 }

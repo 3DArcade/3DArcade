@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using Cinemachine;
 using UnityEngine;
 
 namespace Arcade_r
@@ -67,12 +66,13 @@ namespace Arcade_r
         {
             if (_context.App.PlayerControls.GlobalActions.Quit.triggered)
             {
-                _context.TransitionTo<ArcadeLoadState>();
+                _context.ReloadCurrentArcadeConfigurationModels();
+                _context.TransitionTo<ArcadeNormalState>();
             }
 
             if (_context.App.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
-                SaveCurrentArcadeConfiguration(_context);
+                _context.SaveCurrentArcadeConfigurationModels();
                 _context.TransitionTo<ArcadeNormalState>();
             }
 
@@ -95,21 +95,6 @@ namespace Arcade_r
         public override void FixedUpdate(float dt)
         {
             _moveCabContext.FixedUpdate(dt);
-        }
-
-        private static void SaveCurrentArcadeConfiguration(ArcadeContext context)
-        {
-            ArcadeConfigurationComponent cfgComponent = context.App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
-            if (cfgComponent == null)
-            {
-                return;
-            }
-
-            Transform player = context.App.PlayerControls.transform;
-            Camera mainCamera = context.App.Camera;
-            CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
-
-            context.App.ArcadeManager.Save(cfgComponent.ToArcadeConfiguration(player, mainCamera, vCamera));
         }
     }
 }

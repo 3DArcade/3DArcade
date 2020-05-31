@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using Cinemachine;
 using UnityEngine;
 
 namespace Arcade_r
@@ -40,6 +41,49 @@ namespace Arcade_r
             App             = app;
             CurrentArcadeId = startingArcade;
             RaycastLayers   = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
+        }
+
+        public void SaveCurrentArcadeConfiguration()
+        {
+            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            if (cfgComponent == null)
+            {
+                return;
+            }
+
+            Transform player = App.PlayerControls.transform;
+            Camera mainCamera = App.Camera;
+            CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
+
+            _ = App.ArcadeManager.Save(cfgComponent.ToArcadeConfiguration(player, mainCamera, vCamera));
+        }
+
+        public void ReloadCurrentArcadeConfigurationModels()
+        {
+            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            if (cfgComponent == null)
+            {
+                return;
+            }
+
+            ArcadeConfiguration cfg = App.ArcadeManager.Get(cfgComponent.Id);
+            cfgComponent.SetGamesAndPropsTransforms(cfg.GameModelList, cfg.PropModelList);
+        }
+
+        public void SaveCurrentArcadeConfigurationModels()
+        {
+            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            if (cfgComponent == null)
+            {
+                return;
+            }
+
+            (ModelConfiguration[] games, ModelConfiguration[] props) = cfgComponent.GetGamesAndProps();
+
+            ArcadeConfiguration cfg = App.ArcadeManager.Get(cfgComponent.Id);
+            cfg.GameModelList = games;
+            cfg.PropModelList = props;
+            _ = App.ArcadeManager.Save(cfg);
         }
     }
 }

@@ -20,12 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System.Collections;
 using UnityEngine;
 
 namespace Arcade_r
 {
     public sealed class ArcadeLoadState : ArcadeBaseState
     {
+        private bool _loaded;
+
         public ArcadeLoadState(ArcadeContext context)
         : base(context)
         {
@@ -37,21 +40,48 @@ namespace Arcade_r
 
             SystemUtils.HideMouseCursor();
 
-            ArcadeConfiguration arcadeConfiguration = _context.App.ArcadeManager.Get(_context.CurrentArcadeId);
-            if (arcadeConfiguration == null)
-            {
-                return;
-            }
+            _context.App.UIController.EnableLoadingUI();
 
-            _context.App.ArcadeHierarchy.Reset();
-            ArcadeController.StartArcade(arcadeConfiguration, _context.App.ArcadeHierarchy.RootNode.transform, _context.App.PlayerControls.transform);
-
-            _context.TransitionTo<ArcadeNormalState>();
+            StartArcadeAsync();
         }
 
         public override void OnExit()
         {
             Debug.Log("> <color=orange>Exited</color> ArcadeLoadState");
+
+            _context.App.UIController.DisableLoadingUI();
+        }
+
+        public override void Update(float dt)
+        {
+            if (_loaded)
+            {
+                _context.TransitionTo<ArcadeNormalState>();
+            }
+        }
+
+        private void StartArcadeAsync()
+        {
+            _ = _context.App.StartCoroutine(CoStartArcade());
+        }
+
+        private IEnumerator CoStartArcade()
+        {
+            _loaded = false;
+
+            if (!_loaded)
+            {
+                yield return null;
+            }
+
+            ArcadeConfiguration arcadeConfiguration = _context.App.ArcadeManager.Get(_context.CurrentArcadeId);
+            if (arcadeConfiguration != null)
+            {
+                _context.App.ArcadeHierarchy.Reset();
+                ArcadeController.StartArcade(arcadeConfiguration, _context.App.ArcadeHierarchy.RootNode.transform, _context.App.PlayerControls.transform);
+            }
+
+            _loaded = true;
         }
     }
 }

@@ -309,8 +309,6 @@ namespace Arcade
             //Debug.Log(modelProperties.genre + " - " + modelFilter.modelProperty + " - " + modelFilter.modelPropertyValue);
             _ = System.Enum.TryParse(modelFilter.modelFilterOperator, true, out ModelFilterOperator modelFilterOperator);
             string value = modelProperties.GetType().GetField(modelFilter.modelProperty).GetValue(modelProperties).ToString();
-            float first;
-            float second;
             switch (modelFilterOperator)
             {
                 case ModelFilterOperator.Contains:
@@ -350,23 +348,21 @@ namespace Arcade
                     }
                     return false;
                 case ModelFilterOperator.Smaller:
-                    if (float.TryParse(value, out first) && float.TryParse(modelFilter.modelPropertyValue, out second))
+                {
+                    if (float.TryParse(value, out float first) && float.TryParse(modelFilter.modelPropertyValue, out float second))
                     {
-                        if (first < second)
-                        {
-                            return true;
-                        }
+                        return first < second;
                     }
                     return false;
+                }
                 case ModelFilterOperator.Larger:
-                    if (float.TryParse(value, out first) && float.TryParse(modelFilter.modelPropertyValue, out second))
+                {
+                    if (float.TryParse(value, out float first) && float.TryParse(modelFilter.modelPropertyValue, out float second))
                     {
-                        if (first > second)
-                        {
-                            return true;
-                        }
+                        return first > second;
                     }
                     return false;
+                }
                 default:
                     return false;
             }
@@ -379,7 +375,7 @@ namespace Arcade
             tAsset = GetExternalModel(modelProperties.model);
             if (tAsset != null)
             {
-                return addExternalModel(tAsset);
+                return AddExternalModel(tAsset);
             }
             tObj = GetInternalModel(modelProperties.model);
             if (tObj != null)
@@ -389,7 +385,7 @@ namespace Arcade
             tAsset = GetExternalModel(modelProperties.id);
             if (tAsset != null)
             {
-                return addExternalModel(tAsset);
+                return AddExternalModel(tAsset);
             }
             tObj = GetInternalModel(modelProperties.id);
             if (tObj != null)
@@ -399,7 +395,7 @@ namespace Arcade
             tAsset = GetExternalModel(modelProperties.idParent);
             if (tAsset != null)
             {
-                return addExternalModel(tAsset);
+                return AddExternalModel(tAsset);
             }
             tObj = GetInternalModel(modelProperties.idParent);
             if (tObj != null)
@@ -425,7 +421,7 @@ namespace Arcade
                         tAsset = GetExternalModel(defaultModel.model);
                         if (tAsset != null)
                         {
-                            return addExternalModel(tAsset);
+                            return AddExternalModel(tAsset);
                         }
                         tObj = GetInternalModel(defaultModel.model);
                         if (tObj != null)
@@ -452,7 +448,7 @@ namespace Arcade
                         tAsset = GetExternalModel(defaultModel.model);
                         if (tAsset != null)
                         {
-                            return addExternalModel(tAsset);
+                            return AddExternalModel(tAsset);
                         }
                         tObj = GetInternalModel(defaultModel.model);
                         if (tObj != null)
@@ -494,28 +490,28 @@ namespace Arcade
                 return prefab.Count == 1 ? prefab[0] : null;
             }
 
-            GameObject addExternalModel(AssetBundle asset)
+            GameObject AddExternalModel(AssetBundle asset)
             {
-                GameObject me = asset.LoadAsset(asset.name) as GameObject;
-                GameObject child = UnityEngine.Object.Instantiate(me);
+                GameObject me = asset.LoadAsset<GameObject>(asset.name);
+                GameObject child = Object.Instantiate(me);
                 return AddModel(child, modelProperties);
             }
 
             GameObject GetInternalModel(string modelName)
             {
-                GameObject obj = (GameObject)Resources.Load(modelType.ToString() + "s/" + modelName, typeof(GameObject));
+                GameObject obj = Resources.Load<GameObject>(modelType.ToString() + "s/" + modelName);
 
                 // TODO: NBNB remove this hack to be able to use gamelist models as prop models
                 if (obj == null)
                 {
-                    obj = (GameObject)Resources.Load(ModelType.Game.ToString() + "s/" + modelName, typeof(GameObject));
+                    obj = Resources.Load<GameObject>(ModelType.Game.ToString() + "s/" + modelName);
                 }
                 return obj == null ? null : obj;
             }
 
             GameObject AddInternalModel(GameObject obj)
             {
-                GameObject child = UnityEngine.Object.Instantiate(obj);
+                GameObject child = Object.Instantiate(obj);
                 return AddModel(child, modelProperties);
             }
 

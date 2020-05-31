@@ -28,23 +28,48 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    internal sealed class LoadArcadeWindow : EditorWindow
+    public class LoadSaveArcadeFramework
     {
-        private static ArcadeHierarchy _arcadeHierarchy;
-        private static IVirtualFileSystem _virtualFileSystem;
-        private static ArcadeConfigurationManager _arcadeManager;
-        private static PlayerControls _player;
-        private static Camera _mainCamera;
-        private static CinemachineVirtualCamera _vCamera;
+        public readonly ArcadeHierarchy ArcadeHierarchy;
+        public readonly ArcadeConfigurationManager ArcadeManager;
+        public readonly PlayerControls Player;
+        public readonly Camera MainCamera;
+        public readonly CinemachineVirtualCamera VirtualCamera;
+        public readonly string[] ConfigurationNames;
 
-        private static string[] _configurationNames;
+        private readonly IVirtualFileSystem _virtualFileSystem;
 
+        public LoadSaveArcadeFramework()
+        {
+            _virtualFileSystem = new VirtualFileSystem();
+            _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
+
+            ArcadeHierarchy = new ArcadeHierarchy();
+
+            ArcadeManager = new ArcadeConfigurationManager(_virtualFileSystem);
+
+            Player = Object.FindObjectOfType<PlayerControls>();
+            Assert.IsNotNull(Player);
+
+            MainCamera = Camera.main;
+            Assert.IsNotNull(MainCamera);
+
+            VirtualCamera = Player.GetComponentInChildren<CinemachineVirtualCamera>();
+            Assert.IsNotNull(VirtualCamera);
+
+            ConfigurationNames = ArcadeManager.GetNames();
+        }
+    }
+
+    public sealed class LoadArcadeWindow : EditorWindow
+    {
+        private static LoadSaveArcadeFramework _framework;
         private Vector2 _scrollPos = Vector2.zero;
 
         [MenuItem("3DArcade_r/Load Arcade", false, 0), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void ShowWindow()
         {
-            InitFields();
+            _framework = new LoadSaveArcadeFramework();
             LoadArcadeWindow window = GetWindow<LoadArcadeWindow>("Load Arcade");
             window.minSize = new Vector2(120f, 120f);
         }
@@ -58,59 +83,22 @@ namespace Arcade_r
         private void DrawConfigurationsList()
         {
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos, false, false);
-            foreach (string name in _configurationNames)
+            foreach (string name in _framework.ConfigurationNames)
             {
                 if (GUILayout.Button(name))
                 {
-                    ArcadeConfiguration arcadeConfiguration = _arcadeManager.Get(name);
+                    ArcadeConfiguration arcadeConfiguration = _framework.ArcadeManager.Get(name);
                     if (arcadeConfiguration == null)
                     {
                         return;
                     }
 
-                    _arcadeHierarchy.Reset();
-                    ArcadeController.StartArcade(arcadeConfiguration, _arcadeHierarchy.RootNode.transform, _player.transform);
+                    _framework.ArcadeHierarchy.Reset();
+                    ArcadeController.StartArcade(arcadeConfiguration, _framework.ArcadeHierarchy.RootNode.transform, _framework.Player.transform);
                     GetWindow<LoadArcadeWindow>().Close();
                 }
             }
             GUILayout.EndScrollView();
-        }
-
-        private static void InitFields()
-        {
-            _arcadeHierarchy = new ArcadeHierarchy();
-
-            if (_virtualFileSystem == null)
-            {
-                _virtualFileSystem = new VirtualFileSystem();
-                _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
-            }
-
-            if (_arcadeManager == null)
-            {
-                _arcadeManager = new ArcadeConfigurationManager(_virtualFileSystem);
-            }
-            _arcadeManager.Refresh();
-
-            if (_player == null)
-            {
-                _player = FindObjectOfType<PlayerControls>();
-            }
-            Assert.IsNotNull(_player);
-
-            if (_mainCamera == null)
-            {
-                _mainCamera = Camera.main;
-            }
-            Assert.IsNotNull(_mainCamera);
-
-            if (_vCamera == null)
-            {
-                _vCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
-            }
-            Assert.IsNotNull(_vCamera);
-
-            _configurationNames = _arcadeManager.GetNames();
         }
 
         // Validation
@@ -123,64 +111,25 @@ namespace Arcade_r
 
     public static class EditorMenus
     {
-        private static ArcadeHierarchy _arcadeHierarchy;
-        private static IVirtualFileSystem _virtualFileSystem;
-        private static ArcadeConfigurationManager _arcadeManager;
-        private static PlayerControls _player;
-        private static Camera _mainCamera;
-        private static CinemachineVirtualCamera _vCamera;
+        private static LoadSaveArcadeFramework _framework;
 
         [MenuItem("3DArcade_r/Save Arcade", false, 1), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuSaveArcade()
         {
-            InitFields();
+            _framework = new LoadSaveArcadeFramework();
 
-            if (_arcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
+            if (!_framework.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
             {
-                if (string.IsNullOrEmpty(arcadeConfigurationComponent.Id))
-                {
-                    return;
-                }
+                return;
+            }
+            if (string.IsNullOrEmpty(arcadeConfigurationComponent.Id))
+            {
+                return;
             }
 
-            ArcadeConfiguration arcadeConfiguration = _arcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>()
-                                                                               .ToArcadeConfiguration(_player.transform, _mainCamera, _vCamera);
-            _ = _arcadeManager.Save(arcadeConfiguration);
-        }
-
-        private static void InitFields()
-        {
-            _arcadeHierarchy = new ArcadeHierarchy();
-
-            if (_virtualFileSystem == null)
-            {
-                _virtualFileSystem = new VirtualFileSystem();
-                _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
-            }
-
-            if (_arcadeManager == null)
-            {
-                _arcadeManager = new ArcadeConfigurationManager(_virtualFileSystem);
-            }
-            _arcadeManager.Refresh();
-
-            if (_player == null)
-            {
-                _player = Object.FindObjectOfType<PlayerControls>();
-            }
-            Assert.IsNotNull(_player);
-
-            if (_mainCamera == null)
-            {
-                _mainCamera = Camera.main;
-            }
-            Assert.IsNotNull(_mainCamera);
-
-            if (_vCamera == null)
-            {
-                _vCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
-            }
-            Assert.IsNotNull(_vCamera);
+            _ = _framework.ArcadeManager.Save(arcadeConfigurationComponent.ToArcadeConfiguration(_framework.Player.transform,
+                                                                                                 _framework.MainCamera,
+                                                                                                 _framework.VirtualCamera));
         }
 
         // Validation

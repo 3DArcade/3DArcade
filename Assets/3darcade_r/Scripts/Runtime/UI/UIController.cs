@@ -27,11 +27,18 @@ namespace Arcade_r
     [DisallowMultipleComponent]
     public sealed class UIController
     {
+        private readonly GameObject _loadingUI;
         private readonly GameObject _normalUI;
         private readonly GameObject _moveCabUI;
 
         public UIController(Transform uiRoot)
         {
+            UILoadingCanvasTag loadingCanvasTag = uiRoot.GetComponentInChildren<UILoadingCanvasTag>();
+            if (loadingCanvasTag != null)
+            {
+                _loadingUI = loadingCanvasTag.gameObject;
+            }
+
             UINormalCanvasTag normalCanvasTag = uiRoot.GetComponentInChildren<UINormalCanvasTag>();
             if (normalCanvasTag != null)
             {
@@ -44,8 +51,25 @@ namespace Arcade_r
                 _moveCabUI = moveCabCanvasTag.gameObject;
             }
 
+            DisableLoadingUI();
             DisableNormalUI();
             DisableMoveCabUI();
+        }
+
+        public void EnableLoadingUI()
+        {
+            if (_loadingUI != null)
+            {
+                _loadingUI.SetActive(true);
+            }
+        }
+
+        public void DisableLoadingUI()
+        {
+            if (_loadingUI != null)
+            {
+                _loadingUI.SetActive(false);
+            }
         }
 
         public void EnableNormalUI()

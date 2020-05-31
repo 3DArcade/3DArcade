@@ -100,10 +100,10 @@ namespace Arcade_r
             {
                 _gameLauncherMethod = GameLauncherMethod.None;
             }
-            _playCount = cfg.PlayCount;
-            _zone                 = cfg.Zone;
-            _triggers             = cfg.Triggers;
-            _triggerIDs           = cfg.TriggerIDs;
+            _playCount  = cfg.PlayCount;
+            _zone       = cfg.Zone;
+            _triggers   = cfg.Triggers;
+            _triggerIDs = cfg.TriggerIDs;
         }
     }
 }
