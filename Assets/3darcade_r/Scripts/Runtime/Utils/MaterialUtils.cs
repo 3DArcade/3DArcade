@@ -27,6 +27,12 @@ namespace Arcade_r
 {
     public static class MaterialUtils
     {
+        public const string SHADER_MAINCOLOR_NAME       = "_Color";
+        public const string SHADER_MAINTEXTURE_NAME     = "_MainTex";
+        public const string SHADER_EMISSIVECOLOR_NAME   = "_EmissionColor";
+        public const string SHADER_EMISSIVETEXTURE_NAME = "_EmissionMap";
+        public const string SHADER_EMISSIVEKEYWORD      = "_EMISSION";
+
         public static void SetGPUInstancing(bool active, params GameObject[] models)
         {
             for (int modelInxed = 0; modelInxed < models.Length; ++modelInxed)

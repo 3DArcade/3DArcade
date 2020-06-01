@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 8592210270974825403}
   - component: {fileID: 1129515930814035888}
   - component: {fileID: 3042973319886776811}
+  - component: {fileID: 6142387717052348662}
   m_Layer: 0
   m_Name: bosco_Mesh00
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6142387717052348662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709846068959573433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5110664080607143182
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +326,7 @@ GameObject:
   - component: {fileID: 1173825282736335091}
   - component: {fileID: 7232030779998034903}
   - component: {fileID: 3201567560366714229}
+  - component: {fileID: 5371543374280344504}
   m_Layer: 0
   m_Name: bosco_Mesh01
   m_TagString: Untagged
@@ -381,3 +395,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5371543374280344504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436776231010358349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

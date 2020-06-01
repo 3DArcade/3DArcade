@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 4565564723415683592}
   - component: {fileID: 1733399222004075334}
   - component: {fileID: 5753611068970441321}
+  - component: {fileID: -8572550271052989933}
   m_Layer: 0
   m_Name: aamarquees-galaga
   m_TagString: Untagged
@@ -303,6 +304,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8572550271052989933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7712452215771805528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8066556833288612848
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +327,7 @@ GameObject:
   - component: {fileID: 1769063096658151081}
   - component: {fileID: 817083485287367400}
   - component: {fileID: 3700826425594140746}
+  - component: {fileID: 9067826963566571573}
   m_Layer: 0
   m_Name: amonitor-galaga
   m_TagString: Untagged
@@ -382,3 +396,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &9067826963566571573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8066556833288612848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

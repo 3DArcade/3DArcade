@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 103341674181510096}
   - component: {fileID: 813134233058233564}
   - component: {fileID: 2600715984103949817}
+  - component: {fileID: 767081067301578822}
   m_Layer: 0
   m_Name: 01_qbert_aamarquee
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &767081067301578822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968366556741151441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4537987663372973621
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +182,7 @@ GameObject:
   - component: {fileID: 3020973116582605378}
   - component: {fileID: 2072081135188955531}
   - component: {fileID: 2603634087191292556}
+  - component: {fileID: 8208139726602753543}
   m_Layer: 0
   m_Name: 02_qbert_amonitor
   m_TagString: Untagged
@@ -238,6 +252,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8208139726602753543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160372128585393311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5540963400134607172
 GameObject:
   m_ObjectHideFlags: 0

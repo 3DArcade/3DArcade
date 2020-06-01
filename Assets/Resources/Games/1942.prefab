@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 13920034375699928}
   - component: {fileID: 9131767512529209094}
   - component: {fileID: 2907891222260607030}
+  - component: {fileID: -4410028604672471931}
   m_Layer: 0
   m_Name: 1942_Mesh00
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-4410028604672471931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220038700935962826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1774011441716386451
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,8 +180,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8183289963180949856}
-  - component: {fileID: 4417260464198471454}
-  - component: {fileID: 158062368223477524}
+  - component: {fileID: 5918429210872950300}
+  - component: {fileID: 4504113686806467705}
   m_Layer: 0
   m_Name: 1942
   m_TagString: Untagged
@@ -194,7 +207,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4417260464198471454
+--- !u!65 &5918429210872950300
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,8 +219,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.65965354, y: 1.7902181, z: 0.8101939}
-  m_Center: {x: 0, y: 0.89510906, z: 0}
---- !u!54 &158062368223477524
+  m_Center: {x: 0.01307255, y: 0.908604, z: -0.009936631}
+--- !u!54 &4504113686806467705
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,6 +326,7 @@ GameObject:
   - component: {fileID: 1080424198084835748}
   - component: {fileID: 3181299131351409304}
   - component: {fileID: 1582462606746212952}
+  - component: {fileID: -5953066163932931116}
   m_Layer: 0
   m_Name: 1942_Mesh01
   m_TagString: Untagged
@@ -381,3 +395,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5953066163932931116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823212101782650406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

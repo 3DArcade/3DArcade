@@ -21,22 +21,18 @@
  * SOFTWARE. */
 
 using Cinemachine;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     public static class ArcadeController
     {
-        private static readonly string[] RESOURCES_SUB_DIRECTORIES = new string[] { "Arcades", "Games", "Props" };
-        private static readonly string[] GAME_RESOURCES_DIRECTORY  = new string[] { "Games" };
+        private static readonly string[] RESOURCES_SUB_DIRECTORIES = new [] { "Arcades", "Games", "Props" };
+        private static readonly string[] GAME_RESOURCES_DIRECTORY  = new [] { "Games" };
 
         public static void StartArcade(ArcadeConfiguration configuration, Transform root, Transform player)
         {
-            Assert.IsNotNull(configuration);
-            Assert.IsNotNull(root);
-            Assert.IsNotNull(player);
-
             if (root.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
             {
                 arcadeConfigurationComponent.FromArcadeConfiguration(configuration);
@@ -49,9 +45,9 @@ namespace Arcade_r
 
             SetupPlayer(player, configuration.CameraSettings.Position, configuration.CameraSettings.Rotation, configuration.CameraSettings.Height);
 
-            AddModelsToWorld<ArcadeModelSetup>(configuration.ArcadeModelList, root.GetChild(0));
-            AddModelsToWorld<GameModelSetup>(configuration.GameModelList, root.GetChild(1));
-            AddModelsToWorld<PropModelSetup>(configuration.PropModelList, root.GetChild(2));
+            AddModelsToWorld<ArcadeModelSetup>(configuration.ArcadeModelList, configuration.RenderSettings, root.GetChild(0));
+            AddModelsToWorld<GameModelSetup>(configuration.GameModelList, configuration.RenderSettings, root.GetChild(1));
+            AddModelsToWorld<PropModelSetup>(configuration.PropModelList, configuration.RenderSettings, root.GetChild(2));
         }
 
         private static void SetupPlayer(Transform player, Vector3 position, Vector3 rotation, float height)
@@ -62,7 +58,7 @@ namespace Arcade_r
             transposer.m_FollowOffset.y      = height;
         }
 
-        private static void AddModelsToWorld<T>(ModelConfiguration[] models, Transform parent)
+        private static void AddModelsToWorld<T>(ModelConfiguration[] models, RenderSettings renderSettings, Transform parent)
             where T : ModelSetup
         {
             foreach (ModelConfiguration modelConfiguration in models)
@@ -91,14 +87,12 @@ namespace Arcade_r
                     }
                 }
 
-                Assert.IsNotNull(prefab);
-
                 MaterialUtils.SetGPUInstancing(true, prefab);
-                InstantiatePrefab<T>(prefab, modelConfiguration, parent);
+                InstantiatePrefab<T>(prefab, parent, modelConfiguration, renderSettings);
             }
         }
 
-        private static void InstantiatePrefab<T>(GameObject prefab, ModelConfiguration modelConfiguration, Transform parent)
+        private static void InstantiatePrefab<T>(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
             where T : ModelSetup
         {
             GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
@@ -108,6 +102,89 @@ namespace Arcade_r
 
             model.AddComponent<T>()
                  .FromModelConfiguration(modelConfiguration);
+
+            // Only look for artworks at runtime
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
+            string marqueeImagePath = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/marquees/{modelConfiguration.Id}.png";
+            Texture2D marqueeTexture = TextureUtils.LoadTextureFromFile(marqueeImagePath, true);
+
+            string screenImagePath = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/snap/{modelConfiguration.Id}.png";
+            Texture2D screenTexture = TextureUtils.LoadTextureFromFile(screenImagePath, false);
+            float screenIntensity;
+            if (modelConfiguration.Genre.ToLower().Contains("vector"))
+            {
+                screenIntensity = renderSettings.ScreenVectorIntenstity;
+            }
+            else if (modelConfiguration.Screen.ToLower().Contains("pinball"))
+            {
+                screenIntensity = renderSettings.ScreenPinballIntensity;
+            }
+            else
+            {
+                screenIntensity = renderSettings.ScreenRasterIntensity;
+            }
+
+            string genericImagePath = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/cabinets/{modelConfiguration.Id}.png";
+            Texture2D genericTexture = TextureUtils.LoadTextureFromFile(genericImagePath, true);
+
+            SetupDynamicNode<MarqueeNodeTag>(model, marqueeTexture, true, renderSettings.MarqueeIntensity);
+            SetupDynamicNode<ScreenNodeTag>(model, screenTexture, true, screenIntensity);
+            SetupDynamicNode<GenericNodeTag>(model, genericTexture);
+        }
+
+        private static void SetupDynamicNode<T>(GameObject model, Texture2D texture, bool overwriteColor = false, float emissionFactor = 1f)
+            where T : NodeTag
+        {
+            if (model == null || texture == null)
+            {
+                return;
+            }
+
+            if (!TryGetMaterialForNode<T>(model, out Material material))
+            {
+                return;
+            }
+
+            // Video
+            // ...
+
+            // Image
+            if (material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD))
+            {
+                Color color = overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME) * emissionFactor;
+                material.SetEmissionColorAndTexture(color, texture, true);
+            }
+            else
+            {
+                Color color = overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_MAINCOLOR_NAME);
+                material.SetAlbedoColorAndTexture(color, texture);
+            }
+
+            // Magic cabs
+            Renderer[] modelRenderers = model.GetComponentsInChildren<Renderer>();
+        }
+
+        [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
+        private static bool TryGetMaterialForNode<T>(GameObject model, out Material material)
+            where T : NodeTag
+        {
+            T nodeTag = model.GetComponentInChildren<T>();
+            if (nodeTag != null)
+            {
+                Renderer renderer = nodeTag.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    material = renderer.material;
+                    return true;
+                }
+            }
+
+            material = null;
+            return false;
         }
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 613923775156891364}
   - component: {fileID: 7731094780143443591}
   - component: {fileID: 8013453251564929482}
+  - component: {fileID: 4241442304646461798}
   m_Layer: 0
   m_Name: bwidow_Mesh01
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4241442304646461798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2990232293318357792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3125474191889582458
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +326,7 @@ GameObject:
   - component: {fileID: 841535837481679697}
   - component: {fileID: 930459000135842705}
   - component: {fileID: 216601569778149240}
+  - component: {fileID: -8432182243789685950}
   m_Layer: 0
   m_Name: bwidow_Mesh00
   m_TagString: Untagged
@@ -381,3 +395,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8432182243789685950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412244108719299823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

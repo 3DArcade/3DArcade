@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5148675522858978528}
   - component: {fileID: 963219871254256102}
   - component: {fileID: 4879453066399710508}
+  - component: {fileID: -5621193597079232408}
   m_Layer: 0
   m_Name: 01_mpatrol_aamarquee
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5621193597079232408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216053749964574588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &545867997224353097
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +261,7 @@ GameObject:
   - component: {fileID: 1651551519119305271}
   - component: {fileID: 2665408829124496085}
   - component: {fileID: 354490311314516215}
+  - component: {fileID: -8733133765038358637}
   m_Layer: 0
   m_Name: 02_mpatrol_amonitor
   m_TagString: Untagged
@@ -317,6 +331,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8733133765038358637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703615294964780793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8688910546849296347
 GameObject:
   m_ObjectHideFlags: 0

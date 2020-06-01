@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 4138555598813018259}
   - component: {fileID: 4713940056866036654}
   - component: {fileID: 6053321068709330371}
+  - component: {fileID: 6233783294773480295}
   m_Layer: 0
   m_Name: 02_digdug_amonitor-dkong
   m_TagString: Untagged
@@ -302,6 +303,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6233783294773480295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613475389063540613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7345776698924105915
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +326,7 @@ GameObject:
   - component: {fileID: 8695803730463794233}
   - component: {fileID: 5248759052403647605}
   - component: {fileID: 1945951074740664580}
+  - component: {fileID: -4785834477860572454}
   m_Layer: 0
   m_Name: 01_digdug_aamarquee
   m_TagString: Untagged
@@ -381,3 +395,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-4785834477860572454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7345776698924105915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

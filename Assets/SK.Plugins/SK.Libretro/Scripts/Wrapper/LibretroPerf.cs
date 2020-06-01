@@ -49,17 +49,17 @@ namespace SK.Libretro
             Log.Warning("RetroPerfLog");
         }
 
-        public void RetroPerfRegister(ref retro_perf_counter counter)
+        public void RetroPerfRegister(ref retro_perf_counter _)
         {
             Log.Warning("RetroPerfRegister");
         }
 
-        public void RetroPerfStart(ref retro_perf_counter counter)
+        public void RetroPerfStart(ref retro_perf_counter _)
         {
             Log.Warning("RetroPerfStart");
         }
 
-        public void RetroPerfStop(ref retro_perf_counter counter)
+        public void RetroPerfStop(ref retro_perf_counter _)
         {
             Log.Warning("RetroPerfStop");
         }

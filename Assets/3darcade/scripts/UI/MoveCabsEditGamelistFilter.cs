@@ -233,23 +233,23 @@ namespace Arcade
             {
                 if (currentDecadeSelection == "<70s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number < 1970 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) && number < 1970)).ToList();
                 }
                 if (currentDecadeSelection == "70s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 1970 && number < 1980 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) && number >= 1970 && number < 1980)).ToList();
                 }
                 if (currentDecadeSelection == "80s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 1980 && number < 1990 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) && number >= 1980 && number < 1990)).ToList();
                 }
                 if (currentDecadeSelection == "90s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 1990 && number < 2000 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) && number >= 1990 && number < 2000)).ToList();
                 }
                 if (currentDecadeSelection == ">90s")
                 {
-                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) ? number >= 2000 : false)).ToList();
+                    filteredSelectedGamelist = filteredSelectedGamelist.Where(x => (int.TryParse(x.year.Trim(), out int number) && number >= 2000)).ToList();
                 }
             }
             LoopScrollRect scrollRects = gameObject.GetComponentInChildren<LoopScrollRect>();

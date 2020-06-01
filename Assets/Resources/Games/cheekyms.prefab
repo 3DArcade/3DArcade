@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 5969437104071339137}
   - component: {fileID: 6029424053344626708}
   - component: {fileID: 6696511719015315349}
+  - component: {fileID: -5980071335780271300}
   m_Layer: 0
   m_Name: cheekyms-amarquee
   m_TagString: Untagged
@@ -630,6 +631,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5980071335780271300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3132570597328085624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3302769107898223977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1286,7 @@ GameObject:
   - component: {fileID: 138360249334319902}
   - component: {fileID: 3884393939354108673}
   - component: {fileID: 5131994099696136499}
+  - component: {fileID: 7377275672821680073}
   m_Layer: 0
   m_Name: cheekyms-amonitor
   m_TagString: Untagged
@@ -1341,3 +1355,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7377275672821680073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337785115843266761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

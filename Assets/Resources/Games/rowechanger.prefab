@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 2656642003428584984}
   - component: {fileID: 8492957729316671477}
   - component: {fileID: 8219731763336869065}
+  - component: {fileID: 2849924393822084441}
   m_Layer: 0
   m_Name: rowechanger-amonitor
   m_TagString: Untagged
@@ -158,6 +159,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2849924393822084441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718673786882555157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4151920162764655572
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +182,7 @@ GameObject:
   - component: {fileID: 3435598508828790020}
   - component: {fileID: 7521769327657453482}
   - component: {fileID: 4290015863598148330}
+  - component: {fileID: -6990129236129299705}
   m_Layer: 0
   m_Name: rowechanger-amarquee
   m_TagString: Untagged
@@ -237,6 +251,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-6990129236129299705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4151920162764655572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4537459601819853510
 GameObject:
   m_ObjectHideFlags: 0

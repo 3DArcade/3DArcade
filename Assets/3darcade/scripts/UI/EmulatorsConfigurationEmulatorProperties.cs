@@ -136,15 +136,15 @@ namespace Arcade
             //print("listcount " + filteredSelectedGamelist.Count);
         }
 
-        private void InputFieldValueChangedHandler(InputField target)
-        {
+        //private void InputFieldValueChangedHandler(InputField target)
+        //{
             // Debug.Log("selectedsearch: " + target.text);
             //if (target == search)
             //{
             //    currentSearchSelection = target.text;
             //    FilterGamelist();
             //}
-        }
+        //}
 
         private void DropdownValueChangedHandler(Dropdown target)
         {

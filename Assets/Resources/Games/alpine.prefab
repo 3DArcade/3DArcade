@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4983594532945192844}
   - component: {fileID: 6935050849217529870}
   - component: {fileID: 8178924879490057187}
+  - component: {fileID: -6674498436193732115}
   m_Layer: 0
   m_Name: alpine-amonitor
   m_TagString: Untagged
@@ -159,6 +160,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-6674498436193732115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803749464961168732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1078159598446143839
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +567,7 @@ GameObject:
   - component: {fileID: 7694073532526041727}
   - component: {fileID: 2617906541871525140}
   - component: {fileID: 8596845374936968486}
+  - component: {fileID: 4726158579737288798}
   m_Layer: 0
   m_Name: alpine-amarquee
   m_TagString: Untagged
@@ -622,3 +636,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4726158579737288798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377990616745347805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

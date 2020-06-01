@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 3862073586554405228}
   - component: {fileID: 1914999291153898805}
   - component: {fileID: 9010023831258334147}
+  - component: {fileID: -8521888694507006643}
   m_Layer: 0
   m_Name: kram-amonitor
   m_TagString: Untagged
@@ -238,6 +239,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8521888694507006643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386799587033637424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3656753476277267110
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +262,7 @@ GameObject:
   - component: {fileID: 3183158141618892084}
   - component: {fileID: 4525992360065579063}
   - component: {fileID: 1691873046157282756}
+  - component: {fileID: 8716492938105971618}
   m_Layer: 0
   m_Name: kram-amarquee
   m_TagString: Untagged
@@ -317,6 +331,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8716492938105971618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3656753476277267110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3976957787981263231
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Arcade
     {
         Vector2 scrollPos;
 
-        [MenuItem("3DArcade/Load Arcade Configuration")]
+        [MenuItem("3DArcade/Load Arcade Configuration"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             ArcadeManager.arcadesConfigurationList.Clear();
@@ -43,7 +44,7 @@ namespace Arcade
     {
         Vector2 scrollPos;
 
-        [InitializeOnLoadMethod]
+        [InitializeOnLoadMethod, SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             ArcadeManager.ShowSelectArcadeConfigurationWindow = ShowWindow;
@@ -82,7 +83,7 @@ namespace Arcade
 
     public class EditorSaveArcadeConfiguration : EditorWindow
     {
-        [MenuItem("3DArcade/Save Arcade Configuration")]
+        [MenuItem("3DArcade/Save Arcade Configuration"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(EditorSaveArcadeConfiguration)) as EditorSaveArcadeConfiguration;
@@ -105,7 +106,7 @@ namespace Arcade
 
     public class EditorLoadEmulatorsConfiguration : EditorWindow
     {
-        [MenuItem("3DArcade/Load Emulators Configuration")]
+        [MenuItem("3DArcade/Load Emulators Configuration"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(EditorLoadEmulatorsConfiguration)) as EditorLoadEmulatorsConfiguration;
@@ -128,7 +129,7 @@ namespace Arcade
 
     public class EditorSaveEmulatorsConfiguration : EditorWindow
     {
-        [MenuItem("3DArcade/Save Emulators Configuration")]
+        [MenuItem("3DArcade/Save Emulators Configuration"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(EditorSaveEmulatorsConfiguration)) as EditorSaveEmulatorsConfiguration;
@@ -151,7 +152,7 @@ namespace Arcade
 
     public class EditorAddEmulatorConfiguration : EditorWindow
     {
-        [MenuItem("3DArcade/Add Emulator Configuration")]
+        [MenuItem("3DArcade/Add Emulator Configuration"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(EditorAddEmulatorConfiguration)) as EditorAddEmulatorConfiguration;
@@ -177,7 +178,7 @@ namespace Arcade
 
     public class EditorUpdateMasterGamelists : EditorWindow
     {
-        [MenuItem("3DArcade/Update MasterGamelists")]
+        [MenuItem("3DArcade/Update MasterGamelists"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(EditorUpdateMasterGamelists)) as EditorUpdateMasterGamelists;
@@ -200,7 +201,7 @@ namespace Arcade
     {
         private static GameObject editorModelcache;
 
-        [MenuItem("3DArcade/Load All External Models into the Editor")]
+        [MenuItem("3DArcade/Load All External Models into the Editor"), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(EditorLoadAssetbundles)) as EditorLoadAssetbundles;
@@ -298,7 +299,7 @@ namespace Arcade
         private bool contains = false;
         Vector2 scrollPos;
 
-        [InitializeOnLoadMethod]
+        [InitializeOnLoadMethod, SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             ModelSetup.ShowSelectGameWindow = ShowWindow;
@@ -374,7 +375,7 @@ namespace Arcade
         private static ModelSetup modelSetup;
         Vector2 scrollPos;
 
-        [InitializeOnLoadMethod]
+        [InitializeOnLoadMethod, SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             ModelSetup.ShowSelectEmulatorWindow = ShowWindow;
@@ -414,7 +415,7 @@ namespace Arcade
         private static string[] assetNames;
         Vector2 scrollPos;
 
-        [InitializeOnLoadMethod]
+        [InitializeOnLoadMethod, SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             ModelSetup.ShowSelectModelWindow = ShowWindow;
@@ -476,7 +477,7 @@ namespace Arcade
         private static EmulatorSetup emulatorSetup;
         Vector2 scrollPos;
 
-        [InitializeOnLoadMethod]
+        [InitializeOnLoadMethod, SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             Arcade.EmulatorSetup.ShowSelectMasterGamelistWindow = ShowWindow;

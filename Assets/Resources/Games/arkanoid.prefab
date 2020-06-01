@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6886437835591000232}
   - component: {fileID: 258097175727123896}
   - component: {fileID: 6856935855858447097}
+  - component: {fileID: 8323399332324378042}
   m_Layer: 0
   m_Name: 02-arkanoid-screen
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8323399332324378042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5372480135125400354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6484860796120039103
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +247,7 @@ GameObject:
   - component: {fileID: 3884147413643711473}
   - component: {fileID: 3303982302150107533}
   - component: {fileID: 587419287128037268}
+  - component: {fileID: -3207053804038590725}
   m_Layer: 0
   m_Name: 01-arkanoid-marquee
   m_TagString: Untagged
@@ -302,6 +316,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-3207053804038590725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8031031584200836043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8373324283741677505
 GameObject:
   m_ObjectHideFlags: 0

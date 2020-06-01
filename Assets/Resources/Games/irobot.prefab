@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 8070706296921009097}
   - component: {fileID: 8326680994194586929}
   - component: {fileID: 1676946215265953520}
+  - component: {fileID: 926258045380645088}
   m_Layer: 0
   m_Name: 02_irobot_amonitor-robotron
   m_TagString: Untagged
@@ -158,6 +159,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &926258045380645088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3784056140236218407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4597020008200828812
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +182,7 @@ GameObject:
   - component: {fileID: 7373262665592754020}
   - component: {fileID: 2508499663051192549}
   - component: {fileID: 6470866642678608863}
+  - component: {fileID: 1841064131330004741}
   m_Layer: 0
   m_Name: 01_irobot_aamarquees-robotron
   m_TagString: Untagged
@@ -237,6 +251,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1841064131330004741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597020008200828812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4609421420866980393
 GameObject:
   m_ObjectHideFlags: 0

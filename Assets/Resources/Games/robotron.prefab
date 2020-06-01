@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2373044179697707605}
   - component: {fileID: 4513500040117882422}
   - component: {fileID: 3293099260489438645}
+  - component: {fileID: -8985462643077898486}
   m_Layer: 0
   m_Name: 01robotron-monitor
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8985462643077898486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886844743392512029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &964238110420683965
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +331,7 @@ GameObject:
   - component: {fileID: 9218356735103900259}
   - component: {fileID: 7429666692840248842}
   - component: {fileID: 3773740584149905531}
+  - component: {fileID: 9037482576580377984}
   m_Layer: 0
   m_Name: 01robotron-marquee
   m_TagString: Untagged
@@ -386,6 +400,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &9037482576580377984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3421333530152856874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3699119456229053656
 GameObject:
   m_ObjectHideFlags: 0

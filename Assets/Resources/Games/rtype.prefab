@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 509872797546332780}
   - component: {fileID: 5241655612637262537}
   - component: {fileID: 456799397382435621}
+  - component: {fileID: -7033392091048734141}
   m_Layer: 0
   m_Name: 02-rtype-monitor
   m_TagString: Untagged
@@ -227,6 +228,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-7033392091048734141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756931112194539580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8365982327040879757
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +251,7 @@ GameObject:
   - component: {fileID: 2693765245450942229}
   - component: {fileID: 5207239532280089218}
   - component: {fileID: 4706976970042736765}
+  - component: {fileID: 3208816297080924504}
   m_Layer: 0
   m_Name: 01-rtype-marquee
   m_TagString: Untagged
@@ -306,3 +320,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3208816297080924504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365982327040879757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

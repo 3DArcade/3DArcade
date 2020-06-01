@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 2970377099433374654}
   - component: {fileID: 6028962165758454480}
   - component: {fileID: 8118387164600791092}
+  - component: {fileID: 2448400625138019220}
   m_Layer: 0
   m_Name: jungleh-amarquee
   m_TagString: Untagged
@@ -227,6 +228,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2448400625138019220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843724456124503782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1644402292837648638
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +646,7 @@ GameObject:
   - component: {fileID: 3080658692125718782}
   - component: {fileID: 7388847690576495882}
   - component: {fileID: 522105717830182131}
+  - component: {fileID: 5157052404011138833}
   m_Layer: 0
   m_Name: jungleh-amonitor
   m_TagString: Untagged
@@ -702,3 +716,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5157052404011138833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067481040728672119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 1689837846927487506}
   - component: {fileID: 6875047258304433978}
   - component: {fileID: 5057026749939748604}
+  - component: {fileID: -6989593173403949688}
   m_Layer: 0
   m_Name: 01_asteroid_marquee
   m_TagString: Untagged
@@ -158,6 +159,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-6989593173403949688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647325859505554983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4514886839572409048
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +182,7 @@ GameObject:
   - component: {fileID: 6236820878712729288}
   - component: {fileID: 8498929478916685144}
   - component: {fileID: 5388215098543829419}
+  - component: {fileID: -1858942496129599969}
   m_Layer: 0
   m_Name: 02_asteroid_screen
   m_TagString: Untagged
@@ -237,6 +251,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1858942496129599969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4514886839572409048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6503662139107947955
 GameObject:
   m_ObjectHideFlags: 0

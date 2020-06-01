@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 1891856841579149214}
   - component: {fileID: 9183461559350512202}
   - component: {fileID: 5050318815007638063}
+  - component: {fileID: -8946875632987514059}
   m_Layer: 0
   m_Name: missile-amonitor
   m_TagString: Untagged
@@ -226,6 +227,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8946875632987514059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2503918541129357991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3277759972659933413
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +487,7 @@ GameObject:
   - component: {fileID: 8166925743997098089}
   - component: {fileID: 6524053105573572195}
   - component: {fileID: 653210280955890129}
+  - component: {fileID: 8351291143572622799}
   m_Layer: 0
   m_Name: missile-amarquee
   m_TagString: Untagged
@@ -542,6 +556,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8351291143572622799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8030497518429177929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9168355466698899519
 GameObject:
   m_ObjectHideFlags: 0

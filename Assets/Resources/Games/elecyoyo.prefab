@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 7783823362588026596}
   - component: {fileID: 1094728684274239447}
   - component: {fileID: 7983823678569800558}
+  - component: {fileID: 7290924395606031622}
   m_Layer: 0
   m_Name: elecyoyo-amarquee
   m_TagString: Untagged
@@ -385,6 +386,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7290924395606031622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708526830250325711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7150168712395707712
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +409,7 @@ GameObject:
   - component: {fileID: 422484933104860680}
   - component: {fileID: 6855223459641631899}
   - component: {fileID: 2116074076206643380}
+  - component: {fileID: 8146382612710601272}
   m_Layer: 0
   m_Name: elecyoyo-amonitor
   m_TagString: Untagged
@@ -465,6 +479,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8146382612710601272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150168712395707712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7275074807016278020
 GameObject:
   m_ObjectHideFlags: 0

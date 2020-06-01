@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 890745633316019186}
   - component: {fileID: 5603166874155219712}
   - component: {fileID: 2879723687760797160}
+  - component: {fileID: 5448305394424578854}
   m_Layer: 0
   m_Name: 02_gyruss_amonitor
   m_TagString: Untagged
@@ -159,6 +160,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5448305394424578854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282816277653811516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4871209926227237424
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +183,7 @@ GameObject:
   - component: {fileID: 7392262485611608604}
   - component: {fileID: 488110440166319913}
   - component: {fileID: 2863660468817418615}
+  - component: {fileID: 8046613911374652174}
   m_Layer: 0
   m_Name: 01_gyruss_aamarquee
   m_TagString: Untagged
@@ -238,6 +252,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8046613911374652174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4871209926227237424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5387795713931307240
 GameObject:
   m_ObjectHideFlags: 0

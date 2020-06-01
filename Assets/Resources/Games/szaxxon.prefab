@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6084971126287466464}
   - component: {fileID: 3269309750374795105}
   - component: {fileID: 4521452634826487167}
+  - component: {fileID: 2094455090819195944}
   m_Layer: 0
   m_Name: 02-szaxxon-monitor
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2094455090819195944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827119213238003329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4078693996650241000
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +168,7 @@ GameObject:
   - component: {fileID: 5417215606191869289}
   - component: {fileID: 5978108973073111566}
   - component: {fileID: 3284884489108029015}
+  - component: {fileID: -1681012543847538325}
   m_Layer: 0
   m_Name: 01-szaxxon-marquee
   m_TagString: Untagged
@@ -223,6 +237,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1681012543847538325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433865752920825735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7484296483511388608
 GameObject:
   m_ObjectHideFlags: 0

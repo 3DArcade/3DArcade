@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 2139366116496853588}
   - component: {fileID: 8163687926254468767}
   - component: {fileID: 7841496672307609481}
+  - component: {fileID: 7788858609279941802}
   m_Layer: 0
   m_Name: mplanets_Mesh01
   m_TagString: Untagged
@@ -302,6 +303,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7788858609279941802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430153579320292183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8750394275255508165
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +326,7 @@ GameObject:
   - component: {fileID: 1316463560718964954}
   - component: {fileID: 3793268456839370421}
   - component: {fileID: 7007787322513202442}
+  - component: {fileID: -2383068331143063162}
   m_Layer: 0
   m_Name: mplanets_Mesh00
   m_TagString: Untagged
@@ -381,3 +395,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-2383068331143063162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750394275255508165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

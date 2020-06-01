@@ -127,11 +127,11 @@ namespace Arcade
             }
         }
 
-        private MasterGamelistConfiguration GetMasterGameList(string fileName)
-        {
-            return FileManager.LoadJSONData<MasterGamelistConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/" + fileName + ".json"));
+        //private MasterGamelistConfiguration GetMasterGameList(string fileName)
+        //{
+        //    return FileManager.LoadJSONData<MasterGamelistConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/MasterGamelists/" + fileName + ".json"));
 
-        }
+        //}
 
         private void SetupDropDownList(Dropdown dropdown, List<string> list)
         {
@@ -153,15 +153,15 @@ namespace Arcade
             ls.RefillCells();
         }
 
-        private void InputFieldValueChangedHandler(InputField target)
-        {
-            Debug.Log("selectedsearch: " + target.text);
-            //if (target == search)
-            //{
-            //    currentSearchSelection = target.text;
-            //    FilterGamelist();
-            //}
-        }
+        //private void InputFieldValueChangedHandler(InputField target)
+        //{
+        //    Debug.Log("selectedsearch: " + target.text);
+        //    //if (target == search)
+        //    //{
+        //    //    currentSearchSelection = target.text;
+        //    //    FilterGamelist();
+        //    //}
+        //}
 
         private void DropdownValueChangedHandler(Dropdown target)
         {
@@ -254,8 +254,8 @@ namespace Arcade
             arcadeConfiguration.id = id.text;
             arcadeConfiguration.gameLauncherMethod = gameLauncherMethod.options[gameLauncherMethod.value].text;
             arcadeConfiguration.modelSharedProperties.videoOnModelEnabled = videoOnModelEnabled.options[videoOnModelEnabled.value].text;
-            arcadeConfiguration.externalModels = externalModels.value == 0 ? false : true;
-            arcadeConfiguration.showFPS = showFPS.value == 0 ? false : true;
+            arcadeConfiguration.externalModels = externalModels.value != 0;
+            arcadeConfiguration.showFPS = showFPS.value != 0;
             ArcadeManager.arcadeConfiguration = arcadeConfiguration;
             int index = ArcadeManager.arcadesConfigurationList.FindIndex(x => x.id == arcadeConfiguration.id);
             if (index != -1)

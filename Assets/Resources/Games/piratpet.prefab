@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 5721144442589262261}
   - component: {fileID: 8561321014506780840}
   - component: {fileID: 3959030696950625283}
+  - component: {fileID: -5039751352168978992}
   m_Layer: 0
   m_Name: piratpet-amarquee
   m_TagString: Untagged
@@ -543,6 +544,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5039751352168978992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374263452802045262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7187017638310398097
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +567,7 @@ GameObject:
   - component: {fileID: 1248344387073460062}
   - component: {fileID: 3187413192369079231}
   - component: {fileID: 2504876122650365886}
+  - component: {fileID: 7883542447100086607}
   m_Layer: 0
   m_Name: piratpet-amonitor
   m_TagString: Untagged
@@ -623,6 +637,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7883542447100086607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7187017638310398097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8965977274189971900
 GameObject:
   m_ObjectHideFlags: 0

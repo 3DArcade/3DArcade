@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 2058063148513675642}
   - component: {fileID: 5056773551356811971}
   - component: {fileID: 2878974506840293522}
+  - component: {fileID: 2745445242657847516}
   m_Layer: 0
   m_Name: 01tank-marquee_
   m_TagString: Untagged
@@ -395,6 +396,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2745445242657847516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408860212003276059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5852498795927582915
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +419,7 @@ GameObject:
   - component: {fileID: 2718182880464790360}
   - component: {fileID: 3713396568793479187}
   - component: {fileID: 2534307610643931206}
+  - component: {fileID: 2929649591065045020}
   m_Layer: 0
   m_Name: 01tank-screenshot
   m_TagString: Untagged
@@ -474,6 +488,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2929649591065045020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5852498795927582915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6056313960241494355
 GameObject:
   m_ObjectHideFlags: 0

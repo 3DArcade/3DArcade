@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System;
 using System.IO;
 
 namespace Arcade_r
@@ -34,6 +35,11 @@ namespace Arcade_r
         public static string ReadAllText(string filePath)
         {
             return File.ReadAllText(Path.GetFullPath(filePath));
+        }
+
+        public static byte[] ReadAllBytes(string filePath)
+        {
+            return File.ReadAllBytes(Path.GetFullPath(filePath));
         }
 
         public static void WriteAllText(string filePath, string content)

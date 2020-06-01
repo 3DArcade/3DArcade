@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 7915895568686662086}
   - component: {fileID: 3094959247824443965}
   - component: {fileID: 8811883645078131074}
+  - component: {fileID: -155537267870412751}
   m_Layer: 0
   m_Name: 01_timeplt_aamarquees-joust2
   m_TagString: Untagged
@@ -474,6 +475,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-155537267870412751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578163205632286159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3646085883548820908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1056,7 @@ GameObject:
   - component: {fileID: 2915971127204061191}
   - component: {fileID: 8615794614014329135}
   - component: {fileID: 436016731336694070}
+  - component: {fileID: 8348401731073205101}
   m_Layer: 0
   m_Name: 02_timeplt_amonitor-joust2
   m_TagString: Untagged
@@ -1111,6 +1125,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8348401731073205101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105191267788715140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6204941622654171110
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 282136150621882879}
   - component: {fileID: 2875174540190713152}
   - component: {fileID: 2207130016969911764}
+  - component: {fileID: 3868381350338583306}
   m_Layer: 0
   m_Name: pacman_cabinet
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3868381350338583306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789313674626997197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8929406a885506d4e8a6751e01c3c2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3192074357866434068
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +247,7 @@ GameObject:
   - component: {fileID: 7765794335065235785}
   - component: {fileID: 1583209081703317142}
   - component: {fileID: 5673410266857011107}
+  - component: {fileID: 6723657399891490927}
   m_Layer: 0
   m_Name: 01_pacman_marquee
   m_TagString: Untagged
@@ -302,6 +316,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6723657399891490927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966838470582468620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8447083688559541347
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +339,7 @@ GameObject:
   - component: {fileID: 1873606046322205641}
   - component: {fileID: 2098239707361862465}
   - component: {fileID: 280116612809573965}
+  - component: {fileID: 548268484868795782}
   m_Layer: 0
   m_Name: 02_pacman_screen
   m_TagString: Untagged
@@ -381,3 +408,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &548268484868795782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447083688559541347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8980996415909360801}
   - component: {fileID: 82242572778450218}
   - component: {fileID: 5499993358696932230}
+  - component: {fileID: -4869485299542315535}
   m_Layer: 0
   m_Name: 02-bombjack-screen
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-4869485299542315535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735227899516727166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1240019983828686975
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +247,7 @@ GameObject:
   - component: {fileID: 7621220073853826324}
   - component: {fileID: 524140628339634273}
   - component: {fileID: 1522021565460202414}
+  - component: {fileID: -5464306034876704608}
   m_Layer: 0
   m_Name: 01-bombjack-marquee
   m_TagString: Untagged
@@ -302,6 +316,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5464306034876704608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314650035863476780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7808802474104596006
 GameObject:
   m_ObjectHideFlags: 0

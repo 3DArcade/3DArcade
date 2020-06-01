@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 882501468618731637}
   - component: {fileID: 7581936288760621947}
   - component: {fileID: 3981860688259527607}
+  - component: {fileID: -8640247161540424624}
   m_Layer: 0
   m_Name: 01-scramble-marquee
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8640247161540424624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199183626276453394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767337361833448580
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +262,7 @@ GameObject:
   - component: {fileID: 8108401215014110941}
   - component: {fileID: 8401410448875743012}
   - component: {fileID: 3396040269503247990}
+  - component: {fileID: -8025288723398368776}
   m_Layer: 0
   m_Name: 01-scramble-monitor
   m_TagString: Untagged
@@ -317,6 +331,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-8025288723398368776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217467424445901743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8896930566383533022
 GameObject:
   m_ObjectHideFlags: 0

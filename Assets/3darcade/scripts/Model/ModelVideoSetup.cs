@@ -499,10 +499,10 @@ namespace Arcade
             }
 
             // Fake sound by distance.
-            //float max = 10f;
-            //float min = 2f;
-            //float volumeByDistance = Mathf.Clamp(Mathf.Pow((distance - max) / (min - max), 2f), 0f, 1f);
-            //videoPlayer.SetDirectAudioVolume(0, volumeByDistance);
+            float max = 10f;
+            float min = 2f;
+            float volumeByDistance = Mathf.Clamp(Mathf.Pow((distance - max) / (min - max), 2f), 0f, 1f);
+            videoPlayer.SetDirectAudioVolume(0, volumeByDistance);
         }
 
         private bool IsInView(/*GameObject toCheck*/)

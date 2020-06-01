@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 3508692075584567852}
   - component: {fileID: 7374914231960463936}
   - component: {fileID: 4572839952526611245}
+  - component: {fileID: 3930724550635478140}
   m_Layer: 0
   m_Name: 01_bzone_aamarquee
   m_TagString: Untagged
@@ -303,6 +304,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3930724550635478140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245620733746266144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6395747852196382843
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +327,7 @@ GameObject:
   - component: {fileID: 264243430393787868}
   - component: {fileID: 3478173388137452519}
   - component: {fileID: 7414876911005422230}
+  - component: {fileID: 2606431089470917216}
   m_Layer: 0
   m_Name: 02_bzone_amonitor-robotron
   m_TagString: Untagged
@@ -382,6 +396,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &2606431089470917216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6395747852196382843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6541612263561797732
 GameObject:
   m_ObjectHideFlags: 0

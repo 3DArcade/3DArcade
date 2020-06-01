@@ -1128,6 +1128,7 @@ GameObject:
   - component: {fileID: 8772853788678008604}
   - component: {fileID: 3364391386977357750}
   - component: {fileID: 164746339846653748}
+  - component: {fileID: 9022014235210751526}
   m_Layer: 0
   m_Name: 01_marble_aamarquee
   m_TagString: Untagged
@@ -1196,6 +1197,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &9022014235210751526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582218968781646385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5972431314686981745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1777,7 @@ GameObject:
   - component: {fileID: 1937360672279529087}
   - component: {fileID: 707967499081470732}
   - component: {fileID: 1490248660578140184}
+  - component: {fileID: 6521861419796310256}
   m_Layer: 0
   m_Name: 02_marble_amonitor
   m_TagString: Untagged
@@ -1832,3 +1846,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6521861419796310256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180359540464932108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 1960385943620456376}
   - component: {fileID: 8352357690143763053}
   - component: {fileID: 4038149644865858626}
+  - component: {fileID: 1071467337758640690}
   m_Layer: 0
   m_Name: bandido-amarquee
   m_TagString: Untagged
@@ -316,6 +317,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1071467337758640690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612922453671202021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4830062021833428958
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +340,7 @@ GameObject:
   - component: {fileID: 396411766294987240}
   - component: {fileID: 5703973009868517759}
   - component: {fileID: 4761620694218274400}
+  - component: {fileID: 5092251924377005643}
   m_Layer: 0
   m_Name: bandido-amonitor
   m_TagString: Untagged
@@ -395,6 +409,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5092251924377005643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830062021833428958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5977265285316867044
 GameObject:
   m_ObjectHideFlags: 0

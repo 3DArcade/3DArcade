@@ -32,17 +32,18 @@ namespace Arcade_r
         public readonly GameObject GamesNode;
         public readonly GameObject PropsNode;
 
+        private static readonly string[] CHILD_NAMES = new [] { "ArcadeModels", "GameModels", "PropModels" };
+
         public ArcadeHierarchy()
         {
-            GameObject rootNode = UnityUtils.GameObjectCreateIfNotFound("Arcade", LayerMask.NameToLayer("Arcade"));
+            GameObject rootNode = GameObjectUtils.GameObjectCreateIfNotFound("Arcade", LayerMask.NameToLayer("Arcade"));
             Assert.IsNotNull(rootNode);
 
-            string[] childNames     = new string[] { "ArcadeModels", "GameModels", "PropModels" };
-            GameObject[] childNodes = new GameObject[childNames.Length];
-            for (int i = 0; i < childNames.Length; ++i)
+            GameObject[] childNodes = new GameObject[CHILD_NAMES.Length];
+            for (int i = 0; i < CHILD_NAMES.Length; ++i)
             {
-                string childName       = childNames[i];
-                GameObject childObject = UnityUtils.GameObjectCreateIfNotFound(childName, LayerMask.NameToLayer($"Arcade/{childName}"));
+                string childName       = CHILD_NAMES[i];
+                GameObject childObject = GameObjectUtils.GameObjectCreateIfNotFound(childName, LayerMask.NameToLayer($"Arcade/{childName}"));
                 Assert.IsNotNull(childObject);
                 childObject.transform.SetParent(rootNode.transform);
                 childNodes[i] = childObject;

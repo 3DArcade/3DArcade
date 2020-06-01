@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 32041253812792465}
   - component: {fileID: 3817036069175308523}
   - component: {fileID: 6402408303496977408}
+  - component: {fileID: -2629684458002747675}
   m_Layer: 0
   m_Name: 01-starwarsc-marquee
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-2629684458002747675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3293500792159753734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4221485056926733751
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +261,7 @@ GameObject:
   - component: {fileID: 7951446447149409661}
   - component: {fileID: 5552673461674946592}
   - component: {fileID: 3680072803238018981}
+  - component: {fileID: 3392176160830771277}
   m_Layer: 0
   m_Name: 02-starwarsc-monitor
   m_TagString: Untagged
@@ -316,6 +330,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3392176160830771277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677040204988551078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8792105899845417499
 GameObject:
   m_ObjectHideFlags: 0

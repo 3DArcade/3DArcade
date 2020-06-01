@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 572039825084648552}
   - component: {fileID: 8615891961063171480}
   - component: {fileID: 5687338098094672670}
+  - component: {fileID: -1390230136818055248}
   m_Layer: 0
   m_Name: 02_invaders_screen
   m_TagString: Untagged
@@ -159,6 +160,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1390230136818055248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982091538454469286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6991058661004901318
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +265,7 @@ GameObject:
   - component: {fileID: 8639365404153754722}
   - component: {fileID: 1696828546460174668}
   - component: {fileID: 4719142819938449141}
+  - component: {fileID: -965729782956796324}
   m_Layer: 0
   m_Name: 01_invaders_fakemarquee
   m_TagString: Untagged
@@ -321,6 +335,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-965729782956796324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088933197370150969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8024316362915764828
 GameObject:
   m_ObjectHideFlags: 0

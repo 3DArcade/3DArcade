@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -82,7 +83,7 @@ namespace Arcade
 
     public class BuildAssetBundlesWindow : EditorWindow
     {
-        [MenuItem("3DArcade/Build Asset Bundles from Model Prefabs", false, 10001)]
+        [MenuItem("3DArcade/Build Asset Bundles from Model Prefabs", false, 10001), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             EditorWindow window = GetWindow(typeof(BuildAssetBundlesWindow)) as BuildAssetBundlesWindow;
@@ -116,7 +117,7 @@ namespace Arcade
         private static string assetPath;
         private static string assetName;
 
-        [InitializeOnLoadMethod]
+        [InitializeOnLoadMethod, SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         static void Init()
         {
             ModelSetup.ShowBuildAssetBundleWindow = ShowWindow;

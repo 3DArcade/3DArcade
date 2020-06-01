@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1350339324152674244}
   - component: {fileID: 8912777649007470374}
   - component: {fileID: 4293909295875536160}
+  - component: {fileID: 8703492761770129239}
   m_Layer: 0
   m_Name: 01-mach3-marquee
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8703492761770129239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009225290658321857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4474280920580352319
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +248,7 @@ GameObject:
   - component: {fileID: 1457967435643210682}
   - component: {fileID: 1320557037621475654}
   - component: {fileID: 4904089803520414865}
+  - component: {fileID: 8619756156058032790}
   m_Layer: 0
   m_Name: 02-mach3-monitor
   m_TagString: Untagged
@@ -303,6 +317,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8619756156058032790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469294479249574276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8346210356796505836
 GameObject:
   m_ObjectHideFlags: 0

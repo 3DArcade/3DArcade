@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 7908341228621541487}
   - component: {fileID: 3946272049371654202}
   - component: {fileID: 2659218289049939786}
+  - component: {fileID: -7973546594452765975}
   m_Layer: 0
   m_Name: 01dotron-marquee
   m_TagString: Untagged
@@ -383,6 +384,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-7973546594452765975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5417959430051564229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6923535077257985774
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +486,7 @@ GameObject:
   - component: {fileID: 7624174943474651579}
   - component: {fileID: 8565407446954321990}
   - component: {fileID: 1545940617706840977}
+  - component: {fileID: -7857505804999462323}
   m_Layer: 0
   m_Name: 02dotron-monitor
   m_TagString: Untagged
@@ -541,3 +555,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-7857505804999462323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263518726615270504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

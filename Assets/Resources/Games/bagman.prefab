@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 1123039146182038334}
   - component: {fileID: 6494174217890953604}
   - component: {fileID: 569203498960913520}
+  - component: {fileID: 6216742141085197463}
   m_Layer: 0
   m_Name: bagmanamonitor
   m_TagString: Untagged
@@ -544,6 +545,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6216742141085197463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4536460953308035919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5042303147054995673
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +726,7 @@ GameObject:
   - component: {fileID: 921920982989727732}
   - component: {fileID: 4823757003031165002}
   - component: {fileID: 1041831045770981037}
+  - component: {fileID: -1499427677282870563}
   m_Layer: 0
   m_Name: bagmanamarquee
   m_TagString: Untagged
@@ -781,3 +795,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1499427677282870563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6627293353831268132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

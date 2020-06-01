@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 2353669373732042938}
   - component: {fileID: 4374159008620071487}
   - component: {fileID: 312808748042223550}
+  - component: {fileID: -6460897634785160214}
   m_Layer: 0
   m_Name: 01_berzerk_marquee
   m_TagString: Untagged
@@ -158,6 +159,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-6460897634785160214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424100301375310603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4029757783126015547
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +261,7 @@ GameObject:
   - component: {fileID: 1438867070649938229}
   - component: {fileID: 6830805784470987928}
   - component: {fileID: 6181017253771927781}
+  - component: {fileID: 8660330559435833464}
   m_Layer: 0
   m_Name: 02_berzerk_screen
   m_TagString: Untagged
@@ -316,6 +330,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8660330559435833464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074340199773068751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6724625752860628424
 GameObject:
   m_ObjectHideFlags: 0

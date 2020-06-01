@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 1464772620454036815}
   - component: {fileID: 4776978480665695052}
   - component: {fileID: 6074500678578723349}
+  - component: {fileID: 7809876225226252560}
   m_Layer: 0
   m_Name: 01-amidar-marquee
   m_TagString: Untagged
@@ -223,6 +224,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7809876225226252560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4922443028792371769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5024225624548638878
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +247,7 @@ GameObject:
   - component: {fileID: 3885898264167334456}
   - component: {fileID: 947441595808791510}
   - component: {fileID: 5580224011329497656}
+  - component: {fileID: -5847164674023088135}
   m_Layer: 0
   m_Name: 02-amidar-screen
   m_TagString: Untagged
@@ -302,6 +316,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5847164674023088135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024225624548638878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7496720372482303913
 GameObject:
   m_ObjectHideFlags: 0

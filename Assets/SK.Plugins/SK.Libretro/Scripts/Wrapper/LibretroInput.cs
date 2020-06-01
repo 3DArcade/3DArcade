@@ -145,7 +145,7 @@ namespace SK.Libretro
                     break;
                     case retro_device.RETRO_DEVICE_KEYBOARD:
                     {
-                        result = BoolToShort(id < (int)retro_key.RETROK_OEM_102 ? Input.GetKey((KeyCode)id) : false);
+                        result = BoolToShort(id < (int)retro_key.RETROK_OEM_102 && Input.GetKey((KeyCode)id));
                     }
                     break;
                     case retro_device.RETRO_DEVICE_LIGHTGUN:

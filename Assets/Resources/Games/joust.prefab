@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4413084115209982078}
   - component: {fileID: 3192648854783630905}
   - component: {fileID: 2304517064769255662}
+  - component: {fileID: 8265473592888165937}
   m_Layer: 0
   m_Name: 01_joust_aamarquees-robotron
   m_TagString: Untagged
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8265473592888165937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591655736907320897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1385402185222616280
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +247,7 @@ GameObject:
   - component: {fileID: 3469885077992308282}
   - component: {fileID: 1724622218387194945}
   - component: {fileID: 2741694151460362136}
+  - component: {fileID: 996660134976626086}
   m_Layer: 0
   m_Name: 02_joust_amonitor-robotron
   m_TagString: Untagged
@@ -302,6 +316,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &996660134976626086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375486274765653404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9155587624474810997
 GameObject:
   m_ObjectHideFlags: 0
