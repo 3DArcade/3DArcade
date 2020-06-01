@@ -94,7 +94,7 @@ namespace Arcade_r
                     }
 
                     _framework.ArcadeHierarchy.Reset();
-                    ArcadeController.StartArcade(arcadeConfiguration, _framework.ArcadeHierarchy.RootNode.transform, _framework.Player.transform);
+                    ArcadeController.StartArcade(arcadeConfiguration, _framework.ArcadeHierarchy, _framework.Player.transform);
                     GetWindow<LoadArcadeWindow>().Close();
                 }
             }

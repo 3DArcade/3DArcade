@@ -21,7 +21,9 @@
  * SOFTWARE. */
 
 using Cinemachine;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnityEngine;
 
 namespace Arcade_r
@@ -31,23 +33,23 @@ namespace Arcade_r
         private static readonly string[] RESOURCES_SUB_DIRECTORIES = new [] { "Arcades", "Games", "Props" };
         private static readonly string[] GAME_RESOURCES_DIRECTORY  = new [] { "Games" };
 
-        public static void StartArcade(ArcadeConfiguration configuration, Transform root, Transform player)
+        public static void StartArcade(ArcadeConfiguration configuration, ArcadeHierarchy arcadeHierarchy, Transform player)
         {
-            if (root.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
+            if (arcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
             {
                 arcadeConfigurationComponent.FromArcadeConfiguration(configuration);
             }
             else
             {
-                root.gameObject.AddComponent<ArcadeConfigurationComponent>()
-                               .FromArcadeConfiguration(configuration);
+                arcadeHierarchy.RootNode.AddComponent<ArcadeConfigurationComponent>()
+                                        .FromArcadeConfiguration(configuration);
             }
 
             SetupPlayer(player, configuration.CameraSettings.Position, configuration.CameraSettings.Rotation, configuration.CameraSettings.Height);
 
-            AddModelsToWorld<ArcadeModelSetup>(configuration.ArcadeModelList, configuration.RenderSettings, root.GetChild(0));
-            AddModelsToWorld<GameModelSetup>(configuration.GameModelList, configuration.RenderSettings, root.GetChild(1));
-            AddModelsToWorld<PropModelSetup>(configuration.PropModelList, configuration.RenderSettings, root.GetChild(2));
+            AddModelsToWorld<ArcadeModelSetup>(configuration.ArcadeModelList, configuration.RenderSettings, arcadeHierarchy.ArcadesNode);
+            AddModelsToWorld<GameModelSetup>(configuration.GameModelList, configuration.RenderSettings, arcadeHierarchy.GamesNode);
+            AddModelsToWorld<PropModelSetup>(configuration.PropModelList, configuration.RenderSettings, arcadeHierarchy.PropsNode);
         }
 
         private static void SetupPlayer(Transform player, Vector3 position, Vector3 rotation, float height)
@@ -58,7 +60,7 @@ namespace Arcade_r
             transposer.m_FollowOffset.y      = height;
         }
 
-        private static void AddModelsToWorld<T>(ModelConfiguration[] models, RenderSettings renderSettings, Transform parent)
+        private static void AddModelsToWorld<T>(ModelConfiguration[] models, RenderSettings renderSettings, GameObject parent)
             where T : ModelSetup
         {
             foreach (ModelConfiguration modelConfiguration in models)
@@ -87,104 +89,146 @@ namespace Arcade_r
                     }
                 }
 
-                MaterialUtils.SetGPUInstancing(true, prefab);
-                InstantiatePrefab<T>(prefab, parent, modelConfiguration, renderSettings);
+                GameObject instantiatedModel = InstantiatePrefab<T>(prefab, parent, modelConfiguration);
+
+                // Only look for artworks in play mode / at runtime
+                if (Application.isPlaying)
+                {
+                    SetupMarqueeNode(instantiatedModel, modelConfiguration, renderSettings);
+                    SetupScreenNode(instantiatedModel, modelConfiguration, renderSettings);
+                    SetupGenericNode(instantiatedModel, modelConfiguration);
+                }
             }
         }
 
-        private static void InstantiatePrefab<T>(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        private static GameObject InstantiatePrefab<T>(GameObject prefab, GameObject parent, ModelConfiguration modelConfiguration)
             where T : ModelSetup
         {
-            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
+            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent.transform);
             model.StripCloneFromName();
             model.transform.localScale = modelConfiguration.Scale;
-            model.transform.SetLayersRecursively(parent.gameObject.layer);
-
+            model.transform.SetLayersRecursively(parent.layer);
             model.AddComponent<T>()
                  .FromModelConfiguration(modelConfiguration);
+            return model;
+        }
 
-            // Only look for artworks at runtime
-            if (!Application.isPlaying)
+        private static void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        {
+            Renderer nodeRenderer = GetDynamicNodeRenderer<MarqueeNodeTag>(model);
+            if (nodeRenderer == null)
             {
                 return;
             }
 
-            string marqueeImagePath = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/marquees/{modelConfiguration.Id}.png";
-            Texture2D marqueeTexture = TextureUtils.LoadTextureFromFile(marqueeImagePath, true);
+            string imagePath  = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/marquees/{modelConfiguration.Id}.png";
+            Texture2D texture = TextureUtils.LoadTextureFromFile(imagePath, true);
+            if (texture == null)
+            {
+                return;
+            }
 
-            string screenImagePath = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/snap/{modelConfiguration.Id}.png";
-            Texture2D screenTexture = TextureUtils.LoadTextureFromFile(screenImagePath, false);
-            float screenIntensity;
+            SetupDynamicNode<MarqueeNodeTag>(nodeRenderer, texture, true, renderSettings.MarqueeIntensity);
+            SetupMagicPixels(nodeRenderer);
+        }
+
+        private static void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        {
+            Renderer nodeRenderer = GetDynamicNodeRenderer<ScreenNodeTag>(model);
+            if (nodeRenderer == null)
+            {
+                return;
+            }
+
+            string imagePath  = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/snap/{modelConfiguration.Id}.png";
+            Texture2D texture = TextureUtils.LoadTextureFromFile(imagePath, false);
+            if (texture == null)
+            {
+                return;
+            }
+
+            float intensity;
             if (modelConfiguration.Genre.ToLower().Contains("vector"))
             {
-                screenIntensity = renderSettings.ScreenVectorIntenstity;
+                intensity = renderSettings.ScreenVectorIntenstity;
             }
             else if (modelConfiguration.Screen.ToLower().Contains("pinball"))
             {
-                screenIntensity = renderSettings.ScreenPinballIntensity;
+                intensity = renderSettings.ScreenPinballIntensity;
             }
             else
             {
-                screenIntensity = renderSettings.ScreenRasterIntensity;
+                intensity = renderSettings.ScreenRasterIntensity;
             }
 
-            string genericImagePath = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/cabinets/{modelConfiguration.Id}.png";
-            Texture2D genericTexture = TextureUtils.LoadTextureFromFile(genericImagePath, true);
-
-            SetupDynamicNode<MarqueeNodeTag>(model, marqueeTexture, true, renderSettings.MarqueeIntensity);
-            SetupDynamicNode<ScreenNodeTag>(model, screenTexture, true, screenIntensity);
-            SetupDynamicNode<GenericNodeTag>(model, genericTexture);
+            SetupDynamicNode<ScreenNodeTag>(nodeRenderer, texture, true, intensity);
         }
 
-        private static void SetupDynamicNode<T>(GameObject model, Texture2D texture, bool overwriteColor = false, float emissionFactor = 1f)
-            where T : NodeTag
+        private static void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration)
         {
-            if (model == null || texture == null)
+            Renderer nodeRenderer = GetDynamicNodeRenderer<GenericNodeTag>(model);
+            if (nodeRenderer == null)
             {
                 return;
             }
 
-            if (!TryGetMaterialForNode<T>(model, out Material material))
+            string imagePath  = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/cabinets/{modelConfiguration.Id}.png";
+            Texture2D texture = TextureUtils.LoadTextureFromFile(imagePath, true);
+            if (texture == null)
             {
                 return;
             }
 
-            // Video
-            // ...
-
-            // Image
-            if (material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD))
-            {
-                Color color = overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME) * emissionFactor;
-                material.SetEmissionColorAndTexture(color, texture, true);
-            }
-            else
-            {
-                Color color = overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_MAINCOLOR_NAME);
-                material.SetAlbedoColorAndTexture(color, texture);
-            }
-
-            // Magic cabs
-            Renderer[] modelRenderers = model.GetComponentsInChildren<Renderer>();
+            SetupDynamicNode<GenericNodeTag>(nodeRenderer, texture);
         }
 
         [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
-        private static bool TryGetMaterialForNode<T>(GameObject model, out Material material)
+        private static Renderer GetDynamicNodeRenderer<T>(GameObject model)
             where T : NodeTag
         {
             T nodeTag = model.GetComponentInChildren<T>();
             if (nodeTag != null)
             {
-                Renderer renderer = nodeTag.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    material = renderer.material;
-                    return true;
-                }
+                return nodeTag.GetComponent<Renderer>();
+            }
+            return null;
+        }
+
+        [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
+        private static void SetupDynamicNode<T>(Renderer renderer, Texture2D texture, bool overwriteColor = false, float emissionFactor = 1f)
+            where T : NodeTag
+        {
+            // Video
+            // ...
+
+            // Image
+            if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD))
+            {
+                Color color = overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME) * emissionFactor;
+                renderer.material.SetEmissionColorAndTexture(color, texture, true);
+            }
+            else
+            {
+                Color color = overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_MAINCOLOR_NAME);
+                renderer.material.SetAlbedoColorAndTexture(color, texture);
+            }
+        }
+
+        private static void SetupMagicPixels(Renderer baseRenderer)
+        {
+            Transform parentTransform = baseRenderer.transform.parent;
+            if (parentTransform == null)
+            {
+                return;
             }
 
-            material = null;
-            return false;
+            IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
+                                                             .Where(r => r.GetComponent<NodeTag>() == null
+                                                                      && baseRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.material = baseRenderer.sharedMaterial;
+            }
         }
     }
 }

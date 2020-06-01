@@ -78,7 +78,7 @@ namespace Arcade_r
             if (arcadeConfiguration != null)
             {
                 _context.App.ArcadeHierarchy.Reset();
-                ArcadeController.StartArcade(arcadeConfiguration, _context.App.ArcadeHierarchy.RootNode.transform, _context.App.PlayerControls.transform);
+                ArcadeController.StartArcade(arcadeConfiguration, _context.App.ArcadeHierarchy, _context.App.PlayerControls.transform);
             }
 
             _loaded = true;
