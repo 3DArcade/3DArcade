@@ -109,7 +109,7 @@ namespace SK.Libretro.Unity
         [BurstCompile]
         private unsafe struct ProcessFrame0RGB1555Job : IJob
         {
-            [ReadOnly] [NativeDisableUnsafePtrRestriction] public ushort* SourceData;
+            [ReadOnly, NativeDisableUnsafePtrRestriction] public ushort* SourceData;
             public int Width;
             public int Height;
             public int PitchPixels;
@@ -132,7 +132,7 @@ namespace SK.Libretro.Unity
         [BurstCompile]
         private unsafe struct ProcessFrameXRGB8888Job : IJob
         {
-            [ReadOnly] [NativeDisableUnsafePtrRestriction] public uint* SourceData;
+            [ReadOnly, NativeDisableUnsafePtrRestriction] public uint* SourceData;
             public int Width;
             public int Height;
             public int PitchPixels;
@@ -155,7 +155,7 @@ namespace SK.Libretro.Unity
         [BurstCompile]
         private unsafe struct ProcessFrameRGB565Job : IJob
         {
-            [ReadOnly] [NativeDisableUnsafePtrRestriction] public ushort* SourceData;
+            [ReadOnly, NativeDisableUnsafePtrRestriction] public ushort* SourceData;
             public int Width;
             public int Height;
             public int PitchPixels;

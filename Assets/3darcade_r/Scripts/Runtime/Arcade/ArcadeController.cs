@@ -69,24 +69,35 @@ namespace Arcade_r
                 if (prefab == null)
                 {
                     // Generic model
-                    bool isVertical = modelConfiguration.Screen.ToLowerInvariant().Contains("vertical");
-                    _ = int.TryParse(modelConfiguration.Year, out int year);
-                    if (year >= 1970 && year < 1980)
+                    if (int.TryParse(modelConfiguration.Year, out int year))
                     {
-                        prefab = AssetManager.LoadPrefab(GAME_RESOURCES_DIRECTORY, isVertical ? "default70vert" : "default70hor");
+                        bool isVertical = modelConfiguration.Screen.ToLowerInvariant().Contains("vertical");
+
+                        string prefabName;
+                        if (year >= 1970 && year < 1980)
+                        {
+                            prefabName = isVertical ? "default70vert" : "default70hor";
+                        }
+                        else if (year < 1990)
+                        {
+                            prefabName = isVertical ? "default80vert" : "default80hor";
+                        }
+                        else if (year < 2000)
+                        {
+                            prefabName = isVertical ? "default90vert" : "default90hor";
+                        }
+                        else
+                        {
+                            prefabName = "default80hor";
+                        }
+
+                        prefab = AssetManager.LoadPrefab(GAME_RESOURCES_DIRECTORY, prefabName);
                     }
-                    else if (year < 1990)
-                    {
-                        prefab = AssetManager.LoadPrefab(GAME_RESOURCES_DIRECTORY, isVertical ? "default80vert" : "default80hor");
-                    }
-                    else if (year < 2000)
-                    {
-                        prefab = AssetManager.LoadPrefab(GAME_RESOURCES_DIRECTORY, isVertical ? "default90vert" : "default90hor");
-                    }
-                    else
-                    {
-                        prefab = AssetManager.LoadPrefab(GAME_RESOURCES_DIRECTORY, "default80hor");
-                    }
+                }
+
+                if (prefab == null)
+                {
+                    continue;
                 }
 
                 GameObject instantiatedModel = InstantiatePrefab<T>(prefab, parent, modelConfiguration);
@@ -128,7 +139,7 @@ namespace Arcade_r
                 return;
             }
 
-            SetupDynamicNode<MarqueeNodeTag>(nodeRenderer, texture, true, renderSettings.MarqueeIntensity);
+            SetupDynamicNode<MarqueeNodeTag>(nodeRenderer, texture, true, true, renderSettings.MarqueeIntensity);
             SetupMagicPixels(nodeRenderer);
         }
 
@@ -148,11 +159,11 @@ namespace Arcade_r
             }
 
             float intensity;
-            if (modelConfiguration.Genre.ToLower().Contains("vector"))
+            if (modelConfiguration.Screen.ToLowerInvariant().Contains("vector"))
             {
                 intensity = renderSettings.ScreenVectorIntenstity;
             }
-            else if (modelConfiguration.Screen.ToLower().Contains("pinball"))
+            else if (modelConfiguration.Screen.ToLowerInvariant().Contains("pinball"))
             {
                 intensity = renderSettings.ScreenPinballIntensity;
             }
@@ -161,7 +172,7 @@ namespace Arcade_r
                 intensity = renderSettings.ScreenRasterIntensity;
             }
 
-            SetupDynamicNode<ScreenNodeTag>(nodeRenderer, texture, true, intensity);
+            SetupDynamicNode<ScreenNodeTag>(nodeRenderer, texture, true, true, intensity);
         }
 
         private static void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration)
@@ -195,16 +206,16 @@ namespace Arcade_r
         }
 
         [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
-        private static void SetupDynamicNode<T>(Renderer renderer, Texture2D texture, bool overwriteColor = false, float emissionFactor = 1f)
+        private static void SetupDynamicNode<T>(Renderer renderer, Texture2D texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
             where T : NodeTag
         {
             // Video
             // ...
 
             // Image
-            if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD))
+            if (forceEmissive || renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD))
             {
-                Color color = overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME) * emissionFactor;
+                Color color = (overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME)) * emissionFactor;
                 renderer.material.SetEmissionColorAndTexture(color, texture, true);
             }
             else
@@ -225,9 +236,30 @@ namespace Arcade_r
             IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
                                                              .Where(r => r.GetComponent<NodeTag>() == null
                                                                       && baseRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
+
+            bool baseRendererIsEmissive = baseRenderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD);
+
             foreach (Renderer renderer in renderers)
             {
-                renderer.material = baseRenderer.sharedMaterial;
+                if (baseRendererIsEmissive)
+                {
+                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME);
+                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_EMISSIVETEXTURE_NAME);
+                    if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVEKEYWORD))
+                    {
+                        renderer.material.SetEmissionColorAndTexture(color, texture, true);
+                    }
+                    else
+                    {
+                        renderer.material.SetAlbedoColorAndTexture(color, texture);
+                    }
+                }
+                else
+                {
+                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_MAINCOLOR_NAME);
+                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_MAINTEXTURE_NAME);
+                    renderer.material.SetAlbedoColorAndTexture(color, texture);
+                }
             }
         }
     }
