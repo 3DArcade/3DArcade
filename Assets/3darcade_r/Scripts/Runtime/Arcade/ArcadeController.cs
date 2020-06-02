@@ -1,4 +1,4 @@
-﻿/* MIT License
+/* MIT License
 
  * Copyright (c) 2020 Skurdt
  *
@@ -31,9 +31,13 @@ namespace Arcade_r
     public static class ArcadeController
     {
         private static readonly string[] RESOURCES_SUB_DIRECTORIES = new [] { "Arcades", "Games", "Props" };
-        private static readonly string[] GAME_RESOURCES_DIRECTORY  = new [] { "Games" };
+        private const string GAME_RESOURCES_DIRECTORY              = "Games";
 
-        public static void StartArcade(ArcadeConfiguration configuration, ArcadeHierarchy arcadeHierarchy, Transform player)
+        public static void StartArcade(ArcadeConfiguration configuration,
+                                       ArcadeHierarchy arcadeHierarchy,
+                                       GameObjectCache gameObjectCache,
+                                       DiskTextureCache textureCache,
+                                       Transform player)
         {
             if (arcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
             {
@@ -47,9 +51,9 @@ namespace Arcade_r
 
             SetupPlayer(player, configuration.CameraSettings.Position, configuration.CameraSettings.Rotation, configuration.CameraSettings.Height);
 
-            AddModelsToWorld<ArcadeModelSetup>(configuration.ArcadeModelList, configuration.RenderSettings, arcadeHierarchy.ArcadesNode);
-            AddModelsToWorld<GameModelSetup>(configuration.GameModelList, configuration.RenderSettings, arcadeHierarchy.GamesNode);
-            AddModelsToWorld<PropModelSetup>(configuration.PropModelList, configuration.RenderSettings, arcadeHierarchy.PropsNode);
+            AddModelsToWorld<ArcadeModelSetup>(gameObjectCache, textureCache, configuration.ArcadeModelList, configuration.RenderSettings, arcadeHierarchy.ArcadesNode);
+            AddModelsToWorld<GameModelSetup>(gameObjectCache, textureCache, configuration.GameModelList, configuration.RenderSettings, arcadeHierarchy.GamesNode);
+            AddModelsToWorld<PropModelSetup>(gameObjectCache, textureCache, configuration.PropModelList, configuration.RenderSettings, arcadeHierarchy.PropsNode);
         }
 
         private static void SetupPlayer(Transform player, Vector3 position, Vector3 rotation, float height)
@@ -60,12 +64,12 @@ namespace Arcade_r
             transposer.m_FollowOffset.y      = height;
         }
 
-        private static void AddModelsToWorld<T>(ModelConfiguration[] models, RenderSettings renderSettings, GameObject parent)
+        private static void AddModelsToWorld<T>(GameObjectCache gameObjectManager, DiskTextureCache textureManager, ModelConfiguration[] models, RenderSettings renderSettings, GameObject parent)
             where T : ModelSetup
         {
             foreach (ModelConfiguration modelConfiguration in models)
             {
-                GameObject prefab = AssetManager.LoadPrefab(RESOURCES_SUB_DIRECTORIES, modelConfiguration.Model, modelConfiguration.Id, modelConfiguration.IdParent);
+                GameObject prefab = gameObjectManager.Load(RESOURCES_SUB_DIRECTORIES, modelConfiguration.Model, modelConfiguration.Id, modelConfiguration.IdParent);
                 if (prefab == null)
                 {
                     // Generic model
@@ -91,7 +95,7 @@ namespace Arcade_r
                             prefabName = "default80hor";
                         }
 
-                        prefab = AssetManager.LoadPrefab(GAME_RESOURCES_DIRECTORY, prefabName);
+                        prefab = gameObjectManager.Load(GAME_RESOURCES_DIRECTORY, prefabName);
                     }
                 }
 
@@ -105,9 +109,9 @@ namespace Arcade_r
                 // Only look for artworks in play mode / at runtime
                 if (Application.isPlaying)
                 {
-                    SetupMarqueeNode(instantiatedModel, modelConfiguration, renderSettings);
-                    SetupScreenNode(instantiatedModel, modelConfiguration, renderSettings);
-                    SetupGenericNode(instantiatedModel, modelConfiguration);
+                    SetupMarqueeNode(textureManager, instantiatedModel, modelConfiguration, renderSettings);
+                    SetupScreenNode(textureManager, instantiatedModel, modelConfiguration, renderSettings);
+                    SetupGenericNode(textureManager, instantiatedModel, modelConfiguration);
                 }
             }
         }
@@ -124,7 +128,7 @@ namespace Arcade_r
             return model;
         }
 
-        private static void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        private static void SetupMarqueeNode(DiskTextureCache textureManager, GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
         {
             Renderer nodeRenderer = GetDynamicNodeRenderer<MarqueeNodeTag>(model);
             if (nodeRenderer == null)
@@ -132,8 +136,8 @@ namespace Arcade_r
                 return;
             }
 
-            string imagePath  = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/marquees/{modelConfiguration.Id}.png";
-            Texture2D texture = TextureUtils.LoadTextureFromFile(imagePath, true);
+            string directory = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/marquees";
+            Texture texture  = textureManager.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
             if (texture == null)
             {
                 return;
@@ -143,7 +147,7 @@ namespace Arcade_r
             SetupMagicPixels(nodeRenderer);
         }
 
-        private static void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        private static void SetupScreenNode(DiskTextureCache textureManager, GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
         {
             Renderer nodeRenderer = GetDynamicNodeRenderer<ScreenNodeTag>(model);
             if (nodeRenderer == null)
@@ -151,8 +155,8 @@ namespace Arcade_r
                 return;
             }
 
-            string imagePath  = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/snap/{modelConfiguration.Id}.png";
-            Texture2D texture = TextureUtils.LoadTextureFromFile(imagePath, false);
+            string directory = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/snap";
+            Texture texture  = textureManager.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
             if (texture == null)
             {
                 return;
@@ -175,7 +179,7 @@ namespace Arcade_r
             SetupDynamicNode<ScreenNodeTag>(nodeRenderer, texture, true, true, intensity);
         }
 
-        private static void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration)
+        private static void SetupGenericNode(DiskTextureCache textureManager, GameObject model, ModelConfiguration modelConfiguration)
         {
             Renderer nodeRenderer = GetDynamicNodeRenderer<GenericNodeTag>(model);
             if (nodeRenderer == null)
@@ -183,8 +187,8 @@ namespace Arcade_r
                 return;
             }
 
-            string imagePath  = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/cabinets/{modelConfiguration.Id}.png";
-            Texture2D texture = TextureUtils.LoadTextureFromFile(imagePath, true);
+            string directory = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/cabinets";
+            Texture texture  = textureManager.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
             if (texture == null)
             {
                 return;
@@ -206,7 +210,7 @@ namespace Arcade_r
         }
 
         [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
-        private static void SetupDynamicNode<T>(Renderer renderer, Texture2D texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
+        private static void SetupDynamicNode<T>(Renderer renderer, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
             where T : NodeTag
         {
             // Video

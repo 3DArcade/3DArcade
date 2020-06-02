@@ -43,6 +43,8 @@ namespace Arcade_r
         public GeneralConfiguration GeneralConfiguration { get; private set; }
         public ArcadeConfigurationManager ArcadeManager { get; private set; }
         public EmulatorConfigurationManager EmulatorManager { get; private set; }
+        public GameObjectCache GameObjectCache { get; private set; }
+        public DiskTextureCache DiskTextureCache { get; private set; }
 
         private ArcadeContext _arcadeContext;
         private bool _badLuck = false;
@@ -82,6 +84,9 @@ namespace Arcade_r
                 SystemUtils.ExitApp();
                 return;
             }
+
+            GameObjectCache  = new GameObjectCache();
+            DiskTextureCache = new DiskTextureCache();
 
             _arcadeContext = new ArcadeContext(this, GeneralConfiguration.StartingArcade);
         }

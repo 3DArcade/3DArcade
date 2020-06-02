@@ -32,6 +32,7 @@ namespace Arcade_r
     {
         public readonly ArcadeHierarchy ArcadeHierarchy;
         public readonly ArcadeConfigurationManager ArcadeManager;
+        public readonly GameObjectCache GameObjectCache;
         public readonly PlayerControls Player;
         public readonly Camera MainCamera;
         public readonly CinemachineVirtualCamera VirtualCamera;
@@ -46,7 +47,8 @@ namespace Arcade_r
 
             ArcadeHierarchy = new ArcadeHierarchy();
 
-            ArcadeManager = new ArcadeConfigurationManager(_virtualFileSystem);
+            ArcadeManager   = new ArcadeConfigurationManager(_virtualFileSystem);
+            GameObjectCache = new GameObjectCache();
 
             Player = Object.FindObjectOfType<PlayerControls>();
             Assert.IsNotNull(Player);
@@ -94,7 +96,7 @@ namespace Arcade_r
                     }
 
                     _framework.ArcadeHierarchy.Reset();
-                    ArcadeController.StartArcade(arcadeConfiguration, _framework.ArcadeHierarchy, _framework.Player.transform);
+                    ArcadeController.StartArcade(arcadeConfiguration, _framework.ArcadeHierarchy, _framework.GameObjectCache, null, _framework.Player.transform);
                     GetWindow<LoadArcadeWindow>().Close();
                 }
             }

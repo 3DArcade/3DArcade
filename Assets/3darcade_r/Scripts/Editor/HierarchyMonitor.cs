@@ -26,7 +26,7 @@ using UnityEngine.SceneManagement;
 
 namespace Arcade_r
 {
-    [InitializeOnLoad]
+    // [InitializeOnLoad]
     public static class HierarchyMonitor
     {
         static HierarchyMonitor()

@@ -72,10 +72,9 @@ namespace Arcade_r
             if (_configurations[id] == null || reload)
             {
                 _configurations[id] = Load(id);
-                return Get(id, false);
             }
 
-            return _configurations[id] ?? Load(id);
+            return _configurations[id];
         }
 
         public bool Save(string id)
