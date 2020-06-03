@@ -38,10 +38,11 @@ namespace Arcade_r
         private readonly AssetCache<GameObject> _gameObjectCache;
         private readonly AssetCache<Texture> _textureCache;
         private readonly Transform _player;
+        private readonly ConfigurationManager<EmulatorConfiguration> _emulatorManager;
 
         private ArcadeConfiguration _currentConfiguration;
 
-        public ArcadeController(ArcadeHierarchy arcadeHierarchy, AssetCache<GameObject> gameObjectCache, AssetCache<Texture> textureCache, Transform player)
+        public ArcadeController(ArcadeHierarchy arcadeHierarchy, AssetCache<GameObject> gameObjectCache, ConfigurationManager<EmulatorConfiguration> emulatorManager, AssetCache<Texture> textureCache, Transform player)
         {
             Assert.IsNotNull(arcadeHierarchy);
             Assert.IsNotNull(gameObjectCache);
@@ -51,6 +52,7 @@ namespace Arcade_r
             _gameObjectCache = gameObjectCache;
             _textureCache    = textureCache;
             _player          = player;
+            _emulatorManager = emulatorManager;
         }
 
         public void StartArcade(ArcadeConfiguration arcadeConfiguration)
@@ -134,11 +136,12 @@ namespace Arcade_r
                 GameObject instantiatedModel = InstantiatePrefab<T>(prefab, parent, modelConfiguration);
 
                 // Only look for artworks in play mode / at runtime
-                if (Application.isPlaying && _textureCache != null)
+                if (Application.isPlaying && _textureCache != null && _emulatorManager != null)
                 {
-                    SetupMarqueeNode(instantiatedModel, modelConfiguration, renderSettings);
-                    SetupScreenNode(instantiatedModel, modelConfiguration, renderSettings);
-                    SetupGenericNode(instantiatedModel, modelConfiguration);
+                    EmulatorConfiguration emulator = !string.IsNullOrEmpty(modelConfiguration.Emulator) ? _emulatorManager.Get(modelConfiguration.Emulator) : null;
+                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator, renderSettings);
+                    SetupScreenNode(instantiatedModel, modelConfiguration, emulator, renderSettings);
+                    SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
                 }
             }
         }
@@ -155,7 +158,7 @@ namespace Arcade_r
             return model;
         }
 
-        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, RenderSettings renderSettings)
         {
             Renderer nodeRenderer = GetNodeRenderer<MarqueeNodeTag>(model);
             if (nodeRenderer == null)
@@ -163,8 +166,14 @@ namespace Arcade_r
                 return;
             }
 
-            string directory = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/marquees";
-            Texture texture  = _textureCache.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
+            List<string> directories = new List<string>();
+            if (emulator != null)
+            {
+                directories.Add($"{SystemUtils.GetDataPath()}/{emulator.MarqueePath}");
+            }
+            directories.Add($"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Marquees");
+
+            Texture texture = _textureCache.Load(directories.ToArray(), modelConfiguration.Id, modelConfiguration.IdParent);
             if (texture == null)
             {
                 return;
@@ -174,7 +183,7 @@ namespace Arcade_r
             SetupMagicPixels(nodeRenderer);
         }
 
-        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, RenderSettings renderSettings)
         {
             Renderer nodeRenderer = GetNodeRenderer<ScreenNodeTag>(model);
             if (nodeRenderer == null)
@@ -182,8 +191,14 @@ namespace Arcade_r
                 return;
             }
 
-            string directory = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/snap";
-            Texture texture  = _textureCache.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
+            List<string> directories = new List<string>();
+            if (emulator != null)
+            {
+                directories.Add($"{SystemUtils.GetDataPath()}/{emulator.ScreenPath}");
+            }
+            directories.Add($"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Screens");
+
+            Texture texture = _textureCache.Load(directories.ToArray(), modelConfiguration.Id, modelConfiguration.IdParent);
             if (texture == null)
             {
                 return;
@@ -206,7 +221,7 @@ namespace Arcade_r
             SetupNode(nodeRenderer, texture, true, true, screenIntensity);
         }
 
-        private void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration)
+        private void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
             Renderer nodeRenderer = GetNodeRenderer<GenericNodeTag>(model);
             if (nodeRenderer == null)
@@ -214,8 +229,13 @@ namespace Arcade_r
                 return;
             }
 
-            string directory = $"{Application.streamingAssetsPath}/3darcade_r~/Emulators/mame/cabinets";
-            Texture texture  = _textureCache.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
+            string directory = emulator != null ? $"{SystemUtils.GetDataPath()}/{emulator.GenericPath}" : null;
+            if (directory == null)
+            {
+                return;
+            }
+
+            Texture texture = _textureCache.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
             if (texture == null)
             {
                 return;

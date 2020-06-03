@@ -41,10 +41,10 @@ namespace Arcade_r
         public IVirtualFileSystem VirtualFileSystem { get; private set; }
         public ArcadeHierarchy ArcadeHierarchy { get; private set; }
         public GeneralConfiguration GeneralConfiguration { get; private set; }
-        public ArcadeConfigurationManager ArcadeManager { get; private set; }
-        public EmulatorConfigurationManager EmulatorManager { get; private set; }
-        public GameObjectCache GameObjectCache { get; private set; }
-        public DiskTextureCache DiskTextureCache { get; private set; }
+        public ConfigurationManager<ArcadeConfiguration> ArcadeManager { get; private set; }
+        public ConfigurationManager<EmulatorConfiguration> EmulatorManager { get; private set; }
+        public AssetCache<GameObject> GameObjectCache { get; private set; }
+        public AssetCache<Texture> DiskTextureCache { get; private set; }
 
         private ArcadeContext _arcadeContext;
         private bool _badLuck = false;

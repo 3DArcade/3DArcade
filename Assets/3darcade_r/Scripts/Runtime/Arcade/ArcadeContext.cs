@@ -25,7 +25,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeContext : FSM.Context<ArcadeBaseState>
+    public sealed class ArcadeContext : FSM.Context<ArcadeState>
     {
         public readonly App App;
         public readonly LayerMask RaycastLayers;
@@ -42,7 +42,7 @@ namespace Arcade_r
             CurrentArcadeId = startingArcade;
             RaycastLayers   = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
 
-            _arcadeController = new ArcadeController(App.ArcadeHierarchy, App.GameObjectCache, App.DiskTextureCache, App.PlayerControls.transform);
+            _arcadeController = new ArcadeController(App.ArcadeHierarchy, App.GameObjectCache, App.EmulatorManager, App.DiskTextureCache, App.PlayerControls.transform);
         }
 
         public void SaveCurrentArcadeConfiguration()

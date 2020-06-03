@@ -25,11 +25,12 @@ using UnityEngine.InputSystem;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeInternalGameState : ArcadeBaseState
+    public sealed class ArcadeInternalGameState : ArcadeState
     {
-        private LibretroLauncher _libretroLauncher;
         private const string _coreName = "mame2003_plus";
         private const string _romsDirectory = "D:/mame2003-plus/roms";
+
+        private LibretroLauncher _libretroLauncher;
 
         public ArcadeInternalGameState(ArcadeContext context)
         : base(context)

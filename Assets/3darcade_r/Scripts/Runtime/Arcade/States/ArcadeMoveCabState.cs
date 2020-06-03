@@ -24,7 +24,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeMoveCabState : ArcadeBaseState
+    public sealed class ArcadeMoveCabState : ArcadeState
     {
         private readonly MoveCabContext _moveCabContext;
 

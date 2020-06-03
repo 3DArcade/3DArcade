@@ -24,7 +24,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeNormalState : ArcadeBaseState
+    public sealed class ArcadeNormalState : ArcadeState
     {
         private readonly float _interactMaxDistance = 2.5f;
 
@@ -93,7 +93,7 @@ namespace Arcade_r
                 {
                     if (_context.CurrentGrabbable != null)
                     {
-                        _context.CurrentGrabbable.OnGrab();
+                        _context.TransitionTo<ArcadeGrabState>();
                     }
                     else if (_context.CurrentInteractable != null)
                     {

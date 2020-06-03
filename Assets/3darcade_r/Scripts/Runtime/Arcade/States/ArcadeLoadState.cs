@@ -25,7 +25,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeLoadState : ArcadeBaseState
+    public sealed class ArcadeLoadState : ArcadeState
     {
         private bool _loaded;
 

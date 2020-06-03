@@ -20,9 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine.Assertions;
+
 namespace Arcade_r
 {
-    public interface IGrabbable : IInteractable
+    public abstract class ArcadeState : FSM.State<ArcadeState>
     {
+        protected ArcadeContext _context;
+
+        public ArcadeState(ArcadeContext context)
+        {
+            Assert.IsNotNull(context);
+            _context = context;
+        }
     }
 }

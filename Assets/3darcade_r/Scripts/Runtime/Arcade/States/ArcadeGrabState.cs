@@ -20,18 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine.Assertions;
+using UnityEngine;
 
 namespace Arcade_r
 {
-    public abstract class ArcadeBaseState : FSM.State<ArcadeBaseState>
+    public sealed class ArcadeGrabState : ArcadeState
     {
-        protected ArcadeContext _context;
-
-        public ArcadeBaseState(ArcadeContext context)
+        public ArcadeGrabState(ArcadeContext context)
+        : base(context)
         {
-            Assert.IsNotNull(context);
-            _context = context;
+        }
+
+        public override void OnEnter()
+        {
+            Debug.Log(">> <color=green>Entered</color> ArcadeGrabState");
+        }
+
+        public override void OnExit()
+        {
+            Debug.Log(">> <color=orange>Exited</color> ArcadeGrabState");
         }
     }
 }

@@ -29,8 +29,8 @@ namespace Arcade_r
     public class EditorLoadSaveArcadeSubstitute
     {
         public readonly ArcadeHierarchy ArcadeHierarchy;
-        public readonly ArcadeConfigurationManager ArcadeManager;
-        public readonly GameObjectCache GameObjectCache;
+        public readonly ConfigurationManager<ArcadeConfiguration> ArcadeManager;
+        public readonly AssetCache<GameObject> GameObjectCache;
         public readonly PlayerControls Player;
         public readonly Camera MainCamera;
         public readonly CinemachineVirtualCamera VirtualCamera;
@@ -60,7 +60,7 @@ namespace Arcade_r
 
             ConfigurationNames = ArcadeManager.GetNames();
 
-            _arcadeController = new ArcadeController(ArcadeHierarchy, GameObjectCache, null, Player.transform);
+            _arcadeController = new ArcadeController(ArcadeHierarchy, GameObjectCache, null, null, Player.transform);
         }
 
         public void LoadAndStartArcade(string name)
