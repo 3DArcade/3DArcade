@@ -44,6 +44,9 @@ namespace Arcade_r
             InteractionController.OnCurrentInteractableChanged -= OnTargetChange;
         }
 
-        private void OnTargetChange(string name) => _text.text = name;
+        private void OnTargetChange(IInteractable interactable)
+        {
+            _text.text = interactable != null ? interactable.DescriptiveName : string.Empty;
+        }
     }
 }

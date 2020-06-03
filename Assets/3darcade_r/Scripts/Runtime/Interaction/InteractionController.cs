@@ -27,7 +27,7 @@ namespace Arcade_r
 {
     public static class InteractionController
     {
-        public static event Action<string> OnCurrentInteractableChanged;
+        public static event Action<IInteractable> OnCurrentInteractableChanged;
 
         public static void FindInteractable(ref IInteractable interactable, ref IGrabbable grabbable, Camera camera, float maxDistance, LayerMask layers)
         {
@@ -41,21 +41,21 @@ namespace Arcade_r
                     {
                         interactable = hitInteractable;
                         grabbable    = hitInfo.transform.GetComponent<IGrabbable>();
-                        OnCurrentInteractableChanged?.Invoke(hitInteractable.DescriptiveName);
+                        OnCurrentInteractableChanged?.Invoke(interactable);
                     }
                 }
                 else
                 {
                     interactable = null;
                     grabbable    = null;
-                    OnCurrentInteractableChanged?.Invoke(string.Empty);
+                    OnCurrentInteractableChanged?.Invoke(null);
                 }
             }
             else
             {
                 interactable = null;
                 grabbable    = null;
-                OnCurrentInteractableChanged?.Invoke(string.Empty);
+                OnCurrentInteractableChanged?.Invoke(null);
             }
         }
     }

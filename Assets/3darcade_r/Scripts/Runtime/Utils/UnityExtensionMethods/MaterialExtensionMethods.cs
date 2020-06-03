@@ -33,7 +33,7 @@ namespace Arcade_r
                 return;
             }
 
-            material.SetColor(MaterialUtils.SHADER_MAINCOLOR_NAME, color);
+            material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, color);
         }
 
         public static void SetAlbedoTexture(this Material material, Texture texture)
@@ -43,7 +43,7 @@ namespace Arcade_r
                 return;
             }
 
-            material.SetTexture(MaterialUtils.SHADER_MAINTEXTURE_NAME, texture);
+            material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, texture);
         }
 
         public static void SetAlbedoColorAndTexture(this Material material, Color color, Texture texture)
@@ -53,8 +53,8 @@ namespace Arcade_r
                 return;
             }
 
-            material.SetTexture(MaterialUtils.SHADER_MAINTEXTURE_NAME, texture);
-            material.SetColor(MaterialUtils.SHADER_MAINCOLOR_NAME, color);
+            material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, texture);
+            material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, color);
         }
 
         public static void ClearAlbedoColorAndTexture(this Material material)
@@ -64,11 +64,11 @@ namespace Arcade_r
                 return;
             }
 
-            material.SetTexture(MaterialUtils.SHADER_MAINTEXTURE_NAME, null);
-            material.SetColor(MaterialUtils.SHADER_MAINCOLOR_NAME, Color.black);
+            material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, null);
+            material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, Color.black);
         }
 
-        public static void SetEmissionColorAndTexture(this Material material, Color color, Texture texture, bool clearMainColorAndTexture)
+        public static void SetEmissiveColorAndTexture(this Material material, Color color, Texture texture, bool clearMainColorAndTexture)
         {
             if (material == null)
             {
@@ -80,11 +80,11 @@ namespace Arcade_r
                 material.ClearAlbedoColorAndTexture();
             }
 
-            material.EnableKeyword(MaterialUtils.SHADER_EMISSIVEKEYWORD);
+            material.EnableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
             material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;
-            material.SetTexture(MaterialUtils.SHADER_EMISSIVETEXTURE_NAME, texture);
+            material.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
 
-            material.SetColor(MaterialUtils.SHADER_EMISSIVECOLOR_NAME, color);
+            material.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, color);
         }
     }
 }

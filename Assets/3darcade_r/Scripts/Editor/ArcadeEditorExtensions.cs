@@ -28,6 +28,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEditor.Presets;
 using UnityEngine;
+using UnityStandardAssets.Utility;
 
 [assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "UnityEditor", Scope = "namespaceanddescendants", Target = "Arcade_r.ArcadeEditorExtensions")]
 
@@ -43,14 +44,14 @@ namespace Arcade_r.ArcadeEditorExtensions
 
     internal static class GlobalPaths
     {
-        internal const string MODELS_FOLDER = "Assets/3darcade/models";
-        internal const string ARCADEMODELS_FOLDER = MODELS_FOLDER + "/arcades";
-        internal const string GAMEMODELS_FOLDER = MODELS_FOLDER + "/games";
-        internal const string PROPMODELS_FOLDER = MODELS_FOLDER + "/props";
-        internal const string RESOURCES_FOLDER = "Assets/Resources";
+        internal const string MODELS_FOLDER        = "Assets/3darcade/models";
+        internal const string ARCADEMODELS_FOLDER  = MODELS_FOLDER + "/arcades";
+        internal const string GAMEMODELS_FOLDER    = MODELS_FOLDER + "/games";
+        internal const string PROPMODELS_FOLDER    = MODELS_FOLDER + "/props";
+        internal const string RESOURCES_FOLDER     = "Assets/Resources";
         internal const string ARCADEPREFABS_FOLDER = RESOURCES_FOLDER + "/Arcades";
-        internal const string GAMEPREFABS_FOLDER = RESOURCES_FOLDER + "/Games";
-        internal const string PROPPREFABS_FOLDER = RESOURCES_FOLDER + "/Props";
+        internal const string GAMEPREFABS_FOLDER   = RESOURCES_FOLDER + "/Games";
+        internal const string PROPPREFABS_FOLDER   = RESOURCES_FOLDER + "/Props";
     }
 
     internal sealed class ModelAssetPresetImportPerFolderPreprocessor : AssetPostprocessor
@@ -84,17 +85,13 @@ namespace Arcade_r.ArcadeEditorExtensions
     internal sealed class ImportAssistantWindow : EditorWindow
     {
         private static string _savedBrowseDir = string.Empty;
-        private static string _externalPath = string.Empty;
-        private static ModelType _modelType = ModelType.Game;
+        private static string _externalPath   = string.Empty;
+        private static ModelType _modelType   = ModelType.Game;
 
         private static bool _closeAfterImport = true;
 
         [MenuItem("3DArcade_r/Import a new Model...", false, 10003)]
-        private static void ShowWindow()
-        {
-            ImportAssistantWindow window = GetWindow<ImportAssistantWindow>("Import Assistant");
-            window.minSize = new Vector2(290f, 120f);
-        }
+        private static void ShowWindow() => GetWindow<ImportAssistantWindow>("Import Assistant").minSize = new Vector2(290f, 120f);
 
         private void OnGUI()
         {
@@ -205,30 +202,8 @@ namespace Arcade_r.ArcadeEditorExtensions
         }
     }
 
-    internal sealed class ContextMenus
+    internal sealed class GameObjectContextMenus
     {
-        // ***************
-        // Assets
-        // ***************
-        [MenuItem("Assets/ArcadeEditorExtensions_r/Set as transparent", false, 1000)]
-        private static void AssetsSetAsTransparent()
-        {
-            Material selectedObj = Selection.activeObject as Material;
-            Undo.RecordObject(selectedObj, "Set as transparent");
-            Utils.SetupTransparentMaterial(selectedObj);
-        }
-
-        [MenuItem("Assets/ArcadeEditorExtensions_r/Set as emissive", false, 1001)]
-        private static void AssetsSetAsEmissive()
-        {
-            Material selectedObj = Selection.activeObject as Material;
-            Undo.RecordObject(selectedObj, "Set as emissive");
-            Utils.SetupEmissiveMaterial(selectedObj, Color.white);
-        }
-
-        // ***************
-        // GameObject
-        // ***************
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Add BoxCollider (Replace existing)", false, 11)]
         private static void GameObjectAddBoxCollider()
         {
@@ -278,18 +253,10 @@ namespace Arcade_r.ArcadeEditorExtensions
         }
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Set as marquee", false, 14)]
-        private static void GameObjectSetAsMarquee()
-        {
-            GameObject selectedObj = Selection.activeObject as GameObject;
-            Utils.SetGameObjectAsMarquee(selectedObj);
-        }
+        private static void GameObjectSetAsMarquee() => Utils.SetGameObjectAsMarquee(Selection.activeObject as GameObject);
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Set as monitor", false, 15)]
-        private static void GameObjectSetAsMonitor()
-        {
-            GameObject selectedObj = Selection.activeObject as GameObject;
-            Utils.SetGameObjectAsMonitor(selectedObj);
-        }
+        private static void GameObjectSetAsMonitor() => Utils.SetGameObjectAsMonitor(Selection.activeObject as GameObject);
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Set as generic", false, 16)]
         private static void GameObjectSetAsGeneric()
@@ -319,9 +286,9 @@ namespace Arcade_r.ArcadeEditorExtensions
         {
             GameObject selectedObj = Selection.activeObject as GameObject;
 
-            MeshRenderer meshRenderer = selectedObj.GetComponent<MeshRenderer>();
-            Undo.RecordObject(meshRenderer.sharedMaterial, "Set as transparent");
-            Utils.SetupTransparentMaterial(meshRenderer.sharedMaterial);
+            Renderer renderer = selectedObj.GetComponent<Renderer>();
+            Undo.RecordObject(renderer.sharedMaterial, "Set as transparent");
+            Utils.SetupTransparentMaterial(renderer.sharedMaterial);
         }
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Material/Set as emissive", false, 22)]
@@ -329,48 +296,22 @@ namespace Arcade_r.ArcadeEditorExtensions
         {
             GameObject selectedObj = Selection.activeObject as GameObject;
 
-            MeshRenderer meshRenderer = selectedObj.GetComponent<MeshRenderer>();
-            Undo.RecordObject(meshRenderer.sharedMaterial, "Set as emissive");
-            Utils.SetupEmissiveMaterial(meshRenderer.sharedMaterial, Color.white);
+            Renderer renderer = selectedObj.GetComponent<MeshRenderer>();
+            Undo.RecordObject(renderer.sharedMaterial, "Set as emissive");
+            Utils.SetupEmissiveMaterial(renderer.sharedMaterial, Color.white);
         }
 
         // ***************
         // Validation
         // ***************
-        [MenuItem("Assets/ArcadeEditorExtensions_r/Set as transparent", true)]
-        private static bool AssetsSetAsTransparentValidation()
-        {
-            Object selectedObj = Selection.activeObject;
-            return selectedObj != null
-                && selectedObj.GetType() == typeof(Material)
-                && !selectedObj.name.Equals("Default-Material");
-        }
-
-        [MenuItem("Assets/ArcadeEditorExtensions_r/Set as emissive", true)]
-        private static bool AssetsSetAsEmissiveValidation()
-        {
-            return AssetsSetAsTransparentValidation();
-        }
-
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Add BoxCollider (Replace existing)", true)]
-        private static bool GameObjectAddBoxColliderValidation()
-        {
-            Object selectedObj = Selection.activeObject;
-            return selectedObj != null
-                && selectedObj.GetType() == typeof(GameObject);
-        }
+        private static bool GameObjectAddBoxColliderValidation() => Selection.activeObject as GameObject != null;
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Add Non-Kinematic RigidBody (Replace existing)", true)]
-        private static bool GameObjectAddNonKinematicRigidBodyValidation()
-        {
-            return GameObjectAddBoxColliderValidation();
-        }
+        private static bool GameObjectAddNonKinematicRigidBodyValidation() => GameObjectAddBoxColliderValidation();
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Add Kinematic RigidBody (Replace existing)", true)]
-        private static bool GameObjectAddKinematicRigidBodyValidation()
-        {
-            return GameObjectAddBoxColliderValidation();
-        }
+        private static bool GameObjectAddKinematicRigidBodyValidation() => GameObjectAddBoxColliderValidation();
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Set as marquee", true)]
         private static bool GameObjectSetAsMarqueeValidation()
@@ -378,34 +319,22 @@ namespace Arcade_r.ArcadeEditorExtensions
             GameObject selectedObj = Selection.activeObject as GameObject;
             return selectedObj != null
                 && selectedObj.transform.parent != null
-                && selectedObj.TryGetComponent(out MeshRenderer meshRenderer)
-                && meshRenderer.sharedMaterials.Length == 1
-                && !meshRenderer.sharedMaterial.name.Equals("Default-Material");
+                && selectedObj.TryGetComponent(out Renderer renderer)
+                && renderer.sharedMaterials.Length == 1
+                && !renderer.sharedMaterial.name.Equals("Default-Material");
         }
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Set as monitor", true)]
-        private static bool GameObjectSetAsMonitorValidation()
-        {
-            return GameObjectSetAsMarqueeValidation();
-        }
+        private static bool GameObjectSetAsMonitorValidation() => GameObjectSetAsMarqueeValidation();
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Node/Set as generic", true)]
-        private static bool GameObjectSetAsGenericValidation()
-        {
-            return GameObjectSetAsMarqueeValidation();
-        }
+        private static bool GameObjectSetAsGenericValidation() => GameObjectSetAsMarqueeValidation();
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Material/Set as transparent", true)]
-        private static bool GameObjectSetAsTransparentValidation()
-        {
-            return GameObjectSetAsMarqueeValidation();
-        }
+        private static bool GameObjectSetAsTransparentValidation() => GameObjectSetAsMarqueeValidation();
 
         [MenuItem("GameObject/ArcadeEditorExtensions_r/Material/Set as emissive", true)]
-        private static bool GameObjectSetAsEmissiveValidation()
-        {
-            return GameObjectSetAsMarqueeValidation();
-        }
+        private static bool GameObjectSetAsEmissiveValidation() => GameObjectSetAsMarqueeValidation();
     }
 
     internal static class Utils
@@ -660,11 +589,11 @@ namespace Arcade_r.ArcadeEditorExtensions
 
         private static void RenameNodes(Transform transform, ModelType modelType)
         {
-            List<Transform> children = GetAllChildren(transform, modelType == ModelType.Arcade);
-            if (children.Count > 0)
+            Transform[] children = GetAllChildren(transform, modelType == ModelType.Arcade);
+            if (children.Length > 0)
             {
-                string meshNumberFormat = children.Count > 100 ? "{0:000}" : "{0:00}";
-                for (int i = 0; i < children.Count; ++i)
+                string meshNumberFormat = children.Length > 100 ? "{0:000}" : "{0:00}";
+                for (int i = 0; i < children.Length; ++i)
                 {
                     Transform child = children[i];
                     if (!child.name.StartsWith(transform.name))
@@ -676,10 +605,10 @@ namespace Arcade_r.ArcadeEditorExtensions
             }
         }
 
-        private static List<Transform> GetAllChildren(Transform parentTansform, bool getNestedNodes)
+        private static Transform[] GetAllChildren(Transform root, bool getNestedNodes)
         {
             List<Transform> result = new List<Transform>();
-            foreach (Transform childTransform in parentTansform)
+            foreach (Transform childTransform in root)
             {
                 result.Add(childTransform);
                 if (getNestedNodes)
@@ -687,7 +616,7 @@ namespace Arcade_r.ArcadeEditorExtensions
                     result.AddRange(GetAllChildren(childTransform, getNestedNodes));
                 }
             }
-            return result;
+            return result.ToArray();
         }
     }
 }

@@ -118,7 +118,10 @@ public class PrefabLightmapData : MonoBehaviour
             RendererInfo info = infos[i];
 
             info.renderer.lightmapIndex = lightmapOffsetIndex[info.lightmapIndex];
-            info.renderer.lightmapScaleOffset = info.lightmapOffsetScale;
+            if (!info.renderer.isPartOfStaticBatch)
+            {
+                info.renderer.lightmapScaleOffset = info.lightmapOffsetScale;
+            }
 
             // You have to release shaders.
             Material[] mat = info.renderer.sharedMaterials;

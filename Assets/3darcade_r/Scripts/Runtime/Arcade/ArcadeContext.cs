@@ -28,19 +28,21 @@ namespace Arcade_r
     public sealed class ArcadeContext : FSM.Context<ArcadeBaseState>
     {
         public readonly App App;
-
         public readonly LayerMask RaycastLayers;
 
         public string CurrentArcadeId;
-
         public IInteractable CurrentInteractable;
         public IGrabbable CurrentGrabbable;
+
+        private readonly ArcadeController _arcadeController;
 
         public ArcadeContext(App app, string startingArcade)
         {
             App             = app;
             CurrentArcadeId = startingArcade;
             RaycastLayers   = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
+
+            _arcadeController = new ArcadeController(App.ArcadeHierarchy, App.GameObjectCache, App.DiskTextureCache, App.PlayerControls.transform);
         }
 
         public void SaveCurrentArcadeConfiguration()
@@ -56,6 +58,16 @@ namespace Arcade_r
             CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
 
             _ = App.ArcadeManager.Save(cfgComponent.ToArcadeConfiguration(player, mainCamera, vCamera));
+        }
+
+        public void StartCurrentArcade()
+        {
+            ArcadeConfiguration arcadeConfiguration = App.ArcadeManager.Get(CurrentArcadeId);
+            if (arcadeConfiguration != null)
+            {
+                App.ArcadeHierarchy.Reset();
+                _arcadeController.StartArcade(arcadeConfiguration);
+            }
         }
 
         public void ReloadCurrentArcadeConfigurationModels()

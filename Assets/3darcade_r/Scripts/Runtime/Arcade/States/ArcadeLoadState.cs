@@ -74,16 +74,7 @@ namespace Arcade_r
                 yield return null;
             }
 
-            ArcadeConfiguration arcadeConfiguration = _context.App.ArcadeManager.Get(_context.CurrentArcadeId);
-            if (arcadeConfiguration != null)
-            {
-                _context.App.ArcadeHierarchy.Reset();
-                ArcadeController.StartArcade(arcadeConfiguration,
-                                             _context.App.ArcadeHierarchy,
-                                             _context.App.GameObjectCache,
-                                             _context.App.DiskTextureCache,
-                                             _context.App.PlayerControls.transform);
-            }
+            _context.StartCurrentArcade();
 
             _loaded = true;
         }
