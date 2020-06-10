@@ -77,7 +77,7 @@ namespace Arcade_r
             {
                 arcadeConfigurationComponent = ArcadeHierarchy.RootNode.gameObject.AddComponent<ArcadeConfigurationComponent>();
             }
-            arcadeConfigurationComponent.FromArcadeConfiguration(arcadeConfiguration);
+            arcadeConfigurationComponent.Restore(arcadeConfiguration);
 
             if (arcadeConfiguration.ArcadeType == ArcadeType.Fps || arcadeConfiguration.ArcadeType == ArcadeType.Cyl)
             {
@@ -89,7 +89,7 @@ namespace Arcade_r
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)
         {
-            _ = ArcadeDatabase.Save(arcadeConfiguration.ToArcadeConfiguration(_player.transform, Camera.main));
+            _ = arcadeConfiguration.Save(ArcadeDatabase, _player.transform, Camera.main);
         }
     }
 }

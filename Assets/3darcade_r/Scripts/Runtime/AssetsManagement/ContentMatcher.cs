@@ -26,7 +26,6 @@ using System.Linq;
 
 namespace Arcade_r
 {
-
     public class ContentMatcher
     {
         public delegate List<string> GetNamesToTryDelegate(ModelConfiguration modelConfiguration, LauncherConfiguration launcher, ContentConfiguration content);

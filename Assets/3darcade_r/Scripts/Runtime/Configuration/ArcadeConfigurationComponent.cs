@@ -39,24 +39,11 @@ namespace Arcade_r
         public CylProperties CylArcadeProperties = default;
         public Zone[] Zones                      = default;
 
-        public void FromArcadeConfiguration(ArcadeConfiguration cfg)
-        {
-            DescriptiveName     = cfg.DescriptiveName;
-            Id                  = cfg.Id;
-            ArcadeType          = cfg.ArcadeType;
-            RenderSettings      = cfg.RenderSettings;
-            AudioSettings       = cfg.AudioSettings;
-            VideoSettings       = cfg.VideoSettings;
-            FpsArcadeProperties = cfg.FpsProperties;
-            CylArcadeProperties = cfg.CylProperties;
-            Zones               = cfg.Zones;
-        }
-
-        public ArcadeConfiguration ToArcadeConfiguration(Transform player, Camera mainCamera)
+        public bool Save(Database<ArcadeConfiguration> arcadeDatabase, Transform player, Camera mainCamera)
         {
             GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);
 
-            ArcadeConfiguration result = new ArcadeConfiguration
+            ArcadeConfiguration cfg = new ArcadeConfiguration
             {
                 DescriptiveName = DescriptiveName,
                 Id              = Id,
@@ -74,7 +61,7 @@ namespace Arcade_r
 
             CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
 
-            result.FpsProperties.CameraSettings = new CameraSettings
+            cfg.FpsProperties.CameraSettings = new CameraSettings
             {
                 Position      = player.position,
                 Rotation      = MathUtils.CorrectEulerAngles(mainCamera.transform.eulerAngles),
@@ -87,21 +74,42 @@ namespace Arcade_r
                 ViewportRect  = mainCamera.rect
             };
 
-            return result;
+            return arcadeDatabase.Save(cfg);
         }
 
-        public void GetGamesAndProps(out ModelConfiguration[] games, out ModelConfiguration[] props)
+        public bool SaveModelsOnly(Database<ArcadeConfiguration> arcadeDatabase, ArcadeConfiguration cfg)
         {
-            GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
-            games = GetModelConfigurations(tGames);
-            props = GetModelConfigurations(tProps);
+            GetGamesAndProps(out cfg.GameModelList, out cfg.PropModelList);
+            return arcadeDatabase.Save(cfg);
         }
+
+        public void Restore(ArcadeConfiguration cfg)
+        {
+            DescriptiveName     = cfg.DescriptiveName;
+            Id                  = cfg.Id;
+            ArcadeType          = cfg.ArcadeType;
+            RenderSettings      = cfg.RenderSettings;
+            AudioSettings       = cfg.AudioSettings;
+            VideoSettings       = cfg.VideoSettings;
+            FpsArcadeProperties = cfg.FpsProperties;
+            CylArcadeProperties = cfg.CylProperties;
+            Zones               = cfg.Zones;
+        }
+
+        public void SetGamesAndPropsTransforms(ArcadeConfiguration cfg) => SetGamesAndPropsTransforms(cfg.GameModelList, cfg.PropModelList);
 
         public void SetGamesAndPropsTransforms(ModelConfiguration[] games, ModelConfiguration[] props)
         {
             GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
             SetModelTransforms(tGames, games);
             SetModelTransforms(tProps, props);
+        }
+
+        private void GetGamesAndProps(out ModelConfiguration[] games, out ModelConfiguration[] props)
+        {
+            GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
+            games = GetModelConfigurations(tGames);
+            props = GetModelConfigurations(tProps);
         }
 
         private void GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps)

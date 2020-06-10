@@ -123,7 +123,7 @@ namespace Arcade_r
                     break;
                     case ContentInteraction.MenuConfiguration:
                     {
-                        _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id);
+                        _ = _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id);
                     }
                     break;
                     case ContentInteraction.URL:

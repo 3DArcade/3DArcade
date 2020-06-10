@@ -246,7 +246,7 @@ namespace Arcade
                 Wrapper?.ActivateAudio(new SK.Libretro.NAudio.AudioProcessor());
             }
 #else
-            Libretro.UnityAudioProcessorComponent unityAudio = GetComponentInChildren<Libretro.UnityAudioProcessorComponent>(true);
+            SK.Libretro.Unity.AudioProcessor unityAudio = GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>(true);
             if (unityAudio != null)
             {
                 unityAudio.gameObject.SetActive(true);
@@ -256,7 +256,7 @@ namespace Arcade
             {
                 GameObject audioProcessorGameObject = new GameObject("AudioProcessor");
                 audioProcessorGameObject.transform.SetParent(_screenTransform);
-                Libretro.UnityAudioProcessorComponent audioProcessorComponent = audioProcessorGameObject.AddComponent<Libretro.UnityAudioProcessorComponent>();
+                SK.Libretro.Unity.AudioProcessor audioProcessorComponent = audioProcessorGameObject.AddComponent<SK.Libretro.Unity.AudioProcessor>();
                 Wrapper?.ActivateAudio(audioProcessorComponent);
             }
 #endif

@@ -72,7 +72,7 @@ namespace Arcade_r
 
             if (_context.App.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
-                _context.SaveCurrentArcadeConfigurationModels();
+                _ = _context.SaveCurrentArcadeConfigurationModels();
                 _context.TransitionTo<ArcadeNormalState>();
             }
 
