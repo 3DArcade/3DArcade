@@ -32,7 +32,7 @@ namespace Arcade_r
         public VirtualFileSystem()
         {
             _mountedDirectories = new Dictionary<string, string>();
-            _mountedFiles = new Dictionary<string, string>();
+            _mountedFiles       = new Dictionary<string, string>();
         }
 
         public void MountDirectory(string alias, string path)
@@ -82,7 +82,7 @@ namespace Arcade_r
             {
                 return FileSystem.GetFiles(directory, searchPattern, searchAllDirectories);
             }
-            return null;
+            return new string[0];
         }
     }
 }

@@ -40,7 +40,6 @@ namespace Arcade_r
         public InputSettingsActions.GlobalActions GlobalActions { get; private set; }
         public InputSettingsActions.FirstPersonActions FirstPersonActions { get; private set; }
         public InputSettingsActions.FirstPersonMoveCabActions FirstPersonMoveCabActions { get; private set; }
-        public bool InputModifierIsDown_TEMP { get; private set; }
 
         private CharacterController _characterController;
         private CinemachineVirtualCamera _camera;
@@ -55,6 +54,8 @@ namespace Arcade_r
         private Vector3 _moveVelocity;
         private float _lookHorizontal;
         private float _lookVertical;
+
+        private bool _inputModifierDown;
 
         private void Awake()
         {
@@ -82,7 +83,7 @@ namespace Arcade_r
 
         private void Update()
         {
-            InputModifierIsDown_TEMP = GlobalActions.TempModifierWorkaround.ReadValue<float>() > 0.5f;
+            _inputModifierDown = GlobalActions.TempModifierWorkaround.ReadValue<float>() > 0.5f;
 
             if (FirstPersonActions.Movement.enabled)
             {
@@ -100,7 +101,7 @@ namespace Arcade_r
         private void GatherMovementInputValues()
         {
             _movementInputValue = FirstPersonActions.Movement.ReadValue<Vector2>();
-            if (!InputModifierIsDown_TEMP)
+            if (!_inputModifierDown)
             {
                 _sprinting   = FirstPersonActions.Sprint.ReadValue<float>() > 0f;
                 _performJump = FirstPersonActions.Jump.triggered;
@@ -109,7 +110,7 @@ namespace Arcade_r
 
         private void GatherLookInputValues()
         {
-            _lookInputValue = !InputModifierIsDown_TEMP ? FirstPersonActions.Look.ReadValue<Vector2>() : Vector2.zero;
+            _lookInputValue = !_inputModifierDown ? FirstPersonActions.Look.ReadValue<Vector2>() : Vector2.zero;
         }
 
         private void HandleMovement()

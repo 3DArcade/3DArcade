@@ -24,7 +24,7 @@ using UnityEngine;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         public const int MAX_USERS = 16;
 

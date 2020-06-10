@@ -65,14 +65,14 @@ namespace Arcade_r
                 MoveCabController.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
             }
 
-            if (_data.ModelSetup is IMoveCabMovable)
+            if (_data.ModelSetup != null && _data.ModelSetup.MoveCabMovable)
             {
                 Vector2 positionInput = _context.PlayerControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
                 float rotationInput   = _context.PlayerControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
                 _data.AimPosition     = positionInput * _movementSpeedMultiplier;
                 _data.AimRotation     = rotationInput * _rotationSpeedMultiplier;
 
-                if (_data.ModelSetup is IMoveCabGrabbable)
+                if (_data.ModelSetup.MoveCabGrabbable)
                 {
                     if (_context.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
                     {
@@ -80,18 +80,13 @@ namespace Arcade_r
                     }
                 }
             }
-
-            if (_context.PlayerControls.FirstPersonMoveCabActions.AddModel.triggered)
-            {
-                _context.TransitionTo<MoveCabAddState>();
-            }
         }
 
         public override void FixedUpdate(float dt)
         {
-            if (_data.ModelSetup is IMoveCabMovable && _data.Transform != null)
+            if (_data.ModelSetup != null && _data.ModelSetup.MoveCabMovable)
             {
-                MoveCabController.ManualMoveAndRotate(_data.Transform, _data.Rigidbody, _data.AimPosition, _data.AimRotation);
+                MoveCabController.ManualMoveAndRotate(_data.ModelSetup.transform, _data.Rigidbody, _data.AimPosition, _data.AimRotation);
             }
         }
     }

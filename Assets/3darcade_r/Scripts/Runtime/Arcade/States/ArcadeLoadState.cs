@@ -38,11 +38,14 @@ namespace Arcade_r
         {
             Debug.Log("> <color=green>Entered</color> ArcadeLoadState");
 
+            _loaded = false;
+
             SystemUtils.HideMouseCursor();
 
             _context.App.UIController.EnableLoadingUI();
 
-            StartArcadeAsync();
+            _context.App.StopCoroutine(CoStartCurrentArcade());
+            _ = _context.App.StartCoroutine(CoStartCurrentArcade());
         }
 
         public override void OnExit()
@@ -60,22 +63,9 @@ namespace Arcade_r
             }
         }
 
-        private void StartArcadeAsync()
+        private IEnumerator CoStartCurrentArcade()
         {
-            _ = _context.App.StartCoroutine(CoStartArcade());
-        }
-
-        private IEnumerator CoStartArcade()
-        {
-            _loaded = false;
-
-            if (!_loaded)
-            {
-                yield return null;
-            }
-
-            _context.StartCurrentArcade();
-
+            yield return new WaitUntil(() => _context.StartCurrentArcade());
             _loaded = true;
         }
     }

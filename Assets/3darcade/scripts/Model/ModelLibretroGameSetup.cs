@@ -14,7 +14,7 @@ namespace Arcade
         [SerializeField] private float _audioMaxDistance = 10f;
         [SerializeField] private FilterMode _videoFilterMode = FilterMode.Point;
 
-        public Wrapper Wrapper { get; private set; }
+        public LibretroWrapper Wrapper { get; private set; }
 
         public bool VideoEnabled
         {
@@ -136,7 +136,7 @@ namespace Arcade
                         _screenTransform = modelTransform.GetChild(1);
                         if (_screenTransform.TryGetComponent(out _rendererComponent))
                         {
-                            Wrapper = new Wrapper((TargetPlatform)Application.platform, $"{Application.streamingAssetsPath}/3darcade~/Libretro");
+                            Wrapper = new LibretroWrapper((TargetPlatform)Application.platform, $"{Application.streamingAssetsPath}/3darcade~/Libretro");
 
                             if (Wrapper.StartGame(core, gameDirectory, gameName))
                             {

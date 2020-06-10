@@ -29,12 +29,15 @@ namespace Arcade_r
     public sealed class EditorLoadArcadeWindow : EditorWindow
     {
         private static EditorLoadSaveArcadeSubstitute _loadSaveSubstitute;
+
+        private string[] _configurationNames;
         private Vector2 _scrollPos = Vector2.zero;
 
         [MenuItem("3DArcade_r/Load Arcade", false, 0), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void ShowWindow()
         {
             _loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
+
             EditorLoadArcadeWindow window = GetWindow<EditorLoadArcadeWindow>("Load Arcade");
             window.minSize = new Vector2(120f, 120f);
         }
@@ -47,8 +50,13 @@ namespace Arcade_r
 
         private void DrawConfigurationsList()
         {
+            if (_configurationNames == null)
+            {
+                _configurationNames = _loadSaveSubstitute.ArcadeDatabase.GetNames();
+            }
+
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos, false, false);
-            foreach (string name in _loadSaveSubstitute.ConfigurationNames)
+            foreach (string name in _configurationNames)
             {
                 if (GUILayout.Button(name))
                 {

@@ -27,35 +27,32 @@ namespace Arcade_r
 {
     public static class InteractionController
     {
-        public static event Action<IInteractable> OnCurrentInteractableChanged;
+        public static event Action<ModelConfigurationComponent> OnCurrentModelConfigurationChanged;
 
-        public static void FindInteractable(ref IInteractable interactable, ref IGrabbable grabbable, Camera camera, float maxDistance, LayerMask layers)
+        public static void FindInteractable(ref ModelConfigurationComponent modelConfigurationComponent, Camera camera, float maxDistance, LayerMask layers)
         {
             Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
             if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layers))
             {
-                IInteractable hitInteractable = hitInfo.transform.GetComponent<IInteractable>();
-                if (hitInteractable != null)
+                ModelConfigurationComponent hitModelConfigurationComponent = hitInfo.transform.GetComponent<ModelConfigurationComponent>();
+                if (hitModelConfigurationComponent != null && hitModelConfigurationComponent.ContentInteraction != ContentInteraction.None)
                 {
-                    if (hitInteractable != interactable)
+                    if (hitModelConfigurationComponent != modelConfigurationComponent)
                     {
-                        interactable = hitInteractable;
-                        grabbable    = hitInfo.transform.GetComponent<IGrabbable>();
-                        OnCurrentInteractableChanged?.Invoke(interactable);
+                        modelConfigurationComponent = hitModelConfigurationComponent;
+                        OnCurrentModelConfigurationChanged?.Invoke(modelConfigurationComponent);
                     }
                 }
                 else
                 {
-                    interactable = null;
-                    grabbable    = null;
-                    OnCurrentInteractableChanged?.Invoke(null);
+                    modelConfigurationComponent = null;
+                    OnCurrentModelConfigurationChanged?.Invoke(null);
                 }
             }
             else
             {
-                interactable = null;
-                grabbable    = null;
-                OnCurrentInteractableChanged?.Invoke(null);
+                modelConfigurationComponent = null;
+                OnCurrentModelConfigurationChanged?.Invoke(null);
             }
         }
     }

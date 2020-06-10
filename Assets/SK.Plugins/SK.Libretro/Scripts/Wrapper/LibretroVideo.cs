@@ -24,7 +24,7 @@ using System;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         public unsafe void RetroVideoRefreshCallback(void* data, uint width, uint height, uint pitch)
         {

@@ -31,30 +31,16 @@ namespace Arcade_r
     {
         public static event Action<string> OnCurrentModelChanged;
 
-        private static GameObject _loadedModel;
-
-        public static void AddModelSetup(in Vector3 position, in Vector3 forward)
-        {
-            if (_loadedModel == null)
-            {
-                _loadedModel = Resources.Load<GameObject>("Games/starwarsc");
-            }
-            GameObject newModel = Object.Instantiate(_loadedModel, position + (forward * 2f), Quaternion.LookRotation(-forward));
-            newModel.layer      = LayerMask.NameToLayer("Arcade/GameModels");
-            _ = newModel.AddComponent<GameModelSetup>();
-        }
-
         public static void FindModelSetup(in MoveCabData data, in Ray ray, in float maxDistance, in LayerMask layerMask)
         {
             Assert.IsNotNull(data);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layerMask))
             {
-                ModelSetup targetModel = hitInfo.transform.GetComponent<ModelSetup>();
+                ModelConfigurationComponent targetModel = hitInfo.transform.GetComponent<ModelConfigurationComponent>();
                 if (targetModel != null && targetModel != data.ModelSetup)
                 {
                     data.ModelSetup = targetModel;
-                    data.Transform  = hitInfo.transform;
                     data.Collider   = hitInfo.collider;
                     if (data.Rigidbody != null)
                     {
@@ -82,7 +68,6 @@ namespace Arcade_r
         private static void ResetData(MoveCabData data)
         {
             data.ModelSetup = null;
-            data.Transform  = null;
             data.Collider   = null;
             if (data.Rigidbody != null)
             {
@@ -138,12 +123,12 @@ namespace Arcade_r
         public static void AutoMoveAndRotate(in MoveCabData data, in Ray ray, in Vector3 forward, in float maxDistance, in LayerMask layerMask)
         {
             Assert.IsNotNull(data);
-            Assert.IsNotNull(data.Transform);
+            Assert.IsNotNull(data.ModelSetup);
             Assert.IsNotNull(data.Collider);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance, layerMask))
             {
-                Transform transform = data.Transform;
+                Transform transform = data.ModelSetup.transform;
                 Collider collider   = data.Collider;
                 Vector3 position    = hitInfo.point;
                 Vector3 normal      = hitInfo.normal;
@@ -173,12 +158,12 @@ namespace Arcade_r
         public static MoveCabGrabSavedData InitGrabMode(in MoveCabData data, in Camera camera)
         {
             Assert.IsNotNull(data);
-            Assert.IsNotNull(data.Transform);
+            Assert.IsNotNull(data.ModelSetup);
             Assert.IsNotNull(data.Collider);
             Assert.IsNotNull(data.Rigidbody);
             Assert.IsNotNull(camera);
 
-            data.ScreenPoint = camera.WorldToScreenPoint(data.Transform.position);
+            data.ScreenPoint = camera.WorldToScreenPoint(data.ModelSetup.transform.position);
 
             MoveCabGrabSavedData result = new MoveCabGrabSavedData
             {

@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         private struct retro_vfs_file_handle { }
         private struct retro_vfs_dir_handle { }

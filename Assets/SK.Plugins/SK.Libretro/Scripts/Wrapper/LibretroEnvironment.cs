@@ -30,7 +30,7 @@ using static SK.Libretro.Utilities.StringUtils;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         //private const uint SUBSYSTEM_MAX_SUBSYSTEMS = 20;
         //private const uint SUBSYSTEM_MAX_SUBSYSTEM_ROMS = 10;

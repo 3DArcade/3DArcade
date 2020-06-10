@@ -24,7 +24,7 @@ using SK.Libretro.Utilities;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         public long RetroPerfGetTimeUsec()
         {

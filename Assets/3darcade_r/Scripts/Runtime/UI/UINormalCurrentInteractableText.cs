@@ -35,18 +35,18 @@ namespace Arcade_r
         private void OnEnable()
         {
             _text.text = string.Empty;
-            InteractionController.OnCurrentInteractableChanged += OnTargetChange;
+            InteractionController.OnCurrentModelConfigurationChanged += OnTargetChange;
         }
 
         private void OnDisable()
         {
             _text.text = string.Empty;
-            InteractionController.OnCurrentInteractableChanged -= OnTargetChange;
+            InteractionController.OnCurrentModelConfigurationChanged -= OnTargetChange;
         }
 
-        private void OnTargetChange(IInteractable interactable)
+        private void OnTargetChange(ModelConfigurationComponent modelConfiguration)
         {
-            _text.text = interactable != null ? interactable.DescriptiveName : string.Empty;
+            _text.text = modelConfiguration != null ? modelConfiguration.DescriptiveName : string.Empty;
         }
     }
 }

@@ -81,15 +81,15 @@ namespace Arcade_r
             {
                 case "ArcadeModels":
                     activeObj.layer = LayerMask.NameToLayer("Arcade/ArcadeModels");
-                    activeObj.AddModelSetupIfNotFound<ArcadeModelSetup>();
+                    _ = activeObj.AddComponentIfNotFound<ModelConfigurationComponent>();
                     break;
                 case "GameModels":
                     activeObj.layer = LayerMask.NameToLayer("Arcade/GameModels");
-                    activeObj.AddModelSetupIfNotFound<GameModelSetup>();
+                    _ = activeObj.AddComponentIfNotFound<ModelConfigurationComponent>();
                     break;
                 case "PropModels":
                     activeObj.layer = LayerMask.NameToLayer("Arcade/PropModels");
-                    activeObj.AddModelSetupIfNotFound<PropModelSetup>();
+                    _ = activeObj.AddComponentIfNotFound<ModelConfigurationComponent>();
                     break;
                 default:
                     break;

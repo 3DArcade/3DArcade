@@ -26,23 +26,20 @@ namespace Arcade_r
 {
     public static class GameObjectExtensionMethods
     {
-        public static void AddModelSetupIfNotFound<T>(this GameObject gameObject)
-            where T : ModelSetup
+        public static T AddComponentIfNotFound<T>(this GameObject gameObject)
+            where T : Component
         {
             if (gameObject == null)
             {
-                return;
+                return null;
             }
 
-            if (!gameObject.TryGetComponent(out ModelSetup modelSetup))
+            if (!gameObject.TryGetComponent(out T component))
             {
-                _ = gameObject.AddComponent<T>();
+                component = gameObject.AddComponent<T>();
             }
-            else if (modelSetup as T == null)
-            {
-                Object.DestroyImmediate(modelSetup);
-                _ = gameObject.AddComponent<T>();
-            }
+
+            return component;
         }
 
         public static void StripCloneFromName(this GameObject gameObject)

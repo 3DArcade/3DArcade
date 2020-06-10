@@ -22,80 +22,99 @@
 
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     [DisallowMultipleComponent]
     public sealed class ArcadeConfigurationComponent : MonoBehaviour
     {
-        [SerializeField] private string _descriptiveName                    = default;
-        [SerializeField] private string _id                                 = default;
-        [SerializeField] private ArcadeType _arcadeType                     = default;
-        [SerializeField] private RenderSettings _renderSettings             = default;
-        [SerializeField] private AudioSettings _audioSettings               = default;
-        [SerializeField] private VideoSettings _videoSettings               = default;
-        [SerializeField] private FpsArcadeProperties[] _fpsArcadeProperties = default;
-        [SerializeField] private CylArcadeProperties[] _cylArcadeProperties = default;
-        [SerializeField] private Zone[] _zones                              = default;
+        public string DescriptiveName            = default;
+        public string Id                         = default;
+        public ArcadeType ArcadeType             = default;
+        public RenderSettings RenderSettings     = default;
+        public AudioSettings AudioSettings       = default;
+        public VideoSettings VideoSettings       = default;
+        public FpsProperties FpsArcadeProperties = default;
+        public CylProperties CylArcadeProperties = default;
+        public Zone[] Zones                      = default;
 
-        public string Id => _id;
-
-        public void FromArcadeConfiguration(ArcadeConfiguration arcadeConfiguration)
+        public void FromArcadeConfiguration(ArcadeConfiguration cfg)
         {
-            _descriptiveName       = arcadeConfiguration.DescriptiveName;
-            _id                    = arcadeConfiguration.Id;
-            if (!System.Enum.TryParse(arcadeConfiguration.ArcadeType, true, out _arcadeType))
-            {
-                _arcadeType = ArcadeType.None;
-            }
-            _renderSettings        = arcadeConfiguration.RenderSettings;
-            _audioSettings         = arcadeConfiguration.AudioSettings;
-            _videoSettings         = arcadeConfiguration.VideoSettings;
-            _fpsArcadeProperties   = arcadeConfiguration.FpsArcadeProperties;
-            _cylArcadeProperties   = arcadeConfiguration.CylArcadeProperties;
-            _zones                 = arcadeConfiguration.Zones;
+            DescriptiveName     = cfg.DescriptiveName;
+            Id                  = cfg.Id;
+            ArcadeType          = cfg.ArcadeType;
+            RenderSettings      = cfg.RenderSettings;
+            AudioSettings       = cfg.AudioSettings;
+            VideoSettings       = cfg.VideoSettings;
+            FpsArcadeProperties = cfg.FpsProperties;
+            CylArcadeProperties = cfg.CylProperties;
+            Zones               = cfg.Zones;
         }
 
-        public ArcadeConfiguration ToArcadeConfiguration(Transform player, Camera mainCamera, CinemachineVirtualCamera vCamera)
+        public ArcadeConfiguration ToArcadeConfiguration(Transform player, Camera mainCamera)
         {
-            return new ArcadeConfiguration
+            GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);
+
+            ArcadeConfiguration result = new ArcadeConfiguration
             {
-                DescriptiveName = _descriptiveName,
-                Id              = _id,
-                ArcadeType      = _arcadeType.ToString(),
-                RenderSettings  = _renderSettings,
-                AudioSettings   = _audioSettings,
-                VideoSettings   = _videoSettings,
-                CameraSettings  = new CameraSettings
-                {
-                    Position      = player.position,
-                    Rotation      = MathUtils.CorrectEulerAngles(mainCamera.transform.eulerAngles),
-                    Height        = vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
-                    Orthographic  = mainCamera.orthographic,
-                    FieldOfView   = vCamera.m_Lens.FieldOfView,
-                    AspectRatio   = vCamera.m_Lens.OrthographicSize,
-                    NearClipPlane = vCamera.m_Lens.NearClipPlane,
-                    FarClipPlane  = vCamera.m_Lens.FarClipPlane,
-                    ViewportRect  = mainCamera.rect
-                },
-                FpsArcadeProperties   = _fpsArcadeProperties,
-                CylArcadeProperties   = _cylArcadeProperties,
-                Zones                 = _zones,
-                ArcadeModelList       = GetModelConfigurations(transform.GetChild(0)),
-                GameModelList         = GetModelConfigurations(transform.GetChild(1)),
-                PropModelList         = GetModelConfigurations(transform.GetChild(2)),
+                DescriptiveName = DescriptiveName,
+                Id              = Id,
+                ArcadeType      = ArcadeType,
+                RenderSettings  = RenderSettings,
+                AudioSettings   = AudioSettings,
+                VideoSettings   = VideoSettings,
+                FpsProperties   = FpsArcadeProperties,
+                CylProperties   = CylArcadeProperties,
+                Zones           = Zones,
+                ArcadeModelList = GetModelConfigurations(tArcades),
+                GameModelList   = GetModelConfigurations(tGames),
+                PropModelList   = GetModelConfigurations(tProps)
             };
+
+            CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
+
+            result.FpsProperties.CameraSettings = new CameraSettings
+            {
+                Position      = player.position,
+                Rotation      = MathUtils.CorrectEulerAngles(mainCamera.transform.eulerAngles),
+                Height        = vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+                Orthographic  = mainCamera.orthographic,
+                FieldOfView   = vCamera.m_Lens.FieldOfView,
+                AspectRatio   = vCamera.m_Lens.OrthographicSize,
+                NearClipPlane = vCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = vCamera.m_Lens.FarClipPlane,
+                ViewportRect  = mainCamera.rect
+            };
+
+            return result;
         }
 
-        public (ModelConfiguration[] games, ModelConfiguration[] props) GetGamesAndProps()
+        public void GetGamesAndProps(out ModelConfiguration[] games, out ModelConfiguration[] props)
         {
-            return (GetModelConfigurations(transform.GetChild(1)), GetModelConfigurations(transform.GetChild(2)));
+            GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
+            games = GetModelConfigurations(tGames);
+            props = GetModelConfigurations(tProps);
         }
 
         public void SetGamesAndPropsTransforms(ModelConfiguration[] games, ModelConfiguration[] props)
         {
-            SetModelsTransforms(transform.GetChild(1), games);
-            SetModelsTransforms(transform.GetChild(2), props);
+            GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
+            SetModelTransforms(tGames, games);
+            SetModelTransforms(tProps, props);
+        }
+
+        private void GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps)
+        {
+            Assert.IsTrue(transform.childCount >= 3);
+
+            tArcades = transform.GetChild(0);
+            tGames   = transform.GetChild(1);
+            tProps   = transform.GetChild(2);
+
+            Assert.IsTrue(tArcades.name == "ArcadeModels");
+            Assert.IsTrue(tGames.name == "GameModels");
+            Assert.IsTrue(tProps.name == "PropModels");
         }
 
         private static ModelConfiguration[] GetModelConfigurations(Transform node)
@@ -104,15 +123,15 @@ namespace Arcade_r
 
             for (int i = 0; i < result.Length; ++i)
             {
-                Transform child       = node.GetChild(i);
-                ModelSetup modelSetup = child.GetComponent<ModelSetup>();
-                result[i]             = modelSetup.ToModelConfiguration();
+                Transform child = node.GetChild(i);
+                ModelConfigurationComponent modelSetup = child.GetComponent<ModelConfigurationComponent>();
+                result[i] = modelSetup.ToModelConfiguration();
             }
 
             return result;
         }
 
-        private static void SetModelsTransforms(Transform node, ModelConfiguration[] modelConfigurations)
+        private static void SetModelTransforms(Transform node, ModelConfiguration[] modelConfigurations)
         {
             for (int i = 0; i < node.childCount; ++i)
             {

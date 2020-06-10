@@ -36,6 +36,16 @@ namespace Arcade_r
             material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, color);
         }
 
+        public static void ClearAlbedoColor(this Material material)
+        {
+            if (material == null)
+            {
+                return;
+            }
+
+            material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, Color.black);
+        }
+
         public static void SetAlbedoTexture(this Material material, Texture texture)
         {
             if (material == null)
@@ -46,6 +56,16 @@ namespace Arcade_r
             material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, texture);
         }
 
+        public static void ClearAlbedoTexture(this Material material)
+        {
+            if (material == null)
+            {
+                return;
+            }
+
+            material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, null);
+        }
+
         public static void SetAlbedoColorAndTexture(this Material material, Color color, Texture texture)
         {
             if (material == null)
@@ -53,8 +73,8 @@ namespace Arcade_r
                 return;
             }
 
-            material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, texture);
-            material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, color);
+            material.SetAlbedoTexture(texture);
+            material.SetAlbedoColor(color);
         }
 
         public static void ClearAlbedoColorAndTexture(this Material material)
@@ -64,8 +84,8 @@ namespace Arcade_r
                 return;
             }
 
-            material.SetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME, null);
-            material.SetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME, Color.black);
+            material.ClearAlbedoTexture();
+            material.ClearAlbedoColor();
         }
 
         public static void SetEmissiveColorAndTexture(this Material material, Color color, Texture texture, bool clearMainColorAndTexture)

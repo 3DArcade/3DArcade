@@ -32,17 +32,10 @@ namespace Arcade_r
         private static void MenuSaveArcade()
         {
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
-
             if (!loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
             {
                 return;
             }
-
-            if (string.IsNullOrEmpty(arcadeConfigurationComponent.Id))
-            {
-                return;
-            }
-
             loadSaveSubstitute.SaveArcade(arcadeConfigurationComponent);
         }
 

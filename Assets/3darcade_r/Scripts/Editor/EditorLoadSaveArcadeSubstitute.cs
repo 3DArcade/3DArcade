@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -29,55 +28,68 @@ namespace Arcade_r
     public class EditorLoadSaveArcadeSubstitute
     {
         public readonly ArcadeHierarchy ArcadeHierarchy;
-        public readonly ConfigurationManager<ArcadeConfiguration> ArcadeManager;
-        public readonly AssetCache<GameObject> GameObjectCache;
-        public readonly PlayerControls Player;
-        public readonly Camera MainCamera;
-        public readonly CinemachineVirtualCamera VirtualCamera;
-        public readonly string[] ConfigurationNames;
+        public readonly Database<ArcadeConfiguration> ArcadeDatabase;
+
+        private static GameObject _hierarchyPrefab;
 
         private readonly IVirtualFileSystem _virtualFileSystem;
+        private readonly AssetCache<GameObject> _gameObjectCache;
+        private readonly Database<LauncherConfiguration> _launcherDatabase;
+        private readonly Database<ContentListConfiguration> _contentListDatabase;
+        private readonly PlayerControls _player;
         private readonly ArcadeController _arcadeController;
 
         public EditorLoadSaveArcadeSubstitute()
         {
-            _virtualFileSystem = new VirtualFileSystem();
-            _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
+            if (_hierarchyPrefab == null)
+            {
+                _hierarchyPrefab = Resources.Load<GameObject>("Misc/pfArcadeHierarchy");
+            }
 
             ArcadeHierarchy = new ArcadeHierarchy();
 
-            ArcadeManager   = new ArcadeConfigurationManager(_virtualFileSystem);
-            GameObjectCache = new GameObjectCache();
+            _virtualFileSystem = new VirtualFileSystem();
+            _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
+            _virtualFileSystem.MountDirectory("launcher_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Launchers");
+            _virtualFileSystem.MountDirectory("contentlist_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/ContentLists");
 
-            Player = Object.FindObjectOfType<PlayerControls>();
-            Assert.IsNotNull(Player);
+            _gameObjectCache  = new GameObjectCache();
 
-            MainCamera = Camera.main;
-            Assert.IsNotNull(MainCamera);
+            ArcadeDatabase       = new ArcadeDatabase(_virtualFileSystem);
+            _launcherDatabase    = new LauncherDatabase(_virtualFileSystem);
+            _contentListDatabase = new ContentListDatabase(_virtualFileSystem);
 
-            VirtualCamera = Player.GetComponentInChildren<CinemachineVirtualCamera>();
-            Assert.IsNotNull(VirtualCamera);
+            _player = Object.FindObjectOfType<PlayerControls>();
+            Assert.IsNotNull(_player);
 
-            ConfigurationNames = ArcadeManager.GetNames();
-
-            _arcadeController = new ArcadeController(ArcadeHierarchy, GameObjectCache, null, null, Player.transform);
+            _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _launcherDatabase, _contentListDatabase, null);
         }
 
         public void LoadAndStartArcade(string name)
         {
-            ArcadeConfiguration arcadeConfiguration = ArcadeManager.Get(name);
+            ArcadeConfiguration arcadeConfiguration = ArcadeDatabase.Get(name);
             if (arcadeConfiguration == null)
             {
                 return;
             }
 
-            ArcadeHierarchy.Reset();
-            _arcadeController.StartArcade(arcadeConfiguration);
+            if (!ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
+            {
+                arcadeConfigurationComponent = ArcadeHierarchy.RootNode.gameObject.AddComponent<ArcadeConfigurationComponent>();
+            }
+            arcadeConfigurationComponent.FromArcadeConfiguration(arcadeConfiguration);
+
+            if (arcadeConfiguration.ArcadeType == ArcadeType.Fps || arcadeConfiguration.ArcadeType == ArcadeType.Cyl)
+            {
+                ArcadeHierarchy.Reset();
+            }
+
+            _ = _arcadeController.StartArcade(arcadeConfiguration);
         }
 
-        public void SaveArcade(ArcadeConfigurationComponent arcadeConfigurationComponent)
+        public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)
         {
-            _ = ArcadeManager.Save(arcadeConfigurationComponent.ToArcadeConfiguration(Player.transform, MainCamera, VirtualCamera));
+            _ = ArcadeDatabase.Save(arcadeConfiguration.ToArcadeConfiguration(_player.transform, Camera.main));
         }
     }
 }

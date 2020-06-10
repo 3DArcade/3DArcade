@@ -26,7 +26,7 @@ namespace Arcade_r
 {
     public sealed class ArcadeNormalState : ArcadeState
     {
-        private readonly float _interactMaxDistance = 2.5f;
+        private const float INTERACT_MAX_DISTANCE = 2.5f;
 
         public ArcadeNormalState(ArcadeContext context)
         : base(context)
@@ -43,8 +43,7 @@ namespace Arcade_r
                 _context.App.PlayerControls.FirstPersonActions.Look.Disable();
             }
 
-            _context.CurrentInteractable = null;
-            _context.CurrentGrabbable    = null;
+            _context.CurrentModelConfiguration = null;
 
             _context.App.UIController.EnableNormalUI();
         }
@@ -80,31 +79,58 @@ namespace Arcade_r
 
             if (Time.frameCount % 10 == 0)
             {
-                InteractionController.FindInteractable(ref _context.CurrentInteractable,
-                                                       ref _context.CurrentGrabbable,
+                InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
                                                        _context.App.Camera,
-                                                       _interactMaxDistance,
+                                                       INTERACT_MAX_DISTANCE,
                                                        _context.RaycastLayers);
             }
 
-            if (_context.App.PlayerControls.FirstPersonActions.Interact.triggered)
+            if (!Cursor.visible && _context.App.PlayerControls.FirstPersonActions.Interact.triggered)
             {
-                if (!Cursor.visible)
-                {
-                    if (_context.CurrentGrabbable != null)
-                    {
-                        _context.TransitionTo<ArcadeGrabState>();
-                    }
-                    else if (_context.CurrentInteractable != null)
-                    {
-                        _context.TransitionTo<ArcadeInternalGameState>();
-                    }
-                }
+                HandleInteraction();
             }
 
             if (_context.App.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
                 _context.TransitionTo<ArcadeMoveCabState>();
+            }
+        }
+
+        private void HandleInteraction()
+        {
+            if (_context.CurrentModelConfiguration == null)
+            {
+                return;
+            }
+
+            //if (_context.CurrentModelConfiguration.Grabbable)
+            //{
+            //    _context.TransitionTo<ArcadeGrabState>();
+            //}
+            //else
+            {
+                switch (_context.CurrentModelConfiguration.ContentInteraction)
+                {
+                    case ContentInteraction.Internal:
+                    {
+                        _context.TransitionTo<ArcadeLibretroState>();
+                    }
+                    break;
+                    case ContentInteraction.External:
+                    {
+                        _context.TransitionTo<ArcadeExternalAppState>();
+                    }
+                    break;
+                    case ContentInteraction.MenuConfiguration:
+                    {
+                        _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id);
+                    }
+                    break;
+                    case ContentInteraction.URL:
+                    case ContentInteraction.None:
+                    default:
+                        break;
+                }
             }
         }
     }

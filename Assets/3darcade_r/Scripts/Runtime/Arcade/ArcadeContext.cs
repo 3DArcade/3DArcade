@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using Cinemachine;
+using System.Linq;
 using UnityEngine;
 
 namespace Arcade_r
@@ -28,74 +28,102 @@ namespace Arcade_r
     public sealed class ArcadeContext : FSM.Context<ArcadeState>
     {
         public readonly App App;
+        public readonly ArcadeController ArcadeController;
         public readonly LayerMask RaycastLayers;
 
-        public string CurrentArcadeId;
-        public IInteractable CurrentInteractable;
-        public IGrabbable CurrentGrabbable;
-
-        private readonly ArcadeController _arcadeController;
+        public ArcadeConfiguration CurrentArcadeConfiguration { get; private set; }
+        public ModelConfigurationComponent CurrentModelConfiguration;
 
         public ArcadeContext(App app, string startingArcade)
         {
-            App             = app;
-            CurrentArcadeId = startingArcade;
-            RaycastLayers   = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
+            App              = app;
+            ArcadeController = new ArcadeController(app.ArcadeHierarchy, App.GameObjectCache, App.PlayerControls.transform, App.LauncherDatabase, App.ContentListDatabase, App.TextureCache);
+            RaycastLayers    = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
 
-            _arcadeController = new ArcadeController(App.ArcadeHierarchy, App.GameObjectCache, App.EmulatorManager, App.DiskTextureCache, App.PlayerControls.transform);
+            SetCurrentArcadeConfiguration(startingArcade);
         }
 
-        public void SaveCurrentArcadeConfiguration()
+        public bool SetAndStartCurrentArcadeConfiguration(string id)
         {
-            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
-            if (cfgComponent == null)
-            {
-                return;
-            }
-
-            Transform player = App.PlayerControls.transform;
-            Camera mainCamera = App.Camera;
-            CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
-
-            _ = App.ArcadeManager.Save(cfgComponent.ToArcadeConfiguration(player, mainCamera, vCamera));
+            SetCurrentArcadeConfiguration(id);
+            return StartCurrentArcade();
         }
 
-        public void StartCurrentArcade()
+        public void SetCurrentArcadeConfiguration(string id)
         {
-            ArcadeConfiguration arcadeConfiguration = App.ArcadeManager.Get(CurrentArcadeId);
-            if (arcadeConfiguration != null)
+            CurrentArcadeConfiguration = App.ArcadeDatabase.Get(id);
+        }
+
+        public bool StartCurrentArcade()
+        {
+            if (CurrentArcadeConfiguration == null)
             {
-                App.ArcadeHierarchy.Reset();
-                _arcadeController.StartArcade(arcadeConfiguration);
+                return false;
             }
+
+            ArcadeConfigurationComponent arcadeCfg = App.ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>();
+            arcadeCfg.FromArcadeConfiguration(CurrentArcadeConfiguration);
+
+            switch (CurrentArcadeConfiguration.ArcadeType)
+            {
+                case ArcadeType.Fps:
+                case ArcadeType.Cyl:
+                {
+                    App.ArcadeHierarchy.Reset();
+                    return ArcadeController.StartArcade(CurrentArcadeConfiguration);
+                }
+                case ArcadeType.FpsMenu:
+                case ArcadeType.CylMenu:
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         public void ReloadCurrentArcadeConfigurationModels()
         {
-            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
-            if (cfgComponent == null)
-            {
-                return;
-            }
-
-            ArcadeConfiguration cfg = App.ArcadeManager.Get(cfgComponent.Id);
-            cfgComponent.SetGamesAndPropsTransforms(cfg.GameModelList, cfg.PropModelList);
+            ArcadeConfigurationComponent arcadeCfg = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            arcadeCfg.SetGamesAndPropsTransforms(CurrentArcadeConfiguration.GameModelList, CurrentArcadeConfiguration.PropModelList);
         }
 
         public void SaveCurrentArcadeConfigurationModels()
         {
-            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
-            if (cfgComponent == null)
+            ArcadeConfigurationComponent arcadeCfg = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            arcadeCfg.GetGamesAndProps(out CurrentArcadeConfiguration.GameModelList, out CurrentArcadeConfiguration.PropModelList);
+            _ = App.ArcadeDatabase.Save(CurrentArcadeConfiguration);
+        }
+
+        public void SaveCurrentArcadeConfiguration()
+        {
+            ArcadeConfigurationComponent arcadeCfg = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            _ = App.ArcadeDatabase.Save(arcadeCfg.ToArcadeConfiguration(App.PlayerControls.transform, App.Camera));
+        }
+
+        public bool GetLauncherAndContentForCurrentModelConfiguration(out LauncherConfiguration launcher, out ContentConfiguration content)
+        {
+            launcher = null;
+            content  = null;
+
+            ContentListConfiguration contentList = App.ContentListDatabase.Get(CurrentModelConfiguration.ContentList);
+            if (contentList != null)
             {
-                return;
+                content = contentList.Games.FirstOrDefault(x => x.Id.Equals(CurrentModelConfiguration.Id, System.StringComparison.OrdinalIgnoreCase));
+                if (content != null)
+                {
+                    // Get launcher from content list
+                    launcher = App.LauncherDatabase.Get(contentList.Launcher);
+                    if (launcher == null)
+                    {
+                        // Get launcher from content
+                        launcher = App.LauncherDatabase.Get(content.Launcher);
+                    }
+                    return launcher != null;
+                }
             }
 
-            (ModelConfiguration[] games, ModelConfiguration[] props) = cfgComponent.GetGamesAndProps();
-
-            ArcadeConfiguration cfg = App.ArcadeManager.Get(cfgComponent.Id);
-            cfg.GameModelList = games;
-            cfg.PropModelList = props;
-            _ = App.ArcadeManager.Save(cfg);
+            return false;
         }
     }
 }

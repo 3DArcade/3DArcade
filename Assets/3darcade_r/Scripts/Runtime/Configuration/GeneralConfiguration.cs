@@ -27,7 +27,7 @@ namespace Arcade_r
     [System.Serializable]
     public sealed class GeneralConfiguration
     {
-        public string StartingArcade;
+        public string StartingMenu;
 
         private readonly IVirtualFileSystem _virtualFileSystem;
 
@@ -40,10 +40,9 @@ namespace Arcade_r
         {
             try
             {
-                string json = FileSystem.ReadAllText(_virtualFileSystem.GetFile("general_cfg"));
-                GeneralConfiguration cfg = JsonUtility.FromJson<GeneralConfiguration>(json);
+                GeneralConfiguration cfg = FileSystem.JsonDeserialize<GeneralConfiguration>(_virtualFileSystem.GetFile("general_cfg"));
                 Debug.Log($"[{GetType().Name}] Loaded general configuration.");
-                StartingArcade = cfg.StartingArcade;
+                StartingMenu = cfg.StartingMenu;
                 return true;
             }
             catch (System.Exception e)
@@ -58,8 +57,7 @@ namespace Arcade_r
         {
             try
             {
-                string json = JsonUtility.ToJson(this, true);
-                FileSystem.WriteAllText(_virtualFileSystem.GetFile("general_cfg"), json);
+                FileSystem.JsonSerialize(_virtualFileSystem.GetFile("general_cfg"), this);
                 Debug.Log($"[{GetType().Name}] Saved general configuration.");
                 return true;
             }

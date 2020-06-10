@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using static SK.Libretro.Utilities.StringUtils;
-using static SK.Libretro.Wrapper;
+using static SK.Libretro.LibretroWrapper;
 
 namespace SK.Libretro
 {
@@ -112,7 +112,7 @@ namespace SK.Libretro
         private retro_perf_start_t _perfStartCallback;
         private retro_perf_stop_t _perfStopCallback;
 
-        public unsafe bool Start(Wrapper wrapper, string coreName)
+        public unsafe bool Start(LibretroWrapper wrapper, string coreName)
         {
             bool result = false;
 
@@ -261,7 +261,7 @@ namespace SK.Libretro
             }
         }
 
-        private unsafe void SetCallbacks(Wrapper wrapper)
+        private unsafe void SetCallbacks(LibretroWrapper wrapper)
         {
             _environmentCallback      = wrapper.RetroEnvironmentCallback;
             _videoRefreshCallback     = wrapper.RetroVideoRefreshCallback;

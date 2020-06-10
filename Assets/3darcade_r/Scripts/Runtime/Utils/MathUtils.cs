@@ -26,6 +26,8 @@ namespace Arcade_r
 {
     public static class MathUtils
     {
+        public static float DistanceFast(Vector3 v1, Vector3 v2) => (v1 - v2).sqrMagnitude;
+
         public static Vector3 CorrectEulerAngles(Vector3 source)
         {
             float x = source.x > 180f ? source.x - 360f : source.x;

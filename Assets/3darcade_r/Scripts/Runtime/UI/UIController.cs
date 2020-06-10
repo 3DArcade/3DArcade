@@ -33,19 +33,19 @@ namespace Arcade_r
 
         public UIController(Transform uiRoot)
         {
-            UILoadingCanvasTag loadingCanvasTag = uiRoot.GetComponentInChildren<UILoadingCanvasTag>();
+            UILoadingCanvasTag loadingCanvasTag = uiRoot.GetComponentInChildren<UILoadingCanvasTag>(true);
             if (loadingCanvasTag != null)
             {
                 _loadingUI = loadingCanvasTag.gameObject;
             }
 
-            UINormalCanvasTag normalCanvasTag = uiRoot.GetComponentInChildren<UINormalCanvasTag>();
+            UINormalCanvasTag normalCanvasTag = uiRoot.GetComponentInChildren<UINormalCanvasTag>(true);
             if (normalCanvasTag != null)
             {
                 _normalUI = normalCanvasTag.gameObject;
             }
 
-            UIMoveCabCanvasTag moveCabCanvasTag = uiRoot.GetComponentInChildren<UIMoveCabCanvasTag>();
+            UIMoveCabCanvasTag moveCabCanvasTag = uiRoot.GetComponentInChildren<UIMoveCabCanvasTag>(true);
             if (moveCabCanvasTag != null)
             {
                 _moveCabUI = moveCabCanvasTag.gameObject;

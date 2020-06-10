@@ -22,7 +22,7 @@
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         private const int RETRO_API_VERSION = 1;
 

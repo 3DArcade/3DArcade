@@ -24,7 +24,7 @@ using SK.Libretro.Utilities;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using static SK.Libretro.Wrapper;
+using static SK.Libretro.LibretroWrapper;
 
 namespace SK.Libretro
 {

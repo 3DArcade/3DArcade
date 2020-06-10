@@ -34,10 +34,6 @@ namespace Arcade_r
         public override void OnEnter()
         {
             Debug.Log(">> <color=green>Entered</color> MoveCabAddState");
-
-            MoveCabController.AddModelSetup(_context.PlayerControls.transform.position, _context.PlayerControls.transform.forward);
-
-            _context.TransitionTo<MoveCabAimState>();
         }
 
         public override void OnExit()

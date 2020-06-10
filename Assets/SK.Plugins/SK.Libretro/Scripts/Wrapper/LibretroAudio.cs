@@ -22,7 +22,7 @@
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         private const float AUDIO_GAIN = 1f;
 

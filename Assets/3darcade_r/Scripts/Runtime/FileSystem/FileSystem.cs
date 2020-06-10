@@ -20,37 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Arcade_r
 {
     public static class FileSystem
     {
-        public static bool FileExists(string filePath)
+        public static string CorrectPath(string path)
         {
-            return File.Exists(Path.GetFullPath(filePath));
+            if (!string.IsNullOrEmpty(path))
+            {
+                if (path.StartsWith("@"))
+                {
+                    return PathCombine(SystemUtils.GetDataPath(), path.TrimStart('@'));
+                }
+            }
+            return path;
         }
 
-        public static string ReadAllText(string filePath)
+        public static string PathCombine(string path1, string path2)
         {
-            return File.ReadAllText(Path.GetFullPath(filePath));
+            if (Path.IsPathRooted(path2))
+            {
+                path2 = path2.TrimStart(Path.DirectorySeparatorChar);
+                path2 = path2.TrimStart(Path.AltDirectorySeparatorChar);
+            }
+            return Path.Combine(path1, path2);
         }
 
-        public static byte[] ReadAllBytes(string filePath)
-        {
-            return File.ReadAllBytes(Path.GetFullPath(filePath));
-        }
+        public static bool FileExists(string filePath) => File.Exists(Path.GetFullPath(filePath));
 
-        public static void WriteAllText(string filePath, string content)
-        {
-            File.WriteAllText(Path.GetFullPath(filePath), content);
-        }
+        public static string ReadAllText(string filePath) => File.ReadAllText(Path.GetFullPath(filePath));
 
-        public static bool DirectoryExists(string dirPath)
-        {
-            return Directory.Exists(Path.GetFullPath(dirPath));
-        }
+        public static byte[] ReadAllBytes(string filePath) => File.ReadAllBytes(Path.GetFullPath(filePath));
+
+        public static void WriteAllText(string filePath, string content) => File.WriteAllText(Path.GetFullPath(filePath), content);
+
+        public static bool DirectoryExists(string dirPath) => Directory.Exists(Path.GetFullPath(dirPath));
 
         public static string[] GetFiles(string dirPath, string searchPattern, bool searchAllDirectories)
         {
@@ -76,6 +86,75 @@ namespace Arcade_r
             }
 
             return files.Length > 0 ? files : null;
+        }
+
+        public static void JsonSerialize<T>(string filePath, T configuration)
+            where T : class
+        {
+            JsonSerializer serializer = new JsonSerializer
+            {
+                ContractResolver = BaseFirstContractResolver.Instance
+            };
+
+            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Geometry.RectConverter());
+            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
+            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
+
+            using (FileStream fs      = File.Open(filePath, FileMode.Create))
+            using (StreamWriter sw    = new StreamWriter(fs))
+            using (JsonTextWriter jtw = new JsonTextWriter(sw))
+            {
+                jtw.Formatting  = Formatting.Indented;
+                jtw.IndentChar  = ' ';
+                jtw.Indentation = 4;
+
+               serializer.Serialize(jtw, configuration);
+            }
+        }
+
+        public static T JsonDeserialize<T>(string path)
+            where T : class
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Geometry.RectConverter());
+            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
+            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
+
+            using (FileStream fs      = File.Open(path, FileMode.Open))
+            using (StreamReader sr    = new StreamReader(fs))
+            using (JsonTextReader jtr = new JsonTextReader(sr))
+            {
+                return serializer.Deserialize<T>(jtr);
+            }
+        }
+    }
+
+    public class BaseFirstContractResolver : DefaultContractResolver
+    {
+        static BaseFirstContractResolver() => Instance = new BaseFirstContractResolver();
+
+        public static readonly BaseFirstContractResolver Instance;
+
+        protected override IList<JsonProperty> CreateProperties(System.Type type, MemberSerialization memberSerialization)
+        {
+            IList<JsonProperty> properties = base.CreateProperties(type, memberSerialization);
+            if (properties != null)
+            {
+                return properties.OrderBy(p => p.DeclaringType.BaseTypesAndSelf().Count()).ToList();
+            }
+            return properties;
+        }
+    }
+
+    public static class TypeExtensions
+    {
+        public static IEnumerable<System.Type> BaseTypesAndSelf(this System.Type type)
+        {
+            while (type != null)
+            {
+                yield return type;
+                type = type.BaseType;
+            }
         }
     }
 }

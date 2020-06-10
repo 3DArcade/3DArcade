@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         #region Dynamically loaded function delegates
         // RETRO_API void retro_set_environment(retro_environment_t);

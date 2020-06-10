@@ -28,27 +28,32 @@ namespace Arcade_r
     [DisallowMultipleComponent]
     public sealed class App : MonoBehaviour
     {
-        [SerializeField] private PlayerControls _playerControls   = default;
-        [SerializeField] private Camera _camera                   = default;
-        [SerializeField] private Transform _uiRoot                = default;
-        [SerializeField] private GameObject _theAbyss             = default;
+        [SerializeField] private PlayerControls _playerControls = default;
+        [SerializeField] private Camera _camera                 = default;
+        [SerializeField] private Transform _uiRoot              = default;
+        [SerializeField] private GameObject _theAbyss           = default;
 
         public PlayerControls PlayerControls => _playerControls;
         public Camera Camera => _camera;
-        public UIController UIController { get; private set; }
 
         public OS CurrentOS { get; private set; }
         public IVirtualFileSystem VirtualFileSystem { get; private set; }
         public ArcadeHierarchy ArcadeHierarchy { get; private set; }
+        public UIController UIController { get; private set; }
         public GeneralConfiguration GeneralConfiguration { get; private set; }
-        public ConfigurationManager<ArcadeConfiguration> ArcadeManager { get; private set; }
-        public ConfigurationManager<EmulatorConfiguration> EmulatorManager { get; private set; }
+        public Database<ArcadeConfiguration> ArcadeDatabase { get; private set; }
+        public Database<LauncherConfiguration> LauncherDatabase { get; private set; }
+        public Database<ContentListConfiguration> ContentListDatabase { get; private set; }
         public AssetCache<GameObject> GameObjectCache { get; private set; }
-        public AssetCache<Texture> DiskTextureCache { get; private set; }
+        public AssetCache<Texture> TextureCache { get; private set; }
 
         private ArcadeContext _arcadeContext;
         private bool _badLuck = false;
 
+#if !UNITY_EDITOR
+        private bool _focused;
+        private void OnApplicationFocus(bool focus) => _focused = focus;
+#endif
         private void Awake()
         {
             Assert.IsNotNull(_playerControls);
@@ -56,7 +61,8 @@ namespace Arcade_r
             Assert.IsNotNull(_uiRoot);
             Assert.IsNotNull(_theAbyss);
 
-            UIController = new UIController(_uiRoot);
+            Application.targetFrameRate = -1;
+            Time.timeScale              = 1f;
 
             try
             {
@@ -74,21 +80,25 @@ namespace Arcade_r
             Debug.Log($"Data path: {vfsRootDirectory}");
             VirtualFileSystem = InitVFS(vfsRootDirectory);
 
-            ArcadeHierarchy      = new ArcadeHierarchy();
-            GeneralConfiguration = new GeneralConfiguration(VirtualFileSystem);
-            ArcadeManager        = new ArcadeConfigurationManager(VirtualFileSystem);
-            EmulatorManager      = new EmulatorConfigurationManager(VirtualFileSystem);
+            ArcadeHierarchy = new ArcadeHierarchy();
 
+            UIController = new UIController(_uiRoot);
+
+            GeneralConfiguration = new GeneralConfiguration(VirtualFileSystem);
             if (!GeneralConfiguration.Load())
             {
                 SystemUtils.ExitApp();
                 return;
             }
 
-            GameObjectCache  = new GameObjectCache();
-            DiskTextureCache = new DiskTextureCache();
+            ArcadeDatabase      = new ArcadeDatabase(VirtualFileSystem);
+            LauncherDatabase    = new LauncherDatabase(VirtualFileSystem);
+            ContentListDatabase = new ContentListDatabase(VirtualFileSystem);
 
-            _arcadeContext = new ArcadeContext(this, GeneralConfiguration.StartingArcade);
+            GameObjectCache  = new GameObjectCache();
+            TextureCache     = new DiskTextureCache();
+
+            _arcadeContext = new ArcadeContext(this, GeneralConfiguration.StartingMenu);
         }
 
         private void Start()
@@ -100,6 +110,13 @@ namespace Arcade_r
 
         private void Update()
         {
+ #if !UNITY_EDITOR
+            if (!_focused)
+            {
+                System.Threading.Thread.Sleep(200);
+                return;
+            }
+#endif
             _arcadeContext.Update(Time.deltaTime);
 
             YouAreNotSupposedToBeHere();
@@ -113,17 +130,10 @@ namespace Arcade_r
         private static VirtualFileSystem InitVFS(string rootDirectory)
         {
             VirtualFileSystem result = new VirtualFileSystem();
-#if UNITY_EDITOR
-            result.MountDirectory("models", "3darcade/models");
-            result.MountDirectory("arcade_models", "3darcade/models/arcades");
-            result.MountDirectory("game_models", "3darcade/models/games");
-            result.MountDirectory("prop_models", "3darcade/models/props");
-#endif
-            result.MountDirectory("cfgs", $"{rootDirectory}/3darcade_r~/Configuration");
+
             result.MountDirectory("arcade_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Arcades");
-            result.MountDirectory("emulator_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Emulators");
-            result.MountDirectory("emulators", $"{rootDirectory}/3darcade_r~/Emulators");
-            result.MountDirectory("media", $"{rootDirectory}/3darcade_r~/Media");
+            result.MountDirectory("launcher_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Launchers");
+            result.MountDirectory("contentlist_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/ContentLists");
 
             result.MountFile("general_cfg", $"{rootDirectory}/3darcade_r~/Configuration/GeneralConfiguration.json");
 

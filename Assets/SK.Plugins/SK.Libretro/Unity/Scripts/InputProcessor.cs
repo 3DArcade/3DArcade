@@ -23,8 +23,8 @@
 using SK.Libretro.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static SK.Libretro.Wrapper;
-using static SK.Libretro.Wrapper.retro_device_id_joypad;
+using static SK.Libretro.LibretroWrapper;
+using static SK.Libretro.LibretroWrapper.retro_device_id_joypad;
 
 namespace SK.Libretro.Unity
 {

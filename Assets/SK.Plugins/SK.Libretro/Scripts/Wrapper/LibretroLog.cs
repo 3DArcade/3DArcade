@@ -25,7 +25,7 @@ using System;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         public void RetroLogPrintf(retro_log_level log_level, string format, IntPtr _/*args*/)
         {

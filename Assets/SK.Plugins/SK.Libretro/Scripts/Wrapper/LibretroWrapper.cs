@@ -30,7 +30,7 @@ using UnityEngine;
 
 namespace SK.Libretro
 {
-    public partial class Wrapper
+    public partial class LibretroWrapper
     {
         public static string WrapperDirectory    = null;
         public static string CoresDirectory      = null;
@@ -71,7 +71,7 @@ namespace SK.Libretro
 
         private readonly List<IntPtr> _unsafeStrings = new List<IntPtr>();
 
-        public Wrapper(TargetPlatform targetPlatform, string baseDirectory = null)
+        public LibretroWrapper(TargetPlatform targetPlatform, string baseDirectory = null)
         {
             TargetPlatform = targetPlatform;
 

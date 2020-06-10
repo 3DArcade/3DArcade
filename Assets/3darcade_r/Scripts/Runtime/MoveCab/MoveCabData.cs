@@ -26,8 +26,7 @@ namespace Arcade_r
 {
     public sealed class MoveCabData
     {
-        public ModelSetup ModelSetup;
-        public Transform Transform;
+        public ModelConfigurationComponent ModelSetup;
         public Collider Collider;
         public Rigidbody Rigidbody;
         public Vector2 ScreenPoint;

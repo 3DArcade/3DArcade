@@ -56,10 +56,24 @@ namespace Arcade_r
             return null;
         }
 
+        public T Load(List<string> directories, params string[] namesToTry) => Load(directories.ToArray(), namesToTry);
+
+        public T Load(List<string> directories, List<string> namesToTry) => Load(directories.ToArray(), namesToTry.ToArray());
+
         public T Load(string directory, params string[] namesToTry)
         {
+            if (string.IsNullOrEmpty(directory))
+            {
+                return null;
+            }
+
             foreach (string name in namesToTry)
             {
+                if (string.IsNullOrEmpty(name))
+                {
+                    continue;
+                }
+
                 string filePathNoExt = Path.Combine(directory, name);
                 if (_loadedAssets.TryGetValue(filePathNoExt, out T foundAsset))
                 {
@@ -78,6 +92,8 @@ namespace Arcade_r
 
             return null;
         }
+
+        public T Load(string directory, List<string> namesToTry) => Load(directory, namesToTry.ToArray());
 
         public void Unload(string filePathNoExt)
         {

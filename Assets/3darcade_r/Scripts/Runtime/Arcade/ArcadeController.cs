@@ -31,134 +31,109 @@ namespace Arcade_r
 {
     public class ArcadeController
     {
-        private static readonly string[] RESOURCES_SUB_DIRECTORIES = new [] { "Arcades", "Games", "Props" };
-        private const string GAME_RESOURCES_DIRECTORY              = "Games";
+        private const string ARCADE_RESOURCES_DIRECTORY = "Arcades";
+        private const string GAME_RESOURCES_DIRECTORY   = "Games";
+        private const string PROP_RESOURCES_DIRECTORY   = "Props";
+
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
+        private static readonly string DEFAULT_MARQUEES_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Marquees";
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
+        private static readonly string DEFAULT_SCREENS_DIRECTORY  = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Screens";
 
         private readonly ArcadeHierarchy _arcadeHierarchy;
         private readonly AssetCache<GameObject> _gameObjectCache;
-        private readonly AssetCache<Texture> _textureCache;
         private readonly Transform _player;
-        private readonly ConfigurationManager<EmulatorConfiguration> _emulatorManager;
+        private readonly AssetCache<Texture> _textureCache;
+
+        private readonly ContentMatcher _contentMatcher;
 
         private ArcadeConfiguration _currentConfiguration;
 
-        public ArcadeController(ArcadeHierarchy arcadeHierarchy, AssetCache<GameObject> gameObjectCache, ConfigurationManager<EmulatorConfiguration> emulatorManager, AssetCache<Texture> textureCache, Transform player)
+        public ArcadeController(ArcadeHierarchy arcadeHierarchy,
+                                AssetCache<GameObject> gameObjectCache,
+                                Transform player,
+                                Database<LauncherConfiguration> launcherDatabase,
+                                Database<ContentListConfiguration> contentListDatabase,
+                                AssetCache<Texture> textureCache)
         {
             Assert.IsNotNull(arcadeHierarchy);
             Assert.IsNotNull(gameObjectCache);
             Assert.IsNotNull(player);
+            Assert.IsNotNull(launcherDatabase);
+            Assert.IsNotNull(contentListDatabase);
 
-            _arcadeHierarchy = arcadeHierarchy;
-            _gameObjectCache = gameObjectCache;
-            _textureCache    = textureCache;
-            _player          = player;
-            _emulatorManager = emulatorManager;
+            _arcadeHierarchy     = arcadeHierarchy;
+            _gameObjectCache     = gameObjectCache;
+            _player              = player;
+
+            _textureCache = textureCache;
+
+            _contentMatcher = new ContentMatcher(launcherDatabase, contentListDatabase);
         }
 
-        public void StartArcade(ArcadeConfiguration arcadeConfiguration)
+        public bool StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
             Assert.IsNotNull(arcadeConfiguration);
 
             _currentConfiguration = arcadeConfiguration;
 
-            if (_arcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
+            if (_currentConfiguration.ArcadeType == ArcadeType.Fps)
             {
-                arcadeConfigurationComponent.FromArcadeConfiguration(arcadeConfiguration);
-            }
-            else
-            {
-                _arcadeHierarchy.RootNode.AddComponent<ArcadeConfigurationComponent>()
-                                         .FromArcadeConfiguration(arcadeConfiguration);
+                SetupFpsPlayer();
             }
 
-            SetupPlayer();
+            AddModelsToWorld(_currentConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
+            AddModelsToWorld(_currentConfiguration.GameModelList,   _arcadeHierarchy.GamesNode,   GAME_RESOURCES_DIRECTORY,   ContentMatcher.GetNamesToTryForGame);
+            AddModelsToWorld(_currentConfiguration.PropModelList,   _arcadeHierarchy.PropsNode,   PROP_RESOURCES_DIRECTORY,   ContentMatcher.GetNamesToTryForProp);
 
-            AddModelsToWorld<ArcadeModelSetup>(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, arcadeConfiguration.RenderSettings);
-            AddModelsToWorld<GameModelSetup>(arcadeConfiguration.GameModelList, _arcadeHierarchy.GamesNode, arcadeConfiguration.RenderSettings);
-            AddModelsToWorld<PropModelSetup>(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, arcadeConfiguration.RenderSettings);
+            return true;
         }
 
-        private void SetupPlayer()
+        private void SetupFpsPlayer()
         {
-            Assert.IsNotNull(_player);
-            Assert.IsNotNull(_currentConfiguration);
-
-            _player.SetPositionAndRotation(_currentConfiguration.CameraSettings.Position, Quaternion.Euler(0f, _currentConfiguration.CameraSettings.Rotation.y, 0f));
+            CameraSettings cameraSettings = _currentConfiguration.FpsProperties.CameraSettings;
+            _player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
+            Camera.main.rect                 = cameraSettings.ViewportRect;
             CinemachineVirtualCamera vCam    = _player.GetComponentInChildren<CinemachineVirtualCamera>();
             CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
-            transposer.m_FollowOffset.y      = _currentConfiguration.CameraSettings.Height;
+            transposer.m_FollowOffset.y      = cameraSettings.Height;
         }
 
-        private void AddModelsToWorld<T>(ModelConfiguration[] models, GameObject parent, RenderSettings renderSettings)
-            where T : ModelSetup
+        private void AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
-            foreach (ModelConfiguration modelConfiguration in models)
+            foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
-                AddModelToWorld<T>(modelConfiguration, parent, renderSettings);
-            }
-        }
+                _contentMatcher.GetLauncherAndContentForConfiguration(modelConfiguration, out LauncherConfiguration launcher, out ContentConfiguration content);
 
-        private void AddModelToWorld<T>(ModelConfiguration modelConfiguration, GameObject parent, RenderSettings renderSettings)
-            where T : ModelSetup
-        {
-            GameObject prefab = _gameObjectCache.Load(RESOURCES_SUB_DIRECTORIES, modelConfiguration.Model, modelConfiguration.Id, modelConfiguration.IdParent);
-            if (prefab == null)
-            {
-                // Generic model
-                if (int.TryParse(modelConfiguration.Year, out int year))
-                {
-                    bool isVertical = modelConfiguration.Screen.ToLowerInvariant().Contains("vertical");
+                List<string> namesToTry = getNamesToTry(modelConfiguration, launcher, content);
 
-                    string prefabName;
-                    if (year >= 1970 && year < 1980)
-                    {
-                        prefabName = isVertical ? "default70vert" : "default70hor";
-                    }
-                    else if (year < 1990)
-                    {
-                        prefabName = isVertical ? "default80vert" : "default80hor";
-                    }
-                    else if (year < 2000)
-                    {
-                        prefabName = isVertical ? "default90vert" : "default90hor";
-                    }
-                    else
-                    {
-                        prefabName = "default80hor";
-                    }
+                GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
+                Assert.IsNotNull(prefab, "prefab is null!");
 
-                    prefab = _gameObjectCache.Load(GAME_RESOURCES_DIRECTORY, prefabName);
-                }
-            }
-
-            if (prefab != null)
-            {
-                GameObject instantiatedModel = InstantiatePrefab<T>(prefab, parent, modelConfiguration);
+                GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration);
 
                 // Only look for artworks in play mode / at runtime
-                if (Application.isPlaying && _textureCache != null && _emulatorManager != null)
+                if (Application.isPlaying && _textureCache != null)
                 {
-                    EmulatorConfiguration emulator = !string.IsNullOrEmpty(modelConfiguration.Emulator) ? _emulatorManager.Get(modelConfiguration.Emulator) : null;
-                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator, renderSettings);
-                    SetupScreenNode(instantiatedModel, modelConfiguration, emulator, renderSettings);
-                    SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
+                    SetupMarqueeNode(instantiatedModel, content, launcher);
+                    SetupScreenNode(instantiatedModel , content, launcher);
+                    SetupGenericNode(instantiatedModel, content, launcher);
                 }
             }
         }
 
-        private static GameObject InstantiatePrefab<T>(GameObject prefab, GameObject parent, ModelConfiguration modelConfiguration)
-            where T : ModelSetup
+        private static GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
         {
-            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent.transform);
+            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
             model.StripCloneFromName();
             model.transform.localScale = modelConfiguration.Scale;
-            model.transform.SetLayersRecursively(parent.layer);
-            model.AddComponent<T>()
+            model.transform.SetLayersRecursively(parent.gameObject.layer);
+            model.AddComponent<ModelConfigurationComponent>()
                  .FromModelConfiguration(modelConfiguration);
             return model;
         }
 
-        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, RenderSettings renderSettings)
+        private void SetupMarqueeNode(GameObject model, ContentConfiguration content, LauncherConfiguration launcher)
         {
             Renderer nodeRenderer = GetNodeRenderer<MarqueeNodeTag>(model);
             if (nodeRenderer == null)
@@ -166,24 +141,23 @@ namespace Arcade_r
                 return;
             }
 
-            List<string> directories = new List<string>();
-            if (emulator != null)
-            {
-                directories.Add($"{SystemUtils.GetDataPath()}/{emulator.MarqueePath}");
-            }
-            directories.Add($"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Marquees");
-
-            Texture texture = _textureCache.Load(directories.ToArray(), modelConfiguration.Id, modelConfiguration.IdParent);
-            if (texture == null)
+            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, content?.MarqueeDirectory, launcher?.MarqueesDirectory, DEFAULT_MARQUEES_DIRECTORY))
             {
                 return;
             }
 
-            SetupNode(nodeRenderer, texture, true, true, renderSettings.MarqueeIntensity);
+            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, content, launcher))
+            {
+                return;
+            }
+
+            Texture texture         = _textureCache.Load(directories, namesToTry);
+            float emissionIntensity = _currentConfiguration.RenderSettings.MarqueeIntensity;
+            SetupNode(nodeRenderer, texture, true, true, emissionIntensity);
             SetupMagicPixels(nodeRenderer);
         }
 
-        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, RenderSettings renderSettings)
+        private void SetupScreenNode(GameObject model, ContentConfiguration content, LauncherConfiguration launcher)
         {
             Renderer nodeRenderer = GetNodeRenderer<ScreenNodeTag>(model);
             if (nodeRenderer == null)
@@ -191,37 +165,38 @@ namespace Arcade_r
                 return;
             }
 
-            List<string> directories = new List<string>();
-            if (emulator != null)
-            {
-                directories.Add($"{SystemUtils.GetDataPath()}/{emulator.ScreenPath}");
-            }
-            directories.Add($"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Screens");
-
-            Texture texture = _textureCache.Load(directories.ToArray(), modelConfiguration.Id, modelConfiguration.IdParent);
-            if (texture == null)
+            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, content?.ScreenDirectory, launcher?.ScreensDirectory, DEFAULT_SCREENS_DIRECTORY))
             {
                 return;
             }
 
-            float screenIntensity;
-            if (modelConfiguration.Screen.ToLowerInvariant().Contains("vector"))
+            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, content, launcher))
             {
-                screenIntensity = renderSettings.ScreenVectorIntenstity;
-            }
-            else if (modelConfiguration.Screen.ToLowerInvariant().Contains("pinball"))
-            {
-                screenIntensity = renderSettings.ScreenPinballIntensity;
-            }
-            else
-            {
-                screenIntensity = renderSettings.ScreenRasterIntensity;
+                return;
             }
 
-            SetupNode(nodeRenderer, texture, true, true, screenIntensity);
+            Texture texture         = _textureCache.Load(directories, namesToTry);
+            float emissionIntensity = GetScreenIntensity();
+            SetupNode(nodeRenderer, texture, true, true, emissionIntensity);
+
+            float GetScreenIntensity()
+            {
+                switch (content.Screen)
+                {
+                    case ContentScreenType.Raster:
+                        return _currentConfiguration.RenderSettings.ScreenRasterIntensity;
+                    case ContentScreenType.Vector:
+                        return _currentConfiguration.RenderSettings.ScreenVectorIntenstity;
+                    case ContentScreenType.Pinball:
+                        return _currentConfiguration.RenderSettings.ScreenPinballIntensity;
+                    case ContentScreenType.Unspecified:
+                    default:
+                        return 1f;
+                }
+            }
         }
 
-        private void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
+        private void SetupGenericNode(GameObject model, ContentConfiguration content, LauncherConfiguration launcher)
         {
             Renderer nodeRenderer = GetNodeRenderer<GenericNodeTag>(model);
             if (nodeRenderer == null)
@@ -229,42 +204,40 @@ namespace Arcade_r
                 return;
             }
 
-            string directory = emulator != null ? $"{SystemUtils.GetDataPath()}/{emulator.GenericPath}" : null;
-            if (directory == null)
+            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, content?.GenericDirectory, launcher?.GenericsDirectory, null))
             {
                 return;
             }
 
-            Texture texture = _textureCache.Load(directory, modelConfiguration.Id, modelConfiguration.IdParent);
-            if (texture == null)
+            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, content, launcher))
             {
                 return;
             }
 
+            Texture texture = _textureCache.Load(directories, namesToTry);
             SetupNode(nodeRenderer, texture);
-        }
-
-        [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
-        private static Renderer GetNodeRenderer<T>(GameObject model)
-            where T : NodeTag
-        {
-            T nodeTag = model.GetComponentInChildren<T>();
-            if (nodeTag != null)
-            {
-                return nodeTag.GetComponent<Renderer>();
-            }
-            return null;
         }
 
         private static void SetupNode(Renderer renderer, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
         {
+            if (renderer == null || texture == null)
+            {
+                return;
+            }
+
             // Video
             // ...
 
             // Image
-            if (forceEmissive || renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
+
+            if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
             {
                 Color color = (overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME)) * emissionFactor;
+                renderer.material.SetEmissiveColorAndTexture(color, texture, true);
+            }
+            else if (forceEmissive)
+            {
+                Color color = Color.white * emissionFactor;
                 renderer.material.SetEmissiveColorAndTexture(color, texture, true);
             }
             else
@@ -310,6 +283,18 @@ namespace Arcade_r
                     renderer.material.SetAlbedoColorAndTexture(color, texture);
                 }
             }
+        }
+
+        [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
+        private static Renderer GetNodeRenderer<T>(GameObject model)
+            where T : NodeTag
+        {
+            T nodeTag = model.GetComponentInChildren<T>();
+            if (nodeTag != null)
+            {
+                return nodeTag.GetComponent<Renderer>();
+            }
+            return null;
         }
     }
 }
