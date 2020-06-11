@@ -33,8 +33,8 @@ namespace Arcade_r
         public RenderSettings RenderSettings;
         public AudioSettings AudioSettings;
         public VideoSettings VideoSettings;
-        public FpsProperties FpsProperties;
-        public CylProperties CylProperties;
+        public FpsArcadeProperties FpsArcadeProperties;
+        public CylArcadeProperties CylArcadeProperties;
         public Zone[] Zones;
 
         public ModelConfiguration[] ArcadeModelList;

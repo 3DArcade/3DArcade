@@ -27,7 +27,7 @@ namespace Arcade_r
 {
     public sealed class ArcadeMenuState : ArcadeState
     {
-        private const float _raycastMaxDistance = 12f;
+        private const float RAYCAST_MAX_DISTANCE = 12f;
         private readonly LayerMask _layerMask;
 
         private Stack<ArcadeConfiguration> _menuStack;
@@ -59,7 +59,7 @@ namespace Arcade_r
         {
             if (Time.frameCount % 10 == 0)
             {
-                InteractionController.FindInteractable(ref _currentModelConfiguration, _context.App.Camera, _raycastMaxDistance, _layerMask);
+                InteractionController.FindInteractable(ref _currentModelConfiguration, _context.App.Camera, RAYCAST_MAX_DISTANCE, _layerMask);
             }
         }
     }

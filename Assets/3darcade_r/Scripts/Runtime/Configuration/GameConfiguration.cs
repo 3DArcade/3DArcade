@@ -20,14 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class GameConfiguration : Configuration
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public string CloneOf;
+        public string RomOf;
+        public string Genre;
+        public string Year;
+        public string Manufacturer;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public GameScreenType ScreenType;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public GameScreenOrientation ScreenOrientation;
+        public bool Mature;
+        public bool Available;
+        public bool Runnable;
+        public int PlayCount;
+        public double PlayTime;
     }
 }

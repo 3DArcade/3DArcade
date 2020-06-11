@@ -22,12 +22,11 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public sealed class EmulatorDatabase : Database<EmulatorConfiguration>
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public EmulatorDatabase(IVirtualFileSystem virtualFileSystem)
+        : base(virtualFileSystem, "emulator_cfgs")
+        {
+        }
     }
 }

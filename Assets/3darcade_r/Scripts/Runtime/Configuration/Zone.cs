@@ -22,12 +22,10 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class Zone
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public int zone;
+        public int[] VisibleZones;
     }
 }

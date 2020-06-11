@@ -52,23 +52,21 @@ namespace Arcade_r
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
                                 AssetCache<GameObject> gameObjectCache,
                                 Transform player,
-                                Database<LauncherConfiguration> launcherDatabase,
-                                Database<ContentListConfiguration> contentListDatabase,
+                                Database<EmulatorConfiguration> emulatorDatabase,
                                 AssetCache<Texture> textureCache)
         {
             Assert.IsNotNull(arcadeHierarchy);
             Assert.IsNotNull(gameObjectCache);
             Assert.IsNotNull(player);
-            Assert.IsNotNull(launcherDatabase);
-            Assert.IsNotNull(contentListDatabase);
+            Assert.IsNotNull(emulatorDatabase);
 
-            _arcadeHierarchy     = arcadeHierarchy;
-            _gameObjectCache     = gameObjectCache;
-            _player              = player;
+            _arcadeHierarchy = arcadeHierarchy;
+            _gameObjectCache = gameObjectCache;
+            _player          = player;
 
             _textureCache = textureCache;
 
-            _contentMatcher = new ContentMatcher(launcherDatabase, contentListDatabase);
+            _contentMatcher = new ContentMatcher(emulatorDatabase);
         }
 
         public bool StartArcade(ArcadeConfiguration arcadeConfiguration)
@@ -77,7 +75,7 @@ namespace Arcade_r
 
             _currentConfiguration = arcadeConfiguration;
 
-            if (_currentConfiguration.ArcadeType == ArcadeType.Fps)
+            if (_currentConfiguration.ArcadeType == ArcadeType.FpsArcade)
             {
                 SetupFpsPlayer();
             }
@@ -91,7 +89,7 @@ namespace Arcade_r
 
         private void SetupFpsPlayer()
         {
-            CameraSettings cameraSettings = _currentConfiguration.FpsProperties.CameraSettings;
+            CameraSettings cameraSettings = _currentConfiguration.FpsArcadeProperties.CameraSettings;
             _player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
             Camera.main.rect                 = cameraSettings.ViewportRect;
             CinemachineVirtualCamera vCam    = _player.GetComponentInChildren<CinemachineVirtualCamera>();
@@ -103,9 +101,9 @@ namespace Arcade_r
         {
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
-                _contentMatcher.GetLauncherAndContentForConfiguration(modelConfiguration, out LauncherConfiguration launcher, out ContentConfiguration content);
+                _contentMatcher.GetEmulatorForConfiguration(modelConfiguration, out EmulatorConfiguration emulator);
 
-                List<string> namesToTry = getNamesToTry(modelConfiguration, launcher, content);
+                List<string> namesToTry = getNamesToTry(modelConfiguration, emulator);
 
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
                 Assert.IsNotNull(prefab, "prefab is null!");
@@ -115,9 +113,9 @@ namespace Arcade_r
                 // Only look for artworks in play mode / at runtime
                 if (Application.isPlaying && _textureCache != null)
                 {
-                    SetupMarqueeNode(instantiatedModel, content, launcher);
-                    SetupScreenNode(instantiatedModel , content, launcher);
-                    SetupGenericNode(instantiatedModel, content, launcher);
+                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator);
+                    SetupScreenNode(instantiatedModel , modelConfiguration, emulator);
+                    SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
                 }
             }
         }
@@ -133,7 +131,7 @@ namespace Arcade_r
             return model;
         }
 
-        private void SetupMarqueeNode(GameObject model, ContentConfiguration content, LauncherConfiguration launcher)
+        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
             Renderer nodeRenderer = GetNodeRenderer<MarqueeNodeTag>(model);
             if (nodeRenderer == null)
@@ -141,12 +139,12 @@ namespace Arcade_r
                 return;
             }
 
-            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, content?.MarqueeDirectory, launcher?.MarqueesDirectory, DEFAULT_MARQUEES_DIRECTORY))
+            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, DEFAULT_MARQUEES_DIRECTORY))
             {
                 return;
             }
 
-            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, content, launcher))
+            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, modelConfiguration, emulator))
             {
                 return;
             }
@@ -157,7 +155,7 @@ namespace Arcade_r
             SetupMagicPixels(nodeRenderer);
         }
 
-        private void SetupScreenNode(GameObject model, ContentConfiguration content, LauncherConfiguration launcher)
+        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
             Renderer nodeRenderer = GetNodeRenderer<ScreenNodeTag>(model);
             if (nodeRenderer == null)
@@ -165,12 +163,12 @@ namespace Arcade_r
                 return;
             }
 
-            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, content?.ScreenDirectory, launcher?.ScreensDirectory, DEFAULT_SCREENS_DIRECTORY))
+            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, DEFAULT_SCREENS_DIRECTORY))
             {
                 return;
             }
 
-            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, content, launcher))
+            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, modelConfiguration, emulator))
             {
                 return;
             }
@@ -181,22 +179,22 @@ namespace Arcade_r
 
             float GetScreenIntensity()
             {
-                switch (content.Screen)
+                switch (modelConfiguration.ScreenType)
                 {
-                    case ContentScreenType.Raster:
+                    case GameScreenType.Raster:
                         return _currentConfiguration.RenderSettings.ScreenRasterIntensity;
-                    case ContentScreenType.Vector:
+                    case GameScreenType.Vector:
                         return _currentConfiguration.RenderSettings.ScreenVectorIntenstity;
-                    case ContentScreenType.Pinball:
+                    case GameScreenType.Pinball:
                         return _currentConfiguration.RenderSettings.ScreenPinballIntensity;
-                    case ContentScreenType.Unspecified:
+                    case GameScreenType.Unspecified:
                     default:
                         return 1f;
                 }
             }
         }
 
-        private void SetupGenericNode(GameObject model, ContentConfiguration content, LauncherConfiguration launcher)
+        private void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
             Renderer nodeRenderer = GetNodeRenderer<GenericNodeTag>(model);
             if (nodeRenderer == null)
@@ -204,12 +202,12 @@ namespace Arcade_r
                 return;
             }
 
-            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, content?.GenericDirectory, launcher?.GenericsDirectory, null))
+            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, null))
             {
                 return;
             }
 
-            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, content, launcher))
+            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, modelConfiguration, emulator))
             {
                 return;
             }

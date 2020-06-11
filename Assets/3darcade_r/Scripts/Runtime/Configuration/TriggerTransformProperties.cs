@@ -20,14 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class TriggerTransformProperties
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public bool SetParent;
+        public bool SetIsKinematic;
+        public bool SetPosition;
+        public bool SetRotation;
+        public bool SetScale;
+        public bool SetIsActive;
+
+        public string Parent;
+        public bool IsKinematic;
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public Vector3 Scale;
+        public bool IsActive;
     }
 }

@@ -22,12 +22,11 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public sealed class GameListDatabase : Database<GamelistConfiguration>
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public GameListDatabase(IVirtualFileSystem virtualFileSystem)
+        : base(virtualFileSystem, "gamelist_cfgs")
+        {
+        }
     }
 }

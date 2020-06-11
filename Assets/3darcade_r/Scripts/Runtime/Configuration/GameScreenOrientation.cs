@@ -22,12 +22,10 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public enum GameScreenOrientation
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        Unspecified,
+        Horizontal,
+        Vertical
     }
 }

@@ -42,8 +42,7 @@ namespace Arcade_r
         public UIController UIController { get; private set; }
         public GeneralConfiguration GeneralConfiguration { get; private set; }
         public Database<ArcadeConfiguration> ArcadeDatabase { get; private set; }
-        public Database<LauncherConfiguration> LauncherDatabase { get; private set; }
-        public Database<ContentListConfiguration> ContentListDatabase { get; private set; }
+        public Database<EmulatorConfiguration> EmulatorDatabase { get; private set; }
         public AssetCache<GameObject> GameObjectCache { get; private set; }
         public AssetCache<Texture> TextureCache { get; private set; }
 
@@ -91,12 +90,11 @@ namespace Arcade_r
                 return;
             }
 
-            ArcadeDatabase      = new ArcadeDatabase(VirtualFileSystem);
-            LauncherDatabase    = new LauncherDatabase(VirtualFileSystem);
-            ContentListDatabase = new ContentListDatabase(VirtualFileSystem);
+            ArcadeDatabase   = new ArcadeDatabase(VirtualFileSystem);
+            EmulatorDatabase = new EmulatorDatabase(VirtualFileSystem);
 
-            GameObjectCache  = new GameObjectCache();
-            TextureCache     = new DiskTextureCache();
+            GameObjectCache = new GameObjectCache();
+            TextureCache    = new TextureCache();
 
             _arcadeContext = new ArcadeContext(this, GeneralConfiguration.StartingMenu);
         }
@@ -132,8 +130,8 @@ namespace Arcade_r
             VirtualFileSystem result = new VirtualFileSystem();
 
             result.MountDirectory("arcade_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Arcades");
-            result.MountDirectory("launcher_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Launchers");
-            result.MountDirectory("contentlist_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/ContentLists");
+            result.MountDirectory("emulator_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Emulators");
+            result.MountDirectory("gamelist_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Gamelists");
 
             result.MountFile("general_cfg", $"{rootDirectory}/3darcade_r~/Configuration/GeneralConfiguration.json");
 

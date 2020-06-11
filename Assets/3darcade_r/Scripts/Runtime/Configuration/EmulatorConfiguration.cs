@@ -22,12 +22,23 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class EmulatorConfiguration : Configuration
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public string Directory;
+        public string WorkingDirectory;
+        public string Executable;
+        public string Arguments;
+        public string GamesDirectory;
+        public string[] SupportedExtensions;
+        public string Model;
+        public string MarqueesDirectory;
+        public string ScreensDirectory;
+        public string TitlesDirectory;
+        public string VideosDirectory;
+        public string GenericsDirectory;
+        public string InfoDirectory;
+        public string About;
+        public bool OutputCommandLine;
     }
 }

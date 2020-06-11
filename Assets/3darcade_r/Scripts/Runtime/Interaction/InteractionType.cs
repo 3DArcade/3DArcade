@@ -22,12 +22,12 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public enum InteractionType
     {
         None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        Internal,
+        External,
+        URL,
+        MenuConfiguration
     }
 }

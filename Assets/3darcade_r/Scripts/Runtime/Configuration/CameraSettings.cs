@@ -20,14 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class CameraSettings
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public float Height;
+        public bool Orthographic;
+        public float FieldOfView;
+        public float AspectRatio;
+        public float NearClipPlane;
+        public float FarClipPlane;
+        public Rect ViewportRect;
     }
 }

@@ -22,12 +22,11 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public enum GameScreenType
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        Unspecified,
+        Raster,
+        Vector,
+        Pinball
     }
 }

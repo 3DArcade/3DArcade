@@ -22,12 +22,9 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class FpsArcadeProperties
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public CameraSettings CameraSettings;
     }
 }

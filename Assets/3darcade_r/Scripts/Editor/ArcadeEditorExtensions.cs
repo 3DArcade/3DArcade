@@ -339,8 +339,8 @@ namespace Arcade_r.ArcadeEditorExtensions
 
     internal static class Utils
     {
-        private static readonly Color MARQUEE_EMISSIVE_COLOR = Color.white;
-        private static readonly Color MONITOR_EMISSIVE_COLOR = Color.white;
+        private static readonly Color _marqueeEmissiveColor = Color.white;
+        private static readonly Color _monitorEmissiveColor = Color.white;
 
         internal static ModelType GetModelType(string assetPath)
         {
@@ -536,7 +536,7 @@ namespace Arcade_r.ArcadeEditorExtensions
 
             MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
             Undo.RecordObject(meshRenderer.sharedMaterial, "Set as marquee");
-            SetupEmissiveMaterial(meshRenderer.sharedMaterial, MARQUEE_EMISSIVE_COLOR);
+            SetupEmissiveMaterial(meshRenderer.sharedMaterial, _marqueeEmissiveColor);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
         }
@@ -560,7 +560,7 @@ namespace Arcade_r.ArcadeEditorExtensions
 
             MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
             Undo.RecordObject(meshRenderer.sharedMaterial, "Set as monitor");
-            SetupEmissiveMaterial(meshRenderer.sharedMaterial, MONITOR_EMISSIVE_COLOR);
+            SetupEmissiveMaterial(meshRenderer.sharedMaterial, _monitorEmissiveColor);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
         }

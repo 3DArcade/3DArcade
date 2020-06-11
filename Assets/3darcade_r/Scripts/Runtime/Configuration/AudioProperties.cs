@@ -22,12 +22,19 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class AudioProperties
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public string Name;
+        public int Priority;
+        public float Volume;
+        public bool Loop;
+        public bool PlayOnAwake;
+        public bool Randomize;
+        public float SpatialBlend;
+        public bool Spatialize;
+        public float MinDistance;
+        public float MaxDistance;
+        public AudioFile[] AudioFiles;
     }
 }

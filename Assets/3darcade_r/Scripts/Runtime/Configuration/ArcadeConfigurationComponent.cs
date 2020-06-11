@@ -29,15 +29,15 @@ namespace Arcade_r
     [DisallowMultipleComponent]
     public sealed class ArcadeConfigurationComponent : MonoBehaviour
     {
-        public string DescriptiveName            = default;
-        public string Id                         = default;
-        public ArcadeType ArcadeType             = default;
-        public RenderSettings RenderSettings     = default;
-        public AudioSettings AudioSettings       = default;
-        public VideoSettings VideoSettings       = default;
-        public FpsProperties FpsArcadeProperties = default;
-        public CylProperties CylArcadeProperties = default;
-        public Zone[] Zones                      = default;
+        public string DescriptiveName                  = default;
+        public string Id                               = default;
+        public ArcadeType ArcadeType                   = default;
+        public RenderSettings RenderSettings           = default;
+        public AudioSettings AudioSettings             = default;
+        public VideoSettings VideoSettings             = default;
+        public FpsArcadeProperties FpsArcadeProperties = default;
+        public CylArcadeProperties CylArcadeProperties = default;
+        public Zone[] Zones                            = default;
 
         public bool Save(Database<ArcadeConfiguration> arcadeDatabase, Transform player, Camera mainCamera)
         {
@@ -45,23 +45,23 @@ namespace Arcade_r
 
             ArcadeConfiguration cfg = new ArcadeConfiguration
             {
-                DescriptiveName = DescriptiveName,
-                Id              = Id,
-                ArcadeType      = ArcadeType,
-                RenderSettings  = RenderSettings,
-                AudioSettings   = AudioSettings,
-                VideoSettings   = VideoSettings,
-                FpsProperties   = FpsArcadeProperties ?? new FpsProperties(),
-                CylProperties   = CylArcadeProperties ?? new CylProperties(),
-                Zones           = Zones,
-                ArcadeModelList = GetModelConfigurations(tArcades),
-                GameModelList   = GetModelConfigurations(tGames),
-                PropModelList   = GetModelConfigurations(tProps)
+                DescriptiveName     = DescriptiveName,
+                Id                  = Id,
+                ArcadeType          = ArcadeType,
+                RenderSettings      = RenderSettings,
+                AudioSettings       = AudioSettings,
+                VideoSettings       = VideoSettings,
+                FpsArcadeProperties = FpsArcadeProperties ?? new FpsArcadeProperties(),
+                CylArcadeProperties = CylArcadeProperties,
+                Zones               = Zones,
+                ArcadeModelList     = GetModelConfigurations(tArcades),
+                GameModelList       = GetModelConfigurations(tGames),
+                PropModelList       = GetModelConfigurations(tProps)
             };
 
             CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
 
-            cfg.FpsProperties.CameraSettings = new CameraSettings
+            cfg.FpsArcadeProperties.CameraSettings = new CameraSettings
             {
                 Position      = player.position,
                 Rotation      = MathUtils.CorrectEulerAngles(mainCamera.transform.eulerAngles),
@@ -91,8 +91,8 @@ namespace Arcade_r
             RenderSettings      = cfg.RenderSettings;
             AudioSettings       = cfg.AudioSettings;
             VideoSettings       = cfg.VideoSettings;
-            FpsArcadeProperties = cfg.FpsProperties;
-            CylArcadeProperties = cfg.CylProperties;
+            FpsArcadeProperties = cfg.FpsArcadeProperties;
+            CylArcadeProperties = cfg.CylArcadeProperties;
             Zones               = cfg.Zones;
         }
 

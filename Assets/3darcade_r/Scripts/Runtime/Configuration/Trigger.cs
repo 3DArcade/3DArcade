@@ -22,12 +22,15 @@
 
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class Trigger
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public string TriggerEvent;
+        public string[] TriggerSource; // special values: self, camera
+        public string[] TriggerTarget; // special values: self, camera
+        public string TriggerAction;
+        public AnimationProperties[] AnimationProperties;
+        public AudioProperties[] AudioProperties;
+        public TriggerTransformProperties[] TriggerTransformProperties;
     }
 }

@@ -20,14 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using UnityEngine;
+
 namespace Arcade_r
 {
-    public enum ArcadeType
+    [System.Serializable]
+    public sealed class AnimationProperties
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        public string Name;
+        public bool Loop;
+        public float Speed;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public PlayMode PlayMode;
+        public int Layer;
     }
 }

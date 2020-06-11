@@ -109,25 +109,25 @@ namespace Arcade_r
             //}
             //else
             {
-                switch (_context.CurrentModelConfiguration.ContentInteraction)
+                switch (_context.CurrentModelConfiguration.InteractionType)
                 {
-                    case ContentInteraction.Internal:
+                    case InteractionType.Internal:
                     {
-                        _context.TransitionTo<ArcadeLibretroState>();
+                        _context.TransitionTo<ArcadeInternalGameState>();
                     }
                     break;
-                    case ContentInteraction.External:
+                    case InteractionType.External:
                     {
-                        _context.TransitionTo<ArcadeExternalAppState>();
+                        _context.TransitionTo<ArcadeExternalGameState>();
                     }
                     break;
-                    case ContentInteraction.MenuConfiguration:
+                    case InteractionType.MenuConfiguration:
                     {
                         _ = _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id);
                     }
                     break;
-                    case ContentInteraction.URL:
-                    case ContentInteraction.None:
+                    case InteractionType.URL:
+                    case InteractionType.None:
                     default:
                         break;
                 }

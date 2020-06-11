@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Linq;
 using UnityEngine;
 
 namespace Arcade_r
@@ -37,7 +36,7 @@ namespace Arcade_r
         public ArcadeContext(App app, string startingArcade)
         {
             App              = app;
-            ArcadeController = new ArcadeController(app.ArcadeHierarchy, App.GameObjectCache, App.PlayerControls.transform, App.LauncherDatabase, App.ContentListDatabase, App.TextureCache);
+            ArcadeController = new ArcadeController(app.ArcadeHierarchy, App.GameObjectCache, App.PlayerControls.transform, App.EmulatorDatabase, App.TextureCache);
             RaycastLayers    = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
 
             SetCurrentArcadeConfiguration(startingArcade);
@@ -70,8 +69,8 @@ namespace Arcade_r
 
             switch (cfgComponent.ArcadeType)
             {
-                case ArcadeType.Fps:
-                case ArcadeType.Cyl:
+                case ArcadeType.FpsArcade:
+                case ArcadeType.CylArcade:
                 {
                     App.ArcadeHierarchy.Reset();
                     return ArcadeController.StartArcade(CurrentArcadeConfiguration);
@@ -106,29 +105,6 @@ namespace Arcade_r
             }
         }
 
-        public bool GetLauncherAndContentForCurrentModelConfiguration(out LauncherConfiguration launcher, out ContentConfiguration content)
-        {
-            launcher = null;
-            content  = null;
-
-            ContentListConfiguration contentList = App.ContentListDatabase.Get(CurrentModelConfiguration.ContentList);
-            if (contentList != null)
-            {
-                content = contentList.Games.FirstOrDefault(x => x.Id.Equals(CurrentModelConfiguration.Id, System.StringComparison.OrdinalIgnoreCase));
-                if (content != null)
-                {
-                    // Get launcher from content list
-                    launcher = App.LauncherDatabase.Get(contentList.Launcher);
-                    if (launcher == null)
-                    {
-                        // Get launcher from content
-                        launcher = App.LauncherDatabase.Get(content.Launcher);
-                    }
-                    return launcher != null;
-                }
-            }
-
-            return false;
-        }
+        public EmulatorConfiguration GetEmulatorForCurrentModelConfiguration() => App.EmulatorDatabase.Get(CurrentModelConfiguration.Emulator);
     }
 }

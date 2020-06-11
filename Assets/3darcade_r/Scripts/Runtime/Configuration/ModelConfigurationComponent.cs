@@ -27,42 +27,102 @@ namespace Arcade_r
     [DisallowMultipleComponent, SelectionBase]
     public sealed class ModelConfigurationComponent : MonoBehaviour
     {
-        public string DescriptiveName                = default;
-        public string Id                             = default;
-        public string Model                          = default;
-        public ContentInteraction ContentInteraction = default;
-        public string ContentList                    = default;
-        public bool MoveCabMovable                   = default;
-        public bool MoveCabGrabbable                 = default;
-        public Trigger[] Triggers                    = default;
-        public string[] TriggerIDs                   = default;
+        public string DescriptiveName          = default;
+        public string Id                       = default;
+        public string Model                    = default;
+        public InteractionType InteractionType = default;
+        public string Emulator                 = default;
+        public string GameList                 = default;
+        public string MarqueeDirectory         = default;
+        public string ScreenDirectory          = default;
+        public string TitleDirectory           = default;
+        public string VideoDirectory           = default;
+        public string GenericDirectory         = default;
+        public string InfoDirectory            = default;
+        public bool Grabbable                  = default;
+        public bool MoveCabMovable             = default;
+        public bool MoveCabGrabbable           = default;
+
+        public string CloneOf                          = default;
+        public string RomOf                            = default;
+        public string Genre                            = default;
+        public string Year                             = default;
+        public string Manufacturer                     = default;
+        public GameScreenType ScreenType               = default;
+        public GameScreenOrientation ScreenOrientation = default;
+        public bool Mature                             = default;
+        public bool Available                          = default;
+        public bool Runnable                           = default;
+
+        public Trigger[] Triggers  = default;
+        public string[] TriggerIDs = default;
 
         public void FromModelConfiguration(ModelConfiguration modelConfiguration)
         {
-            DescriptiveName      = modelConfiguration.DescriptiveName;
-            Id                   = modelConfiguration.Id;
-            Model                = modelConfiguration.Model;
-            ContentInteraction   = modelConfiguration.ContentInteraction;
-            ContentList          = modelConfiguration.ContentList;
-            MoveCabMovable       = modelConfiguration.MoveCabMovable;
-            MoveCabGrabbable     = modelConfiguration.MoveCabGrabbable;
-            Triggers             = modelConfiguration.Triggers;
-            TriggerIDs           = modelConfiguration.TriggerIDs;
+            DescriptiveName  = modelConfiguration.DescriptiveName;
+            Id               = modelConfiguration.Id;
+            Model            = modelConfiguration.Model;
+            InteractionType  = modelConfiguration.InteractionType;
+            Emulator         = modelConfiguration.Emulator;
+            GameList         = modelConfiguration.GameList;
+            MarqueeDirectory = modelConfiguration.MarqueeDirectory;
+            ScreenDirectory  = modelConfiguration.ScreenDirectory;
+            TitleDirectory   = modelConfiguration.TitleDirectory;
+            VideoDirectory   = modelConfiguration.VideoDirectory;
+            GenericDirectory = modelConfiguration.GenericDirectory;
+            InfoDirectory    = modelConfiguration.InfoDirectory;
+            Grabbable        = modelConfiguration.Grabbable;
+            MoveCabMovable   = modelConfiguration.MoveCabMovable;
+            MoveCabGrabbable = modelConfiguration.MoveCabGrabbable;
+
+            CloneOf           = modelConfiguration.CloneOf;
+            RomOf             = modelConfiguration.RomOf;
+            Genre             = modelConfiguration.Genre;
+            Year              = modelConfiguration.Year;
+            Manufacturer      = modelConfiguration.Manufacturer;
+            ScreenType        = modelConfiguration.ScreenType;
+            ScreenOrientation = modelConfiguration.ScreenOrientation;
+            Mature            = modelConfiguration.Mature;
+            Available         = modelConfiguration.Available;
+            Runnable          = modelConfiguration.Runnable;
+
+            Triggers   = modelConfiguration.Triggers;
+            TriggerIDs = modelConfiguration.TriggerIDs;
         }
 
         public ModelConfiguration ToModelConfiguration()
         {
             return new ModelConfiguration
             {
-                DescriptiveName      = DescriptiveName,
-                Id                   = Id,
-                Model                = Model,
-                ContentInteraction   = ContentInteraction,
-                ContentList          = ContentList,
-                MoveCabMovable       = MoveCabMovable,
-                MoveCabGrabbable     = MoveCabGrabbable,
-                Triggers             = Triggers,
-                TriggerIDs           = TriggerIDs,
+                DescriptiveName  = DescriptiveName,
+                Id               = Id,
+                Model            = Model,
+                InteractionType  = InteractionType,
+                Emulator         = Emulator,
+                GameList         = GameList,
+                MarqueeDirectory = MarqueeDirectory,
+                ScreenDirectory  = ScreenDirectory,
+                TitleDirectory   = TitleDirectory,
+                VideoDirectory   = VideoDirectory,
+                GenericDirectory = GenericDirectory,
+                InfoDirectory    = InfoDirectory,
+                Grabbable        = Grabbable,
+                MoveCabMovable   = MoveCabMovable,
+                MoveCabGrabbable = MoveCabGrabbable,
+
+                CloneOf           = CloneOf,
+                RomOf             = RomOf,
+                Genre             = Genre,
+                Year              = Year,
+                Manufacturer      = Manufacturer,
+                ScreenType        = ScreenType,
+                ScreenOrientation = ScreenOrientation,
+                Mature            = Mature,
+                Available         = Available,
+                Runnable          = Runnable,
+
+                Triggers   = Triggers,
+                TriggerIDs = TriggerIDs,
 
                 Position = transform.localPosition,
                 Rotation = MathUtils.CorrectEulerAngles(transform.localEulerAngles),

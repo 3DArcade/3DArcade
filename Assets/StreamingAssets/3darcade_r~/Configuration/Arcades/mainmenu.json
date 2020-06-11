@@ -1,7 +1,7 @@
 {
     "DescriptiveName": "Main Menu",
     "Id": "mainmenu",
-    "ArcadeType": "Cyl",
+    "ArcadeType": "CylArcade",
     "RenderSettings": {
         "MarqueeIntensity": 1.46,
         "ScreenRasterIntensity": 1.25,
@@ -14,7 +14,7 @@
     "VideoSettings": {
         "VideoPlayBehaviour": "VisibleUnobstructed"
     },
-    "FpsProperties": {
+    "FpsArcadeProperties": {
         "CameraSettings": {
             "Position": {
                 "x": 0.0,
@@ -40,7 +40,7 @@
             }
         }
     },
-    "CylProperties": {
+    "CylArcadeProperties": {
         "CameraSettings": {
             "Position": {
                 "x": 0.0,
@@ -65,7 +65,7 @@
                 "height": 1.0
             }
         },
-        "ContentPosition": 2,
+        "GamePosition": 2,
         "Sprockets": 5,
         "SelectedSprocket": 2,
         "Radius": 1000,
@@ -106,8 +106,8 @@
             "DescriptiveName": "Cylinder Arcade",
             "Id": "cylinderarcade",
             "Model": "defaultCylinder",
-            "ContentInteraction": "None",
-            "ContentList": null,
+            "InteractionType": "None",
+            "Gamelist": null,
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -134,8 +134,8 @@
             "DescriptiveName": "CylArcade Demo",
             "Id": "cylarcade_demo",
             "Model": "defaultmenu_sprocket",
-            "ContentInteraction": "MenuConfiguration",
-            "ContentList": "",
+            "InteractionType": "MenuConfiguration",
+            "Gamelist": "",
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -212,8 +212,8 @@
             "DescriptiveName": "Zoning",
             "Id": "zone",
             "Model": "defaultmenu_sprocket",
-            "ContentInteraction": "MenuConfiguration",
-            "ContentList": "",
+            "InteractionType": "MenuConfiguration",
+            "Gamelist": "",
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -273,8 +273,8 @@
             "DescriptiveName": "Triggers Demo",
             "Id": "triggers",
             "Model": "defaultmenu_sprocket",
-            "ContentInteraction": "MenuConfiguration",
-            "ContentList": "",
+            "InteractionType": "MenuConfiguration",
+            "Gamelist": "",
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -351,8 +351,8 @@
             "DescriptiveName": "Space Port",
             "Id": "spaceport",
             "Model": "defaultmenu_sprocket",
-            "ContentInteraction": "MenuConfiguration",
-            "ContentList": "",
+            "InteractionType": "MenuConfiguration",
+            "Gamelist": "",
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -412,8 +412,8 @@
             "DescriptiveName": "Time Out",
             "Id": "timeout",
             "Model": "defaultmenu_sprocket",
-            "ContentInteraction": "MenuConfiguration",
-            "ContentList": "",
+            "InteractionType": "MenuConfiguration",
+            "Gamelist": "",
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -475,8 +475,8 @@
             "DescriptiveName": "Menu title",
             "Id": "menu_title",
             "Model": "",
-            "ContentInteraction": "None",
-            "ContentList": null,
+            "InteractionType": "None",
+            "Gamelist": null,
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {
@@ -528,8 +528,8 @@
             "DescriptiveName": "Background",
             "Id": "default_mainmenu_background",
             "Model": "",
-            "ContentInteraction": "None",
-            "ContentList": null,
+            "InteractionType": "None",
+            "Gamelist": null,
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
             "Position": {

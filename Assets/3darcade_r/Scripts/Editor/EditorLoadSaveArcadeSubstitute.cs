@@ -34,8 +34,7 @@ namespace Arcade_r
 
         private readonly IVirtualFileSystem _virtualFileSystem;
         private readonly AssetCache<GameObject> _gameObjectCache;
-        private readonly Database<LauncherConfiguration> _launcherDatabase;
-        private readonly Database<ContentListConfiguration> _contentListDatabase;
+        private readonly Database<EmulatorConfiguration> _emulatorDatabase;
         private readonly PlayerControls _player;
         private readonly ArcadeController _arcadeController;
 
@@ -50,19 +49,18 @@ namespace Arcade_r
 
             _virtualFileSystem = new VirtualFileSystem();
             _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
-            _virtualFileSystem.MountDirectory("launcher_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Launchers");
-            _virtualFileSystem.MountDirectory("contentlist_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/ContentLists");
+            _virtualFileSystem.MountDirectory("emulator_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Emulators");
+            _virtualFileSystem.MountDirectory("gamelist_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Gamelists");
 
             _gameObjectCache  = new GameObjectCache();
 
-            ArcadeDatabase       = new ArcadeDatabase(_virtualFileSystem);
-            _launcherDatabase    = new LauncherDatabase(_virtualFileSystem);
-            _contentListDatabase = new ContentListDatabase(_virtualFileSystem);
+            ArcadeDatabase    = new ArcadeDatabase(_virtualFileSystem);
+            _emulatorDatabase = new EmulatorDatabase(_virtualFileSystem);
 
             _player = Object.FindObjectOfType<PlayerControls>();
             Assert.IsNotNull(_player);
 
-            _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _launcherDatabase, _contentListDatabase, null);
+            _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _emulatorDatabase, null);
         }
 
         public void LoadAndStartArcade(string name)
@@ -79,7 +77,7 @@ namespace Arcade_r
             }
             arcadeConfigurationComponent.Restore(arcadeConfiguration);
 
-            if (arcadeConfiguration.ArcadeType == ArcadeType.Fps || arcadeConfiguration.ArcadeType == ArcadeType.Cyl)
+            if (arcadeConfiguration.ArcadeType == ArcadeType.FpsArcade || arcadeConfiguration.ArcadeType == ArcadeType.CylArcade)
             {
                 ArcadeHierarchy.Reset();
             }

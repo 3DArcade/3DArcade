@@ -31,10 +31,32 @@ namespace Arcade_r
     {
         public string Model;
         [JsonConverter(typeof(StringEnumConverter))]
-        public ContentInteraction ContentInteraction;
-        public string ContentList;
+        public InteractionType InteractionType;
+        public string Emulator;
+        public string GameList;
+        public string MarqueeDirectory;
+        public string ScreenDirectory;
+        public string TitleDirectory;
+        public string VideoDirectory;
+        public string GenericDirectory;
+        public string InfoDirectory;
+        public bool Grabbable;
         public bool MoveCabMovable;
         public bool MoveCabGrabbable;
+
+        public string CloneOf;
+        public string RomOf;
+        public string Genre;
+        public string Year;
+        public string Manufacturer;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public GameScreenType ScreenType;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public GameScreenOrientation ScreenOrientation;
+        public bool Mature;
+        public bool Available;
+        public bool Runnable;
+
         public Vector3 Position;
         public Vector3 Rotation;
         public Vector3 Scale;

@@ -28,81 +28,64 @@ namespace Arcade_r
 {
     public class ContentMatcher
     {
-        public delegate List<string> GetNamesToTryDelegate(ModelConfiguration modelConfiguration, LauncherConfiguration launcher, ContentConfiguration content);
+        public delegate List<string> GetNamesToTryDelegate(ModelConfiguration modelConfiguration, EmulatorConfiguration emulator);
 
         private const string DEFAULT_ARCADE_MODEL    = "defaultCylinder";
         private const string DEFAULT_GAME_HOR_MODEL  = "default80hor";
         private const string DEFAULT_GAME_VERT_MODEL = "default80vert";
         private const string DEFAULT_PROP_MODEL      = "penguin";
 
-        private readonly Database<LauncherConfiguration> _launcherDatabase;
-        private readonly Database<ContentListConfiguration> _contentListDatabase;
+        private readonly Database<EmulatorConfiguration> _emulatorDatabase;
 
-        public ContentMatcher(Database<LauncherConfiguration> launcherDatabase, Database<ContentListConfiguration> contentListDatabase)
+        public ContentMatcher(Database<EmulatorConfiguration> emulatorDatabase)
         {
-            _launcherDatabase    = launcherDatabase ?? throw new ArgumentNullException(nameof(launcherDatabase));
-            _contentListDatabase = contentListDatabase ?? throw new ArgumentNullException(nameof(contentListDatabase));
+            _emulatorDatabase = emulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
         }
 
-        public void GetLauncherAndContentForConfiguration(ModelConfiguration modelConfiguration, out LauncherConfiguration launcher, out ContentConfiguration content)
+        public void GetEmulatorForConfiguration(ModelConfiguration modelConfiguration, out EmulatorConfiguration emulator)
         {
-            launcher = null;
-            content  = null;
+            emulator = null;
 
-            if (modelConfiguration.ContentInteraction == ContentInteraction.None
-             || modelConfiguration.ContentInteraction == ContentInteraction.MenuConfiguration)
+            if (modelConfiguration.InteractionType == InteractionType.None
+             || modelConfiguration.InteractionType == InteractionType.MenuConfiguration)
             {
                 return;
             }
 
-            ContentListConfiguration contentList = _contentListDatabase.Get(modelConfiguration.ContentList);
-            if (contentList != null)
-            {
-                content = contentList.Games.FirstOrDefault(x => x.Id.Equals(modelConfiguration.Id, StringComparison.OrdinalIgnoreCase));
-                if (content != null)
-                {
-                    // Get launcher from content list
-                    launcher = _launcherDatabase.Get(contentList.Launcher);
-                    if (launcher == null)
-                    {
-                        // Get launcher from content
-                        launcher = _launcherDatabase.Get(content.Launcher);
-                    }
-                }
-            }
+            emulator = _emulatorDatabase.Get(modelConfiguration.Emulator);
         }
 
-        public static List<string> GetNamesToTryForArcade(ModelConfiguration modelConfiguration, LauncherConfiguration launcher, ContentConfiguration content)
+        public static List<string> GetNamesToTryForArcade(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
         {
             return new List<string> { modelConfiguration.Id, DEFAULT_ARCADE_MODEL };
         }
 
-        public static List<string> GetNamesToTryForGame(ModelConfiguration modelConfiguration, LauncherConfiguration launcher, ContentConfiguration content)
+        public static List<string> GetNamesToTryForGame(ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
             List<string> result = new List<string>();
 
-            // Model from content
-            if (content != null)
+            // Model from game
+            if (modelConfiguration != null)
             {
                 result.AddStringIfNotNullOrEmpty(modelConfiguration.Model);
-                result.AddStringIfNotNullOrEmpty(content.Id);
-                result.AddStringIfNotNullOrEmpty(content.CloneOf);
-                result.AddStringIfNotNullOrEmpty(content.RomOf);
+                result.AddStringIfNotNullOrEmpty(modelConfiguration.Id);
+                result.AddStringIfNotNullOrEmpty(modelConfiguration.CloneOf);
+                result.AddStringIfNotNullOrEmpty(modelConfiguration.RomOf);
             }
 
-            // Model from launcher
-            if (launcher != null)
+            // Model from emulator
+            if (emulator != null)
             {
-                result.AddStringIfNotNullOrEmpty(launcher.Model);
-                result.AddStringIfNotNullOrEmpty(launcher.Id);
+                result.AddStringIfNotNullOrEmpty(emulator.Model);
+                result.AddStringIfNotNullOrEmpty(emulator.Id);
             }
 
             // Generic model from orientation/year
-            if (content != null)
+            if (modelConfiguration != null)
             {
-                bool isVertical = content.Orientation == ContentOrientation.Vertical;
+                bool isVertical = modelConfiguration.ScreenOrientation == GameScreenOrientation.Vertical;
                 string prefabName = isVertical ? DEFAULT_GAME_VERT_MODEL : DEFAULT_GAME_HOR_MODEL;
-                if (int.TryParse(content.Year, out int year))
+                if (int.TryParse(modelConfiguration.Year, out int year))
                 {
                     if (year >= 1970 && year < 1980)
                     {
@@ -126,7 +109,7 @@ namespace Arcade_r
             return result;
         }
 
-        public static List<string> GetNamesToTryForProp(ModelConfiguration modelConfiguration, LauncherConfiguration launcher, ContentConfiguration content)
+        public static List<string> GetNamesToTryForProp(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
         {
             return new List<string> { modelConfiguration.Id, DEFAULT_PROP_MODEL };
         }

@@ -20,14 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public class TextureCache : AssetCache<Texture>
     {
-        None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        private static readonly string[] _imageExtensions = new string[] { "png", "jpg", "jpeg" };
+
+        protected override Texture LoadAsset(string filePathNoExt)
+        {
+            foreach (string extension in _imageExtensions)
+            {
+                string imagePath = $"{filePathNoExt}.{extension}";
+                Texture result = TextureUtils.LoadTextureFromFile(imagePath, true);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+
+            return null;
+        }
+
+        protected override void UnloadAsset(Texture asset)
+        {
+            Resources.UnloadAsset(asset);
+        }
     }
 }
