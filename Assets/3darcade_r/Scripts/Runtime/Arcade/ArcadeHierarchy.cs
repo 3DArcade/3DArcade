@@ -32,17 +32,17 @@ namespace Arcade_r
         public readonly Transform GamesNode;
         public readonly Transform PropsNode;
 
-        private static readonly string[] CHILD_NAMES = new string[] { "ArcadeModels", "GameModels", "PropModels" };
+        private static readonly string[] _childNames = new string[] { "ArcadeModels", "GameModels", "PropModels" };
 
         public ArcadeHierarchy()
         {
             GameObject rootNode = GameObjectUtils.GameObjectCreateIfNotFound("Arcade", LayerMask.NameToLayer("Arcade"));
             Assert.IsNotNull(rootNode);
 
-            GameObject[] childNodes = new GameObject[CHILD_NAMES.Length];
-            for (int i = 0; i < CHILD_NAMES.Length; ++i)
+            GameObject[] childNodes = new GameObject[_childNames.Length];
+            for (int i = 0; i < _childNames.Length; ++i)
             {
-                string childName       = CHILD_NAMES[i];
+                string childName       = _childNames[i];
                 GameObject childObject = GameObjectUtils.GameObjectCreateIfNotFound(childName, LayerMask.NameToLayer($"Arcade/{childName}"));
                 Assert.IsNotNull(childObject);
                 childObject.transform.SetParent(rootNode.transform);

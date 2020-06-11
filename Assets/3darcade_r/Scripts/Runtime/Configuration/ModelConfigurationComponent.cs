@@ -34,10 +34,12 @@ namespace Arcade_r
         public string Emulator                 = default;
         public string GameList                 = default;
         public string MarqueeDirectory         = default;
+        public string MarqueeVideoDirectory    = default;
         public string ScreenDirectory          = default;
+        public string ScreenVideoDirectory     = default;
         public string TitleDirectory           = default;
-        public string VideoDirectory           = default;
         public string GenericDirectory         = default;
+        public string GenericVideoDirectory    = default;
         public string InfoDirectory            = default;
         public bool Grabbable                  = default;
         public bool MoveCabMovable             = default;
@@ -59,21 +61,23 @@ namespace Arcade_r
 
         public void FromModelConfiguration(ModelConfiguration modelConfiguration)
         {
-            DescriptiveName  = modelConfiguration.DescriptiveName;
-            Id               = modelConfiguration.Id;
-            Model            = modelConfiguration.Model;
-            InteractionType  = modelConfiguration.InteractionType;
-            Emulator         = modelConfiguration.Emulator;
-            GameList         = modelConfiguration.GameList;
-            MarqueeDirectory = modelConfiguration.MarqueeDirectory;
-            ScreenDirectory  = modelConfiguration.ScreenDirectory;
-            TitleDirectory   = modelConfiguration.TitleDirectory;
-            VideoDirectory   = modelConfiguration.VideoDirectory;
-            GenericDirectory = modelConfiguration.GenericDirectory;
-            InfoDirectory    = modelConfiguration.InfoDirectory;
-            Grabbable        = modelConfiguration.Grabbable;
-            MoveCabMovable   = modelConfiguration.MoveCabMovable;
-            MoveCabGrabbable = modelConfiguration.MoveCabGrabbable;
+            DescriptiveName       = modelConfiguration.DescriptiveName;
+            Id                    = modelConfiguration.Id;
+            Model                 = modelConfiguration.Model;
+            InteractionType       = modelConfiguration.InteractionType;
+            Emulator              = modelConfiguration.Emulator;
+            GameList              = modelConfiguration.GameList;
+            MarqueeDirectory      = modelConfiguration.MarqueeDirectory;
+            MarqueeVideoDirectory = modelConfiguration.MarqueeVideoDirectory;
+            ScreenDirectory       = modelConfiguration.ScreenDirectory;
+            TitleDirectory        = modelConfiguration.TitleDirectory;
+            ScreenVideoDirectory  = modelConfiguration.ScreenVideoDirectory;
+            GenericDirectory      = modelConfiguration.GenericDirectory;
+            GenericVideoDirectory = modelConfiguration.GenericVideoDirectory;
+            InfoDirectory         = modelConfiguration.InfoDirectory;
+            Grabbable             = modelConfiguration.Grabbable;
+            MoveCabMovable        = modelConfiguration.MoveCabMovable;
+            MoveCabGrabbable      = modelConfiguration.MoveCabGrabbable;
 
             CloneOf           = modelConfiguration.CloneOf;
             RomOf             = modelConfiguration.RomOf;
@@ -94,21 +98,23 @@ namespace Arcade_r
         {
             return new ModelConfiguration
             {
-                DescriptiveName  = DescriptiveName,
-                Id               = Id,
-                Model            = Model,
-                InteractionType  = InteractionType,
-                Emulator         = Emulator,
-                GameList         = GameList,
-                MarqueeDirectory = MarqueeDirectory,
-                ScreenDirectory  = ScreenDirectory,
-                TitleDirectory   = TitleDirectory,
-                VideoDirectory   = VideoDirectory,
-                GenericDirectory = GenericDirectory,
-                InfoDirectory    = InfoDirectory,
-                Grabbable        = Grabbable,
-                MoveCabMovable   = MoveCabMovable,
-                MoveCabGrabbable = MoveCabGrabbable,
+                DescriptiveName       = DescriptiveName,
+                Id                    = Id,
+                Model                 = Model,
+                InteractionType       = InteractionType,
+                Emulator              = Emulator,
+                GameList              = GameList,
+                MarqueeDirectory      = MarqueeDirectory,
+                MarqueeVideoDirectory = MarqueeVideoDirectory,
+                ScreenDirectory       = ScreenDirectory,
+                TitleDirectory        = TitleDirectory,
+                ScreenVideoDirectory  = ScreenVideoDirectory,
+                GenericDirectory      = GenericDirectory,
+                GenericVideoDirectory = GenericVideoDirectory,
+                InfoDirectory         = InfoDirectory,
+                Grabbable             = Grabbable,
+                MoveCabMovable        = MoveCabMovable,
+                MoveCabGrabbable      = MoveCabGrabbable,
 
                 CloneOf           = CloneOf,
                 RomOf             = RomOf,

@@ -26,6 +26,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Video;
 
 namespace Arcade_r
 {
@@ -36,14 +37,23 @@ namespace Arcade_r
         private const string PROP_RESOURCES_DIRECTORY   = "Props";
 
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_MARQUEES_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Marquees";
+        private static readonly string DEFAULT_MARQUEES_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Marquees";
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_SCREENS_DIRECTORY  = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Default/Screens";
+        private static readonly string DEFAULT_MARQUEES_VIDEO_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/MarqueesVideo";
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
+        private static readonly string DEFAULT_SCREENS_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Screens";
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
+        private static readonly string DEFAULT_SCREENS_VIDEO_DIRECTORY  = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/ScreensVideo";
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
+        private static readonly string DEFAULT_GENERICS_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Generics";
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
+        private static readonly string DEFAULT_GENERICS_VIDEO_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/GenericsVideo";
 
         private readonly ArcadeHierarchy _arcadeHierarchy;
         private readonly AssetCache<GameObject> _gameObjectCache;
         private readonly Transform _player;
         private readonly AssetCache<Texture> _textureCache;
+        private readonly AssetCache<string> _videoCache;
 
         private readonly ContentMatcher _contentMatcher;
 
@@ -53,7 +63,8 @@ namespace Arcade_r
                                 AssetCache<GameObject> gameObjectCache,
                                 Transform player,
                                 Database<EmulatorConfiguration> emulatorDatabase,
-                                AssetCache<Texture> textureCache)
+                                AssetCache<Texture> textureCache,
+                                AssetCache<string> videoCache)
         {
             Assert.IsNotNull(arcadeHierarchy);
             Assert.IsNotNull(gameObjectCache);
@@ -65,6 +76,7 @@ namespace Arcade_r
             _player          = player;
 
             _textureCache = textureCache;
+            _videoCache   = videoCache;
 
             _contentMatcher = new ContentMatcher(emulatorDatabase);
         }
@@ -133,49 +145,54 @@ namespace Arcade_r
 
         private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
-            Renderer nodeRenderer = GetNodeRenderer<MarqueeNodeTag>(model);
-            if (nodeRenderer == null)
+            Renderer renderer = GetNodeRenderer<MarqueeNodeTag>(model);
+            if (renderer == null)
             {
                 return;
             }
 
-            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, DEFAULT_MARQUEES_DIRECTORY))
+            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
+
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeVideoDirectory, emulator?.MarqueesVideoDirectory, DEFAULT_MARQUEES_VIDEO_DIRECTORY);
+            if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
+                renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, modelConfiguration, emulator))
+            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, DEFAULT_MARQUEES_DIRECTORY);
+            Texture texture = _textureCache.Load(directories, namesToTry);
+            if (texture != null)
             {
-                return;
+                SetupStaticImage(renderer.material, texture, true, true, _currentConfiguration.RenderSettings.MarqueeIntensity);
             }
 
-            Texture texture         = _textureCache.Load(directories, namesToTry);
-            float emissionIntensity = _currentConfiguration.RenderSettings.MarqueeIntensity;
-            SetupNode(nodeRenderer, texture, true, true, emissionIntensity);
-            SetupMagicPixels(nodeRenderer);
+            SetupMagicPixels(renderer);
         }
 
         private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
-            Renderer nodeRenderer = GetNodeRenderer<ScreenNodeTag>(model);
-            if (nodeRenderer == null)
+            Renderer renderer = GetNodeRenderer<ScreenNodeTag>(model);
+            if (renderer == null)
             {
                 return;
             }
 
-            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, DEFAULT_SCREENS_DIRECTORY))
+            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
+
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenVideoDirectory, emulator?.ScreensVideoDirectory, DEFAULT_SCREENS_VIDEO_DIRECTORY);
+            if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
+                renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, modelConfiguration, emulator))
+            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, DEFAULT_SCREENS_DIRECTORY);
+            Texture texture = _textureCache.Load(directories, namesToTry);
+            if (texture != null)
             {
-                return;
+                SetupStaticImage(renderer.material, texture, true, true, GetScreenIntensity());
             }
-
-            Texture texture         = _textureCache.Load(directories, namesToTry);
-            float emissionIntensity = GetScreenIntensity();
-            SetupNode(nodeRenderer, texture, true, true, emissionIntensity);
 
             float GetScreenIntensity()
             {
@@ -196,53 +213,24 @@ namespace Arcade_r
 
         private void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
-            Renderer nodeRenderer = GetNodeRenderer<GenericNodeTag>(model);
-            if (nodeRenderer == null)
+            Renderer renderer = GetNodeRenderer<GenericNodeTag>(model);
+            if (renderer == null)
             {
                 return;
             }
 
-            if (!ArtworkMatcher.GetDirectoriesToTry(out List<string> directories, modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, null))
+            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
+
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericVideoDirectory, emulator?.GenericsVideoDirectory, DEFAULT_GENERICS_VIDEO_DIRECTORY);
+            if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
+                renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            if (!ArtworkMatcher.GetNamesToTry(out List<string> namesToTry, modelConfiguration, emulator))
-            {
-                return;
-            }
-
+            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, DEFAULT_GENERICS_DIRECTORY);
             Texture texture = _textureCache.Load(directories, namesToTry);
-            SetupNode(nodeRenderer, texture);
-        }
-
-        private static void SetupNode(Renderer renderer, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
-        {
-            if (renderer == null || texture == null)
-            {
-                return;
-            }
-
-            // Video
-            // ...
-
-            // Image
-
-            if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
-            {
-                Color color = (overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME)) * emissionFactor;
-                renderer.material.SetEmissiveColorAndTexture(color, texture, true);
-            }
-            else if (forceEmissive)
-            {
-                Color color = Color.white * emissionFactor;
-                renderer.material.SetEmissiveColorAndTexture(color, texture, true);
-            }
-            else
-            {
-                Color color = overwriteColor ? Color.white : renderer.material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
-                renderer.material.SetAlbedoColorAndTexture(color, texture);
-            }
+            SetupStaticImage(renderer.material, texture);
         }
 
         private static void SetupMagicPixels(Renderer baseRenderer)
@@ -280,6 +268,73 @@ namespace Arcade_r
                     Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME);
                     renderer.material.SetAlbedoColorAndTexture(color, texture);
                 }
+            }
+        }
+
+        private bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry)
+        {
+            string videopath = _videoCache.Load(directories, namesToTry);
+            if (string.IsNullOrEmpty(videopath))
+            {
+                return false;
+            }
+
+            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance  = 1f;
+            audioSource.maxDistance  = 4f;
+            audioSource.volume       = 0.6f;
+            //audioSource.enabled      = false;
+
+            VideoPlayer videoPlayer            = screen.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived          -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived          += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted       -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted       += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake            = false;
+            videoPlayer.waitForFirstFrame      = true;
+            videoPlayer.isLooping              = true;
+            videoPlayer.source                 = VideoSource.Url;
+            videoPlayer.url                    = videopath;
+            videoPlayer.renderMode             = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode        = VideoAudioOutputMode.AudioSource;
+            videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            videoPlayer.Prepare();
+
+            return true;
+        }
+
+        private void OnVideoPlayerErrorReceived(VideoPlayer videoPlayer, string message)
+        {
+            Debug.Log($"Error: {message}");
+        }
+
+        private void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
+        {
+            videoPlayer.Play();
+            videoPlayer.time = Random.Range(0f, 1f) * (videoPlayer.frameCount / videoPlayer.frameRate);
+            videoPlayer.Pause();
+            //videoPlayer.EnableAudioTrack(0, false);
+            //videoPlayer.GetTargetAudioSource(0).enabled = false;
+        }
+
+        private static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
+        {
+            if (material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
+            {
+                Color color = (overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME)) * emissionFactor;
+                material.SetEmissiveColorAndTexture(color, texture, true);
+            }
+            else if (forceEmissive)
+            {
+                Color color = Color.white * emissionFactor;
+                material.SetEmissiveColorAndTexture(color, texture, true);
+            }
+            else
+            {
+                Color color = overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
+                material.SetAlbedoColorAndTexture(color, texture);
             }
         }
 

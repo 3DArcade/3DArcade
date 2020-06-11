@@ -21,10 +21,12 @@
  * SOFTWARE. */
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEngine;
 
 namespace Arcade_r
 {
@@ -91,41 +93,55 @@ namespace Arcade_r
         public static void JsonSerialize<T>(string filePath, T configuration)
             where T : class
         {
-            JsonSerializer serializer = new JsonSerializer
+            try
             {
-                ContractResolver = BaseFirstContractResolver.Instance
-            };
+                JsonSerializer serializer = new JsonSerializer
+                {
+                    ContractResolver = BaseFirstContractResolver.Instance
+                };
 
-            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Geometry.RectConverter());
-            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
-            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
+                serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Geometry.RectConverter());
+                serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
+                serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
 
-            using (FileStream fs      = File.Open(filePath, FileMode.Create))
-            using (StreamWriter sw    = new StreamWriter(fs))
-            using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                using (StreamWriter sw    = new StreamWriter(filePath))
+                using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                {
+                    jtw.Formatting  = Formatting.Indented;
+                    jtw.IndentChar  = ' ';
+                    jtw.Indentation = 4;
+
+                    serializer.Serialize(jtw, configuration);
+                }
+            }
+            catch (System.Exception e)
             {
-                jtw.Formatting  = Formatting.Indented;
-                jtw.IndentChar  = ' ';
-                jtw.Indentation = 4;
-
-               serializer.Serialize(jtw, configuration);
+                Debug.LogException(e);
             }
         }
 
         public static T JsonDeserialize<T>(string path)
             where T : class
         {
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Geometry.RectConverter());
-            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
-            serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
-
-            using (FileStream fs      = File.Open(path, FileMode.Open))
-            using (StreamReader sr    = new StreamReader(fs))
-            using (JsonTextReader jtr = new JsonTextReader(sr))
+            try
             {
-                return serializer.Deserialize<T>(jtr);
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Geometry.RectConverter());
+                serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
+                serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
+
+                using (StreamReader sr    = new StreamReader(path))
+                using (JsonTextReader jtr = new JsonTextReader(sr))
+                {
+                    return serializer.Deserialize<T>(jtr);
+                }
             }
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+            }
+
+            return null;
         }
     }
 

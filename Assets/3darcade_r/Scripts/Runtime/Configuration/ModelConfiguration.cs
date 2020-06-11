@@ -35,10 +35,12 @@ namespace Arcade_r
         public string Emulator;
         public string GameList;
         public string MarqueeDirectory;
+        public string MarqueeVideoDirectory;
         public string ScreenDirectory;
+        public string ScreenVideoDirectory;
         public string TitleDirectory;
-        public string VideoDirectory;
         public string GenericDirectory;
+        public string GenericVideoDirectory;
         public string InfoDirectory;
         public bool Grabbable;
         public bool MoveCabMovable;

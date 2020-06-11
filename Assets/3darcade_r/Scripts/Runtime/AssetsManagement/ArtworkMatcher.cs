@@ -26,34 +26,34 @@ namespace Arcade_r
 {
     public static class ArtworkMatcher
     {
-        public static bool GetDirectoriesToTry(out List<string> directories, string gameArtworkDirectory, string emulatorArtworkDirectory, string defaultArtworkDirectory)
+        public static List<string> GetDirectoriesToTry(string gameArtworkDirectory, string emulatorArtworkDirectory, string defaultArtworkDirectory)
         {
-            directories = new List<string>();
+            List<string> result = new List<string>();
 
-            directories.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(gameArtworkDirectory));
-            directories.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(emulatorArtworkDirectory));
-            directories.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(defaultArtworkDirectory));
+            result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(gameArtworkDirectory));
+            result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(emulatorArtworkDirectory));
+            result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(defaultArtworkDirectory));
 
-            return directories.Count > 0;
+            return result;
         }
 
-        public static bool GetNamesToTry(out List<string> namesToTry, ModelConfiguration game, EmulatorConfiguration emulator)
+        public static List<string> GetNamesToTry(ModelConfiguration game, EmulatorConfiguration emulator)
         {
-            namesToTry  = new List<string>();
+            List<string> result  = new List<string>();
 
             if (game != null)
             {
-                namesToTry.AddStringIfNotNullOrEmpty(game.Id);
-                namesToTry.AddStringIfNotNullOrEmpty(game.CloneOf);
-                namesToTry.AddStringIfNotNullOrEmpty(game.RomOf);
+                result.AddStringIfNotNullOrEmpty(game.Id);
+                result.AddStringIfNotNullOrEmpty(game.CloneOf);
+                result.AddStringIfNotNullOrEmpty(game.RomOf);
             }
 
             if (emulator != null)
             {
-                namesToTry.AddStringIfNotNullOrEmpty(emulator.Id);
+                result.AddStringIfNotNullOrEmpty(emulator.Id);
             }
 
-            return namesToTry.Count > 0;
+            return result;
         }
     }
 }

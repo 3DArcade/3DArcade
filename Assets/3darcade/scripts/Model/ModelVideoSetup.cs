@@ -7,25 +7,25 @@ namespace Arcade
     public class ModelVideoSetup : MonoBehaviour
     {
         public UnityEngine.Video.VideoPlayer videoPlayer = null;
-        private ModelVideoEnabled videoEnabled;
+        private ModelVideoEnabled _videoEnabled;
         private Renderer _renderer;
-        private bool setupVideoAfterGameDisable = false;
-        private List<Texture2D> imageList = null;
-        private bool visible = false;
-        private float waitTime = 2.0f;
-        private float timer = 0.0f;
-        private int index = 0;
+        private bool _setupVideoAfterGameDisable = false;
+        private List<Texture2D> _imageList = null;
+        private bool _visible = false;
+        private float _waitTime = 2.0f;
+        private float _timer = 0.0f;
+        private int _index = 0;
         //private int frames = 0;
-        private bool selectedDone = false;
-        private bool? videoIsActive;
+        private bool _selectedDone = false;
+        private bool? _videoIsActive;
 
-        private bool prepareDone;
+        private bool _prepareDone;
 
         public ModelProperties modelProperties;
-        private ModelSharedProperties modelSharedProperties;
-        private ModelComponentType modelComponentType = ModelComponentType.Screen;
-        private Camera thisCamera;
-        private GameObject dummyNode;
+        private ModelSharedProperties _modelSharedProperties;
+        private ModelComponentType _modelComponentType = ModelComponentType.Screen;
+        private Camera _thisCamera;
+        private GameObject _dummyNode;
         //private bool isCylArcade = false;
 
         //private LayerMask layerMask;
@@ -34,7 +34,7 @@ namespace Arcade
         public bool arcadeLayer = true;
         public float distance = 100000000000f;
 
-        private float maxDistance = 3f;
+        private float _maxDistance = 3f;
 
         // Using Global Variables
         // ArcadeManager.arcadeCameras, get the correct active camera
@@ -51,70 +51,79 @@ namespace Arcade
             //Debug.Log("videosetup " + gameObject.transform.parent.name + " imagecount " + textureList.Count + " " + videoURL + " " + (videoPlayer == null));
 
             this.modelProperties = modelProperties;
-            this.modelComponentType = modelComponentType;
-            imageList = null;
-            this.modelSharedProperties = modelSharedProperties;
-            dummyNode = gameObject.transform.parent.transform.parent.gameObject;
+            _modelComponentType = modelComponentType;
+            _imageList = null;
+            _modelSharedProperties = modelSharedProperties;
+            _dummyNode = gameObject.transform.parent.transform.parent.gameObject;
 
             string layer = LayerMask.LayerToName(gameObject.layer);
             if (layer.StartsWith("Arcade"))
             {
                 //layerMask = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
-                thisCamera = ArcadeManager.arcadeCameras[ArcadeType.FpsArcade];
+                _thisCamera = ArcadeManager.arcadeCameras[ArcadeType.FpsArcade];
                 arcadeLayer = true;
             }
             else
             {
                 //layerMask = LayerMask.GetMask("Menu/ArcadeModels", "Menu/GameModels", "Menu/PropModels");
-                thisCamera = ArcadeManager.arcadeCameras[ArcadeType.CylMenu];
+                _thisCamera = ArcadeManager.arcadeCameras[ArcadeType.CylMenu];
                 arcadeLayer = false;
             }
 
             if (ArcadeManager.arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || ArcadeManager.arcadeConfiguration.arcadeType == ArcadeType.FpsMenu.ToString())
             {
                 //isCylArcade = false;
-                maxDistance = 5f;
+                _maxDistance = 5f;
             }
             else
             {
                 //isCylArcade = true;
-                maxDistance = 10000f;
+                _maxDistance = 10000f;
             }
 
             // Setup image, nescessary for magic pixels and to get an unique material instance.
             Texture2D tex = null;
             if (textureList.Count > 0)
-            { tex = textureList[0]; }
+            {
+                tex = textureList[0];
+            }
+
             ModelImageSetup modelImageSetup = GetComponent<ModelImageSetup>();
             if (modelImageSetup == null)
-            { modelImageSetup = gameObject.AddComponent<ModelImageSetup>(); }
+            {
+                modelImageSetup = gameObject.AddComponent<ModelImageSetup>();
+            }
+
             modelImageSetup.Setup(tex, modelSharedProperties.renderSettings, modelProperties, modelComponentType);
 
             if (videoURL != null && videoPlayer == null)
             {
                 videoPlayer = gameObject.GetComponent<UnityEngine.Video.VideoPlayer>();
             }
+
             if (animatedTextureSpeed != null)
             {
-                waitTime = animatedTextureSpeed.Value;
+                _waitTime = animatedTextureSpeed.Value;
             }
-            videoEnabled = (ModelVideoEnabled)System.Enum.Parse(typeof(ModelVideoEnabled), modelSharedProperties.videoOnModelEnabled);
+
+            _videoEnabled = (ModelVideoEnabled)System.Enum.Parse(typeof(ModelVideoEnabled), modelSharedProperties.videoOnModelEnabled);
             if (videoURL == null)
             {
-                videoEnabled = ModelVideoEnabled.Never;
+                _videoEnabled = ModelVideoEnabled.Never;
             }
             else
             {
-                if (videoPlayer != null && videoEnabled != ModelVideoEnabled.Never)
+                if (videoPlayer != null && _videoEnabled != ModelVideoEnabled.Never)
                 {
                     videoPlayer.SetDirectAudioMute(0, true);
                     videoPlayer.enabled = true;
                     videoPlayer.url = videoURL;
                 }
             }
+
             if (textureList.Count > 0)
             {
-                imageList = textureList;
+                _imageList = textureList;
                 if (_renderer != null)
                 {
                     _renderer.material.mainTexture = textureList[0];
@@ -127,7 +136,8 @@ namespace Arcade
                     _renderer.material.mainTexture = Texture2D.blackTexture;
                 }
             }
-            if (_renderer != null && (textureList.Count > 0 || videoEnabled != ModelVideoEnabled.Never))
+
+            if (_renderer != null && (textureList.Count > 0 || _videoEnabled != ModelVideoEnabled.Never))
             {
                 SetupVideoPlayer();
             }
@@ -135,17 +145,20 @@ namespace Arcade
 
         public void SetupVideoPlayer()
         {
-            if (videoEnabled == ModelVideoEnabled.Never || videoPlayer == null)
+            if (_videoEnabled == ModelVideoEnabled.Never || videoPlayer == null)
             {
                 if (videoPlayer != null)
                 {
                     videoPlayer.enabled = false;
                 }
+
                 SetupImageMaterial();
-                if (imageList == null)
+
+                if (_imageList == null)
                 {
                     enabled = false;
                 }
+
                 return;
             }
 
@@ -176,12 +189,12 @@ namespace Arcade
                 }
 
                 // TODO: Setup material, resize to better fit the screen. Should we still do this? I think we did this because the mame32 screenshots had a white border.
-                if (modelComponentType == ModelComponentType.Screen)
+                if (_modelComponentType == ModelComponentType.Screen)
                 {
                     //renderer.material.SetTextureOffset("_MainTex", new Vector2(-0.075f, -0.075f));
                     //renderer.material.SetTextureScale("_MainTex", new Vector2(1.15f, 1.15f));
                 }
-                if (modelComponentType != ModelComponentType.Generic)
+                if (_modelComponentType != ModelComponentType.Generic)
                 {
                     //renderer.material.SetTexture("_MainTex", null);
                     _renderer.material.color = Color.black;
@@ -189,43 +202,44 @@ namespace Arcade
                     _renderer.material.EnableKeyword("_EMISSION");
                     _renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
                 }
-                if (modelComponentType == ModelComponentType.Screen)
+
+                if (_modelComponentType == ModelComponentType.Screen)
                 {
                     if (modelProperties.genre.ToLower().Contains("vector"))
                     {
-                        _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenVectorIntenstity);
+                        _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.screenVectorIntenstity);
                     }
                     else if (modelProperties.screen.ToLower().Contains("pinball"))
                     {
-                        _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenPinballIntensity);
+                        _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.screenPinballIntensity);
                     }
                     else
                     {
-                        _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenRasterIntensity);
+                        _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.screenRasterIntensity);
                     }
                 }
-                if (modelComponentType == ModelComponentType.Marquee)
+                if (_modelComponentType == ModelComponentType.Marquee)
                 {
-                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.marqueeIntensity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.marqueeIntensity);
                 }
             }
 
-            if (videoEnabled == ModelVideoEnabled.Always)
+            if (_videoEnabled == ModelVideoEnabled.Always)
             {
                 videoPlayer.enabled = true;
                 videoPlayer.Prepare();
                 videoPlayer.Play();
             }
-            else if (videoEnabled == ModelVideoEnabled.VisiblePlay || videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
+            else if (_videoEnabled == ModelVideoEnabled.VisiblePlay || _videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
             {
-                prepareDone = false;
+                _prepareDone = false;
                 videoPlayer.enabled = true;
                 videoPlayer.Prepare();
                 videoPlayer.frame = 10;
                 videoPlayer.Play();
                 _ = StartCoroutine("PrepareVideo");
             }
-            else if (videoEnabled == ModelVideoEnabled.VisibleEnable || videoEnabled == ModelVideoEnabled.Selected)
+            else if (_videoEnabled == ModelVideoEnabled.VisibleEnable || _videoEnabled == ModelVideoEnabled.Selected)
             {
                 videoPlayer.enabled = false;
                 SetupImageMaterial();
@@ -243,7 +257,9 @@ namespace Arcade
                     ok = false;
                     continue;
                 }
+
                 videoPlayer.Play();
+
                 if (videoPlayer.frameCount > 0)
                 {
                     ulong frameCount = videoPlayer.frameCount;
@@ -251,19 +267,22 @@ namespace Arcade
                     long randomFrame = Random.Range(0, frameCountInt);
                     videoPlayer.frame = randomFrame;
                 }
+
                 yield return null;
+
                 ok = !videoPlayer.isPlaying || !videoPlayer.isPrepared || !(videoPlayer.frameCount > 0);
             }
+
             if (videoPlayer != null)
             {
                 videoPlayer.Pause();
             }
-            prepareDone = true;
+            _prepareDone = true;
         }
 
         private void SetupImageMaterial()
         {
-            if (modelComponentType == ModelComponentType.Screen || modelComponentType == ModelComponentType.Marquee)
+            if (_modelComponentType == ModelComponentType.Screen || _modelComponentType == ModelComponentType.Marquee)
             {
                 Texture myTexture = _renderer.material.GetTexture("_MainTex");
                 _renderer.material.SetTexture("_EmissionMap", myTexture);
@@ -272,26 +291,26 @@ namespace Arcade
                 _renderer.material.EnableKeyword("_EMISSION");
                 _renderer.material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             }
-            if (modelComponentType == ModelComponentType.Screen)
+            if (_modelComponentType == ModelComponentType.Screen)
             {
                 //renderer.material.SetTextureOffset("_MainTex", new Vector2(-0.075f, -0.075f));
                 //renderer.material.SetTextureScale("_MainTex", new Vector2(1.15f, 1.15f));
                 if (modelProperties.genre.ToLower().Contains("vector"))
                 {
-                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenVectorIntenstity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.screenVectorIntenstity);
                 }
                 else if (modelProperties.screen.ToLower().Contains("pinball"))
                 {
-                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenPinballIntensity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.screenPinballIntensity);
                 }
                 else
                 {
-                    _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.screenRasterIntensity);
+                    _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.screenRasterIntensity);
                 }
             }
-            if (modelComponentType == ModelComponentType.Marquee)
+            if (_modelComponentType == ModelComponentType.Marquee)
             {
-                _renderer.material.SetVector("_EmissionColor", Color.white * modelSharedProperties.renderSettings.marqueeIntensity);
+                _renderer.material.SetVector("_EmissionColor", Color.white * _modelSharedProperties.renderSettings.marqueeIntensity);
             }
         }
 
@@ -310,21 +329,21 @@ namespace Arcade
 
         private void OnBecameVisible()
         {
-            visible = true;
+            _visible = true;
             if (videoPlayer == null)
             {
                 return;
             }
 
-            if (videoEnabled == ModelVideoEnabled.VisiblePlay)
+            if (_videoEnabled == ModelVideoEnabled.VisiblePlay)
             {
                 videoPlayer.Play();
             }
-            if (videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
+            if (_videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
             {
                 //   if (prepareDone) { videoPlayer.Pause(); }
             }
-            if (videoEnabled == ModelVideoEnabled.VisibleEnable)
+            if (_videoEnabled == ModelVideoEnabled.VisibleEnable)
             {
                 SetupVideoPlayer();
                 videoPlayer.enabled = true;
@@ -334,21 +353,21 @@ namespace Arcade
 
         private void OnBecameInvisible()
         {
-            visible = false;
+            _visible = false;
             if (videoPlayer == null)
             {
                 return;
             }
 
-            if (videoEnabled == ModelVideoEnabled.VisiblePlay)
+            if (_videoEnabled == ModelVideoEnabled.VisiblePlay)
             {
                 videoPlayer.Pause();
             }
-            if (videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
+            if (_videoEnabled == ModelVideoEnabled.VisibleUnobstructed)
             {
                 //    if (prepareDone) { videoPlayer.Pause(); }
             }
-            if (videoEnabled == ModelVideoEnabled.VisibleEnable)
+            if (_videoEnabled == ModelVideoEnabled.VisibleEnable)
             {
                 ReleasePlayer();
             }
@@ -358,7 +377,7 @@ namespace Arcade
         {
             if (ArcadeManager.arcadeState == ArcadeStates.Game)
             {
-                setupVideoAfterGameDisable = true;
+                _setupVideoAfterGameDisable = true;
                 if (videoPlayer == null)
                 {
                     return;
@@ -371,15 +390,15 @@ namespace Arcade
             }
             else if (ArcadeManager.arcadeState == ArcadeStates.Running)
             {
-                if (setupVideoAfterGameDisable && dummyNode.GetComponent<ModelLibretroGameSetup>() == null)
+                if (_setupVideoAfterGameDisable && _dummyNode.GetComponent<ModelLibretroGameSetup>() == null)
                 {
-                    setupVideoAfterGameDisable = false;
+                    _setupVideoAfterGameDisable = false;
                     if (videoPlayer == null)
                     {
                         return;
                     }
                     // videoPlayer.enabled = false; // TODO: Why did i have that here???
-                    if (videoEnabled == ModelVideoEnabled.Never)
+                    if (_videoEnabled == ModelVideoEnabled.Never)
                     {
                         return;
                     }
@@ -391,10 +410,10 @@ namespace Arcade
             }
 
             //
-            if (videoPlayer != null && videoPlayer.isPlaying != videoIsActive)
+            if (videoPlayer != null && videoPlayer.isPlaying != _videoIsActive)
             {
-                videoIsActive = videoPlayer.isPlaying;
-                if (videoIsActive ?? true)
+                _videoIsActive = videoPlayer.isPlaying;
+                if (_videoIsActive ?? true)
                 {
                     videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.MaterialOverride;
                 }
@@ -405,7 +424,7 @@ namespace Arcade
             }
 
             // distance = Vector3.Distance(gameObject.transform.position, thisCamera.transform.position);
-            distance = (gameObject.transform.position - thisCamera.transform.position).sqrMagnitude;
+            distance = (gameObject.transform.position - _thisCamera.transform.position).sqrMagnitude;
             //Debug.Log(modelProperties.descriptiveName + " distance " + distance);
 
             // if I am the savedArcadeModel when cylmenu or fpsmenu are active then dont put the video on me
@@ -414,7 +433,7 @@ namespace Arcade
                 return;
             }
 
-            if (visible == true && !setupVideoAfterGameDisable && (videoEnabled == ModelVideoEnabled.Always || (videoEnabled == ModelVideoEnabled.VisibleUnobstructed && prepareDone)))
+            if (_visible == true && !_setupVideoAfterGameDisable && (_videoEnabled == ModelVideoEnabled.Always || (_videoEnabled == ModelVideoEnabled.VisibleUnobstructed && _prepareDone)))
             {
                 if (IsInView(/*gameObject*/))
                 {
@@ -434,15 +453,15 @@ namespace Arcade
                 //frames = 0;
             }
 
-            if (!setupVideoAfterGameDisable && videoEnabled == ModelVideoEnabled.Selected)
+            if (!_setupVideoAfterGameDisable && _videoEnabled == ModelVideoEnabled.Selected)
             {
                 if (ArcadeStateManager.selectedModel != null)
                 {
                     if (ArcadeStateManager.selectedModel.transform == gameObject.transform.parent.transform)
                     {
-                        if (!selectedDone)
+                        if (!_selectedDone)
                         {
-                            selectedDone = true;
+                            _selectedDone = true;
                             SetupVideoPlayer();
                             videoPlayer.enabled = true;
                             videoPlayer.Play();
@@ -450,7 +469,7 @@ namespace Arcade
                     }
                     else
                     {
-                        selectedDone = false;
+                        _selectedDone = false;
                         if (videoPlayer.isPlaying)
                         {
                             ReleasePlayer();
@@ -466,20 +485,22 @@ namespace Arcade
                 }
             }
 
-            if (visible == true && !setupVideoAfterGameDisable && (videoEnabled == ModelVideoEnabled.Never || (videoEnabled == ModelVideoEnabled.Selected && selectedDone == false) || videoPlayer.isPaused) && imageList != null)
+            if (_visible == true && !_setupVideoAfterGameDisable && (_videoEnabled == ModelVideoEnabled.Never || (_videoEnabled == ModelVideoEnabled.Selected && _selectedDone == false) || videoPlayer.isPaused) && _imageList != null)
             {
-                timer += Time.deltaTime;
-                if (timer > waitTime)
+                _timer += Time.deltaTime;
+                if (_timer > _waitTime)
                 {
-                    index += 1;
-                    if (index > (imageList.Count - 1))
-                    { index = 0; }
-                    _renderer.material.mainTexture = imageList[index];
+                    _index += 1;
+                    if (_index > (_imageList.Count - 1))
+                    {
+                        _index = 0;
+                    }
+                    _renderer.material.mainTexture = _imageList[_index];
                     if (_renderer.material.globalIlluminationFlags == MaterialGlobalIlluminationFlags.RealtimeEmissive)
                     {
-                        _renderer.material.SetTexture("_EmissionMap", imageList[index]);
+                        _renderer.material.SetTexture("_EmissionMap", _imageList[_index]);
                     }
-                    timer = 0f;
+                    _timer = 0f;
                 }
             }
 
@@ -493,7 +514,7 @@ namespace Arcade
                 return;
             }
 
-            if (modelSharedProperties.spatialSound)
+            if (_modelSharedProperties.spatialSound)
             {
                 return;
             }
@@ -507,7 +528,7 @@ namespace Arcade
 
         private bool IsInView(/*GameObject toCheck*/)
         {
-            return distance <= maxDistance;
+            return distance <= _maxDistance;
 
             /*
              * Vector3 pointOnScreen = thisCamera.WorldToScreenPoint(toCheck.GetComponentInChildren<Renderer>().bounds.center);

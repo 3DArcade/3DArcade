@@ -28,16 +28,21 @@ namespace Arcade_r
     {
         public readonly App App;
         public readonly ArcadeController ArcadeController;
+        public readonly VideoPlayerController VideoPlayerController;
         public readonly LayerMask RaycastLayers;
 
         public ArcadeConfiguration CurrentArcadeConfiguration { get; private set; }
         public ModelConfigurationComponent CurrentModelConfiguration;
 
+        private static readonly LayerMask _interactionLayers  = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+        private static readonly LayerMask _videoControlLayers = LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels");
+
         public ArcadeContext(App app, string startingArcade)
         {
-            App              = app;
-            ArcadeController = new ArcadeController(app.ArcadeHierarchy, App.GameObjectCache, App.PlayerControls.transform, App.EmulatorDatabase, App.TextureCache);
-            RaycastLayers    = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "UI");
+            App                   = app;
+            ArcadeController      = new ArcadeController(app.ArcadeHierarchy, App.GameObjectCache, App.PlayerControls.transform, App.EmulatorDatabase, App.TextureCache, App.VideoCache);
+            VideoPlayerController = new VideoPlayerController(app.PlayerControls.transform, _videoControlLayers);
+            RaycastLayers         = _interactionLayers;
 
             SetCurrentArcadeConfiguration(startingArcade);
         }

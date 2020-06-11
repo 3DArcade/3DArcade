@@ -22,6 +22,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 namespace Arcade_r
 {
@@ -39,13 +40,22 @@ namespace Arcade_r
         {
             Debug.Log(">> <color=green>Entered</color> ArcadeLibretroState");
 
+
             EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
             if (emulator != null)
             {
                 ScreenNodeTag screenNodeTag = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>();
-                if (_libretroController.StartGame(screenNodeTag, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
+                if (screenNodeTag != null)
                 {
-                    return;
+                    if (_libretroController.StartGame(screenNodeTag, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
+                    {
+                        _context.VideoPlayerController.StopAllVideos();
+                        if (screenNodeTag.TryGetComponent(out VideoPlayer videoPlayer))
+                        {
+                            videoPlayer.renderMode = VideoRenderMode.APIOnly;
+                        }
+                        return;
+                    }
                 }
             }
 
@@ -56,6 +66,12 @@ namespace Arcade_r
         {
             Debug.Log(">> <color=orange>Exited</color> ArcadeLibretroState");
             _libretroController.StopGame();
+
+            ScreenNodeTag screenNodeTag = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>();
+            if (screenNodeTag != null && screenNodeTag.TryGetComponent(out VideoPlayer videoPlayer))
+            {
+                videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
+            }
         }
 
         public override void Update(float dt)

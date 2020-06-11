@@ -33,7 +33,7 @@ namespace Arcade_r
             foreach (string extension in _imageExtensions)
             {
                 string imagePath = $"{filePathNoExt}.{extension}";
-                Texture result = TextureUtils.LoadTextureFromFile(imagePath, true);
+                Texture result   = TextureUtils.LoadTextureFromFile(imagePath, true);
                 if (result != null)
                 {
                     return result;
@@ -46,6 +46,29 @@ namespace Arcade_r
         protected override void UnloadAsset(Texture asset)
         {
             Resources.UnloadAsset(asset);
+        }
+    }
+
+    public class VideoCache : AssetCache<string>
+    {
+        private static readonly string[] _videoExtensions = new string[] { "mp4", "mkv", "avi" };
+
+        protected override string LoadAsset(string filePathNoExt)
+        {
+            foreach (string extension in _videoExtensions)
+            {
+                string videoPath = $"{filePathNoExt}.{extension}";
+                if (FileSystem.FileExists(videoPath))
+                {
+                    return videoPath;
+                }
+            }
+
+            return null;
+        }
+
+        protected override void UnloadAsset(string asset)
+        {
         }
     }
 }

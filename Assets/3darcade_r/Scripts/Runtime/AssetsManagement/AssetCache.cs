@@ -22,12 +22,11 @@
 
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 
 namespace Arcade_r
 {
     public abstract class AssetCache<T>
-        where T : Object
+        where T : class
     {
         protected readonly Dictionary<string, T> _loadedAssets;
 

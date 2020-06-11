@@ -33,10 +33,12 @@ namespace Arcade_r
         public string[] SupportedExtensions;
         public string Model;
         public string MarqueesDirectory;
+        public string MarqueesVideoDirectory;
         public string ScreensDirectory;
+        public string ScreensVideoDirectory;
         public string TitlesDirectory;
-        public string VideosDirectory;
         public string GenericsDirectory;
+        public string GenericsVideoDirectory;
         public string InfoDirectory;
         public string About;
         public bool OutputCommandLine;

@@ -60,7 +60,7 @@ namespace Arcade_r
             _player = Object.FindObjectOfType<PlayerControls>();
             Assert.IsNotNull(_player);
 
-            _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _emulatorDatabase, null);
+            _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _emulatorDatabase, null, null);
         }
 
         public void LoadAndStartArcade(string name)

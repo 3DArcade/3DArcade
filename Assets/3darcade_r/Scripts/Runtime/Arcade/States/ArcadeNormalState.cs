@@ -77,13 +77,12 @@ namespace Arcade_r
                 }
             }
 
-            if (Time.frameCount % 10 == 0)
-            {
-                InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
-                                                       _context.App.Camera,
-                                                       INTERACT_MAX_DISTANCE,
-                                                       _context.RaycastLayers);
-            }
+            InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
+                                                    _context.App.Camera,
+                                                    INTERACT_MAX_DISTANCE,
+                                                    _context.RaycastLayers);
+
+            _context.VideoPlayerController.UpdateVideosState();
 
             if (!Cursor.visible && _context.App.PlayerControls.FirstPersonActions.Interact.triggered)
             {

@@ -45,6 +45,7 @@ namespace Arcade_r
         public Database<EmulatorConfiguration> EmulatorDatabase { get; private set; }
         public AssetCache<GameObject> GameObjectCache { get; private set; }
         public AssetCache<Texture> TextureCache { get; private set; }
+        public AssetCache<string> VideoCache { get; private set; }
 
         private ArcadeContext _arcadeContext;
         private bool _badLuck = false;
@@ -95,6 +96,7 @@ namespace Arcade_r
 
             GameObjectCache = new GameObjectCache();
             TextureCache    = new TextureCache();
+            VideoCache      = new VideoCache();
 
             _arcadeContext = new ArcadeContext(this, GeneralConfiguration.StartingMenu);
         }
