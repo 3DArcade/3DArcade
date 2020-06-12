@@ -98,7 +98,7 @@ namespace Arcade_r
             TextureCache    = new TextureCache();
             VideoCache      = new VideoCache();
 
-            _arcadeContext = new ArcadeContext(this, GeneralConfiguration.StartingArcade);
+            _arcadeContext = new ArcadeContext(this, GeneralConfiguration);
         }
 
         private void Start()

@@ -120,11 +120,12 @@ namespace Arcade_r
                         _context.TransitionTo<ArcadeExternalGameState>();
                     }
                     break;
-                    case InteractionType.MenuConfiguration:
+                    case InteractionType.ArcadeConfiguration:
                     {
-                        _ = _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id);
+                        _ = _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, _context.CurrentModelConfiguration.ArcadeType);
                     }
                     break;
+                    case InteractionType.MenuConfiguration:
                     case InteractionType.URL:
                     case InteractionType.None:
                     default:

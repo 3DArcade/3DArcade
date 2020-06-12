@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 9188767907910129889}
   - component: {fileID: 4969611321718154111}
   - component: {fileID: 6330760279117623513}
-  - component: {fileID: 359451115935993794}
+  - component: {fileID: 6203749774880537462}
   m_Layer: 0
   m_Name: 002_DefaultMenu_Sprocket_Screen.001
   m_TagString: Untagged
@@ -238,7 +238,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &359451115935993794
+--- !u!114 &6203749774880537462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 3320523722237674361}
   - component: {fileID: 8348666485894300254}
   - component: {fileID: 786969141517951368}
-  - component: {fileID: 2446740559275747460}
+  - component: {fileID: 4730994596499363687}
   m_Layer: 0
   m_Name: 001_DefaultMenu_Sprocket_Marquee.001
   m_TagString: Untagged
@@ -409,7 +409,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2446740559275747460
+--- !u!114 &4730994596499363687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -431,6 +431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5014671111494154604}
   - component: {fileID: 6194805353001810371}
+  - component: {fileID: 5001444206086425450}
   m_Layer: 0
   m_Name: defaultmenu_sprocket
   m_TagString: Untagged
@@ -474,3 +475,16 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!65 &5001444206086425450
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344300492281826175}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9442282, y: 2.413944, z: 0.39880306}
+  m_Center: {x: 0, y: 0.20697206, z: -0.01901412}

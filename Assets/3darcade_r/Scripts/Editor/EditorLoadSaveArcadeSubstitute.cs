@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -63,7 +64,7 @@ namespace Arcade_r
             _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _emulatorDatabase, null, null);
         }
 
-        public void LoadAndStartArcade(string name)
+        public void LoadAndStartArcade(string name, ArcadeType type)
         {
             ArcadeConfiguration arcadeConfiguration = ArcadeDatabase.Get(name);
             if (arcadeConfiguration == null)
@@ -77,17 +78,36 @@ namespace Arcade_r
             }
             arcadeConfigurationComponent.Restore(arcadeConfiguration);
 
-            if (arcadeConfiguration.ArcadeType == ArcadeType.FpsArcade || arcadeConfiguration.ArcadeType == ArcadeType.CylArcade)
-            {
-                ArcadeHierarchy.Reset();
-            }
-
-            _ = _arcadeController.StartArcade(arcadeConfiguration);
+            ArcadeHierarchy.Reset();
+            _ = _arcadeController.StartArcade(arcadeConfiguration, type);
         }
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)
         {
-            _ = arcadeConfiguration.Save(ArcadeDatabase, _player.transform, Camera.main);
+            Camera camera = Camera.main;
+            CinemachineVirtualCamera vCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+
+            CameraSettings cameraSettings = new CameraSettings
+            {
+                Position      = _player.transform.position,
+                Rotation      = MathUtils.CorrectEulerAngles(camera.transform.eulerAngles),
+                Height        = vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+                Orthographic  = camera.orthographic,
+                FieldOfView   = vCamera.m_Lens.FieldOfView,
+                AspectRatio   = vCamera.m_Lens.OrthographicSize,
+                NearClipPlane = vCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = vCamera.m_Lens.FarClipPlane,
+                ViewportRect  = camera.rect
+            };
+
+            if (EditorLoadArcadeWindow.AsCylArcade)
+            {
+                _ = arcadeConfiguration.Save(ArcadeDatabase, null, cameraSettings);
+            }
+            else
+            {
+                _ = arcadeConfiguration.Save(ArcadeDatabase, cameraSettings, null);
+            }
         }
     }
 }

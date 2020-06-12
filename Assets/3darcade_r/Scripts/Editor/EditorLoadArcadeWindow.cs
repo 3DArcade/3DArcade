@@ -28,6 +28,8 @@ namespace Arcade_r
 {
     public sealed class EditorLoadArcadeWindow : EditorWindow
     {
+        public static bool AsCylArcade { get; private set; }
+
         private static EditorLoadSaveArcadeSubstitute _loadSaveSubstitute;
 
         private string[] _configurationNames;
@@ -45,7 +47,18 @@ namespace Arcade_r
         private void OnGUI()
         {
             GUILayout.Space(8f);
+            DrawTypeToggle();
             DrawConfigurationsList();
+        }
+
+        private void DrawTypeToggle()
+        {
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("As CylArcade?", GUILayout.Width(110f));
+                AsCylArcade = GUILayout.Toggle(AsCylArcade, string.Empty, GUILayout.Height(EditorGUIUtility.singleLineHeight));
+            }
+            GUILayout.EndHorizontal();
         }
 
         private void DrawConfigurationsList()
@@ -60,7 +73,7 @@ namespace Arcade_r
             {
                 if (GUILayout.Button(name))
                 {
-                    _loadSaveSubstitute.LoadAndStartArcade(name);
+                    _loadSaveSubstitute.LoadAndStartArcade(name, AsCylArcade ? ArcadeType.Cyl : ArcadeType.Fps);
                     GetWindow<EditorLoadArcadeWindow>().Close();
                 }
             }

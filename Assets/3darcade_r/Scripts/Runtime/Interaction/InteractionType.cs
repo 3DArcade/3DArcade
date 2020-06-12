@@ -28,6 +28,7 @@ namespace Arcade_r
         Internal,
         External,
         URL,
+        ArcadeConfiguration,
         MenuConfiguration
     }
 }

@@ -20,8 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine;
-
 namespace Arcade_r
 {
     [System.Serializable]
@@ -38,7 +36,6 @@ namespace Arcade_r
         public bool ModelIsKinemtatic;
         public bool OnScreenSelectedModel;
 
-        public float CameraAspectRatio;
         public float CameraTranslation;
         public float CameraMinTranslation;
         public float CameraMaxTranslation;
@@ -47,9 +44,6 @@ namespace Arcade_r
         public float CameraTranslationdamping;
 
         public float CameraRotationdamping;
-        public float CameraLocalEularAngleX;
-        public float CameraLocalEularAngleY;
-        public float CameraLocalEularAngleZ;
 
         public bool CameraLocalEularAngleRotation;
         public float CameraLocalDefaultEularAngleRotation;
@@ -58,8 +52,6 @@ namespace Arcade_r
         public bool MouseLook;
         public bool MouseLookAxisY;
         public bool MouseLookReverse;
-
-        public Vector3 CameraLocalTranslation;
 
         public float SprocketLocalEularAngleX;
         public float SprocketLocalEularAngleY;

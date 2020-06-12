@@ -42,17 +42,17 @@ namespace Arcade_r
             _emulatorDatabase = emulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
         }
 
-        public void GetEmulatorForConfiguration(ModelConfiguration modelConfiguration, out EmulatorConfiguration emulator)
+        public EmulatorConfiguration GetEmulatorForConfiguration(ModelConfiguration modelConfiguration)
         {
-            emulator = null;
-
-            if (modelConfiguration.InteractionType == InteractionType.None
-             || modelConfiguration.InteractionType == InteractionType.MenuConfiguration)
+            switch (modelConfiguration.InteractionType)
             {
-                return;
+                case InteractionType.Internal:
+                case InteractionType.External:
+                case InteractionType.URL:
+                    return _emulatorDatabase.Get(modelConfiguration.Emulator);
             }
 
-            emulator = _emulatorDatabase.Get(modelConfiguration.Emulator);
+            return null;
         }
 
         public static List<string> GetNamesToTryForArcade(ModelConfiguration modelConfiguration, EmulatorConfiguration _)

@@ -58,6 +58,7 @@ namespace Arcade_r
         private readonly AnimationCurve _volumeCurve;
 
         private ArcadeConfiguration _currentConfiguration;
+        private ArcadeType _currentType;
 
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
                                 AssetCache<GameObject> gameObjectCache,
@@ -88,15 +89,20 @@ namespace Arcade_r
             });
         }
 
-        public bool StartArcade(ArcadeConfiguration arcadeConfiguration)
+        public bool StartArcade(ArcadeConfiguration arcadeConfiguration, ArcadeType arcadeType)
         {
             Assert.IsNotNull(arcadeConfiguration);
 
             _currentConfiguration = arcadeConfiguration;
+            _currentType          = arcadeType;
 
-            if (_currentConfiguration.ArcadeType == ArcadeType.FpsArcade)
+            if (_currentType == ArcadeType.Fps)
             {
                 SetupFpsPlayer();
+            }
+            else if (_currentType == ArcadeType.Cyl)
+            {
+                SetupCylPlayer();
             }
 
             AddModelsToWorld(_currentConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
@@ -110,8 +116,36 @@ namespace Arcade_r
         {
             CameraSettings cameraSettings = _currentConfiguration.FpsArcadeProperties.CameraSettings;
             _player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
-            Camera.main.rect                 = cameraSettings.ViewportRect;
-            CinemachineVirtualCamera vCam    = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+
+            Camera mainCamera = Camera.main;
+            mainCamera.orthographic = cameraSettings.Orthographic;
+            mainCamera.rect         = cameraSettings.ViewportRect;
+
+            CinemachineVirtualCamera vCam = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+            vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
+            vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
+            vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;
+            vCam.m_Lens.FarClipPlane      = cameraSettings.FarClipPlane;
+
+            CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
+            transposer.m_FollowOffset.y      = cameraSettings.Height;
+        }
+
+        private void SetupCylPlayer()
+        {
+            CameraSettings cameraSettings = _currentConfiguration.CylArcadeProperties.CameraSettings;
+            _player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
+
+            Camera mainCamera = Camera.main;
+            mainCamera.orthographic = cameraSettings.Orthographic;
+            mainCamera.rect         = cameraSettings.ViewportRect;
+
+            CinemachineVirtualCamera vCam = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+            vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
+            vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
+            vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;
+            vCam.m_Lens.FarClipPlane      = cameraSettings.FarClipPlane;
+
             CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
             transposer.m_FollowOffset.y      = cameraSettings.Height;
         }
@@ -120,9 +154,8 @@ namespace Arcade_r
         {
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
-                _contentMatcher.GetEmulatorForConfiguration(modelConfiguration, out EmulatorConfiguration emulator);
-
-                List<string> namesToTry = getNamesToTry(modelConfiguration, emulator);
+                EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
+                List<string> namesToTry        = getNamesToTry(modelConfiguration, emulator);
 
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
                 Assert.IsNotNull(prefab, "prefab is null!");
@@ -141,7 +174,7 @@ namespace Arcade_r
 
         private static GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
         {
-            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
+            GameObject model = UnityEngine.Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
             model.StripCloneFromName();
             model.transform.localScale = modelConfiguration.Scale;
             model.transform.SetLayersRecursively(parent.gameObject.layer);
@@ -316,7 +349,7 @@ namespace Arcade_r
             float frameCount = videoPlayer.frameCount;
             float frameRate  = videoPlayer.frameRate;
             double duration  = frameCount / frameRate;
-            videoPlayer.time = Random.Range(0.1f, 0.9f) * duration;
+            videoPlayer.time = UnityEngine.Random.Range(0.1f, 0.9f) * duration;
 
             AudioSource audioSource  = videoPlayer.GetTargetAudioSource(0);
             audioSource.playOnAwake  = false;

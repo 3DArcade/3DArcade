@@ -1,7 +1,6 @@
 {
     "DescriptiveName": "Triggers Demo",
     "Id": "triggers",
-    "ArcadeType": "FpsArcade",
     "RenderSettings": {
         "MarqueeIntensity": 1.46,
         "ScreenRasterIntensity": 1.25,
@@ -73,7 +72,6 @@
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": false,
         "OnScreenSelectedModel": false,
-        "CameraAspectRatio": 0.0,
         "CameraTranslation": 0.0,
         "CameraMinTranslation": 0.0,
         "CameraMaxTranslation": 0.0,
@@ -81,9 +79,6 @@
         "CameraTranslationReverse": false,
         "CameraTranslationdamping": 0.0,
         "CameraRotationdamping": 0.0,
-        "CameraLocalEularAngleX": 0.0,
-        "CameraLocalEularAngleY": 0.0,
-        "CameraLocalEularAngleZ": 0.0,
         "CameraLocalEularAngleRotation": false,
         "CameraLocalDefaultEularAngleRotation": 0.0,
         "CameraLocalMinEularAngleRotation": 0.0,
@@ -91,11 +86,6 @@
         "MouseLook": false,
         "MouseLookAxisY": false,
         "MouseLookReverse": false,
-        "CameraLocalTranslation": {
-            "x": 0.0,
-            "y": 0.0,
-            "z": 0.0
-        },
         "SprocketLocalEularAngleX": 0.0,
         "SprocketLocalEularAngleY": 0.0,
         "SprocketLocalEularAngleZ": 0.0
@@ -107,8 +97,9 @@
             "Id": "spaceport",
             "Model": null,
             "InteractionType": "None",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": null,
-            "GameList": null,
             "MarqueeDirectory": null,
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": null,
@@ -155,8 +146,9 @@
             "Id": "vanguard",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -184,7 +176,7 @@
                 "z": 0.869447231
             },
             "Rotation": {
-                "x": -0.000415168062,
+                "x": -0.0004151681,
                 "y": 130.045746,
                 "z": 0.000269840762
             },
@@ -201,8 +193,9 @@
             "Id": "tutankst",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -247,8 +240,9 @@
             "Id": "tron",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -293,8 +287,9 @@
             "Id": "smashtv",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -324,7 +319,7 @@
             "Rotation": {
                 "x": 0.00200651516,
                 "y": 89.55289,
-                "z": 0.000915934565
+                "z": 0.0009159347
             },
             "Scale": {
                 "x": 1.0000031,
@@ -339,8 +334,9 @@
             "Id": "scramble",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -368,8 +364,8 @@
                 "z": -4.21095467
             },
             "Rotation": {
-                "x": -5.01675277E-05,
-                "y": 29.9979248,
+                "x": -5.016752E-05,
+                "y": 29.997921,
                 "z": -0.000131625755
             },
             "Scale": {
@@ -385,8 +381,9 @@
             "Id": "rtype",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -414,7 +411,7 @@
                 "z": -4.41538334
             },
             "Rotation": {
-                "x": -0.000167098347,
+                "x": -0.000167098362,
                 "y": -3.92834473,
                 "z": 5.824175E-05
             },
@@ -431,8 +428,9 @@
             "Id": "pooyan",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -460,7 +458,7 @@
                 "z": -3.83404779
             },
             "Rotation": {
-                "x": -0.000139350857,
+                "x": -0.000139350872,
                 "y": -48.97232,
                 "z": 0.0007207245
             },
@@ -477,8 +475,9 @@
             "Id": "polepos",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -523,8 +522,9 @@
             "Id": "pacman",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -598,8 +598,9 @@
             "Id": "marble",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -627,7 +628,7 @@
                 "z": -4.473452
             },
             "Rotation": {
-                "x": 0.00120038458,
+                "x": 0.00120038469,
                 "y": 3.420517,
                 "z": -0.0004632313
             },
@@ -644,8 +645,9 @@
             "Id": "mappy",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -690,8 +692,9 @@
             "Id": "dotron",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -719,9 +722,9 @@
                 "z": -4.35835075
             },
             "Rotation": {
-                "x": -0.0001623722,
+                "x": -0.00016237222,
                 "y": 0.7289032,
-                "z": 0.000178900518
+                "z": 0.000178900533
             },
             "Scale": {
                 "x": 1.0,
@@ -736,8 +739,9 @@
             "Id": "commando",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -767,7 +771,7 @@
             "Rotation": {
                 "x": -0.0005657295,
                 "y": 90.00176,
-                "z": 0.000634726137
+                "z": 0.0006347261
             },
             "Scale": {
                 "x": 1.000041,
@@ -782,8 +786,9 @@
             "Id": "ccastles",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -811,9 +816,9 @@
                 "z": -0.128424913
             },
             "Rotation": {
-                "x": -0.000271761935,
+                "x": -0.000271761965,
                 "y": 90.00128,
-                "z": 0.000264562346
+                "z": 0.000264562375
             },
             "Scale": {
                 "x": 1.000041,
@@ -828,8 +833,9 @@
             "Id": "arkanoid",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -859,7 +865,7 @@
             "Rotation": {
                 "x": -0.0244140625,
                 "y": 177.706345,
-                "z": 0.0487379022
+                "z": 0.0487379059
             },
             "Scale": {
                 "x": 1.0,
@@ -874,8 +880,9 @@
             "Id": "tempest",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -903,7 +910,7 @@
                 "z": 1.38400888
             },
             "Rotation": {
-                "x": 1.20195067,
+                "x": 1.20195055,
                 "y": 175.2349,
                 "z": -0.0102233887
             },
@@ -920,8 +927,9 @@
             "Id": "starwarsc",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -949,9 +957,9 @@
                 "z": -1.74799752
             },
             "Rotation": {
-                "x": -8.55926E-05,
-                "y": 48.229023,
-                "z": -0.000377562043
+                "x": -8.55926046E-05,
+                "y": 48.22902,
+                "z": -0.000377562072
             },
             "Scale": {
                 "x": 1.00000024,
@@ -966,8 +974,9 @@
             "Id": "robotron",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1012,8 +1021,9 @@
             "Id": "qbert",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1058,8 +1068,9 @@
             "Id": "pengo",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1104,8 +1115,9 @@
             "Id": "mspacman",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1133,9 +1145,9 @@
                 "z": 1.440569
             },
             "Rotation": {
-                "x": -0.000289202319,
+                "x": -0.0002892023,
                 "y": -179.827072,
-                "z": 0.000260020723
+                "z": 0.000260020752
             },
             "Scale": {
                 "x": 1.00004852,
@@ -1150,8 +1162,9 @@
             "Id": "mrdo",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1181,7 +1194,7 @@
             "Rotation": {
                 "x": -0.0003530828,
                 "y": -178.7233,
-                "z": 0.0001764146
+                "z": 0.000176414615
             },
             "Scale": {
                 "x": 1.0,
@@ -1196,8 +1209,9 @@
             "Id": "mpatrol",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1225,7 +1239,7 @@
                 "z": -4.30156374
             },
             "Rotation": {
-                "x": -0.0005656613,
+                "x": -0.00056566135,
                 "y": -19.99356,
                 "z": 0.0006685838
             },
@@ -1242,8 +1256,9 @@
             "Id": "Space Invaders - The Original Game (J).smc",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1288,8 +1303,9 @@
             "Id": "galaga",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1317,8 +1333,8 @@
                 "z": -4.383604
             },
             "Rotation": {
-                "x": 0.00025549336,
-                "y": 5.541006,
+                "x": 0.000255493331,
+                "y": 5.54100561,
                 "z": -0.00432361569
             },
             "Scale": {
@@ -1334,8 +1350,9 @@
             "Id": "frogger",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1363,8 +1380,8 @@
                 "z": -4.279578
             },
             "Rotation": {
-                "x": -0.00130706688,
-                "y": 12.555582,
+                "x": -0.001307067,
+                "y": 12.555583,
                 "z": 0.00454082061
             },
             "Scale": {
@@ -1380,8 +1397,9 @@
             "Id": "digdug",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1410,8 +1428,8 @@
             },
             "Rotation": {
                 "x": -0.00036745,
-                "y": 5.880687,
-                "z": 7.02106845E-05
+                "y": 5.88068676,
+                "z": 7.021069E-05
             },
             "Scale": {
                 "x": 1.0,
@@ -1426,8 +1444,9 @@
             "Id": "defender",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1472,8 +1491,9 @@
             "Id": "centiped",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1518,8 +1538,9 @@
             "Id": "bzone",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1547,9 +1568,9 @@
                 "z": -3.496376
             },
             "Rotation": {
-                "x": -0.000251971738,
+                "x": -0.0002519717,
                 "y": 70.13623,
-                "z": 0.0009980873
+                "z": 0.0009980872
             },
             "Scale": {
                 "x": 1.00000882,
@@ -1564,8 +1585,9 @@
             "Id": "bombjack",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1593,9 +1615,9 @@
                 "z": 1.43140864
             },
             "Rotation": {
-                "x": -0.0004361162,
+                "x": -0.000436116243,
                 "y": -176.803391,
-                "z": 0.000273774931
+                "z": 0.0002737749
             },
             "Scale": {
                 "x": 1.00001085,
@@ -1610,8 +1632,9 @@
             "Id": "berzerk",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1639,7 +1662,7 @@
                 "z": 1.41422188
             },
             "Rotation": {
-                "x": 0.00123129191,
+                "x": 0.00123129215,
                 "y": 178.570877,
                 "z": -2.000483E-05
             },
@@ -1656,8 +1679,9 @@
             "Id": "asteroid",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1687,7 +1711,7 @@
             "Rotation": {
                 "x": -0.000479445182,
                 "y": -179.094131,
-                "z": 0.0005707369
+                "z": 0.000570736942
             },
             "Scale": {
                 "x": 1.0,
@@ -1702,8 +1726,9 @@
             "Id": "gyruss",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1748,8 +1773,9 @@
             "Id": "missile",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1851,8 +1877,9 @@
             "Id": "szaxxon",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1897,8 +1924,9 @@
             "Id": "timeplt",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -1943,8 +1971,9 @@
             "Id": "zookeep",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -2020,8 +2049,9 @@
             "Id": "joust",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -2049,8 +2079,8 @@
                 "z": -4.28208542
             },
             "Rotation": {
-                "x": -0.0005220476,
-                "y": 0.236264035,
+                "x": -0.000522047631,
+                "y": 0.236264065,
                 "z": 0.0003245127
             },
             "Scale": {
@@ -2078,8 +2108,9 @@
             "Id": "mach3",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -2124,8 +2155,9 @@
             "Id": "ssf2",
             "Model": "",
             "InteractionType": "Internal",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame2003_plus",
-            "GameList": "mame2003_plus",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -2153,7 +2185,7 @@
                 "z": -3.15172958
             },
             "Rotation": {
-                "x": 5.40829433E-06,
+                "x": 5.408295E-06,
                 "y": 5.55965042,
                 "z": -4.57387068E-05
             },
@@ -2170,8 +2202,9 @@
             "Id": "mame2",
             "Model": "",
             "InteractionType": "MenuConfiguration",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "",
-            "GameList": "",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -2199,9 +2232,9 @@
                 "z": -2.01400161
             },
             "Rotation": {
-                "x": -0.0005587319,
+                "x": -0.000558731961,
                 "y": 69.12101,
-                "z": 0.0007918498
+                "z": 0.00079184986
             },
             "Scale": {
                 "x": 1.000014,
@@ -2216,8 +2249,9 @@
             "Id": "ssf2",
             "Model": "cps1",
             "InteractionType": "External",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": "mame",
-            "GameList": "mame",
             "MarqueeDirectory": "",
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": "",
@@ -2245,7 +2279,7 @@
                 "z": -0.433710843
             },
             "Rotation": {
-                "x": -0.0005508127,
+                "x": -0.000550812751,
                 "y": 144.760635,
                 "z": 0.0006325445
             },
@@ -2264,8 +2298,9 @@
             "Id": "penguin",
             "Model": null,
             "InteractionType": "None",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": null,
-            "GameList": null,
             "MarqueeDirectory": null,
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": null,
@@ -2371,8 +2406,9 @@
             "Id": "defaultSpeaker",
             "Model": null,
             "InteractionType": "None",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": null,
-            "GameList": null,
             "MarqueeDirectory": null,
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": null,
@@ -2446,8 +2482,9 @@
             "Id": "default_plane",
             "Model": null,
             "InteractionType": "None",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": null,
-            "GameList": null,
             "MarqueeDirectory": null,
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": null,
@@ -2547,8 +2584,9 @@
             "Id": "static",
             "Model": null,
             "InteractionType": "MenuConfiguration",
+            "ArcadeType": "None",
+            "MenuType": "None",
             "Emulator": null,
-            "GameList": null,
             "MarqueeDirectory": null,
             "MarqueeVideoDirectory": null,
             "ScreenDirectory": null,

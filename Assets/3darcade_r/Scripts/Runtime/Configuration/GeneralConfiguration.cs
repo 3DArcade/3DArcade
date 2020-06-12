@@ -20,6 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using UnityEngine;
 
 namespace Arcade_r
@@ -28,6 +30,8 @@ namespace Arcade_r
     public sealed class GeneralConfiguration
     {
         public string StartingArcade;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ArcadeType StartingArcadeType;
 
         private readonly IVirtualFileSystem _virtualFileSystem;
 
@@ -42,7 +46,8 @@ namespace Arcade_r
             {
                 GeneralConfiguration cfg = FileSystem.JsonDeserialize<GeneralConfiguration>(_virtualFileSystem.GetFile("general_cfg"));
                 Debug.Log($"[{GetType().Name}] Loaded general configuration.");
-                StartingArcade = cfg.StartingArcade;
+                StartingArcade     = cfg.StartingArcade;
+                StartingArcadeType = cfg.StartingArcadeType;
                 return true;
             }
             catch (System.Exception e)

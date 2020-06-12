@@ -32,8 +32,11 @@ namespace Arcade_r
         public string Model;
         [JsonConverter(typeof(StringEnumConverter))]
         public InteractionType InteractionType;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ArcadeType ArcadeType;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public MenuType MenuType;
         public string Emulator;
-        public string GameList;
         public string MarqueeDirectory;
         public string MarqueeVideoDirectory;
         public string ScreenDirectory;

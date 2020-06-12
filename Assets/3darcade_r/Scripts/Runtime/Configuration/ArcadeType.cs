@@ -25,9 +25,7 @@ namespace Arcade_r
     public enum ArcadeType
     {
         None,
-        FpsArcade,
-        CylArcade,
-        FpsMenu,
-        CylMenu
+        Fps,
+        Cyl
     }
 }

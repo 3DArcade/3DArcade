@@ -22,18 +22,10 @@
 
 namespace Arcade_r
 {
-    [System.Serializable]
-    public sealed class ArcadeConfiguration : Configuration
+    public enum MenuType
     {
-        public RenderSettings RenderSettings;
-        public AudioSettings AudioSettings;
-        public VideoSettings VideoSettings;
-        public FpsArcadeProperties FpsArcadeProperties;
-        public CylArcadeProperties CylArcadeProperties;
-        public Zone[] Zones;
-
-        public ModelConfiguration[] ArcadeModelList;
-        public ModelConfiguration[] GameModelList;
-        public ModelConfiguration[] PropModelList;
+        None,
+        Fps,
+        Cyl
     }
 }

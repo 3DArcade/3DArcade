@@ -31,8 +31,9 @@ namespace Arcade_r
         public string Id                       = default;
         public string Model                    = default;
         public InteractionType InteractionType = default;
+        public ArcadeType ArcadeType           = default;
+        public MenuType MenuType               = default;
         public string Emulator                 = default;
-        public string GameList                 = default;
         public string MarqueeDirectory         = default;
         public string MarqueeVideoDirectory    = default;
         public string ScreenDirectory          = default;
@@ -65,8 +66,8 @@ namespace Arcade_r
             Id                    = modelConfiguration.Id;
             Model                 = modelConfiguration.Model;
             InteractionType       = modelConfiguration.InteractionType;
+            ArcadeType            = modelConfiguration.ArcadeType;
             Emulator              = modelConfiguration.Emulator;
-            GameList              = modelConfiguration.GameList;
             MarqueeDirectory      = modelConfiguration.MarqueeDirectory;
             MarqueeVideoDirectory = modelConfiguration.MarqueeVideoDirectory;
             ScreenDirectory       = modelConfiguration.ScreenDirectory;
@@ -102,8 +103,9 @@ namespace Arcade_r
                 Id                    = Id,
                 Model                 = Model,
                 InteractionType       = InteractionType,
+                ArcadeType            = ArcadeType,
+                MenuType              = MenuType,
                 Emulator              = Emulator,
-                GameList              = GameList,
                 MarqueeDirectory      = MarqueeDirectory,
                 MarqueeVideoDirectory = MarqueeVideoDirectory,
                 ScreenDirectory       = ScreenDirectory,

@@ -31,7 +31,6 @@ namespace Arcade_r
     {
         public string DescriptiveName                  = default;
         public string Id                               = default;
-        public ArcadeType ArcadeType                   = default;
         public RenderSettings RenderSettings           = default;
         public AudioSettings AudioSettings             = default;
         public VideoSettings VideoSettings             = default;
@@ -39,7 +38,7 @@ namespace Arcade_r
         public CylArcadeProperties CylArcadeProperties = default;
         public Zone[] Zones                            = default;
 
-        public bool Save(Database<ArcadeConfiguration> arcadeDatabase, Transform player, Camera mainCamera)
+        public bool Save(Database<ArcadeConfiguration> arcadeDatabase, CameraSettings fpsCameraSettings, CameraSettings cylCameraSettings)
         {
             GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);
 
@@ -47,32 +46,26 @@ namespace Arcade_r
             {
                 DescriptiveName     = DescriptiveName,
                 Id                  = Id,
-                ArcadeType          = ArcadeType,
                 RenderSettings      = RenderSettings,
                 AudioSettings       = AudioSettings,
                 VideoSettings       = VideoSettings,
                 FpsArcadeProperties = FpsArcadeProperties ?? new FpsArcadeProperties(),
-                CylArcadeProperties = CylArcadeProperties,
+                CylArcadeProperties = CylArcadeProperties ?? new CylArcadeProperties(),
                 Zones               = Zones,
                 ArcadeModelList     = GetModelConfigurations(tArcades),
                 GameModelList       = GetModelConfigurations(tGames),
                 PropModelList       = GetModelConfigurations(tProps)
             };
 
-            CinemachineVirtualCamera vCamera = player.GetComponentInChildren<CinemachineVirtualCamera>();
-
-            cfg.FpsArcadeProperties.CameraSettings = new CameraSettings
+            if (fpsCameraSettings != null)
             {
-                Position      = player.position,
-                Rotation      = MathUtils.CorrectEulerAngles(mainCamera.transform.eulerAngles),
-                Height        = vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
-                Orthographic  = mainCamera.orthographic,
-                FieldOfView   = vCamera.m_Lens.FieldOfView,
-                AspectRatio   = vCamera.m_Lens.OrthographicSize,
-                NearClipPlane = vCamera.m_Lens.NearClipPlane,
-                FarClipPlane  = vCamera.m_Lens.FarClipPlane,
-                ViewportRect  = mainCamera.rect
-            };
+                cfg.FpsArcadeProperties.CameraSettings = fpsCameraSettings;
+            }
+
+            if (cylCameraSettings != null)
+            {
+                cfg.CylArcadeProperties.CameraSettings = cylCameraSettings;
+            }
 
             return arcadeDatabase.Save(cfg);
         }
@@ -87,7 +80,6 @@ namespace Arcade_r
         {
             DescriptiveName     = cfg.DescriptiveName;
             Id                  = cfg.Id;
-            ArcadeType          = cfg.ArcadeType;
             RenderSettings      = cfg.RenderSettings;
             AudioSettings       = cfg.AudioSettings;
             VideoSettings       = cfg.VideoSettings;
