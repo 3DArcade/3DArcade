@@ -30,8 +30,9 @@ namespace SK.Libretro.Unity
     {
         private const int AUDIO_BUFFER_SIZE = 65536;
 
-        private AudioSource _audioSource;
         private readonly List<float> _audioBuffer = new List<float>(AUDIO_BUFFER_SIZE);
+
+        private AudioSource _audioSource;
 
         private void OnAudioFilterRead(float[] data, int channels)
         {
@@ -47,7 +48,7 @@ namespace SK.Libretro.Unity
             DeInit();
 
             AudioConfiguration audioConfig = AudioSettings.GetConfiguration();
-            audioConfig.sampleRate = sampleRate;
+            audioConfig.sampleRate         = sampleRate;
             _ = AudioSettings.Reset(audioConfig);
 
             _audioSource = GetComponent<AudioSource>();
@@ -60,6 +61,10 @@ namespace SK.Libretro.Unity
             {
                 _audioSource.Stop();
             }
+
+            AudioConfiguration audioConfig = AudioSettings.GetConfiguration();
+            audioConfig.sampleRate         = 0;
+            _ = AudioSettings.Reset(audioConfig);
         }
 
         public void ProcessSamples(float[] samples)

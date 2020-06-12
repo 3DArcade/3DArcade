@@ -36,7 +36,7 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log(">> <color=green>Entered</color> ArcadeMoveCabState");
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
             _context.App.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
@@ -54,7 +54,7 @@ namespace Arcade_r
 
         public override void OnExit()
         {
-            Debug.Log(">> <color=orange>Exited</color> ArcadeMoveCabState");
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
 
             _context.App.PlayerControls.FirstPersonActions.Disable();
             _context.App.PlayerControls.FirstPersonMoveCabActions.Disable();

@@ -40,7 +40,7 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log(">> <color=green>Entered</color> ArcadeExternalAppState");
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
             EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
             if (emulator != null)
@@ -50,6 +50,7 @@ namespace Arcade_r
                 _isGameRunning = _externalAppController.StartGame(emulator, _context.CurrentModelConfiguration.Id);
                 if (_isGameRunning)
                 {
+                    _context.VideoPlayerController.StopAllVideos();
                     return;
                 }
             }
@@ -59,7 +60,7 @@ namespace Arcade_r
 
         public override void OnExit()
         {
-            Debug.Log(">> <color=orange>Exited</color> ArcadeExternalAppState");
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
         }
 
         public override void Update(float dt)

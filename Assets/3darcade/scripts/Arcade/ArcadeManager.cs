@@ -67,8 +67,8 @@ namespace Arcade
         public GameObject menuControl;
 
         //Editor options
-        private static readonly bool EditorModeShowMainMenuOnPlay = true;
-        private static readonly bool EditorModeSaveChangesMadeOnPlay = false;
+        private static readonly bool _editorModeShowMainMenuOnPlay = true;
+        private static readonly bool _editorModeSaveChangesMadeOnPlay = false;
 
 #if UNITY_EDITOR
         [UnityEditor.MenuItem("CONTEXT/ArcadeManager/Load Arcade Configuration"), System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
@@ -310,7 +310,7 @@ namespace Arcade
             }
 
             // Show the main menu
-            if (EditorModeShowMainMenuOnPlay)
+            if (_editorModeShowMainMenuOnPlay)
             {
                 loadSaveArcadeConfiguration.ResetArcade();
                 if (!ShowMainMenu())
@@ -345,7 +345,7 @@ namespace Arcade
             if (pause)
             {
                 Debug.Log("Paused");
-                if (EditorModeSaveChangesMadeOnPlay && EditorModeShowMainMenuOnPlay)
+                if (_editorModeSaveChangesMadeOnPlay && _editorModeShowMainMenuOnPlay)
                 {
                     loadSaveArcadeConfiguration.SaveArcade();
                     loadSaveArcadeConfiguration.ResetArcade();

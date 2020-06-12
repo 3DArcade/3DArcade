@@ -54,8 +54,8 @@ namespace Arcade_r
         private readonly Transform _player;
         private readonly AssetCache<Texture> _textureCache;
         private readonly AssetCache<string> _videoCache;
-
         private readonly ContentMatcher _contentMatcher;
+        private readonly AnimationCurve _volumeCurve;
 
         private ArcadeConfiguration _currentConfiguration;
 
@@ -79,6 +79,13 @@ namespace Arcade_r
             _videoCache   = videoCache;
 
             _contentMatcher = new ContentMatcher(emulatorDatabase);
+
+            _volumeCurve = new AnimationCurve(new Keyframe[]
+            {
+                new Keyframe(0.8f, 1.0f, -2.6966875f,  -2.6966875f,  0.2f,        0.10490462f),
+                new Keyframe(1.5f, 0.3f, -0.49866775f, -0.49866775f, 0.28727788f, 0.2f),
+                new Keyframe(3.0f, 0.0f, -0.08717632f, -0.08717632f, 0.5031141f,  0.2f)
+            });
         }
 
         public bool StartArcade(ArcadeConfiguration arcadeConfiguration)
@@ -279,13 +286,7 @@ namespace Arcade_r
                 return false;
             }
 
-            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake  = false;
-            audioSource.spatialBlend = 1f;
-            audioSource.minDistance  = 1f;
-            audioSource.maxDistance  = 4f;
-            audioSource.volume       = 0.6f;
-            //audioSource.enabled      = false;
+           _ = screen.AddComponentIfNotFound<AudioSource>();
 
             VideoPlayer videoPlayer            = screen.AddComponentIfNotFound<VideoPlayer>();
             videoPlayer.errorReceived          -= OnVideoPlayerErrorReceived;
@@ -312,11 +313,22 @@ namespace Arcade_r
 
         private void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
         {
-            videoPlayer.Play();
-            videoPlayer.time = Random.Range(0f, 1f) * (videoPlayer.frameCount / videoPlayer.frameRate);
+            float frameCount = videoPlayer.frameCount;
+            float frameRate  = videoPlayer.frameRate;
+            double duration  = frameCount / frameRate;
+            videoPlayer.time = Random.Range(0.1f, 0.9f) * duration;
+
+            AudioSource audioSource  = videoPlayer.GetTargetAudioSource(0);
+            audioSource.playOnAwake  = false;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance  = 1f;
+            audioSource.maxDistance  = 3f;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
+            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
+
+            videoPlayer.EnableAudioTrack(0, false);
             videoPlayer.Pause();
-            //videoPlayer.EnableAudioTrack(0, false);
-            //videoPlayer.GetTargetAudioSource(0).enabled = false;
         }
 
         private static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)

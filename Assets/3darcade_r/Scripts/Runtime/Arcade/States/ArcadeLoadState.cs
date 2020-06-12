@@ -36,7 +36,7 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log("> <color=green>Entered</color> ArcadeLoadState");
+            Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
             _loaded = false;
 
@@ -50,7 +50,7 @@ namespace Arcade_r
 
         public override void OnExit()
         {
-            Debug.Log("> <color=orange>Exited</color> ArcadeLoadState");
+            Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
             _context.App.UIController.DisableLoadingUI();
         }

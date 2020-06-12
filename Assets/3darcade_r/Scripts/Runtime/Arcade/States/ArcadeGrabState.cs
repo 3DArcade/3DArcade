@@ -33,12 +33,12 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log(">> <color=green>Entered</color> ArcadeGrabState");
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
         }
 
         public override void OnExit()
         {
-            Debug.Log(">> <color=orange>Exited</color> ArcadeGrabState");
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
         }
     }
 }

@@ -25,6 +25,7 @@ using SK.Libretro;
 using UnityEngine.InputSystem;
 using Unity.Mathematics;
 using UnityEngine.Assertions;
+using UnityEngine.Video;
 
 namespace Arcade_r
 {
@@ -91,10 +92,11 @@ namespace Arcade_r
 
         private readonly Transform _player;
 
-        private LibretroWrapper _libretroWrapper;
-        private ScreenNodeTag _screenNode;
-        private Renderer _rendererComponent = null;
-        private Material _originalMaterial  = null;
+        private LibretroWrapper _libretroWrapper         = null;
+        private MonoBehaviour _screenNode                = null;
+        private Renderer _rendererComponent              = null;
+        private Material _originalMaterial               = null;
+        private VideoRenderMode _originalVideoRenderMode = VideoRenderMode.MaterialOverride;
 
         private float _gameFps        = 0f;
         private float _gameSampleRate = 0f;
@@ -111,23 +113,24 @@ namespace Arcade_r
             _player = player;
         }
 
-        public bool StartGame(ScreenNodeTag screenNode, string core, string gameDirectory, string gameName)
+        public bool StartGame(MonoBehaviour screenNode, string core, string gameDirectory, string gameName)
         {
+            ResetFields();
+
             Assert.IsNotNull(screenNode);
             _screenNode = screenNode;
-
-            if (string.IsNullOrEmpty(core) || string.IsNullOrEmpty(gameDirectory) || string.IsNullOrEmpty(gameName))
-            {
-                return false;
-            }
 
             if (!_screenNode.TryGetComponent(out _rendererComponent))
             {
                 return false;
             }
 
-            _libretroWrapper = new LibretroWrapper((TargetPlatform)Application.platform, $"{SystemUtils.GetDataPath()}/3darcade_r~/Libretro");
+            if (string.IsNullOrEmpty(core) || string.IsNullOrEmpty(gameDirectory) || string.IsNullOrEmpty(gameName))
+            {
+                return false;
+            }
 
+            _libretroWrapper = new LibretroWrapper((TargetPlatform)Application.platform, $"{SystemUtils.GetDataPath()}/3darcade_r~/Libretro");
             if (_libretroWrapper.StartGame(core, gameDirectory, gameName))
             {
                 _gameFps        = (float)_libretroWrapper.Game.SystemAVInfo.timing.fps;
@@ -139,24 +142,17 @@ namespace Arcade_r
                     ActivateAudio();
                     ActivateInput();
 
-                    _originalMaterial = _rendererComponent.sharedMaterial;
+                    SaveVideoPlayerRenderMode();
+                    SetVideoPlayerRenderState(false);
 
-                    _rendererComponent.material.color = Color.black;
-                    _rendererComponent.material.EnableKeyword("_EMISSION");
-                    _rendererComponent.material.SetColor("_EmissionColor", Color.white * 1.08f);
+                    SaveMaterial();
+                    SetMaterialProperties();
 
                     return true;
                 }
-                else
-                {
-                    StopGame();
-                }
-            }
-            else
-            {
-                StopGame();
             }
 
+            StopGame();
             return false;
         }
 
@@ -192,20 +188,22 @@ namespace Arcade_r
 
         public void StopGame()
         {
-            if (_rendererComponent != null && _rendererComponent.material != null && _originalMaterial != null)
-            {
-                _rendererComponent.material = _originalMaterial;
-                _originalMaterial           = null;
-            }
+            RestoreMaterial();
+            RestoreVideoPlayerRenderMode();
 
             _libretroWrapper?.StopGame();
             _libretroWrapper = null;
 
-            if (_screenNode != null && _screenNode.TryGetComponent(out SK.Libretro.Unity.AudioProcessor unityAudio))
+#if !UNITY_EDITOR_WIN || !UNITY_STANDALONE_WIN
+            if (_screenNode != null)
             {
-                Object.Destroy(unityAudio);
+                SK.Libretro.Unity.AudioProcessor unityAudio = _screenNode.GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>();
+                if (unityAudio != null)
+                {
+                    Object.Destroy(unityAudio.gameObject, 1f);
+                }
             }
-
+#endif
             _screenNode = null;
         }
 
@@ -292,7 +290,7 @@ namespace Arcade_r
                 _libretroWrapper?.ActivateAudio(new SK.Libretro.NAudio.AudioProcessor());
             }
 #else
-            SK.Libretro.Unity.AudioProcessor unityAudio = _screenNode.GetComponentInChildren< SK.Libretro.Unity.AudioProcessor>(true);
+            SK.Libretro.Unity.AudioProcessor unityAudio = _screenNode.GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>(true);
             if (unityAudio != null)
             {
                 unityAudio.gameObject.SetActive(true);
@@ -333,6 +331,75 @@ namespace Arcade_r
             {
                 _rendererComponent.material.SetTexture("_EmissionMap", texture);
             }
+        }
+
+        private void SaveVideoPlayerRenderMode()
+        {
+            if (_screenNode != null && _screenNode.TryGetComponent(out VideoPlayer videoPlayer))
+            {
+                _originalVideoRenderMode = videoPlayer.renderMode;
+            }
+            else
+            {
+                _originalVideoRenderMode = VideoRenderMode.MaterialOverride;
+            }
+        }
+
+        private void SetVideoPlayerRenderState(bool enabled)
+        {
+            if (_screenNode != null && _screenNode.TryGetComponent(out VideoPlayer videoPlayer))
+            {
+                videoPlayer.renderMode = enabled ? VideoRenderMode.MaterialOverride : VideoRenderMode.APIOnly;
+            }
+        }
+
+        private void RestoreVideoPlayerRenderMode()
+        {
+            if (_screenNode != null && _screenNode.TryGetComponent(out VideoPlayer videoPlayer))
+            {
+                videoPlayer.renderMode = _originalVideoRenderMode;
+            }
+        }
+
+        private void SaveMaterial()
+        {
+            if (_rendererComponent != null)
+            {
+                _originalMaterial = _rendererComponent.sharedMaterial;
+            }
+        }
+
+        private void SetMaterialProperties()
+        {
+            if (_rendererComponent != null)
+            {
+                _rendererComponent.material.color = Color.black;
+                _rendererComponent.material.EnableKeyword("_EMISSION");
+                _rendererComponent.material.SetColor("_EmissionColor", Color.white * 1.08f);
+            }
+        }
+
+        private void RestoreMaterial()
+        {
+            if (_rendererComponent != null && _rendererComponent.material != null && _originalMaterial != null)
+            {
+                _rendererComponent.material = _originalMaterial;
+            }
+        }
+
+        private void ResetFields()
+        {
+            _libretroWrapper         = null;
+            _screenNode              = null;
+            _rendererComponent       = null;
+            _originalMaterial        = null;
+            _originalVideoRenderMode = VideoRenderMode.MaterialOverride;
+            _gameFps                 = 0f;
+            _gameSampleRate          = 0f;
+            _frameTimer              = 0f;
+            _graphicsEnabled         = false;
+            _audioEnabled            = false;
+            _inputEnabled            = false;
         }
     }
 }

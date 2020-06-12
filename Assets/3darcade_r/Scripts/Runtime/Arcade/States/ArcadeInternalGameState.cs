@@ -22,13 +22,14 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Video;
 
 namespace Arcade_r
 {
     public sealed class ArcadeInternalGameState : ArcadeState
     {
         private readonly InternalGameController _libretroController;
+
+        private ScreenNodeTag _screenNode;
 
         public ArcadeInternalGameState(ArcadeContext context)
         : base(context)
@@ -38,22 +39,17 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log(">> <color=green>Entered</color> ArcadeLibretroState");
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
-
-            EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
-            if (emulator != null)
+            _screenNode = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>();
+            if (_screenNode != null)
             {
-                ScreenNodeTag screenNodeTag = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>();
-                if (screenNodeTag != null)
+                EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
+                if (emulator != null)
                 {
-                    if (_libretroController.StartGame(screenNodeTag, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
+                    if (_libretroController.StartGame(_screenNode, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
                     {
                         _context.VideoPlayerController.StopAllVideos();
-                        if (screenNodeTag.TryGetComponent(out VideoPlayer videoPlayer))
-                        {
-                            videoPlayer.renderMode = VideoRenderMode.APIOnly;
-                        }
                         return;
                     }
                 }
@@ -64,14 +60,8 @@ namespace Arcade_r
 
         public override void OnExit()
         {
-            Debug.Log(">> <color=orange>Exited</color> ArcadeLibretroState");
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
             _libretroController.StopGame();
-
-            ScreenNodeTag screenNodeTag = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>();
-            if (screenNodeTag != null && screenNodeTag.TryGetComponent(out VideoPlayer videoPlayer))
-            {
-                videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
-            }
         }
 
         public override void Update(float dt)

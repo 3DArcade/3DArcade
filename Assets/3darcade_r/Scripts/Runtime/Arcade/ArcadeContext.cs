@@ -65,11 +65,7 @@ namespace Arcade_r
                 return false;
             }
 
-            if (!App.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent cfgComponent))
-            {
-                return false;
-            }
-
+            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>();
             cfgComponent.Restore(CurrentArcadeConfiguration);
 
             switch (cfgComponent.ArcadeType)

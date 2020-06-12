@@ -35,7 +35,7 @@ namespace Arcade_r
 
         public override void OnEnter()
         {
-            Debug.Log("> <color=green>Entered</color> ArcadeNormalState");
+            Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
             _context.App.PlayerControls.FirstPersonActions.Enable();
             if (Cursor.visible)
@@ -50,7 +50,7 @@ namespace Arcade_r
 
         public override void OnExit()
         {
-            Debug.Log("> <color=orange>Exited</color> ArcadeNormalState");
+            Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
             _context.App.PlayerControls.FirstPersonActions.Disable();
 
@@ -78,9 +78,9 @@ namespace Arcade_r
             }
 
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
-                                                    _context.App.Camera,
-                                                    INTERACT_MAX_DISTANCE,
-                                                    _context.RaycastLayers);
+                                                   _context.App.Camera,
+                                                   INTERACT_MAX_DISTANCE,
+                                                   _context.RaycastLayers);
 
             _context.VideoPlayerController.UpdateVideosState();
 

@@ -48,29 +48,40 @@ namespace Arcade_r
 
         public void UpdateVideosState()
         {
-            _ = _activeVideos.RemoveAll(vp => !vp.isPlaying);
+            for (int i = 0; i < _overlapSphereHits.Length; ++i)
+            {
+                _overlapSphereHits[i] = null;
+            }
 
             _ = Physics.OverlapSphereNonAlloc(_player.position, OVERLAPSPHERE_RADIUS, _overlapSphereHits, _layerMask);
 
-            IEnumerable<VideoPlayer> toEnable = _overlapSphereHits.Where(col => col != null)
-                                                                  .OrderBy(col => MathUtils.DistanceFast(col.transform.position, _player.position))
-                                                                  .Distinct()
-                                                                  .Select(col => col.GetComponentInChildren<VideoPlayer>())
-                                                                  .Where(vp => vp != null && vp.isPrepared)
-                                                                  .Take(NUM_VIDEOS_WITH_SOUND);
+            VideoPlayer[] inRange = _overlapSphereHits.Distinct()
+                                                      .Where(col => col != null)
+                                                      .Select(col => col.GetComponentInChildren<VideoPlayer>())
+                                                      .Where(vp => vp != null && vp.isPrepared)
+                                                      .OrderBy(vp => MathUtils.DistanceFast(vp.transform.position, _player.position))
+                                                      .Take(NUM_VIDEOS_WITH_SOUND)
+                                                      .ToArray();
+
+            VideoPlayer[] toEnable = inRange.Where(vp => vp.isPaused)
+                                            .ToArray();
 
             foreach (VideoPlayer videoPlayer in toEnable)
             {
-                if (_activeVideos.Where(vp => vp.GetInstanceID() == videoPlayer.GetInstanceID()).Count() == 0)
+                if (!_activeVideos.Contains(videoPlayer))
                 {
                     VideoSetPlayingState(videoPlayer, true);
                     _activeVideos.Add(videoPlayer);
                 }
             }
 
-            foreach (VideoPlayer videoPlayer in _activeVideos.Except(toEnable))
+            VideoPlayer[] toDisable = _activeVideos.Except(inRange)
+                                                   .Except(toEnable)
+                                                   .ToArray();
+            foreach (VideoPlayer videoPlayer in toDisable)
             {
                 VideoSetPlayingState(videoPlayer, false);
+                _ = _activeVideos.Remove(videoPlayer);
             }
         }
 
@@ -80,30 +91,20 @@ namespace Arcade_r
             {
                 VideoSetPlayingState(videoPlayer, false);
             }
+            _activeVideos.Clear();
         }
 
         private void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
         {
-            if (state && !videoPlayer.isPlaying)
+            if (state && videoPlayer.isPaused)
             {
+                videoPlayer.EnableAudioTrack(0, true);
                 videoPlayer.Play();
-                videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-                //videoPlayer.EnableAudioTrack(0, true);
-
-                //AudioSource audioSource = videoPlayer.GetTargetAudioSource(0);
-                //audioSource.enabled     = true;
-                //audioSource.volume      = 1f;
             }
-            else if (!state && videoPlayer.isPlaying)
+            else if (!state && !videoPlayer.isPaused)
             {
+                videoPlayer.EnableAudioTrack(0, false);
                 videoPlayer.Pause();
-                videoPlayer.audioOutputMode = VideoAudioOutputMode.None;
-
-                //videoPlayer.EnableAudioTrack(0, false);
-
-                //AudioSource audioSource = videoPlayer.GetTargetAudioSource(0);
-                //audioSource.enabled     = false;
-                //audioSource.volume      = 0f;
             }
         }
     }

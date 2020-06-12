@@ -35,24 +35,24 @@ namespace Arcade
     public class ArcadeStateManager : MonoBehaviour
     {
         public int framesToSkip = 15;
-        private float deltaTime;
-        private ArcadeStates savedArcadeState;
-        private bool arcadeStateHasChanged = false;
-        private float rayLength;
-        private bool isGrabbed;
-        private Rigidbody grabbedObject;
-        private readonly string[] inputButtons = Enum.GetNames(typeof(UIButtons));
-        private UIButtons? buttonClicked;
-        private GameObject selectZoneModel;
-        private CylController arcadeCylController;
-        private CylController menuCylController;
-        private bool menuIsVisible = true;
+        private float _deltaTime;
+        private ArcadeStates _savedArcadeState;
+        private bool _arcadeStateHasChanged = false;
+        private float _rayLength;
+        private bool _isGrabbed;
+        private Rigidbody _grabbedObject;
+        private readonly string[] _inputButtons = Enum.GetNames(typeof(UIButtons));
+        private UIButtons? _buttonClicked;
+        private GameObject _selectZoneModel;
+        private CylController _arcadeCylController;
+        private CylController _menuCylController;
+        private bool _menuIsVisible = true;
 
         // Layers
-        private LayerMask arcadeLayers;
-        private LayerMask menuLayers;
-        private LayerMask arcadeGameAndPropLayers;
-        private LayerMask menuGameAndPropLayers;
+        private LayerMask _arcadeLayers;
+        private LayerMask _menuLayers;
+        private LayerMask _arcadeGameAndPropLayers;
+        private LayerMask _menuGameAndPropLayers;
 
         public static Camera activeCamera; // No outside refrences yet, make private?
         public static GameObject selectedModel = null; // Model itself not its dummy parent in playmode
@@ -121,8 +121,8 @@ namespace Arcade
 
         private void Start()
         {
-            rayLength = 100.0f;
-            isGrabbed = false;
+            _rayLength = 100.0f;
+            _isGrabbed = false;
             fpsText.text = "";
 
             // Setup Menus
@@ -176,20 +176,20 @@ namespace Arcade
             dialogAlertSelect.onClick.AddListener(() => ButtonClicked(UIButtons.Select));
 
             // Setup references
-            arcadeLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
-            menuLayers = LayerMask.GetMask("Menu/ArcadeModels", "Menu/GameModels", "Menu/PropModels");
-            arcadeGameAndPropLayers = LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels");
-            menuGameAndPropLayers = LayerMask.GetMask("Menu/GameModels", "Menu/PropModels");
-            arcadeCylController = ArcadeManager.arcadeControls[ArcadeType.CylArcade].GetComponentInChildren<CylController>();
-            menuCylController = ArcadeManager.arcadeControls[ArcadeType.CylMenu].GetComponentInChildren<CylController>();
+            _arcadeLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            _menuLayers = LayerMask.GetMask("Menu/ArcadeModels", "Menu/GameModels", "Menu/PropModels");
+            _arcadeGameAndPropLayers = LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels");
+            _menuGameAndPropLayers = LayerMask.GetMask("Menu/GameModels", "Menu/PropModels");
+            _arcadeCylController = ArcadeManager.arcadeControls[ArcadeType.CylArcade].GetComponentInChildren<CylController>();
+            _menuCylController = ArcadeManager.arcadeControls[ArcadeType.CylMenu].GetComponentInChildren<CylController>();
             activeCamera = ArcadeManager.arcadeCameras[ArcadeType.FpsArcade];
         }
 
-        private void ButtonClicked(UIButtons button) => buttonClicked = button;
+        private void ButtonClicked(UIButtons button) => _buttonClicked = button;
 
         private void LateUpdate()
         {
-            buttonClicked = null;
+            _buttonClicked = null;
         }
 
         private void OnApplicationFocus(bool focus)
@@ -205,17 +205,17 @@ namespace Arcade
             // fps
             if (ArcadeManager.arcadeConfiguration.showFPS)
             {
-                deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-                float fps = 1.0f / deltaTime;
+                _deltaTime += (Time.unscaledDeltaTime - _deltaTime) * 0.1f;
+                float fps = 1.0f / _deltaTime;
                 fpsText.text = Mathf.Ceil(fps).ToString();
             }
 
             // Check if input buttons/keys are pressed, then set the correct buttonClicked.
-            for (int i = 0; i < inputButtons.Length; i++)
+            for (int i = 0; i < _inputButtons.Length; i++)
             {
-                if (Input.GetButtonDown(inputButtons[i]))
+                if (Input.GetButtonDown(_inputButtons[i]))
                 {
-                    buttonClicked = (UIButtons)i;
+                    _buttonClicked = (UIButtons)i;
                     break;
                 }
             }
@@ -256,15 +256,15 @@ namespace Arcade
                 GetZone(ArcadeType.FpsMenu);
             }
 
-            if (ArcadeManager.arcadeState != savedArcadeState)
+            if (ArcadeManager.arcadeState != _savedArcadeState)
             {
-                arcadeStateHasChanged = true;
-                savedArcadeState = ArcadeManager.arcadeState;
+                _arcadeStateHasChanged = true;
+                _savedArcadeState = ArcadeManager.arcadeState;
                 TriggerManager.SendEvent(TriggerEvent.ArcadeStateChanged);
             }
             else
             {
-                arcadeStateHasChanged = false;
+                _arcadeStateHasChanged = false;
             }
 
             //print("Current State: " + ArcadeManager.arcadeState + " arcade " + ArcadeManager.activeArcadeType + " menu " + ArcadeManager.activeMenuType + " hist " + ArcadeManager.arcadeHistory.Count + " c " + Cursor.visible + " l " + Cursor.lockState.ToString());
@@ -272,7 +272,7 @@ namespace Arcade
             switch (ArcadeManager.arcadeState)
             {
                 case ArcadeStates.Game:
-                    if (buttonClicked == UIButtons.Quit)
+                    if (_buttonClicked == UIButtons.Quit)
                     {
                         // Stop Game
                         GameLauncherManager.UnLoadGame();
@@ -295,18 +295,18 @@ namespace Arcade
                     //    }
 
                     //}
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     break;
                 case ArcadeStates.Running:
                     // Update UI when arcadeState changes to Running
-                    if (arcadeStateHasChanged)
+                    if (_arcadeStateHasChanged)
                     {
                         Loading.gameObject.SetActive(false);
                         Settings.gameObject.SetActive(false);
                         runningCancel.gameObject.SetActive(false);
                         runningMainMenu.gameObject.SetActive(ArcadeManager.arcadeHistory.Count > 1);
                         mainMenuSettings.gameObject.SetActive(ArcadeManager.arcadeHistory.Count <= 1);
-                        if (!menuIsVisible)
+                        if (!_menuIsVisible)
                         {
                             Running.gameObject.SetActive(false);
                         }
@@ -327,13 +327,13 @@ namespace Arcade
                             }
                         }
                     }
-                    if (buttonClicked == UIButtons.MenuToggle)
+                    if (_buttonClicked == UIButtons.MenuToggle)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         if (Running.gameObject.activeInHierarchy)
                         {
                             Running.gameObject.SetActive(false);
-                            menuIsVisible = false;
+                            _menuIsVisible = false;
 
                         }
                         else
@@ -351,12 +351,12 @@ namespace Arcade
                             {
                                 fpsText.text = "";
                             }
-                            menuIsVisible = true;
+                            _menuIsVisible = true;
                         }
                     }
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         if (selectedModel == null)
                         {
                             return;
@@ -384,9 +384,9 @@ namespace Arcade
                         }
 
                     }
-                    else if (buttonClicked == UIButtons.Information)
+                    else if (_buttonClicked == UIButtons.Information)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         if (ArcadeManager.arcadeState == ArcadeStates.MoveCabs)
                         {
                             return;
@@ -405,9 +405,9 @@ namespace Arcade
                             Information.gameObject.SetActive(false);
                         }
                     }
-                    else if (buttonClicked == UIButtons.Settings)
+                    else if (_buttonClicked == UIButtons.Settings)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         if (ArcadeManager.arcadeState == ArcadeStates.MoveCabs)
                         {
                             return;
@@ -418,7 +418,7 @@ namespace Arcade
                         {
                             ArcadeManager.arcadeState = ArcadeStates.SettingsMenu;
                             Settings.gameObject.SetActive(true);
-                            buttonClicked = null;
+                            _buttonClicked = null;
                             return;
                         }
                         // Else go back to previous Arcade Configuration
@@ -431,15 +431,15 @@ namespace Arcade
 
                         if (ArcadeManager.activeArcadeType == ArcadeType.CylArcade)
                         {
-                            arcadeCylController.setupFinished = false;
+                            _arcadeCylController.setupFinished = false;
                         }
                         string newArcade = ArcadeManager.arcadeHistory[ArcadeManager.arcadeHistory.Count - 2];
                         ArcadeManager.arcadeHistory.RemoveRange(ArcadeManager.arcadeHistory.Count - 2, 2);
                         _ = StartCoroutine(StartNewArcade(newArcade));
                     }
-                    else if (buttonClicked == UIButtons.MoveCabs)
+                    else if (_buttonClicked == UIButtons.MoveCabs)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         if (ArcadeManager.arcadeState == ArcadeStates.Information)
                         {
                             return;
@@ -453,14 +453,14 @@ namespace Arcade
                         MoveCabs.gameObject.SetActive(true);
                         Information.gameObject.SetActive(false);
                     }
-                    else if (buttonClicked == UIButtons.Quit)
+                    else if (_buttonClicked == UIButtons.Quit)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         Application.Quit();
                     }
                     break;
                 case ArcadeStates.ArcadeMenu:
-                    if (arcadeStateHasChanged)
+                    if (_arcadeStateHasChanged)
                     {
                         Loading.gameObject.SetActive(false);
                         runningMainMenu.gameObject.SetActive(false);
@@ -468,9 +468,9 @@ namespace Arcade
                         runningCancel.gameObject.SetActive(true);
                         runningMoveCabs.gameObject.SetActive(false);
                     }
-                    if (buttonClicked == UIButtons.Quit || buttonClicked == UIButtons.Settings) // use settings for this!
+                    if (_buttonClicked == UIButtons.Quit || _buttonClicked == UIButtons.Settings) // use settings for this!
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
 
                         // Unload Menu
                         ModelImageSetup modelImageSetup = savedArcadeModel.transform.GetChild(1).GetComponent<ModelImageSetup>();
@@ -500,11 +500,11 @@ namespace Arcade
                         ArcadeManager.activeMenuType = ArcadeType.None;
                         TriggerManager.SendEvent(TriggerEvent.MenuEnded);
                         ArcadeManager.arcadeState = ArcadeStates.Running;
-                        buttonClicked = null;
+                        _buttonClicked = null;
                     }
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         if (selectedModel == null)
                         {
                             return;
@@ -559,7 +559,7 @@ namespace Arcade
                 //    }
                 //    break;
                 case ArcadeStates.LoadingAssets:
-                    if (buttonClicked == UIButtons.Settings)
+                    if (_buttonClicked == UIButtons.Settings)
                     {
                         // print("Settings");
                     }
@@ -569,10 +569,10 @@ namespace Arcade
                     {
                         return;
                     }
-                    if (buttonClicked == UIButtons.MoveCabs)
+                    if (_buttonClicked == UIButtons.MoveCabs)
                     {
                         // If selected model is grabbed release it, then Switch to Running State.
-                        if (isGrabbed)
+                        if (_isGrabbed)
                         {
                             ReleaseGrabSelectedObject();
                         }
@@ -580,7 +580,7 @@ namespace Arcade
                         ArcadeManager.arcadeState = ArcadeStates.Running;
                         MoveCabs.gameObject.SetActive(false);
                     }
-                    else if (buttonClicked == UIButtons.Edit)
+                    else if (_buttonClicked == UIButtons.Edit)
                     {
                         if (selectedModel == null)
                         {
@@ -597,13 +597,13 @@ namespace Arcade
                         MoveCabsEditGameProperties props = MoveCabsEdit.GetComponent<MoveCabsEditGameProperties>();
                         props.SetGameProperties(gameModelSetup.GetModelProperties());
                     }
-                    else if (buttonClicked == UIButtons.Add)
+                    else if (_buttonClicked == UIButtons.Add)
                     {
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabsAdd;
                         MoveCabs.gameObject.SetActive(false);
                         MoveCabsEdit.gameObject.SetActive(true);
                     }
-                    else if (buttonClicked == UIButtons.Delete)
+                    else if (_buttonClicked == UIButtons.Delete)
                     {
                         if (selectedModel == null)
                         {
@@ -619,10 +619,10 @@ namespace Arcade
                         MoveCabs.gameObject.SetActive(false);
                         Dialog.gameObject.SetActive(true);
                     }
-                    else if (buttonClicked == UIButtons.Select)
+                    else if (_buttonClicked == UIButtons.Select)
                     {
                         // If selected model is not grabbed, then grab it else release it.
-                        if (!isGrabbed)
+                        if (!_isGrabbed)
                         {
                             GrabSelectedObject();
                         }
@@ -631,21 +631,21 @@ namespace Arcade
                             ReleaseGrabSelectedObject();
                         }
                     }
-                    else if (buttonClicked == UIButtons.Cancel)
+                    else if (_buttonClicked == UIButtons.Cancel)
                     {
                         Application.Quit();
                     }
                     else
                     {
                         // If selected model is not grabbed and one of the transform inputs, then adjust the transform of the selected model.
-                        if (!isGrabbed)
+                        if (!_isGrabbed)
                         {
                             AdjustTransformSelectedModel();
                         }
                     }
                     break;
                 case ArcadeStates.MoveCabsEdit:
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         print("model add/edit is selected at it to the scene");
 
@@ -659,7 +659,7 @@ namespace Arcade
                         MoveCabsEditGameProperties props = MoveCabsEdit.GetComponent<MoveCabsEditGameProperties>();
                         props.ReplaceModel(selectedModel);
                     }
-                    else if (buttonClicked == UIButtons.Cancel)
+                    else if (_buttonClicked == UIButtons.Cancel)
                     {
                         print("model add/edit is not selected do nothing ");
 
@@ -669,7 +669,7 @@ namespace Arcade
                     }
                     break;
                 case ArcadeStates.MoveCabsAdd:
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         print("model add/edit is selected at it to the scene");
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabs;
@@ -678,7 +678,7 @@ namespace Arcade
                         MoveCabsEditGameProperties props = MoveCabsEdit.GetComponent<MoveCabsEditGameProperties>();
                         props.AddModel();
                     }
-                    else if (buttonClicked == UIButtons.Cancel)
+                    else if (_buttonClicked == UIButtons.Cancel)
                     {
                         print("model add/edit is not selected do nothing ");
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabs;
@@ -687,7 +687,7 @@ namespace Arcade
                     }
                     break;
                 case ArcadeStates.MoveCabsDelete:
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         print("model delete is selected at it to the scene");
 
@@ -701,7 +701,7 @@ namespace Arcade
                         MoveCabs.gameObject.SetActive(true);
                         Dialog.gameObject.SetActive(false);
                     }
-                    else if (buttonClicked == UIButtons.Cancel)
+                    else if (_buttonClicked == UIButtons.Cancel)
                     {
                         print("model delete is not selected do nothing ");
                         ArcadeManager.arcadeState = ArcadeStates.MoveCabs;
@@ -710,7 +710,7 @@ namespace Arcade
                     }
                     break;
                 case ArcadeStates.LoadingArcade:
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     print("load arcade now");
                     if (!Loading.isActiveAndEnabled)
                     {
@@ -723,9 +723,9 @@ namespace Arcade
                     }
                     break;
                 case ArcadeStates.SettingsMenu:
-                    if (buttonClicked == UIButtons.Settings)
+                    if (_buttonClicked == UIButtons.Settings)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         ArcadeManager.arcadeState = ArcadeStates.Running;
                         Settings.gameObject.SetActive(false);
                         GeneralConfigurationMenu.gameObject.SetActive(false);
@@ -745,12 +745,12 @@ namespace Arcade
                         }
                         GeneralConfigurationMenu.gameObject.SetActive(true);
                     }
-                    if (buttonClicked == UIButtons.Cancel)
+                    if (_buttonClicked == UIButtons.Cancel)
                     {
                         GeneralConfigurationMenu.gameObject.SetActive(false);
                         ArcadeManager.arcadeState = ArcadeStates.Running;
                     }
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         GeneralConfigurationGeneralProperties generalConfigurationGeneralProperties = GeneralConfigurationMenu.GetComponent<GeneralConfigurationGeneralProperties>();
                         if (generalConfigurationGeneralProperties != null)
@@ -760,7 +760,7 @@ namespace Arcade
                             GeneralConfigurationMenu.gameObject.SetActive(false);
                         }
                     }
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     break;
                 case ArcadeStates.ArcadesConfigurationMenu:
                     if (!ArcadesConfigurationMenu.isActiveAndEnabled)
@@ -769,7 +769,7 @@ namespace Arcade
                         Running.gameObject.SetActive(false);
                         ArcadesConfigurationMenu.gameObject.SetActive(true);
                     }
-                    if (buttonClicked == UIButtons.Cancel)
+                    if (_buttonClicked == UIButtons.Cancel)
                     {
                         print("Cancel Arcade Configuration Menu");
                         ArcadeManager.arcadeState = ArcadeStates.Running;
@@ -778,9 +778,9 @@ namespace Arcade
                         //ArcadeManager.ShowMainMenu();
                         Settings.gameObject.SetActive(false);
                         ArcadesConfigurationMenu.gameObject.SetActive(false);
-                        buttonClicked = null;
+                        _buttonClicked = null;
                     }
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         print("Save Arcade Configuration Menu");
                         ArcadesConfigurationArcadeProperties arcadesConfigurationArcadeProperties = ArcadesConfigurationMenu.GetComponent<ArcadesConfigurationArcadeProperties>();
@@ -796,9 +796,9 @@ namespace Arcade
                         //ArcadeManager.ShowMainMenu(); // Reloads main menu to refelct changes made here.
                         Settings.gameObject.SetActive(false);
                         ArcadesConfigurationMenu.gameObject.SetActive(false);
-                        buttonClicked = null;
+                        _buttonClicked = null;
                     }
-                    if (buttonClicked == UIButtons.Add)
+                    if (_buttonClicked == UIButtons.Add)
                     {
                         ArcadesConfigurationArcadeProperties arcadesConfigurationArcadeProperties = ArcadesConfigurationMenu.GetComponent<ArcadesConfigurationArcadeProperties>();
                         if (arcadesConfigurationArcadeProperties != null)
@@ -827,7 +827,7 @@ namespace Arcade
                             arcadesConfigurationArcadeProperties.Set();
                         }
                     }
-                    if (buttonClicked == UIButtons.Delete)
+                    if (_buttonClicked == UIButtons.Delete)
                     {
                         ArcadesConfigurationArcadeProperties arcadesConfigurationArcadeProperties = ArcadesConfigurationMenu.GetComponent<ArcadesConfigurationArcadeProperties>();
                         GeneralConfiguration generalConfiguration = FileManager.LoadJSONData<GeneralConfiguration>(Path.Combine(ArcadeManager.applicationPath + "/3darcade~/Configuration/GeneralConfiguration.json"));
@@ -854,11 +854,11 @@ namespace Arcade
                             }
                         }
                     }
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     break;
                 case ArcadeStates.AlertArcadesConfigurationMenuError:
                     DialogAlertConfiguration.gameObject.SetActive(false);
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     ArcadeManager.arcadeState = ArcadeStates.ArcadesConfigurationMenu;
                     break;
                 case ArcadeStates.EmulatorsConfigurationMenu:
@@ -868,15 +868,15 @@ namespace Arcade
                         Running.gameObject.SetActive(false);
                         EmulatorsConfigurationMenu.gameObject.SetActive(true);
                     }
-                    if (buttonClicked == UIButtons.Cancel)
+                    if (_buttonClicked == UIButtons.Cancel)
                     {
                         ArcadeManager.arcadeState = ArcadeStates.Running;
                         //MainMenu.gameObject.SetActive(true);
                         Settings.gameObject.SetActive(false);
                         EmulatorsConfigurationMenu.gameObject.SetActive(false);
-                        buttonClicked = null;
+                        _buttonClicked = null;
                     }
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         EmulatorsConfigurationEmulatorProperties emulatorsConfigurationEmulatorProperties = EmulatorsConfigurationMenu.GetComponent<EmulatorsConfigurationEmulatorProperties>();
                         if (emulatorsConfigurationEmulatorProperties != null)
@@ -888,21 +888,21 @@ namespace Arcade
                         //MainMenu.gameObject.SetActive(true);
                         Settings.gameObject.SetActive(false);
                         EmulatorsConfigurationMenu.gameObject.SetActive(false);
-                        buttonClicked = null;
+                        _buttonClicked = null;
                     }
-                    if (buttonClicked == UIButtons.Add)
+                    if (_buttonClicked == UIButtons.Add)
                     {
                         DialogAddEmulatorConfiguration.gameObject.SetActive(true);
                         ArcadeManager.arcadeState = ArcadeStates.DialogAddEmulatorConfiguration;
                     }
-                    if (buttonClicked == UIButtons.Update)
+                    if (_buttonClicked == UIButtons.Update)
                     {
                         Debug.Log("update");
                         dialogProgress.text = "Updating MasterGamelist, please wait...";
                         DialogProgressConfiguration.gameObject.SetActive(true);
                         ArcadeManager.arcadeState = ArcadeStates.DialogUpdateMasterGamelist;
                     }
-                    if (buttonClicked == UIButtons.Delete)
+                    if (_buttonClicked == UIButtons.Delete)
                     {
                         EmulatorsConfigurationEmulatorProperties emulatorsConfigurationEmulatorProperties = EmulatorsConfigurationMenu.GetComponent<EmulatorsConfigurationEmulatorProperties>();
                         if (emulatorsConfigurationEmulatorProperties != null && ArcadeManager.emulatorsConfigurationList.Count() > 1)
@@ -917,21 +917,21 @@ namespace Arcade
                             ArcadeManager.arcadeState = ArcadeStates.AlertEmulatorsConfigurationMenuError;
                         }
                     }
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     break;
                 case ArcadeStates.AlertEmulatorsConfigurationMenuError:
                     DialogAlertConfiguration.gameObject.SetActive(false);
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     ArcadeManager.arcadeState = ArcadeStates.EmulatorsConfigurationMenu;
                     break;
                 case ArcadeStates.DialogAddEmulatorConfiguration:
-                    if (buttonClicked == UIButtons.Cancel)
+                    if (_buttonClicked == UIButtons.Cancel)
                     {
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         DialogAddEmulatorConfiguration.gameObject.SetActive(false);
                         ArcadeManager.arcadeState = ArcadeStates.EmulatorsConfigurationMenu;
                     }
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         DialogAddEmulatorConfiguration dialogAddEmulatorConfiguration = DialogAddEmulatorConfiguration.gameObject.GetComponent<DialogAddEmulatorConfiguration>();
                         if (dialogAddEmulatorConfiguration != null)
@@ -998,20 +998,20 @@ namespace Arcade
                                 ArcadeManager.arcadeState = ArcadeStates.EmulatorsConfigurationMenu;
                             }
                         }
-                        buttonClicked = null;
+                        _buttonClicked = null;
                     }
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     break;
                 case ArcadeStates.AlertAddEmulatorConfigurationError:
-                    if (buttonClicked == UIButtons.Select)
+                    if (_buttonClicked == UIButtons.Select)
                     {
                         DialogAlertConfiguration.gameObject.SetActive(false);
-                        buttonClicked = null;
+                        _buttonClicked = null;
                         ArcadeManager.arcadeState = ArcadeStates.DialogAddEmulatorConfiguration;
                     }
                     break;
                 case ArcadeStates.DialogUpdateMasterGamelist:
-                    buttonClicked = null;
+                    _buttonClicked = null;
                     EmulatorsConfigurationEmulatorProperties temulatorsConfigurationEmulatorProperties = EmulatorsConfigurationMenu.GetComponent<EmulatorsConfigurationEmulatorProperties>();
                     if (temulatorsConfigurationEmulatorProperties != null)
                     {
@@ -1039,7 +1039,7 @@ namespace Arcade
             ModelSetup modelSetup = null;
             if (ArcadeManager.activeMenuType == ArcadeType.CylMenu)
             {
-                obj = menuCylController.GetSelectedGame();
+                obj = _menuCylController.GetSelectedGame();
                 if (obj != null)
                 {
                     modelSetup = obj.transform.parent.GetComponent<ModelSetup>();
@@ -1048,14 +1048,14 @@ namespace Arcade
             }
             else if (ArcadeManager.activeArcadeType == ArcadeType.CylArcade && ArcadeManager.activeMenuType == ArcadeType.None)
             {
-                obj = arcadeCylController.GetSelectedGame();
+                obj = _arcadeCylController.GetSelectedGame();
                 if (obj != null)
                 {
                     modelSetup = obj.transform.parent.GetComponent<ModelSetup>();
                     framesToSkip = 0; // We want updates as fast as possible in Cyl mode/
                 }
             }
-            else if (Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out RaycastHit vision, rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? arcadeGameAndPropLayers : menuGameAndPropLayers))
+            else if (Physics.Raycast(activeCamera.transform.position, activeCamera.transform.forward, out RaycastHit vision, _rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? _arcadeGameAndPropLayers : _menuGameAndPropLayers))
             {
                 GameObject objectHit = vision.transform.gameObject;
                 obj = objectHit;
@@ -1115,7 +1115,7 @@ namespace Arcade
                 return;
             }
 
-            if (buttonClicked == UIButtons.MoveCabsRotateRight)
+            if (_buttonClicked == UIButtons.MoveCabsRotateRight)
             {
                 selectedModel.transform.Rotate(new Vector3(0, 10, 0));
                 if ((int)Mathf.Round(selectedModel.transform.eulerAngles.y) == 180)
@@ -1123,7 +1123,7 @@ namespace Arcade
                     selectedModel.transform.Rotate(new Vector3(0, -180, 0));
                 }
             }
-            else if (buttonClicked == UIButtons.MoveCabsRotateLeft)
+            else if (_buttonClicked == UIButtons.MoveCabsRotateLeft)
             {
                 selectedModel.transform.Rotate(new Vector3(0, -10, 0));
                 if ((int)Mathf.Round(selectedModel.transform.eulerAngles.y) == -180)
@@ -1131,19 +1131,19 @@ namespace Arcade
                     selectedModel.transform.Rotate(new Vector3(0, 180, 0));
                 }
             }
-            else if (buttonClicked == UIButtons.MoveCabsForward)
+            else if (_buttonClicked == UIButtons.MoveCabsForward)
             {
                 selectedModel.transform.Translate(0, 0, -0.1f);
             }
-            else if (buttonClicked == UIButtons.MoveCabsBackward)
+            else if (_buttonClicked == UIButtons.MoveCabsBackward)
             {
                 selectedModel.transform.Translate(0, 0, 0.1f);
             }
-            else if (buttonClicked == UIButtons.MoveCabsLeft)
+            else if (_buttonClicked == UIButtons.MoveCabsLeft)
             {
                 selectedModel.transform.Translate(0.1f, 0, 0);
             }
-            else if (buttonClicked == UIButtons.MoveCabsRight)
+            else if (_buttonClicked == UIButtons.MoveCabsRight)
             {
                 selectedModel.transform.Translate(-0.1f, 0, 0);
             }
@@ -1156,34 +1156,34 @@ namespace Arcade
                 return;
             }
 
-            grabbedObject = selectedModel.GetComponent<Rigidbody>();
-            if (grabbedObject == null)
+            _grabbedObject = selectedModel.GetComponent<Rigidbody>();
+            if (_grabbedObject == null)
             {
                 return;
             }
 
-            grabbedObject.isKinematic = true;
-            grabbedObject.GetComponent<Collider>().enabled = false;
-            grabbedObject.transform.parent.SetParent(activeCamera.transform);
-            grabbedObject.transform.LookAt(activeCamera.transform.parent.transform);
-            grabbedObject.transform.rotation = Quaternion.Euler(0, grabbedObject.transform.eulerAngles.y, grabbedObject.transform.eulerAngles.z);
-            isGrabbed = true;
+            _grabbedObject.isKinematic = true;
+            _grabbedObject.GetComponent<Collider>().enabled = false;
+            _grabbedObject.transform.parent.SetParent(activeCamera.transform);
+            _grabbedObject.transform.LookAt(activeCamera.transform.parent.transform);
+            _grabbedObject.transform.rotation = Quaternion.Euler(0, _grabbedObject.transform.eulerAngles.y, _grabbedObject.transform.eulerAngles.z);
+            _isGrabbed = true;
         }
 
         private void ReleaseGrabSelectedObject()
         {
-            Transform trans = grabbedObject.transform;
-            grabbedObject.transform.parent.parent = GameObject.Find("Arcade/GameModels").transform;
-            grabbedObject.transform.position = trans.position;
-            grabbedObject.transform.rotation = trans.rotation;
-            grabbedObject.GetComponent<Collider>().enabled = true;
-            grabbedObject.isKinematic = false;
-            isGrabbed = false;
+            Transform trans = _grabbedObject.transform;
+            _grabbedObject.transform.parent.parent = GameObject.Find("Arcade/GameModels").transform;
+            _grabbedObject.transform.position = trans.position;
+            _grabbedObject.transform.rotation = trans.rotation;
+            _grabbedObject.GetComponent<Collider>().enabled = true;
+            _grabbedObject.isKinematic = false;
+            _isGrabbed = false;
         }
 
         private void GetZone(ArcadeType arcadeType)
         {
-            if (!Physics.Raycast(activeCamera.transform.parent.transform.position, -activeCamera.transform.parent.transform.up, out RaycastHit vision, rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? arcadeLayers : menuLayers))
+            if (!Physics.Raycast(activeCamera.transform.parent.transform.position, -activeCamera.transform.parent.transform.up, out RaycastHit vision, _rayLength, ArcadeManager.activeMenuType == ArcadeType.None ? _arcadeLayers : _menuLayers))
             {
                 return;
             }
@@ -1195,12 +1195,12 @@ namespace Arcade
             }
 
             Transform objectHitParent = objectHit.transform.parent;
-            if (objectHitParent != null && objectHitParent.gameObject == selectZoneModel)
+            if (objectHitParent != null && objectHitParent.gameObject == _selectZoneModel)
             {
                 return;
             }
 
-            selectZoneModel = objectHitParent.gameObject;
+            _selectZoneModel = objectHitParent.gameObject;
 
             ModelSetup modelSetup = objectHitParent.GetComponent<ModelSetup>();
             if (modelSetup == null)
@@ -1239,7 +1239,7 @@ namespace Arcade
                     MoveCabs.gameObject.SetActive(false);
                     Settings.gameObject.SetActive(false);
                     ArcadeManager.arcadeState = ArcadeStates.LoadingArcade;
-                    savedArcadeState = ArcadeStates.LoadingArcade;
+                    _savedArcadeState = ArcadeStates.LoadingArcade;
                     Loading.gameObject.SetActive(true);
                 }
                 yield return null;

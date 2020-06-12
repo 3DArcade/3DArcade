@@ -97,10 +97,16 @@ namespace SK.Libretro
                     _ = Directory.CreateDirectory(wrapperDirectoryAbs);
                 }
 
-                string tempDirectoryAbs = FileSystem.GetAbsolutePath(TempDirectory);
-                if (Directory.Exists(tempDirectoryAbs))
+                try
                 {
-                    Directory.Delete(tempDirectoryAbs, true);
+                    string tempDirectoryAbs = FileSystem.GetAbsolutePath(TempDirectory);
+                    if (Directory.Exists(tempDirectoryAbs))
+                    {
+                        Directory.Delete(tempDirectoryAbs, true);
+                    }
+                }
+                catch (Exception)
+                {
                 }
             }
         }
