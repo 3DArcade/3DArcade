@@ -28,13 +28,13 @@ namespace Arcade_r
     [DisallowMultipleComponent]
     public sealed class App : MonoBehaviour
     {
-        [SerializeField] private PlayerControls _playerControls = default;
-        [SerializeField] private Camera _camera                 = default;
-        [SerializeField] private Transform _uiRoot              = default;
-        [SerializeField] private GameObject _theAbyss           = default;
+        [SerializeField] private PlayerFpsControls _playerFpsControls = default;
+        [SerializeField] private PlayerCylControls _playerCylControls = default;
+        [SerializeField] private Transform _uiRoot                    = default;
+        [SerializeField] private GameObject _theAbyss                 = default;
 
-        public PlayerControls PlayerControls => _playerControls;
-        public Camera Camera => _camera;
+        public PlayerFpsControls PlayerFpsControls => _playerFpsControls;
+        public PlayerCylControls PlayerCylControls => _playerCylControls;
 
         public OS CurrentOS { get; private set; }
         public IVirtualFileSystem VirtualFileSystem { get; private set; }
@@ -56,8 +56,8 @@ namespace Arcade_r
 #endif
         private void Awake()
         {
-            Assert.IsNotNull(_playerControls);
-            Assert.IsNotNull(_camera);
+            Assert.IsNotNull(_playerFpsControls);
+            Assert.IsNotNull(_playerCylControls);
             Assert.IsNotNull(_uiRoot);
             Assert.IsNotNull(_theAbyss);
 
@@ -134,6 +134,7 @@ namespace Arcade_r
             result.MountDirectory("arcade_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Arcades");
             result.MountDirectory("emulator_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Emulators");
             result.MountDirectory("gamelist_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Gamelists");
+            result.MountDirectory("medias", $"{rootDirectory}/3darcade_r~/Media");
 
             result.MountFile("general_cfg", $"{rootDirectory}/3darcade_r~/Configuration/GeneralConfiguration.json");
 
@@ -142,9 +143,9 @@ namespace Arcade_r
 
         private void YouAreNotSupposedToBeHere()
         {
-            if (!_badLuck && PlayerControls.transform.position.y < -340f)
+            if (!_badLuck && PlayerFpsControls.transform.position.y < -340f)
             {
-                PlayerControls.transform.position = new Vector3(0f, PlayerControls.transform.position.y, 0f);
+                PlayerFpsControls.transform.position = new Vector3(0f, PlayerFpsControls.transform.position.y, 0f);
                 _ = Instantiate(_theAbyss);
                 _badLuck = true;
             }

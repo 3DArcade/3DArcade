@@ -27,8 +27,11 @@ using UnityEngine.Assertions;
 namespace Arcade_r
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerControls : MonoBehaviour
+    public class PlayerFpsControls : MonoBehaviour
     {
+        [SerializeField] private Camera _camera                          = default;
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera = default;
+
         [SerializeField] private float _walkSpeed = 3f;
         [SerializeField] private float _runSpeed  = 6f;
         [SerializeField] private float _jumpForce = 10f;
@@ -37,13 +40,14 @@ namespace Arcade_r
         [SerializeField] private float _maxVerticalLookAngle = 89f;
         [SerializeField] private float _extraGravity         = 40f;
 
+        public Camera Camera => _camera;
+        public CinemachineVirtualCamera VirtualCamera => _virtualCamera;
+
         public InputSettingsActions.GlobalActions GlobalActions { get; private set; }
         public InputSettingsActions.FirstPersonActions FirstPersonActions { get; private set; }
         public InputSettingsActions.FirstPersonMoveCabActions FirstPersonMoveCabActions { get; private set; }
 
         private CharacterController _characterController;
-        private CinemachineVirtualCamera _camera;
-
         private InputSettingsActions _inputActions;
 
         private Vector2 _movementInputValue;
@@ -59,11 +63,10 @@ namespace Arcade_r
 
         private void Awake()
         {
-            _characterController= GetComponent<CharacterController>();
-            _camera             = GetComponentInChildren<CinemachineVirtualCamera>();
-
+            _characterController = GetComponent<CharacterController>();
             Assert.IsNotNull(_characterController);
-            Assert.IsNotNull(_camera);
+            Assert.IsNotNull(Camera);
+            Assert.IsNotNull(VirtualCamera);
 
             _inputActions             = new InputSettingsActions();
             GlobalActions             = _inputActions.Global;
@@ -120,7 +123,7 @@ namespace Arcade_r
                 _moveVelocity = new Vector3(_movementInputValue.x, -0.1f, _movementInputValue.y);
                 _moveVelocity.Normalize();
 
-                float speed = _sprinting ? _runSpeed : _walkSpeed;
+                float speed   = _sprinting ? _runSpeed : _walkSpeed;
                 _moveVelocity = transform.TransformDirection(_moveVelocity) * speed;
 
                 if (_performJump)
@@ -143,9 +146,9 @@ namespace Arcade_r
             _lookHorizontal = _lookInputValue.x;
             _lookVertical  += _lookInputValue.y;
             _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
-            if (_camera != null)
+            if (VirtualCamera != null)
             {
-                _camera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
+                VirtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
             }
             transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
         }

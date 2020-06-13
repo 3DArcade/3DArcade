@@ -20,12 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+using UnityEngine.Assertions;
+
 namespace Arcade_r
 {
-    public enum MenuType
+    public sealed class FpsArcadeController : ArcadeController
     {
-        None,
-        Fps,
-        Cyl
+        public FpsArcadeController(ArcadeHierarchy arcadeHierarchy,
+                                   Transform playerFps,
+                                   Transform playerCyl,
+                                   Database<EmulatorConfiguration> emulatorDatabase,
+                                   AssetCache<GameObject> gameObjectCache,
+                                   AssetCache<Texture> textureCache,
+                                   AssetCache<string> videoCache)
+        : base(arcadeHierarchy, playerFps, playerCyl, emulatorDatabase, gameObjectCache, textureCache, videoCache)
+        {
+        }
+
+        public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
+        {
+            Assert.IsNotNull(arcadeConfiguration);
+
+            _playerFps.gameObject.SetActive(true);
+            _playerCyl.gameObject.SetActive(false);
+
+            SetupPlayer(_playerFps, arcadeConfiguration.FpsArcadeProperties.CameraSettings);
+
+            SetupWorld(arcadeConfiguration);
+
+            return true;
+        }
     }
 }

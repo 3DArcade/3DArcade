@@ -30,51 +30,49 @@ using UnityEngine.Video;
 
 namespace Arcade_r
 {
-    public class ArcadeController
+    public abstract class ArcadeController
     {
-        private const string ARCADE_RESOURCES_DIRECTORY = "Arcades";
-        private const string GAME_RESOURCES_DIRECTORY   = "Games";
-        private const string PROP_RESOURCES_DIRECTORY   = "Props";
+        protected const string ARCADE_RESOURCES_DIRECTORY = "Arcades";
+        protected const string GAME_RESOURCES_DIRECTORY   = "Games";
+        protected const string PROP_RESOURCES_DIRECTORY   = "Props";
 
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_MARQUEES_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Marquees";
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_MARQUEES_VIDEO_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/MarqueesVideo";
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_SCREENS_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Screens";
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_SCREENS_VIDEO_DIRECTORY  = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/ScreensVideo";
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_GENERICS_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/Generics";
-        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "const")]
-        private static readonly string DEFAULT_GENERICS_VIDEO_DIRECTORY = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media/GenericsVideo";
+        private static readonly string _defaultMediaDirectory         = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media";
+        private static readonly string _defaultMarqueesDirectory      = $"{_defaultMediaDirectory}/Marquees";
+        private static readonly string _defaultMarqueesVideoDirectory = $"{_defaultMediaDirectory}/MarqueesVideo";
+        private static readonly string _defaultScreensDirectory       = $"{_defaultMediaDirectory}/Screens";
+        private static readonly string _defaultScreensVideoDirectory  = $"{_defaultMediaDirectory}/ScreensVideo";
+        private static readonly string _defaultGenericsDirectory      = $"{_defaultMediaDirectory}/Generics";
+        private static readonly string _defaultGenericsVideoDirectory = $"{_defaultMediaDirectory}/GenericsVideo";
 
-        private readonly ArcadeHierarchy _arcadeHierarchy;
+        protected readonly ArcadeHierarchy _arcadeHierarchy;
+        protected readonly Transform _playerFps;
+        protected readonly Transform _playerCyl;
+
         private readonly AssetCache<GameObject> _gameObjectCache;
-        private readonly Transform _player;
         private readonly AssetCache<Texture> _textureCache;
         private readonly AssetCache<string> _videoCache;
+
         private readonly ContentMatcher _contentMatcher;
         private readonly AnimationCurve _volumeCurve;
 
-        private ArcadeConfiguration _currentConfiguration;
-        private ArcadeType _currentType;
-
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
-                                AssetCache<GameObject> gameObjectCache,
-                                Transform player,
+                                Transform playerFps,
+                                Transform playerCyl,
                                 Database<EmulatorConfiguration> emulatorDatabase,
+                                AssetCache<GameObject> gameObjectCache,
                                 AssetCache<Texture> textureCache,
                                 AssetCache<string> videoCache)
         {
             Assert.IsNotNull(arcadeHierarchy);
-            Assert.IsNotNull(gameObjectCache);
-            Assert.IsNotNull(player);
+            Assert.IsNotNull(playerFps);
+            Assert.IsNotNull(playerCyl);
             Assert.IsNotNull(emulatorDatabase);
+            Assert.IsNotNull(gameObjectCache);
 
             _arcadeHierarchy = arcadeHierarchy;
+            _playerFps       = playerFps;
+            _playerCyl       = playerCyl;
             _gameObjectCache = gameObjectCache;
-            _player          = player;
 
             _textureCache = textureCache;
             _videoCache   = videoCache;
@@ -89,39 +87,17 @@ namespace Arcade_r
             });
         }
 
-        public bool StartArcade(ArcadeConfiguration arcadeConfiguration, ArcadeType arcadeType)
+        public abstract bool StartArcade(ArcadeConfiguration arcadeConfiguration);
+
+        protected static void SetupPlayer(Transform player, CameraSettings cameraSettings)
         {
-            Assert.IsNotNull(arcadeConfiguration);
-
-            _currentConfiguration = arcadeConfiguration;
-            _currentType          = arcadeType;
-
-            if (_currentType == ArcadeType.Fps)
-            {
-                SetupFpsPlayer();
-            }
-            else if (_currentType == ArcadeType.Cyl)
-            {
-                SetupCylPlayer();
-            }
-
-            AddModelsToWorld(_currentConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
-            AddModelsToWorld(_currentConfiguration.GameModelList,   _arcadeHierarchy.GamesNode,   GAME_RESOURCES_DIRECTORY,   ContentMatcher.GetNamesToTryForGame);
-            AddModelsToWorld(_currentConfiguration.PropModelList,   _arcadeHierarchy.PropsNode,   PROP_RESOURCES_DIRECTORY,   ContentMatcher.GetNamesToTryForProp);
-
-            return true;
-        }
-
-        private void SetupFpsPlayer()
-        {
-            CameraSettings cameraSettings = _currentConfiguration.FpsArcadeProperties.CameraSettings;
-            _player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
-
-            Camera mainCamera = Camera.main;
+            Camera mainCamera       = player.GetComponentInChildren<Camera>(true);
             mainCamera.orthographic = cameraSettings.Orthographic;
             mainCamera.rect         = cameraSettings.ViewportRect;
 
-            CinemachineVirtualCamera vCam = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+            player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
+
+            CinemachineVirtualCamera vCam = player.GetComponentInChildren<CinemachineVirtualCamera>(true);
             vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
             vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
             vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;
@@ -131,26 +107,15 @@ namespace Arcade_r
             transposer.m_FollowOffset.y      = cameraSettings.Height;
         }
 
-        private void SetupCylPlayer()
+        protected void SetupWorld(ArcadeConfiguration arcadeConfiguration)
         {
-            CameraSettings cameraSettings = _currentConfiguration.CylArcadeProperties.CameraSettings;
-            _player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
-
-            Camera mainCamera = Camera.main;
-            mainCamera.orthographic = cameraSettings.Orthographic;
-            mainCamera.rect         = cameraSettings.ViewportRect;
-
-            CinemachineVirtualCamera vCam = _player.GetComponentInChildren<CinemachineVirtualCamera>();
-            vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
-            vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
-            vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;
-            vCam.m_Lens.FarClipPlane      = cameraSettings.FarClipPlane;
-
-            CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
-            transposer.m_FollowOffset.y      = cameraSettings.Height;
+            RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
+            AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
+            AddModelsToWorld(arcadeConfiguration.GameModelList, _arcadeHierarchy.GamesNode, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame);
+            AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp);
         }
 
-        private void AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        protected void AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
@@ -165,8 +130,8 @@ namespace Arcade_r
                 // Only look for artworks in play mode / at runtime
                 if (Application.isPlaying && _textureCache != null)
                 {
-                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator);
-                    SetupScreenNode(instantiatedModel , modelConfiguration, emulator);
+                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
+                    SetupScreenNode(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
                     SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
                 }
             }
@@ -174,7 +139,7 @@ namespace Arcade_r
 
         private static GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
         {
-            GameObject model = UnityEngine.Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
+            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
             model.StripCloneFromName();
             model.transform.localScale = modelConfiguration.Scale;
             model.transform.SetLayersRecursively(parent.gameObject.layer);
@@ -183,7 +148,7 @@ namespace Arcade_r
             return model;
         }
 
-        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
+        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
         {
             Renderer renderer = GetNodeRenderer<MarqueeNodeTag>(model);
             if (renderer == null)
@@ -193,24 +158,24 @@ namespace Arcade_r
 
             List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
 
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeVideoDirectory, emulator?.MarqueesVideoDirectory, DEFAULT_MARQUEES_VIDEO_DIRECTORY);
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeVideoDirectory, emulator?.MarqueesVideoDirectory, _defaultMarqueesVideoDirectory);
             if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
                 renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, DEFAULT_MARQUEES_DIRECTORY);
+            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, _defaultMarqueesDirectory);
             Texture texture = _textureCache.Load(directories, namesToTry);
             if (texture != null)
             {
-                SetupStaticImage(renderer.material, texture, true, true, _currentConfiguration.RenderSettings.MarqueeIntensity);
+                SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
             }
 
             SetupMagicPixels(renderer);
         }
 
-        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
+        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
         {
             Renderer renderer = GetNodeRenderer<ScreenNodeTag>(model);
             if (renderer == null)
@@ -220,34 +185,18 @@ namespace Arcade_r
 
             List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
 
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenVideoDirectory, emulator?.ScreensVideoDirectory, DEFAULT_SCREENS_VIDEO_DIRECTORY);
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenVideoDirectory, emulator?.ScreensVideoDirectory, _defaultScreensVideoDirectory);
             if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
                 renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, DEFAULT_SCREENS_DIRECTORY);
+            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, _defaultScreensDirectory);
             Texture texture = _textureCache.Load(directories, namesToTry);
             if (texture != null)
             {
-                SetupStaticImage(renderer.material, texture, true, true, GetScreenIntensity());
-            }
-
-            float GetScreenIntensity()
-            {
-                switch (modelConfiguration.ScreenType)
-                {
-                    case GameScreenType.Raster:
-                        return _currentConfiguration.RenderSettings.ScreenRasterIntensity;
-                    case GameScreenType.Vector:
-                        return _currentConfiguration.RenderSettings.ScreenVectorIntenstity;
-                    case GameScreenType.Pinball:
-                        return _currentConfiguration.RenderSettings.ScreenPinballIntensity;
-                    case GameScreenType.Unspecified:
-                    default:
-                        return 1f;
-                }
+                SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
             }
         }
 
@@ -261,14 +210,14 @@ namespace Arcade_r
 
             List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
 
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericVideoDirectory, emulator?.GenericsVideoDirectory, DEFAULT_GENERICS_VIDEO_DIRECTORY);
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericVideoDirectory, emulator?.GenericsVideoDirectory, _defaultGenericsVideoDirectory);
             if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
                 renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, DEFAULT_GENERICS_DIRECTORY);
+            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, _defaultGenericsDirectory);
             Texture texture = _textureCache.Load(directories, namesToTry);
             SetupStaticImage(renderer.material, texture);
         }
@@ -349,7 +298,7 @@ namespace Arcade_r
             float frameCount = videoPlayer.frameCount;
             float frameRate  = videoPlayer.frameRate;
             double duration  = frameCount / frameRate;
-            videoPlayer.time = UnityEngine.Random.Range(0.1f, 0.9f) * duration;
+            videoPlayer.time = Random.Range(0.1f, 0.9f) * duration;
 
             AudioSource audioSource  = videoPlayer.GetTargetAudioSource(0);
             audioSource.playOnAwake  = false;
@@ -393,6 +342,22 @@ namespace Arcade_r
                 return nodeTag.GetComponent<Renderer>();
             }
             return null;
+        }
+
+        private static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        {
+            switch (modelConfiguration.ScreenType)
+            {
+                case GameScreenType.Raster:
+                    return renderSettings.ScreenRasterIntensity;
+                case GameScreenType.Vector:
+                    return renderSettings.ScreenVectorIntenstity;
+                case GameScreenType.Pinball:
+                    return renderSettings.ScreenPinballIntensity;
+                case GameScreenType.Unspecified:
+                default:
+                    return 1f;
+            }
         }
     }
 }

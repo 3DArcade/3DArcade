@@ -20,12 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
-    public enum ArcadeType
+    public sealed class ArcadeFpsGrabState : ArcadeState
     {
-        None,
-        Fps,
-        Cyl
+        public ArcadeFpsGrabState(ArcadeContext context)
+        : base(context)
+        {
+        }
+
+        public override void OnEnter()
+        {
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
+        }
+
+        public override void OnExit()
+        {
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
+        }
     }
 }

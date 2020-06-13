@@ -34,14 +34,14 @@ namespace Arcade_r
         public ArcadeInternalGameState(ArcadeContext context)
         : base(context)
         {
-            _libretroController = new InternalGameController(_context.App.PlayerControls.transform);
+            _libretroController = new InternalGameController(_context.App.PlayerFpsControls.transform);
         }
 
         public override void OnEnter()
         {
             Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
-            _screenNode = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>();
+            _screenNode = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>(true);
             if (_screenNode != null)
             {
                 EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
@@ -55,7 +55,7 @@ namespace Arcade_r
                 }
             }
 
-            _context.TransitionTo<ArcadeNormalState>();
+            _context.TransitionTo<ArcadeFpsNormalState>();
         }
 
         public override void OnExit()
@@ -68,19 +68,19 @@ namespace Arcade_r
         {
             _libretroController.UpdateGame(dt);
 
-            if (_context.App.PlayerControls.GlobalActions.Quit.triggered)
+            if (_context.App.PlayerFpsControls.GlobalActions.Quit.triggered)
             {
-                _context.TransitionTo<ArcadeNormalState>();
+                _context.TransitionTo<ArcadeFpsNormalState>();
             }
             else if (Keyboard.current.f1Key.wasPressedThisFrame)
             {
-                if (_context.App.PlayerControls.FirstPersonActions.Look.enabled)
+                if (_context.App.PlayerFpsControls.FirstPersonActions.Look.enabled)
                 {
-                    _context.App.PlayerControls.FirstPersonActions.Look.Disable();
+                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
                 }
                 else
                 {
-                    _context.App.PlayerControls.FirstPersonActions.Look.Enable();
+                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Enable();
                 }
             }
         }

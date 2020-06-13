@@ -24,11 +24,11 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeNormalState : ArcadeState
+    public sealed class ArcadeFpsNormalState : ArcadeState
     {
         private const float INTERACT_MAX_DISTANCE = 2.5f;
 
-        public ArcadeNormalState(ArcadeContext context)
+        public ArcadeFpsNormalState(ArcadeContext context)
         : base(context)
         {
         }
@@ -37,10 +37,10 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerControls.FirstPersonActions.Enable();
+            _context.App.PlayerFpsControls.FirstPersonActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerControls.FirstPersonActions.Look.Disable();
+                _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
             }
 
             _context.CurrentModelConfiguration = null;
@@ -52,46 +52,46 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerControls.FirstPersonActions.Disable();
+            _context.App.PlayerFpsControls.FirstPersonActions.Disable();
 
             _context.App.UIController.DisableNormalUI();
         }
 
         public override void Update(float dt)
         {
-            if (_context.App.PlayerControls.GlobalActions.Quit.triggered)
+            if (_context.App.PlayerFpsControls.GlobalActions.Quit.triggered)
             {
                 SystemUtils.ExitApp();
             }
 
-            if (_context.App.PlayerControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.App.PlayerFpsControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerControls.FirstPersonActions.Look.Enable();
+                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerControls.FirstPersonActions.Look.Disable();
+                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
                 }
             }
 
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
-                                                   _context.App.Camera,
+                                                   _context.App.PlayerFpsControls.Camera,
                                                    INTERACT_MAX_DISTANCE,
                                                    _context.RaycastLayers);
 
             _context.VideoPlayerController.UpdateVideosState();
 
-            if (!Cursor.visible && _context.App.PlayerControls.FirstPersonActions.Interact.triggered)
+            if (!Cursor.visible && _context.App.PlayerFpsControls.FirstPersonActions.Interact.triggered)
             {
                 HandleInteraction();
             }
 
-            if (_context.App.PlayerControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_context.App.PlayerFpsControls.FirstPersonActions.ToggleMoveCab.triggered)
             {
-                _context.TransitionTo<ArcadeMoveCabState>();
+                _context.TransitionTo<ArcadeFpsMoveCabState>();
             }
         }
 
@@ -110,22 +110,28 @@ namespace Arcade_r
             {
                 switch (_context.CurrentModelConfiguration.InteractionType)
                 {
-                    case InteractionType.Internal:
+                    case InteractionType.GameInternal:
                     {
                         _context.TransitionTo<ArcadeInternalGameState>();
                     }
                     break;
-                    case InteractionType.External:
+                    case InteractionType.GameExternal:
                     {
                         _context.TransitionTo<ArcadeExternalGameState>();
                     }
                     break;
-                    case InteractionType.ArcadeConfiguration:
+                    case InteractionType.FpsArcadeConfiguration:
                     {
-                        _ = _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, _context.CurrentModelConfiguration.ArcadeType);
+                        _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, ArcadeType.Fps);
                     }
                     break;
-                    case InteractionType.MenuConfiguration:
+                    case InteractionType.CylArcadeConfiguration:
+                    {
+                        _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, ArcadeType.Cyl);
+                    }
+                    break;
+                    case InteractionType.FpsMenuConfiguration:
+                    case InteractionType.CylMenuConfiguration:
                     case InteractionType.URL:
                     case InteractionType.None:
                     default:

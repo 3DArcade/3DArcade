@@ -27,19 +27,16 @@ namespace Arcade_r
 {
     public sealed class MoveCabContext : FSM.Context<MoveCabState>
     {
-        public readonly PlayerControls PlayerControls;
-        public readonly Camera Camera;
+        public readonly PlayerFpsControls PlayerFpsControls;
 
         public readonly MoveCabData Data;
         public readonly LayerMask RaycastLayers;
 
-        public MoveCabContext(PlayerControls playerControls, Camera camera)
+        public MoveCabContext(PlayerFpsControls playerFpsControls)
         {
-            Assert.IsNotNull(playerControls);
-            Assert.IsNotNull(camera);
+            Assert.IsNotNull(playerFpsControls);
 
-            PlayerControls = playerControls;
-            Camera         = camera;
+            PlayerFpsControls = playerFpsControls;
 
             Data          = new MoveCabData();
             RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");

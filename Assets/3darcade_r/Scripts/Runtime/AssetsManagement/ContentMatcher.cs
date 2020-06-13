@@ -22,11 +22,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Arcade_r
 {
-    public class ContentMatcher
+    public sealed class ContentMatcher
     {
         public delegate List<string> GetNamesToTryDelegate(ModelConfiguration modelConfiguration, EmulatorConfiguration emulator);
 
@@ -35,30 +34,47 @@ namespace Arcade_r
         private const string DEFAULT_GAME_VERT_MODEL = "default80vert";
         private const string DEFAULT_PROP_MODEL      = "penguin";
 
-        private readonly Database<EmulatorConfiguration> _emulatorDatabase;
+        private readonly EmulatorDatabase _emulatorDatabase;
 
         public ContentMatcher(Database<EmulatorConfiguration> emulatorDatabase)
-        {
-            _emulatorDatabase = emulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
-        }
+            => _emulatorDatabase = emulatorDatabase as EmulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
 
         public EmulatorConfiguration GetEmulatorForConfiguration(ModelConfiguration modelConfiguration)
         {
             switch (modelConfiguration.InteractionType)
             {
-                case InteractionType.Internal:
-                case InteractionType.External:
+                case InteractionType.GameInternal:
+                case InteractionType.GameExternal:
                 case InteractionType.URL:
+                {
                     return _emulatorDatabase.Get(modelConfiguration.Emulator);
+                }
+                case InteractionType.FpsArcadeConfiguration:
+                {
+                    return _emulatorDatabase.FpsArcadeLauncher;
+                }
+                case InteractionType.CylArcadeConfiguration:
+                {
+                    return _emulatorDatabase.CylArcadeLauncher;
+                }
+                case InteractionType.FpsMenuConfiguration:
+                {
+                    return _emulatorDatabase.FpsMenuLauncher;
+                }
+                case InteractionType.CylMenuConfiguration:
+                {
+                    return _emulatorDatabase.CylMenuLauncher;
+                }
+                case InteractionType.None:
+                default:
+                    break;
             }
 
             return null;
         }
 
         public static List<string> GetNamesToTryForArcade(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
-        {
-            return new List<string> { modelConfiguration.Id, DEFAULT_ARCADE_MODEL };
-        }
+            => new List<string> { modelConfiguration.Id, DEFAULT_ARCADE_MODEL };
 
         public static List<string> GetNamesToTryForGame(ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
@@ -110,8 +126,6 @@ namespace Arcade_r
         }
 
         public static List<string> GetNamesToTryForProp(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
-        {
-            return new List<string> { modelConfiguration.Id, DEFAULT_PROP_MODEL };
-        }
+            => new List<string> { modelConfiguration.Id, DEFAULT_PROP_MODEL };
     }
 }

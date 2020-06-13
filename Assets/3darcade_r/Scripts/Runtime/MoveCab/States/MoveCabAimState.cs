@@ -29,9 +29,9 @@ namespace Arcade_r
     {
         private const int NUM_FRAMES_TO_SKIP = 10;
 
-        private const float _raycastMaxDistance      = 22.0f;
-        private const float _movementSpeedMultiplier = 0.8f;
-        private const float _rotationSpeedMultiplier = 0.8f;
+        private static readonly float _raycastMaxDistance      = 22.0f;
+        private static readonly float _movementSpeedMultiplier = 0.8f;
+        private static readonly float _rotationSpeedMultiplier = 0.8f;
 
         public MoveCabAimState(MoveCabContext context)
         : base(context)
@@ -61,20 +61,20 @@ namespace Arcade_r
                 {
                     rayPosition = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
                 }
-                Ray ray = _context.Camera.ScreenPointToRay(rayPosition);
+                Ray ray = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
                 MoveCabController.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
             }
 
             if (_data.ModelSetup != null && _data.ModelSetup.MoveCabMovable)
             {
-                Vector2 positionInput = _context.PlayerControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
-                float rotationInput   = _context.PlayerControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
+                Vector2 positionInput = _context.PlayerFpsControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
+                float rotationInput   = _context.PlayerFpsControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
                 _data.AimPosition     = positionInput * _movementSpeedMultiplier;
                 _data.AimRotation     = rotationInput * _rotationSpeedMultiplier;
 
                 if (_data.ModelSetup.MoveCabGrabbable)
                 {
-                    if (_context.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+                    if (_context.PlayerFpsControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
                     {
                         _context.TransitionTo<MoveCabGrabState>();
                     }

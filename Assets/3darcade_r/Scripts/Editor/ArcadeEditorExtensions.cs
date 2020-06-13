@@ -90,7 +90,7 @@ namespace Arcade_r.ArcadeEditorExtensions
 
         private static bool _closeAfterImport = true;
 
-        [MenuItem("3DArcade_r/Import a new Model...", false, 10003)]
+        [MenuItem("3DArcade_r/Import a new Model...", false, 10000)]
         private static void ShowWindow() => GetWindow<ImportAssistantWindow>("Import Assistant").minSize = new Vector2(290f, 120f);
 
         private void OnGUI()

@@ -55,7 +55,7 @@ namespace Arcade_r
                 }
             }
 
-            _context.TransitionTo<ArcadeNormalState>();
+            _context.TransitionTo<ArcadeFpsNormalState>();
         }
 
         public override void OnExit()
@@ -73,7 +73,7 @@ namespace Arcade_r
             RestoreUnityWindow();
 
             _externalAppController.StopCurrent();
-            _context.TransitionTo<ArcadeNormalState>();
+            _context.TransitionTo<ArcadeFpsNormalState>();
         }
 
         private void OnAppStarted(OSUtils.ProcessStartedData data, EmulatorConfiguration emulator, string game)

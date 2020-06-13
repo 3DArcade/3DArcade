@@ -24,9 +24,45 @@ namespace Arcade_r
 {
     public sealed class EmulatorDatabase : Database<EmulatorConfiguration>
     {
+        public readonly EmulatorConfiguration FpsArcadeLauncher;
+        public readonly EmulatorConfiguration CylArcadeLauncher;
+        public readonly EmulatorConfiguration FpsMenuLauncher;
+        public readonly EmulatorConfiguration CylMenuLauncher;
+
         public EmulatorDatabase(IVirtualFileSystem virtualFileSystem)
         : base(virtualFileSystem, "emulator_cfgs")
         {
+            FpsArcadeLauncher = MakeInternalLauncher("FpsArcadeLauncher", "internal_fps_arcade_launcher");
+            CylArcadeLauncher = MakeInternalLauncher("CylArcadeLauncher", "internal_cyl_arcade_launcher");
+            FpsMenuLauncher   = MakeInternalLauncher("FpsMenuLauncher", "internal_fps_menu_launcher");
+            CylMenuLauncher   = MakeInternalLauncher("CylMenuLauncher", "internal_cyl_menu_launcher");
+        }
+
+        private EmulatorConfiguration MakeInternalLauncher(string descriptiveName, string id)
+        {
+            string mediaFolder = _virtualFileSystem.GetDirectory("media");
+            return new EmulatorConfiguration
+            {
+                DescriptiveName        = descriptiveName,
+                Id                     = id,
+                Directory              = null,
+                WorkingDirectory       = null,
+                Executable             = null,
+                Arguments              = null,
+                GamesDirectory         = null,
+                SupportedExtensions    = null,
+                Model                  = null,
+                MarqueesDirectory      = $"{mediaFolder}/Marquees",
+                MarqueesVideoDirectory = $"{mediaFolder}/MarqueesVideo",
+                ScreensDirectory       = $"{mediaFolder}/Screens",
+                ScreensVideoDirectory  = $"{mediaFolder}/ScreensVideo",
+                TitlesDirectory        = $"{mediaFolder}/Titles",
+                GenericsDirectory      = $"{mediaFolder}/Generics",
+                GenericsVideoDirectory = $"{mediaFolder}/GenericsVideo",
+                InfoDirectory          = $"{mediaFolder}/Info",
+                About                  = $"{mediaFolder}/About",
+                OutputCommandLine      = false
+            };
         }
     }
 }

@@ -23,27 +23,53 @@
 using System.Diagnostics.CodeAnalysis;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     public static class EditorMenus
     {
-        [MenuItem("3DArcade_r/Save Arcade", false, 1), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        public static bool IsFpsArcadeType { get; private set; } = true;
+
+        [MenuItem("3DArcade_r/Switch Arcade Type", false, 0), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        private static void MenuSwitchArcadeType()
+        {
+            IsFpsArcadeType = !IsFpsArcadeType;
+
+            GameObject playerControls = GameObject.Find("PlayerControls");
+            Assert.IsNotNull(playerControls);
+
+            PlayerFpsControls fpsControls = playerControls.GetComponentInChildren<PlayerFpsControls>(true);
+            Assert.IsNotNull(fpsControls);
+            PlayerCylControls cylControls = playerControls.GetComponentInChildren<PlayerCylControls>(true);
+            Assert.IsNotNull(cylControls);
+
+            if (IsFpsArcadeType)
+            {
+                fpsControls.gameObject.SetActive(true);
+                cylControls.gameObject.SetActive(false);
+            }
+            else
+            {
+                fpsControls.gameObject.SetActive(false);
+                cylControls.gameObject.SetActive(true);
+            }
+
+            Debug.Log($"[UNITY EDITOR] Switched current editor arcade type to {(IsFpsArcadeType ? "FpsArcade" : "CylArcade")}");
+        }
+
+        [MenuItem("3DArcade_r/Save Arcade", false, 101), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuSaveArcade()
         {
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
-            if (!loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
+            if (loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeCfgComponent))
             {
-                return;
+                loadSaveSubstitute.SaveArcade(arcadeCfgComponent);
             }
-            loadSaveSubstitute.SaveArcade(arcadeConfigurationComponent);
         }
 
         // Validation
-        [MenuItem("3DArcade_r/Save Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
-        private static bool MenuSaveArcadeValidation()
-        {
-            return !Application.isPlaying;
-        }
+        [MenuItem("3DArcade_r/Save FpsArcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        private static bool MenuSaveArcadeValidation() => !Application.isPlaying;
     }
 }

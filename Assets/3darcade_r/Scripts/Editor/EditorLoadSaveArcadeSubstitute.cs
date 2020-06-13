@@ -36,8 +36,10 @@ namespace Arcade_r
         private readonly IVirtualFileSystem _virtualFileSystem;
         private readonly AssetCache<GameObject> _gameObjectCache;
         private readonly Database<EmulatorConfiguration> _emulatorDatabase;
-        private readonly PlayerControls _player;
-        private readonly ArcadeController _arcadeController;
+        private readonly PlayerFpsControls _playerFpsControls;
+        private readonly PlayerCylControls _playerCylControls;
+        private readonly ArcadeController _fpsArcadeController;
+        private readonly ArcadeController _cylArcadeController;
 
         public EditorLoadSaveArcadeSubstitute()
         {
@@ -48,23 +50,41 @@ namespace Arcade_r
 
             ArcadeHierarchy = new ArcadeHierarchy();
 
+            string dataPath    = SystemUtils.GetDataPath();
             _virtualFileSystem = new VirtualFileSystem();
-            _virtualFileSystem.MountDirectory("arcade_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Arcades");
-            _virtualFileSystem.MountDirectory("emulator_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Emulators");
-            _virtualFileSystem.MountDirectory("gamelist_cfgs", $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Gamelists");
+            _virtualFileSystem.MountDirectory("arcade_cfgs", $"{dataPath}/3darcade_r~/Configuration/Arcades");
+            _virtualFileSystem.MountDirectory("emulator_cfgs", $"{dataPath}/3darcade_r~/Configuration/Emulators");
+            _virtualFileSystem.MountDirectory("gamelist_cfgs", $"{dataPath}/3darcade_r~/Configuration/Gamelists");
+            _virtualFileSystem.MountDirectory("medias", $"{dataPath}/3darcade_r~/Media");
 
-            _gameObjectCache  = new GameObjectCache();
+            _gameObjectCache = new GameObjectCache();
 
             ArcadeDatabase    = new ArcadeDatabase(_virtualFileSystem);
             _emulatorDatabase = new EmulatorDatabase(_virtualFileSystem);
 
-            _player = Object.FindObjectOfType<PlayerControls>();
-            Assert.IsNotNull(_player);
+            GameObject playerControls = GameObject.Find("PlayerControls");
+            Assert.IsNotNull(playerControls);
+            _playerFpsControls = playerControls.GetComponentInChildren<PlayerFpsControls>(true);
+            Assert.IsNotNull(_playerFpsControls);
+            _playerCylControls = playerControls.GetComponentInChildren<PlayerCylControls>(true);
+            Assert.IsNotNull(_playerCylControls);
 
-            _arcadeController = new ArcadeController(ArcadeHierarchy, _gameObjectCache, _player.transform, _emulatorDatabase, null, null);
+            if (EditorMenus.IsFpsArcadeType)
+            {
+                _playerFpsControls.gameObject.SetActive(true);
+                _playerCylControls.gameObject.SetActive(false);
+            }
+            else
+            {
+                _playerFpsControls.gameObject.SetActive(false);
+                _playerCylControls.gameObject.SetActive(true);
+            }
+
+            _fpsArcadeController = new FpsArcadeController(ArcadeHierarchy, _playerFpsControls.transform, _playerCylControls.transform, _emulatorDatabase, _gameObjectCache, null, null);
+            _cylArcadeController = new CylArcadeController(ArcadeHierarchy, _playerFpsControls.transform, _playerCylControls.transform, _emulatorDatabase, _gameObjectCache, null, null);
         }
 
-        public void LoadAndStartArcade(string name, ArcadeType type)
+        public void LoadAndStartArcade(string name)
         {
             ArcadeConfiguration arcadeConfiguration = ArcadeDatabase.Get(name);
             if (arcadeConfiguration == null)
@@ -72,42 +92,53 @@ namespace Arcade_r
                 return;
             }
 
-            if (!ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
-            {
-                arcadeConfigurationComponent = ArcadeHierarchy.RootNode.gameObject.AddComponent<ArcadeConfigurationComponent>();
-            }
-            arcadeConfigurationComponent.Restore(arcadeConfiguration);
+            ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>()
+                                               .Restore(arcadeConfiguration);
 
             ArcadeHierarchy.Reset();
-            _ = _arcadeController.StartArcade(arcadeConfiguration, type);
+            if (EditorMenus.IsFpsArcadeType)
+            {
+                _ = _fpsArcadeController.StartArcade(arcadeConfiguration);
+            }
+            else
+            {
+                _ = _cylArcadeController.StartArcade(arcadeConfiguration);
+            }
         }
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)
         {
-            Camera camera = Camera.main;
-            CinemachineVirtualCamera vCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
-
-            CameraSettings cameraSettings = new CameraSettings
+            Camera fpsCamera                          = _playerFpsControls.Camera;
+            CinemachineVirtualCamera fpsVirtualCamera = _playerFpsControls.VirtualCamera;
+            CameraSettings fpsCameraSettings          = new CameraSettings
             {
-                Position      = _player.transform.position,
-                Rotation      = MathUtils.CorrectEulerAngles(camera.transform.eulerAngles),
-                Height        = vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
-                Orthographic  = camera.orthographic,
-                FieldOfView   = vCamera.m_Lens.FieldOfView,
-                AspectRatio   = vCamera.m_Lens.OrthographicSize,
-                NearClipPlane = vCamera.m_Lens.NearClipPlane,
-                FarClipPlane  = vCamera.m_Lens.FarClipPlane,
-                ViewportRect  = camera.rect
+                Position      = _playerFpsControls.transform.position,
+                Rotation      = MathUtils.CorrectEulerAngles(fpsCamera.transform.eulerAngles),
+                Height        = fpsVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+                Orthographic  = fpsCamera.orthographic,
+                FieldOfView   = fpsVirtualCamera.m_Lens.FieldOfView,
+                AspectRatio   = fpsVirtualCamera.m_Lens.OrthographicSize,
+                NearClipPlane = fpsVirtualCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = fpsVirtualCamera.m_Lens.FarClipPlane,
+                ViewportRect  = fpsCamera.rect
             };
 
-            if (EditorLoadArcadeWindow.AsCylArcade)
+            Camera cylCamera                          = _playerCylControls.Camera;
+            CinemachineVirtualCamera cylVirtualCamera = _playerCylControls.VirtualCamera;
+            CameraSettings cylCameraSettings          = new CameraSettings
             {
-                _ = arcadeConfiguration.Save(ArcadeDatabase, null, cameraSettings);
-            }
-            else
-            {
-                _ = arcadeConfiguration.Save(ArcadeDatabase, cameraSettings, null);
-            }
+                Position      = _playerFpsControls.transform.position,
+                Rotation      = MathUtils.CorrectEulerAngles(cylCamera.transform.eulerAngles),
+                Height        = cylVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+                Orthographic  = cylCamera.orthographic,
+                FieldOfView   = cylVirtualCamera.m_Lens.FieldOfView,
+                AspectRatio   = cylVirtualCamera.m_Lens.OrthographicSize,
+                NearClipPlane = cylVirtualCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = cylVirtualCamera.m_Lens.FarClipPlane,
+                ViewportRect  = cylCamera.rect
+            };
+
+            _ = arcadeConfiguration.Save(ArcadeDatabase, fpsCameraSettings, cylCameraSettings);
         }
     }
 }

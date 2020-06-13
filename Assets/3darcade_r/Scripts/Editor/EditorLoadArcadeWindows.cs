@@ -28,17 +28,16 @@ namespace Arcade_r
 {
     public sealed class EditorLoadArcadeWindow : EditorWindow
     {
-        public static bool AsCylArcade { get; private set; }
-
         private static EditorLoadSaveArcadeSubstitute _loadSaveSubstitute;
+        private static string[] _configurationNames;
 
-        private string[] _configurationNames;
         private Vector2 _scrollPos = Vector2.zero;
 
-        [MenuItem("3DArcade_r/Load Arcade", false, 0), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        [MenuItem("3DArcade_r/Load Arcade", false, 100), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void ShowWindow()
         {
             _loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
+            _configurationNames = _loadSaveSubstitute.ArcadeDatabase.GetNames();
 
             EditorLoadArcadeWindow window = GetWindow<EditorLoadArcadeWindow>("Load Arcade");
             window.minSize = new Vector2(120f, 120f);
@@ -47,25 +46,13 @@ namespace Arcade_r
         private void OnGUI()
         {
             GUILayout.Space(8f);
-            DrawTypeToggle();
             DrawConfigurationsList();
-        }
-
-        private void DrawTypeToggle()
-        {
-            GUILayout.BeginHorizontal();
-            {
-                GUILayout.Label("As CylArcade?", GUILayout.Width(110f));
-                AsCylArcade = GUILayout.Toggle(AsCylArcade, string.Empty, GUILayout.Height(EditorGUIUtility.singleLineHeight));
-            }
-            GUILayout.EndHorizontal();
         }
 
         private void DrawConfigurationsList()
         {
             if (_configurationNames == null)
             {
-                _configurationNames = _loadSaveSubstitute.ArcadeDatabase.GetNames();
             }
 
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos, false, false);
@@ -73,7 +60,7 @@ namespace Arcade_r
             {
                 if (GUILayout.Button(name))
                 {
-                    _loadSaveSubstitute.LoadAndStartArcade(name, AsCylArcade ? ArcadeType.Cyl : ArcadeType.Fps);
+                    _loadSaveSubstitute.LoadAndStartArcade(name);
                     GetWindow<EditorLoadArcadeWindow>().Close();
                 }
             }
@@ -82,9 +69,6 @@ namespace Arcade_r
 
         // Validation
         [MenuItem("3DArcade_r/Load Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
-        private static bool LoadArcadeWindowValidation()
-        {
-            return !Application.isPlaying;
-        }
+        private static bool LoadArcadeWindowValidation() => !Application.isPlaying;
     }
 }

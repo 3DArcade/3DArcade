@@ -22,13 +22,21 @@
 
 namespace Arcade_r
 {
+    public enum ArcadeType
+    {
+        Fps,
+        Cyl
+    }
+
     public enum InteractionType
     {
         None,
-        Internal,
-        External,
+        GameInternal,
+        GameExternal,
         URL,
-        ArcadeConfiguration,
-        MenuConfiguration
+        FpsArcadeConfiguration,
+        CylArcadeConfiguration,
+        FpsMenuConfiguration,
+        CylMenuConfiguration,
     }
 }

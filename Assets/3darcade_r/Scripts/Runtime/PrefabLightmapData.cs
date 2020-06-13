@@ -148,7 +148,7 @@ public class PrefabLightmapData : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [MenuItem("3DArcade_r/Bake Prefab Lightmaps", false, 100), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+    [MenuItem("3DArcade_r/Bake Prefab Lightmaps", false, 9000), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
     private static void GenerateLightmapInfo()
     {
         if (Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand)

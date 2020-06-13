@@ -118,7 +118,7 @@ namespace Arcade_r
                 return;
             }
 
-            loadSaveSubstitute.LoadAndStartArcade(arcadeConfigurationComponent.Id, EditorLoadArcadeWindow.AsCylArcade ? ArcadeType.Cyl : ArcadeType.Fps);
+            loadSaveSubstitute.LoadAndStartArcade(arcadeConfigurationComponent.Id);
         }
     }
 }

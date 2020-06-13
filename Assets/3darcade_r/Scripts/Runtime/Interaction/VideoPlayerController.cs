@@ -57,7 +57,7 @@ namespace Arcade_r
 
             VideoPlayer[] inRange = _overlapSphereHits.Distinct()
                                                       .Where(col => col != null)
-                                                      .Select(col => col.GetComponentInChildren<VideoPlayer>())
+                                                      .Select(col => col.GetComponentInChildren<VideoPlayer>(true))
                                                       .Where(vp => vp != null && vp.isPrepared)
                                                       .OrderBy(vp => MathUtils.DistanceFast(vp.transform.position, _player.position))
                                                       .Take(NUM_VIDEOS_WITH_SOUND)

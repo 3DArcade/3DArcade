@@ -59,7 +59,14 @@ namespace Arcade_r
         {
             if (_loaded)
             {
-                _context.TransitionTo<ArcadeNormalState>();
+                if (_context.CurrentArcadeType == ArcadeType.Fps)
+                {
+                    _context.TransitionTo<ArcadeFpsNormalState>();
+                }
+                else if (_context.CurrentArcadeType == ArcadeType.Cyl)
+                {
+                    _context.TransitionTo<ArcadeCylNormalState>();
+                }
             }
         }
 

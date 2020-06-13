@@ -40,7 +40,7 @@ namespace Arcade_r
         {
             Debug.Log(">>> <color=green>Entered</color> MoveCabGrabState");
 
-            _savedValues = MoveCabController.InitGrabMode(_data, _context.Camera);
+            _savedValues = MoveCabController.InitGrabMode(_data, _context.PlayerFpsControls.Camera);
         }
 
         public override void OnExit()
@@ -55,10 +55,10 @@ namespace Arcade_r
         {
             bool useMousePosition = Mouse.current != null && Cursor.visible;
             Vector2 rayPosition   = useMousePosition ? Mouse.current.position.ReadValue() : _data.ScreenPoint;
-            Ray ray               = _context.Camera.ScreenPointToRay(rayPosition);
-            MoveCabController.AutoMoveAndRotate(_data, ray, _context.PlayerControls.transform.forward, _raycastMaxDistance, _context.RaycastLayers);
+            Ray ray               = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
+            MoveCabController.AutoMoveAndRotate(_data, ray, _context.PlayerFpsControls.transform.forward, _raycastMaxDistance, _context.RaycastLayers);
 
-            if (_context.PlayerControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+            if (_context.PlayerFpsControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
             {
                 _context.TransitionTo<MoveCabAimState>();
             }

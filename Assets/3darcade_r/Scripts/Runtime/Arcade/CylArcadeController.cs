@@ -21,24 +21,35 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeGrabState : ArcadeState
+    public sealed class CylArcadeController : ArcadeController
     {
-        public ArcadeGrabState(ArcadeContext context)
-        : base(context)
+        public CylArcadeController(ArcadeHierarchy arcadeHierarchy,
+                                   Transform playerFps,
+                                   Transform playerCyl,
+                                   Database<EmulatorConfiguration> emulatorDatabase,
+                                   AssetCache<GameObject> gameObjectCache,
+                                   AssetCache<Texture> textureCache,
+                                   AssetCache<string> videoCache)
+        : base(arcadeHierarchy, playerFps, playerCyl, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
         }
 
-        public override void OnEnter()
+        public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
-            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
-        }
+            Assert.IsNotNull(arcadeConfiguration);
 
-        public override void OnExit()
-        {
-            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
+            _playerFps.gameObject.SetActive(false);
+            _playerCyl.gameObject.SetActive(true);
+
+            SetupPlayer(_playerCyl, arcadeConfiguration.CylArcadeProperties.CameraSettings);
+
+            SetupWorld(arcadeConfiguration);
+
+            return true;
         }
     }
 }

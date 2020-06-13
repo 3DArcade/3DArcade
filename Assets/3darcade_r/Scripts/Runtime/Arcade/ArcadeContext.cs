@@ -21,7 +21,6 @@
  * SOFTWARE. */
 
 using Cinemachine;
-using System;
 using UnityEngine;
 
 namespace Arcade_r
@@ -29,7 +28,8 @@ namespace Arcade_r
     public sealed class ArcadeContext : FSM.Context<ArcadeState>
     {
         public readonly App App;
-        public readonly ArcadeController ArcadeController;
+        public readonly ArcadeController FpsArcadeController;
+        public readonly ArcadeController CylArcadeController;
         public readonly VideoPlayerController VideoPlayerController;
         public readonly LayerMask RaycastLayers;
 
@@ -44,23 +44,27 @@ namespace Arcade_r
         public ArcadeContext(App app, GeneralConfiguration generalConfiguration)
         {
             App                   = app;
-            ArcadeController      = new ArcadeController(app.ArcadeHierarchy, App.GameObjectCache, App.PlayerControls.transform, App.EmulatorDatabase, App.TextureCache, App.VideoCache);
-            VideoPlayerController = new VideoPlayerController(app.PlayerControls.transform, _videoControlLayers);
+            FpsArcadeController   = new FpsArcadeController(app.ArcadeHierarchy, App.PlayerFpsControls.transform, App.PlayerCylControls.transform, App.EmulatorDatabase, App.GameObjectCache, App.TextureCache, App.VideoCache);
+            CylArcadeController   = new CylArcadeController(app.ArcadeHierarchy, App.PlayerFpsControls.transform, App.PlayerCylControls.transform, App.EmulatorDatabase, App.GameObjectCache, App.TextureCache, App.VideoCache);
+            VideoPlayerController = new VideoPlayerController(app.PlayerFpsControls.transform, _videoControlLayers);
             RaycastLayers         = _interactionLayers;
 
-            SetCurrentArcadeConfiguration(generalConfiguration.StartingArcade, generalConfiguration.StartingArcadeType);
+            _ = SetCurrentArcadeConfiguration(generalConfiguration.StartingArcade, generalConfiguration.StartingArcadeType);
         }
 
-        public bool SetAndStartCurrentArcadeConfiguration(string id, ArcadeType type)
-        {
-            SetCurrentArcadeConfiguration(id, type);
-            return StartCurrentArcade();
-        }
-
-        public void SetCurrentArcadeConfiguration(string id, ArcadeType type)
+        public bool SetCurrentArcadeConfiguration(string id, ArcadeType type)
         {
             CurrentArcadeConfiguration = App.ArcadeDatabase.Get(id);
             CurrentArcadeType          = type;
+            return CurrentArcadeConfiguration != null;
+        }
+
+        public void SetAndStartCurrentArcadeConfiguration(string id, ArcadeType type)
+        {
+            if (SetCurrentArcadeConfiguration(id, type))
+            {
+                TransitionTo<ArcadeLoadState>();
+            }
         }
 
         public bool StartCurrentArcade()
@@ -75,14 +79,14 @@ namespace Arcade_r
             ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>();
             cfgComponent.Restore(CurrentArcadeConfiguration);
 
-            switch (CurrentArcadeType)
+            App.ArcadeHierarchy.Reset();
+            if (CurrentArcadeType == ArcadeType.Fps)
             {
-                case ArcadeType.Fps:
-                case ArcadeType.Cyl:
-                {
-                    App.ArcadeHierarchy.Reset();
-                    return ArcadeController.StartArcade(CurrentArcadeConfiguration, CurrentArcadeType);
-                }
+                return FpsArcadeController.StartArcade(CurrentArcadeConfiguration);
+            }
+            else if (CurrentArcadeType == ArcadeType.Cyl)
+            {
+                return CylArcadeController.StartArcade(CurrentArcadeConfiguration);
             }
 
             return false;
@@ -92,31 +96,37 @@ namespace Arcade_r
         {
             ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
 
-            CinemachineVirtualCamera vCamera = App.PlayerControls.GetComponentInChildren<CinemachineVirtualCamera>();
-
-            CameraSettings cameraSettings = new CameraSettings
+            Camera fpsCamera                          = App.PlayerFpsControls.Camera;
+            CinemachineVirtualCamera fpsVirtualCamera = App.PlayerFpsControls.VirtualCamera;
+            CameraSettings fpsCameraSettings          = new CameraSettings
             {
-                Position      = App.PlayerControls.transform.position,
-                Rotation      = MathUtils.CorrectEulerAngles(App.Camera.transform.eulerAngles),
-                Height        = vCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
-                Orthographic  = App.Camera.orthographic,
-                FieldOfView   = vCamera.m_Lens.FieldOfView,
-                AspectRatio   = vCamera.m_Lens.OrthographicSize,
-                NearClipPlane = vCamera.m_Lens.NearClipPlane,
-                FarClipPlane  = vCamera.m_Lens.FarClipPlane,
-                ViewportRect  = App.Camera.rect
+                Position      = App.PlayerFpsControls.transform.position,
+                Rotation      = MathUtils.CorrectEulerAngles(fpsCamera.transform.eulerAngles),
+                Height        = fpsVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+                Orthographic  = fpsCamera.orthographic,
+                FieldOfView   = fpsVirtualCamera.m_Lens.FieldOfView,
+                AspectRatio   = fpsVirtualCamera.m_Lens.OrthographicSize,
+                NearClipPlane = fpsVirtualCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = fpsVirtualCamera.m_Lens.FarClipPlane,
+                ViewportRect  = fpsCamera.rect
             };
 
-            if (CurrentArcadeType == ArcadeType.Fps)
+            Camera cylCamera                          = App.PlayerCylControls.Camera;
+            CinemachineVirtualCamera cylVirtualCamera = App.PlayerCylControls.VirtualCamera;
+            CameraSettings cylCameraSettings          = new CameraSettings
             {
-                return cfgComponent != null && cfgComponent.Save(App.ArcadeDatabase, cameraSettings, null);
-            }
-            else if (CurrentArcadeType == ArcadeType.Cyl)
-            {
-                return cfgComponent != null && cfgComponent.Save(App.ArcadeDatabase, null, cameraSettings);
-            }
+                Position      = App.PlayerCylControls.transform.position,
+                Rotation      = MathUtils.CorrectEulerAngles(cylCamera.transform.eulerAngles),
+                Height        = cylVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
+                Orthographic  = cylCamera.orthographic,
+                FieldOfView   = cylVirtualCamera.m_Lens.FieldOfView,
+                AspectRatio   = cylVirtualCamera.m_Lens.OrthographicSize,
+                NearClipPlane = cylVirtualCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = cylVirtualCamera.m_Lens.FarClipPlane,
+                ViewportRect  = cylCamera.rect
+            };
 
-            return false;
+            return cfgComponent != null && cfgComponent.Save(App.ArcadeDatabase, fpsCameraSettings, cylCameraSettings);
         }
 
         public bool SaveCurrentArcadeConfigurationModels()
