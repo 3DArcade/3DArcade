@@ -38,14 +38,14 @@ namespace Arcade_r
         {
             Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FirstPersonActions.Enable();
+            _context.App.PlayerFpsControls.FpsArcadeActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
+                _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
             }
-            _context.App.PlayerFpsControls.FirstPersonActions.Interact.Disable();
+            _context.App.PlayerFpsControls.FpsArcadeActions.Interact.Disable();
 
-            _context.App.PlayerFpsControls.FirstPersonMoveCabActions.Enable();
+            _context.App.PlayerFpsControls.FpsMoveCabActions.Enable();
 
             _moveCabContext.TransitionTo<MoveCabAimState>();
 
@@ -56,8 +56,8 @@ namespace Arcade_r
         {
             Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FirstPersonActions.Disable();
-            _context.App.PlayerFpsControls.FirstPersonMoveCabActions.Disable();
+            _context.App.PlayerFpsControls.FpsArcadeActions.Disable();
+            _context.App.PlayerFpsControls.FpsMoveCabActions.Disable();
 
             _context.App.UIController.DisableMoveCabUI();
         }
@@ -70,7 +70,7 @@ namespace Arcade_r
                 _context.TransitionTo<ArcadeFpsNormalState>();
             }
 
-            if (_context.App.PlayerFpsControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_context.App.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
             {
                 _ = _context.SaveCurrentArcadeConfigurationModels();
                 _context.TransitionTo<ArcadeFpsNormalState>();
@@ -81,11 +81,11 @@ namespace Arcade_r
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Enable();
+                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
+                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
                 }
             }
 

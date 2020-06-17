@@ -20,137 +20,66 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using Cinemachine;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerCylControls : MonoBehaviour
+    public sealed class PlayerCylControls : PlayerControls
     {
-        [SerializeField] private Camera _camera                          = default;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera = default;
+        [SerializeField] private float _minHorizontalLookAngle = -40f;
+        [SerializeField] private float _maxHorizontalLookAngle = 40f;
 
-        [SerializeField] private float _walkSpeed = 3f;
-        [SerializeField] private float _runSpeed  = 6f;
-        [SerializeField] private float _jumpForce = 10f;
+        public InputSettingsActions.CylArcadeActions CylArcadeActions { get; private set; }
 
-        [SerializeField] private float _minVerticalLookAngle = -89f;
-        [SerializeField] private float _maxVerticalLookAngle = 89f;
-        [SerializeField] private float _extraGravity         = 40f;
-
-        public Camera Camera => _camera;
-        public CinemachineVirtualCamera VirtualCamera => _virtualCamera;
-
-        public InputSettingsActions.GlobalActions GlobalActions { get; private set; }
-        public InputSettingsActions.FirstPersonActions FirstPersonActions { get; private set; }
-        public InputSettingsActions.FirstPersonMoveCabActions FirstPersonMoveCabActions { get; private set; }
-
-        private CharacterController _characterController;
-        private InputSettingsActions _inputActions;
-
-        private Vector2 _movementInputValue;
-        private Vector2 _lookInputValue;
-        private bool _sprinting;
-        private bool _performJump;
-
-        private Vector3 _moveVelocity;
-        private float _lookHorizontal;
-        private float _lookVertical;
-
-        private bool _inputModifierDown;
+        private float _movementInputValue;
 
         private void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
-            Assert.IsNotNull(_characterController);
-            Assert.IsNotNull(Camera);
-            Assert.IsNotNull(VirtualCamera);
-
-            _inputActions             = new InputSettingsActions();
-            GlobalActions             = _inputActions.Global;
-            FirstPersonActions        = _inputActions.FirstPerson;
-            FirstPersonMoveCabActions = _inputActions.FirstPersonMoveCab;
-        }
-
-        private void OnEnable()
-        {
-            GlobalActions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            GlobalActions.Disable();
+            Construct();
+            CylArcadeActions = _inputActions.CylArcade;
         }
 
         private void Update()
         {
-            _inputModifierDown = GlobalActions.TempModifierWorkaround.ReadValue<float>() > 0.5f;
-
-            if (FirstPersonActions.Movement.enabled)
+            if (_inputActions.CylArcade.Movement.enabled)
             {
                 GatherMovementInputValues();
             }
             HandleMovement();
 
-            if (FirstPersonActions.Look.enabled)
+            if (_inputActions.CylArcade.Look.enabled)
             {
                 GatherLookInputValues();
                 HandleLook();
             }
         }
 
-        private void GatherMovementInputValues()
+        protected override void GatherMovementInputValues() => _movementInputValue = _inputActions.CylArcade.Movement.ReadValue<float>();
+
+        protected override void GatherLookInputValues() => _lookInputValue = _inputActions.CylArcade.Look.ReadValue<Vector2>();
+
+        protected override void HandleMovement()
         {
-            _movementInputValue = FirstPersonActions.Movement.ReadValue<Vector2>();
-            if (!_inputModifierDown)
+            _ = _characterController.Move(new Vector3(0f, 0f, _movementInputValue) * _walkSpeed * Time.deltaTime);
+
+            if (transform.localPosition.z < 0f)
             {
-                _sprinting   = FirstPersonActions.Sprint.ReadValue<float>() > 0f;
-                _performJump = FirstPersonActions.Jump.triggered;
+                transform.localPosition = new Vector3(0f, transform.localPosition.y, 0f);
             }
         }
 
-        private void GatherLookInputValues()
+        protected override void HandleLook()
         {
-            _lookInputValue = !_inputModifierDown ? FirstPersonActions.Look.ReadValue<Vector2>() : Vector2.zero;
-        }
-
-        private void HandleMovement()
-        {
-            if (_characterController.isGrounded)
-            {
-                _moveVelocity = new Vector3(_movementInputValue.x, -0.1f, _movementInputValue.y);
-                _moveVelocity.Normalize();
-
-                float speed   = _sprinting ? _runSpeed : _walkSpeed;
-                _moveVelocity = transform.TransformDirection(_moveVelocity) * speed;
-
-                if (_performJump)
-                {
-                    _moveVelocity.y = _jumpForce;
-                }
-            }
-
-            if ((_characterController.collisionFlags & CollisionFlags.Above) != 0 && _moveVelocity.y > 0f)
-            {
-                _moveVelocity.y -= _moveVelocity.y;
-            }
-
-            _moveVelocity.y -= _extraGravity * Time.deltaTime;
-            _ = _characterController.Move(_moveVelocity * Time.deltaTime);
-        }
-
-        private void HandleLook()
-        {
-            _lookHorizontal = _lookInputValue.x;
-            _lookVertical  += _lookInputValue.y;
+            _lookHorizontal += _lookInputValue.x;
+            _lookVertical   += _lookInputValue.y;
+            _lookHorizontal = Mathf.Clamp(_lookHorizontal, _minHorizontalLookAngle, _maxHorizontalLookAngle);
             _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
-            if (VirtualCamera != null)
+            if (_virtualCamera != null)
             {
-                VirtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
+                _virtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
             }
-            transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
+            transform.localEulerAngles = new Vector3(0f, _lookHorizontal, 0f);
         }
     }
 }

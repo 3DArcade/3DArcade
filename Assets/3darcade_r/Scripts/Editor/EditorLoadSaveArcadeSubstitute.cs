@@ -69,7 +69,7 @@ namespace Arcade_r
             _playerCylControls = playerControls.GetComponentInChildren<PlayerCylControls>(true);
             Assert.IsNotNull(_playerCylControls);
 
-            if (EditorMenus.IsFpsArcadeType)
+            if (_playerFpsControls.gameObject.activeInHierarchy)
             {
                 _playerFpsControls.gameObject.SetActive(true);
                 _playerCylControls.gameObject.SetActive(false);
@@ -80,8 +80,8 @@ namespace Arcade_r
                 _playerCylControls.gameObject.SetActive(true);
             }
 
-            _fpsArcadeController = new FpsArcadeController(ArcadeHierarchy, _playerFpsControls.transform, _playerCylControls.transform, _emulatorDatabase, _gameObjectCache, null, null);
-            _cylArcadeController = new CylArcadeController(ArcadeHierarchy, _playerFpsControls.transform, _playerCylControls.transform, _emulatorDatabase, _gameObjectCache, null, null);
+            _fpsArcadeController = new ArcadeFpsController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+            _cylArcadeController = new ArcadeCylController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
         }
 
         public void LoadAndStartArcade(string name)
@@ -96,7 +96,7 @@ namespace Arcade_r
                                                .Restore(arcadeConfiguration);
 
             ArcadeHierarchy.Reset();
-            if (EditorMenus.IsFpsArcadeType)
+            if (_playerFpsControls.gameObject.activeInHierarchy)
             {
                 _ = _fpsArcadeController.StartArcade(arcadeConfiguration);
             }

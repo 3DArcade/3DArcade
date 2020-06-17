@@ -26,7 +26,7 @@ namespace Arcade_r
 {
     public sealed class ArcadeCylNormalState : ArcadeState
     {
-        private const float INTERACT_MAX_DISTANCE = 2.5f;
+        private const float INTERACT_MAX_DISTANCE = 40f;
 
         public ArcadeCylNormalState(ArcadeContext context)
         : base(context)
@@ -37,22 +37,24 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerCylControls.FirstPersonActions.Enable();
+            _context.App.PlayerCylControls.CylArcadeActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerCylControls.FirstPersonActions.Look.Disable();
+                _context.App.PlayerCylControls.CylArcadeActions.Look.Disable();
             }
 
-            _context.CurrentModelConfiguration = null;
-
             _context.App.UIController.EnableNormalUI();
+
+            _context.App.CurrentPlayerControls = _context.App.PlayerCylControls;
+
+            _context.App.VideoPlayerController.SetPlayer(_context.App.PlayerCylControls.transform);
         }
 
         public override void OnExit()
         {
             Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerCylControls.FirstPersonActions.Disable();
+            _context.App.PlayerCylControls.CylArcadeActions.Disable();
 
             _context.App.UIController.DisableNormalUI();
         }
@@ -69,11 +71,11 @@ namespace Arcade_r
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerCylControls.FirstPersonActions.Look.Enable();
+                    _context.App.PlayerCylControls.CylArcadeActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerCylControls.FirstPersonActions.Look.Disable();
+                    _context.App.PlayerCylControls.CylArcadeActions.Look.Disable();
                 }
             }
 
@@ -82,16 +84,21 @@ namespace Arcade_r
                                                    INTERACT_MAX_DISTANCE,
                                                    _context.RaycastLayers);
 
-            _context.VideoPlayerController.UpdateVideosState();
+            _context.App.VideoPlayerController.UpdateVideosState();
 
-            if (!Cursor.visible && _context.App.PlayerCylControls.FirstPersonActions.Interact.triggered)
+            if (!Cursor.visible && _context.App.PlayerCylControls.CylArcadeActions.Interact.triggered)
             {
                 HandleInteraction();
             }
 
-            if (_context.App.PlayerCylControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_context.App.PlayerCylControls.CylArcadeActions.NavigateForward.triggered)
             {
-                _context.TransitionTo<ArcadeFpsMoveCabState>();
+                _context.App.ArcadeCylController.Forward(1);
+            }
+
+            if (_context.App.PlayerCylControls.CylArcadeActions.NavigateBackward.triggered)
+            {
+                _context.App.ArcadeCylController.Backward(1);
             }
         }
 

@@ -20,103 +20,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using Cinemachine;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerFpsControls : MonoBehaviour
+    public sealed class PlayerFpsControls : PlayerControls
     {
-        [SerializeField] private Camera _camera                          = default;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera = default;
-
-        [SerializeField] private float _walkSpeed = 3f;
         [SerializeField] private float _runSpeed  = 6f;
         [SerializeField] private float _jumpForce = 10f;
 
-        [SerializeField] private float _minVerticalLookAngle = -89f;
-        [SerializeField] private float _maxVerticalLookAngle = 89f;
-        [SerializeField] private float _extraGravity         = 40f;
+        [SerializeField] private float _extraGravity = 40f;
 
-        public Camera Camera => _camera;
-        public CinemachineVirtualCamera VirtualCamera => _virtualCamera;
-
-        public InputSettingsActions.GlobalActions GlobalActions { get; private set; }
-        public InputSettingsActions.FirstPersonActions FirstPersonActions { get; private set; }
-        public InputSettingsActions.FirstPersonMoveCabActions FirstPersonMoveCabActions { get; private set; }
-
-        private CharacterController _characterController;
-        private InputSettingsActions _inputActions;
+        public InputSettingsActions.FpsArcadeActions FpsArcadeActions { get; private set; }
+        public InputSettingsActions.FpsMoveCabActions FpsMoveCabActions { get; private set; }
 
         private Vector2 _movementInputValue;
-        private Vector2 _lookInputValue;
         private bool _sprinting;
         private bool _performJump;
 
-        private Vector3 _moveVelocity;
-        private float _lookHorizontal;
-        private float _lookVertical;
-
-        private bool _inputModifierDown;
-
         private void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
-            Assert.IsNotNull(_characterController);
-            Assert.IsNotNull(Camera);
-            Assert.IsNotNull(VirtualCamera);
-
-            _inputActions             = new InputSettingsActions();
-            GlobalActions             = _inputActions.Global;
-            FirstPersonActions        = _inputActions.FirstPerson;
-            FirstPersonMoveCabActions = _inputActions.FirstPersonMoveCab;
-        }
-
-        private void OnEnable()
-        {
-            GlobalActions.Enable();
-        }
-
-        private void OnDisable()
-        {
-            GlobalActions.Disable();
+            Construct();
+            FpsArcadeActions  = _inputActions.FpsArcade;
+            FpsMoveCabActions = _inputActions.FpsMoveCab;
         }
 
         private void Update()
         {
-            _inputModifierDown = GlobalActions.TempModifierWorkaround.ReadValue<float>() > 0.5f;
-
-            if (FirstPersonActions.Movement.enabled)
+            if (_inputActions.FpsArcade.Movement.enabled)
             {
                 GatherMovementInputValues();
             }
             HandleMovement();
 
-            if (FirstPersonActions.Look.enabled)
+            if (_inputActions.FpsArcade.Look.enabled)
             {
                 GatherLookInputValues();
                 HandleLook();
             }
         }
 
-        private void GatherMovementInputValues()
+        protected override void GatherMovementInputValues()
         {
-            _movementInputValue = FirstPersonActions.Movement.ReadValue<Vector2>();
-            if (!_inputModifierDown)
-            {
-                _sprinting   = FirstPersonActions.Sprint.ReadValue<float>() > 0f;
-                _performJump = FirstPersonActions.Jump.triggered;
-            }
+            _movementInputValue = _inputActions.FpsArcade.Movement.ReadValue<Vector2>();
+            _sprinting          = _inputActions.FpsArcade.Sprint.ReadValue<float>() > 0f;
+            _performJump        = _inputActions.FpsArcade.Jump.triggered;
         }
 
-        private void GatherLookInputValues()
-        {
-            _lookInputValue = !_inputModifierDown ? FirstPersonActions.Look.ReadValue<Vector2>() : Vector2.zero;
-        }
+        protected override void GatherLookInputValues() => _lookInputValue = _inputActions.FpsArcade.Look.ReadValue<Vector2>();
 
-        private void HandleMovement()
+        protected override void HandleMovement()
         {
             if (_characterController.isGrounded)
             {
@@ -141,14 +95,14 @@ namespace Arcade_r
             _ = _characterController.Move(_moveVelocity * Time.deltaTime);
         }
 
-        private void HandleLook()
+        protected override void HandleLook()
         {
             _lookHorizontal = _lookInputValue.x;
             _lookVertical  += _lookInputValue.y;
             _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
-            if (VirtualCamera != null)
+            if (_virtualCamera != null)
             {
-                VirtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
+                _virtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
             }
             transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
         }

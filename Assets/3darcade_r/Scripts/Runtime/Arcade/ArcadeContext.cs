@@ -28,9 +28,6 @@ namespace Arcade_r
     public sealed class ArcadeContext : FSM.Context<ArcadeState>
     {
         public readonly App App;
-        public readonly ArcadeController FpsArcadeController;
-        public readonly ArcadeController CylArcadeController;
-        public readonly VideoPlayerController VideoPlayerController;
         public readonly LayerMask RaycastLayers;
 
         public ModelConfigurationComponent CurrentModelConfiguration;
@@ -39,15 +36,11 @@ namespace Arcade_r
         public ArcadeType CurrentArcadeType { get; private set; }
 
         private static readonly LayerMask _interactionLayers  = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
-        private static readonly LayerMask _videoControlLayers = LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels");
 
         public ArcadeContext(App app, GeneralConfiguration generalConfiguration)
         {
-            App                   = app;
-            FpsArcadeController   = new FpsArcadeController(app.ArcadeHierarchy, App.PlayerFpsControls.transform, App.PlayerCylControls.transform, App.EmulatorDatabase, App.GameObjectCache, App.TextureCache, App.VideoCache);
-            CylArcadeController   = new CylArcadeController(app.ArcadeHierarchy, App.PlayerFpsControls.transform, App.PlayerCylControls.transform, App.EmulatorDatabase, App.GameObjectCache, App.TextureCache, App.VideoCache);
-            VideoPlayerController = new VideoPlayerController(app.PlayerFpsControls.transform, _videoControlLayers);
-            RaycastLayers         = _interactionLayers;
+            App           = app;
+            RaycastLayers = _interactionLayers;
 
             _ = SetCurrentArcadeConfiguration(generalConfiguration.StartingArcade, generalConfiguration.StartingArcadeType);
         }
@@ -74,7 +67,7 @@ namespace Arcade_r
                 return false;
             }
 
-            VideoPlayerController.StopAllVideos();
+            App.VideoPlayerController.StopAllVideos();
 
             ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>();
             cfgComponent.Restore(CurrentArcadeConfiguration);
@@ -82,11 +75,11 @@ namespace Arcade_r
             App.ArcadeHierarchy.Reset();
             if (CurrentArcadeType == ArcadeType.Fps)
             {
-                return FpsArcadeController.StartArcade(CurrentArcadeConfiguration);
+                return App.ArcadeFpsController.StartArcade(CurrentArcadeConfiguration);
             }
             else if (CurrentArcadeType == ArcadeType.Cyl)
             {
-                return CylArcadeController.StartArcade(CurrentArcadeConfiguration);
+                return App.ArcadeCylController.StartArcade(CurrentArcadeConfiguration);
             }
 
             return false;
@@ -95,6 +88,10 @@ namespace Arcade_r
         public bool SaveCurrentArcadeConfiguration()
         {
             ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            if (cfgComponent == null)
+            {
+                return false;
+            }
 
             Camera fpsCamera                          = App.PlayerFpsControls.Camera;
             CinemachineVirtualCamera fpsVirtualCamera = App.PlayerFpsControls.VirtualCamera;
@@ -126,7 +123,7 @@ namespace Arcade_r
                 ViewportRect  = cylCamera.rect
             };
 
-            return cfgComponent != null && cfgComponent.Save(App.ArcadeDatabase, fpsCameraSettings, cylCameraSettings);
+            return cfgComponent.Save(App.ArcadeDatabase, fpsCameraSettings, cylCameraSettings);
         }
 
         public bool SaveCurrentArcadeConfigurationModels()

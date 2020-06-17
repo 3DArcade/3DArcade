@@ -45,34 +45,34 @@ namespace Arcade_r
         private static readonly string _defaultGenericsVideoDirectory = $"{_defaultMediaDirectory}/GenericsVideo";
 
         protected readonly ArcadeHierarchy _arcadeHierarchy;
-        protected readonly Transform _playerFps;
-        protected readonly Transform _playerCyl;
+        protected readonly PlayerFpsControls _playerFpsControls;
+        protected readonly PlayerCylControls _playerCylControls;
 
-        private readonly AssetCache<GameObject> _gameObjectCache;
-        private readonly AssetCache<Texture> _textureCache;
+        protected readonly AssetCache<GameObject> _gameObjectCache;
+        protected readonly AssetCache<Texture> _textureCache;
         private readonly AssetCache<string> _videoCache;
 
-        private readonly ContentMatcher _contentMatcher;
+        protected readonly ContentMatcher _contentMatcher;
         private readonly AnimationCurve _volumeCurve;
 
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
-                                Transform playerFps,
-                                Transform playerCyl,
+                                PlayerFpsControls playerFpsControls,
+                                PlayerCylControls playerCylControls,
                                 Database<EmulatorConfiguration> emulatorDatabase,
                                 AssetCache<GameObject> gameObjectCache,
                                 AssetCache<Texture> textureCache,
                                 AssetCache<string> videoCache)
         {
             Assert.IsNotNull(arcadeHierarchy);
-            Assert.IsNotNull(playerFps);
-            Assert.IsNotNull(playerCyl);
+            Assert.IsNotNull(playerFpsControls);
+            Assert.IsNotNull(playerCylControls);
             Assert.IsNotNull(emulatorDatabase);
             Assert.IsNotNull(gameObjectCache);
 
-            _arcadeHierarchy = arcadeHierarchy;
-            _playerFps       = playerFps;
-            _playerCyl       = playerCyl;
-            _gameObjectCache = gameObjectCache;
+            _arcadeHierarchy   = arcadeHierarchy;
+            _playerFpsControls = playerFpsControls;
+            _playerCylControls = playerCylControls;
+            _gameObjectCache   = gameObjectCache;
 
             _textureCache = textureCache;
             _videoCache   = videoCache;
@@ -89,15 +89,17 @@ namespace Arcade_r
 
         public abstract bool StartArcade(ArcadeConfiguration arcadeConfiguration);
 
-        protected static void SetupPlayer(Transform player, CameraSettings cameraSettings)
+        protected abstract void SetupWorld(ArcadeConfiguration arcadeConfiguration);
+
+
+        protected static void SetupPlayer(PlayerControls playerControls, CameraSettings cameraSettings)
         {
-            Camera mainCamera       = player.GetComponentInChildren<Camera>(true);
-            mainCamera.orthographic = cameraSettings.Orthographic;
-            mainCamera.rect         = cameraSettings.ViewportRect;
+            playerControls.Camera.orthographic = cameraSettings.Orthographic;
+            playerControls.Camera.rect         = cameraSettings.ViewportRect;
 
-            player.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
+            playerControls.transform.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
 
-            CinemachineVirtualCamera vCam = player.GetComponentInChildren<CinemachineVirtualCamera>(true);
+            CinemachineVirtualCamera vCam = playerControls.VirtualCamera;
             vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
             vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
             vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;
@@ -105,14 +107,6 @@ namespace Arcade_r
 
             CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
             transposer.m_FollowOffset.y      = cameraSettings.Height;
-        }
-
-        protected void SetupWorld(ArcadeConfiguration arcadeConfiguration)
-        {
-            RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
-            AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
-            AddModelsToWorld(arcadeConfiguration.GameModelList, _arcadeHierarchy.GamesNode, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame);
-            AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp);
         }
 
         protected void AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
@@ -137,7 +131,7 @@ namespace Arcade_r
             }
         }
 
-        private static GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
+        protected GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
         {
             GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
             model.StripCloneFromName();
@@ -148,7 +142,7 @@ namespace Arcade_r
             return model;
         }
 
-        private void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
+        protected void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
         {
             Renderer renderer = GetNodeRenderer<MarqueeNodeTag>(model);
             if (renderer == null)
@@ -175,7 +169,7 @@ namespace Arcade_r
             SetupMagicPixels(renderer);
         }
 
-        private void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
+        protected void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
         {
             Renderer renderer = GetNodeRenderer<ScreenNodeTag>(model);
             if (renderer == null)
@@ -200,7 +194,7 @@ namespace Arcade_r
             }
         }
 
-        private void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
+        protected void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
             Renderer renderer = GetNodeRenderer<GenericNodeTag>(model);
             if (renderer == null)
@@ -222,44 +216,6 @@ namespace Arcade_r
             SetupStaticImage(renderer.material, texture);
         }
 
-        private static void SetupMagicPixels(Renderer baseRenderer)
-        {
-            Transform parentTransform = baseRenderer.transform.parent;
-            if (parentTransform == null)
-            {
-                return;
-            }
-
-            IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
-                                                             .Where(r => r.GetComponent<NodeTag>() == null
-                                                                      && baseRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
-
-            bool baseRendererIsEmissive = baseRenderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
-
-            foreach (Renderer renderer in renderers)
-            {
-                if (baseRendererIsEmissive)
-                {
-                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME);
-                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME);
-                    if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
-                    {
-                        renderer.material.SetEmissiveColorAndTexture(color, texture, true);
-                    }
-                    else
-                    {
-                        renderer.material.SetAlbedoColorAndTexture(color, texture);
-                    }
-                }
-                else
-                {
-                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
-                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME);
-                    renderer.material.SetAlbedoColorAndTexture(color, texture);
-                }
-            }
-        }
-
         private bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry)
         {
             string videopath = _videoCache.Load(directories, namesToTry);
@@ -275,7 +231,7 @@ namespace Arcade_r
             videoPlayer.errorReceived          += OnVideoPlayerErrorReceived;
             videoPlayer.prepareCompleted       -= OnVideoPlayerPrepareCompleted;
             videoPlayer.prepareCompleted       += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake            = false;
+            videoPlayer.playOnAwake            = true;
             videoPlayer.waitForFirstFrame      = true;
             videoPlayer.isLooping              = true;
             videoPlayer.source                 = VideoSource.Url;
@@ -313,6 +269,44 @@ namespace Arcade_r
             videoPlayer.Pause();
         }
 
+        private static void SetupMagicPixels(Renderer baseRenderer)
+        {
+            Transform parentTransform = baseRenderer.transform.parent;
+            if (parentTransform == null)
+            {
+                return;
+            }
+
+            IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
+                                                             .Where(r => r.GetComponent<NodeTag>() == null
+                                                                      && baseRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
+
+            bool baseRendererIsEmissive = baseRenderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
+
+            foreach (Renderer renderer in renderers)
+            {
+                if (baseRendererIsEmissive)
+                {
+                    Color color = baseRenderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME);
+                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME);
+                    if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
+                    {
+                        renderer.material.SetEmissiveColorAndTexture(color, texture, true);
+                    }
+                    else
+                    {
+                        renderer.material.SetAlbedoColorAndTexture(color, texture);
+                    }
+                }
+                else
+                {
+                    Color color = baseRenderer.material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
+                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME);
+                    renderer.material.SetAlbedoColorAndTexture(color, texture);
+                }
+            }
+        }
+
         private static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
         {
             if (material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
@@ -344,7 +338,7 @@ namespace Arcade_r
             return null;
         }
 
-        private static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        protected static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
         {
             switch (modelConfiguration.ScreenType)
             {

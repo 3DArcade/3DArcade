@@ -33,21 +33,31 @@ namespace Arcade_r
         private const int NUM_VIDEOS_WITH_SOUND    = 3;
         private const int NUM_COLLIDERS_TO_PROCESS = 10;
 
-        private readonly Transform _player;
         private readonly List<VideoPlayer> _activeVideos;
         private readonly Collider[] _overlapSphereHits;
         private readonly LayerMask _layerMask;
 
-        public VideoPlayerController(Transform player, LayerMask layerMask)
+        private Transform _player;
+
+        public VideoPlayerController(LayerMask layerMask)
         {
-            _player            = player;
             _activeVideos      = new List<VideoPlayer>();
             _overlapSphereHits = new Collider[NUM_COLLIDERS_TO_PROCESS];
             _layerMask         = layerMask;
         }
 
+        public void SetPlayer(Transform player) => _player = player;
+
         public void UpdateVideosState()
         {
+            if (_player == null)
+            {
+                return;
+            }
+
+            _ = _activeVideos.RemoveAll(vp => vp == null);
+            _ = _activeVideos.RemoveAll(vp => vp.isPaused);
+
             for (int i = 0; i < _overlapSphereHits.Length; ++i)
             {
                 _overlapSphereHits[i] = null;

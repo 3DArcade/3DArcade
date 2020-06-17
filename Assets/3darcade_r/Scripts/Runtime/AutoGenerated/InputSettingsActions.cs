@@ -35,14 +35,6 @@ namespace Arcade_r
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""TempModifierWorkaround"",
-                    ""type"": ""Value"",
-                    ""id"": ""f65850eb-e65d-4176-86f3-975111dcbae8"",
-                    ""expectedControlType"": ""Digital"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -58,37 +50,15 @@ namespace Arcade_r
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""SelectStart"",
-                    ""id"": ""46ffc08c-0893-4e74-8ffd-3716e33c3a50"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Quit"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""81321038-d1be-400f-8673-24c09f93c9fb"",
+                    ""name"": """",
+                    ""id"": ""92403178-6904-4c3e-bd0a-553260b9b699"",
                     ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Quit"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""0dc26f33-0079-4289-9702-421873901f29"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -113,53 +83,20 @@ namespace Arcade_r
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""SelectWest"",
-                    ""id"": ""f59bdac8-5bee-4eaa-bc25-ecad57103947"",
-                    ""path"": ""ButtonWithOneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ToggleCursor"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""2364bd83-7a0e-4ff0-b43d-05e38f8f2bdd"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ToggleCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""button"",
-                    ""id"": ""57be1adc-f7e6-49e9-90b5-c74a4885b358"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ToggleCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""a088d958-41df-46d7-84ed-9ea270586de3"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""id"": ""2ee846d6-4a8e-491a-af01-c96c7c9e00c1"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""TempModifierWorkaround"",
+                    ""action"": ""ToggleCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""FirstPerson"",
+            ""name"": ""FpsArcade"",
             ""id"": ""22122fb4-ab81-4a29-9a20-1efdb89252ad"",
             ""actions"": [
                 {
@@ -179,6 +116,22 @@ namespace Arcade_r
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""CameraHeight"",
+                    ""type"": ""Value"",
+                    ""id"": ""a90ee00d-75ff-4601-85ad-c4ce6914610c"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8de635a7-b295-43d9-b05f-89daa55015c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Value"",
                     ""id"": ""5786bc8b-1bdb-410d-8fce-1efa022cc1d5"",
@@ -190,14 +143,6 @@ namespace Arcade_r
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f8f41772-c9a4-4700-9873-67ca7da3cdf0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""8de635a7-b295-43d9-b05f-89daa55015c8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -335,39 +280,6 @@ namespace Arcade_r
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a992bda7-e0a9-4b5f-9258-4f48b27434e3"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""20db50ba-9db8-4968-b4fd-b8259ce69367"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bccf0dca-76f0-4960-9e54-0dbf8103b620"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""979699a5-0170-472e-b44c-55f7930528bd"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -490,7 +402,7 @@ namespace Arcade_r
                 {
                     ""name"": """",
                     ""id"": ""23902d4e-e621-4abd-a958-022bff195241"",
-                    ""path"": ""<Keyboard>/semicolon"",
+                    ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -499,42 +411,119 @@ namespace Arcade_r
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""SelectNorth"",
-                    ""id"": ""ac70c759-5de6-48c7-8270-8b0b792ef980"",
-                    ""path"": ""ButtonWithOneModifier"",
+                    ""name"": """",
+                    ""id"": ""c8a668ba-0a38-4d76-b692-b8fe5c53c28f"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ToggleMoveCab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""TG"",
+                    ""id"": ""79870c4d-fadb-4cdb-a403-73c0ac0769c9"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleMoveCab"",
+                    ""action"": ""CameraHeight"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""c432e1c0-473b-47de-9451-1c073784a418"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""name"": ""Negative"",
+                    ""id"": ""f307a84c-c441-4477-9b8b-b899be2ad6b2"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ToggleMoveCab"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""CameraHeight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""button"",
-                    ""id"": ""c7587667-a7f2-4037-af19-8cbf439f9d48"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""name"": ""Positive"",
+                    ""id"": ""dd3eb91e-9fbc-4c81-ac07-0e1bbfd9e71e"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DPad"",
+                    ""id"": ""f3b06e97-b2db-43a2-96ef-5a12f1382aa7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""a15d2d42-7acb-4f96-9a64-f0fdcdcfcf5c"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""ToggleMoveCab"",
+                    ""action"": ""CameraHeight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""4592d88f-b596-43a1-9b33-0bad3cd34d04"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a992bda7-e0a9-4b5f-9258-4f48b27434e3"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20db50ba-9db8-4968-b4fd-b8259ce69367"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bccf0dca-76f0-4960-9e54-0dbf8103b620"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""FirstPersonMoveCab"",
+            ""name"": ""FpsMoveCab"",
             ""id"": ""826403ab-f082-4a58-8a51-3a726b972945"",
             ""actions"": [
                 {
@@ -748,6 +737,403 @@ namespace Arcade_r
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CylArcade"",
+            ""id"": ""cee92ad0-24ac-4ae8-b5bb-9fd31a285831"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""e1f0c0ad-badd-44d1-a958-cb657e58637d"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""ec7b6c22-2306-4be1-90de-d60a48c1f2bf"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CameraHeight"",
+                    ""type"": ""Value"",
+                    ""id"": ""b794dfff-5179-436f-b532-d0afa18c37a8"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c66f33d-85c8-49d5-87ec-8b63f8ed1eee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""NavigateForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5065f2c-9f93-4620-b2d8-2a3c0b2700ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""NavigateBackward"",
+                    ""type"": ""Button"",
+                    ""id"": ""9357eec6-432e-4eae-967d-03cef1a21213"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WS"",
+                    ""id"": ""05099181-0021-4413-8078-44e1c7ef9f1f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f3ade314-c401-40d7-9775-6eeb0cfd6c5a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8d1c0ab6-fc80-4c8a-a037-8855f834cce3"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""8da28b44-fd4e-4869-9af8-293cf1218fee"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""725e64b4-65e6-4ef3-94ac-9c4d6f7582e1"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""4e166e49-4761-415c-a091-6581f34fced1"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d69338f2-acd8-44b7-ab3b-0508b2e4bc71"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""NavigateForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ce9f022-6832-45a4-8148-5e7f73608403"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""NavigateForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dc7f697-ffdf-4945-8e5a-abf7dc163483"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NavigateForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Left Stick"",
+                    ""id"": ""8f73a6aa-397c-4b77-9b67-8c08db46c72a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""089ee213-684e-4e55-9a13-2fd3a3ba25e7"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""20c36024-7d77-43dc-b64a-b6613a82f62a"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1868423f-1af1-4ae5-90e4-4c855df6bc04"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=0.08,y=0.08)"",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""RFAE"",
+                    ""id"": ""928bd405-c860-4f27-aa41-02db7f658248"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c1a9e278-11cf-4338-9ed6-2f12f23ced36"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""65998c15-72ed-4441-879b-34098d1bc31e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ad275b4f-d8d4-42f1-b3eb-3baee334cd01"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""dd0dc889-8276-4d2e-abc5-a33121c73045"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a412500-fde2-47b3-bf9c-73f3027249c5"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""TG"",
+                    ""id"": ""32782cf7-c276-4a78-90a2-f479766e39f4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""0c3ced21-82b0-4fa9-8cd6-e40b12b063f0"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""c6474c29-88d2-491f-b759-7a4f0b1de030"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DPad"",
+                    ""id"": ""412ac7a8-42e3-4fc9-a11b-4fa7a0d6378c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""b9a243ce-4ec4-4c94-bec7-4d1c78fc4ad5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""f5a9fba8-1b74-429c-bd3c-d3420808b02c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CameraHeight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4b979a9-91a6-4aed-bc66-9bab7490a5b5"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d8d3697-a117-4fb6-af5e-b2b848b5551b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7dc06803-7870-4a8d-bfef-33a7c084dd8f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f10b2eae-0070-4748-8ce5-fab453b07ab7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""NavigateBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ead61640-bc0b-4390-8077-425602c93fa3"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""NavigateBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab17a6d2-f216-4170-81f8-d09302a5a96d"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NavigateBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -784,21 +1170,29 @@ namespace Arcade_r
             m_Global = asset.FindActionMap("Global", throwIfNotFound: true);
             m_Global_Quit = m_Global.FindAction("Quit", throwIfNotFound: true);
             m_Global_ToggleCursor = m_Global.FindAction("ToggleCursor", throwIfNotFound: true);
-            m_Global_TempModifierWorkaround = m_Global.FindAction("TempModifierWorkaround", throwIfNotFound: true);
-            // FirstPerson
-            m_FirstPerson = asset.FindActionMap("FirstPerson", throwIfNotFound: true);
-            m_FirstPerson_Movement = m_FirstPerson.FindAction("Movement", throwIfNotFound: true);
-            m_FirstPerson_Look = m_FirstPerson.FindAction("Look", throwIfNotFound: true);
-            m_FirstPerson_Sprint = m_FirstPerson.FindAction("Sprint", throwIfNotFound: true);
-            m_FirstPerson_Jump = m_FirstPerson.FindAction("Jump", throwIfNotFound: true);
-            m_FirstPerson_Interact = m_FirstPerson.FindAction("Interact", throwIfNotFound: true);
-            m_FirstPerson_ToggleMoveCab = m_FirstPerson.FindAction("ToggleMoveCab", throwIfNotFound: true);
-            // FirstPersonMoveCab
-            m_FirstPersonMoveCab = asset.FindActionMap("FirstPersonMoveCab", throwIfNotFound: true);
-            m_FirstPersonMoveCab_MoveModel = m_FirstPersonMoveCab.FindAction("MoveModel", throwIfNotFound: true);
-            m_FirstPersonMoveCab_RotateModel = m_FirstPersonMoveCab.FindAction("RotateModel", throwIfNotFound: true);
-            m_FirstPersonMoveCab_GrabReleaseModel = m_FirstPersonMoveCab.FindAction("GrabReleaseModel", throwIfNotFound: true);
-            m_FirstPersonMoveCab_AddModel = m_FirstPersonMoveCab.FindAction("AddModel", throwIfNotFound: true);
+            // FpsArcade
+            m_FpsArcade = asset.FindActionMap("FpsArcade", throwIfNotFound: true);
+            m_FpsArcade_Movement = m_FpsArcade.FindAction("Movement", throwIfNotFound: true);
+            m_FpsArcade_Look = m_FpsArcade.FindAction("Look", throwIfNotFound: true);
+            m_FpsArcade_CameraHeight = m_FpsArcade.FindAction("CameraHeight", throwIfNotFound: true);
+            m_FpsArcade_Interact = m_FpsArcade.FindAction("Interact", throwIfNotFound: true);
+            m_FpsArcade_Sprint = m_FpsArcade.FindAction("Sprint", throwIfNotFound: true);
+            m_FpsArcade_Jump = m_FpsArcade.FindAction("Jump", throwIfNotFound: true);
+            m_FpsArcade_ToggleMoveCab = m_FpsArcade.FindAction("ToggleMoveCab", throwIfNotFound: true);
+            // FpsMoveCab
+            m_FpsMoveCab = asset.FindActionMap("FpsMoveCab", throwIfNotFound: true);
+            m_FpsMoveCab_MoveModel = m_FpsMoveCab.FindAction("MoveModel", throwIfNotFound: true);
+            m_FpsMoveCab_RotateModel = m_FpsMoveCab.FindAction("RotateModel", throwIfNotFound: true);
+            m_FpsMoveCab_GrabReleaseModel = m_FpsMoveCab.FindAction("GrabReleaseModel", throwIfNotFound: true);
+            m_FpsMoveCab_AddModel = m_FpsMoveCab.FindAction("AddModel", throwIfNotFound: true);
+            // CylArcade
+            m_CylArcade = asset.FindActionMap("CylArcade", throwIfNotFound: true);
+            m_CylArcade_Movement = m_CylArcade.FindAction("Movement", throwIfNotFound: true);
+            m_CylArcade_Look = m_CylArcade.FindAction("Look", throwIfNotFound: true);
+            m_CylArcade_CameraHeight = m_CylArcade.FindAction("CameraHeight", throwIfNotFound: true);
+            m_CylArcade_Interact = m_CylArcade.FindAction("Interact", throwIfNotFound: true);
+            m_CylArcade_NavigateForward = m_CylArcade.FindAction("NavigateForward", throwIfNotFound: true);
+            m_CylArcade_NavigateBackward = m_CylArcade.FindAction("NavigateBackward", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -850,14 +1244,12 @@ namespace Arcade_r
         private IGlobalActions m_GlobalActionsCallbackInterface;
         private readonly InputAction m_Global_Quit;
         private readonly InputAction m_Global_ToggleCursor;
-        private readonly InputAction m_Global_TempModifierWorkaround;
         public struct GlobalActions
         {
             private @InputSettingsActions m_Wrapper;
             public GlobalActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Quit => m_Wrapper.m_Global_Quit;
             public InputAction @ToggleCursor => m_Wrapper.m_Global_ToggleCursor;
-            public InputAction @TempModifierWorkaround => m_Wrapper.m_Global_TempModifierWorkaround;
             public InputActionMap Get() { return m_Wrapper.m_Global; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -873,9 +1265,6 @@ namespace Arcade_r
                     @ToggleCursor.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnToggleCursor;
                     @ToggleCursor.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnToggleCursor;
                     @ToggleCursor.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnToggleCursor;
-                    @TempModifierWorkaround.started -= m_Wrapper.m_GlobalActionsCallbackInterface.OnTempModifierWorkaround;
-                    @TempModifierWorkaround.performed -= m_Wrapper.m_GlobalActionsCallbackInterface.OnTempModifierWorkaround;
-                    @TempModifierWorkaround.canceled -= m_Wrapper.m_GlobalActionsCallbackInterface.OnTempModifierWorkaround;
                 }
                 m_Wrapper.m_GlobalActionsCallbackInterface = instance;
                 if (instance != null)
@@ -886,62 +1275,64 @@ namespace Arcade_r
                     @ToggleCursor.started += instance.OnToggleCursor;
                     @ToggleCursor.performed += instance.OnToggleCursor;
                     @ToggleCursor.canceled += instance.OnToggleCursor;
-                    @TempModifierWorkaround.started += instance.OnTempModifierWorkaround;
-                    @TempModifierWorkaround.performed += instance.OnTempModifierWorkaround;
-                    @TempModifierWorkaround.canceled += instance.OnTempModifierWorkaround;
                 }
             }
         }
         public GlobalActions @Global => new GlobalActions(this);
 
-        // FirstPerson
-        private readonly InputActionMap m_FirstPerson;
-        private IFirstPersonActions m_FirstPersonActionsCallbackInterface;
-        private readonly InputAction m_FirstPerson_Movement;
-        private readonly InputAction m_FirstPerson_Look;
-        private readonly InputAction m_FirstPerson_Sprint;
-        private readonly InputAction m_FirstPerson_Jump;
-        private readonly InputAction m_FirstPerson_Interact;
-        private readonly InputAction m_FirstPerson_ToggleMoveCab;
-        public struct FirstPersonActions
+        // FpsArcade
+        private readonly InputActionMap m_FpsArcade;
+        private IFpsArcadeActions m_FpsArcadeActionsCallbackInterface;
+        private readonly InputAction m_FpsArcade_Movement;
+        private readonly InputAction m_FpsArcade_Look;
+        private readonly InputAction m_FpsArcade_CameraHeight;
+        private readonly InputAction m_FpsArcade_Interact;
+        private readonly InputAction m_FpsArcade_Sprint;
+        private readonly InputAction m_FpsArcade_Jump;
+        private readonly InputAction m_FpsArcade_ToggleMoveCab;
+        public struct FpsArcadeActions
         {
             private @InputSettingsActions m_Wrapper;
-            public FirstPersonActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Movement => m_Wrapper.m_FirstPerson_Movement;
-            public InputAction @Look => m_Wrapper.m_FirstPerson_Look;
-            public InputAction @Sprint => m_Wrapper.m_FirstPerson_Sprint;
-            public InputAction @Jump => m_Wrapper.m_FirstPerson_Jump;
-            public InputAction @Interact => m_Wrapper.m_FirstPerson_Interact;
-            public InputAction @ToggleMoveCab => m_Wrapper.m_FirstPerson_ToggleMoveCab;
-            public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
+            public FpsArcadeActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_FpsArcade_Movement;
+            public InputAction @Look => m_Wrapper.m_FpsArcade_Look;
+            public InputAction @CameraHeight => m_Wrapper.m_FpsArcade_CameraHeight;
+            public InputAction @Interact => m_Wrapper.m_FpsArcade_Interact;
+            public InputAction @Sprint => m_Wrapper.m_FpsArcade_Sprint;
+            public InputAction @Jump => m_Wrapper.m_FpsArcade_Jump;
+            public InputAction @ToggleMoveCab => m_Wrapper.m_FpsArcade_ToggleMoveCab;
+            public InputActionMap Get() { return m_Wrapper.m_FpsArcade; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(FirstPersonActions set) { return set.Get(); }
-            public void SetCallbacks(IFirstPersonActions instance)
+            public static implicit operator InputActionMap(FpsArcadeActions set) { return set.Get(); }
+            public void SetCallbacks(IFpsArcadeActions instance)
             {
-                if (m_Wrapper.m_FirstPersonActionsCallbackInterface != null)
+                if (m_Wrapper.m_FpsArcadeActionsCallbackInterface != null)
                 {
-                    @Movement.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMovement;
-                    @Movement.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMovement;
-                    @Movement.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnMovement;
-                    @Look.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnLook;
-                    @Look.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnLook;
-                    @Look.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnLook;
-                    @Sprint.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
-                    @Sprint.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
-                    @Sprint.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnSprint;
-                    @Jump.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJump;
-                    @Jump.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJump;
-                    @Jump.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnJump;
-                    @Interact.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInteract;
-                    @Interact.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInteract;
-                    @Interact.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnInteract;
-                    @ToggleMoveCab.started -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnToggleMoveCab;
-                    @ToggleMoveCab.performed -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnToggleMoveCab;
-                    @ToggleMoveCab.canceled -= m_Wrapper.m_FirstPersonActionsCallbackInterface.OnToggleMoveCab;
+                    @Movement.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnMovement;
+                    @Look.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnLook;
+                    @Look.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnLook;
+                    @Look.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnLook;
+                    @CameraHeight.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnCameraHeight;
+                    @CameraHeight.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnCameraHeight;
+                    @CameraHeight.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnCameraHeight;
+                    @Interact.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnInteract;
+                    @Sprint.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnSprint;
+                    @Sprint.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnSprint;
+                    @Sprint.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnSprint;
+                    @Jump.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnJump;
+                    @ToggleMoveCab.started -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnToggleMoveCab;
+                    @ToggleMoveCab.performed -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnToggleMoveCab;
+                    @ToggleMoveCab.canceled -= m_Wrapper.m_FpsArcadeActionsCallbackInterface.OnToggleMoveCab;
                 }
-                m_Wrapper.m_FirstPersonActionsCallbackInterface = instance;
+                m_Wrapper.m_FpsArcadeActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Movement.started += instance.OnMovement;
@@ -950,61 +1341,64 @@ namespace Arcade_r
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
+                    @CameraHeight.started += instance.OnCameraHeight;
+                    @CameraHeight.performed += instance.OnCameraHeight;
+                    @CameraHeight.canceled += instance.OnCameraHeight;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
                     @Sprint.started += instance.OnSprint;
                     @Sprint.performed += instance.OnSprint;
                     @Sprint.canceled += instance.OnSprint;
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
-                    @Interact.started += instance.OnInteract;
-                    @Interact.performed += instance.OnInteract;
-                    @Interact.canceled += instance.OnInteract;
                     @ToggleMoveCab.started += instance.OnToggleMoveCab;
                     @ToggleMoveCab.performed += instance.OnToggleMoveCab;
                     @ToggleMoveCab.canceled += instance.OnToggleMoveCab;
                 }
             }
         }
-        public FirstPersonActions @FirstPerson => new FirstPersonActions(this);
+        public FpsArcadeActions @FpsArcade => new FpsArcadeActions(this);
 
-        // FirstPersonMoveCab
-        private readonly InputActionMap m_FirstPersonMoveCab;
-        private IFirstPersonMoveCabActions m_FirstPersonMoveCabActionsCallbackInterface;
-        private readonly InputAction m_FirstPersonMoveCab_MoveModel;
-        private readonly InputAction m_FirstPersonMoveCab_RotateModel;
-        private readonly InputAction m_FirstPersonMoveCab_GrabReleaseModel;
-        private readonly InputAction m_FirstPersonMoveCab_AddModel;
-        public struct FirstPersonMoveCabActions
+        // FpsMoveCab
+        private readonly InputActionMap m_FpsMoveCab;
+        private IFpsMoveCabActions m_FpsMoveCabActionsCallbackInterface;
+        private readonly InputAction m_FpsMoveCab_MoveModel;
+        private readonly InputAction m_FpsMoveCab_RotateModel;
+        private readonly InputAction m_FpsMoveCab_GrabReleaseModel;
+        private readonly InputAction m_FpsMoveCab_AddModel;
+        public struct FpsMoveCabActions
         {
             private @InputSettingsActions m_Wrapper;
-            public FirstPersonMoveCabActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @MoveModel => m_Wrapper.m_FirstPersonMoveCab_MoveModel;
-            public InputAction @RotateModel => m_Wrapper.m_FirstPersonMoveCab_RotateModel;
-            public InputAction @GrabReleaseModel => m_Wrapper.m_FirstPersonMoveCab_GrabReleaseModel;
-            public InputAction @AddModel => m_Wrapper.m_FirstPersonMoveCab_AddModel;
-            public InputActionMap Get() { return m_Wrapper.m_FirstPersonMoveCab; }
+            public FpsMoveCabActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @MoveModel => m_Wrapper.m_FpsMoveCab_MoveModel;
+            public InputAction @RotateModel => m_Wrapper.m_FpsMoveCab_RotateModel;
+            public InputAction @GrabReleaseModel => m_Wrapper.m_FpsMoveCab_GrabReleaseModel;
+            public InputAction @AddModel => m_Wrapper.m_FpsMoveCab_AddModel;
+            public InputActionMap Get() { return m_Wrapper.m_FpsMoveCab; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(FirstPersonMoveCabActions set) { return set.Get(); }
-            public void SetCallbacks(IFirstPersonMoveCabActions instance)
+            public static implicit operator InputActionMap(FpsMoveCabActions set) { return set.Get(); }
+            public void SetCallbacks(IFpsMoveCabActions instance)
             {
-                if (m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface != null)
+                if (m_Wrapper.m_FpsMoveCabActionsCallbackInterface != null)
                 {
-                    @MoveModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnMoveModel;
-                    @MoveModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnMoveModel;
-                    @MoveModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnMoveModel;
-                    @RotateModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnRotateModel;
-                    @RotateModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnRotateModel;
-                    @RotateModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnRotateModel;
-                    @GrabReleaseModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnGrabReleaseModel;
-                    @GrabReleaseModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnGrabReleaseModel;
-                    @GrabReleaseModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnGrabReleaseModel;
-                    @AddModel.started -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnAddModel;
-                    @AddModel.performed -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnAddModel;
-                    @AddModel.canceled -= m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface.OnAddModel;
+                    @MoveModel.started -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnMoveModel;
+                    @MoveModel.performed -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnMoveModel;
+                    @MoveModel.canceled -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnMoveModel;
+                    @RotateModel.started -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnRotateModel;
+                    @RotateModel.performed -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnRotateModel;
+                    @RotateModel.canceled -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnRotateModel;
+                    @GrabReleaseModel.started -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnGrabReleaseModel;
+                    @GrabReleaseModel.performed -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnGrabReleaseModel;
+                    @GrabReleaseModel.canceled -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnGrabReleaseModel;
+                    @AddModel.started -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnAddModel;
+                    @AddModel.performed -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnAddModel;
+                    @AddModel.canceled -= m_Wrapper.m_FpsMoveCabActionsCallbackInterface.OnAddModel;
                 }
-                m_Wrapper.m_FirstPersonMoveCabActionsCallbackInterface = instance;
+                m_Wrapper.m_FpsMoveCabActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @MoveModel.started += instance.OnMoveModel;
@@ -1022,7 +1416,80 @@ namespace Arcade_r
                 }
             }
         }
-        public FirstPersonMoveCabActions @FirstPersonMoveCab => new FirstPersonMoveCabActions(this);
+        public FpsMoveCabActions @FpsMoveCab => new FpsMoveCabActions(this);
+
+        // CylArcade
+        private readonly InputActionMap m_CylArcade;
+        private ICylArcadeActions m_CylArcadeActionsCallbackInterface;
+        private readonly InputAction m_CylArcade_Movement;
+        private readonly InputAction m_CylArcade_Look;
+        private readonly InputAction m_CylArcade_CameraHeight;
+        private readonly InputAction m_CylArcade_Interact;
+        private readonly InputAction m_CylArcade_NavigateForward;
+        private readonly InputAction m_CylArcade_NavigateBackward;
+        public struct CylArcadeActions
+        {
+            private @InputSettingsActions m_Wrapper;
+            public CylArcadeActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_CylArcade_Movement;
+            public InputAction @Look => m_Wrapper.m_CylArcade_Look;
+            public InputAction @CameraHeight => m_Wrapper.m_CylArcade_CameraHeight;
+            public InputAction @Interact => m_Wrapper.m_CylArcade_Interact;
+            public InputAction @NavigateForward => m_Wrapper.m_CylArcade_NavigateForward;
+            public InputAction @NavigateBackward => m_Wrapper.m_CylArcade_NavigateBackward;
+            public InputActionMap Get() { return m_Wrapper.m_CylArcade; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(CylArcadeActions set) { return set.Get(); }
+            public void SetCallbacks(ICylArcadeActions instance)
+            {
+                if (m_Wrapper.m_CylArcadeActionsCallbackInterface != null)
+                {
+                    @Movement.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnMovement;
+                    @Look.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnLook;
+                    @Look.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnLook;
+                    @Look.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnLook;
+                    @CameraHeight.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnCameraHeight;
+                    @CameraHeight.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnCameraHeight;
+                    @CameraHeight.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnCameraHeight;
+                    @Interact.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnInteract;
+                    @NavigateForward.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigateForward;
+                    @NavigateForward.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigateForward;
+                    @NavigateForward.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigateForward;
+                    @NavigateBackward.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigateBackward;
+                    @NavigateBackward.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigateBackward;
+                    @NavigateBackward.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigateBackward;
+                }
+                m_Wrapper.m_CylArcadeActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
+                    @Look.started += instance.OnLook;
+                    @Look.performed += instance.OnLook;
+                    @Look.canceled += instance.OnLook;
+                    @CameraHeight.started += instance.OnCameraHeight;
+                    @CameraHeight.performed += instance.OnCameraHeight;
+                    @CameraHeight.canceled += instance.OnCameraHeight;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
+                    @NavigateForward.started += instance.OnNavigateForward;
+                    @NavigateForward.performed += instance.OnNavigateForward;
+                    @NavigateForward.canceled += instance.OnNavigateForward;
+                    @NavigateBackward.started += instance.OnNavigateBackward;
+                    @NavigateBackward.performed += instance.OnNavigateBackward;
+                    @NavigateBackward.canceled += instance.OnNavigateBackward;
+                }
+            }
+        }
+        public CylArcadeActions @CylArcade => new CylArcadeActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -1045,23 +1512,32 @@ namespace Arcade_r
         {
             void OnQuit(InputAction.CallbackContext context);
             void OnToggleCursor(InputAction.CallbackContext context);
-            void OnTempModifierWorkaround(InputAction.CallbackContext context);
         }
-        public interface IFirstPersonActions
+        public interface IFpsArcadeActions
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
+            void OnCameraHeight(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
-            void OnInteract(InputAction.CallbackContext context);
             void OnToggleMoveCab(InputAction.CallbackContext context);
         }
-        public interface IFirstPersonMoveCabActions
+        public interface IFpsMoveCabActions
         {
             void OnMoveModel(InputAction.CallbackContext context);
             void OnRotateModel(InputAction.CallbackContext context);
             void OnGrabReleaseModel(InputAction.CallbackContext context);
             void OnAddModel(InputAction.CallbackContext context);
+        }
+        public interface ICylArcadeActions
+        {
+            void OnMovement(InputAction.CallbackContext context);
+            void OnLook(InputAction.CallbackContext context);
+            void OnCameraHeight(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
+            void OnNavigateForward(InputAction.CallbackContext context);
+            void OnNavigateBackward(InputAction.CallbackContext context);
         }
     }
 }

@@ -22,7 +22,6 @@
 
 namespace Arcade_r
 {
-
     public sealed class ArcadeDatabase : Database<ArcadeConfiguration>
     {
         public ArcadeDatabase(IVirtualFileSystem virtualFileSystem)

@@ -44,8 +44,8 @@ namespace Arcade_r
 
             _context.App.UIController.EnableLoadingUI();
 
-            _context.App.StopCoroutine(CoStartCurrentArcade());
-            _ = _context.App.StartCoroutine(CoStartCurrentArcade());
+            _context.App.StopCoroutine(CoStartArcade());
+            _ = _context.App.StartCoroutine(CoStartArcade());
         }
 
         public override void OnExit()
@@ -70,7 +70,7 @@ namespace Arcade_r
             }
         }
 
-        private IEnumerator CoStartCurrentArcade()
+        private IEnumerator CoStartArcade()
         {
             yield return new WaitUntil(() => _context.StartCurrentArcade());
             _loaded = true;

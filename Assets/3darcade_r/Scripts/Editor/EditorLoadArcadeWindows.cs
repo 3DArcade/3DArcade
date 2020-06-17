@@ -51,10 +51,6 @@ namespace Arcade_r
 
         private void DrawConfigurationsList()
         {
-            if (_configurationNames == null)
-            {
-            }
-
             _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos, false, false);
             foreach (string name in _configurationNames)
             {

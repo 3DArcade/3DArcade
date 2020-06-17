@@ -36,6 +36,8 @@ namespace Arcade_r
         public PlayerFpsControls PlayerFpsControls => _playerFpsControls;
         public PlayerCylControls PlayerCylControls => _playerCylControls;
 
+        public PlayerControls CurrentPlayerControls;
+
         public OS CurrentOS { get; private set; }
         public IVirtualFileSystem VirtualFileSystem { get; private set; }
         public ArcadeHierarchy ArcadeHierarchy { get; private set; }
@@ -46,6 +48,9 @@ namespace Arcade_r
         public AssetCache<GameObject> GameObjectCache { get; private set; }
         public AssetCache<Texture> TextureCache { get; private set; }
         public AssetCache<string> VideoCache { get; private set; }
+        public ArcadeFpsController ArcadeFpsController { get; private set; }
+        public ArcadeCylController ArcadeCylController { get; private set; }
+        public VideoPlayerController VideoPlayerController { get; private set; }
 
         private ArcadeContext _arcadeContext;
         private bool _badLuck = false;
@@ -98,7 +103,12 @@ namespace Arcade_r
             TextureCache    = new TextureCache();
             VideoCache      = new VideoCache();
 
-            _arcadeContext = new ArcadeContext(this, GeneralConfiguration);
+            ArcadeFpsController = new ArcadeFpsController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+            ArcadeCylController = new ArcadeCylController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+
+            VideoPlayerController = new VideoPlayerController(LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels"));
+
+            _arcadeContext        = new ArcadeContext(this, GeneralConfiguration);
         }
 
         private void Start()

@@ -42,13 +42,13 @@
     "CylArcadeProperties": {
         "CameraSettings": {
             "Position": {
-                "x": 14.45,
+                "x": 0.0,
                 "y": 0.89,
                 "z": 0.0
             },
             "Rotation": {
                 "x": 0.0,
-                "y": -99.0,
+                "y": 0.0,
                 "z": 0.0
             },
             "Height": 0.6,
@@ -64,31 +64,33 @@
                 "height": 1.0
             }
         },
-        "GamePosition": 0,
-        "Sprockets": 0,
-        "SelectedSprocket": 0,
-        "Radius": 0,
-        "ModelSpacing": 0.0,
+        "Sprockets": 10,
+        "SelectedSprocket": -1,
+        "WheelRadius": 5.0,
+        "WheelOffsetZ": 0,
+        "ModelSpacing": 0.25,
         "ModelWidthAxisY": false,
-        "ModelIsKinemtatic": false,
+        "ModelIsKinemtatic": true,
         "OnScreenSelectedModel": false,
-        "CameraTranslation": 0.0,
-        "CameraMinTranslation": 0.0,
-        "CameraMaxTranslation": 0.0,
+        "CameraTranslation": 0.5144213,
+        "CameraMinTranslation": -0.7,
+        "CameraMaxTranslation": 0.7,
         "CameraTranslationDirectionAxisY": false,
         "CameraTranslationReverse": false,
-        "CameraTranslationdamping": 0.0,
-        "CameraRotationdamping": 0.0,
-        "CameraLocalEularAngleRotation": false,
+        "CameraTranslationdamping": 4.0,
+        "CameraRotationdamping": 8.0,
+        "CameraLocalEularAngleRotation": true,
         "CameraLocalDefaultEularAngleRotation": 0.0,
-        "CameraLocalMinEularAngleRotation": 0.0,
-        "CameraLocalMaxEularAngleRotation": 0.0,
-        "MouseLook": false,
-        "MouseLookAxisY": false,
-        "MouseLookReverse": false,
-        "SprocketLocalEularAngleX": 0.0,
-        "SprocketLocalEularAngleY": 0.0,
-        "SprocketLocalEularAngleZ": 0.0
+        "CameraLocalMinEularAngleRotation": -15.0,
+        "CameraLocalMaxEularAngleRotation": 15.0,
+        "MouseLook": true,
+        "MouseLookAxisY": true,
+        "MouseLookReverse": true,
+        "SprocketRotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+        }
     },
     "Zones": [],
     "ArcadeModelList": [

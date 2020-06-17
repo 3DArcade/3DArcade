@@ -29,13 +29,9 @@ namespace Arcade_r
 {
     public static class EditorMenus
     {
-        public static bool IsFpsArcadeType { get; private set; } = true;
-
         [MenuItem("3DArcade_r/Switch Arcade Type", false, 0), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuSwitchArcadeType()
         {
-            IsFpsArcadeType = !IsFpsArcadeType;
-
             GameObject playerControls = GameObject.Find("PlayerControls");
             Assert.IsNotNull(playerControls);
 
@@ -44,28 +40,51 @@ namespace Arcade_r
             PlayerCylControls cylControls = playerControls.GetComponentInChildren<PlayerCylControls>(true);
             Assert.IsNotNull(cylControls);
 
-            if (IsFpsArcadeType)
-            {
-                fpsControls.gameObject.SetActive(true);
-                cylControls.gameObject.SetActive(false);
-            }
-            else
+            if (fpsControls.gameObject.activeInHierarchy)
             {
                 fpsControls.gameObject.SetActive(false);
                 cylControls.gameObject.SetActive(true);
             }
+            else
+            {
+                fpsControls.gameObject.SetActive(true);
+                cylControls.gameObject.SetActive(false);
+            }
 
-            Debug.Log($"[UNITY EDITOR] Switched current editor arcade type to {(IsFpsArcadeType ? "FpsArcade" : "CylArcade")}");
+            ArcadeConfigurationComponent arcadeConfigurationComponent = Object.FindObjectOfType<ArcadeConfigurationComponent>();
+            if (arcadeConfigurationComponent != null)
+            {
+                new EditorLoadSaveArcadeSubstitute().LoadAndStartArcade(arcadeConfigurationComponent.Id);
+            }
         }
 
         [MenuItem("3DArcade_r/Save Arcade", false, 101), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuSaveArcade()
         {
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
-            if (loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeCfgComponent))
+            if (!loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeCfgComponent))
             {
-                loadSaveSubstitute.SaveArcade(arcadeCfgComponent);
+                return;
             }
+
+            GameObject playerControls = GameObject.Find("PlayerControls");
+            if (playerControls == null)
+            {
+                return;
+            }
+
+            PlayerFpsControls fpsControls = playerControls.GetComponentInChildren<PlayerFpsControls>(true);
+            if (fpsControls == null)
+            {
+                return;
+            }
+
+            if (!fpsControls.gameObject.activeInHierarchy)
+            {
+                MenuSwitchArcadeType();
+            }
+
+            loadSaveSubstitute.SaveArcade(arcadeCfgComponent);
         }
 
         // Validation

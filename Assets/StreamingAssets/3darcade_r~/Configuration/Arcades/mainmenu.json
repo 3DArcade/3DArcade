@@ -43,7 +43,7 @@
         "CameraSettings": {
             "Position": {
                 "x": 0.0,
-                "y": 0.89,
+                "y": 0.0,
                 "z": 0.0
             },
             "Rotation": {
@@ -64,10 +64,10 @@
                 "height": 1.0
             }
         },
-        "GamePosition": 2,
         "Sprockets": 5,
-        "SelectedSprocket": 2,
-        "Radius": 1000,
+        "SelectedSprocket": -1,
+        "WheelRadius": 1000.0,
+        "WheelOffsetZ": 995.0,
         "ModelSpacing": 0.25,
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": true,
@@ -86,58 +86,14 @@
         "MouseLook": false,
         "MouseLookAxisY": true,
         "MouseLookReverse": true,
-        "SprocketLocalEularAngleX": 0.0,
-        "SprocketLocalEularAngleY": 0.0,
-        "SprocketLocalEularAngleZ": 180.0
+        "SprocketRotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+        }
     },
     "Zones": [],
-    "ArcadeModelList": [
-        {
-            "DescriptiveName": "Cylinder Arcade",
-            "Id": "cylinderarcade",
-            "Model": "defaultCylinder",
-            "InteractionType": "None",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 2.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
-        }
-    ],
+    "ArcadeModelList": [],
     "GameModelList": [
         {
             "DescriptiveName": "CylArcade Demo",
@@ -167,13 +123,13 @@
             "Available": false,
             "Runnable": false,
             "Position": {
-                "x": -5.5,
+                "x": 0.0,
                 "y": 1.4,
                 "z": 0.0
             },
             "Rotation": {
                 "x": 0.0,
-                "y": 90.01667,
+                "y": 180.0,
                 "z": 0.0
             },
             "Scale": {
@@ -264,13 +220,13 @@
             "Available": false,
             "Runnable": false,
             "Position": {
-                "x": -3.8,
+                "x": 0.0,
                 "y": 1.4,
-                "z": 3.8
+                "z": 0.0
             },
             "Rotation": {
                 "x": 0.0,
-                "y": 133.0,
+                "y": 180.0,
                 "z": 0.0
             },
             "Scale": {
@@ -346,7 +302,7 @@
             "Position": {
                 "x": 0.0,
                 "y": 1.4,
-                "z": 5.5
+                "z": 0.0
             },
             "Rotation": {
                 "x": 0.0,
@@ -441,13 +397,13 @@
             "Available": false,
             "Runnable": false,
             "Position": {
-                "x": 3.8,
+                "x": 0.0,
                 "y": 1.4,
-                "z": 3.8
+                "z": 0.0
             },
             "Rotation": {
                 "x": 0.0,
-                "y": -133.0,
+                "y": 180.0,
                 "z": 0.0
             },
             "Scale": {
@@ -521,13 +477,13 @@
             "Available": false,
             "Runnable": false,
             "Position": {
-                "x": 5.5,
+                "x": 0.0,
                 "y": 1.4,
                 "z": 0.0
             },
             "Rotation": {
                 "x": 0.0,
-                "y": -90.05704,
+                "y": 180.0,
                 "z": 0.0
             },
             "Scale": {

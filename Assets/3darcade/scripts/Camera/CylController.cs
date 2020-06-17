@@ -7,8 +7,8 @@ namespace Arcade
 {
     public class CylController : MonoBehaviour
     {
-        List<GameObject> objects = new List<GameObject>();
-        List<ModelProperties> games = new List<ModelProperties>();
+        private List<GameObject> _objects = new List<GameObject>();
+        private List<ModelProperties> _games = new List<ModelProperties>();
 
         public Camera thisCamera;
         public ArcadeType arcadeType = ArcadeType.CylArcade;
@@ -18,16 +18,16 @@ namespace Arcade
         public float timer = 0;
 
         // Jump to a new game position properties
-        private bool jump;
-        private readonly bool jumpForwards = true;
-        private int jumps;
-        private float jumpsCount = 0;
+        private bool _jump;
+        private readonly bool _jumpForwards = true;
+        private int _jumps;
+        private float _jumpsCount = 0;
 
-        private int tempTargetModelGamePosition;
-        private float cameraRotationDeltaDamping = 2f;
+        private int _tempTargetModelGamePosition;
+        private float _cameraRotationDeltaDamping = 2f;
         //private bool cameraOrientationVertical;
         public bool setupFinished;
-        GameObject dummyCameraTransform;
+        GameObject _dummyCameraTransform;
 
         // Global Variables
 
@@ -48,40 +48,44 @@ namespace Arcade
                 return;
             }
 
-            thisCamera.transform.rotation = Quaternion.Lerp(thisCamera.transform.rotation, dummyCameraTransform.transform.rotation, timer);
-            thisCamera.transform.position = Vector3.Lerp(thisCamera.transform.position, dummyCameraTransform.transform.position, timer);
+            thisCamera.transform.rotation = Quaternion.Lerp(thisCamera.transform.rotation, _dummyCameraTransform.transform.rotation, timer);
+            thisCamera.transform.position = Vector3.Lerp(thisCamera.transform.position, _dummyCameraTransform.transform.position, timer);
 
             //print("cyl type " + arcadeType + " timer " + timer + " delta " + Time.deltaTime + " damp " + cameraRotationDeltaDamping);
-            timer += (Time.deltaTime * (cameraRotationDeltaDamping));
+            timer += (Time.deltaTime * (_cameraRotationDeltaDamping));
             if (timer <= 1)
             {
                 return;
             }
-            if (jump)
+            if (_jump)
             {
-                if (jumpForwards)
+                if (_jumpForwards)
                 {
-                    tempTargetModelGamePosition += 1;
-                    if (tempTargetModelGamePosition > games.Count - 1)
-                    { tempTargetModelGamePosition = 0; }
-                    Forwards(tempTargetModelGamePosition);
+                    _tempTargetModelGamePosition += 1;
+                    if (_tempTargetModelGamePosition > _games.Count - 1)
+                    {
+                        _tempTargetModelGamePosition = 0;
+                    }
+                    Forwards(_tempTargetModelGamePosition);
                 }
                 else
                 {
-                    tempTargetModelGamePosition -= 1;
-                    if (tempTargetModelGamePosition < 0)
-                    { tempTargetModelGamePosition = games.Count - 1; }
-                    Backwards(tempTargetModelGamePosition);
+                    _tempTargetModelGamePosition -= 1;
+                    if (_tempTargetModelGamePosition < 0)
+                    {
+                        _tempTargetModelGamePosition = _games.Count - 1;
+                    }
+                    Backwards(_tempTargetModelGamePosition);
                 }
-                jumps += 1;
-                if (jumps < jumpsCount)
+                _jumps += 1;
+                if (_jumps < _jumpsCount)
                 {
                     return;
                 }
 
-                jump = false;
+                _jump = false;
             }
-            jumpsCount = 0;
+            _jumpsCount = 0;
 
             cylArcadeProperties.cameraTranslation += CrossPlatformInputManager.GetAxis("Vertical") * Time.deltaTime * cylArcadeProperties.cameraTranslationdamping;
             if (cylArcadeProperties.cameraTranslation > cylArcadeProperties.cameraMaxTranslation)
@@ -98,18 +102,22 @@ namespace Arcade
             float straffe = (CrossPlatformInputManager.GetAxis("Horizontal"));
             if (straffe > 0.0017)
             {
-                cameraRotationDeltaDamping = 2 + (cylArcadeProperties.cameraRotationdamping * (straffe / 1f));
+                _cameraRotationDeltaDamping = 2 + (cylArcadeProperties.cameraRotationdamping * (straffe / 1f));
                 cylArcadeProperties.gamePosition += 1;
-                if (cylArcadeProperties.gamePosition > games.Count - 1)
-                { cylArcadeProperties.gamePosition = 0; }
+                if (cylArcadeProperties.gamePosition > _games.Count - 1)
+                {
+                    cylArcadeProperties.gamePosition = 0;
+                }
                 Forwards(cylArcadeProperties.gamePosition);
             }
             if (straffe < -0.0017)
             {
-                cameraRotationDeltaDamping = 2 + (cylArcadeProperties.cameraRotationdamping * (straffe / -1f));
+                _cameraRotationDeltaDamping = 2 + (cylArcadeProperties.cameraRotationdamping * (straffe / -1f));
                 cylArcadeProperties.gamePosition -= 1;
                 if (cylArcadeProperties.gamePosition < 0)
-                { cylArcadeProperties.gamePosition = games.Count - 1; }
+                {
+                    cylArcadeProperties.gamePosition = _games.Count - 1;
+                }
                 Backwards(cylArcadeProperties.gamePosition);
             }
 
@@ -124,48 +132,52 @@ namespace Arcade
         void Forwards(int targetGamePosition)
         {
             targetGamePosition += cylArcadeProperties.sprockets - cylArcadeProperties.selectedSprocket - 1;
-            if (targetGamePosition > games.Count - 1)
+            if (targetGamePosition > _games.Count - 1)
             {
-                targetGamePosition -= games.Count;
+                targetGamePosition -= _games.Count;
             }
-            if (objects.Count == cylArcadeProperties.sprockets)
+            if (_objects.Count == cylArcadeProperties.sprockets)
             {
                 if (Application.isPlaying)
                 {
-                    Destroy(objects[0]);
+                    Destroy(_objects[0]);
                 }
                 else
                 {
-                    DestroyImmediate(objects[0]);
+                    DestroyImmediate(_objects[0]);
                 }
             }
             GameObject model = AddModel(targetGamePosition);
-            if (objects.Count == cylArcadeProperties.sprockets)
-            { objects.RemoveAt(0); }
-            objects.Add(model);
-            UpdateModelTransform(objects.Count - 2, model, true);
-            if (objects.Count == cylArcadeProperties.sprockets)
-            { UpdateCamera(); }
+            if (_objects.Count == cylArcadeProperties.sprockets)
+            {
+                _objects.RemoveAt(0);
+            }
+            _objects.Add(model);
+            UpdateModelTransform(_objects.Count - 2, model, true);
+            if (_objects.Count == cylArcadeProperties.sprockets)
+            {
+                UpdateCamera();
+            }
         }
+
         void Backwards(int targetGamePosition)
         {
             targetGamePosition -= cylArcadeProperties.selectedSprocket;
             if (targetGamePosition < 0)
             {
-                targetGamePosition += games.Count;
+                targetGamePosition += _games.Count;
             }
             if (Application.isPlaying)
             {
-                Destroy(objects[objects.Count - 1]);
+                Destroy(_objects[_objects.Count - 1]);
             }
             else
             {
-                DestroyImmediate(objects[objects.Count - 1]);
+                DestroyImmediate(_objects[_objects.Count - 1]);
             }
             GameObject model = AddModel(targetGamePosition);
-            ;
-            objects.RemoveAt(objects.Count - 1);
-            objects.Insert(0, model);
+            _objects.RemoveAt(_objects.Count - 1);
+            _objects.Insert(0, model);
             UpdateModelTransform(1, model, false);
             UpdateCamera();
         }
@@ -244,9 +256,9 @@ namespace Arcade
 
         void UpdateModelTransform(int index, GameObject model, bool forwards)
         {
-            model.transform.position = objects[index].transform.position;
-            model.transform.rotation = objects[index].transform.rotation;
-            GameObject tOrig = objects[index];
+            model.transform.position = _objects[index].transform.position;
+            model.transform.rotation = _objects[index].transform.rotation;
+            GameObject tOrig = _objects[index];
             float tOrigWidth = GetModelWidth(tOrig);
             float modelWidth = GetModelWidth(model);
             float width = ((tOrigWidth / 2) + (modelWidth / 2) + cylArcadeProperties.modelSpacing) / cylArcadeProperties.radius;
@@ -260,16 +272,18 @@ namespace Arcade
                 return;
             }
 
-            Vector3 direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
+            Vector3 direction = _objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
             direction.y = 0;
-            dummyCameraTransform.transform.position = objects[cylArcadeProperties.selectedSprocket].transform.position;
-            dummyCameraTransform.transform.Translate(direction * -0.99f, Space.World);
-            dummyCameraTransform.transform.LookAt(Vector3.zero);
-            dummyCameraTransform.transform.Rotate(cylArcadeProperties.cameraLocalEularAngleX, cylArcadeProperties.cameraLocalEularAngleY, cylArcadeProperties.cameraLocalEularAngleZ, Space.Self);
+            _dummyCameraTransform.transform.position = _objects[cylArcadeProperties.selectedSprocket].transform.position;
+            _dummyCameraTransform.transform.Translate(direction * -0.99f, Space.World);
+            _dummyCameraTransform.transform.LookAt(Vector3.zero);
+            _dummyCameraTransform.transform.Rotate(cylArcadeProperties.cameraLocalEularAngleX, cylArcadeProperties.cameraLocalEularAngleY, cylArcadeProperties.cameraLocalEularAngleZ, Space.Self);
             if (cylArcadeProperties.cameraTranslationDirectionAxisY)
-            { direction = Vector3.up; }
-            dummyCameraTransform.transform.Translate(direction * cylArcadeProperties.cameraTranslation * (cylArcadeProperties.cameraTranslationReverse == true ? -1 : 1), Space.World);
-            dummyCameraTransform.transform.Translate(cylArcadeProperties.cameraLocalTranslation, Space.Self);
+            {
+                direction = Vector3.up;
+            }
+            _dummyCameraTransform.transform.Translate(direction * cylArcadeProperties.cameraTranslation * (cylArcadeProperties.cameraTranslationReverse == true ? -1 : 1), Space.World);
+            _dummyCameraTransform.transform.Translate(cylArcadeProperties.cameraLocalTranslation, Space.Self);
             timer = 0;
         }
 
@@ -280,12 +294,14 @@ namespace Arcade
                 return;
             }
 
-            Vector3 direction = objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
+            Vector3 direction = _objects[cylArcadeProperties.selectedSprocket].transform.position - Vector3.zero;
             direction.y = 0;
-            thisCamera.transform.position = objects[cylArcadeProperties.selectedSprocket].transform.position;
+            thisCamera.transform.position = _objects[cylArcadeProperties.selectedSprocket].transform.position;
             thisCamera.transform.Translate(direction * -0.99f, Space.World);
             if (cylArcadeProperties.cameraTranslationDirectionAxisY)
-            { direction = Vector3.up; }
+            {
+                direction = Vector3.up;
+            }
             thisCamera.transform.Translate(direction * cylArcadeProperties.cameraTranslation * (cylArcadeProperties.cameraTranslationReverse == true ? -1 : 1), Space.World);
             thisCamera.transform.Translate(cylArcadeProperties.cameraLocalTranslation, Space.Self);
             timer = 1;
@@ -293,7 +309,7 @@ namespace Arcade
 
         GameObject AddModel(int position, bool addTrigger = true)
         {
-            GameObject model = Arcade.ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(Arcade.ModelType.Game, games[position], arcadeType, addTrigger);
+            GameObject model = Arcade.ArcadeManager.loadSaveArcadeConfiguration.AddModelToArcade(Arcade.ModelType.Game, _games[position], arcadeType, addTrigger);
             Rigidbody rigid = model.transform.GetChild(0).GetComponent<Rigidbody>();
             if (rigid != null)
             {
@@ -324,7 +340,9 @@ namespace Arcade
                 Renderer[] rr = t.GetChild(0).GetComponentsInChildren<Renderer>();
                 Bounds b = rr[0].bounds;
                 foreach (Renderer r in rr)
-                { b.Encapsulate(r.bounds); }
+                {
+                    b.Encapsulate(r.bounds);
+                }
                 t.position = savedPosition;
                 t.localPosition = savedLocalPosition;
                 t.rotation = savedRotation;
@@ -338,12 +356,14 @@ namespace Arcade
         public bool SetupCylArcade(ArcadeConfiguration arcadeConfiguration)
         {
             if (arcadeConfiguration.cylArcadeProperties.Count < 1)
-            { return false; }
-            games = arcadeConfiguration.gameModelList;
-            objects = new List<GameObject>();
+            {
+                return false;
+            }
+            _games = arcadeConfiguration.gameModelList;
+            _objects = new List<GameObject>();
             cylArcadeProperties = arcadeConfiguration.cylArcadeProperties[0];
 
-            if (games.Count < cylArcadeProperties.sprockets)
+            if (_games.Count < cylArcadeProperties.sprockets)
             {
                 if (cylArcadeProperties.selectedSprocket == 0)
                 {
@@ -351,13 +371,13 @@ namespace Arcade
                 }
                 else if (cylArcadeProperties.selectedSprocket == cylArcadeProperties.sprockets - 1)
                 {
-                    cylArcadeProperties.selectedSprocket = games.Count - 1;
+                    cylArcadeProperties.selectedSprocket = _games.Count - 1;
                 }
                 else
                 {
-                    cylArcadeProperties.selectedSprocket = (((games.Count % 2 == 0) ? games.Count : (games.Count - 1)) / 2) - 1;
+                    cylArcadeProperties.selectedSprocket = (((_games.Count % 2 == 0) ? _games.Count : (_games.Count - 1)) / 2) - 1;
                 }
-                cylArcadeProperties.sprockets = games.Count - 1;
+                cylArcadeProperties.sprockets = _games.Count - 1;
             }
 
             thisCamera.ResetAspect();
@@ -373,28 +393,28 @@ namespace Arcade
             Transform t = transform.Find("dummyCameraTransform");
             if (t == null)
             {
-                dummyCameraTransform = new GameObject
+                _dummyCameraTransform = new GameObject
                 {
                     name = "dummyCameraTransform"
                 };
-                dummyCameraTransform.transform.parent = gameObject.transform;
+                _dummyCameraTransform.transform.parent = gameObject.transform;
             }
             else
             {
-                dummyCameraTransform = t.gameObject;
+                _dummyCameraTransform = t.gameObject;
             }
 
-            cameraRotationDeltaDamping = cylArcadeProperties.cameraRotationdamping; // Reset damping
+            _cameraRotationDeltaDamping = cylArcadeProperties.cameraRotationdamping; // Reset damping
 
-            tempTargetModelGamePosition = cylArcadeProperties.gamePosition;
+            _tempTargetModelGamePosition = cylArcadeProperties.gamePosition;
             cylArcadeProperties.gamePosition -= cylArcadeProperties.sprockets;
             if (cylArcadeProperties.gamePosition < 0)
             {
-                cylArcadeProperties.gamePosition += games.Count;
+                cylArcadeProperties.gamePosition += _games.Count;
             }
             // Setup first model
             GameObject model = AddModel(cylArcadeProperties.gamePosition);
-            objects.Add(model);
+            _objects.Add(model);
             model.transform.position = new Vector3(0, 0, 0);
             model.transform.rotation = Quaternion.identity;
             model.transform.Translate(new Vector3(0, 0, cylArcadeProperties.radius), Space.World);
@@ -403,11 +423,13 @@ namespace Arcade
             for (int i = 0; i < cylArcadeProperties.sprockets; i++)
             {
                 cylArcadeProperties.gamePosition += 1;
-                if (cylArcadeProperties.gamePosition > games.Count - 1)
-                { cylArcadeProperties.gamePosition = 0; }
+                if (cylArcadeProperties.gamePosition > _games.Count - 1)
+                {
+                    cylArcadeProperties.gamePosition = 0;
+                }
                 Forwards(cylArcadeProperties.gamePosition);
             }
-            cylArcadeProperties.gamePosition = tempTargetModelGamePosition;
+            cylArcadeProperties.gamePosition = _tempTargetModelGamePosition;
             // Don't animate the camera, so set timer to 1;
             timer = 1;
             setupFinished = true;
@@ -420,13 +442,13 @@ namespace Arcade
             GameObject obj = null;
             try
             {
-                obj = objects[cylArcadeProperties.selectedSprocket];
+                obj = _objects[cylArcadeProperties.selectedSprocket];
             }
             catch (Exception)
             {
 
             }
-            return obj != null ? objects[cylArcadeProperties.selectedSprocket].transform.GetChild(0).gameObject : null;
+            return obj != null ? _objects[cylArcadeProperties.selectedSprocket].transform.GetChild(0).gameObject : null;
         }
     }
 }

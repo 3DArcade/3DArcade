@@ -37,22 +37,26 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FirstPersonActions.Enable();
+            _context.App.PlayerFpsControls.FpsArcadeActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
+                _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
             }
 
             _context.CurrentModelConfiguration = null;
 
             _context.App.UIController.EnableNormalUI();
+
+            _context.App.CurrentPlayerControls = _context.App.PlayerFpsControls;
+
+            _context.App.VideoPlayerController.SetPlayer(_context.App.PlayerFpsControls.transform);
         }
 
         public override void OnExit()
         {
             Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FirstPersonActions.Disable();
+            _context.App.PlayerFpsControls.FpsArcadeActions.Disable();
 
             _context.App.UIController.DisableNormalUI();
         }
@@ -69,11 +73,11 @@ namespace Arcade_r
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Enable();
+                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
+                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
                 }
             }
 
@@ -82,14 +86,14 @@ namespace Arcade_r
                                                    INTERACT_MAX_DISTANCE,
                                                    _context.RaycastLayers);
 
-            _context.VideoPlayerController.UpdateVideosState();
+            _context.App.VideoPlayerController.UpdateVideosState();
 
-            if (!Cursor.visible && _context.App.PlayerFpsControls.FirstPersonActions.Interact.triggered)
+            if (!Cursor.visible && _context.App.PlayerFpsControls.FpsArcadeActions.Interact.triggered)
             {
                 HandleInteraction();
             }
 
-            if (_context.App.PlayerFpsControls.FirstPersonActions.ToggleMoveCab.triggered)
+            if (_context.App.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
             {
                 _context.TransitionTo<ArcadeFpsMoveCabState>();
             }

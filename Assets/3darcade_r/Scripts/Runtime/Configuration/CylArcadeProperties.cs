@@ -20,6 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using UnityEngine;
+
 namespace Arcade_r
 {
     [System.Serializable]
@@ -27,10 +29,10 @@ namespace Arcade_r
     {
         public CameraSettings CameraSettings;
 
-        public int GamePosition;
         public int Sprockets;
         public int SelectedSprocket;
-        public int Radius;
+        public float WheelRadius;
+        public float WheelOffsetZ;
         public float ModelSpacing;
         public bool ModelWidthAxisY;
         public bool ModelIsKinemtatic;
@@ -53,8 +55,6 @@ namespace Arcade_r
         public bool MouseLookAxisY;
         public bool MouseLookReverse;
 
-        public float SprocketLocalEularAngleX;
-        public float SprocketLocalEularAngleY;
-        public float SprocketLocalEularAngleZ;
+        public Vector3 SprocketRotation;
     }
 }

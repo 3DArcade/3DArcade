@@ -60,7 +60,7 @@ namespace Arcade_r
 
         private static void OnHierarchyChanged()
         {
-            if (Application.isPlaying)
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
             {
                 return;
             }

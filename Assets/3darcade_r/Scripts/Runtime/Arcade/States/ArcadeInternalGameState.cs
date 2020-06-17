@@ -21,7 +21,6 @@
  * SOFTWARE. */
 
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Arcade_r
 {
@@ -34,7 +33,7 @@ namespace Arcade_r
         public ArcadeInternalGameState(ArcadeContext context)
         : base(context)
         {
-            _libretroController = new InternalGameController(_context.App.PlayerFpsControls.transform);
+            _libretroController = new InternalGameController(_context.App.CurrentPlayerControls.transform);
         }
 
         public override void OnEnter()
@@ -49,13 +48,20 @@ namespace Arcade_r
                 {
                     if (_libretroController.StartGame(_screenNode, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
                     {
-                        _context.VideoPlayerController.StopAllVideos();
+                        _context.App.VideoPlayerController.StopAllVideos();
                         return;
                     }
                 }
             }
 
-            _context.TransitionTo<ArcadeFpsNormalState>();
+            if (_context.CurrentArcadeType == ArcadeType.Fps)
+            {
+                _context.TransitionTo<ArcadeFpsNormalState>();
+            }
+            else if (_context.CurrentArcadeType == ArcadeType.Cyl)
+            {
+                _context.TransitionTo<ArcadeCylNormalState>();
+            }
         }
 
         public override void OnExit()
@@ -68,19 +74,15 @@ namespace Arcade_r
         {
             _libretroController.UpdateGame(dt);
 
-            if (_context.App.PlayerFpsControls.GlobalActions.Quit.triggered)
+            if (_context.App.CurrentPlayerControls.GlobalActions.Quit.triggered)
             {
-                _context.TransitionTo<ArcadeFpsNormalState>();
-            }
-            else if (Keyboard.current.f1Key.wasPressedThisFrame)
-            {
-                if (_context.App.PlayerFpsControls.FirstPersonActions.Look.enabled)
+                if (_context.CurrentArcadeType == ArcadeType.Fps)
                 {
-                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Disable();
+                    _context.TransitionTo<ArcadeFpsNormalState>();
                 }
-                else
+                else if (_context.CurrentArcadeType == ArcadeType.Cyl)
                 {
-                    _context.App.PlayerFpsControls.FirstPersonActions.Look.Enable();
+                    _context.TransitionTo<ArcadeCylNormalState>();
                 }
             }
         }

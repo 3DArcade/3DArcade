@@ -53,6 +53,11 @@ namespace Arcade_r
             ArcadesNode = childNodes[0].transform;
             GamesNode   = childNodes[1].transform;
             PropsNode   = childNodes[2].transform;
+
+            RootNode.position    = Vector3.zero;
+            ArcadesNode.position = Vector3.zero;
+            GamesNode.position   = Vector3.zero;
+            PropsNode.position   = Vector3.zero;
         }
 
         public void Reset()
@@ -68,6 +73,8 @@ namespace Arcade_r
             {
                 Object.DestroyImmediate(transform.GetChild(0).gameObject);
             }
+
+            transform.position = Vector3.zero;
         }
     }
 }

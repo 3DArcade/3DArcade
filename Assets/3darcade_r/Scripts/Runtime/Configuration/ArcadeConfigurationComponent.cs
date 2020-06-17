@@ -25,6 +25,13 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
+    public static class Defaults
+    {
+        public static CameraSettings CameraSettings => new CameraSettings();
+        public static FpsArcadeProperties FpsArcadeProperties => new FpsArcadeProperties { CameraSettings = CameraSettings };
+        public static CylArcadeProperties CylArcadeProperties => new CylArcadeProperties { CameraSettings = CameraSettings };
+    }
+
     [DisallowMultipleComponent]
     public sealed class ArcadeConfigurationComponent : MonoBehaviour
     {
@@ -37,6 +44,12 @@ namespace Arcade_r
         public CylArcadeProperties CylArcadeProperties = default;
         public Zone[] Zones                            = default;
 
+        private void OnValidate()
+        {
+            App app = FindObjectOfType<App>();
+            Assert.IsNotNull(app);
+        }
+
         public bool Save(Database<ArcadeConfiguration> arcadeDatabase, CameraSettings fpsCameraSettings, CameraSettings cylCameraSettings)
         {
             GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);
@@ -48,8 +61,8 @@ namespace Arcade_r
                 RenderSettings      = RenderSettings,
                 AudioSettings       = AudioSettings,
                 VideoSettings       = VideoSettings,
-                FpsArcadeProperties = FpsArcadeProperties ?? new FpsArcadeProperties(),
-                CylArcadeProperties = CylArcadeProperties ?? new CylArcadeProperties(),
+                FpsArcadeProperties = FpsArcadeProperties ?? Defaults.FpsArcadeProperties,
+                CylArcadeProperties = CylArcadeProperties ?? Defaults.CylArcadeProperties,
                 Zones               = Zones,
                 ArcadeModelList     = GetModelConfigurations(tArcades),
                 GameModelList       = GetModelConfigurations(tGames),
@@ -82,8 +95,8 @@ namespace Arcade_r
             RenderSettings      = cfg.RenderSettings;
             AudioSettings       = cfg.AudioSettings;
             VideoSettings       = cfg.VideoSettings;
-            FpsArcadeProperties = cfg.FpsArcadeProperties;
-            CylArcadeProperties = cfg.CylArcadeProperties;
+            FpsArcadeProperties = cfg.FpsArcadeProperties ?? Defaults.FpsArcadeProperties;
+            CylArcadeProperties = cfg.CylArcadeProperties ?? Defaults.CylArcadeProperties;
             Zones               = cfg.Zones;
         }
 

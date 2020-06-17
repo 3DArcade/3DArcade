@@ -67,14 +67,14 @@ namespace Arcade_r
 
             if (_data.ModelSetup != null && _data.ModelSetup.MoveCabMovable)
             {
-                Vector2 positionInput = _context.PlayerFpsControls.FirstPersonMoveCabActions.MoveModel.ReadValue<Vector2>();
-                float rotationInput   = _context.PlayerFpsControls.FirstPersonMoveCabActions.RotateModel.ReadValue<float>();
+                Vector2 positionInput = _context.PlayerFpsControls.FpsMoveCabActions.MoveModel.ReadValue<Vector2>();
+                float rotationInput   = _context.PlayerFpsControls.FpsMoveCabActions.RotateModel.ReadValue<float>();
                 _data.AimPosition     = positionInput * _movementSpeedMultiplier;
                 _data.AimRotation     = rotationInput * _rotationSpeedMultiplier;
 
                 if (_data.ModelSetup.MoveCabGrabbable)
                 {
-                    if (_context.PlayerFpsControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+                    if (_context.PlayerFpsControls.FpsMoveCabActions.GrabReleaseModel.triggered)
                     {
                         _context.TransitionTo<MoveCabGrabState>();
                     }

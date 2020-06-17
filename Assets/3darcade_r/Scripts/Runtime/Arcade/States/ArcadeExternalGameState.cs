@@ -50,7 +50,7 @@ namespace Arcade_r
                 _isGameRunning = _externalAppController.StartGame(emulator, _context.CurrentModelConfiguration.Id);
                 if (_isGameRunning)
                 {
-                    _context.VideoPlayerController.StopAllVideos();
+                    _context.App.VideoPlayerController.StopAllVideos();
                     return;
                 }
             }
@@ -73,7 +73,15 @@ namespace Arcade_r
             RestoreUnityWindow();
 
             _externalAppController.StopCurrent();
-            _context.TransitionTo<ArcadeFpsNormalState>();
+
+            if (_context.CurrentArcadeType == ArcadeType.Fps)
+            {
+                _context.TransitionTo<ArcadeFpsNormalState>();
+            }
+            else if (_context.CurrentArcadeType == ArcadeType.Cyl)
+            {
+                _context.TransitionTo<ArcadeCylNormalState>();
+            }
         }
 
         private void OnAppStarted(OSUtils.ProcessStartedData data, EmulatorConfiguration emulator, string game)

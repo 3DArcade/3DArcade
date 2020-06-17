@@ -58,7 +58,7 @@ namespace Arcade_r
             Ray ray               = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
             MoveCabController.AutoMoveAndRotate(_data, ray, _context.PlayerFpsControls.transform.forward, _raycastMaxDistance, _context.RaycastLayers);
 
-            if (_context.PlayerFpsControls.FirstPersonMoveCabActions.GrabReleaseModel.triggered)
+            if (_context.PlayerFpsControls.FpsMoveCabActions.GrabReleaseModel.triggered)
             {
                 _context.TransitionTo<MoveCabAimState>();
             }
