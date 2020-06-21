@@ -50,7 +50,7 @@ namespace Arcade_r
             Assert.IsNotNull(app);
         }
 
-        public bool Save(Database<ArcadeConfiguration> arcadeDatabase, CameraSettings fpsCameraSettings, CameraSettings cylCameraSettings)
+        public bool Save(Database<ArcadeConfiguration> arcadeDatabase, CameraSettings fpsCameraSettings, CameraSettings cylCameraSettings, bool saveGameTransforms)
         {
             GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);
 
@@ -65,7 +65,7 @@ namespace Arcade_r
                 CylArcadeProperties = CylArcadeProperties ?? Defaults.CylArcadeProperties,
                 Zones               = Zones,
                 ArcadeModelList     = GetModelConfigurations(tArcades),
-                GameModelList       = GetModelConfigurations(tGames),
+                GameModelList       = saveGameTransforms ? GetModelConfigurations(tGames) : arcadeDatabase.Get(Id).GameModelList,
                 PropModelList       = GetModelConfigurations(tProps)
             };
 

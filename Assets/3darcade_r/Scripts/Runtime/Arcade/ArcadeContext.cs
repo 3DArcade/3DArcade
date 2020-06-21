@@ -123,7 +123,7 @@ namespace Arcade_r
                 ViewportRect  = cylCamera.rect
             };
 
-            return cfgComponent.Save(App.ArcadeDatabase, fpsCameraSettings, cylCameraSettings);
+            return cfgComponent.Save(App.ArcadeDatabase, fpsCameraSettings, cylCameraSettings, !cylCamera.gameObject.activeInHierarchy);
         }
 
         public bool SaveCurrentArcadeConfigurationModels()

@@ -46,7 +46,7 @@ namespace Arcade_r
             {
                 GatherMovementInputValues();
             }
-            HandleMovement();
+            HandleMovement(Time.deltaTime);
 
             if (_inputActions.CylArcade.Look.enabled)
             {
@@ -55,13 +55,19 @@ namespace Arcade_r
             }
         }
 
+        public void SetHorizontalLookLimits(float min, float max)
+        {
+            _minHorizontalLookAngle = Mathf.Clamp(min, -90f, 0f);
+            _maxHorizontalLookAngle = Mathf.Clamp(max, 0f, 90f);
+        }
+
         protected override void GatherMovementInputValues() => _movementInputValue = _inputActions.CylArcade.Movement.ReadValue<float>();
 
         protected override void GatherLookInputValues() => _lookInputValue = _inputActions.CylArcade.Look.ReadValue<Vector2>();
 
-        protected override void HandleMovement()
+        protected override void HandleMovement(float dt)
         {
-            _ = _characterController.Move(new Vector3(0f, 0f, _movementInputValue) * _walkSpeed * Time.deltaTime);
+            _ = _characterController.Move(new Vector3(0f, 0f, _movementInputValue) * _walkSpeed * dt);
 
             if (transform.localPosition.z < 0f)
             {

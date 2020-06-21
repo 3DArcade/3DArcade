@@ -64,10 +64,12 @@
                 "height": 1.0
             }
         },
-        "Sprockets": 10,
-        "SelectedSprocket": -1,
+        "WheelVariant": "CameraInsideWheel",
+        "Sprockets": 7,
+        "SelectedSprocket": 1,
+        "SelectedPosition": 1,
         "WheelRadius": 5.0,
-        "WheelOffsetZ": 0,
+        "WheelOffsetZ": 0.0,
         "ModelSpacing": 0.25,
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": true,
@@ -176,7 +178,7 @@
             "Rotation": {
                 "x": -2.31884565E-06,
                 "y": -140.0,
-                "z": 4.05646432E-08
+                "z": 4.056459E-08
             },
             "Scale": {
                 "x": 1.0,
@@ -219,7 +221,7 @@
                 "z": 5.067409
             },
             "Rotation": {
-                "x": 3.76790831E-06,
+                "x": 3.76790922E-06,
                 "y": 129.839737,
                 "z": -1.98337534E-06
             },
@@ -456,7 +458,7 @@
                 "z": -0.562436163
             },
             "Rotation": {
-                "x": -0.0003607698,
+                "x": -0.000360769773,
                 "y": 50.87966,
                 "z": 0.000325824018
             },
@@ -622,9 +624,9 @@
                 "z": -1.66239047
             },
             "Rotation": {
-                "x": -0.000200917275,
+                "x": -0.000200917289,
                 "y": -29.1204834,
-                "z": 0.0007733846
+                "z": 0.0007733845
             },
             "Scale": {
                 "x": 1.0,
@@ -757,8 +759,8 @@
                 "z": -4.65885544
             },
             "Rotation": {
-                "x": -9.776384E-07,
-                "y": 12.4794378,
+                "x": -9.776385E-07,
+                "y": 12.4794388,
                 "z": -3.7034456E-06
             },
             "Scale": {
@@ -802,9 +804,9 @@
                 "z": -4.73473167
             },
             "Rotation": {
-                "x": -4.44287525E-06,
+                "x": -4.442875E-06,
                 "y": -5.920532,
-                "z": 6.73930253E-06
+                "z": 6.739302E-06
             },
             "Scale": {
                 "x": 1.0,
@@ -847,9 +849,9 @@
                 "z": -5.00444841
             },
             "Rotation": {
-                "x": 7.3853306E-07,
+                "x": 7.385332E-07,
                 "y": -27.200531,
-                "z": -4.323012E-06
+                "z": -4.32301249E-06
             },
             "Scale": {
                 "x": 1.0,
@@ -1144,6 +1146,51 @@
                 "x": -0.0200000051,
                 "y": 5.96046448E-08,
                 "z": 4.4
+            },
+            "Rotation": {
+                "x": -5.155071E-06,
+                "y": 180.0,
+                "z": -5.18983734E-06
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "Main Menu",
+            "Id": "mainmenu",
+            "Model": "",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": "",
+            "MarqueeDirectory": "",
+            "MarqueeVideoDirectory": "",
+            "ScreenDirectory": "",
+            "ScreenVideoDirectory": "",
+            "TitleDirectory": "",
+            "GenericDirectory": "",
+            "GenericVideoDirectory": "",
+            "InfoDirectory": "",
+            "Grabbable": false,
+            "MoveCabMovable": true,
+            "MoveCabGrabbable": true,
+            "CloneOf": "",
+            "RomOf": "",
+            "Genre": "",
+            "Year": "",
+            "Manufacturer": "",
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": -0.02,
+                "y": 0.0,
+                "z": 1.96
             },
             "Rotation": {
                 "x": -5.155071E-06,

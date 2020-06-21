@@ -111,6 +111,11 @@ namespace Arcade_r
 
         protected void AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
+            if (modelConfigurations == null)
+            {
+                return;
+            }
+
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
                 EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
@@ -224,20 +229,20 @@ namespace Arcade_r
                 return false;
             }
 
-           _ = screen.AddComponentIfNotFound<AudioSource>();
+            _ = screen.AddComponentIfNotFound<AudioSource>();
 
-            VideoPlayer videoPlayer            = screen.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived          -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived          += OnVideoPlayerErrorReceived;
-            videoPlayer.prepareCompleted       -= OnVideoPlayerPrepareCompleted;
-            videoPlayer.prepareCompleted       += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake            = true;
-            videoPlayer.waitForFirstFrame      = true;
-            videoPlayer.isLooping              = true;
-            videoPlayer.source                 = VideoSource.Url;
-            videoPlayer.url                    = videopath;
-            videoPlayer.renderMode             = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode        = VideoAudioOutputMode.AudioSource;
+            VideoPlayer videoPlayer = screen.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake = true;
+            videoPlayer.waitForFirstFrame = true;
+            videoPlayer.isLooping = true;
+            videoPlayer.source = VideoSource.Url;
+            videoPlayer.url = videopath;
+            videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
             videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
             videoPlayer.Prepare();
 

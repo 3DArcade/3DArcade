@@ -8,11 +8,11 @@ namespace Arcade
 {
     public class LoadSaveArcadeConfiguration
     {
-        private readonly ArcadeManager arcadeManager;
+        private readonly ArcadeManager _arcadeManager;
 
         public LoadSaveArcadeConfiguration(ArcadeManager arcadeManager)
         {
-            this.arcadeManager = arcadeManager; // We need a reference for updating the public properties
+            _arcadeManager = arcadeManager; // We need a reference for updating the public properties
         }
 
         public void StartArcadeWithIndex(int arcadeIndex)
@@ -179,12 +179,12 @@ namespace Arcade
         // This saves an ArcadeConfiguration from the loaded gameobjects, not from ArcadeManager's static arcadeConfiguration. Only useful if we support making changes in the editor!
         public void SaveArcade()
         {
-            if (arcadeManager == null)
+            if (_arcadeManager == null)
             {
                 Debug.Log("No Arcade node found");
                 return;
             }
-            ArcadeConfiguration arcadeConfiguration = arcadeManager.GetArcadeConfiguration();
+            ArcadeConfiguration arcadeConfiguration = _arcadeManager.GetArcadeConfiguration();
             SaveArcadeConfiguration(arcadeConfiguration);
         }
 
@@ -226,7 +226,7 @@ namespace Arcade
 
         public bool LoadArcade(ArcadeConfiguration arcadeConfiguration)
         {
-            if (arcadeManager == null)
+            if (_arcadeManager == null)
             {
                 Debug.Log("No ArcadeManager reference found, create one...");
                 return false;
@@ -237,7 +237,7 @@ namespace Arcade
             }
             if (arcadeConfiguration.arcadeType == ArcadeType.FpsArcade.ToString() || arcadeConfiguration.arcadeType == ArcadeType.CylArcade.ToString() || !Application.isPlaying)
             {
-                arcadeManager.SetArcadeConfiguration(arcadeConfiguration);
+                _arcadeManager.SetArcadeConfiguration(arcadeConfiguration);
             }
             else
             {
@@ -433,9 +433,9 @@ namespace Arcade
             }
 
             // Generic defaultmodel filters
-            if (arcadeManager.generalConfiguration != null)
+            if (_arcadeManager.generalConfiguration != null)
             {
-                List<DefaultModelFilter> defaultModelFilters = arcadeManager.generalConfiguration.defaultModelFilters;
+                List<DefaultModelFilter> defaultModelFilters = _arcadeManager.generalConfiguration.defaultModelFilters;
                 foreach (DefaultModelFilter defaultModel in defaultModelFilters)
                 {
                     bool success = true;

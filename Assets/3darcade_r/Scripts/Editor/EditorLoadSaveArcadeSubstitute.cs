@@ -108,37 +108,41 @@ namespace Arcade_r
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)
         {
-            Camera fpsCamera                          = _playerFpsControls.Camera;
-            CinemachineVirtualCamera fpsVirtualCamera = _playerFpsControls.VirtualCamera;
-            CameraSettings fpsCameraSettings          = new CameraSettings
+            Camera camera                          = _playerFpsControls.Camera;
+            CinemachineVirtualCamera virtualCamera = _playerFpsControls.VirtualCamera;
+            CinemachineTransposer transposer       = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+
+            CameraSettings fpsCameraSettings = new CameraSettings
             {
                 Position      = _playerFpsControls.transform.position,
-                Rotation      = MathUtils.CorrectEulerAngles(fpsCamera.transform.eulerAngles),
-                Height        = fpsVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
-                Orthographic  = fpsCamera.orthographic,
-                FieldOfView   = fpsVirtualCamera.m_Lens.FieldOfView,
-                AspectRatio   = fpsVirtualCamera.m_Lens.OrthographicSize,
-                NearClipPlane = fpsVirtualCamera.m_Lens.NearClipPlane,
-                FarClipPlane  = fpsVirtualCamera.m_Lens.FarClipPlane,
-                ViewportRect  = fpsCamera.rect
+                Rotation      = MathUtils.CorrectEulerAngles(camera.transform.eulerAngles),
+                Height        = transposer.m_FollowOffset.y,
+                Orthographic  = camera.orthographic,
+                FieldOfView   = virtualCamera.m_Lens.FieldOfView,
+                AspectRatio   = virtualCamera.m_Lens.OrthographicSize,
+                NearClipPlane = virtualCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = virtualCamera.m_Lens.FarClipPlane,
+                ViewportRect  = camera.rect
             };
 
-            Camera cylCamera                          = _playerCylControls.Camera;
-            CinemachineVirtualCamera cylVirtualCamera = _playerCylControls.VirtualCamera;
-            CameraSettings cylCameraSettings          = new CameraSettings
+            camera        = _playerCylControls.Camera;
+            virtualCamera = _playerCylControls.VirtualCamera;
+            transposer    = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+
+            CameraSettings cylCameraSettings = new CameraSettings
             {
-                Position      = _playerFpsControls.transform.position,
-                Rotation      = MathUtils.CorrectEulerAngles(cylCamera.transform.eulerAngles),
-                Height        = cylVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
-                Orthographic  = cylCamera.orthographic,
-                FieldOfView   = cylVirtualCamera.m_Lens.FieldOfView,
-                AspectRatio   = cylVirtualCamera.m_Lens.OrthographicSize,
-                NearClipPlane = cylVirtualCamera.m_Lens.NearClipPlane,
-                FarClipPlane  = cylVirtualCamera.m_Lens.FarClipPlane,
-                ViewportRect  = cylCamera.rect
+                Position      = _playerCylControls.transform.position,
+                Rotation      = MathUtils.CorrectEulerAngles(camera.transform.eulerAngles),
+                Height        = transposer.m_FollowOffset.y,
+                Orthographic  = camera.orthographic,
+                FieldOfView   = virtualCamera.m_Lens.FieldOfView,
+                AspectRatio   = virtualCamera.m_Lens.OrthographicSize,
+                NearClipPlane = virtualCamera.m_Lens.NearClipPlane,
+                FarClipPlane  = virtualCamera.m_Lens.FarClipPlane,
+                ViewportRect  = camera.rect
             };
 
-            _ = arcadeConfiguration.Save(ArcadeDatabase, fpsCameraSettings, cylCameraSettings);
+            _ = arcadeConfiguration.Save(ArcadeDatabase, fpsCameraSettings, cylCameraSettings, !_playerCylControls.gameObject.activeInHierarchy);
         }
     }
 }

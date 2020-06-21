@@ -20,28 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Collections.Generic;
-
 namespace Arcade_r
 {
-    public static class ListExtensions
+    public static class ArrayExtensions
     {
-        public static void AddStringIfNotNullOrEmpty(this List<string> list, string toAdd)
+        public static void RotateLeft<T>(this T[] list, int count)
         {
-            if (list == null)
-            {
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(toAdd))
-            {
-                list.Add(toAdd);
-            }
-        }
-
-        public static void RotateLeft<T>(this List<T> list, int count = 1)
-        {
-            if (list == null || list.Count < 1)
+            if (list == null || list.Length < 1)
             {
                 return;
             }
@@ -49,25 +34,25 @@ namespace Arcade_r
             for (int i = 0; i < count; ++i)
             {
                 T first = list[0];
-                for (int j = 1; j < list.Count; ++j)
+                for (int j = 1; j < list.Length; ++j)
                 {
                     list[j - 1] = list[j];
                 }
-                list[list.Count - 1] = first;
+                list[list.Length - 1] = first;
             }
         }
 
-        public static void RotateRight<T>(this List<T> list, int count = 1)
+        public static void RotateRight<T>(this T[] list, int count)
         {
-            if (list == null || list.Count < 1)
+            if (list == null || list.Length < 1)
             {
                 return;
             }
 
             for (int i = 0; i < count; ++i)
             {
-                T last = list[list.Count - 1];
-                for (int j = list.Count - 2; j >= 0; --j)
+                T last = list[list.Length - 1];
+                for (int j = list.Length - 2; j >= 0; --j)
                 {
                     list[j + 1] = list[j];
                 }

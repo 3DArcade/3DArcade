@@ -51,5 +51,65 @@ namespace Arcade_r
 
             gameObject.name = gameObject.name.Substring(0, gameObject.name.Length - 7);
         }
+
+        public static float GetWidth(this GameObject gameObject)
+        {
+            if (gameObject == null)
+            {
+                return 0f;
+            }
+
+            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.size.x : 0f;
+        }
+
+        public static float GetHeight(this GameObject gameObject)
+        {
+            if (gameObject == null)
+            {
+                return 0f;
+            }
+
+            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.size.y : 0f;
+        }
+
+        public static float GetDepth(this GameObject gameObject)
+        {
+            if (gameObject == null)
+            {
+                return 0f;
+            }
+
+            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.size.z : 0f;
+        }
+
+        public static float GetHalfWidth(this GameObject gameObject)
+        {
+            if (gameObject == null)
+            {
+                return 0f;
+            }
+
+            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.extents.x : 0f;
+        }
+
+        public static float GetHalfHeight(this GameObject gameObject)
+        {
+            if (gameObject == null)
+            {
+                return 0f;
+            }
+
+            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.extents.y : 0f;
+        }
+
+        public static float GetHalfDepth(this GameObject gameObject)
+        {
+            if (gameObject == null)
+            {
+                return 0f;
+            }
+
+            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.extents.z : 0f;
+        }
     }
 }

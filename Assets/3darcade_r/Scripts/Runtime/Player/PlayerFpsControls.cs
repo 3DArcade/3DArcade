@@ -52,7 +52,7 @@ namespace Arcade_r
             {
                 GatherMovementInputValues();
             }
-            HandleMovement();
+            HandleMovement(Time.deltaTime);
 
             if (_inputActions.FpsArcade.Look.enabled)
             {
@@ -70,7 +70,7 @@ namespace Arcade_r
 
         protected override void GatherLookInputValues() => _lookInputValue = _inputActions.FpsArcade.Look.ReadValue<Vector2>();
 
-        protected override void HandleMovement()
+        protected override void HandleMovement(float dt)
         {
             if (_characterController.isGrounded)
             {
@@ -91,8 +91,8 @@ namespace Arcade_r
                 _moveVelocity.y -= _moveVelocity.y;
             }
 
-            _moveVelocity.y -= _extraGravity * Time.deltaTime;
-            _ = _characterController.Move(_moveVelocity * Time.deltaTime);
+            _moveVelocity.y -= _extraGravity * dt;
+            _ = _characterController.Move(_moveVelocity * dt);
         }
 
         protected override void HandleLook()

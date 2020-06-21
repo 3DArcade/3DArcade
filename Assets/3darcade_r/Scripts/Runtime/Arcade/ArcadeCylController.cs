@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,10 +30,21 @@ namespace Arcade_r
 {
     public sealed class ArcadeCylController : ArcadeController
     {
-        private readonly List<ModelConfigurationComponent> _allGames;
+        private readonly List<Transform> _allGames;
 
         private CylArcadeProperties _cylArcadeProperties;
-        private int _currentIndex;
+
+        private Transform[] _rightPart;
+        private Transform[] _leftPart;
+        private int _sprockets;
+        private int _selectionIndex;
+
+        private Vector3 _targetPosition;
+        private bool _animating;
+
+        private Vector3 _cameraOutsidePivotPoint;
+        private float _cameraInsideAngle;
+        private float _flatHorizontalSpacing;
 
         public ArcadeCylController(ArcadeHierarchy arcadeHierarchy,
                                    PlayerFpsControls playerFpsControls,
@@ -43,7 +55,7 @@ namespace Arcade_r
                                    AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
-            _allGames = new List<ModelConfigurationComponent>();
+            _allGames = new List<Transform>();
         }
 
         public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
@@ -61,167 +73,167 @@ namespace Arcade_r
             return true;
         }
 
-        public static void RotateLeft<T>(IList<T> elements)
+        private IEnumerator CoTranslateWheel(bool horizontal, bool forward, int count, float speed, float dt)
         {
-            T first = elements[0];
-            for (int i = 1; i < elements.Count; ++i)
+            _animating = true;
+
+            speed = 10f;
+
+            for (int i = 0; i < count; ++i)
             {
-                elements[i - 1] = elements[i];
+                if (forward)
+                {
+                    _allGames.RotateRight();
+                }
+                else
+                {
+                    _allGames.RotateLeft();
+                    dt = -dt;
+                }
+
+                IEnumerable<Transform> visibleModels = _leftPart.Concat(_rightPart);
+                Transform currentModel = _allGames[_selectionIndex];
+                Vector3 translation = horizontal ? new Vector3(speed * dt, 0f, 0f) : new Vector3(0f, 10f * speed, 0f);
+
+                while (MathUtils.DistanceFast(currentModel.localPosition, _targetPosition) > 0.05f)
+                {
+                    foreach (Transform visibleModel in visibleModels)
+                    {
+                        visibleModel.Translate(translation);
+                    }
+                    yield return null;
+                }
+
+                currentModel.localPosition = _targetPosition;
+
+                SetupWheel();
+
+                visibleModels = _leftPart.Concat(_rightPart);
+                foreach (Transform model in _allGames.Except(visibleModels))
+                {
+                    model.gameObject.SetActive(false);
+                    model.localPosition = Vector3.zero;
+                }
             }
-            elements[elements.Count - 1] = first;
+
+            _animating = false;
         }
 
-        public static void RotateRight<T>(IList<T> elements)
+        private IEnumerator CoRotateWheel(bool forward, int count, float speed, float dt)
         {
-            T last = elements[elements.Count - 1];
-            for (int i = elements.Count - 2; i >= 0; --i)
+            _animating = true;
+
+            for (int i = 0; i < count; ++i)
             {
-                elements[i + 1] = elements[i];
+                if (forward)
+                {
+                    _allGames.RotateLeft();
+                    dt = -dt;
+                }
+                else
+                {
+                    _allGames.RotateRight();
+                }
+
+                Transform currentModel               = _allGames[_selectionIndex];
+                IEnumerable<Transform> visibleModels = _leftPart.Concat(_rightPart);
+
+                while (MathUtils.DistanceFast(currentModel.localPosition, _targetPosition) > 0.05f)
+                {
+                    foreach (Transform visibleModel in visibleModels)
+                    {
+                        visibleModel.RotateAround(Vector3.zero, Vector3.up, speed * dt);
+                    }
+                    yield return null;
+                }
+
+                currentModel.localPosition = _targetPosition;
+
+                SetupWheel();
+
+                visibleModels = _leftPart.Concat(_rightPart);
+                foreach (Transform model in _allGames.Except(visibleModels))
+                {
+                    model.gameObject.SetActive(false);
+                    model.localPosition = Vector3.zero;
+                }
             }
-            elements[0] = last;
+
+            _animating = false;
+        }
+
+        public void Forward(float dt, int count, float speed)
+        {
+            if (!_animating)
+            {
+                switch (_cylArcadeProperties.WheelVariant)
+                {
+                    case WheelVariant.CameraInsideWheel:
+                        _ = _playerCylControls.StartCoroutine(CoRotateWheel(true, count, speed, dt));
+                        break;
+                    case WheelVariant.CameraOutsideWheel:
+                        break;
+                    case WheelVariant.FlatHorizontalSlide:
+                        _ = _playerCylControls.StartCoroutine(CoTranslateWheel(true, true, count, speed, dt));
+                        break;
+                    case WheelVariant.FlatVerticalSlide:
+                        break;
+                    case WheelVariant.Custom:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void Backward(float dt, int count, float speed)
+        {
+            if (!_animating)
+            {
+                switch (_cylArcadeProperties.WheelVariant)
+                {
+                    case WheelVariant.CameraInsideWheel:
+                        _ = _playerCylControls.StartCoroutine(CoRotateWheel(false, count, speed, dt));
+                        break;
+                    case WheelVariant.CameraOutsideWheel:
+                        break;
+                    case WheelVariant.FlatHorizontalSlide:
+                        _ = _playerCylControls.StartCoroutine(CoTranslateWheel(true, false, count, speed, dt));
+                        break;
+                    case WheelVariant.FlatVerticalSlide:
+                        break;
+                    case WheelVariant.Custom:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         protected override void SetupWorld(ArcadeConfiguration arcadeConfiguration)
         {
+            _cylArcadeProperties = arcadeConfiguration.CylArcadeProperties;
+
+            _cameraOutsidePivotPoint = new Vector3(0f, 0f, -(_cylArcadeProperties.WheelRadius + _cylArcadeProperties.WheelOffsetZ));
+
+            _playerCylControls.SetVerticalLookLimits(-40f, 40f);
+            _playerCylControls.SetHorizontalLookLimits(0f, 0f);
+
             RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
             AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
             AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp);
 
             AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame);
-
-            _cylArcadeProperties = arcadeConfiguration.CylArcadeProperties;
-            _currentIndex = 0;
-
-            _cylArcadeProperties.Sprockets = Mathf.Max(1, _cylArcadeProperties.Sprockets);
-
-            int initialSelectionCount;
-            if (_cylArcadeProperties.SelectedSprocket < 0)
-            {
-                initialSelectionCount = (_cylArcadeProperties.Sprockets / 2) + 1;
-            }
-            else
-            {
-                initialSelectionCount = _cylArcadeProperties.SelectedSprocket;
-            }
-
-            for (int i = 0; i < initialSelectionCount - 1; ++i)
-            {
-                RotateRight(_allGames);
-            }
-
-            UpdateWheel();
         }
 
-        private void UpdateWheel()
+        private void AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
-            _arcadeHierarchy.GamesNode.position = Vector3.zero;
-
-            if (_currentIndex >= _allGames.Count)
+            if (modelConfigurations == null)
             {
-                _currentIndex = 0;
-            }
-            else if (_currentIndex < 0)
-            {
-                _currentIndex = _allGames.Count - 1;
+                return;
             }
 
-            IEnumerable<ModelConfigurationComponent> toShow = _allGames.Take(_cylArcadeProperties.Sprockets);
-            IEnumerable<ModelConfigurationComponent> toHide = _allGames.Except(toShow);
-
-            foreach (ModelConfigurationComponent item in toHide)
-            {
-                item.gameObject.SetActive(false);
-            }
-
-            foreach (ModelConfigurationComponent item in toShow)
-            {
-                item.gameObject.SetActive(true);
-            }
-
-            ModelConfigurationComponent[] rightPart = toShow.Skip(_cylArcadeProperties.Sprockets / 2).ToArray();
-            ModelConfigurationComponent[] leftPart = toShow.Except(rightPart).ToArray();
-
-            Vector3 position = new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
-            float angle = 0f;
-            for (int i = 0; i < rightPart.Length; ++i)
-            {
-                ModelConfigurationComponent currentModel = rightPart[i];
-                currentModel.gameObject.SetActive(true);
-                currentModel.transform.SetPositionAndRotation(position, Quaternion.Euler(_cylArcadeProperties.SprocketRotation));
-
-                if (i > 0)
-                {
-                    ModelConfigurationComponent previousModel = rightPart[i - 1];
-
-                    Collider previousCollider = previousModel.GetComponent<Collider>();
-                    float previousHalfWidth   = previousCollider.bounds.extents.x;
-
-                    Collider currentCollider = currentModel.GetComponent<Collider>();
-                    float currentHalfWidth   = currentCollider.bounds.extents.x;
-
-                    float width = previousHalfWidth + currentHalfWidth + _cylArcadeProperties.ModelSpacing;
-
-                    angle += (width / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
-
-                    currentModel.transform.RotateAround(Vector3.zero, Vector3.up, angle);
-                }
-            }
-
-            ModelConfigurationComponent centerModel = rightPart[0];
-
-            angle = 0f;
-            for (int i = leftPart.Length - 1; i >= 0; --i)
-            {
-                ModelConfigurationComponent currentModel = leftPart[i];
-                currentModel.gameObject.SetActive(true);
-                currentModel.transform.SetPositionAndRotation(position, Quaternion.Euler(_cylArcadeProperties.SprocketRotation));
-
-                if (i < leftPart.Length - 2)
-                {
-                    centerModel = leftPart[i + 1];
-                }
-
-                Collider previousCollider = centerModel.GetComponent<Collider>();
-                float previousHalfWidth   = previousCollider.bounds.extents.x;
-
-                Collider currentCollider = currentModel.GetComponent<Collider>();
-                float currentHalfWidth   = currentCollider.bounds.extents.x;
-
-                float width = previousHalfWidth + currentHalfWidth + _cylArcadeProperties.ModelSpacing;
-
-                angle -= (width / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
-
-                currentModel.transform.RotateAround(Vector3.zero, Vector3.up, angle);
-            }
-
-            _arcadeHierarchy.GamesNode.position = new Vector3(0f, 0f, -_cylArcadeProperties.WheelOffsetZ);
-        }
-
-        public void Forward(int count)
-        {
-            _currentIndex += count;
-            for (int i = 0; i < count; ++i)
-            {
-                RotateLeft(_allGames);
-            }
-            UpdateWheel();
-        }
-
-        public void Backward(int count)
-        {
-            _currentIndex -= count;
-            for (int i = 0; i < count; ++i)
-            {
-                RotateRight(_allGames);
-            }
-            UpdateWheel();
-        }
-
-        private void AddGameModelsToWorld(IEnumerable<ModelConfiguration> modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
-        {
             _allGames.Clear();
-
-            Vector3 position = new Vector3(0f, 0f, -1000f);
 
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
@@ -231,14 +243,15 @@ namespace Arcade_r
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
                 Assert.IsNotNull(prefab, "prefab is null!");
 
-                GameObject instantiatedModel = Object.Instantiate(prefab, position, Quaternion.Euler(0f, 180f, 0f), _arcadeHierarchy.GamesNode);
-                instantiatedModel.StripCloneFromName();
+                GameObject instantiatedModel = Object.Instantiate(prefab, Vector3.zero, Quaternion.identity, _arcadeHierarchy.GamesNode);
+                instantiatedModel.name = modelConfiguration.Id;
                 instantiatedModel.transform.localScale = modelConfiguration.Scale;
                 instantiatedModel.transform.SetLayersRecursively(_arcadeHierarchy.GamesNode.gameObject.layer);
-                ModelConfigurationComponent modelConfigurationComponent = instantiatedModel.AddComponent<ModelConfigurationComponent>();
-                modelConfigurationComponent.FromModelConfiguration(modelConfiguration);
 
-                _allGames.Add(modelConfigurationComponent);
+                instantiatedModel.AddComponent<ModelConfigurationComponent>()
+                                 .FromModelConfiguration(modelConfiguration);
+
+                _allGames.Add(instantiatedModel.transform);
 
                 if (instantiatedModel.TryGetComponent(out Rigidbody rigidbody))
                 {
@@ -257,6 +270,107 @@ namespace Arcade_r
                 }
 
                 instantiatedModel.SetActive(false);
+            }
+
+            if (_allGames.Count < 1)
+            {
+                return;
+            }
+
+            _sprockets           = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
+            int selectedSprocket = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
+            _selectionIndex      = (_sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1) - selectedSprocket;
+            _allGames.RotateRight(_selectionIndex);
+
+            SetupWheel();
+        }
+
+        private void SetupWheel()
+        {
+            if (_allGames.Count < 1)
+            {
+                return;
+            }
+
+            IEnumerable<Transform> visibleGames = _allGames.Take(_sprockets);
+            int skipCount = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
+            _rightPart = visibleGames.Skip(skipCount).ToArray();
+            _leftPart = visibleGames.Except(_rightPart).Reverse().ToArray();
+
+            _targetPosition = new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
+
+            Transform previousModel;
+            _cameraInsideAngle     = 0f;
+            _flatHorizontalSpacing = 0f;
+            for (int i = 0; i < _rightPart.Length; ++i)
+            {
+                Transform currentModel = _rightPart[i];
+                currentModel.gameObject.SetActive(true);
+                currentModel.SetPositionAndRotation(_targetPosition, Quaternion.Euler(_cylArcadeProperties.SprocketRotation));
+
+                if (i > 0)
+                {
+                    previousModel = _rightPart[i - 1];
+
+                    float spacing = previousModel.gameObject.GetHalfWidth() + currentModel.gameObject.GetHalfWidth() + _cylArcadeProperties.ModelSpacing;
+
+                    switch (_cylArcadeProperties.WheelVariant)
+                    {
+                        case WheelVariant.CameraInsideWheel:
+                            _cameraInsideAngle += (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
+                            currentModel.RotateAround(Vector3.zero, Vector3.up, _cameraInsideAngle);
+                            break;
+                        case WheelVariant.CameraOutsideWheel:
+                            break;
+                        case WheelVariant.FlatHorizontalSlide:
+                            _flatHorizontalSpacing += spacing;
+                            currentModel.Translate(_flatHorizontalSpacing, 0f, 0f);
+                            break;
+                        case WheelVariant.FlatVerticalSlide:
+                            break;
+                        case WheelVariant.Custom:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            previousModel          = _rightPart[0];
+            _cameraInsideAngle     = 0f;
+            _flatHorizontalSpacing = 0f;
+            for (int i = 0; i < _leftPart.Length; ++i)
+            {
+                Transform currentModel = _leftPart[i];
+                currentModel.gameObject.SetActive(true);
+                currentModel.SetPositionAndRotation(_targetPosition, Quaternion.Euler(_cylArcadeProperties.SprocketRotation));
+
+                if (i > 0)
+                {
+                    previousModel = _leftPart[i - 1];
+                }
+
+                float spacing = previousModel.gameObject.GetHalfWidth() + currentModel.gameObject.GetHalfWidth() + _cylArcadeProperties.ModelSpacing;
+
+                switch (_cylArcadeProperties.WheelVariant)
+                {
+                    case WheelVariant.CameraInsideWheel:
+                        _cameraInsideAngle -= (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
+                        currentModel.RotateAround(Vector3.zero, Vector3.up, _cameraInsideAngle);
+                        break;
+                    case WheelVariant.CameraOutsideWheel:
+                        break;
+                    case WheelVariant.FlatHorizontalSlide:
+                        _flatHorizontalSpacing -= spacing;
+                        currentModel.Translate(_flatHorizontalSpacing, 0f, 0f);
+                        break;
+                    case WheelVariant.FlatVerticalSlide:
+                        break;
+                    case WheelVariant.Custom:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

@@ -33,7 +33,7 @@ namespace Arcade_r
 
         private Vector2 _scrollPos = Vector2.zero;
 
-        [MenuItem("3DArcade_r/Load Arcade", false, 100), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        [MenuItem("3DArcade_r/Load Arcade", false, 101), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void ShowWindow()
         {
             _loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();

@@ -62,6 +62,12 @@ namespace Arcade_r
             GlobalActions = _inputActions.Global;
         }
 
+        public void SetVerticalLookLimits(float min, float max)
+        {
+            _minVerticalLookAngle = Mathf.Clamp(min, -89f, 0f);
+            _maxVerticalLookAngle = Mathf.Clamp(max, 0f, 89f);
+        }
+
         private void OnEnable() => GlobalActions.Enable();
 
         private void OnDisable() => GlobalActions.Disable();
@@ -70,7 +76,7 @@ namespace Arcade_r
 
         protected abstract void GatherLookInputValues();
 
-        protected abstract void HandleMovement();
+        protected abstract void HandleMovement(float dt);
 
         protected abstract void HandleLook();
     }

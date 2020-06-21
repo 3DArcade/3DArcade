@@ -58,37 +58,34 @@ namespace Arcade_r
             }
         }
 
-        [MenuItem("3DArcade_r/Save Arcade", false, 101), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        [MenuItem("3DArcade_r/Reload Current Arcade", false, 100), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        private static void MenuReloadCurrentArcade()
+        {
+            ArcadeConfigurationComponent arcadeConfigurationComponent = Object.FindObjectOfType<ArcadeConfigurationComponent>();
+            if (arcadeConfigurationComponent != null)
+            {
+                new EditorLoadSaveArcadeSubstitute().LoadAndStartArcade(arcadeConfigurationComponent.Id);
+            }
+        }
+
+        [MenuItem("3DArcade_r/Save Arcade", false, 102), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void MenuSaveArcade()
         {
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
-            if (!loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeCfgComponent))
+            if (loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeCfgComponent))
             {
-                return;
+                loadSaveSubstitute.SaveArcade(arcadeCfgComponent);
             }
-
-            GameObject playerControls = GameObject.Find("PlayerControls");
-            if (playerControls == null)
-            {
-                return;
-            }
-
-            PlayerFpsControls fpsControls = playerControls.GetComponentInChildren<PlayerFpsControls>(true);
-            if (fpsControls == null)
-            {
-                return;
-            }
-
-            if (!fpsControls.gameObject.activeInHierarchy)
-            {
-                MenuSwitchArcadeType();
-            }
-
-            loadSaveSubstitute.SaveArcade(arcadeCfgComponent);
         }
 
         // Validation
-        [MenuItem("3DArcade_r/Save FpsArcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
-        private static bool MenuSaveArcadeValidation() => !Application.isPlaying;
+        [MenuItem("3DArcade_r/Switch Arcade Type", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        private static bool MenuSwitchArcadeTypeValidation() => !Application.isPlaying;
+
+        [MenuItem("3DArcade_r/Reload Current Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        private static bool MenuReloadCurrentArcadeValidation() => MenuSwitchArcadeTypeValidation();
+
+        [MenuItem("3DArcade_r/Save Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        private static bool MenuSaveArcadeValidation() => MenuSwitchArcadeTypeValidation();
     }
 }

@@ -20,14 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using UnityEngine;
 
 namespace Arcade_r
 {
+    public enum WheelVariant
+    {
+        CameraInsideWheel,
+        CameraOutsideWheel,
+        FlatHorizontalSlide,
+        FlatVerticalSlide,
+        Custom
+    }
+
     [System.Serializable]
     public sealed class CylArcadeProperties
     {
         public CameraSettings CameraSettings;
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public WheelVariant WheelVariant;
 
         public int Sprockets;
         public int SelectedSprocket;

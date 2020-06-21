@@ -28,6 +28,10 @@ namespace Arcade_r
     {
         private const float INTERACT_MAX_DISTANCE = 40f;
 
+        private float _timer;
+        private float _acceleration;
+        private float _speed;
+
         public ArcadeCylNormalState(ArcadeContext context)
         : base(context)
         {
@@ -91,14 +95,44 @@ namespace Arcade_r
                 HandleInteraction();
             }
 
-            if (_context.App.PlayerCylControls.CylArcadeActions.NavigateForward.triggered)
+            if (_context.App.PlayerCylControls.CylArcadeActions.NavigationForward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
             {
-                _context.App.ArcadeCylController.Forward(1);
+                if (_context.App.PlayerCylControls.CylArcadeActions.NavigationForward.triggered)
+                {
+                    _timer        = 0f;
+                    _acceleration = 6f;
+                    _speed        = 180f;
+                    _context.App.ArcadeCylController.Forward(dt, 1, _speed);
+                }
+                else if ((_timer += _acceleration * dt) > 2.0f)
+                {
+                    ++_acceleration;
+                    ++_speed;
+                    _acceleration = Mathf.Clamp(_acceleration, 6f, 100f);
+                    _speed        = Mathf.Clamp(_speed, 180f, 360f);
+                    _context.App.ArcadeCylController.Forward(dt, 1, _speed);
+                    _timer = 0f;
+                }
             }
 
-            if (_context.App.PlayerCylControls.CylArcadeActions.NavigateBackward.triggered)
+            if (_context.App.PlayerCylControls.CylArcadeActions.NavigationBackward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
             {
-                _context.App.ArcadeCylController.Backward(1);
+                if (_context.App.PlayerCylControls.CylArcadeActions.NavigationBackward.triggered)
+                {
+                    _timer        = 0f;
+                    _acceleration = 6f;
+                    _speed        = 180f;
+                    _context.App.ArcadeCylController.Backward(dt, 1, _speed);
+                }
+                else if ((_timer += _acceleration * dt) > 2.0f)
+                {
+                    ++_acceleration;
+                    ++_speed;
+                    _acceleration = Mathf.Clamp(_acceleration, 6f, 100f);
+                    _speed        = Mathf.Clamp(_speed, 180f, 360f);
+                    _context.App.ArcadeCylController.Backward(dt, 1, _speed);
+                     _timer = 0f;
+               }
             }
         }
 
