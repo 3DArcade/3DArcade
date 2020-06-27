@@ -45,8 +45,8 @@ namespace Arcade_r
 
         public int Sprockets;
         public int SelectedSprocket;
+        public float SelectedPositionZ;
         public float WheelRadius;
-        public float WheelOffsetZ;
         public float ModelSpacing;
         public bool ModelWidthAxisY;
         public bool ModelIsKinemtatic;

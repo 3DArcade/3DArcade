@@ -28,7 +28,6 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEditor.Presets;
 using UnityEngine;
-using UnityStandardAssets.Utility;
 
 [assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "UnityEditor", Scope = "namespaceanddescendants", Target = "Arcade_r.ArcadeEditorExtensions")]
 
@@ -266,16 +265,13 @@ namespace Arcade_r.ArcadeEditorExtensions
             Undo.SetCurrentGroupName("Set as generic");
 
             Transform parent = selectedObj.transform.parent;
-            if (parent != null && parent.childCount >= 3)
+            if (parent != null)
             {
-
-                NodeTag nodeTag = selectedObj.GetComponent<NodeTag>();
-                if (nodeTag != null)
+                if (selectedObj.TryGetComponent(out NodeTag nodeTag))
                 {
                     Undo.DestroyObjectImmediate(nodeTag);
                 }
                 _ = Undo.AddComponent<GenericNodeTag>(selectedObj);
-
             }
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
@@ -526,13 +522,13 @@ namespace Arcade_r.ArcadeEditorExtensions
             {
                 Undo.RegisterFullObjectHierarchyUndo(parent, "Set as marquee");
                 obj.transform.SetAsFirstSibling();
-                NodeTag nodeTag = obj.GetComponent<NodeTag>();
-                if (nodeTag != null)
-                {
-                    Undo.DestroyObjectImmediate(nodeTag);
-                }
-                _ = Undo.AddComponent<MarqueeNodeTag>(obj);
             }
+
+            if (obj.TryGetComponent(out NodeTag nodeTag))
+            {
+                Undo.DestroyObjectImmediate(nodeTag);
+            }
+            _ = Undo.AddComponent<MarqueeNodeTag>(obj);
 
             MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
             Undo.RecordObject(meshRenderer.sharedMaterial, "Set as marquee");
@@ -550,13 +546,13 @@ namespace Arcade_r.ArcadeEditorExtensions
             {
                 Undo.RegisterFullObjectHierarchyUndo(parent, "Set as monitor");
                 obj.transform.SetSiblingIndex(1);
-                NodeTag nodeTag = obj.GetComponent<NodeTag>();
-                if (nodeTag != null)
-                {
-                    Undo.DestroyObjectImmediate(nodeTag);
-                }
-                _ = Undo.AddComponent<ScreenNodeTag>(obj);
             }
+
+            if (obj.TryGetComponent(out NodeTag nodeTag))
+            {
+                Undo.DestroyObjectImmediate(nodeTag);
+            }
+            _ = Undo.AddComponent<ScreenNodeTag>(obj);
 
             MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
             Undo.RecordObject(meshRenderer.sharedMaterial, "Set as monitor");

@@ -51,6 +51,10 @@ namespace Arcade_r
 
         protected abstract void SetupWheel();
 
+        protected virtual void LateSetupWorld()
+        {
+        }
+
         public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
             Assert.IsNotNull(arcadeConfiguration);
@@ -79,12 +83,14 @@ namespace Arcade_r
 
             AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame);
 
-            _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
+            _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
             _sprockets            = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
             int selectedSprocket  = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
             int halfSprockets     = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
             _selectionIndex       = halfSprockets - selectedSprocket;
             _allGames.RotateRight(_selectionIndex);
+
+            LateSetupWorld();
 
             SetupWheel();
         }

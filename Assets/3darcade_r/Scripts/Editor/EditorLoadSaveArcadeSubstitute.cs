@@ -96,28 +96,34 @@ namespace Arcade_r
             if (_playerFpsControls.gameObject.activeInHierarchy)
             {
                 _arcadeController = new ArcadeFpsController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
-                _ = _arcadeController.StartArcade(arcadeConfiguration);
             }
             else
             {
                 switch (arcadeConfiguration.CylArcadeProperties.WheelVariant)
                 {
                     case WheelVariant.CameraInsideWheel:
+                    {
                         _arcadeController = new ArcadeCylCameraInsideController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
-                        break;
+                    }
+                    break;
                     case WheelVariant.CameraOutsideWheel:
-                        break;
+                    {
+                        _arcadeController = new ArcadeCylCameraOutsideController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                    }
+                    break;
                     case WheelVariant.FlatHorizontal:
+                    {
                         _arcadeController = new ArcadeCylFlatHorizontalController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
-                        break;
+                    }
+                    break;
                     case WheelVariant.FlatVertical:
                         break;
                     case WheelVariant.Custom:
                         break;
                 }
-
-                _ = _arcadeController.StartArcade(arcadeConfiguration);
             }
+
+            _ = _arcadeController?.StartArcade(arcadeConfiguration);
         }
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)

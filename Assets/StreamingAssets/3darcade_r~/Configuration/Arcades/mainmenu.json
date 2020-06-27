@@ -51,7 +51,7 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "Height": 0.6,
+            "Height": 0.0,
             "Orthographic": false,
             "FieldOfView": 60.0,
             "AspectRatio": 1.0,
@@ -67,8 +67,8 @@
         "WheelVariant": "FlatHorizontal",
         "Sprockets": 5,
         "SelectedSprocket": -1,
+        "SelectedPositionZ": 5.0,
         "WheelRadius": 5.0,
-        "WheelOffsetZ": 995.0,
         "ModelSpacing": 0.25,
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": true,
@@ -143,8 +143,105 @@
     ],
     "GameModelList": [
         {
-            "DescriptiveName": "CylArcade Demo",
-            "Id": "cylarcade_demo",
+            "DescriptiveName": "CylArcade Demo Inside",
+            "Id": "cylarcade_demo_inside",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "CylArcade Demo Outside",
+            "Id": "cylarcade_demo_outside",
             "Model": "defaultmenu_sprocket",
             "InteractionType": "CylArcadeConfiguration",
             "Emulator": null,
@@ -655,23 +752,23 @@
             "Id": "default_mainmenu_background",
             "Model": "",
             "InteractionType": "None",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
+            "Emulator": "",
+            "MarqueeDirectory": "",
+            "MarqueeVideoDirectory": "",
+            "ScreenDirectory": "",
+            "ScreenVideoDirectory": "",
+            "TitleDirectory": "",
+            "GenericDirectory": "",
+            "GenericVideoDirectory": "",
+            "InfoDirectory": "",
             "Grabbable": false,
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
+            "CloneOf": "",
+            "RomOf": "",
+            "Genre": "",
+            "Year": "",
+            "Manufacturer": "",
             "ScreenType": "Unspecified",
             "ScreenOrientation": "Unspecified",
             "Mature": false,
@@ -700,7 +797,7 @@
                     "TriggerAction": "SetTransform",
                     "AnimationProperties": [],
                     "AudioProperties": [],
-                    "TriggerTransformProperties": null
+                    "TriggerTransformProperties": []
                 }
             ],
             "TriggerIDs": []

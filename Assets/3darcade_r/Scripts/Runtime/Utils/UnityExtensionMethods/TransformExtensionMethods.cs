@@ -49,7 +49,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return transform.TryGetComponent(out Collider collider) ? collider.bounds.size.x : 0f;
+            return transform.TryGetComponent(out BoxCollider collider) ? collider.size.x : 0f;
         }
 
         public static float GetHeight(this Transform transform)
@@ -59,7 +59,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return transform.TryGetComponent(out Collider collider) ? collider.bounds.size.y : 0f;
+            return transform.TryGetComponent(out BoxCollider collider) ? collider.size.y : 0f;
         }
 
         public static float GetDepth(this Transform transform)
@@ -69,7 +69,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return transform.TryGetComponent(out Collider collider) ? collider.bounds.size.z : 0f;
+            return transform.TryGetComponent(out BoxCollider collider) ? collider.size.z : 0f;
         }
 
         public static float GetHalfWidth(this Transform transform)
@@ -79,7 +79,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return transform.TryGetComponent(out Collider collider) ? collider.bounds.extents.x : 0f;
+            return transform.GetWidth() * 0.5f;
         }
 
         public static float GetHalfHeight(this Transform transform)
@@ -89,7 +89,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return transform.TryGetComponent(out Collider collider) ? collider.bounds.extents.y : 0f;
+            return transform.GetHeight() * 0.5f;
         }
 
         public static float GetHalfDepth(this Transform transform)
@@ -99,7 +99,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return transform.TryGetComponent(out Collider collider) ? collider.bounds.extents.z : 0f;
+            return transform.GetDepth() * 0.5f;
         }
     }
 }

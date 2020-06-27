@@ -151,7 +151,10 @@ namespace Arcade_r
                         }
                         break;
                         case WheelVariant.CameraOutsideWheel:
-                            break;
+                        {
+                            ArcadeController = new ArcadeCylCameraOutsideController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                        }
+                        break;
                         case WheelVariant.FlatHorizontal:
                         {
                             ArcadeController = new ArcadeCylFlatHorizontalController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
