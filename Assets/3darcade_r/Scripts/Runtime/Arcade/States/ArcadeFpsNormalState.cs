@@ -37,63 +37,63 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FpsArcadeActions.Enable();
+            _context.PlayerFpsControls.FpsArcadeActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
+                _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
             }
 
             _context.CurrentModelConfiguration = null;
 
-            _context.App.UIController.EnableNormalUI();
+            _context.UIController.EnableNormalUI();
 
-            _context.App.CurrentPlayerControls = _context.App.PlayerFpsControls;
+            _context.CurrentPlayerControls = _context.PlayerFpsControls;
 
-            _context.App.VideoPlayerController.SetPlayer(_context.App.PlayerFpsControls.transform);
+            _context.VideoPlayerController.SetPlayer(_context.PlayerFpsControls.transform);
         }
 
         public override void OnExit()
         {
             Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FpsArcadeActions.Disable();
+            _context.PlayerFpsControls.FpsArcadeActions.Disable();
 
-            _context.App.UIController.DisableNormalUI();
+            _context.UIController.DisableNormalUI();
         }
 
         public override void Update(float dt)
         {
-            if (_context.App.PlayerFpsControls.GlobalActions.Quit.triggered)
+            if (_context.PlayerFpsControls.GlobalActions.Quit.triggered)
             {
                 SystemUtils.ExitApp();
             }
 
-            if (_context.App.PlayerFpsControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.PlayerFpsControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Enable();
+                    _context.PlayerFpsControls.FpsArcadeActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
+                    _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
                 }
             }
 
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
-                                                   _context.App.PlayerFpsControls.Camera,
+                                                   _context.PlayerFpsControls.Camera,
                                                    INTERACT_MAX_DISTANCE,
                                                    _context.RaycastLayers);
 
-            _context.App.VideoPlayerController.UpdateVideosState();
+            _context.VideoPlayerController.UpdateVideosState();
 
-            if (!Cursor.visible && _context.App.PlayerFpsControls.FpsArcadeActions.Interact.triggered)
+            if (!Cursor.visible && _context.PlayerFpsControls.FpsArcadeActions.Interact.triggered)
             {
                 HandleInteraction();
             }
 
-            if (_context.App.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
+            if (_context.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
             {
                 _context.TransitionTo<ArcadeFpsMoveCabState>();
             }

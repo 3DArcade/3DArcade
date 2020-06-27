@@ -30,8 +30,8 @@ namespace Arcade_r
     {
         CameraInsideWheel,
         CameraOutsideWheel,
-        FlatHorizontalSlide,
-        FlatVerticalSlide,
+        FlatHorizontal,
+        FlatVertical,
         Custom
     }
 

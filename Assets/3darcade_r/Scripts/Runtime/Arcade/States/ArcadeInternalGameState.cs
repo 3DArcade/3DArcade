@@ -33,7 +33,7 @@ namespace Arcade_r
         public ArcadeInternalGameState(ArcadeContext context)
         : base(context)
         {
-            _libretroController = new InternalGameController(_context.App.CurrentPlayerControls.transform);
+            _libretroController = new InternalGameController(_context.CurrentPlayerControls.transform);
         }
 
         public override void OnEnter()
@@ -48,7 +48,7 @@ namespace Arcade_r
                 {
                     if (_libretroController.StartGame(_screenNode, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
                     {
-                        _context.App.VideoPlayerController.StopAllVideos();
+                        _context.VideoPlayerController.StopAllVideos();
                         return;
                     }
                 }
@@ -74,7 +74,7 @@ namespace Arcade_r
         {
             _libretroController.UpdateGame(dt);
 
-            if (_context.App.CurrentPlayerControls.GlobalActions.Quit.triggered)
+            if (_context.CurrentPlayerControls.GlobalActions.Quit.triggered)
             {
                 if (_context.CurrentArcadeType == ArcadeType.Fps)
                 {

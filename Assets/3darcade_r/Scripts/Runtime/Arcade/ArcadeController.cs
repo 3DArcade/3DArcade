@@ -49,7 +49,7 @@ namespace Arcade_r
         protected readonly PlayerCylControls _playerCylControls;
 
         protected readonly AssetCache<GameObject> _gameObjectCache;
-        protected readonly AssetCache<Texture> _textureCache;
+        private readonly AssetCache<Texture> _textureCache;
         private readonly AssetCache<string> _videoCache;
 
         protected readonly ContentMatcher _contentMatcher;
@@ -89,8 +89,15 @@ namespace Arcade_r
 
         public abstract bool StartArcade(ArcadeConfiguration arcadeConfiguration);
 
-        protected abstract void SetupWorld(ArcadeConfiguration arcadeConfiguration);
+        public virtual void Forward(int count, float dt)
+        {
+        }
 
+        public virtual void Backward(int count, float dt)
+        {
+        }
+
+        protected abstract void SetupWorld(ArcadeConfiguration arcadeConfiguration);
 
         protected static void SetupPlayer(PlayerControls playerControls, CameraSettings cameraSettings)
         {

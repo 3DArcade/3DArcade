@@ -22,32 +22,90 @@
 
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
     public sealed class ArcadeContext : FSM.Context<ArcadeState>
     {
-        public readonly App App;
-        public readonly LayerMask RaycastLayers;
-
+        public bool ArcadeLoaded;
+        public PlayerControls CurrentPlayerControls;
         public ModelConfigurationComponent CurrentModelConfiguration;
 
+        public readonly PlayerFpsControls PlayerFpsControls;
+        public readonly PlayerCylControls PlayerCylControls;
+
+        public readonly OS CurrentOS;
+        public readonly IVirtualFileSystem VirtualFileSystem;
+        public readonly ArcadeHierarchy ArcadeHierarchy;
+        public readonly UIController UIController;
+
+        public readonly GeneralConfiguration GeneralConfiguration;
+        public readonly Database<ArcadeConfiguration> ArcadeDatabase;
+        public readonly Database<EmulatorConfiguration> EmulatorDatabase;
+
+        public readonly AssetCache<GameObject> GameObjectCache;
+        public readonly AssetCache<Texture> TextureCache;
+        public readonly AssetCache<string> VideoCache;
+
+        public readonly VideoPlayerController VideoPlayerController;
+        public readonly CoroutineHelper CoroutineHelper;
+
+        public ArcadeController ArcadeController { get; private set; }
+        public LayerMask RaycastLayers => LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
         public ArcadeConfiguration CurrentArcadeConfiguration { get; private set; }
         public ArcadeType CurrentArcadeType { get; private set; }
 
-        private static readonly LayerMask _interactionLayers  = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
-
-        public ArcadeContext(App app, GeneralConfiguration generalConfiguration)
+        public ArcadeContext(PlayerFpsControls playerFpsControls, PlayerCylControls playerCylControls, Transform uiRoot)
         {
-            App           = app;
-            RaycastLayers = _interactionLayers;
+            PlayerFpsControls = playerFpsControls;
+            PlayerCylControls = playerCylControls;
 
-            _ = SetCurrentArcadeConfiguration(generalConfiguration.StartingArcade, generalConfiguration.StartingArcadeType);
+            try
+            {
+                CurrentOS = SystemUtils.GetCurrentOS();
+                Debug.Log($"Current OS: {CurrentOS}");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+                SystemUtils.ExitApp();
+                return;
+            }
+
+            string vfsRootDirectory = SystemUtils.GetDataPath();
+            Debug.Log($"Data path: {vfsRootDirectory}");
+            VirtualFileSystem = InitVFS(vfsRootDirectory);
+
+            ArcadeHierarchy = new ArcadeHierarchy();
+
+            UIController = new UIController(uiRoot);
+
+            GeneralConfiguration = new GeneralConfiguration(VirtualFileSystem);
+            if (!GeneralConfiguration.Load())
+            {
+                SystemUtils.ExitApp();
+                return;
+            }
+
+            ArcadeDatabase   = new ArcadeDatabase(VirtualFileSystem);
+            EmulatorDatabase = new EmulatorDatabase(VirtualFileSystem);
+
+            GameObjectCache = new GameObjectCache();
+            TextureCache    = new TextureCache();
+            VideoCache      = new VideoCache();
+
+            VideoPlayerController = new VideoPlayerController(LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels"));
+
+            CoroutineHelper = Object.FindObjectOfType<CoroutineHelper>();
+            Assert.IsNotNull(CoroutineHelper);
+
+            _ = SetCurrentArcadeConfiguration(GeneralConfiguration.StartingArcade, GeneralConfiguration.StartingArcadeType);
         }
 
         public bool SetCurrentArcadeConfiguration(string id, ArcadeType type)
         {
-            CurrentArcadeConfiguration = App.ArcadeDatabase.Get(id);
+            CurrentArcadeConfiguration = ArcadeDatabase.Get(id);
             CurrentArcadeType          = type;
             return CurrentArcadeConfiguration != null;
         }
@@ -62,42 +120,69 @@ namespace Arcade_r
 
         public bool StartCurrentArcade()
         {
+            ArcadeLoaded = false;
+
             if (CurrentArcadeConfiguration == null)
             {
                 return false;
             }
 
-            App.VideoPlayerController.StopAllVideos();
+            VideoPlayerController.StopAllVideos();
 
-            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>();
-            cfgComponent.Restore(CurrentArcadeConfiguration);
+            ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>()
+                                               .Restore(CurrentArcadeConfiguration);
 
-            App.ArcadeHierarchy.Reset();
-            if (CurrentArcadeType == ArcadeType.Fps)
+            ArcadeHierarchy.Reset();
+
+            switch (CurrentArcadeType)
             {
-                return App.ArcadeFpsController.StartArcade(CurrentArcadeConfiguration);
-            }
-            else if (CurrentArcadeType == ArcadeType.Cyl)
-            {
-                return App.ArcadeCylController.StartArcade(CurrentArcadeConfiguration);
+                case ArcadeType.Fps:
+                {
+                    ArcadeController = new ArcadeFpsController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                }
+                break;
+                case ArcadeType.Cyl:
+                {
+                    switch (CurrentArcadeConfiguration.CylArcadeProperties.WheelVariant)
+                    {
+                        case WheelVariant.CameraInsideWheel:
+                        {
+                            ArcadeController = new ArcadeCylCameraInsideController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                        }
+                        break;
+                        case WheelVariant.CameraOutsideWheel:
+                            break;
+                        case WheelVariant.FlatHorizontal:
+                        {
+                            ArcadeController = new ArcadeCylFlatHorizontalController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                        }
+                        break;
+                        case WheelVariant.FlatVertical:
+                            break;
+                        case WheelVariant.Custom:
+                            break;
+                    }
+                }
+                break;
             }
 
-            return false;
+            ArcadeLoaded = ArcadeController.StartArcade(CurrentArcadeConfiguration);
+            return ArcadeLoaded;
         }
 
         public bool SaveCurrentArcadeConfiguration()
         {
-            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            ArcadeConfigurationComponent cfgComponent = ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
             if (cfgComponent == null)
             {
                 return false;
             }
 
-            Camera fpsCamera                          = App.PlayerFpsControls.Camera;
-            CinemachineVirtualCamera fpsVirtualCamera = App.PlayerFpsControls.VirtualCamera;
+            Camera fpsCamera                          = PlayerFpsControls.Camera;
+            CinemachineVirtualCamera fpsVirtualCamera = PlayerFpsControls.VirtualCamera;
             CameraSettings fpsCameraSettings          = new CameraSettings
             {
-                Position      = App.PlayerFpsControls.transform.position,
+                Position      = PlayerFpsControls.transform.position,
                 Rotation      = MathUtils.CorrectEulerAngles(fpsCamera.transform.eulerAngles),
                 Height        = fpsVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
                 Orthographic  = fpsCamera.orthographic,
@@ -108,11 +193,11 @@ namespace Arcade_r
                 ViewportRect  = fpsCamera.rect
             };
 
-            Camera cylCamera                          = App.PlayerCylControls.Camera;
-            CinemachineVirtualCamera cylVirtualCamera = App.PlayerCylControls.VirtualCamera;
+            Camera cylCamera                          = PlayerCylControls.Camera;
+            CinemachineVirtualCamera cylVirtualCamera = PlayerCylControls.VirtualCamera;
             CameraSettings cylCameraSettings          = new CameraSettings
             {
-                Position      = App.PlayerCylControls.transform.position,
+                Position      = PlayerCylControls.transform.position,
                 Rotation      = MathUtils.CorrectEulerAngles(cylCamera.transform.eulerAngles),
                 Height        = cylVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y,
                 Orthographic  = cylCamera.orthographic,
@@ -123,23 +208,37 @@ namespace Arcade_r
                 ViewportRect  = cylCamera.rect
             };
 
-            return cfgComponent.Save(App.ArcadeDatabase, fpsCameraSettings, cylCameraSettings, !cylCamera.gameObject.activeInHierarchy);
+            return cfgComponent.Save(ArcadeDatabase, fpsCameraSettings, cylCameraSettings, !cylCamera.gameObject.activeInHierarchy);
         }
 
         public bool SaveCurrentArcadeConfigurationModels()
         {
-            ArcadeConfigurationComponent cfgComponent = App.ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
-            return cfgComponent != null && cfgComponent.SaveModelsOnly(App.ArcadeDatabase, CurrentArcadeConfiguration);
+            ArcadeConfigurationComponent cfgComponent = ArcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
+            return cfgComponent != null && cfgComponent.SaveModelsOnly(ArcadeDatabase, CurrentArcadeConfiguration);
         }
 
         public void ReloadCurrentArcadeConfigurationModels()
         {
-            if (App.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent cfgComponent))
+            if (ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent cfgComponent))
             {
                 cfgComponent.SetGamesAndPropsTransforms(CurrentArcadeConfiguration);
             }
         }
 
-        public EmulatorConfiguration GetEmulatorForCurrentModelConfiguration() => App.EmulatorDatabase.Get(CurrentModelConfiguration.Emulator);
+        public EmulatorConfiguration GetEmulatorForCurrentModelConfiguration() => EmulatorDatabase.Get(CurrentModelConfiguration.Emulator);
+
+        private static VirtualFileSystem InitVFS(string rootDirectory)
+        {
+            VirtualFileSystem result = new VirtualFileSystem();
+
+            result.MountDirectory("arcade_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Arcades");
+            result.MountDirectory("emulator_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Emulators");
+            result.MountDirectory("gamelist_cfgs", $"{rootDirectory}/3darcade_r~/Configuration/Gamelists");
+            result.MountDirectory("medias", $"{rootDirectory}/3darcade_r~/Media");
+
+            result.MountFile("general_cfg", $"{rootDirectory}/3darcade_r~/Configuration/GeneralConfiguration.json");
+
+            return result;
+        }
     }
 }

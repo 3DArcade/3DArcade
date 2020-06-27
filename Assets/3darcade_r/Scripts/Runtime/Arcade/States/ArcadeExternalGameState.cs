@@ -50,7 +50,7 @@ namespace Arcade_r
                 _isGameRunning = _externalAppController.StartGame(emulator, _context.CurrentModelConfiguration.Id);
                 if (_isGameRunning)
                 {
-                    _context.App.VideoPlayerController.StopAllVideos();
+                    _context.VideoPlayerController.StopAllVideos();
                     return;
                 }
             }

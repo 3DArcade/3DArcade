@@ -74,7 +74,7 @@ namespace Arcade_r
         }
 
         public static List<string> GetNamesToTryForArcade(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
-            => new List<string> { modelConfiguration.Id, DEFAULT_ARCADE_MODEL };
+            => new List<string> { modelConfiguration.Model, modelConfiguration.Id, DEFAULT_ARCADE_MODEL };
 
         public static List<string> GetNamesToTryForGame(ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
         {
@@ -126,6 +126,6 @@ namespace Arcade_r
         }
 
         public static List<string> GetNamesToTryForProp(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
-            => new List<string> { modelConfiguration.Id, DEFAULT_PROP_MODEL };
+            => new List<string> { modelConfiguration.Model, modelConfiguration.Id, DEFAULT_PROP_MODEL };
     }
 }

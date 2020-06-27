@@ -38,8 +38,7 @@ namespace Arcade_r
         private readonly Database<EmulatorConfiguration> _emulatorDatabase;
         private readonly PlayerFpsControls _playerFpsControls;
         private readonly PlayerCylControls _playerCylControls;
-        private readonly ArcadeController _fpsArcadeController;
-        private readonly ArcadeController _cylArcadeController;
+        private ArcadeController _arcadeController;
 
         public EditorLoadSaveArcadeSubstitute()
         {
@@ -80,8 +79,6 @@ namespace Arcade_r
                 _playerCylControls.gameObject.SetActive(true);
             }
 
-            _fpsArcadeController = new ArcadeFpsController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
-            _cylArcadeController = new ArcadeCylController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
         }
 
         public void LoadAndStartArcade(string name)
@@ -98,11 +95,28 @@ namespace Arcade_r
             ArcadeHierarchy.Reset();
             if (_playerFpsControls.gameObject.activeInHierarchy)
             {
-                _ = _fpsArcadeController.StartArcade(arcadeConfiguration);
+                _arcadeController = new ArcadeFpsController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                _ = _arcadeController.StartArcade(arcadeConfiguration);
             }
             else
             {
-                _ = _cylArcadeController.StartArcade(arcadeConfiguration);
+                switch (arcadeConfiguration.CylArcadeProperties.WheelVariant)
+                {
+                    case WheelVariant.CameraInsideWheel:
+                        _arcadeController = new ArcadeCylCameraInsideController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        break;
+                    case WheelVariant.CameraOutsideWheel:
+                        break;
+                    case WheelVariant.FlatHorizontal:
+                        _arcadeController = new ArcadeCylFlatHorizontalController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        break;
+                    case WheelVariant.FlatVertical:
+                        break;
+                    case WheelVariant.Custom:
+                        break;
+                }
+
+                _ = _arcadeController.StartArcade(arcadeConfiguration);
             }
         }
 

@@ -41,5 +41,65 @@ namespace Arcade_r
                 SetLayersRecursively(child, layer);
             }
         }
+
+        public static float GetWidth(this Transform transform)
+        {
+            if (transform == null)
+            {
+                return 0f;
+            }
+
+            return transform.TryGetComponent(out Collider collider) ? collider.bounds.size.x : 0f;
+        }
+
+        public static float GetHeight(this Transform transform)
+        {
+            if (transform == null)
+            {
+                return 0f;
+            }
+
+            return transform.TryGetComponent(out Collider collider) ? collider.bounds.size.y : 0f;
+        }
+
+        public static float GetDepth(this Transform transform)
+        {
+            if (transform == null)
+            {
+                return 0f;
+            }
+
+            return transform.TryGetComponent(out Collider collider) ? collider.bounds.size.z : 0f;
+        }
+
+        public static float GetHalfWidth(this Transform transform)
+        {
+            if (transform == null)
+            {
+                return 0f;
+            }
+
+            return transform.TryGetComponent(out Collider collider) ? collider.bounds.extents.x : 0f;
+        }
+
+        public static float GetHalfHeight(this Transform transform)
+        {
+            if (transform == null)
+            {
+                return 0f;
+            }
+
+            return transform.TryGetComponent(out Collider collider) ? collider.bounds.extents.y : 0f;
+        }
+
+        public static float GetHalfDepth(this Transform transform)
+        {
+            if (transform == null)
+            {
+                return 0f;
+            }
+
+            return transform.TryGetComponent(out Collider collider) ? collider.bounds.extents.z : 0f;
+        }
     }
 }

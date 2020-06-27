@@ -31,61 +31,61 @@ namespace Arcade_r
         public ArcadeFpsMoveCabState(ArcadeContext context)
         : base(context)
         {
-            _moveCabContext = new MoveCabContext(_context.App.PlayerFpsControls);
+            _moveCabContext = new MoveCabContext(_context.PlayerFpsControls);
         }
 
         public override void OnEnter()
         {
             Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FpsArcadeActions.Enable();
+            _context.PlayerFpsControls.FpsArcadeActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
+                _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
             }
-            _context.App.PlayerFpsControls.FpsArcadeActions.Interact.Disable();
+            _context.PlayerFpsControls.FpsArcadeActions.Interact.Disable();
 
-            _context.App.PlayerFpsControls.FpsMoveCabActions.Enable();
+            _context.PlayerFpsControls.FpsMoveCabActions.Enable();
 
             _moveCabContext.TransitionTo<MoveCabAimState>();
 
-            _context.App.UIController.EnableMoveCabUI();
+            _context.UIController.EnableMoveCabUI();
         }
 
         public override void OnExit()
         {
             Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerFpsControls.FpsArcadeActions.Disable();
-            _context.App.PlayerFpsControls.FpsMoveCabActions.Disable();
+            _context.PlayerFpsControls.FpsArcadeActions.Disable();
+            _context.PlayerFpsControls.FpsMoveCabActions.Disable();
 
-            _context.App.UIController.DisableMoveCabUI();
+            _context.UIController.DisableMoveCabUI();
         }
 
         public override void Update(float dt)
         {
-            if (_context.App.PlayerFpsControls.GlobalActions.Quit.triggered)
+            if (_context.PlayerFpsControls.GlobalActions.Quit.triggered)
             {
                 _context.ReloadCurrentArcadeConfigurationModels();
                 _context.TransitionTo<ArcadeFpsNormalState>();
             }
 
-            if (_context.App.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
+            if (_context.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
             {
                 _ = _context.SaveCurrentArcadeConfigurationModels();
                 _context.TransitionTo<ArcadeFpsNormalState>();
             }
 
-            if (_context.App.PlayerFpsControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.PlayerFpsControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Enable();
+                    _context.PlayerFpsControls.FpsArcadeActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerFpsControls.FpsArcadeActions.Look.Disable();
+                    _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
                 }
             }
 

@@ -24,46 +24,7 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeLoadState : ArcadeState
+    public class CoroutineHelper : MonoBehaviour
     {
-        public ArcadeLoadState(ArcadeContext context)
-        : base(context)
-        {
-        }
-
-        public override void OnEnter()
-        {
-            Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
-
-            _context.ArcadeLoaded = false;
-
-            SystemUtils.HideMouseCursor();
-
-            _context.UIController.EnableLoadingUI();
-
-            _ = _context.StartCurrentArcade();
-        }
-
-        public override void OnExit()
-        {
-            Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
-
-            _context.UIController.DisableLoadingUI();
-        }
-
-        public override void Update(float dt)
-        {
-            if (_context.ArcadeLoaded)
-            {
-                if (_context.CurrentArcadeType == ArcadeType.Fps)
-                {
-                    _context.TransitionTo<ArcadeFpsNormalState>();
-                }
-                else if (_context.CurrentArcadeType == ArcadeType.Cyl)
-                {
-                    _context.TransitionTo<ArcadeCylNormalState>();
-                }
-            }
-        }
     }
 }

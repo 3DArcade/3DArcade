@@ -44,12 +44,6 @@ namespace Arcade_r
         public CylArcadeProperties CylArcadeProperties = default;
         public Zone[] Zones                            = default;
 
-        private void OnValidate()
-        {
-            App app = FindObjectOfType<App>();
-            Assert.IsNotNull(app);
-        }
-
         public bool Save(Database<ArcadeConfiguration> arcadeDatabase, CameraSettings fpsCameraSettings, CameraSettings cylCameraSettings, bool saveGameTransforms)
         {
             GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);

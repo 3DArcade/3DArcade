@@ -30,7 +30,6 @@ namespace Arcade_r
 
         private float _timer;
         private float _acceleration;
-        private float _speed;
 
         public ArcadeCylNormalState(ArcadeContext context)
         : base(context)
@@ -41,96 +40,90 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
-            _context.App.PlayerCylControls.CylArcadeActions.Enable();
+            _context.PlayerCylControls.CylArcadeActions.Enable();
             if (Cursor.visible)
             {
-                _context.App.PlayerCylControls.CylArcadeActions.Look.Disable();
+                _context.PlayerCylControls.CylArcadeActions.Look.Disable();
             }
 
-            _context.App.UIController.EnableNormalUI();
+            _context.UIController.EnableNormalUI();
 
-            _context.App.CurrentPlayerControls = _context.App.PlayerCylControls;
+            _context.CurrentPlayerControls = _context.PlayerCylControls;
 
-            _context.App.VideoPlayerController.SetPlayer(_context.App.PlayerCylControls.transform);
+            _context.VideoPlayerController.SetPlayer(_context.PlayerCylControls.transform);
         }
 
         public override void OnExit()
         {
             Debug.Log($"> <color=orange>Exited</color> {GetType().Name}");
 
-            _context.App.PlayerCylControls.CylArcadeActions.Disable();
+            _context.PlayerCylControls.CylArcadeActions.Disable();
 
-            _context.App.UIController.DisableNormalUI();
+            _context.UIController.DisableNormalUI();
         }
 
         public override void Update(float dt)
         {
-            if (_context.App.PlayerCylControls.GlobalActions.Quit.triggered)
+            if (_context.PlayerCylControls.GlobalActions.Quit.triggered)
             {
                 SystemUtils.ExitApp();
             }
 
-            if (_context.App.PlayerCylControls.GlobalActions.ToggleCursor.triggered)
+            if (_context.PlayerCylControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
                 {
-                    _context.App.PlayerCylControls.CylArcadeActions.Look.Enable();
+                    _context.PlayerCylControls.CylArcadeActions.Look.Enable();
                 }
                 else
                 {
-                    _context.App.PlayerCylControls.CylArcadeActions.Look.Disable();
+                    _context.PlayerCylControls.CylArcadeActions.Look.Disable();
                 }
             }
 
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
-                                                   _context.App.PlayerCylControls.Camera,
+                                                   _context.PlayerCylControls.Camera,
                                                    INTERACT_MAX_DISTANCE,
                                                    _context.RaycastLayers);
 
-            _context.App.VideoPlayerController.UpdateVideosState();
+            _context.VideoPlayerController.UpdateVideosState();
 
-            if (!Cursor.visible && _context.App.PlayerCylControls.CylArcadeActions.Interact.triggered)
+            if (!Cursor.visible && _context.PlayerCylControls.CylArcadeActions.Interact.triggered)
             {
                 HandleInteraction();
             }
 
-            if (_context.App.PlayerCylControls.CylArcadeActions.NavigationForward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+            if (_context.PlayerCylControls.CylArcadeActions.NavigationForward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
             {
-                if (_context.App.PlayerCylControls.CylArcadeActions.NavigationForward.triggered)
+                if (_context.PlayerCylControls.CylArcadeActions.NavigationForward.triggered)
                 {
                     _timer        = 0f;
-                    _acceleration = 6f;
-                    _speed        = 180f;
-                    _context.App.ArcadeCylController.Forward(dt, 1, _speed);
+                    _acceleration = 1f;
+                    _context.ArcadeController.Forward(1, dt);
                 }
-                else if ((_timer += _acceleration * dt) > 2.0f)
+                else if ((_timer += _acceleration * dt) > 1.0f)
                 {
-                    ++_acceleration;
-                    ++_speed;
-                    _acceleration = Mathf.Clamp(_acceleration, 6f, 100f);
-                    _speed        = Mathf.Clamp(_speed, 180f, 360f);
-                    _context.App.ArcadeCylController.Forward(dt, 1, _speed);
+                    _acceleration += 10f;
+                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 100f);
+                    _context.ArcadeController.Forward(1, dt);
                     _timer = 0f;
                 }
             }
 
-            if (_context.App.PlayerCylControls.CylArcadeActions.NavigationBackward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+            if (_context.PlayerCylControls.CylArcadeActions.NavigationBackward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
             {
-                if (_context.App.PlayerCylControls.CylArcadeActions.NavigationBackward.triggered)
+                if (_context.PlayerCylControls.CylArcadeActions.NavigationBackward.triggered)
                 {
                     _timer        = 0f;
-                    _acceleration = 6f;
-                    _speed        = 180f;
-                    _context.App.ArcadeCylController.Backward(dt, 1, _speed);
+                    _acceleration = 1f;
+                    _context.ArcadeController.Backward(1, dt);
                 }
-                else if ((_timer += _acceleration * dt) > 2.0f)
+                else if ((_timer += _acceleration * dt) > 1.0f)
                 {
-                    ++_acceleration;
-                    ++_speed;
-                    _acceleration = Mathf.Clamp(_acceleration, 6f, 100f);
-                    _speed        = Mathf.Clamp(_speed, 180f, 360f);
-                    _context.App.ArcadeCylController.Backward(dt, 1, _speed);
+                    _acceleration += 10f;
+                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 100f);
+                    _context.ArcadeController.Backward(1, dt);
                      _timer = 0f;
                }
             }
