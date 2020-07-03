@@ -26,7 +26,7 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public abstract class ArcadeCylController : ArcadeController
+    public abstract class CylArcadeController : ArcadeController
     {
         protected readonly List<Transform> _allGames;
 
@@ -36,8 +36,9 @@ namespace Arcade_r
         protected int _selectionIndex;
 
         protected Vector3 _centerTargetPosition;
+        protected bool _animating;
 
-        public ArcadeCylController(ArcadeHierarchy arcadeHierarchy,
+        public CylArcadeController(ArcadeHierarchy arcadeHierarchy,
                                    PlayerFpsControls playerFpsControls,
                                    PlayerCylControls playerCylControls,
                                    Database<EmulatorConfiguration> emulatorDatabase,
@@ -53,6 +54,12 @@ namespace Arcade_r
 
         protected virtual void LateSetupWorld()
         {
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+
+            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
         }
 
         public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
@@ -88,7 +95,16 @@ namespace Arcade_r
             int selectedSprocket  = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
             int halfSprockets     = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
             _selectionIndex       = halfSprockets - selectedSprocket;
-            _allGames.RotateRight(_selectionIndex);
+
+            if (_cylArcadeProperties.InverseList)
+            {
+                _allGames.Reverse();
+                _allGames.RotateRight(_selectionIndex + 1);
+            }
+            else
+            {
+                _allGames.RotateRight(_selectionIndex);
+            }
 
             LateSetupWorld();
 

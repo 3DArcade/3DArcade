@@ -30,6 +30,8 @@ namespace Arcade_r
         [SerializeField] private float _minHorizontalLookAngle = -40f;
         [SerializeField] private float _maxHorizontalLookAngle = 40f;
 
+        public bool MouseLookEnabled;
+
         public InputSettingsActions.CylArcadeActions CylArcadeActions { get; private set; }
 
         private float _movementInputValue;
@@ -48,7 +50,7 @@ namespace Arcade_r
             }
             HandleMovement(Time.deltaTime);
 
-            if (_inputActions.CylArcade.Look.enabled)
+            if (MouseLookEnabled)
             {
                 GatherLookInputValues();
                 HandleLook();

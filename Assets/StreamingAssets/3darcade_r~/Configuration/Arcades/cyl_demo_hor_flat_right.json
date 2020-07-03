@@ -1,6 +1,6 @@
 {
-    "DescriptiveName": "CylArcade Demo Inside",
-    "Id": "cylarcade_demo_inside",
+    "DescriptiveName": "cyl_demo_hor_flat_right",
+    "Id": "cyl_demo_hor_flat_right",
     "RenderSettings": {
         "MarqueeIntensity": 1.46,
         "ScreenRasterIntensity": 1.25,
@@ -64,11 +64,13 @@
                 "height": 1.0
             }
         },
-        "WheelVariant": "CameraInsideWheel",
+        "WheelVariant": "HorizontalFlat",
+        "WheelRadius": 10.0,
+        "InverseNavigation": false,
+        "InverseList": false,
         "Sprockets": 9,
         "SelectedSprocket": 1,
-        "SelectedPositionZ": 5.0,
-        "WheelRadius": 5.0,
+        "SelectedPositionZ": 3.0,
         "ModelSpacing": 0.25,
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": true,

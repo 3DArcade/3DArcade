@@ -59,7 +59,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.size.x : 0f;
+            return gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.x : 0f;
         }
 
         public static float GetHeight(this GameObject gameObject)
@@ -69,7 +69,7 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.size.y : 0f;
+            return gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.y : 0f;
         }
 
         public static float GetDepth(this GameObject gameObject)
@@ -79,37 +79,13 @@ namespace Arcade_r
                 return 0f;
             }
 
-            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.size.z : 0f;
+            return gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.z : 0f;
         }
 
-        public static float GetHalfWidth(this GameObject gameObject)
-        {
-            if (gameObject == null)
-            {
-                return 0f;
-            }
+        public static float GetHalfWidth(this GameObject gameObject) => gameObject.GetWidth() * 0.5f;
 
-            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.extents.x : 0f;
-        }
+        public static float GetHalfHeight(this GameObject gameObject) => gameObject.GetHeight() * 0.5f;
 
-        public static float GetHalfHeight(this GameObject gameObject)
-        {
-            if (gameObject == null)
-            {
-                return 0f;
-            }
-
-            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.extents.y : 0f;
-        }
-
-        public static float GetHalfDepth(this GameObject gameObject)
-        {
-            if (gameObject == null)
-            {
-                return 0f;
-            }
-
-            return gameObject.TryGetComponent(out Collider collider) ? collider.bounds.extents.z : 0f;
-        }
+        public static float GetHalfDepth(this GameObject gameObject) => gameObject.GetDepth() * 0.5f;
     }
 }

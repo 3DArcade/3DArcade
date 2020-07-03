@@ -26,11 +26,9 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeCylCameraInsideController : ArcadeCylController
+    public sealed class CylArcadeControllerVerticalFlat : CylArcadeControllerFlat
     {
-        private Vector3 _pivotPoint;
-
-        public ArcadeCylCameraInsideController(ArcadeHierarchy arcadeHierarchy,
+        public CylArcadeControllerVerticalFlat(ArcadeHierarchy arcadeHierarchy,
                                                PlayerFpsControls playerFpsControls,
                                                PlayerCylControls playerCylControls,
                                                Database<EmulatorConfiguration> emulatorDatabase,
@@ -39,23 +37,6 @@ namespace Arcade_r
                                                AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
-        }
-
-        protected override void LateSetupWorld()
-        {
-            _pivotPoint = _centerTargetPosition - new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
-        }
-
-        public override void Forward(int count, float dt)
-        {
-            _playerCylControls.StopAllCoroutines();
-            _ = _playerCylControls.StartCoroutine(CoRotateLeft(count, dt));
-        }
-
-        public override void Backward(int count, float dt)
-        {
-            _playerCylControls.StopAllCoroutines();
-            _ = _playerCylControls.StartCoroutine(CoRotateRight(count, dt));
         }
 
         protected override void SetupWheel()
@@ -77,9 +58,8 @@ namespace Arcade_r
                 currentModel.gameObject.SetActive(true);
                 currentModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
 
-                float spacing = previousModel.GetHalfWidth() + currentModel.GetHalfWidth() + _cylArcadeProperties.ModelSpacing;
-                float angle   = spacing / _cylArcadeProperties.WheelRadius;
-                currentModel.RotateAround(_pivotPoint, Vector3.up, angle * Mathf.Rad2Deg);
+                float offset = previousModel.GetHalfHeight() + currentModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
+                currentModel.Translate(0f, -offset, 0f);
             }
 
             for (int i = _selectionIndex - 1; i >= 0; --i)
@@ -90,9 +70,8 @@ namespace Arcade_r
                 currentModel.gameObject.SetActive(true);
                 currentModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
 
-                float spacing = previousModel.GetHalfWidth() + currentModel.GetHalfWidth() + _cylArcadeProperties.ModelSpacing;
-                float angle   = spacing / _cylArcadeProperties.WheelRadius;
-                currentModel.RotateAround(_pivotPoint, Vector3.up, -angle * Mathf.Rad2Deg);
+                float offset = previousModel.GetHalfHeight() + currentModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
+                currentModel.Translate(0f, offset, 0f);
             }
 
             foreach (Transform model in _allGames.Skip(_sprockets))
@@ -102,53 +81,7 @@ namespace Arcade_r
             }
         }
 
-        private IEnumerator CoRotateLeft(int count, float dt)
-        {
-            Transform targetSelection = _allGames[_selectionIndex + count];
-
-            while (targetSelection.localPosition.x > 0f && targetSelection.localPosition.z < _centerTargetPosition.z)
-            {
-                for (int j = 0; j < _sprockets; ++j)
-                {
-                    _allGames[j].RotateAround(_pivotPoint, Vector3.up, -dt * (90f / _cylArcadeProperties.WheelRadius));
-                }
-
-                yield return null;
-            }
-
-            targetSelection.localPosition = _centerTargetPosition;
-
-            for (int i = 0; i < count; ++i)
-            {
-                _allGames.RotateLeft();
-                UpdateWheel();
-            }
-        }
-
-        private IEnumerator CoRotateRight(int count, float dt)
-        {
-            Transform targetSelection = _allGames[_selectionIndex - count];
-
-            while (targetSelection.localPosition.x < 0f && targetSelection.localPosition.z < _centerTargetPosition.z)
-            {
-                for (int j = 0; j < _sprockets; ++j)
-                {
-                    _allGames[j].RotateAround(_pivotPoint, Vector3.up, dt * (90f / _cylArcadeProperties.WheelRadius));
-                }
-
-                yield return null;
-            }
-
-            targetSelection.localPosition = _centerTargetPosition;
-
-            for (int i = 0; i < count; ++i)
-            {
-                _allGames.RotateRight();
-                UpdateWheel();
-            }
-        }
-
-        private void UpdateWheel()
+        protected override void UpdateWheel()
         {
             if (_allGames.Count < 1)
             {
@@ -159,17 +92,15 @@ namespace Arcade_r
             Transform newModel      = _allGames[_sprockets - 1];
             newModel.gameObject.SetActive(true);
             newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
-            float spacing = previousModel.GetHalfWidth() + newModel.GetHalfWidth() + (_cylArcadeProperties.ModelSpacing * 0.5f);
-            float angle   = (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
-            newModel.RotateAround(_pivotPoint, Vector3.up, angle);
+            float offset  = previousModel.GetHalfHeight() + newModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
+            newModel.Translate(0f, -offset, 0f);
 
             previousModel = _allGames[1];
             newModel      = _allGames[0];
             newModel.gameObject.SetActive(true);
             newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
-            spacing = previousModel.GetHalfWidth() + newModel.GetHalfWidth() + (_cylArcadeProperties.ModelSpacing * 0.5f);
-            angle   = (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
-            newModel.RotateAround(_pivotPoint, Vector3.up, -angle);
+            offset = previousModel.GetHalfHeight() + newModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
+            newModel.Translate(0f, offset, 0f);
 
             foreach (Transform model in _allGames.Skip(_sprockets))
             {

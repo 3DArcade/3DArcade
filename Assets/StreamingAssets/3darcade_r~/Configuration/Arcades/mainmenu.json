@@ -43,7 +43,7 @@
         "CameraSettings": {
             "Position": {
                 "x": 0.0,
-                "y": 0.0,
+                "y": 0.26,
                 "z": 0.0
             },
             "Rotation": {
@@ -52,9 +52,9 @@
                 "z": 0.0
             },
             "Height": 0.0,
-            "Orthographic": false,
+            "Orthographic": true,
             "FieldOfView": 60.0,
-            "AspectRatio": 1.0,
+            "AspectRatio": 2.0,
             "NearClipPlane": 0.01,
             "FarClipPlane": 200.0,
             "ViewportRect": {
@@ -64,12 +64,13 @@
                 "height": 1.0
             }
         },
-        "WheelVariant": "FlatHorizontal",
+        "WheelVariant": "HorizontalFlat",
+        "WheelRadius": 5.0,
+        "InverseNavigation": false,
         "Sprockets": 5,
         "SelectedSprocket": -1,
         "SelectedPositionZ": 5.0,
-        "WheelRadius": 5.0,
-        "ModelSpacing": 0.25,
+        "ModelSpacing": 0.2,
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": true,
         "OnScreenSelectedModel": false,
@@ -143,8 +144,8 @@
     ],
     "GameModelList": [
         {
-            "DescriptiveName": "CylArcade Demo Inside",
-            "Id": "cylarcade_demo_inside",
+            "DescriptiveName": "cyl_demo_hor_flat_right",
+            "Id": "cyl_demo_hor_flat_right",
             "Model": "defaultmenu_sprocket",
             "InteractionType": "CylArcadeConfiguration",
             "Emulator": null,
@@ -240,8 +241,978 @@
             "TriggerIDs": []
         },
         {
-            "DescriptiveName": "CylArcade Demo Outside",
-            "Id": "cylarcade_demo_outside",
+            "DescriptiveName": "cyl_demo_hor_flat_left",
+            "Id": "cyl_demo_hor_flat_left",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_vert_flat_down",
+            "Id": "cyl_demo_vert_flat_down",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_vert_flat_up",
+            "Id": "cyl_demo_vert_flat_up",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_hor_inside_right",
+            "Id": "cyl_demo_hor_inside_right",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_hor_inside_left",
+            "Id": "cyl_demo_hor_inside_left",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_vert_inside_down",
+            "Id": "cyl_demo_vert_inside_down",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_vert_inside_up",
+            "Id": "cyl_demo_vert_inside_up",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_hor_outside_right",
+            "Id": "cyl_demo_hor_outside_right",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_hor_outside_left",
+            "Id": "cyl_demo_hor_outside_left",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_vert_outside_down",
+            "Id": "cyl_demo_vert_outside_down",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "CylArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "cyl_demo_vert_outside_up",
+            "Id": "cyl_demo_vert_outside_up",
             "Model": "defaultmenu_sprocket",
             "InteractionType": "CylArcadeConfiguration",
             "Emulator": null,
@@ -777,12 +1748,12 @@
             "Position": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 22.0
+                "z": 5.5
             },
             "Rotation": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 1.0
+                "z": 0.0
             },
             "Scale": {
                 "x": 0.5,

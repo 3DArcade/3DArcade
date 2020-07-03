@@ -28,10 +28,12 @@ namespace Arcade_r
 {
     public enum WheelVariant
     {
-        CameraInsideWheel,
-        CameraOutsideWheel,
-        FlatHorizontal,
-        FlatVertical,
+        HorizontalCameraInside,
+        HorizontalCameraOutside,
+        HorizontalFlat,
+        VerticalCameraInside,
+        VerticalCameraOutside,
+        VerticalFlat,
         Custom
     }
 
@@ -43,12 +45,13 @@ namespace Arcade_r
         [JsonConverter(typeof(StringEnumConverter))]
         public WheelVariant WheelVariant;
 
+        public bool InverseNavigation;
+        public bool InverseList;
+        public float WheelRadius;
         public int Sprockets;
         public int SelectedSprocket;
         public float SelectedPositionZ;
-        public float WheelRadius;
         public float ModelSpacing;
-        public bool ModelWidthAxisY;
         public bool ModelIsKinemtatic;
         public bool OnScreenSelectedModel;
 

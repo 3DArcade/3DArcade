@@ -25,9 +25,9 @@ using UnityEngine.Assertions;
 
 namespace Arcade_r
 {
-    public sealed class ArcadeFpsController : ArcadeController
+    public sealed class FpsArcadeController : ArcadeController
     {
-        public ArcadeFpsController(ArcadeHierarchy arcadeHierarchy,
+        public FpsArcadeController(ArcadeHierarchy arcadeHierarchy,
                                    PlayerFpsControls playerFpsControls,
                                    PlayerCylControls playerCylControls,
                                    Database<EmulatorConfiguration> emulatorDatabase,

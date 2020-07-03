@@ -1,6 +1,6 @@
 {
-    "DescriptiveName": "CylArcade Demo Outside",
-    "Id": "cylarcade_demo_outside",
+    "DescriptiveName": "cyl_demo_vert_outside_up",
+    "Id": "cyl_demo_vert_outside_up",
     "RenderSettings": {
         "MarqueeIntensity": 1.46,
         "ScreenRasterIntensity": 1.25,
@@ -64,11 +64,13 @@
                 "height": 1.0
             }
         },
-        "WheelVariant": "CameraOutsideWheel",
+        "WheelVariant": "VerticalCameraOutside",
+        "WheelRadius": 10.0,
+        "InverseNavigation": true,
+        "InverseList": true,
         "Sprockets": 9,
         "SelectedSprocket": 1,
         "SelectedPositionZ": 3.0,
-        "WheelRadius": 10.0,
         "ModelSpacing": 0.25,
         "ModelWidthAxisY": false,
         "ModelIsKinemtatic": true,

@@ -28,8 +28,8 @@ namespace Arcade_r
     {
         private const float INTERACT_MAX_DISTANCE = 40f;
 
-        private float _timer;
-        private float _acceleration;
+        private float _timer        = 0f;
+        private float _acceleration = 1f;
 
         public ArcadeCylNormalState(ArcadeContext context)
         : base(context)
@@ -41,7 +41,7 @@ namespace Arcade_r
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
             _context.PlayerCylControls.CylArcadeActions.Enable();
-            if (Cursor.visible)
+            if (!_context.PlayerCylControls.MouseLookEnabled)
             {
                 _context.PlayerCylControls.CylArcadeActions.Look.Disable();
             }
@@ -72,13 +72,16 @@ namespace Arcade_r
             if (_context.PlayerCylControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
-                if (!Cursor.visible)
+                if (_context.PlayerCylControls.MouseLookEnabled)
                 {
-                    _context.PlayerCylControls.CylArcadeActions.Look.Enable();
-                }
-                else
-                {
-                    _context.PlayerCylControls.CylArcadeActions.Look.Disable();
+                    if (!Cursor.visible)
+                    {
+                        _context.PlayerCylControls.CylArcadeActions.Look.Enable();
+                    }
+                    else
+                    {
+                        _context.PlayerCylControls.CylArcadeActions.Look.Disable();
+                    }
                 }
             }
 
@@ -100,13 +103,27 @@ namespace Arcade_r
                 {
                     _timer        = 0f;
                     _acceleration = 1f;
-                    _context.ArcadeController.Forward(1, dt);
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
+                    {
+                        _context.ArcadeController.Backward(1, dt);
+                    }
+                    else
+                    {
+                        _context.ArcadeController.Forward(1, dt);
+                    }
                 }
                 else if ((_timer += _acceleration * dt) > 1.0f)
                 {
-                    _acceleration += 10f;
-                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 100f);
-                    _context.ArcadeController.Forward(1, dt);
+                    _acceleration += 1f;
+                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 20f);
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
+                    {
+                        _context.ArcadeController.Backward(1, _acceleration * dt);
+                    }
+                    else
+                    {
+                        _context.ArcadeController.Forward(1, _acceleration * dt);
+                    }
                     _timer = 0f;
                 }
             }
@@ -117,14 +134,28 @@ namespace Arcade_r
                 {
                     _timer        = 0f;
                     _acceleration = 1f;
-                    _context.ArcadeController.Backward(1, dt);
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
+                    {
+                        _context.ArcadeController.Forward(1, dt);
+                    }
+                    else
+                    {
+                        _context.ArcadeController.Backward(1, dt);
+                    }
                 }
                 else if ((_timer += _acceleration * dt) > 1.0f)
                 {
-                    _acceleration += 10f;
-                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 100f);
-                    _context.ArcadeController.Backward(1, dt);
-                     _timer = 0f;
+                    _acceleration += 1f;
+                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 20f);
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
+                    {
+                        _context.ArcadeController.Forward(1, _acceleration * dt);
+                    }
+                    else
+                    {
+                        _context.ArcadeController.Backward(1, _acceleration * dt);
+                    }
+                    _timer = 0f;
                }
             }
         }
