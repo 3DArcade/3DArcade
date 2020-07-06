@@ -743,9 +743,17 @@ namespace Arcade_r
             ""id"": ""cee92ad0-24ac-4ae8-b5bb-9fd31a285831"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
+                    ""name"": ""NavigationUpDown"",
                     ""type"": ""Value"",
                     ""id"": ""e1f0c0ad-badd-44d1-a958-cb657e58637d"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""NavigationLeftRight"",
+                    ""type"": ""Value"",
+                    ""id"": ""ab61ee91-1a7d-471b-bc23-8f1c4a0e8260"",
                     ""expectedControlType"": ""Analog"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -773,22 +781,6 @@ namespace Arcade_r
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""NavigationForward"",
-                    ""type"": ""Button"",
-                    ""id"": ""f5065f2c-9f93-4620-b2d8-2a3c0b2700ee"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""NavigationBackward"",
-                    ""type"": ""Button"",
-                    ""id"": ""aefbb60f-f06e-49ad-9f68-15cea2d5b60e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -799,7 +791,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -810,7 +802,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -821,7 +813,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -832,7 +824,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -843,7 +835,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -854,7 +846,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -865,7 +857,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -876,7 +868,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -887,7 +879,7 @@ namespace Arcade_r
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""NavigationUpDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -1068,70 +1060,103 @@ namespace Arcade_r
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4f0bcf2a-356a-4195-83c2-bc4833d41302"",
+                    ""name"": ""AD"",
+                    ""id"": ""b76e3822-8474-4c2b-a7e0-4e0790b92080"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigationLeftRight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6a011495-7033-4d48-b7cb-48916ad4dc14"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""NavigationForward"",
+                    ""action"": ""NavigationLeftRight"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""19ecf586-a8da-4055-befa-ce12b4d7666a"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""NavigationForward"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""31d28935-fc08-4adf-b05e-c72342e7d0b8"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""NavigationForward"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""808891e3-5a09-4dd4-81a5-7db0211323b0"",
+                    ""name"": ""negative"",
+                    ""id"": ""d86cc60b-79a5-46f8-985e-2d8f3a95ed4b"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""NavigationBackward"",
+                    ""action"": ""NavigationLeftRight"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""eccc8847-1486-49fb-b442-e1b0d66555b1"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigationLeftRight"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b66cac70-e0b2-4fd5-88c8-c9c3ad8fd292"",
+                    ""name"": ""positive"",
+                    ""id"": ""053853c8-3df8-4c1c-95f3-e72ce8cc5d4a"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""NavigationLeftRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f6a65dc4-4309-47b9-88f4-595edfbaa098"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""NavigationBackward"",
+                    ""action"": ""NavigationLeftRight"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left Stick"",
+                    ""id"": ""28430306-508e-46e6-8109-95035133f7b6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigationLeftRight"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""651716fb-88e7-4b58-ad13-2a067119295a"",
+                    ""name"": ""positive"",
+                    ""id"": ""7f9762f5-77c1-4f27-93ac-2efb169650b7"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NavigationLeftRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f817b234-a513-4848-9537-cf005ff89bf3"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""NavigationBackward"",
+                    ""action"": ""NavigationLeftRight"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1187,12 +1212,11 @@ namespace Arcade_r
             m_FpsMoveCab_AddModel = m_FpsMoveCab.FindAction("AddModel", throwIfNotFound: true);
             // CylArcade
             m_CylArcade = asset.FindActionMap("CylArcade", throwIfNotFound: true);
-            m_CylArcade_Movement = m_CylArcade.FindAction("Movement", throwIfNotFound: true);
+            m_CylArcade_NavigationUpDown = m_CylArcade.FindAction("NavigationUpDown", throwIfNotFound: true);
+            m_CylArcade_NavigationLeftRight = m_CylArcade.FindAction("NavigationLeftRight", throwIfNotFound: true);
             m_CylArcade_Look = m_CylArcade.FindAction("Look", throwIfNotFound: true);
             m_CylArcade_CameraHeight = m_CylArcade.FindAction("CameraHeight", throwIfNotFound: true);
             m_CylArcade_Interact = m_CylArcade.FindAction("Interact", throwIfNotFound: true);
-            m_CylArcade_NavigationForward = m_CylArcade.FindAction("NavigationForward", throwIfNotFound: true);
-            m_CylArcade_NavigationBackward = m_CylArcade.FindAction("NavigationBackward", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1421,22 +1445,20 @@ namespace Arcade_r
         // CylArcade
         private readonly InputActionMap m_CylArcade;
         private ICylArcadeActions m_CylArcadeActionsCallbackInterface;
-        private readonly InputAction m_CylArcade_Movement;
+        private readonly InputAction m_CylArcade_NavigationUpDown;
+        private readonly InputAction m_CylArcade_NavigationLeftRight;
         private readonly InputAction m_CylArcade_Look;
         private readonly InputAction m_CylArcade_CameraHeight;
         private readonly InputAction m_CylArcade_Interact;
-        private readonly InputAction m_CylArcade_NavigationForward;
-        private readonly InputAction m_CylArcade_NavigationBackward;
         public struct CylArcadeActions
         {
             private @InputSettingsActions m_Wrapper;
             public CylArcadeActions(@InputSettingsActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Movement => m_Wrapper.m_CylArcade_Movement;
+            public InputAction @NavigationUpDown => m_Wrapper.m_CylArcade_NavigationUpDown;
+            public InputAction @NavigationLeftRight => m_Wrapper.m_CylArcade_NavigationLeftRight;
             public InputAction @Look => m_Wrapper.m_CylArcade_Look;
             public InputAction @CameraHeight => m_Wrapper.m_CylArcade_CameraHeight;
             public InputAction @Interact => m_Wrapper.m_CylArcade_Interact;
-            public InputAction @NavigationForward => m_Wrapper.m_CylArcade_NavigationForward;
-            public InputAction @NavigationBackward => m_Wrapper.m_CylArcade_NavigationBackward;
             public InputActionMap Get() { return m_Wrapper.m_CylArcade; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1446,9 +1468,12 @@ namespace Arcade_r
             {
                 if (m_Wrapper.m_CylArcadeActionsCallbackInterface != null)
                 {
-                    @Movement.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnMovement;
-                    @Movement.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnMovement;
-                    @Movement.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnMovement;
+                    @NavigationUpDown.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationUpDown;
+                    @NavigationUpDown.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationUpDown;
+                    @NavigationUpDown.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationUpDown;
+                    @NavigationLeftRight.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationLeftRight;
+                    @NavigationLeftRight.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationLeftRight;
+                    @NavigationLeftRight.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationLeftRight;
                     @Look.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnLook;
                     @Look.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnLook;
                     @Look.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnLook;
@@ -1458,19 +1483,16 @@ namespace Arcade_r
                     @Interact.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnInteract;
-                    @NavigationForward.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationForward;
-                    @NavigationForward.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationForward;
-                    @NavigationForward.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationForward;
-                    @NavigationBackward.started -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationBackward;
-                    @NavigationBackward.performed -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationBackward;
-                    @NavigationBackward.canceled -= m_Wrapper.m_CylArcadeActionsCallbackInterface.OnNavigationBackward;
                 }
                 m_Wrapper.m_CylArcadeActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Movement.started += instance.OnMovement;
-                    @Movement.performed += instance.OnMovement;
-                    @Movement.canceled += instance.OnMovement;
+                    @NavigationUpDown.started += instance.OnNavigationUpDown;
+                    @NavigationUpDown.performed += instance.OnNavigationUpDown;
+                    @NavigationUpDown.canceled += instance.OnNavigationUpDown;
+                    @NavigationLeftRight.started += instance.OnNavigationLeftRight;
+                    @NavigationLeftRight.performed += instance.OnNavigationLeftRight;
+                    @NavigationLeftRight.canceled += instance.OnNavigationLeftRight;
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
@@ -1480,12 +1502,6 @@ namespace Arcade_r
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
-                    @NavigationForward.started += instance.OnNavigationForward;
-                    @NavigationForward.performed += instance.OnNavigationForward;
-                    @NavigationForward.canceled += instance.OnNavigationForward;
-                    @NavigationBackward.started += instance.OnNavigationBackward;
-                    @NavigationBackward.performed += instance.OnNavigationBackward;
-                    @NavigationBackward.canceled += instance.OnNavigationBackward;
                 }
             }
         }
@@ -1532,12 +1548,11 @@ namespace Arcade_r
         }
         public interface ICylArcadeActions
         {
-            void OnMovement(InputAction.CallbackContext context);
+            void OnNavigationUpDown(InputAction.CallbackContext context);
+            void OnNavigationLeftRight(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
             void OnCameraHeight(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
-            void OnNavigationForward(InputAction.CallbackContext context);
-            void OnNavigationBackward(InputAction.CallbackContext context);
         }
     }
 }

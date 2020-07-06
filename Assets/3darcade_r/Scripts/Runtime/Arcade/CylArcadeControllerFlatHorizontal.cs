@@ -25,9 +25,9 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class CylArcadeControllerHorizontalFlat : CylArcadeControllerFlat
+    public sealed class CylArcadeControllerFlatHorizontal : CylArcadeControllerFlat
     {
-        public CylArcadeControllerHorizontalFlat(ArcadeHierarchy arcadeHierarchy,
+        public CylArcadeControllerFlatHorizontal(ArcadeHierarchy arcadeHierarchy,
                                                  PlayerFpsControls playerFpsControls,
                                                  PlayerCylControls playerCylControls,
                                                  Database<EmulatorConfiguration> emulatorDatabase,
@@ -106,6 +106,8 @@ namespace Arcade_r
                 model.gameObject.SetActive(false);
                 model.localPosition = Vector3.zero;
             }
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
     }
 }

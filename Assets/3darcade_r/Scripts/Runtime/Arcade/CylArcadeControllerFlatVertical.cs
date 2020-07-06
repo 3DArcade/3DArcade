@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class CylArcadeControllerVerticalFlat : CylArcadeControllerFlat
+    public sealed class CylArcadeControllerFlatVertical : CylArcadeControllerFlat
     {
-        public CylArcadeControllerVerticalFlat(ArcadeHierarchy arcadeHierarchy,
+        public CylArcadeControllerFlatVertical(ArcadeHierarchy arcadeHierarchy,
                                                PlayerFpsControls playerFpsControls,
                                                PlayerCylControls playerCylControls,
                                                Database<EmulatorConfiguration> emulatorDatabase,
@@ -107,6 +106,8 @@ namespace Arcade_r
                 model.gameObject.SetActive(false);
                 model.localPosition = Vector3.zero;
             }
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
     }
 }

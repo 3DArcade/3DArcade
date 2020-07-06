@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -49,28 +48,6 @@ namespace Arcade_r
             _pivotPoint.SetParent(_arcadeHierarchy.GamesNode);
             _pivotPoint.localPosition = _centerTargetPosition - new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
         }
-
-        public override void Forward(int count, float dt)
-        {
-            if (!_animating)
-            {
-                _ = _playerCylControls.StartCoroutine(CoNavigateForward(dt));
-            }
-        }
-
-        public override void Backward(int count, float dt)
-        {
-            if (!_animating)
-            {
-                _ = _playerCylControls.StartCoroutine(CoNavigateBackward(dt));
-            }
-        }
-
-        protected abstract void UpdateWheel();
-
-        protected abstract IEnumerator CoNavigateForward(float dt);
-
-        protected abstract IEnumerator CoNavigateBackward(float dt);
 
         protected void ParentGamesToWheel()
         {

@@ -28,7 +28,6 @@ namespace Arcade_r
 {
     public sealed class ArcadeContext : FSM.Context<ArcadeState>
     {
-        public bool ArcadeLoaded;
         public PlayerControls CurrentPlayerControls;
         public ModelConfigurationComponent CurrentModelConfiguration;
 
@@ -124,8 +123,6 @@ namespace Arcade_r
 
         public bool StartCurrentArcade()
         {
-            ArcadeLoaded = false;
-
             if (CurrentArcadeConfiguration == null)
             {
                 return false;
@@ -156,7 +153,7 @@ namespace Arcade_r
                             ArcadeController = new CylArcadeControllerCameraOutsideHorizontal(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
                         case WheelVariant.HorizontalFlat:
-                            ArcadeController = new CylArcadeControllerHorizontalFlat(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                            ArcadeController = new CylArcadeControllerFlatHorizontal(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
                         case WheelVariant.VerticalCameraInside:
                             ArcadeController = new CylArcadeControllerCameraInsideVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
@@ -165,7 +162,7 @@ namespace Arcade_r
                             ArcadeController = new CylArcadeControllerCameraOutsideVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
                         case WheelVariant.VerticalFlat:
-                            ArcadeController = new CylArcadeControllerVerticalFlat(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                            ArcadeController = new CylArcadeControllerFlatVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
                         case WheelVariant.Custom:
                             break;
@@ -174,8 +171,8 @@ namespace Arcade_r
                 break;
             }
 
-            ArcadeLoaded = ArcadeController.StartArcade(CurrentArcadeConfiguration);
-            return ArcadeLoaded;
+            ArcadeController.StartArcade(CurrentArcadeConfiguration);
+            return true;
         }
 
         public bool SaveCurrentArcadeConfiguration()

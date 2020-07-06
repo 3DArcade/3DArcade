@@ -94,6 +94,7 @@ namespace Arcade_r
             while (targetSelection.position.x > 0f || targetSelection.position.z < 0f)
             {
                 _pivotPoint.Rotate(-Vector3.up * 20f * dt, Space.Self);
+                _arcadeHierarchy.ArcadesNode.GetChild(0).Rotate(-Vector3.up * 20f * dt, Space.Self);
                 yield return null;
             }
 
@@ -157,6 +158,8 @@ namespace Arcade_r
                 model.gameObject.SetActive(false);
                 model.localPosition = Vector3.zero;
             }
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
     }
 }

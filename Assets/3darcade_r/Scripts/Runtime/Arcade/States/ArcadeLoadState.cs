@@ -35,8 +35,6 @@ namespace Arcade_r
         {
             Debug.Log($"> <color=green>Entered</color> {GetType().Name}");
 
-            _context.ArcadeLoaded = false;
-
             SystemUtils.HideMouseCursor();
 
             _context.UIController.EnableLoadingUI();
@@ -53,7 +51,7 @@ namespace Arcade_r
 
         public override void Update(float dt)
         {
-            if (_context.ArcadeLoaded)
+            if (_context.ArcadeController.ArcadeLoaded)
             {
                 if (_context.CurrentArcadeType == ArcadeType.Fps)
                 {

@@ -48,15 +48,14 @@ namespace Arcade_r
 
         public void SetPlayer(Transform player) => _player = player;
 
-        public void UpdateVideosState()
+        public void UpdateVideosStateFps()
         {
             if (_player == null)
             {
                 return;
             }
 
-            _ = _activeVideos.RemoveAll(vp => vp == null);
-            _ = _activeVideos.RemoveAll(vp => vp.isPaused);
+            _ = _activeVideos.RemoveAll(vp => vp == null || vp.isPaused);
 
             for (int i = 0; i < _overlapSphereHits.Length; ++i)
             {
@@ -71,6 +70,52 @@ namespace Arcade_r
                                                       .Where(vp => vp != null && vp.isPrepared)
                                                       .OrderBy(vp => MathUtils.DistanceFast(vp.transform.position, _player.position))
                                                       .Take(NUM_VIDEOS_WITH_SOUND)
+                                                      .ToArray();
+
+            VideoPlayer[] toEnable = inRange.Where(vp => vp.isPaused)
+                                            .ToArray();
+
+            foreach (VideoPlayer videoPlayer in toEnable)
+            {
+                if (!_activeVideos.Contains(videoPlayer))
+                {
+                    VideoSetPlayingState(videoPlayer, true);
+                    _activeVideos.Add(videoPlayer);
+                }
+            }
+
+            VideoPlayer[] toDisable = _activeVideos.Except(inRange)
+                                                   .Except(toEnable)
+                                                   .ToArray();
+            foreach (VideoPlayer videoPlayer in toDisable)
+            {
+                VideoSetPlayingState(videoPlayer, false);
+                _ = _activeVideos.Remove(videoPlayer);
+            }
+        }
+
+        public void UpdateVideosStateCyl(Vector3 position)
+        {
+            if (_player == null)
+            {
+                return;
+            }
+
+            _ = _activeVideos.RemoveAll(vp => vp == null || vp.isPaused);
+
+            for (int i = 0; i < _overlapSphereHits.Length; ++i)
+            {
+                _overlapSphereHits[i] = null;
+            }
+
+            _ = Physics.OverlapSphereNonAlloc(position, OVERLAPSPHERE_RADIUS, _overlapSphereHits, _layerMask);
+
+            VideoPlayer[] inRange = _overlapSphereHits.Distinct()
+                                                      .Where(col => col != null)
+                                                      .Select(col => col.GetComponentInChildren<VideoPlayer>(true))
+                                                      .Where(vp => vp != null && vp.isPrepared)
+                                                      .OrderBy(vp => MathUtils.DistanceFast(vp.transform.position, _player.position))
+                                                      .Take(NUM_VIDEOS_WITH_SOUND + 1)
                                                       .ToArray();
 
             VideoPlayer[] toEnable = inRange.Where(vp => vp.isPaused)

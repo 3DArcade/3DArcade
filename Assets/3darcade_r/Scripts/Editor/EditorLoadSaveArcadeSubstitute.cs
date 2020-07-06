@@ -108,7 +108,7 @@ namespace Arcade_r
                         _arcadeController = new CylArcadeControllerCameraOutsideHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
                         break;
                     case WheelVariant.HorizontalFlat:
-                        _arcadeController = new CylArcadeControllerHorizontalFlat(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerFlatHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
                         break;
                     case WheelVariant.VerticalCameraInside:
                         _arcadeController = new CylArcadeControllerCameraInsideVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
@@ -117,14 +117,14 @@ namespace Arcade_r
                         _arcadeController = new CylArcadeControllerCameraOutsideVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
                         break;
                     case WheelVariant.VerticalFlat:
-                        _arcadeController = new CylArcadeControllerVerticalFlat(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerFlatVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
                         break;
                     case WheelVariant.Custom:
                         break;
                 }
             }
 
-            _ = _arcadeController?.StartArcade(arcadeConfiguration);
+            _arcadeController?.StartArcade(arcadeConfiguration);
         }
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)

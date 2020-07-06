@@ -157,6 +157,8 @@ namespace Arcade_r
                 model.gameObject.SetActive(false);
                 model.localPosition = Vector3.zero;
             }
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
     }
 }

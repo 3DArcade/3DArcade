@@ -21,12 +21,13 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Arcade_r
 {
     public sealed class ArcadeCylNormalState : ArcadeState
     {
-        private const float INTERACT_MAX_DISTANCE = 40f;
+        private InputAction _navigationInput;
 
         private float _timer        = 0f;
         private float _acceleration = 1f;
@@ -51,6 +52,29 @@ namespace Arcade_r
             _context.CurrentPlayerControls = _context.PlayerCylControls;
 
             _context.VideoPlayerController.SetPlayer(_context.PlayerCylControls.transform);
+
+            switch (_context.CurrentArcadeConfiguration.CylArcadeProperties.WheelVariant)
+            {
+                case WheelVariant.HorizontalCameraInside:
+                case WheelVariant.HorizontalCameraOutside:
+                case WheelVariant.HorizontalFlat:
+                case WheelVariant.VerticalCameraInside:
+                case WheelVariant.Custom:
+                {
+                    _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationLeftRight;
+                    _context.PlayerCylControls.SetupForHorizontalWheel();
+                }
+                break;
+                case WheelVariant.VerticalCameraOutside:
+                case WheelVariant.VerticalFlat:
+                {
+                    _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationUpDown;
+                    _context.PlayerCylControls.SetupForVerticalWheel();
+                }
+                break;
+            }
+
+            UpdateCurrentInteractable();
         }
 
         public override void OnExit()
@@ -62,8 +86,20 @@ namespace Arcade_r
             _context.UIController.DisableNormalUI();
         }
 
+        bool _videoWorkaroundApplied = false;
+        int _frames = 0;
+
         public override void Update(float dt)
         {
+            if (!_videoWorkaroundApplied)
+            {
+                if (++_frames >= 10)
+                {
+                    UpdateCurrentInteractable();
+                    _videoWorkaroundApplied = true;
+                }
+            }
+
             if (_context.PlayerCylControls.GlobalActions.Quit.triggered)
             {
                 SystemUtils.ExitApp();
@@ -85,78 +121,88 @@ namespace Arcade_r
                 }
             }
 
-            InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
-                                                   _context.PlayerCylControls.Camera,
-                                                   INTERACT_MAX_DISTANCE,
-                                                   _context.RaycastLayers);
+            HandleNavigation(dt);
 
-            _context.VideoPlayerController.UpdateVideosState();
+            if (_context.CurrentModelConfiguration != _context.ArcadeController.CurrentGame)
+            {
+                UpdateCurrentInteractable();
+            }
 
             if (!Cursor.visible && _context.PlayerCylControls.CylArcadeActions.Interact.triggered)
             {
                 HandleInteraction();
             }
+        }
 
-            if (_context.PlayerCylControls.CylArcadeActions.NavigationForward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+        private void UpdateCurrentInteractable()
+        {
+            InteractionController.FindInteractable(ref _context.CurrentModelConfiguration, _context.ArcadeController);
+            _context.VideoPlayerController.UpdateVideosStateCyl(_context.CurrentModelConfiguration.transform.position);
+        }
+
+        private void HandleNavigation(float dt)
+        {
+            if (_navigationInput.phase != InputActionPhase.Started)
             {
-                if (_context.PlayerCylControls.CylArcadeActions.NavigationForward.triggered)
-                {
-                    _timer        = 0f;
-                    _acceleration = 1f;
-                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
-                    {
-                        _context.ArcadeController.Backward(1, dt);
-                    }
-                    else
-                    {
-                        _context.ArcadeController.Forward(1, dt);
-                    }
-                }
-                else if ((_timer += _acceleration * dt) > 1.0f)
-                {
-                    _acceleration += 1f;
-                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 20f);
-                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
-                    {
-                        _context.ArcadeController.Backward(1, _acceleration * dt);
-                    }
-                    else
-                    {
-                        _context.ArcadeController.Forward(1, _acceleration * dt);
-                    }
-                    _timer = 0f;
-                }
+                return;
             }
 
-            if (_context.PlayerCylControls.CylArcadeActions.NavigationBackward.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+            float direction = _navigationInput.ReadValue<float>();
+
+            if (_navigationInput.triggered)
             {
-                if (_context.PlayerCylControls.CylArcadeActions.NavigationBackward.triggered)
+                _timer = 0f;
+                _acceleration = 1f;
+                if (direction > 0f)
                 {
-                    _timer        = 0f;
-                    _acceleration = 1f;
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
                     {
-                        _context.ArcadeController.Forward(1, dt);
+                        _context.ArcadeController.NavigateBackward(dt);
                     }
                     else
                     {
-                        _context.ArcadeController.Backward(1, dt);
+                        _context.ArcadeController.NavigateForward(dt);
                     }
                 }
-                else if ((_timer += _acceleration * dt) > 1.0f)
+                else if (direction < 0f)
                 {
-                    _acceleration += 1f;
-                    _acceleration  = Mathf.Clamp(_acceleration, 1f, 20f);
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
                     {
-                        _context.ArcadeController.Forward(1, _acceleration * dt);
+                        _context.ArcadeController.NavigateForward(dt);
                     }
                     else
                     {
-                        _context.ArcadeController.Backward(1, _acceleration * dt);
+                        _context.ArcadeController.NavigateBackward(dt);
                     }
-                    _timer = 0f;
-               }
+                }
+            }
+            else if ((_timer += _acceleration * dt) > 1.0f)
+            {
+                _acceleration += 0.5f;
+                _acceleration  = Mathf.Clamp(_acceleration, 1f, 20f);
+                if (direction > 0f)
+                {
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
+                    {
+                        _context.ArcadeController.NavigateBackward(_acceleration * dt);
+                    }
+                    else
+                    {
+                        _context.ArcadeController.NavigateForward(_acceleration * dt);
+                    }
+                }
+                else if (direction < 0f)
+                {
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
+                    {
+                        _context.ArcadeController.NavigateForward(_acceleration * dt);
+                    }
+                    else
+                    {
+                        _context.ArcadeController.NavigateBackward(_acceleration * dt);
+                    }
+                }
+                _timer = 0f;
             }
         }
 

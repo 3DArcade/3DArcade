@@ -55,5 +55,11 @@ namespace Arcade_r
                 OnCurrentModelConfigurationChanged?.Invoke(null);
             }
         }
+
+        public static void FindInteractable(ref ModelConfigurationComponent modelConfigurationComponent, ArcadeController arcadeController)
+        {
+            modelConfigurationComponent = arcadeController.CurrentGame;
+            OnCurrentModelConfigurationChanged?.Invoke(modelConfigurationComponent);
+        }
     }
 }

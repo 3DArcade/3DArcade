@@ -67,6 +67,7 @@
         "WheelVariant": "HorizontalFlat",
         "WheelRadius": 5.0,
         "InverseNavigation": false,
+        "InverseList": false,
         "Sprockets": 5,
         "SelectedSprocket": -1,
         "SelectedPositionZ": 5.0,
@@ -143,6 +144,343 @@
         }
     ],
     "GameModelList": [
+        {
+            "DescriptiveName": "Triggers Demo",
+            "Id": "triggers",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "FpsArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "GameStarted",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_zoom",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "Space Port",
+            "Id": "spaceport",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "FpsArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "Time Out",
+            "Id": "timeout",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "FpsArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
+        {
+            "DescriptiveName": "Zoning",
+            "Id": "zone",
+            "Model": "defaultmenu_sprocket",
+            "InteractionType": "FpsArcadeConfiguration",
+            "Emulator": null,
+            "MarqueeDirectory": null,
+            "MarqueeVideoDirectory": null,
+            "ScreenDirectory": null,
+            "ScreenVideoDirectory": null,
+            "TitleDirectory": null,
+            "GenericDirectory": null,
+            "GenericVideoDirectory": null,
+            "InfoDirectory": null,
+            "Grabbable": false,
+            "MoveCabMovable": false,
+            "MoveCabGrabbable": false,
+            "CloneOf": null,
+            "RomOf": null,
+            "Genre": null,
+            "Year": null,
+            "Manufacturer": null,
+            "ScreenType": "Unspecified",
+            "ScreenOrientation": "Unspecified",
+            "Mature": false,
+            "Available": false,
+            "Runnable": false,
+            "Position": {
+                "x": 0.0,
+                "y": 1.4,
+                "z": 0.0
+            },
+            "Rotation": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "Scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "Triggers": [
+                {
+                    "TriggerEvent": "ModelSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_selected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                },
+                {
+                    "TriggerEvent": "ModelDeSelected",
+                    "TriggerSource": [],
+                    "TriggerTarget": [],
+                    "TriggerAction": "PlayAnimation",
+                    "AnimationProperties": [
+                        {
+                            "Name": "defaultmenu_sprocket_deselected",
+                            "Loop": false,
+                            "Speed": 1.0,
+                            "PlayMode": "StopSameLayer",
+                            "Layer": 0
+                        }
+                    ],
+                    "AudioProperties": [],
+                    "TriggerTransformProperties": []
+                }
+            ],
+            "TriggerIDs": []
+        },
         {
             "DescriptiveName": "cyl_demo_hor_flat_right",
             "Id": "cyl_demo_hor_flat_right",
@@ -1295,343 +1633,6 @@
                     "AnimationProperties": [
                         {
                             "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Zoning",
-            "Id": "zone",
-            "Model": "defaultmenu_sprocket",
-            "InteractionType": "FpsArcadeConfiguration",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 1.4,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Triggers Demo",
-            "Id": "triggers",
-            "Model": "defaultmenu_sprocket",
-            "InteractionType": "FpsArcadeConfiguration",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 1.4,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Space Port",
-            "Id": "spaceport",
-            "Model": "defaultmenu_sprocket",
-            "InteractionType": "FpsArcadeConfiguration",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 1.4,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Time Out",
-            "Id": "timeout",
-            "Model": "defaultmenu_sprocket",
-            "InteractionType": "FpsArcadeConfiguration",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 1.4,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
                             "Loop": false,
                             "Speed": 1.0,
                             "PlayMode": "StopSameLayer",

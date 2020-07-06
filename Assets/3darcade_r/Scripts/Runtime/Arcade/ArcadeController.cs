@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -32,6 +33,9 @@ namespace Arcade_r
 {
     public abstract class ArcadeController
     {
+        public bool ArcadeLoaded { get; protected set; }
+        public ModelConfigurationComponent CurrentGame { get; protected set; }
+
         protected const string ARCADE_RESOURCES_DIRECTORY = "Arcades";
         protected const string GAME_RESOURCES_DIRECTORY   = "Games";
         protected const string PROP_RESOURCES_DIRECTORY   = "Props";
@@ -49,11 +53,19 @@ namespace Arcade_r
         protected readonly PlayerCylControls _playerCylControls;
 
         protected readonly AssetCache<GameObject> _gameObjectCache;
-        private readonly AssetCache<Texture> _textureCache;
+        protected readonly AssetCache<Texture> _textureCache;
         private readonly AssetCache<string> _videoCache;
 
         protected readonly ContentMatcher _contentMatcher;
+
+        protected readonly List<Transform> _allGames;
+
+        protected readonly CoroutineHelper _coroutineHelper;
+        protected bool _animating;
+
         private readonly AnimationCurve _volumeCurve;
+
+        protected bool _gameModelsLoaded;
 
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
                                 PlayerFpsControls playerFpsControls,
@@ -73,11 +85,12 @@ namespace Arcade_r
             _playerFpsControls = playerFpsControls;
             _playerCylControls = playerCylControls;
             _gameObjectCache   = gameObjectCache;
-
-            _textureCache = textureCache;
-            _videoCache   = videoCache;
-
-            _contentMatcher = new ContentMatcher(emulatorDatabase);
+            _textureCache      = textureCache;
+            _videoCache        = videoCache;
+            _contentMatcher    = new ContentMatcher(emulatorDatabase);
+            _allGames          = new List<Transform>();
+            _coroutineHelper   = Object.FindObjectOfType<CoroutineHelper>();
+            Assert.IsNotNull(_coroutineHelper);
 
             _volumeCurve = new AnimationCurve(new Keyframe[]
             {
@@ -87,17 +100,35 @@ namespace Arcade_r
             });
         }
 
-        public abstract bool StartArcade(ArcadeConfiguration arcadeConfiguration);
+        public abstract void StartArcade(ArcadeConfiguration arcadeConfiguration);
 
-        public virtual void Forward(int count, float dt)
+        protected abstract IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration);
+
+        protected abstract IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry);
+
+        protected abstract IEnumerator CoNavigateForward(float dt);
+
+        protected abstract IEnumerator CoNavigateBackward(float dt);
+
+        protected virtual void LateSetupWorld()
         {
         }
 
-        public virtual void Backward(int count, float dt)
+        public void NavigateForward(float dt)
         {
+            if (!_animating)
+            {
+                _ = _playerCylControls.StartCoroutine(CoNavigateForward(dt));
+            }
         }
 
-        protected abstract void SetupWorld(ArcadeConfiguration arcadeConfiguration);
+        public void NavigateBackward(float dt)
+        {
+            if (!_animating)
+            {
+                _ = _playerCylControls.StartCoroutine(CoNavigateBackward(dt));
+            }
+        }
 
         protected static void SetupPlayer(PlayerControls playerControls, CameraSettings cameraSettings)
         {
@@ -116,11 +147,11 @@ namespace Arcade_r
             transposer.m_FollowOffset.y      = cameraSettings.Height;
         }
 
-        protected void AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        protected IEnumerator AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
             if (modelConfigurations == null)
             {
-                return;
+                yield break;
             }
 
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
@@ -140,6 +171,8 @@ namespace Arcade_r
                     SetupScreenNode(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
                     SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
                 }
+
+                yield return null;
             }
         }
 
@@ -162,16 +195,16 @@ namespace Arcade_r
                 return;
             }
 
-            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-
+            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
             List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeVideoDirectory, emulator?.MarqueesVideoDirectory, _defaultMarqueesVideoDirectory);
+
             if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
                 renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, _defaultMarqueesDirectory);
+            directories     = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, _defaultMarqueesDirectory);
             Texture texture = _textureCache.Load(directories, namesToTry);
             if (texture != null)
             {
@@ -189,16 +222,16 @@ namespace Arcade_r
                 return;
             }
 
-            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-
+            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
             List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenVideoDirectory, emulator?.ScreensVideoDirectory, _defaultScreensVideoDirectory);
+
             if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
                 renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, _defaultScreensDirectory);
+            directories     = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, _defaultScreensDirectory);
             Texture texture = _textureCache.Load(directories, namesToTry);
             if (texture != null)
             {
@@ -214,16 +247,16 @@ namespace Arcade_r
                 return;
             }
 
-            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-
+            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
             List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericVideoDirectory, emulator?.GenericsVideoDirectory, _defaultGenericsVideoDirectory);
+
             if (SetupVideo(renderer.gameObject, directories, namesToTry))
             {
                 renderer.material.ClearAlbedoColorAndTexture();
                 return;
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, _defaultGenericsDirectory);
+            directories     = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, _defaultGenericsDirectory);
             Texture texture = _textureCache.Load(directories, namesToTry);
             SetupStaticImage(renderer.material, texture);
         }
@@ -238,18 +271,18 @@ namespace Arcade_r
 
             _ = screen.AddComponentIfNotFound<AudioSource>();
 
-            VideoPlayer videoPlayer = screen.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
-            videoPlayer.prepareCompleted -= OnVideoPlayerPrepareCompleted;
-            videoPlayer.prepareCompleted += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake = true;
-            videoPlayer.waitForFirstFrame = true;
-            videoPlayer.isLooping = true;
-            videoPlayer.source = VideoSource.Url;
-            videoPlayer.url = videopath;
-            videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            VideoPlayer videoPlayer            = screen.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived         -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived         += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted      -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted      += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake            = true;
+            videoPlayer.waitForFirstFrame      = true;
+            videoPlayer.isLooping              = true;
+            videoPlayer.source                 = VideoSource.Url;
+            videoPlayer.url                    = videopath;
+            videoPlayer.renderMode             = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode        = VideoAudioOutputMode.AudioSource;
             videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
             videoPlayer.Prepare();
 
@@ -274,7 +307,7 @@ namespace Arcade_r
             audioSource.minDistance  = 1f;
             audioSource.maxDistance  = 3f;
             audioSource.volume       = 1f;
-            audioSource.rolloffMode  = AudioRolloffMode.Custom;
+            audioSource.rolloffMode = AudioRolloffMode.Custom;
             audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
 
             videoPlayer.EnableAudioTrack(0, false);
@@ -299,7 +332,7 @@ namespace Arcade_r
             {
                 if (baseRendererIsEmissive)
                 {
-                    Color color = baseRenderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME);
+                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME);
                     Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME);
                     if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
                     {
@@ -312,7 +345,7 @@ namespace Arcade_r
                 }
                 else
                 {
-                    Color color = baseRenderer.material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
+                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
                     Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME);
                     renderer.material.SetAlbedoColorAndTexture(color, texture);
                 }

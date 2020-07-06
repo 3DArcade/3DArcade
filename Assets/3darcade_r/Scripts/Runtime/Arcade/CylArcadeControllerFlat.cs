@@ -39,36 +39,13 @@ namespace Arcade_r
         {
         }
 
-        public override void Forward(int count, float dt)
-        {
-            if (!_animating)
-            {
-                _ = _playerCylControls.StartCoroutine(CoNavigate(true, dt));
-            }
-        }
-
-        public override void Backward(int count, float dt)
-        {
-            if (!_animating)
-            {
-                _ = _playerCylControls.StartCoroutine(CoNavigate(false, dt));
-            }
-        }
-
-        protected abstract void UpdateWheel();
-
-        private IEnumerator CoNavigate(bool forward, float dt)
+        protected override IEnumerator CoNavigateForward(float dt)
         {
             _animating = true;
 
-            int targetIndex           = forward ? _selectionIndex + 1 : _selectionIndex - 1;
-            Transform targetSelection = _allGames[targetIndex];
+            Transform targetSelection = _allGames[_selectionIndex + 1];
 
-            foreach (Transform game in _allGames.Take(_sprockets)
-                                                .Where(t => t != targetSelection))
-            {
-                game.SetParent(targetSelection);
-            }
+            ParentGamesToSelection(targetSelection);
 
             while (targetSelection.localPosition != _centerTargetPosition)
             {
@@ -76,23 +53,54 @@ namespace Arcade_r
                 yield return null;
             }
 
-            foreach (Transform game in _allGames.Take(_sprockets).Where(t => t != targetSelection))
-            {
-                game.SetParent(_arcadeHierarchy.GamesNode);
-            }
+            ResetGamesParent(targetSelection);
 
-            if (forward)
-            {
-                _allGames.RotateLeft();
-            }
-            else
-            {
-                _allGames.RotateRight();
-            }
+            _allGames.RotateLeft();
 
             UpdateWheel();
 
             _animating = false;
+        }
+
+        protected override IEnumerator CoNavigateBackward(float dt)
+        {
+            _animating = true;
+
+            Transform targetSelection = _allGames[_selectionIndex - 1];
+
+            ParentGamesToSelection(targetSelection);
+
+            while (targetSelection.localPosition != _centerTargetPosition)
+            {
+                targetSelection.localPosition = Vector3.MoveTowards(targetSelection.localPosition, _centerTargetPosition, 10f * dt);
+                yield return null;
+            }
+
+            ResetGamesParent(targetSelection);
+
+            _allGames.RotateRight();
+
+            UpdateWheel();
+
+            _animating = false;
+        }
+
+        protected void ParentGamesToSelection(Transform targetSelection)
+        {
+            foreach (Transform game in _allGames.Take(_sprockets)
+                                                .Where(t => t != targetSelection))
+            {
+                game.SetParent(targetSelection);
+            }
+        }
+
+        protected void ResetGamesParent(Transform targetSelection)
+        {
+            foreach (Transform game in _allGames.Take(_sprockets)
+                                                .Where(t => t != targetSelection))
+            {
+                game.SetParent(_arcadeHierarchy.GamesNode);
+            }
         }
     }
 }

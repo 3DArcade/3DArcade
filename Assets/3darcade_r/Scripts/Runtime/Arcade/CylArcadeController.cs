@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -28,15 +29,12 @@ namespace Arcade_r
 {
     public abstract class CylArcadeController : ArcadeController
     {
-        protected readonly List<Transform> _allGames;
-
         protected CylArcadeProperties _cylArcadeProperties;
 
         protected int _sprockets;
         protected int _selectionIndex;
 
         protected Vector3 _centerTargetPosition;
-        protected bool _animating;
 
         public CylArcadeController(ArcadeHierarchy arcadeHierarchy,
                                    PlayerFpsControls playerFpsControls,
@@ -47,22 +45,9 @@ namespace Arcade_r
                                    AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
-            _allGames = new List<Transform>();
         }
 
-        protected abstract void SetupWheel();
-
-        protected virtual void LateSetupWorld()
-        {
-            if (!Application.isPlaying)
-            {
-                return;
-            }
-
-            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
-        }
-
-        public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
+        public override void StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
             Assert.IsNotNull(arcadeConfiguration);
             Assert.IsNotNull(arcadeConfiguration.CylArcadeProperties);
@@ -72,23 +57,27 @@ namespace Arcade_r
 
             SetupPlayer(_playerCylControls, arcadeConfiguration.CylArcadeProperties.CameraSettings);
 
-            SetupWorld(arcadeConfiguration);
-
-            return true;
+            _ = _coroutineHelper.StartCoroutine(SetupWorld(arcadeConfiguration));
         }
 
-        protected override void SetupWorld(ArcadeConfiguration arcadeConfiguration)
+        protected override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
         {
+            ArcadeLoaded = false;
+
             _cylArcadeProperties = arcadeConfiguration.CylArcadeProperties;
 
             _playerCylControls.SetVerticalLookLimits(-40f, 40f);
             _playerCylControls.SetHorizontalLookLimits(0f, 0f);
 
             RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
-            AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
-            AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp);
+            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade));
+            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp));
+            _ = _coroutineHelper.StartCoroutine(AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame));
 
-            AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame);
+            while (!_gameModelsLoaded)
+            {
+                yield return null;
+            }
 
             _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
             _sprockets            = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
@@ -109,14 +98,24 @@ namespace Arcade_r
             LateSetupWorld();
 
             SetupWheel();
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
+            ArcadeLoaded = true;
         }
 
-        private void AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        protected abstract void SetupWheel();
+
+        protected abstract void UpdateWheel();
+
+        protected override void LateSetupWorld()
         {
-            if (modelConfigurations == null)
-            {
-                return;
-            }
+            base.LateSetupWorld();
+            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
+        }
+
+        protected override IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        {
+            _gameModelsLoaded = false;
 
             _allGames.Clear();
 
@@ -129,7 +128,7 @@ namespace Arcade_r
                 Assert.IsNotNull(prefab, "prefab is null!");
 
                 GameObject instantiatedModel = Object.Instantiate(prefab, Vector3.zero, Quaternion.identity, _arcadeHierarchy.GamesNode);
-                instantiatedModel.name = modelConfiguration.Id;
+                instantiatedModel.name       = modelConfiguration.Id;
                 instantiatedModel.transform.localScale = modelConfiguration.Scale;
                 instantiatedModel.transform.SetLayersRecursively(_arcadeHierarchy.GamesNode.gameObject.layer);
 
@@ -155,7 +154,11 @@ namespace Arcade_r
                 }
 
                 instantiatedModel.SetActive(false);
+
+                yield return null;
             }
+
+            _gameModelsLoaded = true;
         }
     }
 }

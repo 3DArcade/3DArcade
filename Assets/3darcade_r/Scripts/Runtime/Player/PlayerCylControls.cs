@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Arcade_r
 {
@@ -34,17 +35,19 @@ namespace Arcade_r
 
         public InputSettingsActions.CylArcadeActions CylArcadeActions { get; private set; }
 
+        private InputAction _movementInputAction;
         private float _movementInputValue;
 
         private void Awake()
         {
             Construct();
-            CylArcadeActions = _inputActions.CylArcade;
+            CylArcadeActions     = _inputActions.CylArcade;
+            _movementInputAction = _inputActions.CylArcade.NavigationLeftRight;
         }
 
         private void Update()
         {
-            if (_inputActions.CylArcade.Movement.enabled)
+            if (_movementInputAction.enabled)
             {
                 GatherMovementInputValues();
             }
@@ -57,13 +60,17 @@ namespace Arcade_r
             }
         }
 
+        public void SetupForHorizontalWheel() => _movementInputAction = _inputActions.CylArcade.NavigationUpDown;
+
+        public void SetupForVerticalWheel() => _movementInputAction = _inputActions.CylArcade.NavigationLeftRight;
+
         public void SetHorizontalLookLimits(float min, float max)
         {
             _minHorizontalLookAngle = Mathf.Clamp(min, -90f, 0f);
             _maxHorizontalLookAngle = Mathf.Clamp(max, 0f, 90f);
         }
 
-        protected override void GatherMovementInputValues() => _movementInputValue = _inputActions.CylArcade.Movement.ReadValue<float>();
+        protected override void GatherMovementInputValues() => _movementInputValue = _movementInputAction.ReadValue<float>();
 
         protected override void GatherLookInputValues() => _lookInputValue = _inputActions.CylArcade.Look.ReadValue<Vector2>();
 

@@ -86,7 +86,7 @@ namespace Arcade_r
                                                    INTERACT_MAX_DISTANCE,
                                                    _context.RaycastLayers);
 
-            _context.VideoPlayerController.UpdateVideosState();
+            _context.VideoPlayerController.UpdateVideosStateFps();
 
             if (!Cursor.visible && _context.PlayerFpsControls.FpsArcadeActions.Interact.triggered)
             {

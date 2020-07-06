@@ -137,19 +137,19 @@ namespace Arcade_r
             }
 
             Transform previousModel = _allGames[_sprockets - 2];
-            Transform newModel = _allGames[_sprockets - 1];
+            Transform newModel      = _allGames[_sprockets - 1];
             newModel.gameObject.SetActive(true);
             newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
             float spacing = previousModel.GetHalfHeight() + newModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
-            float angle = (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
+            float angle   = (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
             newModel.RotateAround(_pivotPoint.transform.localPosition, -Vector3.right, angle);
 
             previousModel = _allGames[1];
-            newModel = _allGames[0];
+            newModel      = _allGames[0];
             newModel.gameObject.SetActive(true);
             newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
             spacing = previousModel.GetHalfHeight() + newModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
-            angle = (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
+            angle   = (spacing / _cylArcadeProperties.WheelRadius) * Mathf.Rad2Deg;
             newModel.RotateAround(_pivotPoint.transform.localPosition, Vector3.right, angle);
 
             foreach (Transform model in _allGames.Skip(_sprockets))
@@ -157,6 +157,8 @@ namespace Arcade_r
                 model.gameObject.SetActive(false);
                 model.localPosition = Vector3.zero;
             }
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
     }
 }

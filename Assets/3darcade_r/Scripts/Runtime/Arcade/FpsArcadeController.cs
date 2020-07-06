@@ -20,6 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -38,7 +40,7 @@ namespace Arcade_r
         {
         }
 
-        public override bool StartArcade(ArcadeConfiguration arcadeConfiguration)
+        public override void StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
             Assert.IsNotNull(arcadeConfiguration);
 
@@ -47,17 +49,68 @@ namespace Arcade_r
 
             SetupPlayer(_playerFpsControls, arcadeConfiguration.FpsArcadeProperties.CameraSettings);
 
-            SetupWorld(arcadeConfiguration);
-
-            return true;
+            _ = _coroutineHelper.StartCoroutine(SetupWorld(arcadeConfiguration));
         }
 
-        protected override void SetupWorld(ArcadeConfiguration arcadeConfiguration)
+        protected override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
         {
+            ArcadeLoaded = false;
+
             RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
-            AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade);
-            AddModelsToWorld(arcadeConfiguration.GameModelList, _arcadeHierarchy.GamesNode, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame);
-            AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp);
+            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade));
+            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp));
+            _ = _coroutineHelper.StartCoroutine(AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame));
+
+            while (!_gameModelsLoaded)
+            {
+                yield return null;
+            }
+
+            _allGames.Clear();
+            for (int i = 0; i < _arcadeHierarchy.GamesNode.childCount; ++i)
+            {
+                _allGames.Add(_arcadeHierarchy.GamesNode.GetChild(i));
+            }
+
+            ArcadeLoaded = true;
+        }
+
+        protected override IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        {
+            _gameModelsLoaded = false;
+
+            foreach (ModelConfiguration modelConfiguration in modelConfigurations)
+            {
+                EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
+                List<string> namesToTry = getNamesToTry(modelConfiguration, emulator);
+
+                GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
+                Assert.IsNotNull(prefab, "prefab is null!");
+
+                GameObject instantiatedModel = InstantiatePrefab(prefab, _arcadeHierarchy.GamesNode, modelConfiguration);
+
+                // Only look for artworks in play mode / at runtime
+                if (Application.isPlaying && _textureCache != null)
+                {
+                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
+                    SetupScreenNode(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
+                    SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
+                }
+
+                yield return null;
+            }
+
+            _gameModelsLoaded = true;
+        }
+
+        protected override IEnumerator CoNavigateForward(float dt)
+        {
+            yield break;
+        }
+
+        protected override IEnumerator CoNavigateBackward(float dt)
+        {
+            yield break;
         }
     }
 }
