@@ -26,15 +26,15 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public abstract class CylArcadeControllerFlat : CylArcadeController
+    public abstract class CylArcadeControllerStraightLine : CylArcadeController
     {
-        public CylArcadeControllerFlat(ArcadeHierarchy arcadeHierarchy,
-                                       PlayerFpsControls playerFpsControls,
-                                       PlayerCylControls playerCylControls,
-                                       Database<EmulatorConfiguration> emulatorDatabase,
-                                       AssetCache<GameObject> gameObjectCache,
-                                       AssetCache<Texture> textureCache,
-                                       AssetCache<string> videoCache)
+        public CylArcadeControllerStraightLine(ArcadeHierarchy arcadeHierarchy,
+                                               PlayerFpsControls playerFpsControls,
+                                               PlayerCylControls playerCylControls,
+                                               Database<EmulatorConfiguration> emulatorDatabase,
+                                               AssetCache<GameObject> gameObjectCache,
+                                               AssetCache<Texture> textureCache,
+                                               AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
         }

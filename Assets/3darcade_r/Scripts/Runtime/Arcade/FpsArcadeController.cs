@@ -38,6 +38,15 @@ namespace Arcade_r
                                    AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
+            _audioMinDistance = 1f;
+            _audioMaxDistance = 3f;
+
+            _volumeCurve = new AnimationCurve(new Keyframe[]
+            {
+                 new Keyframe(0.8f,                     1.0f, -2.6966875f,  -2.6966875f,  0.2f,        0.10490462f),
+                 new Keyframe(_audioMaxDistance * 0.5f, 0.3f, -0.49866775f, -0.49866775f, 0.28727788f, 0.2f),
+                 new Keyframe(_audioMaxDistance,        0.0f, -0.08717632f, -0.08717632f, 0.5031141f,  0.2f)
+            });
         }
 
         public override void StartArcade(ArcadeConfiguration arcadeConfiguration)
@@ -72,6 +81,8 @@ namespace Arcade_r
                 _allGames.Add(_arcadeHierarchy.GamesNode.GetChild(i));
             }
 
+            LateSetupWorld();
+
             ArcadeLoaded = true;
         }
 
@@ -97,7 +108,10 @@ namespace Arcade_r
                     SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
                 }
 
-                yield return null;
+                if (Application.isPlaying)
+                {
+                    yield return null;
+                }
             }
 
             _gameModelsLoaded = true;

@@ -58,13 +58,13 @@ namespace Arcade_r
                 case WheelVariant.HorizontalCameraInside:
                 case WheelVariant.HorizontalCameraOutside:
                 case WheelVariant.HorizontalFlat:
-                case WheelVariant.VerticalCameraInside:
                 case WheelVariant.Custom:
                 {
                     _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationLeftRight;
                     _context.PlayerCylControls.SetupForHorizontalWheel();
                 }
                 break;
+                case WheelVariant.VerticalCameraInside:
                 case WheelVariant.VerticalCameraOutside:
                 case WheelVariant.VerticalFlat:
                 {
@@ -93,7 +93,7 @@ namespace Arcade_r
         {
             if (!_videoWorkaroundApplied)
             {
-                if (++_frames >= 10)
+                if (++_frames >= 60)
                 {
                     UpdateCurrentInteractable();
                     _videoWorkaroundApplied = true;

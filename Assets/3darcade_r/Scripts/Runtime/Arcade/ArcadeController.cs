@@ -36,9 +36,10 @@ namespace Arcade_r
         public bool ArcadeLoaded { get; protected set; }
         public ModelConfigurationComponent CurrentGame { get; protected set; }
 
-        protected const string ARCADE_RESOURCES_DIRECTORY = "Arcades";
-        protected const string GAME_RESOURCES_DIRECTORY   = "Games";
-        protected const string PROP_RESOURCES_DIRECTORY   = "Props";
+        protected const string ARCADE_RESOURCES_DIRECTORY            = "Arcades";
+        protected const string GAME_RESOURCES_DIRECTORY              = "Games";
+        protected const string PROP_RESOURCES_DIRECTORY              = "Props";
+        protected const string CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME = "InternalCylArcadeWheelPivotPoint";
 
         private static readonly string _defaultMediaDirectory         = $"{SystemUtils.GetDataPath()}/3darcade_r~/Configuration/Media";
         private static readonly string _defaultMarqueesDirectory      = $"{_defaultMediaDirectory}/Marquees";
@@ -61,10 +62,11 @@ namespace Arcade_r
         protected readonly List<Transform> _allGames;
 
         protected readonly CoroutineHelper _coroutineHelper;
+
+        protected float _audioMinDistance;
+        protected float _audioMaxDistance;
+        protected AnimationCurve _volumeCurve;
         protected bool _animating;
-
-        private readonly AnimationCurve _volumeCurve;
-
         protected bool _gameModelsLoaded;
 
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
@@ -91,13 +93,6 @@ namespace Arcade_r
             _allGames          = new List<Transform>();
             _coroutineHelper   = Object.FindObjectOfType<CoroutineHelper>();
             Assert.IsNotNull(_coroutineHelper);
-
-            _volumeCurve = new AnimationCurve(new Keyframe[]
-            {
-                new Keyframe(0.8f, 1.0f, -2.6966875f,  -2.6966875f,  0.2f,        0.10490462f),
-                new Keyframe(1.5f, 0.3f, -0.49866775f, -0.49866775f, 0.28727788f, 0.2f),
-                new Keyframe(3.0f, 0.0f, -0.08717632f, -0.08717632f, 0.5031141f,  0.2f)
-            });
         }
 
         public abstract void StartArcade(ArcadeConfiguration arcadeConfiguration);
@@ -112,6 +107,15 @@ namespace Arcade_r
 
         protected virtual void LateSetupWorld()
         {
+            GameObject foundPivotPoint = GameObject.Find(CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME);
+            if (foundPivotPoint != null)
+            {
+#if UNITY_EDITOR
+                Object.DestroyImmediate(foundPivotPoint);
+#else
+                Object.Destroy(foundPivotPoint);
+#endif
+            }
         }
 
         public void NavigateForward(float dt)
@@ -172,7 +176,10 @@ namespace Arcade_r
                     SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
                 }
 
-                yield return null;
+                if (Application.isPlaying)
+                {
+                    yield return null;
+                }
             }
         }
 
@@ -269,21 +276,29 @@ namespace Arcade_r
                 return false;
             }
 
-            _ = screen.AddComponentIfNotFound<AudioSource>();
+            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance  = _audioMinDistance;
+            audioSource.maxDistance  = _audioMaxDistance;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
+            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
 
-            VideoPlayer videoPlayer            = screen.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived         -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived         += OnVideoPlayerErrorReceived;
-            videoPlayer.prepareCompleted      -= OnVideoPlayerPrepareCompleted;
-            videoPlayer.prepareCompleted      += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake            = true;
-            videoPlayer.waitForFirstFrame      = true;
-            videoPlayer.isLooping              = true;
-            videoPlayer.source                 = VideoSource.Url;
-            videoPlayer.url                    = videopath;
-            videoPlayer.renderMode             = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode        = VideoAudioOutputMode.AudioSource;
-            videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            VideoPlayer videoPlayer               = screen.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted         -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted         += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake               = true;
+            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.isLooping                 = true;
+            videoPlayer.source                    = VideoSource.Url;
+            videoPlayer.url                       = videopath;
+            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
+            videoPlayer.controlledAudioTrackCount = 1;
+            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
             videoPlayer.Prepare();
 
             return true;
@@ -299,16 +314,7 @@ namespace Arcade_r
             float frameCount = videoPlayer.frameCount;
             float frameRate  = videoPlayer.frameRate;
             double duration  = frameCount / frameRate;
-            videoPlayer.time = Random.Range(0.1f, 0.9f) * duration;
-
-            AudioSource audioSource  = videoPlayer.GetTargetAudioSource(0);
-            audioSource.playOnAwake  = false;
-            audioSource.spatialBlend = 1f;
-            audioSource.minDistance  = 1f;
-            audioSource.maxDistance  = 3f;
-            audioSource.volume       = 1f;
-            audioSource.rolloffMode = AudioRolloffMode.Custom;
-            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
+            videoPlayer.time = Random.Range(0.02f, 0.98f) * duration;
 
             videoPlayer.EnableAudioTrack(0, false);
             videoPlayer.Pause();

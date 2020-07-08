@@ -22,6 +22,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -45,7 +46,16 @@ namespace Arcade_r
                                    AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
+            _audioMinDistance = 0f;
+            _audioMaxDistance = 100f;
+
+            _volumeCurve = new AnimationCurve(new Keyframe[]
+            {
+                new Keyframe(_audioMaxDistance, 1.0f)
+            });
         }
+
+        protected abstract void CalculateSpacingAndAdjustModelPosition(bool forward, Transform previousModel, Transform currentModel);
 
         public override void StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
@@ -103,13 +113,10 @@ namespace Arcade_r
             ArcadeLoaded = true;
         }
 
-        protected abstract void SetupWheel();
-
-        protected abstract void UpdateWheel();
-
         protected override void LateSetupWorld()
         {
             base.LateSetupWorld();
+
             _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
         }
 
@@ -155,10 +162,79 @@ namespace Arcade_r
 
                 instantiatedModel.SetActive(false);
 
-                yield return null;
+                if (Application.isPlaying)
+                {
+                    yield return null;
+                }
             }
 
             _gameModelsLoaded = true;
+        }
+
+        protected void SetupWheel()
+        {
+            if (_allGames.Count < 1)
+            {
+                return;
+            }
+
+            Transform firstModel = _allGames[_selectionIndex];
+            firstModel.gameObject.SetActive(true);
+            firstModel.SetPositionAndRotation(_centerTargetPosition, Quaternion.Euler(_cylArcadeProperties.SprocketRotation));
+
+            for (int i = _selectionIndex + 1; i < _sprockets; ++i)
+            {
+                Transform previousModel = _allGames[i - 1];
+
+                Transform currentModel = _allGames[i];
+                currentModel.gameObject.SetActive(true);
+                currentModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
+                CalculateSpacingAndAdjustModelPosition(true, previousModel, currentModel);
+            }
+
+            for (int i = _selectionIndex - 1; i >= 0; --i)
+            {
+                Transform previousModel = _allGames[i + 1];
+
+                Transform currentModel = _allGames[i];
+                currentModel.gameObject.SetActive(true);
+                currentModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
+                CalculateSpacingAndAdjustModelPosition(false, previousModel, currentModel);
+            }
+
+            foreach (Transform model in _allGames.Skip(_sprockets))
+            {
+                model.gameObject.SetActive(false);
+                model.localPosition = Vector3.zero;
+            }
+        }
+
+        protected void UpdateWheel()
+        {
+            if (_allGames.Count < 1)
+            {
+                return;
+            }
+
+            Transform previousModel = _allGames[_sprockets - 2];
+            Transform newModel      = _allGames[_sprockets - 1];
+            newModel.gameObject.SetActive(true);
+            newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
+            CalculateSpacingAndAdjustModelPosition(true, previousModel, newModel);
+
+            previousModel = _allGames[1];
+            newModel      = _allGames[0];
+            newModel.gameObject.SetActive(true);
+            newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
+            CalculateSpacingAndAdjustModelPosition(false, previousModel, newModel);
+
+            foreach (Transform model in _allGames.Skip(_sprockets))
+            {
+                model.gameObject.SetActive(false);
+                model.localPosition = Vector3.zero;
+            }
+
+            CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
     }
 }

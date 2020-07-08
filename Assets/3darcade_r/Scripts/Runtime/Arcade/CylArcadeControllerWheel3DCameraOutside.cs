@@ -20,50 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 namespace Arcade_r
 {
-    public abstract class CylArcadeControllerCameraOutside : CylArcadeController
+    public abstract class CylArcadeControllerWheel3DCameraOutside : CylArcadeControllerWheel3D
     {
-        protected Transform _pivotPoint;
-
-        public CylArcadeControllerCameraOutside(ArcadeHierarchy arcadeHierarchy,
-                                                PlayerFpsControls playerFpsControls,
-                                                PlayerCylControls playerCylControls,
-                                                Database<EmulatorConfiguration> emulatorDatabase,
-                                                AssetCache<GameObject> gameObjectCache,
-                                                AssetCache<Texture> textureCache,
-                                                AssetCache<string> videoCache)
+        public CylArcadeControllerWheel3DCameraOutside(ArcadeHierarchy arcadeHierarchy,
+                                                       PlayerFpsControls playerFpsControls,
+                                                       PlayerCylControls playerCylControls,
+                                                       Database<EmulatorConfiguration> emulatorDatabase,
+                                                       AssetCache<GameObject> gameObjectCache,
+                                                       AssetCache<Texture> textureCache,
+                                                       AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
         }
 
-        protected override void LateSetupWorld()
+        protected sealed override void LateSetupWorld()
         {
             base.LateSetupWorld();
 
-            _pivotPoint = new GameObject("Wheel").transform;
-            _pivotPoint.SetParent(_arcadeHierarchy.GamesNode);
             _pivotPoint.localPosition = _centerTargetPosition + new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
         }
 
-        protected void ParentGamesToWheel()
-        {
-            foreach (Transform game in _allGames.Take(_sprockets))
-            {
-                game.SetParent(_pivotPoint);
-            }
-        }
+        protected sealed override void RotateWheelForward(float dt) => RotateWheel(false, dt);
 
-        protected void ResetGamesParent()
-        {
-            foreach (Transform game in _allGames.Take(_sprockets))
-            {
-                game.SetParent(_arcadeHierarchy.GamesNode);
-            }
-        }
+        protected sealed override void RotateWheelBackward(float dt) => RotateWheel(true, dt);
     }
 }
