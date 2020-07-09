@@ -51,16 +51,18 @@ namespace Arcade_r
 
         public override void Update(float dt)
         {
-            if (_context.ArcadeController.ArcadeLoaded)
+            if (!_context.ArcadeController.ArcadeLoaded)
             {
-                if (_context.CurrentArcadeType == ArcadeType.Fps)
-                {
-                    _context.TransitionTo<ArcadeFpsNormalState>();
-                }
-                else if (_context.CurrentArcadeType == ArcadeType.Cyl)
-                {
-                    _context.TransitionTo<ArcadeCylNormalState>();
-                }
+                return;
+            }
+
+            if (_context.CurrentArcadeType == ArcadeType.Fps)
+            {
+                _context.TransitionTo<ArcadeFpsNormalState>();
+            }
+            else if (_context.CurrentArcadeType == ArcadeType.Cyl)
+            {
+                _context.TransitionTo<ArcadeCylNormalState>();
             }
         }
     }
