@@ -139,9 +139,13 @@ namespace Arcade_r
             playerControls.Camera.orthographic = cameraSettings.Orthographic;
             playerControls.Camera.rect         = cameraSettings.ViewportRect;
 
+            playerControls.Camera.transform.position    = cameraSettings.Position;
+            playerControls.Camera.transform.eulerAngles = new Vector3(0f, cameraSettings.Rotation.y, 0f);
+
             playerControls.transform.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
 
             CinemachineVirtualCamera vCam = playerControls.VirtualCamera;
+            vCam.transform.eulerAngles    = playerControls.Camera.transform.eulerAngles;
             vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
             vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
             vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;

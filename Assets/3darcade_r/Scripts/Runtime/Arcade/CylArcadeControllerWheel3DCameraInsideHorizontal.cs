@@ -26,6 +26,8 @@ namespace Arcade_r
 {
     public sealed class CylArcadeControllerWheel3DCameraInsideHorizontal : CylArcadeControllerWheel3DCameraInside
     {
+        protected override Vector3 TransformVector => Vector3.up;
+
         public CylArcadeControllerWheel3DCameraInsideHorizontal(ArcadeHierarchy arcadeHierarchy,
                                                                 PlayerFpsControls playerFpsControls,
                                                                 PlayerCylControls playerCylControls,
@@ -35,18 +37,12 @@ namespace Arcade_r
                                                                 AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
-            _rotationVector = Vector3.up;
         }
 
         protected override bool MoveForwardCondition(Transform targetSelection) => targetSelection.position.x > 0f || targetSelection.position.z < 0f;
 
         protected override bool MoveBackwardCondition(Transform targetSelection) => targetSelection.position.x < 0f || targetSelection.position.z < 0f;
 
-        protected override void CalculateSpacingAndAdjustModelPosition(bool forward, Transform previousModel, Transform currentModel)
-        {
-            float spacing = previousModel.GetHalfWidth() + currentModel.GetHalfWidth() + _cylArcadeProperties.ModelSpacing;
-            float angle   = spacing / _cylArcadeProperties.WheelRadius;
-            currentModel.RotateAround(_pivotPoint.transform.localPosition, _rotationVector, (forward ? angle : -angle) * Mathf.Rad2Deg);
-        }
+        protected override float GetSpacing(Transform previousModel, Transform currentModel) => GetHorizontalSpacing(previousModel, currentModel);
     }
 }

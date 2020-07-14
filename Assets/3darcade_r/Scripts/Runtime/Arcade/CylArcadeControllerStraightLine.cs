@@ -39,7 +39,7 @@ namespace Arcade_r
         {
         }
 
-        protected override IEnumerator CoNavigateForward(float dt)
+        protected sealed override IEnumerator CoNavigateForward(float dt)
         {
             _animating = true;
 
@@ -62,7 +62,7 @@ namespace Arcade_r
             _animating = false;
         }
 
-        protected override IEnumerator CoNavigateBackward(float dt)
+        protected sealed override IEnumerator CoNavigateBackward(float dt)
         {
             _animating = true;
 
@@ -84,6 +84,8 @@ namespace Arcade_r
 
             _animating = false;
         }
+
+        protected sealed override void AdjustModelPosition(Transform model, bool forward, float spacing) => model.Translate(TransformVector * (forward ? -spacing : spacing));
 
         protected void ParentGamesToSelection(Transform targetSelection)
         {

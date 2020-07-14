@@ -30,6 +30,8 @@ namespace Arcade_r
 {
     public abstract class CylArcadeController : ArcadeController
     {
+        protected abstract Vector3 TransformVector { get; }
+
         protected CylArcadeProperties _cylArcadeProperties;
 
         protected int _sprockets;
@@ -55,9 +57,11 @@ namespace Arcade_r
             });
         }
 
-        protected abstract void CalculateSpacingAndAdjustModelPosition(bool forward, Transform previousModel, Transform currentModel);
+        protected abstract float GetSpacing(Transform previousModel, Transform currentModel);
 
-        public override void StartArcade(ArcadeConfiguration arcadeConfiguration)
+        protected abstract void AdjustModelPosition(Transform model, bool forward, float spacing);
+
+        public sealed override void StartArcade(ArcadeConfiguration arcadeConfiguration)
         {
             Assert.IsNotNull(arcadeConfiguration);
             Assert.IsNotNull(arcadeConfiguration.CylArcadeProperties);
@@ -70,7 +74,7 @@ namespace Arcade_r
             _ = _coroutineHelper.StartCoroutine(SetupWorld(arcadeConfiguration));
         }
 
-        protected override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
+        protected sealed override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
         {
             ArcadeLoaded = false;
 
@@ -113,14 +117,7 @@ namespace Arcade_r
             ArcadeLoaded = true;
         }
 
-        protected override void LateSetupWorld()
-        {
-            base.LateSetupWorld();
-
-            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
-        }
-
-        protected override IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        protected sealed override IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
             _gameModelsLoaded = false;
 
@@ -171,6 +168,13 @@ namespace Arcade_r
             _gameModelsLoaded = true;
         }
 
+        protected override void LateSetupWorld()
+        {
+            base.LateSetupWorld();
+
+            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
+        }
+
         protected void SetupWheel()
         {
             if (_allGames.Count < 1)
@@ -189,7 +193,8 @@ namespace Arcade_r
                 Transform currentModel = _allGames[i];
                 currentModel.gameObject.SetActive(true);
                 currentModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
-                CalculateSpacingAndAdjustModelPosition(true, previousModel, currentModel);
+                float spacing = GetSpacing(previousModel, currentModel);
+                AdjustModelPosition(currentModel, true, spacing);
             }
 
             for (int i = _selectionIndex - 1; i >= 0; --i)
@@ -199,7 +204,8 @@ namespace Arcade_r
                 Transform currentModel = _allGames[i];
                 currentModel.gameObject.SetActive(true);
                 currentModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
-                CalculateSpacingAndAdjustModelPosition(false, previousModel, currentModel);
+                float spacing = GetSpacing(previousModel, currentModel);
+                AdjustModelPosition(currentModel, false, spacing);
             }
 
             foreach (Transform model in _allGames.Skip(_sprockets))
@@ -220,13 +226,15 @@ namespace Arcade_r
             Transform newModel      = _allGames[_sprockets - 1];
             newModel.gameObject.SetActive(true);
             newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
-            CalculateSpacingAndAdjustModelPosition(true, previousModel, newModel);
+            float spacing = GetSpacing(previousModel, newModel);
+            AdjustModelPosition(newModel, true, spacing);
 
             previousModel = _allGames[1];
             newModel      = _allGames[0];
             newModel.gameObject.SetActive(true);
             newModel.SetPositionAndRotation(previousModel.localPosition, previousModel.localRotation);
-            CalculateSpacingAndAdjustModelPosition(false, previousModel, newModel);
+            spacing = GetSpacing(previousModel, newModel);
+            AdjustModelPosition(newModel, false, spacing);
 
             foreach (Transform model in _allGames.Skip(_sprockets))
             {
@@ -236,5 +244,9 @@ namespace Arcade_r
 
             CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
         }
+
+        protected float GetHorizontalSpacing(Transform previousModel, Transform currentModel) => previousModel.GetHalfWidth() + currentModel.GetHalfWidth() + _cylArcadeProperties.ModelSpacing;
+
+        protected float GetVerticalSpacing(Transform previousModel, Transform currentModel) => previousModel.GetHalfHeight() + currentModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
     }
 }

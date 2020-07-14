@@ -26,6 +26,8 @@ namespace Arcade_r
 {
     public sealed class CylArcadeControllerStraightLineVertical : CylArcadeControllerStraightLine
     {
+        protected override Vector3 TransformVector => Vector3.up;
+
         public CylArcadeControllerStraightLineVertical(ArcadeHierarchy arcadeHierarchy,
                                                        PlayerFpsControls playerFpsControls,
                                                        PlayerCylControls playerCylControls,
@@ -37,10 +39,6 @@ namespace Arcade_r
         {
         }
 
-        protected override void CalculateSpacingAndAdjustModelPosition(bool forward, Transform previousModel, Transform currentModel)
-        {
-            float offset = previousModel.GetHalfHeight() + currentModel.GetHalfHeight() + _cylArcadeProperties.ModelSpacing;
-            currentModel.Translate(0f, forward ? -offset : offset, 0f);
-        }
+        protected override float GetSpacing(Transform previousModel, Transform currentModel) => GetVerticalSpacing(previousModel, currentModel);
     }
 }

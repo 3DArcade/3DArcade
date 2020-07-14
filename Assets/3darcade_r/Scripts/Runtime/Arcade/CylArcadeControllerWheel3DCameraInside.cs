@@ -47,5 +47,11 @@ namespace Arcade_r
         protected sealed override void RotateWheelForward(float dt) => RotateWheel(true, dt);
 
         protected sealed override void RotateWheelBackward(float dt) => RotateWheel(false, dt);
+
+        protected sealed override void AdjustModelPosition(Transform model, bool forward, float spacing)
+        {
+            float angle = GetAngle(spacing);
+            model.RotateAround(_pivotPoint.transform.localPosition, TransformVector, (forward ? angle : -angle) * Mathf.Rad2Deg);
+        }
     }
 }

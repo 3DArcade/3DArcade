@@ -29,7 +29,6 @@ namespace Arcade_r
     public abstract class CylArcadeControllerWheel3D : CylArcadeController
     {
         protected Transform _pivotPoint;
-        protected Vector3 _rotationVector;
 
         public CylArcadeControllerWheel3D(ArcadeHierarchy arcadeHierarchy,
                                           PlayerFpsControls playerFpsControls,
@@ -111,10 +110,7 @@ namespace Arcade_r
             }
         }
 
-        protected void RotateWheel(bool forward, float dt)
-        {
-            _pivotPoint.Rotate((forward ? -_rotationVector : _rotationVector) * 20f * dt, Space.Self);
-        }
+        protected void RotateWheel(bool forward, float dt) => _pivotPoint.Rotate((forward ? -TransformVector : TransformVector) * 20f * dt, Space.Self);
 
         protected void ResetGamesParent()
         {
@@ -123,5 +119,7 @@ namespace Arcade_r
                 game.SetParent(_arcadeHierarchy.GamesNode);
             }
         }
+
+        protected float GetAngle(float spacing) => spacing / _cylArcadeProperties.WheelRadius;
     }
 }
