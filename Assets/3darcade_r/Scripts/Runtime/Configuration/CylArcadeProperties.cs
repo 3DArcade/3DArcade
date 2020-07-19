@@ -28,13 +28,13 @@ namespace Arcade_r
 {
     public enum WheelVariant
     {
-        HorizontalCameraInside,
-        HorizontalCameraOutside,
-        HorizontalFlat,
-        VerticalCameraInside,
-        VerticalCameraOutside,
-        VerticalFlat,
-        Custom
+        CameraInsideHorizontal,
+        CameraOutsideHorizontal,
+        LineHorizontal,
+        CameraInsideVertical,
+        CameraOutsideVertical,
+        LineVertical,
+        LineCustom
     }
 
     [System.Serializable]
@@ -73,5 +73,8 @@ namespace Arcade_r
         public bool MouseLookReverse;
 
         public Vector3 SprocketRotation;
+
+        public float LineAngle;
+        public bool HorizontalNavigation;
     }
 }

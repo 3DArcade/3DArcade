@@ -26,15 +26,17 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public abstract class CylArcadeControllerStraightLine : CylArcadeController
+    public class CylArcadeControllerLine : CylArcadeController
     {
-        public CylArcadeControllerStraightLine(ArcadeHierarchy arcadeHierarchy,
-                                               PlayerFpsControls playerFpsControls,
-                                               PlayerCylControls playerCylControls,
-                                               Database<EmulatorConfiguration> emulatorDatabase,
-                                               AssetCache<GameObject> gameObjectCache,
-                                               AssetCache<Texture> textureCache,
-                                               AssetCache<string> videoCache)
+        protected override Vector3 TransformVector => Quaternion.Euler(0f, 0f, -Mathf.Clamp(_cylArcadeProperties.LineAngle, -90f, 90f)) * Vector3.right;
+
+        public CylArcadeControllerLine(ArcadeHierarchy arcadeHierarchy,
+                                       PlayerFpsControls playerFpsControls,
+                                       PlayerCylControls playerCylControls,
+                                       Database<EmulatorConfiguration> emulatorDatabase,
+                                       AssetCache<GameObject> gameObjectCache,
+                                       AssetCache<Texture> textureCache,
+                                       AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
         }
@@ -85,7 +87,23 @@ namespace Arcade_r
             _animating = false;
         }
 
-        protected sealed override void AdjustModelPosition(Transform model, bool forward, float spacing) => model.Translate(TransformVector * (forward ? -spacing : spacing));
+        protected sealed override void AdjustModelPosition(Transform model, bool forward, float spacing) => model.Translate(TransformVector * (forward ? spacing : -spacing), Space.World);
+
+        protected override float GetSpacing(Transform previousModel, Transform currentModel)
+        {
+            if (_cylArcadeProperties.LineAngle >= 45f)
+            {
+                return GetVerticalSpacing(previousModel, currentModel);
+            }
+            else if (_cylArcadeProperties.LineAngle <= -45f)
+            {
+                return GetVerticalSpacing(previousModel, currentModel);
+            }
+            else
+            {
+                return GetHorizontalSpacing(previousModel, currentModel);
+            }
+        }
 
         protected void ParentGamesToSelection(Transform targetSelection)
         {

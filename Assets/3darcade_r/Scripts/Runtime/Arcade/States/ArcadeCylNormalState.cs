@@ -55,21 +55,34 @@ namespace Arcade_r
 
             switch (_context.CurrentArcadeConfiguration.CylArcadeProperties.WheelVariant)
             {
-                case WheelVariant.HorizontalCameraInside:
-                case WheelVariant.HorizontalCameraOutside:
-                case WheelVariant.HorizontalFlat:
-                case WheelVariant.Custom:
+                case WheelVariant.CameraInsideHorizontal:
+                case WheelVariant.CameraOutsideHorizontal:
+                case WheelVariant.LineHorizontal:
                 {
                     _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationLeftRight;
                     _context.PlayerCylControls.SetupForHorizontalWheel();
                 }
                 break;
-                case WheelVariant.VerticalCameraInside:
-                case WheelVariant.VerticalCameraOutside:
-                case WheelVariant.VerticalFlat:
+                case WheelVariant.CameraInsideVertical:
+                case WheelVariant.CameraOutsideVertical:
+                case WheelVariant.LineVertical:
                 {
                     _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationUpDown;
                     _context.PlayerCylControls.SetupForVerticalWheel();
+                }
+                break;
+                case WheelVariant.LineCustom:
+                {
+                    if (_context.CurrentArcadeConfiguration.CylArcadeProperties.HorizontalNavigation)
+                    {
+                        _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationLeftRight;
+                        _context.PlayerCylControls.SetupForHorizontalWheel();
+                    }
+                    else
+                    {
+                        _navigationInput = _context.PlayerCylControls.CylArcadeActions.NavigationUpDown;
+                        _context.PlayerCylControls.SetupForVerticalWheel();
+                    }
                 }
                 break;
             }

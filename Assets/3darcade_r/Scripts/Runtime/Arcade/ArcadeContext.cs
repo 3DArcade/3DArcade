@@ -146,25 +146,26 @@ namespace Arcade_r
                 {
                     switch (CurrentArcadeConfiguration.CylArcadeProperties.WheelVariant)
                     {
-                        case WheelVariant.HorizontalCameraInside:
+                        case WheelVariant.CameraInsideHorizontal:
                             ArcadeController = new CylArcadeControllerWheel3DCameraInsideHorizontal(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
-                        case WheelVariant.HorizontalCameraOutside:
+                        case WheelVariant.CameraOutsideHorizontal:
                             ArcadeController = new CylArcadeControllerWheel3DCameraOutsideHorizontal(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
-                        case WheelVariant.HorizontalFlat:
-                            ArcadeController = new CylArcadeControllerStraightLineHorizontal(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                        case WheelVariant.LineHorizontal:
+                            ArcadeController = new CylArcadeControllerLineHorizontal(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
-                        case WheelVariant.VerticalCameraInside:
+                        case WheelVariant.CameraInsideVertical:
                             ArcadeController = new CylArcadeControllerWheel3DCameraInsideVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
-                        case WheelVariant.VerticalCameraOutside:
+                        case WheelVariant.CameraOutsideVertical:
                             ArcadeController = new CylArcadeControllerWheel3DCameraOutsideVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
-                        case WheelVariant.VerticalFlat:
-                            ArcadeController = new CylArcadeControllerStraightLineVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                        case WheelVariant.LineVertical:
+                            ArcadeController = new CylArcadeControllerLineVertical(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
-                        case WheelVariant.Custom:
+                        case WheelVariant.LineCustom:
+                            ArcadeController = new CylArcadeControllerLine(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                             break;
                     }
                 }

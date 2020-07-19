@@ -64,7 +64,7 @@
                 "height": 1.0
             }
         },
-        "WheelVariant": "HorizontalFlat",
+        "WheelVariant": "LineHorizontal",
         "WheelRadius": 5.0,
         "InverseNavigation": false,
         "InverseList": false,
@@ -93,7 +93,9 @@
             "x": 0.0,
             "y": 180.0,
             "z": 0.0
-        }
+        },
+        "LineAngle": -5.0,
+        "HorizontalNavigation": true
     },
     "Zones": [],
     "ArcadeModelList": [

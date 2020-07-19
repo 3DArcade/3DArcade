@@ -24,21 +24,21 @@ using UnityEngine;
 
 namespace Arcade_r
 {
-    public sealed class CylArcadeControllerStraightLineHorizontal : CylArcadeControllerStraightLine
+    public sealed class CylArcadeControllerLineVertical : CylArcadeControllerLine
     {
-        protected override Vector3 TransformVector => Vector3.right;
+        protected override Vector3 TransformVector => Vector3.down;
 
-        public CylArcadeControllerStraightLineHorizontal(ArcadeHierarchy arcadeHierarchy,
-                                                         PlayerFpsControls playerFpsControls,
-                                                         PlayerCylControls playerCylControls,
-                                                         Database<EmulatorConfiguration> emulatorDatabase,
-                                                         AssetCache<GameObject> gameObjectCache,
-                                                         AssetCache<Texture> textureCache,
-                                                         AssetCache<string> videoCache)
+        public CylArcadeControllerLineVertical(ArcadeHierarchy arcadeHierarchy,
+                                               PlayerFpsControls playerFpsControls,
+                                               PlayerCylControls playerCylControls,
+                                               Database<EmulatorConfiguration> emulatorDatabase,
+                                               AssetCache<GameObject> gameObjectCache,
+                                               AssetCache<Texture> textureCache,
+                                               AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
         }
 
-        protected override float GetSpacing(Transform previousModel, Transform currentModel) => GetHorizontalSpacing(previousModel, currentModel);
+        protected override float GetSpacing(Transform previousModel, Transform currentModel) => GetVerticalSpacing(previousModel, currentModel);
     }
 }
