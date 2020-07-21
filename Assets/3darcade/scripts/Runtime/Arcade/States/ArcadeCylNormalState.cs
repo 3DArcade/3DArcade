@@ -32,6 +32,10 @@ namespace Arcade
         private float _timer        = 0f;
         private float _acceleration = 1f;
 
+        // TODO(Tom): Remove this!
+        bool _videoWorkaroundApplied = false;
+        int _frames                  = 0;
+
         public ArcadeCylNormalState(ArcadeContext context)
         : base(context)
         {
@@ -99,14 +103,11 @@ namespace Arcade
             _context.UIController.DisableNormalUI();
         }
 
-        bool _videoWorkaroundApplied = false;
-        int _frames = 0;
-
         public override void Update(float dt)
         {
             if (!_videoWorkaroundApplied)
             {
-                if (++_frames >= 60)
+                if (++_frames >= 120)
                 {
                     UpdateCurrentInteractable();
                     _videoWorkaroundApplied = true;
@@ -164,8 +165,9 @@ namespace Arcade
 
             if (_navigationInput.triggered)
             {
-                _timer = 0f;
+                _timer        = 0f;
                 _acceleration = 1f;
+
                 if (direction > 0f)
                 {
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
@@ -193,6 +195,7 @@ namespace Arcade
             {
                 _acceleration += 0.5f;
                 _acceleration  = Mathf.Clamp(_acceleration, 1f, 20f);
+
                 if (direction > 0f)
                 {
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
@@ -215,6 +218,7 @@ namespace Arcade
                         _context.ArcadeController.NavigateBackward(_acceleration * dt);
                     }
                 }
+
                 _timer = 0f;
             }
         }

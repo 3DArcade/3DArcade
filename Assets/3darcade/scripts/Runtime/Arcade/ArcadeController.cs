@@ -282,6 +282,7 @@ namespace Arcade
 
             AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
             audioSource.playOnAwake  = false;
+            audioSource.dopplerLevel = 0f;
             audioSource.spatialBlend = 1f;
             audioSource.minDistance  = _audioMinDistance;
             audioSource.maxDistance  = _audioMaxDistance;
@@ -295,8 +296,9 @@ namespace Arcade
             videoPlayer.prepareCompleted         -= OnVideoPlayerPrepareCompleted;
             videoPlayer.prepareCompleted         += OnVideoPlayerPrepareCompleted;
             videoPlayer.playOnAwake               = true;
-            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.waitForFirstFrame         = false;
             videoPlayer.isLooping                 = true;
+            videoPlayer.skipOnDrop                = false;
             videoPlayer.source                    = VideoSource.Url;
             videoPlayer.url                       = videopath;
             videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
@@ -308,12 +310,12 @@ namespace Arcade
             return true;
         }
 
-        private void OnVideoPlayerErrorReceived(VideoPlayer videoPlayer, string message)
+        private static void OnVideoPlayerErrorReceived(VideoPlayer videoPlayer, string message)
         {
             Debug.Log($"Error: {message}");
         }
 
-        private void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
+        private static void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
         {
             float frameCount = videoPlayer.frameCount;
             float frameRate  = videoPlayer.frameRate;

@@ -22,11 +22,10 @@
 
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
-using UnityEngine;
 
 namespace Arcade
 {
-    public sealed class CustomBuildProcessor : IPreprocessBuildWithReport
+    public sealed class EditorPreBuildProcessor : IPreprocessBuildWithReport
     {
         public int callbackOrder => 0;
 
