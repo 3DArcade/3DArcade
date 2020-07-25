@@ -22,6 +22,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 namespace Arcade
 {
@@ -31,10 +32,6 @@ namespace Arcade
 
         private float _timer        = 0f;
         private float _acceleration = 1f;
-
-        // TODO(Tom): Remove this!
-        bool _videoWorkaroundApplied = false;
-        int _frames                  = 0;
 
         public ArcadeCylNormalState(ArcadeContext context)
         : base(context)
@@ -51,11 +48,11 @@ namespace Arcade
                 _context.PlayerCylControls.CylArcadeActions.Look.Disable();
             }
 
+            _context.CurrentModelConfiguration = null;
+
             _context.UIController.EnableNormalUI();
 
             _context.CurrentPlayerControls = _context.PlayerCylControls;
-
-            _context.VideoPlayerController.SetPlayer(_context.PlayerCylControls.transform);
 
             switch (_context.CurrentArcadeConfiguration.CylArcadeProperties.WheelVariant)
             {
@@ -90,8 +87,6 @@ namespace Arcade
                 }
                 break;
             }
-
-            UpdateCurrentInteractable();
         }
 
         public override void OnExit()
@@ -105,15 +100,6 @@ namespace Arcade
 
         public override void Update(float dt)
         {
-            if (!_videoWorkaroundApplied)
-            {
-                if (++_frames >= 120)
-                {
-                    UpdateCurrentInteractable();
-                    _videoWorkaroundApplied = true;
-                }
-            }
-
             if (_context.PlayerCylControls.GlobalActions.Quit.triggered)
             {
                 SystemUtils.ExitApp();
@@ -150,8 +136,24 @@ namespace Arcade
 
         private void UpdateCurrentInteractable()
         {
+            VideoPlayer[] videoPlayers;
+
+            if (_context.CurrentModelConfiguration != null)
+            {
+                videoPlayers = _context.CurrentModelConfiguration.GetComponentsInChildren<VideoPlayer>();
+                foreach (VideoPlayer videoPlayer in videoPlayers)
+                {
+                    _context.VideoPlayerController.VideoSetPlayingState(videoPlayer, false);
+                }
+            }
+
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration, _context.ArcadeController);
-            _context.VideoPlayerController.UpdateVideosStateCyl(_context.CurrentModelConfiguration.transform.position);
+
+            videoPlayers = _context.CurrentModelConfiguration.GetComponentsInChildren<VideoPlayer>();
+            foreach (VideoPlayer videoPlayer in videoPlayers)
+            {
+                _context.VideoPlayerController.VideoSetPlayingState(videoPlayer, true);
+            }
         }
 
         private void HandleNavigation(float dt)

@@ -47,8 +47,9 @@ namespace Arcade
         public readonly AssetCache<Texture> TextureCache;
         public readonly AssetCache<string> VideoCache;
 
-        public readonly VideoPlayerController VideoPlayerController;
         public readonly CoroutineHelper CoroutineHelper;
+
+        public VideoPlayerController VideoPlayerController;
 
         public ArcadeController ArcadeController { get; private set; }
         public LayerMask RaycastLayers => LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
@@ -94,8 +95,6 @@ namespace Arcade
             TextureCache    = new TextureCache();
             VideoCache      = new VideoCache();
 
-            VideoPlayerController = new VideoPlayerController(LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels"));
-
             CoroutineHelper = Object.FindObjectOfType<CoroutineHelper>();
             Assert.IsNotNull(CoroutineHelper);
 
@@ -128,8 +127,6 @@ namespace Arcade
                 return false;
             }
 
-            VideoPlayerController.StopAllVideos();
-
             ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>()
                                                .Restore(CurrentArcadeConfiguration);
 
@@ -139,11 +136,14 @@ namespace Arcade
             {
                 case ArcadeType.Fps:
                 {
-                    ArcadeController = new FpsArcadeController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
+                    VideoPlayerController = new VideoPlayerControllerFps(LayerMask.GetMask("Arcade/GameModels", "Arcade/PropModels"));
+                    ArcadeController      = new FpsArcadeController(ArcadeHierarchy, PlayerFpsControls, PlayerCylControls, EmulatorDatabase, GameObjectCache, TextureCache, VideoCache);
                 }
                 break;
                 case ArcadeType.Cyl:
                 {
+                    VideoPlayerController = new VideoPlayerControllerCyl();
+
                     switch (CurrentArcadeConfiguration.CylArcadeProperties.WheelVariant)
                     {
                         case WheelVariant.CameraInsideHorizontal:
