@@ -55,7 +55,7 @@ namespace Arcade
 
         protected readonly AssetCache<GameObject> _gameObjectCache;
         protected readonly AssetCache<Texture> _textureCache;
-        private readonly AssetCache<string> _videoCache;
+        protected readonly AssetCache<string> _videoCache;
 
         protected readonly ContentMatcher _contentMatcher;
 
@@ -66,6 +66,7 @@ namespace Arcade
         protected float _audioMinDistance;
         protected float _audioMaxDistance;
         protected AnimationCurve _volumeCurve;
+
         protected bool _animating;
         protected bool _gameModelsLoaded;
 
@@ -101,9 +102,17 @@ namespace Arcade
 
         protected abstract IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry);
 
-        protected abstract IEnumerator CoNavigateForward(float dt);
+        protected virtual IEnumerator CoNavigateForward(float dt)
+        {
+            yield break;
+        }
 
-        protected abstract IEnumerator CoNavigateBackward(float dt);
+        protected virtual IEnumerator CoNavigateBackward(float dt)
+        {
+            yield break;
+        }
+
+        protected abstract bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry);
 
         protected virtual void LateSetupWorld()
         {
@@ -272,58 +281,25 @@ namespace Arcade
             SetupStaticImage(renderer.material, texture);
         }
 
-        private bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry)
+        protected static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
         {
-            string videopath = _videoCache.Load(directories, namesToTry);
-            if (string.IsNullOrEmpty(videopath))
+            switch (modelConfiguration.ScreenType)
             {
-                return false;
+                case GameScreenType.Raster:
+                    return renderSettings.ScreenRasterIntensity;
+                case GameScreenType.Vector:
+                    return renderSettings.ScreenVectorIntenstity;
+                case GameScreenType.Pinball:
+                    return renderSettings.ScreenPinballIntensity;
+                case GameScreenType.Unspecified:
+                default:
+                    return 1f;
             }
-
-            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake  = false;
-            audioSource.dopplerLevel = 0f;
-            audioSource.spatialBlend = 1f;
-            audioSource.minDistance  = _audioMinDistance;
-            audioSource.maxDistance  = _audioMaxDistance;
-            audioSource.volume       = 1f;
-            audioSource.rolloffMode  = AudioRolloffMode.Custom;
-            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
-
-            VideoPlayer videoPlayer               = screen.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
-            videoPlayer.prepareCompleted         -= OnVideoPlayerPrepareCompleted;
-            videoPlayer.prepareCompleted         += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake               = true;
-            videoPlayer.waitForFirstFrame         = false;
-            videoPlayer.isLooping                 = true;
-            videoPlayer.skipOnDrop                = false;
-            videoPlayer.source                    = VideoSource.Url;
-            videoPlayer.url                       = videopath;
-            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
-            videoPlayer.controlledAudioTrackCount = 1;
-            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
-            videoPlayer.Prepare();
-
-            return true;
         }
 
-        private static void OnVideoPlayerErrorReceived(VideoPlayer videoPlayer, string message)
+        protected static void OnVideoPlayerErrorReceived(VideoPlayer _, string message)
         {
             Debug.Log($"Error: {message}");
-        }
-
-        private static void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
-        {
-            float frameCount = videoPlayer.frameCount;
-            float frameRate  = videoPlayer.frameRate;
-            double duration  = frameCount / frameRate;
-            videoPlayer.time = Random.Range(0.02f, 0.98f) * duration;
-
-            videoPlayer.EnableAudioTrack(0, false);
-            videoPlayer.Pause();
         }
 
         private static void SetupMagicPixels(Renderer baseRenderer)
@@ -393,22 +369,6 @@ namespace Arcade
                 return nodeTag.GetComponent<Renderer>();
             }
             return null;
-        }
-
-        protected static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
-        {
-            switch (modelConfiguration.ScreenType)
-            {
-                case GameScreenType.Raster:
-                    return renderSettings.ScreenRasterIntensity;
-                case GameScreenType.Vector:
-                    return renderSettings.ScreenVectorIntenstity;
-                case GameScreenType.Pinball:
-                    return renderSettings.ScreenPinballIntensity;
-                case GameScreenType.Unspecified:
-                default:
-                    return 1f;
-            }
         }
     }
 }

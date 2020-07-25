@@ -24,6 +24,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Video;
 
 namespace Arcade
 {
@@ -117,14 +118,53 @@ namespace Arcade
             _gameModelsLoaded = true;
         }
 
-        protected override IEnumerator CoNavigateForward(float dt)
+        protected override bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry)
         {
-            yield break;
+            string videopath = _videoCache.Load(directories, namesToTry);
+            if (string.IsNullOrEmpty(videopath))
+            {
+                return false;
+            }
+
+            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
+            audioSource.dopplerLevel = 0f;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance  = _audioMinDistance;
+            audioSource.maxDistance  = _audioMaxDistance;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
+            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
+
+            VideoPlayer videoPlayer               = screen.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted         -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted         += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake               = true;
+            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.isLooping                 = true;
+            videoPlayer.skipOnDrop                = true;
+            videoPlayer.source                    = VideoSource.Url;
+            videoPlayer.url                       = videopath;
+            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
+            videoPlayer.controlledAudioTrackCount = 1;
+            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            videoPlayer.Prepare();
+
+            return true;
         }
 
-        protected override IEnumerator CoNavigateBackward(float dt)
+        private void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
         {
-            yield break;
+            float frameCount = videoPlayer.frameCount;
+            float frameRate  = videoPlayer.frameRate;
+            double duration  = frameCount / frameRate;
+            videoPlayer.time = Random.Range(0.02f, 0.98f) * duration;
+
+            videoPlayer.EnableAudioTrack(0, false);
+            videoPlayer.Pause();
         }
     }
 }

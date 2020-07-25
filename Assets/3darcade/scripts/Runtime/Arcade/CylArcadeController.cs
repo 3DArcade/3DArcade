@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Video;
 
 namespace Arcade
 {
@@ -37,7 +38,6 @@ namespace Arcade
 
         protected int _sprockets;
         protected int _selectionIndex;
-
         protected Vector3 _centerTargetPosition;
 
         protected Transform _targetSelection;
@@ -56,7 +56,8 @@ namespace Arcade
 
             _volumeCurve = new AnimationCurve(new Keyframe[]
             {
-                new Keyframe(_audioMaxDistance, 1.0f)
+                 new Keyframe(0f, 1f),
+                 new Keyframe(1f, 1f)
             });
         }
 
@@ -230,6 +231,42 @@ namespace Arcade
             UpdateWheel();
 
             _animating = false;
+        }
+
+        protected sealed override bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry)
+        {
+            string videopath = _videoCache.Load(directories, namesToTry);
+            if (string.IsNullOrEmpty(videopath))
+            {
+                return false;
+            }
+
+            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
+            audioSource.dopplerLevel = 0f;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance  = _audioMinDistance;
+            audioSource.maxDistance  = _audioMaxDistance;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
+            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
+
+            VideoPlayer videoPlayer               = screen.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
+            videoPlayer.playOnAwake               = false;
+            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.isLooping                 = true;
+            videoPlayer.skipOnDrop                = true;
+            videoPlayer.source                    = VideoSource.Url;
+            videoPlayer.url                       = videopath;
+            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
+            videoPlayer.controlledAudioTrackCount = 1;
+            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            videoPlayer.Stop();
+
+            return true;
         }
 
         protected void SetupWheel()
