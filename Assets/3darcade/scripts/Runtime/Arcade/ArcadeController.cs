@@ -23,8 +23,6 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Video;
@@ -41,20 +39,11 @@ namespace Arcade
         protected const string PROP_RESOURCES_DIRECTORY              = "Props";
         protected const string CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME = "InternalCylArcadeWheelPivotPoint";
 
-        private static readonly string _defaultMediaDirectory         = $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Media";
-        private static readonly string _defaultMarqueesDirectory      = $"{_defaultMediaDirectory}/Marquees";
-        private static readonly string _defaultMarqueesVideoDirectory = $"{_defaultMediaDirectory}/MarqueesVideo";
-        private static readonly string _defaultScreensDirectory       = $"{_defaultMediaDirectory}/Screens";
-        private static readonly string _defaultScreensVideoDirectory  = $"{_defaultMediaDirectory}/ScreensVideo";
-        private static readonly string _defaultGenericsDirectory      = $"{_defaultMediaDirectory}/Generics";
-        private static readonly string _defaultGenericsVideoDirectory = $"{_defaultMediaDirectory}/GenericsVideo";
-
         protected readonly ArcadeHierarchy _arcadeHierarchy;
         protected readonly PlayerFpsControls _playerFpsControls;
         protected readonly PlayerCylControls _playerCylControls;
 
         protected readonly AssetCache<GameObject> _gameObjectCache;
-        protected readonly AssetCache<Texture> _textureCache;
         protected readonly AssetCache<string> _videoCache;
 
         protected readonly ContentMatcher _contentMatcher;
@@ -69,6 +58,10 @@ namespace Arcade
 
         protected bool _animating;
         protected bool _gameModelsLoaded;
+
+        protected readonly NodeController _marqueeNodeController;
+        protected readonly NodeController _screenNodeController;
+        protected readonly NodeController _genericNodeController;
 
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
                                 PlayerFpsControls playerFpsControls,
@@ -88,15 +81,20 @@ namespace Arcade
             _playerFpsControls = playerFpsControls;
             _playerCylControls = playerCylControls;
             _gameObjectCache   = gameObjectCache;
-            _textureCache      = textureCache;
             _videoCache        = videoCache;
             _contentMatcher    = new ContentMatcher(emulatorDatabase);
             _allGames          = new List<Transform>();
             _coroutineHelper   = Object.FindObjectOfType<CoroutineHelper>();
             Assert.IsNotNull(_coroutineHelper);
+
+            _marqueeNodeController = new MarqueeNodeController(this, textureCache);
+            _screenNodeController  = new ScreenNodeController(this, textureCache);
+            _genericNodeController = new GenericNodeController(this, textureCache);
         }
 
         public abstract void StartArcade(ArcadeConfiguration arcadeConfiguration);
+
+        public abstract bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry);
 
         protected abstract IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration);
 
@@ -111,8 +109,6 @@ namespace Arcade
         {
             yield break;
         }
-
-        protected abstract bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry);
 
         protected virtual void LateSetupWorld()
         {
@@ -177,18 +173,22 @@ namespace Arcade
                 List<string> namesToTry        = getNamesToTry(modelConfiguration, emulator);
 
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
-                Assert.IsNotNull(prefab, "prefab is null!");
+                if (prefab == null)
+                {
+                    continue;
+                }
 
                 GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration);
 
-                // Only look for artworks in play mode / at runtime
-                if (Application.isPlaying && _textureCache != null)
+                // Look for artworks only in play mode / runtime
+                if (Application.isPlaying)
                 {
-                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
-                    SetupScreenNode(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
-                    SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
+                    _marqueeNodeController.Setup(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
+                    _screenNodeController.Setup(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
+                    _genericNodeController.Setup(instantiatedModel, modelConfiguration, emulator, 1f);
                 }
 
+                // Instantiate asynchronously only when loaded from the editor menu / auto reload
                 if (Application.isPlaying)
                 {
                     yield return null;
@@ -207,80 +207,6 @@ namespace Arcade
             return model;
         }
 
-        protected void SetupMarqueeNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
-        {
-            Renderer renderer = GetNodeRenderer<MarqueeNodeTag>(model);
-            if (renderer == null)
-            {
-                return;
-            }
-
-            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeVideoDirectory, emulator?.MarqueesVideoDirectory, _defaultMarqueesVideoDirectory);
-
-            if (SetupVideo(renderer.gameObject, directories, namesToTry))
-            {
-                renderer.material.ClearAlbedoColorAndTexture();
-                return;
-            }
-
-            directories     = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.MarqueeDirectory, emulator?.MarqueesDirectory, _defaultMarqueesDirectory);
-            Texture texture = _textureCache.Load(directories, namesToTry);
-            if (texture != null)
-            {
-                SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
-            }
-
-            SetupMagicPixels(renderer);
-        }
-
-        protected void SetupScreenNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
-        {
-            Renderer renderer = GetNodeRenderer<ScreenNodeTag>(model);
-            if (renderer == null)
-            {
-                return;
-            }
-
-            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenVideoDirectory, emulator?.ScreensVideoDirectory, _defaultScreensVideoDirectory);
-
-            if (SetupVideo(renderer.gameObject, directories, namesToTry))
-            {
-                renderer.material.ClearAlbedoColorAndTexture();
-                return;
-            }
-
-            directories     = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.ScreenDirectory, emulator?.ScreensDirectory, _defaultScreensDirectory);
-            Texture texture = _textureCache.Load(directories, namesToTry);
-            if (texture != null)
-            {
-                SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
-            }
-        }
-
-        protected void SetupGenericNode(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator)
-        {
-            Renderer renderer = GetNodeRenderer<GenericNodeTag>(model);
-            if (renderer == null)
-            {
-                return;
-            }
-
-            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericVideoDirectory, emulator?.GenericsVideoDirectory, _defaultGenericsVideoDirectory);
-
-            if (SetupVideo(renderer.gameObject, directories, namesToTry))
-            {
-                renderer.material.ClearAlbedoColorAndTexture();
-                return;
-            }
-
-            directories     = ArtworkMatcher.GetDirectoriesToTry(modelConfiguration?.GenericDirectory, emulator?.GenericsDirectory, _defaultGenericsDirectory);
-            Texture texture = _textureCache.Load(directories, namesToTry);
-            SetupStaticImage(renderer.material, texture);
-        }
-
         protected static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
         {
             switch (modelConfiguration.ScreenType)
@@ -297,78 +223,6 @@ namespace Arcade
             }
         }
 
-        protected static void OnVideoPlayerErrorReceived(VideoPlayer _, string message)
-        {
-            Debug.Log($"Error: {message}");
-        }
-
-        private static void SetupMagicPixels(Renderer baseRenderer)
-        {
-            Transform parentTransform = baseRenderer.transform.parent;
-            if (parentTransform == null)
-            {
-                return;
-            }
-
-            IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
-                                                             .Where(r => r.GetComponent<NodeTag>() == null
-                                                                      && baseRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
-
-            bool baseRendererIsEmissive = baseRenderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
-
-            foreach (Renderer renderer in renderers)
-            {
-                if (baseRendererIsEmissive)
-                {
-                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME);
-                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME);
-                    if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
-                    {
-                        renderer.material.SetEmissiveColorAndTexture(color, texture, true);
-                    }
-                    else
-                    {
-                        renderer.material.SetAlbedoColorAndTexture(color, texture);
-                    }
-                }
-                else
-                {
-                    Color color     = baseRenderer.material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
-                    Texture texture = baseRenderer.material.GetTexture(MaterialUtils.SHADER_ALBEDO_TEXTURE_NAME);
-                    renderer.material.SetAlbedoColorAndTexture(color, texture);
-                }
-            }
-        }
-
-        private static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
-        {
-            if (material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
-            {
-                Color color = (overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME)) * emissionFactor;
-                material.SetEmissiveColorAndTexture(color, texture, true);
-            }
-            else if (forceEmissive)
-            {
-                Color color = Color.white * emissionFactor;
-                material.SetEmissiveColorAndTexture(color, texture, true);
-            }
-            else
-            {
-                Color color = overwriteColor ? Color.white : material.GetColor(MaterialUtils.SHADER_ALBEDO_COLOR_NAME);
-                material.SetAlbedoColorAndTexture(color, texture);
-            }
-        }
-
-        [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
-        private static Renderer GetNodeRenderer<T>(GameObject model)
-            where T : NodeTag
-        {
-            T nodeTag = model.GetComponentInChildren<T>();
-            if (nodeTag != null)
-            {
-                return nodeTag.GetComponent<Renderer>();
-            }
-            return null;
-        }
+        protected static void OnVideoPlayerErrorReceived(VideoPlayer _, string message) => Debug.Log($"Error: {message}");
     }
 }

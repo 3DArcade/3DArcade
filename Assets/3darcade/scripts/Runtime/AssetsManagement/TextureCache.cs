@@ -43,10 +43,7 @@ namespace Arcade
             return null;
         }
 
-        protected override void UnloadAsset(Texture asset)
-        {
-            Resources.UnloadAsset(asset);
-        }
+        protected override void UnloadAsset(Texture asset) => Resources.UnloadAsset(asset);
     }
 
     public class VideoCache : AssetCache<string>

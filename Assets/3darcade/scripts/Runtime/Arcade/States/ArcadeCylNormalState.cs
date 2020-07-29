@@ -130,6 +130,7 @@ namespace Arcade
 
             if (!Cursor.visible && _context.PlayerCylControls.CylArcadeActions.Interact.triggered)
             {
+                _context.VideoPlayerController.StopVideo(_context.CurrentModelConfiguration);
                 HandleInteraction();
             }
         }

@@ -62,6 +62,46 @@ namespace Arcade
             _ = _coroutineHelper.StartCoroutine(SetupWorld(arcadeConfiguration));
         }
 
+        public override bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry)
+        {
+            string videopath = _videoCache.Load(directories, namesToTry);
+            if (string.IsNullOrEmpty(videopath))
+            {
+                return false;
+            }
+
+            screen.material.EnableEmissive();
+
+            AudioSource audioSource = screen.gameObject.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.dopplerLevel = 0f;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance = _audioMinDistance;
+            audioSource.maxDistance = _audioMaxDistance;
+            audioSource.volume = 1f;
+            audioSource.rolloffMode = AudioRolloffMode.Custom;
+            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
+
+            VideoPlayer videoPlayer = screen.gameObject.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake = true;
+            videoPlayer.waitForFirstFrame = true;
+            videoPlayer.isLooping = true;
+            videoPlayer.skipOnDrop = true;
+            videoPlayer.source = VideoSource.Url;
+            videoPlayer.url = videopath;
+            videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            videoPlayer.controlledAudioTrackCount = 1;
+            videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            videoPlayer.Prepare();
+
+            return true;
+        }
+
         protected override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
         {
             ArcadeLoaded = false;
@@ -97,18 +137,22 @@ namespace Arcade
                 List<string> namesToTry = getNamesToTry(modelConfiguration, emulator);
 
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
-                Assert.IsNotNull(prefab, "prefab is null!");
+                if (prefab == null)
+                {
+                    continue;
+                }
 
                 GameObject instantiatedModel = InstantiatePrefab(prefab, _arcadeHierarchy.GamesNode, modelConfiguration);
 
-                // Only look for artworks in play mode / at runtime
-                if (Application.isPlaying && _textureCache != null)
+                // Look for artworks only in play mode / runtime
+                if (Application.isPlaying)
                 {
-                    SetupMarqueeNode(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
-                    SetupScreenNode(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
-                    SetupGenericNode(instantiatedModel, modelConfiguration, emulator);
+                    _marqueeNodeController.Setup(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
+                    _screenNodeController.Setup(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
+                    _genericNodeController.Setup(instantiatedModel, modelConfiguration, emulator, 1f);
                 }
 
+                // Instantiate asynchronously only when loaded from the editor menu / auto reload
                 if (Application.isPlaying)
                 {
                     yield return null;
@@ -116,44 +160,6 @@ namespace Arcade
             }
 
             _gameModelsLoaded = true;
-        }
-
-        protected override bool SetupVideo(GameObject screen, List<string> directories, List<string> namesToTry)
-        {
-            string videopath = _videoCache.Load(directories, namesToTry);
-            if (string.IsNullOrEmpty(videopath))
-            {
-                return false;
-            }
-
-            AudioSource audioSource  = screen.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake  = false;
-            audioSource.dopplerLevel = 0f;
-            audioSource.spatialBlend = 1f;
-            audioSource.minDistance  = _audioMinDistance;
-            audioSource.maxDistance  = _audioMaxDistance;
-            audioSource.volume       = 1f;
-            audioSource.rolloffMode  = AudioRolloffMode.Custom;
-            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
-
-            VideoPlayer videoPlayer               = screen.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
-            videoPlayer.prepareCompleted         -= OnVideoPlayerPrepareCompleted;
-            videoPlayer.prepareCompleted         += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake               = true;
-            videoPlayer.waitForFirstFrame         = true;
-            videoPlayer.isLooping                 = true;
-            videoPlayer.skipOnDrop                = true;
-            videoPlayer.source                    = VideoSource.Url;
-            videoPlayer.url                       = videopath;
-            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
-            videoPlayer.controlledAudioTrackCount = 1;
-            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
-            videoPlayer.Prepare();
-
-            return true;
         }
 
         private void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)

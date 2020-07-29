@@ -329,7 +329,7 @@ namespace Arcade
         {
             if (_rendererComponent != null)
             {
-                _rendererComponent.material.SetTexture("_EmissionMap", texture);
+                _rendererComponent.material.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
             }
         }
 
@@ -374,8 +374,8 @@ namespace Arcade
             if (_rendererComponent != null)
             {
                 _rendererComponent.material.color = Color.black;
-                _rendererComponent.material.EnableKeyword("_EMISSION");
-                _rendererComponent.material.SetColor("_EmissionColor", Color.white * 1.08f);
+                _rendererComponent.material.EnableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
+                _rendererComponent.material.SetColor(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, Color.white * 1.08f);
             }
         }
 

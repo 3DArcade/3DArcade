@@ -42,5 +42,19 @@ namespace Arcade
         public virtual void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
         {
         }
+
+        public void StopVideo(MonoBehaviour monoBehaviour)
+        {
+            if (monoBehaviour == null)
+            {
+                return;
+            }
+
+            VideoPlayer[] videoPlayers = monoBehaviour.GetComponentsInChildren<VideoPlayer>();
+            foreach (VideoPlayer videoPlayer in videoPlayers)
+            {
+                VideoSetPlayingState(videoPlayer, false);
+            }
+        }
     }
 }

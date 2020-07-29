@@ -26,14 +26,8 @@ namespace Arcade
 {
     public class GameObjectCache : AssetCache<GameObject>
     {
-        protected override GameObject LoadAsset(string filePathNoExt)
-        {
-            return Resources.Load<GameObject>(filePathNoExt);
-        }
+        protected override GameObject LoadAsset(string filePathNoExt) => Resources.Load<GameObject>(filePathNoExt);
 
-        protected override void UnloadAsset(GameObject asset)
-        {
-            Resources.UnloadAsset(asset);
-        }
+        protected override void UnloadAsset(GameObject asset) => Resources.UnloadAsset(asset);
     }
 }

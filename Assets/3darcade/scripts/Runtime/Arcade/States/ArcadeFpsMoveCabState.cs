@@ -50,6 +50,8 @@ namespace Arcade
             _moveCabContext.TransitionTo<MoveCabAimState>();
 
             _context.UIController.EnableMoveCabUI();
+
+            _context.VideoPlayerController.StopAllVideos();
         }
 
         public override void OnExit()
@@ -67,6 +69,8 @@ namespace Arcade
             if (_context.PlayerFpsControls.GlobalActions.Quit.triggered)
             {
                 _context.ReloadCurrentArcadeConfigurationModels();
+
+                _moveCabContext.TransitionTo<MoveCabAimState>();
                 _context.TransitionTo<ArcadeFpsNormalState>();
             }
 
@@ -92,9 +96,6 @@ namespace Arcade
             _moveCabContext.Update(dt);
         }
 
-        public override void FixedUpdate(float dt)
-        {
-            _moveCabContext.FixedUpdate(dt);
-        }
+        public override void FixedUpdate(float dt) => _moveCabContext.FixedUpdate(dt);
     }
 }
