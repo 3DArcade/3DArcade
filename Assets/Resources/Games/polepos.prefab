@@ -88,8 +88,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6404397635540923477}
-  - component: {fileID: 3567406218814691317}
   - component: {fileID: 7838559500125087595}
+  - component: {fileID: 7502901527016894308}
   m_Layer: 0
   m_Name: polepos
   m_TagString: Untagged
@@ -115,19 +115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3567406218814691317
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4737949597835631679}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6793065, y: 1.8527427, z: 0.8905474}
-  m_Center: {x: 0, y: 0.92637134, z: 0}
 --- !u!54 &7838559500125087595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,6 +131,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7502901527016894308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737949597835631679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6793065, y: 1.8527427, z: 0.8905474}
+  m_Center: {x: 0, y: 0.9378743, z: 0}
 --- !u!1 &6262920224285547552
 GameObject:
   m_ObjectHideFlags: 0

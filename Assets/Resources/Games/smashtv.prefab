@@ -259,8 +259,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484503083286872533}
-  - component: {fileID: 1479765343039010335}
   - component: {fileID: 8023037291962422790}
+  - component: {fileID: 6605603700944840593}
   m_Layer: 0
   m_Name: smashtv
   m_TagString: Untagged
@@ -286,19 +286,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1479765343039010335
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3257772787688203095}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7134743, y: 1.7551095, z: 1.0223784}
-  m_Center: {x: 0, y: 0.8775548, z: 0}
 --- !u!54 &8023037291962422790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -315,6 +302,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6605603700944840593
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3257772787688203095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7134743, y: 1.7551095, z: 1.0223784}
+  m_Center: {x: 0, y: 0.90405035, z: -0.000057280064}
 --- !u!1 &6374093501328961467
 GameObject:
   m_ObjectHideFlags: 0

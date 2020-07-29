@@ -259,8 +259,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5016735559174138582}
-  - component: {fileID: 6053230309849882262}
   - component: {fileID: 9203046888580619185}
+  - component: {fileID: 2660527346597086185}
   m_Layer: 0
   m_Name: tron
   m_TagString: Untagged
@@ -290,19 +290,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6053230309849882262
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749360143149182212}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7387881, y: 1.8388096, z: 0.91923386}
-  m_Center: {x: 0, y: 0.9194048, z: 0}
 --- !u!54 &9203046888580619185
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -319,6 +306,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2660527346597086185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749360143149182212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7387881, y: 1.8388096, z: 0.91923386}
+  m_Center: {x: -0.000000029802322, y: 0.9485752, z: 0.000000059604645}
 --- !u!1 &2764315805273131634
 GameObject:
   m_ObjectHideFlags: 0

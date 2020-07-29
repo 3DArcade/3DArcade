@@ -352,8 +352,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895698415194916726}
-  - component: {fileID: 6055380353236684845}
   - component: {fileID: 3552654202579064249}
+  - component: {fileID: 2129807300392038891}
   m_Layer: 0
   m_Name: mpatrol
   m_TagString: Untagged
@@ -379,19 +379,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6055380353236684845
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688910546849296347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.65429854, y: 1.785444, z: 0.723763}
-  m_Center: {x: 0, y: 0.892722, z: 0}
 --- !u!54 &3552654202579064249
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -408,3 +395,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2129807300392038891
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688910546849296347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65429854, y: 1.785444, z: 0.723763}
+  m_Center: {x: 0, y: 0.91180944, z: 0}

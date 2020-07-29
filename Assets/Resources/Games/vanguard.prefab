@@ -259,8 +259,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889402868213500897}
-  - component: {fileID: 5312167086486094868}
   - component: {fileID: 5780906551670838115}
+  - component: {fileID: 163959585104593512}
   m_Layer: 0
   m_Name: vanguard
   m_TagString: Untagged
@@ -287,19 +287,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5312167086486094868
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910333489342614897}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.65998936, y: 1.7902476, z: 0.8101336}
-  m_Center: {x: 0, y: 0.8951238, z: 0}
 --- !u!54 &5780906551670838115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -316,6 +303,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &163959585104593512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910333489342614897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65998936, y: 1.7902476, z: 0.8101336}
+  m_Center: {x: -0.000000059604645, y: 0.9085379, z: 0.000000059604645}
 --- !u!1 &8057877544296674239
 GameObject:
   m_ObjectHideFlags: 0

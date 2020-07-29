@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4373130967387613942}
-  - component: {fileID: 5254661926992716230}
   - component: {fileID: 832195669756782460}
+  - component: {fileID: 5497517239769774095}
   m_Layer: 0
   m_Name: galaga
   m_TagString: Untagged
@@ -194,19 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5254661926992716230
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008968489920548389}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6266246, y: 1.7048466, z: 0.83626634}
-  m_Center: {x: 0, y: 0.8524233, z: 0}
 --- !u!54 &832195669756782460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -223,6 +210,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5497517239769774095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008968489920548389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6266246, y: 1.7048466, z: 0.83626634}
+  m_Center: {x: 0.0172261, y: 0.85972893, z: 0.027264059}
 --- !u!1 &7712452215771805528
 GameObject:
   m_ObjectHideFlags: 0

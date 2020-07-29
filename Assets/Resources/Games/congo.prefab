@@ -351,8 +351,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849034180671821623}
-  - component: {fileID: 4854705603620301201}
   - component: {fileID: 5834362992353564333}
+  - component: {fileID: 1975603322247138842}
   m_Layer: 0
   m_Name: congo
   m_TagString: Untagged
@@ -378,19 +378,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4854705603620301201
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8792215330292365924}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.68184936, y: 1.7849238, z: 0.7339742}
-  m_Center: {x: 0, y: 0.8924619, z: 0}
 --- !u!54 &5834362992353564333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -407,3 +394,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1975603322247138842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792215330292365924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.68184936, y: 1.7849238, z: 0.7339742}
+  m_Center: {x: 0.014503866, y: 0.90389764, z: 0.03316611}
