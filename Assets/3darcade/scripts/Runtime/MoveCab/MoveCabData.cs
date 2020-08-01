@@ -33,6 +33,19 @@ namespace Arcade
 
         public Vector2 AimPosition;
         public float AimRotation;
+
+        public int SavedLayer;
+
+        public void Reset()
+        {
+            ModelSetup  = null;
+            Collider    = null;
+            Rigidbody   = null;
+            ScreenPoint = Vector2.zero;
+            AimPosition = Vector2.zero;
+            AimRotation = 0f;
+            SavedLayer  = 0;
+        }
     }
 
     public sealed class MoveCabGrabSavedData

@@ -27,7 +27,7 @@ namespace Arcade
 {
     public class MoveCabGrabState : MoveCabState
     {
-        private const float _raycastMaxDistance = 22.0f;
+        private const float RAYCAST_MAX_DISTANCE = 22.0f;
 
         private MoveCabGrabSavedData _savedValues;
 
@@ -38,14 +38,14 @@ namespace Arcade
 
         public override void OnEnter()
         {
-            Debug.Log(">>> <color=green>Entered</color> MoveCabGrabState");
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
             _savedValues = MoveCabController.InitGrabMode(_data, _context.PlayerFpsControls.Camera);
         }
 
         public override void OnExit()
         {
-            Debug.Log(">>> <color=orange>Exited</color> MoveCabGrabState");
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
 
             MoveCabController.RestoreSavedValues(_data, _savedValues);
             _savedValues = null;
@@ -56,7 +56,7 @@ namespace Arcade
             bool useMousePosition = Mouse.current != null && Cursor.visible;
             Vector2 rayPosition   = useMousePosition ? Mouse.current.position.ReadValue() : _data.ScreenPoint;
             Ray ray               = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
-            MoveCabController.AutoMoveAndRotate(_data, ray, _context.PlayerFpsControls.transform.forward, _raycastMaxDistance, _context.RaycastLayers);
+            MoveCabController.AutoMoveAndRotate(_data, ray, _context.PlayerFpsControls.transform.forward, RAYCAST_MAX_DISTANCE, _context.RaycastLayers);
 
             if (_context.PlayerFpsControls.FpsMoveCabActions.GrabReleaseModel.triggered)
             {

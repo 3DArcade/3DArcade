@@ -23,7 +23,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Object = UnityEngine.Object;
 
 namespace Arcade
 {
@@ -40,17 +39,29 @@ namespace Arcade
                 ModelConfigurationComponent targetModel = hitInfo.transform.GetComponent<ModelConfigurationComponent>();
                 if (targetModel != null && targetModel != data.ModelSetup)
                 {
+                    int arcadeModelsLayer = LayerMask.NameToLayer("Arcade/ArcadeModels");
+                    int selectionLayer    = LayerMask.NameToLayer("Selection");
+
+                    if (data.ModelSetup != null && data.ModelSetup.gameObject.layer != arcadeModelsLayer)
+                    {
+                        data.ModelSetup.transform.SetLayersRecursively(data.SavedLayer);
+                    }
+
                     data.ModelSetup = targetModel;
                     data.Collider   = hitInfo.collider;
+
                     if (data.Rigidbody != null)
                     {
                         data.Rigidbody.angularVelocity = Vector3.zero;
                     }
-                    data.Rigidbody  = hitInfo.rigidbody;
+                    data.Rigidbody = hitInfo.rigidbody;
 
-                    if (targetModel.gameObject.layer != LayerMask.NameToLayer("Arcade/ArcadeModels"))
+                    if (data.ModelSetup.gameObject.layer != arcadeModelsLayer)
                     {
-                        OnCurrentModelChanged?.Invoke(targetModel.DescriptiveName);
+                        data.SavedLayer = data.ModelSetup.gameObject.layer;
+                        data.ModelSetup.transform.SetLayersRecursively(selectionLayer);
+
+                        OnCurrentModelChanged?.Invoke(data.ModelSetup.DescriptiveName);
                     }
                     else
                     {
@@ -61,6 +72,7 @@ namespace Arcade
             else
             {
                 ResetData(data);
+
                 OnCurrentModelChanged?.Invoke(string.Empty);
             }
         }

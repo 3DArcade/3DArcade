@@ -27,8 +27,6 @@ namespace Arcade
 {
     public class MoveCabAimState : MoveCabState
     {
-        private const int NUM_FRAMES_TO_SKIP = 10;
-
         private static readonly float _raycastMaxDistance      = 22.0f;
         private static readonly float _movementSpeedMultiplier = 0.8f;
         private static readonly float _rotationSpeedMultiplier = 0.8f;
@@ -40,30 +38,27 @@ namespace Arcade
 
         public override void OnEnter()
         {
-            Debug.Log(">>> <color=green>Entered</color> MoveCabAimState");
+            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
         }
 
         public override void OnExit()
         {
-            Debug.Log(">>> <color=orange>Exited</color> MoveCabAimState");
+            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
         }
 
         public override void Update(float dt)
         {
-            if (Time.frameCount % NUM_FRAMES_TO_SKIP == 0)
+            Vector2 rayPosition;
+            if (Cursor.visible && Mouse.current != null)
             {
-                Vector2 rayPosition;
-                if (Cursor.visible && Mouse.current != null)
-                {
-                    rayPosition = Mouse.current.position.ReadValue();
-                }
-                else
-                {
-                    rayPosition = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-                }
-                Ray ray = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
-                MoveCabController.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
+                rayPosition = Mouse.current.position.ReadValue();
             }
+            else
+            {
+                rayPosition = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            }
+            Ray ray = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
+            MoveCabController.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
 
             if (_data.ModelSetup != null && _data.ModelSetup.MoveCabMovable)
             {

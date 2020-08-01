@@ -70,7 +70,7 @@ namespace Arcade
             {
                 _context.ReloadCurrentArcadeConfigurationModels();
 
-                _moveCabContext.TransitionTo<MoveCabAimState>();
+                _moveCabContext.TransitionTo<MoveCabNullState>();
                 _context.TransitionTo<ArcadeFpsNormalState>();
             }
 

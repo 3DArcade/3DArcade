@@ -35,11 +35,12 @@ namespace Arcade
         public MoveCabContext(PlayerFpsControls playerFpsControls)
         {
             Assert.IsNotNull(playerFpsControls);
-
             PlayerFpsControls = playerFpsControls;
 
             Data          = new MoveCabData();
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels");
+            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "Selection");
+
+            TransitionTo<MoveCabNullState>();
         }
     }
 }
