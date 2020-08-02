@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 10.2
   compensation:
     m_OverrideState: 1
     m_Value: 1
@@ -307,28 +307,6 @@ MonoBehaviour:
   m_RayMaxIterations:
     m_OverrideState: 0
     m_Value: 32
---- !u!114 &-1914262897090693705
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b6af8f7ad32324cb6941c3290e5895, type: 3}
-  m_Name: MicroShadowing
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  enable:
-    m_OverrideState: 1
-    m_Value: 1
-  opacity:
-    m_OverrideState: 1
-    m_Value: 0.4
-    min: 0
-    max: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +325,6 @@ MonoBehaviour:
   - {fileID: -2918153001727103362}
   - {fileID: 7571337433013787077}
   - {fileID: -6982526599815316058}
-  - {fileID: -1914262897090693705}
 --- !u!114 &7571337433013787077
 MonoBehaviour:
   m_ObjectHideFlags: 3

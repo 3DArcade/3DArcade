@@ -9157,7 +9157,7 @@ GameObject:
   - component: {fileID: 1981542795311976659}
   - component: {fileID: 2674369376484859779}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9170,13 +9170,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6238922260928476822}
-  m_LocalRotation: {x: 0.088852115, y: -0.3027405, z: -0.13214976, w: 0.9396754}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalRotation: {x: 0.3213938, y: -0.3213938, z: 0.116977744, w: 0.8830223}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2006248443}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 4.9890003, y: -36.491, z: -17.656}
+  m_LocalEulerAnglesHint: {x: 40, y: -40, z: 0}
 --- !u!108 &1981542795311976659
 Light:
   m_ObjectHideFlags: 0
@@ -9320,7 +9320,7 @@ MonoBehaviour:
   m_ShadowFadeDistance: 10000
   m_UseContactShadow:
     m_Override: 0
-    m_UseOverride: 0
+    m_UseOverride: 1
     m_Level: 2
   m_RayTracedContactShadow: 0
   m_ShadowTint: {r: 0, g: 0, b: 0, a: 1}
