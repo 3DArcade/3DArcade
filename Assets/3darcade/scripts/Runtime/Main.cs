@@ -74,10 +74,7 @@ namespace Arcade
             YouAreNotSupposedToBeHere();
         }
 
-        private void FixedUpdate()
-        {
-            _arcadeContext.FixedUpdate(Time.fixedDeltaTime);
-        }
+        private void FixedUpdate() => _arcadeContext.FixedUpdate(Time.fixedDeltaTime);
 
         private void YouAreNotSupposedToBeHere()
         {

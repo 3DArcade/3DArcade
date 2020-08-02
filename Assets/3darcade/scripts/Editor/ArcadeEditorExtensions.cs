@@ -43,10 +43,10 @@ namespace Arcade.ArcadeEditorExtensions
 
     internal static class GlobalPaths
     {
-        internal const string MODELS_FOLDER        = "Assets/3darcade/models";
-        internal const string ARCADEMODELS_FOLDER  = MODELS_FOLDER + "/arcades";
-        internal const string GAMEMODELS_FOLDER    = MODELS_FOLDER + "/games";
-        internal const string PROPMODELS_FOLDER    = MODELS_FOLDER + "/props";
+        internal const string MODELS_FOLDER        = "Assets/3Darcade/Models";
+        internal const string ARCADEMODELS_FOLDER  = MODELS_FOLDER + "/Arcades";
+        internal const string GAMEMODELS_FOLDER    = MODELS_FOLDER + "/Games";
+        internal const string PROPMODELS_FOLDER    = MODELS_FOLDER + "/Props";
         internal const string RESOURCES_FOLDER     = "Assets/Resources";
         internal const string ARCADEPREFABS_FOLDER = RESOURCES_FOLDER + "/Arcades";
         internal const string GAMEPREFABS_FOLDER   = RESOURCES_FOLDER + "/Games";
@@ -294,7 +294,7 @@ namespace Arcade.ArcadeEditorExtensions
 
             Renderer renderer = selectedObj.GetComponent<MeshRenderer>();
             Undo.RecordObject(renderer.sharedMaterial, "Set as emissive");
-            Utils.SetupEmissiveMaterial(renderer.sharedMaterial, Color.white);
+            Utils.SetupEmissiveMaterial(renderer.sharedMaterial, Color.white * 1.4f);
         }
 
         // ***************
@@ -335,8 +335,8 @@ namespace Arcade.ArcadeEditorExtensions
 
     internal static class Utils
     {
-        private static readonly Color _marqueeEmissiveColor = Color.white;
-        private static readonly Color _monitorEmissiveColor = Color.white;
+        private static readonly Color _marqueeEmissiveColor = Color.white * 1.4f;
+        private static readonly Color _monitorEmissiveColor = Color.white * 1.3f;
 
         internal static ModelType GetModelType(string assetPath)
         {
@@ -563,23 +563,27 @@ namespace Arcade.ArcadeEditorExtensions
 
         internal static void SetupEmissiveMaterial(Material material, Color color)
         {
-            material.EnableKeyword("_EMISSION");
-            material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
-            Texture mainTex = material.GetTexture("_MainTex");
+            material.EnableEmissive();
+            material.SetEmissiveColor(color);
+
+            Texture mainTex = material.GetBaseTexture();
             if (mainTex != null)
             {
-                material.SetTexture("_EmissionMap", material.GetTexture("_MainTex"));
+                material.SetEmissiveTexture(mainTex);
             }
-            material.SetColor("_EmissionColor", color);
         }
 
         internal static void SetupTransparentMaterial(Material material)
         {
-            material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+            material.EnableKeyword("_BLENDMODE_ALPHA");
+            material.EnableKeyword("_BLENDMODE_PRESERVE_SPECULAR_LIGHTING");
+            material.EnableKeyword("_ENABLE_FOG_ON_TRANSPARENT");
+            material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
             material.renderQueue = 3000;
-            material.SetOverrideTag("RenderType", "Transparent");
+            material.SetInt("_AlphaDstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
             material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            material.SetInt("_Mode", 3);
+            material.SetInt("_SurfaceType", 1);
+            material.SetInt("_ZTestDepthEqualForOpaque", 4);
             material.SetInt("_ZWrite", 0);
         }
 

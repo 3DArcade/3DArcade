@@ -3,7 +3,117 @@ guid: f55c2fe10006c1f418bde90f9003161c
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: f418b5fa1de21e44e8131bf2ec3b6282, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-ceiling
+    second: {fileID: 2100000, guid: 02382a3e401397343a2f466b39122339, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-clockface
+    second: {fileID: 2100000, guid: 7ed17bfc32ce46444992fe01355f3b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-exit
+    second: {fileID: 2100000, guid: 5a1516c9c0538554b93d3c8b9ed72112, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-exitlight
+    second: {fileID: 2100000, guid: d56545bf649b59b408f551bd0139ecd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-fac
+    second: {fileID: 2100000, guid: ba944f04276cbf24ca2fad5a3c50638a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-floorsocket
+    second: {fileID: 2100000, guid: 586cf115e0d52fd479870dd38177bbb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-glass
+    second: {fileID: 2100000, guid: 8de66b966329861449729c804bda9d02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-insidelogo
+    second: {fileID: 2100000, guid: b5007386069b81e41876892de7246758, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-logo
+    second: {fileID: 2100000, guid: 9e9e5d36ac3d94e409117ee830eaae9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-occupancy
+    second: {fileID: 2100000, guid: b916fd07120b54341aa39fa1cad1fda4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-outsidetile
+    second: {fileID: 2100000, guid: 3c5e1426532add84da4f9546c117facc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-rubbermat
+    second: {fileID: 2100000, guid: 3fa96be5abf93334e8aa5a39b74aea8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-rug
+    second: {fileID: 2100000, guid: d1572e1d39cc08743a48b59d4951e986, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-shop1
+    second: {fileID: 2100000, guid: a29d1307a31a46f449e79124b87201c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-sign
+    second: {fileID: 2100000, guid: 033e5430c3c70724589caeb1e2105d69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-socket
+    second: {fileID: 2100000, guid: 44ab9d0c9b8e61647aa33350a643d810, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-stone
+    second: {fileID: 2100000, guid: cd7f1df99fa10684ea29bf5ac1d032de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-uhfvhf
+    second: {fileID: 2100000, guid: e9f4f237ff0b3ff4bbb9aca999f723c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-vidscreen
+    second: {fileID: 2100000, guid: bfe4a7657d6295349a0e46fa9c6ad229, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreak-wall
+    second: {fileID: 2100000, guid: c8b538ab0e9363249b80252947a24660, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sbreakshiny
+    second: {fileID: 2100000, guid: 95944715887c9514f862fda3d6d0baef, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -22,7 +132,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 1
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -69,7 +179,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -84,11 +194,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0

@@ -198,8 +198,8 @@ namespace Arcade
 
         protected GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
         {
-            GameObject model = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
-            model.StripCloneFromName();
+            GameObject model           = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
+            model.name                 = modelConfiguration.Id;
             model.transform.localScale = modelConfiguration.Scale;
             model.transform.SetLayersRecursively(parent.gameObject.layer);
             model.AddComponent<ModelConfigurationComponent>()

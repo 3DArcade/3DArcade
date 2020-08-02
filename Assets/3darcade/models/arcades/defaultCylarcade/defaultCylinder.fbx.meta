@@ -3,7 +3,22 @@ guid: 77387667f74ae4b98a1ba2c69213adb3
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 001_DefaultCylinder_Marquee
+    second: {fileID: 2100000, guid: c38fc704468b149ec9ff9b9ca654986e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 002_DefaultCylinder_Screen
+    second: {fileID: 2100000, guid: 680a171bd4a1f4049a3140dc8afd5c8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 003_DefaultCylinder_Generic
+    second: {fileID: 2100000, guid: ded6769867a824f0ebbcb78afd381ce2, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -22,7 +37,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 1
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -37,7 +52,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 1
-    useSRGBMaterialColor: 0
+    useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
@@ -69,7 +84,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -88,7 +103,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0
