@@ -1,111 +1,11 @@
 fileFormatVersion: 2
 guid: b890524a6c482204aa05f37183992cc8
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-back
-    second: {fileID: 2100000, guid: 19aa9efc40b398b418d81ff58574009e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-cabinet
-    second: {fileID: 2100000, guid: 9f6c2d94e82e4644cb28380dc8f1b445, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-carpet
-    second: {fileID: 2100000, guid: f33569d3a256e7b4cadad6482136e678, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-coindoor
-    second: {fileID: 2100000, guid: 4925feff99609eb4daff0e4d9ed02072, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-darkgrey
-    second: {fileID: 2100000, guid: 8d7502e181a04144aa8a228c983f1ab0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-grain
-    second: {fileID: 2100000, guid: 3ff85976235975940b9e79f057b25fca, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-leftsticker
-    second: {fileID: 2100000, guid: 8960aaa2c4ed3e74d8c4762b7aee0295, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-lightgrey
-    second: {fileID: 2100000, guid: 9613c31b00a8bf840908f8ccdfbdf70f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-logo
-    second: {fileID: 2100000, guid: f1b1a9597c354424bb847dfb9441f171, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-marquee
-    second: {fileID: 2100000, guid: 4177d2060479313459f5ccbc4bf14a9e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-medgrey
-    second: {fileID: 2100000, guid: acaaa47471c65714e80552ef7c48a111, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-metal
-    second: {fileID: 2100000, guid: fd133a6411dd79847bee4e5f544cb56d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-monitor
-    second: {fileID: 2100000, guid: 4a89108fc8ac95b409613fbd707a0747, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-plexi
-    second: {fileID: 2100000, guid: 5f75c94f77c135e4d8b7ad3ded5c3b8e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-red
-    second: {fileID: 2100000, guid: d59683fc10cac7a4aae3cf46e2b170bc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-shroud
-    second: {fileID: 2100000, guid: f549e642c9bc74a4e9e3a6f08f84f6aa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-side1
-    second: {fileID: 2100000, guid: 2765237b77f650e499a1b29ee129e7a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-side2
-    second: {fileID: 2100000, guid: 9066f072d810743498d8501ed4cb0b85, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starfire-speaker
-    second: {fileID: 2100000, guid: 4024ef3ca70b2c3478a0f2b1130194b3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: starifre-control
-    second: {fileID: 2100000, guid: 8176c0fa454321f40a0438c44a770b9f, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -138,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -169,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -187,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

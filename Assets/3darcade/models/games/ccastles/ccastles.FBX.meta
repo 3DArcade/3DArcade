@@ -1,121 +1,11 @@
 fileFormatVersion: 2
 guid: c0aca92f55367514fbfebb4d632d0b70
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-bezel
-    second: {fileID: 2100000, guid: b4efb419aee47de4e94df7904ed769f2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-black
-    second: {fileID: 2100000, guid: b12e6b2b81ba60a42b9ecfd228f3621e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-blackbuttons2
-    second: {fileID: 2100000, guid: c2805b03340f2bb4bbde831f542e0210, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-coin
-    second: {fileID: 2100000, guid: 9070b4c718b9ad24d80192a6afd2aa4c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-cpo
-    second: {fileID: 2100000, guid: f28771fe0a7e87043b15cfe78a78fe2b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-grill
-    second: {fileID: 2100000, guid: 53226f1047358f6479a7db9d2c7a9bdc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-marquee
-    second: {fileID: 2100000, guid: a01dcdff2711f8849b2a6872342ab0a7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-monitor
-    second: {fileID: 2100000, guid: 83e247c641e541e45b5e03bed149b34e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-red
-    second: {fileID: 2100000, guid: 57d2597fce446954ea97b307989846e0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-side-left-l
-    second: {fileID: 2100000, guid: b1f7110c337ea794193838016c8406ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-side-left-m
-    second: {fileID: 2100000, guid: 1fd3ef0679b8f4c438d8427045371c06, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-side-left-r
-    second: {fileID: 2100000, guid: 3e64b4e0b64ae334ebf02a0670abc476, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-side-right-l
-    second: {fileID: 2100000, guid: 6b2ca717249bf7143a00d50f8cc6d4fd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-side-right-m
-    second: {fileID: 2100000, guid: 73971f98c973b994ea557fbda4228a3e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ccastles-side-right-r
-    second: {fileID: 2100000, guid: 0939ff847f9b7004bb84caa08700330a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-black
-    second: {fileID: 2100000, guid: 60fe910343c2169408bb632b81b6f176, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ccastles-coin
-    second: {fileID: 2800000, guid: cef7be7b2dd43324496f13fb086c2290, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ccastles-cpo
-    second: {fileID: 2800000, guid: a083aa08da3004e4c8ede9d3de0af2ad, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ccastles-grill
-    second: {fileID: 2800000, guid: 40b358dc5935c2b468b93d4834dfc82c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ccastles-marquee
-    second: {fileID: 2800000, guid: f0d5e7e1c0e72ee42af966c5a9eece6f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ccastles-screen
-    second: {fileID: 2800000, guid: 4101d764cb587af4b97ee0ba970d6c43, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ccastles-sideart
-    second: {fileID: 2800000, guid: 12a57d9e49b1be048809a3f872ac2067, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -132,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -147,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -165,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -179,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -197,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

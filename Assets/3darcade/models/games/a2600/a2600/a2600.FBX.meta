@@ -1,86 +1,11 @@
 fileFormatVersion: 2
 guid: a66234c9dca6b8e4687ecf3655b38441
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-atarilogo
-    second: {fileID: 2100000, guid: 5cd8e4a4c62f0594f9baef9a6179a313, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-bezel
-    second: {fileID: 2100000, guid: a6fb46f574d3e904391a0b1875c45421, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-black-bump
-    second: {fileID: 2100000, guid: d463b45cfa3a55f4a8ea1b646a1734d1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-black-gloss
-    second: {fileID: 2100000, guid: f4d691b497bc10c41ad168330c862287, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-flat-black
-    second: {fileID: 2100000, guid: d055c46a40ee1a84dbfbd3cc402b7d24, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-marquee
-    second: {fileID: 2100000, guid: 92059b3220a57e3468f50f8c7cf20d5b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-monitor
-    second: {fileID: 2100000, guid: eb9366f8dd816a041b5f6bb6e4d0a883, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-orange
-    second: {fileID: 2100000, guid: 198a6adf1de725941b3a25d16bf1790b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-overlay
-    second: {fileID: 2100000, guid: f62587dc4f01bfb41a9f969a80ccb7ad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-paddle-label
-    second: {fileID: 2100000, guid: b03a8991b141f2546ad249a4168746d6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-red
-    second: {fileID: 2100000, guid: cf69ddbc2e9294042aa3e75c3046effb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-sideart
-    second: {fileID: 2100000, guid: 55c0c0e41bcff1c4d8d64b05c30a4e48, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-silver
-    second: {fileID: 2100000, guid: 67b841b7693dc8f48b7901247af72697, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-white
-    second: {fileID: 2100000, guid: f81e27d2c845bdc46952b665306261d7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600-wood
-    second: {fileID: 2100000, guid: af63aa45e2745974f9b01b506e3da0eb, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -118,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -144,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -162,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

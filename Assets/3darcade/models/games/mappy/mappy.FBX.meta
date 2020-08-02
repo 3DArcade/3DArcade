@@ -1,196 +1,11 @@
 fileFormatVersion: 2
 guid: d015e4ee932ec5947968cfca7f4ddcc0
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-bezel
-    second: {fileID: 2100000, guid: 3abc9c39d15ccbe4abf4def7244aaf1e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-black
-    second: {fileID: 2100000, guid: f49ee0338293cbb4288a1d1ed3196439, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-coindoor
-    second: {fileID: 2100000, guid: 79fa98728b4a30e4b97fcfc6542d7402, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-cpo
-    second: {fileID: 2100000, guid: 50cab4a67c6306944b472821524f3f98, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-instructioncardleft
-    second: {fileID: 2100000, guid: 9787b6c815f8d074789742d1c6202cfb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-instructioncardright
-    second: {fileID: 2100000, guid: fbfc702a2a57d1848a2102845610c782, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marquee
-    second: {fileID: 2100000, guid: e6b9f2b4550f7e347812669e7e5dc5f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueesideleftblack
-    second: {fileID: 2100000, guid: f6a29dcd1d382d74db56d91272f66d68, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueesidelefttmolding
-    second: {fileID: 2100000, guid: d3f12f9f0cacc1e43955fb94ac9f5632, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueesideleftwhite
-    second: {fileID: 2100000, guid: 479e35ef1a8a27a429b953434121611b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueesiderightblack
-    second: {fileID: 2100000, guid: 485f3ee0e87ef4a4bb049f3960c7dc99, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueesiderighttmolding
-    second: {fileID: 2100000, guid: 36e716420d86e3349ab08b50e80b4ebc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueesiderightwhite
-    second: {fileID: 2100000, guid: a000d3b4b0fcb3a4fb31b208378343b6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueetopbackerblack
-    second: {fileID: 2100000, guid: 813a15eb92ee4ae42a7adf10ef920247, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-marqueetopbackerwhite
-    second: {fileID: 2100000, guid: 841cde17bb1f4e14e87fef8964277361, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-monitor
-    second: {fileID: 2100000, guid: a91efc7a5a8cb7648b1300fc0a2db011, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-redblackblack
-    second: {fileID: 2100000, guid: cd0e94a4b20eb224ba629053312bb6d5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-redblackred
-    second: {fileID: 2100000, guid: 17a6b11b881558d44bda25379d735130, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-sideleft
-    second: {fileID: 2100000, guid: 3367c5d0add1c004da2b3e099ee55929, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-sideleftblack
-    second: {fileID: 2100000, guid: 986a8590217a64e4b95d8d36a0951bb7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-sidelefttmolding
-    second: {fileID: 2100000, guid: d3a0a24bd103e0740990be6c7e34a164, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-sideright
-    second: {fileID: 2100000, guid: a17f493019c9a67419c6b24456c44e67, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-siderightblack
-    second: {fileID: 2100000, guid: 5df8165d9713d5745a7048ca82abe574, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-siderighttmolding
-    second: {fileID: 2100000, guid: 525a237e93d2ab04b98518a8db4ba2d8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-speaker
-    second: {fileID: 2100000, guid: 276f86ba922441b4fb905f7e1c13e03d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-whitebuttons
-    second: {fileID: 2100000, guid: 149f497fca76edd43871e1d121ef9cad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mappy-yellowbuttons
-    second: {fileID: 2100000, guid: d3bf2c93841240f4fab484ee91b6d67f, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-bezel
-    second: {fileID: 2800000, guid: 9dbea354793bea84cb5c3e9552ed254c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-coindoor
-    second: {fileID: 2800000, guid: ec55ef5151d93384c8c07277836ab349, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-cpo
-    second: {fileID: 2800000, guid: f99e1fbb687a0fc46af1eb8494894cb6, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-instructionleft
-    second: {fileID: 2800000, guid: 59c15c2fc61532241b30f68640f0d80d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-instructionright
-    second: {fileID: 2800000, guid: 67be4aae9c049754ca2fde9d8e006cae, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-marquee
-    second: {fileID: 2800000, guid: bd110af549d8b2949a740725e6804d73, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-screen
-    second: {fileID: 2800000, guid: 6c9181721e082c9469ddd1785df529a0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-sideartleft
-    second: {fileID: 2800000, guid: 2141146fb5992e54292aae6deaecad6a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-sideartright
-    second: {fileID: 2800000, guid: 219b4f17e629dcb439b364355670006a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mappy-speaker
-    second: {fileID: 2800000, guid: ddf6f0a98d2988042804f89c30c97a3f, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -228,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -254,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -272,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

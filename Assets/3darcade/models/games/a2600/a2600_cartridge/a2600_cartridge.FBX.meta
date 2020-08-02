@@ -1,26 +1,11 @@
 fileFormatVersion: 2
 guid: 3905c5ea1bf309c44ab4e7354ec9ba0d
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600_cartridge_black
-    second: {fileID: 2100000, guid: 9ff9e5b9e1ba630448d14c2cbf8d8e14, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600_cartridge_front
-    second: {fileID: 2100000, guid: 86102036163e1dc4bb88abbb6fc4144b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: a2600_cartridge_label
-    second: {fileID: 2100000, guid: fe5e564debbad814aabe9e68d038c9d6, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -58,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -84,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -102,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

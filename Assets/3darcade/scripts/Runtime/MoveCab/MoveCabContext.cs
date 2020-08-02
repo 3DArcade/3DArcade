@@ -38,7 +38,7 @@ namespace Arcade
             PlayerFpsControls = playerFpsControls;
 
             Data          = new MoveCabData();
-            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "Selection");
+            RaycastLayers = LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "Selection", "Dissolve");
 
             TransitionTo<MoveCabNullState>();
         }

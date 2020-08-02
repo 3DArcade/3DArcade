@@ -1,86 +1,11 @@
 fileFormatVersion: 2
 guid: 698cd98fbe9958447a674f7cc61357e9
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-amarquee
-    second: {fileID: 2100000, guid: ce1ee906b3c6c204896aaa1b2c651b39, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-amonitor
-    second: {fileID: 2100000, guid: 407e53ee28daee2489573c78a8f3c762, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-bezel
-    second: {fileID: 2100000, guid: 26db29c0913f6824ca7c0463c539d93d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-bezel2
-    second: {fileID: 2100000, guid: 9f139be4212e52947a96a560c508e8e7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-button
-    second: {fileID: 2100000, guid: 84a9faac4040ad541a064c65697a3691, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-cashdoor
-    second: {fileID: 2100000, guid: fdc60e1c7f7e51341bae98583bb2612e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-coinpanel
-    second: {fileID: 2100000, guid: 1368cf8126f9dfb4b975aa9b709df59c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-cpo
-    second: {fileID: 2100000, guid: aaaf81b2886a81f4b9e5ae67ddce0d44, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-metal
-    second: {fileID: 2100000, guid: 6330629ea4824e14c881b695d4d44c40, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-plates
-    second: {fileID: 2100000, guid: d6e1f539f29111c4a97912d9139d197f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-shinyblack
-    second: {fileID: 2100000, guid: 89018d08bacbb6941b3bd643b95dca54, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-shinywhite
-    second: {fileID: 2100000, guid: 44d591043518a6d409dd508bf77406da, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-side
-    second: {fileID: 2100000, guid: f62733920b6515842ab752cb7cfc1f3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-speaker
-    second: {fileID: 2100000, guid: a4c9a57ccc230f147aa03925491c1965, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mrdo-wood
-    second: {fileID: 2100000, guid: e9ad243fdc04a2f46a42f1c55e732961, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -113,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -144,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -162,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

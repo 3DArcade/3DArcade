@@ -1,46 +1,11 @@
 fileFormatVersion: 2
 guid: 8e79b291f9c90ac46ada0e66feed21ce
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-bezel
-    second: {fileID: 2100000, guid: 16c833443274ece41aef1f47012f0bba, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-coindoor
-    second: {fileID: 2100000, guid: 5a78d2fdd5f23e549bb97b6338d3b6b3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-marquee
-    second: {fileID: 2100000, guid: 5b1fd558c4a36df469eac055fcd391f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-screenshot
-    second: {fileID: 2100000, guid: e87d722dfbe4d424cb1022d5ef6e67d1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-shiny
-    second: {fileID: 2100000, guid: 58eba2eaf61b89346b300f3a9db0f871, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-speaker
-    second: {fileID: 2100000, guid: 334c064e6674b6141a182c7dd4cd8b36, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tank-wood
-    second: {fileID: 2100000, guid: 7b97899a53f7e374699346cb0c9f5ae2, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -73,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -104,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -122,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

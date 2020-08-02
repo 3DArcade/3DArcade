@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: dc2dd1d0aed882f46a399bd302393101
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-bezel
-    second: {fileID: 2100000, guid: f87f26570a441564aac6124f2300be33, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-marquee
-    second: {fileID: 2100000, guid: 58d72d106ed22604abc6c2994b3e961a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-metal
-    second: {fileID: 2100000, guid: 4f83c7d29f0316941a373a63142fb5d1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-monitor
-    second: {fileID: 2100000, guid: 1694f021bdc764442aa67068b0dc7c10, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-shiny
-    second: {fileID: 2100000, guid: 4ecc4a67812325f4ea676400d8c4d409, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-shinyred
-    second: {fileID: 2100000, guid: b1796c99bdae2514e8becfbbfa1dc368, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-shinywhite
-    second: {fileID: 2100000, guid: bcb41de409f6f5d4f85cdec345e434e6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: jungleh-textures
-    second: {fileID: 2100000, guid: 1a41385c22f09a048bcea76e11842ea4, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -78,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

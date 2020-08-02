@@ -1,61 +1,11 @@
 fileFormatVersion: 2
 guid: 14e64dcc484b2814892fc977f0335d2e
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-bezelart
-    second: {fileID: 2100000, guid: 3a160d93310d75e4ba7570fbe8ac12a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-black
-    second: {fileID: 2100000, guid: a4c41889224813b49bd4cc41bccbd9e3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-coinart
-    second: {fileID: 2100000, guid: 7b704f0d044f7424d9fd8cc00f562a0d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-marqueeart
-    second: {fileID: 2100000, guid: 3d089a107ea9b8f40b2d8587e797d0e3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-metal
-    second: {fileID: 2100000, guid: be17645f72a2e4e448bc087684fa2744, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-monitorart
-    second: {fileID: 2100000, guid: d291add5f7330024883ba05dae14d7ad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-shinyblack
-    second: {fileID: 2100000, guid: 04e792cac6da30444bf0d06e89b99f16, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-shinyred
-    second: {fileID: 2100000, guid: e8eaafe981116f34192694d6932abd1f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-shinywhite
-    second: {fileID: 2100000, guid: f2a5a690191aae5448a05891d22a6dc4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pepper2-textures
-    second: {fileID: 2100000, guid: 7caed7fe174baee4782721bf00f281ef, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -88,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -119,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -137,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,111 +1,11 @@
 fileFormatVersion: 2
 guid: c53da14b538e7344d9c34adb5beb6c60
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-baseblack
-    second: {fileID: 2100000, guid: c0167d133e12a6046afdf7354519068a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-baseleft
-    second: {fileID: 2100000, guid: 3245c44b94b25d847b1368cff3229884, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-baseright
-    second: {fileID: 2100000, guid: af22e2905fc94b942a48dfb5c2ccdfb1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-bezel
-    second: {fileID: 2100000, guid: 7b8c16645d161624da342cf270fd482b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-black1
-    second: {fileID: 2100000, guid: 29e624c0f44a63140b6ce7bb5259748c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-blackbuttons
-    second: {fileID: 2100000, guid: 7c48c19451436ea4b99a3b856fa6cba4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-blackmarqcyl
-    second: {fileID: 2100000, guid: 7ab4a40d7b960494f8d2748873ad6391, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-buttop
-    second: {fileID: 2100000, guid: 7bff7705d9cc85643963e6f8ed5180a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-coin
-    second: {fileID: 2100000, guid: feef054fb827b094d8a0b0a1e5c6b515, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-cpoblack
-    second: {fileID: 2100000, guid: 438830f093d8f254ea6b3c75a8879458, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-cpofront
-    second: {fileID: 2100000, guid: fbec8a7528e1b924d9ac94eaad5c125e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-grill
-    second: {fileID: 2100000, guid: d8f263733cb46194fa6ff0f5a354f759, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-joyshaft
-    second: {fileID: 2100000, guid: 840ca2d7afc1ff643a7984121253289d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-marquee
-    second: {fileID: 2100000, guid: c46b8c92f7f7ed14a81f7205eab9a356, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-monitor
-    second: {fileID: 2100000, guid: 148d116e02c893e4181aa34c33f55229, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-monitorcaseblack
-    second: {fileID: 2100000, guid: 3581375c0a08c87429a1721b0dc8f064, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-monitorglass
-    second: {fileID: 2100000, guid: 36fd126a8260e294a95bf6012bd88941, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-red
-    second: {fileID: 2100000, guid: 9f55941ca9876e64e88f798790421cee, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-red2
-    second: {fileID: 2100000, guid: 5ef19cae082af074c84927dd7f3e88eb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: irobot-white
-    second: {fileID: 2100000, guid: 7534ac669bda0a34db927f05f65d66c3, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -143,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -169,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -187,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: 719a685ae8582da47bc7056f4a225e3f
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01_einning_fakemarquee
-    second: {fileID: 2100000, guid: f3ed57cd0dd34584ba5683404c05c070, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02_einning_screen
-    second: {fileID: 2100000, guid: 2562d77f6f4be01429ff57be8350487d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning-bezel
-    second: {fileID: 2100000, guid: 1e357011f8bc3a841a95ef1084c29ff6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning-black
-    second: {fileID: 2100000, guid: 80845aefe8bbf6d4eae900baa4f335ad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning-button
-    second: {fileID: 2100000, guid: 1b1f610cb38c50442a27b0e109fc148c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning-cpo
-    second: {fileID: 2100000, guid: 8e8d7caed083cb545ac929e553be0321, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning-panel
-    second: {fileID: 2100000, guid: c5b80f63f9447b9428bfab68bdffc672, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning-side
-    second: {fileID: 2100000, guid: 576a20357a315c141bc0ae3e447b6c4f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: einning_front
-    second: {fileID: 2100000, guid: 7d40376837b469641b48944971b3a576, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

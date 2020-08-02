@@ -1,24 +1,9 @@
 fileFormatVersion: 2
 guid: 77387667f74ae4b98a1ba2c69213adb3
 ModelImporter:
-  serializedVersion: 19300
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 001_DefaultCylinder_Marquee
-    second: {fileID: 2100000, guid: c38fc704468b149ec9ff9b9ca654986e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 002_DefaultCylinder_Screen
-    second: {fileID: 2100000, guid: 680a171bd4a1f4049a3140dc8afd5c8c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 003_DefaultCylinder_Generic
-    second: {fileID: 2100000, guid: ded6769867a824f0ebbcb78afd381ce2, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -37,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -52,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 1
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
+    importCameras: 0
     importLights: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    generateSecondaryUV: 1
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -70,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -102,7 +88,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0

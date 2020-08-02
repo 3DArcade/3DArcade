@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: 7d875728b8b46024dadfc3d3051f2855
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-bezelart
-    second: {fileID: 2100000, guid: c9e9ed506a0c2aa4da6f837ec5db3254, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-black
-    second: {fileID: 2100000, guid: 17bd880a930c33e45914c50dc650396e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-coinart
-    second: {fileID: 2100000, guid: 5c348bb2e65dfc248affe4e5ad2d012a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-marqueeart
-    second: {fileID: 2100000, guid: 1916d779cdc33b5439a389d09cad5a63, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-metal
-    second: {fileID: 2100000, guid: 848eeb2caa0696c46a9b603d6200c0a5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-monitorart
-    second: {fileID: 2100000, guid: d69366f28a63f764e807d9e3a6a05684, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-shinyblack
-    second: {fileID: 2100000, guid: 809d8f9aa985d12489697ab3f104f5c3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-shinywhite
-    second: {fileID: 2100000, guid: 178e35a266f823d468ddf5a82a54c691, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: venture-textures
-    second: {fileID: 2100000, guid: bbaab2a4eda3de041b9bbb3672d9ddf2, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

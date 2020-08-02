@@ -52,7 +52,7 @@ namespace Arcade
         public VideoPlayerController VideoPlayerController;
 
         public ArcadeController ArcadeController { get; private set; }
-        public LayerMask RaycastLayers => LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "Selection");
+        public LayerMask RaycastLayers => LayerMask.GetMask("Arcade/ArcadeModels", "Arcade/GameModels", "Arcade/PropModels", "Selection", "Dissolve");
         public ArcadeConfiguration CurrentArcadeConfiguration { get; private set; }
         public ArcadeType CurrentArcadeType { get; private set; }
 

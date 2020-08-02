@@ -1,116 +1,11 @@
 fileFormatVersion: 2
 guid: 963fd911fec56e846b2dedfe58b537b8
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-bezel
-    second: {fileID: 2100000, guid: ab3192df1e2a7aa43b7989918633e11b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-black
-    second: {fileID: 2100000, guid: 598923b686a14214fa4330355d86c882, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-blackbuttons
-    second: {fileID: 2100000, guid: 2cb42be6638b7cb47b5b2bfdee32d540, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-coin
-    second: {fileID: 2100000, guid: 098528d7d4fe873408dad85f1898da88, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-cpo
-    second: {fileID: 2100000, guid: f5414f4ec8abbef4f92b59a04e47fdee, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-marquee
-    second: {fileID: 2100000, guid: d9418797f0716d545ad294606f463108, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-monitor
-    second: {fileID: 2100000, guid: be918d89578914841839436577e23dd0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-red
-    second: {fileID: 2100000, guid: bbac33dc3c75bb9418e3f623280b5821, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-side-left-l
-    second: {fileID: 2100000, guid: bfcd6fd82d58eb34098478ea9cb2e5c0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-side-left-m
-    second: {fileID: 2100000, guid: 6f477d8d3ae67f449bb39183050ee924, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-side-left-r
-    second: {fileID: 2100000, guid: 18d0d4603faa1ff499bb5f59b0092463, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-side-right-l
-    second: {fileID: 2100000, guid: 75862a20b90ff2a4dab9112430716dd7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-side-right-m
-    second: {fileID: 2100000, guid: b59c37e11ba0d5f4ea9a36cdebe92e2a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-side-right-r
-    second: {fileID: 2100000, guid: a5c2202fa09cfab40ba657952e3cca39, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centiped-white
-    second: {fileID: 2100000, guid: c61c237f416fc7440ab51a13cc103874, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: centiped-bezel
-    second: {fileID: 2800000, guid: a476a8ee5df0ad8418d1f2bba0bf8aa8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: centiped-coin
-    second: {fileID: 2800000, guid: abb39462024635649af80fcd3830f3cf, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: centiped-cpo
-    second: {fileID: 2800000, guid: 03e7ee0a8ab417b4495e365eeeb18518, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: centiped-marquee
-    second: {fileID: 2800000, guid: 246b9e3fc61a8c44c9331ff30b72a5bd, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: centiped-screen
-    second: {fileID: 2800000, guid: 484d9ef91726fa742b654225637e34b5, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: centiped-sideart
-    second: {fileID: 2800000, guid: 535f30c29fac0e74880b0c6b6bcc529d, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -127,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -142,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -160,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -174,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -192,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

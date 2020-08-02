@@ -1,126 +1,11 @@
 fileFormatVersion: 2
 guid: 8dfa6f7794942ee4bb94cb4dee122e49
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-bezel
-    second: {fileID: 2100000, guid: 06c22ed643da0344390ea2f2693170f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-black
-    second: {fileID: 2100000, guid: 6bd3aaee4be63c647a31d25a939fd5df, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-blackbuttons
-    second: {fileID: 2100000, guid: 36679f0b4f7fc6e41af34ba599bf693c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-blackbuttons2
-    second: {fileID: 2100000, guid: ff812b5127ba31449b33c9ad86f27be4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-coin
-    second: {fileID: 2100000, guid: 4e01034aada7b6b40aff1ebf083a22a0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-cpo
-    second: {fileID: 2100000, guid: ae5bb9abcf90208498253e5bb4853af8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-marquee
-    second: {fileID: 2100000, guid: 9e021fc6ac9460948a9fdc4e2e56b4fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-monitor
-    second: {fileID: 2100000, guid: 39a49c3f376e4b6469545af1b061084b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-red
-    second: {fileID: 2100000, guid: d63326ec835c615459e21f10005436da, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-side-left-l
-    second: {fileID: 2100000, guid: 58b66ac47257ab64495d313088155db6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-side-left-m
-    second: {fileID: 2100000, guid: 1da0441132ab75d45816b09603b445ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-side-left-r
-    second: {fileID: 2100000, guid: 816ae469f37c55b4ea9322bc861dc90c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-side-right-l
-    second: {fileID: 2100000, guid: 0642787e058adcb418c333062e4eed61, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-side-right-m
-    second: {fileID: 2100000, guid: 7adcb0592eda87043b3117b9f2821cf8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: digdug-side-right-r
-    second: {fileID: 2100000, guid: 595e5160524d06a4489fe2251332882b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: joy robotron
-    second: {fileID: 2100000, guid: eae3aa12c67820043a45c099990e5192, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron rood
-    second: {fileID: 2100000, guid: fcd8cd09e65fc06409fb0c454d062ea3, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: digdug-bezel
-    second: {fileID: 2800000, guid: f0b59cd84455c2e43ba94263b8b8cc59, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: digdug-coin
-    second: {fileID: 2800000, guid: cf414304c11461046bc9d0bc979160d6, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: digdug-cpo
-    second: {fileID: 2800000, guid: ac160b69ca1e9334f92c6fff46c2debe, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: digdug-marquee
-    second: {fileID: 2800000, guid: 18f4d784a03090a41b93b3d2e0bc94e2, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: digdug-screen
-    second: {fileID: 2800000, guid: 7d8817e1d94e3b7468595073a044ad28, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: digdug-sideart
-    second: {fileID: 2800000, guid: a3269823d2966be45b07f3806dabd7b2, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -137,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -152,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -170,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -184,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -202,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

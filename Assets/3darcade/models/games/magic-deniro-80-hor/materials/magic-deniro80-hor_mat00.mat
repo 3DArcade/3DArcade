@@ -22,8 +22,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: magic-deniro80-hor_mat00
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _DETAIL_MAP _MASKMAP _NORMALMAP _NORMALMAP_TANGENT_SPACE
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _EMISSION _NORMALMAP _NORMALMAP_TANGENT_SPACE
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2ad5fc35c563c234d83f3d7d8ec6d827, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
@@ -114,7 +114,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 814d62fc459d4d54c917804a494f0d53, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:

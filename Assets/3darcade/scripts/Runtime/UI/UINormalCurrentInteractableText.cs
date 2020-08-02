@@ -44,9 +44,6 @@ namespace Arcade
             InteractionController.OnCurrentModelConfigurationChanged -= OnTargetChange;
         }
 
-        private void OnTargetChange(ModelConfigurationComponent modelConfiguration)
-        {
-            _text.text = modelConfiguration != null ? modelConfiguration.DescriptiveName : string.Empty;
-        }
+        private void OnTargetChange(ModelConfigurationComponent modelConfiguration) => _text.text = modelConfiguration != null ? modelConfiguration.DescriptiveName : string.Empty;
     }
 }

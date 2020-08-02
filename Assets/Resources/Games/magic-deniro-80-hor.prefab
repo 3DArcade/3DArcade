@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &687440206928488452
+--- !u!1 &1044096534371018165
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6652956829357345553}
-  - component: {fileID: 4505872961835100968}
-  - component: {fileID: 6983016457944707473}
+  - component: {fileID: 6603169312779208352}
+  - component: {fileID: 4143088353595254425}
+  - component: {fileID: 7430815163779759136}
   m_Layer: 0
   m_Name: magic-deniro80-hor_Mesh05
   m_TagString: Untagged
@@ -18,35 +18,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6652956829357345553
+--- !u!4 &6603169312779208352
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687440206928488452}
+  m_GameObject: {fileID: 1044096534371018165}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0025630381, y: 0.94413006, z: 0.2612437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4029225320408251922}
+  m_Father: {fileID: 3467077273752761251}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4505872961835100968
+--- !u!33 &4143088353595254425
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687440206928488452}
+  m_GameObject: {fileID: 1044096534371018165}
   m_Mesh: {fileID: 7609857643708198645, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
---- !u!23 &6983016457944707473
+--- !u!23 &7430815163779759136
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687440206928488452}
+  m_GameObject: {fileID: 1044096534371018165}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,84 +59,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1da7a2c98806e3a46b741be83aebf88c, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!1 &2203907136614536553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3896024609407308767}
-  - component: {fileID: 4510860966637395176}
-  - component: {fileID: 387458288363203159}
-  m_Layer: 0
-  m_Name: magic-deniro80-hor_Mesh03
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3896024609407308767
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203907136614536553}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000018462015, y: 1.2000892, z: 0.06036225}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4029225320408251922}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4510860966637395176
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203907136614536553}
-  m_Mesh: {fileID: -4532468098698596529, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
---- !u!23 &387458288363203159
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203907136614536553}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
   - {fileID: 2100000, guid: 1da7a2c98806e3a46b741be83aebf88c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -145,7 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -158,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &2262156675167893765
+--- !u!1 &1771019659546768564
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,9 +88,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2627247044253344698}
-  - component: {fileID: 70257009686834687}
-  - component: {fileID: 4526521905427940231}
+  - component: {fileID: 2558884862757432843}
+  - component: {fileID: 508551741020627022}
+  - component: {fileID: 4118058955540991542}
   m_Layer: 0
   m_Name: magic-deniro80-hor_Mesh04
   m_TagString: Untagged
@@ -176,35 +98,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2627247044253344698
+--- !u!4 &2558884862757432843
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2262156675167893765}
+  m_GameObject: {fileID: 1771019659546768564}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0.00009778392, y: 1.0279027, z: 0.15370192}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4029225320408251922}
+  m_Father: {fileID: 3467077273752761251}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &70257009686834687
+--- !u!33 &508551741020627022
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2262156675167893765}
+  m_GameObject: {fileID: 1771019659546768564}
   m_Mesh: {fileID: 637627617023217452, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
---- !u!23 &4526521905427940231
+--- !u!23 &4118058955540991542
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2262156675167893765}
+  m_GameObject: {fileID: 1771019659546768564}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -217,6 +139,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d1d4c2832919f5d4b8fe0199b8c81328, type: 2}
+  - {fileID: 2100000, guid: d1d4c2832919f5d4b8fe0199b8c81328, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +147,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -237,7 +160,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &4318303557173486937
+--- !u!1 &1829304365370185944
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,45 +168,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1768809064051080600}
-  - component: {fileID: 4027623625715920194}
-  - component: {fileID: 9016215936323647276}
+  - component: {fileID: 3595652339367321198}
+  - component: {fileID: 4138503886689620313}
+  - component: {fileID: 186794103395510246}
   m_Layer: 0
-  m_Name: magic-deniro80-hor_Mesh02
+  m_Name: magic-deniro80-hor_Mesh03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1768809064051080600
+--- !u!4 &3595652339367321198
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4318303557173486937}
+  m_GameObject: {fileID: 1829304365370185944}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0003906933, y: 1.2060354, z: 0.09321144}
+  m_LocalPosition: {x: 0.000018462015, y: 1.2000892, z: 0.06036225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4029225320408251922}
-  m_RootOrder: 2
+  m_Father: {fileID: 3467077273752761251}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4027623625715920194
+--- !u!33 &4138503886689620313
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4318303557173486937}
-  m_Mesh: {fileID: 7860865731104578440, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
---- !u!23 &9016215936323647276
+  m_GameObject: {fileID: 1829304365370185944}
+  m_Mesh: {fileID: -4532468098698596529, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
+--- !u!23 &186794103395510246
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4318303557173486937}
+  m_GameObject: {fileID: 1829304365370185944}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -295,7 +218,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d1d4c2832919f5d4b8fe0199b8c81328, type: 2}
+  - {fileID: 2100000, guid: 1da7a2c98806e3a46b741be83aebf88c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -303,7 +226,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -316,7 +239,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &4368913543324574888
+--- !u!1 &4203518111421242628
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,77 +247,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4029225320408251922}
-  - component: {fileID: 9002737617037435046}
-  - component: {fileID: 1104812871859367805}
-  m_Layer: 0
-  m_Name: magic-deniro-80-hor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4029225320408251922
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368913543324574888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 943078064758282287}
-  - {fileID: 4602499191748656683}
-  - {fileID: 1768809064051080600}
-  - {fileID: 3896024609407308767}
-  - {fileID: 2627247044253344698}
-  - {fileID: 6652956829357345553}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9002737617037435046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368913543324574888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.65579927, y: 1.7843038, z: 0.734754}
-  m_Center: {x: -0.000000029802322, y: 0.891161, z: -0.004632503}
---- !u!54 &1104812871859367805
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368913543324574888}
-  serializedVersion: 2
-  m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &4441325550174376117
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 943078064758282287}
-  - component: {fileID: 8630157392773143547}
-  - component: {fileID: 4874964154272697534}
-  - component: {fileID: 4625478266263224790}
+  - component: {fileID: 784008953084040606}
+  - component: {fileID: 8084908085532546634}
+  - component: {fileID: 4922572296264237327}
+  - component: {fileID: 3414049354727740541}
   m_Layer: 0
   m_Name: magic-deniro80-hor_Mesh00
   m_TagString: Untagged
@@ -402,35 +258,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &943078064758282287
+--- !u!4 &784008953084040606
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441325550174376117}
+  m_GameObject: {fileID: 4203518111421242628}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0004594922, y: 1.6606474, z: 0.26375836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4029225320408251922}
+  m_Father: {fileID: 3467077273752761251}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8630157392773143547
+--- !u!33 &8084908085532546634
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441325550174376117}
+  m_GameObject: {fileID: 4203518111421242628}
   m_Mesh: {fileID: -2127686044414093302, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
---- !u!23 &4874964154272697534
+--- !u!23 &4922572296264237327
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441325550174376117}
+  m_GameObject: {fileID: 4203518111421242628}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -450,7 +306,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -463,19 +319,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4625478266263224790
+--- !u!114 &3414049354727740541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441325550174376117}
+  m_GameObject: {fileID: 4203518111421242628}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9aa47212c50c2e74481929b830685047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8210401646947915631
+--- !u!1 &4275702502125250841
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,10 +339,139 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4602499191748656683}
-  - component: {fileID: 6712325203246198432}
-  - component: {fileID: 209766251189612855}
-  - component: {fileID: 4623536117198982068}
+  - component: {fileID: 3467077273752761251}
+  - component: {fileID: 8059361525962727212}
+  m_Layer: 0
+  m_Name: magic-deniro-80-hor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3467077273752761251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275702502125250841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 784008953084040606}
+  - {fileID: 4046620453288997786}
+  - {fileID: 2268465133345632297}
+  - {fileID: 3595652339367321198}
+  - {fileID: 2558884862757432843}
+  - {fileID: 6603169312779208352}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8059361525962727212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275702502125250841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65579927, y: 1.7843038, z: 0.734754}
+  m_Center: {x: -0.000000029802322, y: 0.891161, z: -0.004632503}
+--- !u!1 &4330938133736335592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2268465133345632297}
+  - component: {fileID: 3464351290575364339}
+  - component: {fileID: 8851596241384307357}
+  m_Layer: 0
+  m_Name: magic-deniro80-hor_Mesh02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2268465133345632297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330938133736335592}
+  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0003906933, y: 1.2060354, z: 0.09321144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3467077273752761251}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3464351290575364339
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330938133736335592}
+  m_Mesh: {fileID: 7860865731104578440, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
+--- !u!23 &8851596241384307357
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330938133736335592}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d1d4c2832919f5d4b8fe0199b8c81328, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &8504506601119505118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046620453288997786}
+  - component: {fileID: 6544257236096099089}
+  - component: {fileID: 368761041676942470}
+  - component: {fileID: 3195061255313990654}
   m_Layer: 0
   m_Name: magic-deniro80-hor_Mesh01
   m_TagString: Untagged
@@ -494,35 +479,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4602499191748656683
+--- !u!4 &4046620453288997786
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8210401646947915631}
+  m_GameObject: {fileID: 8504506601119505118}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 6.4028427e-10, y: 1.2106827, z: 0.10755351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4029225320408251922}
+  m_Father: {fileID: 3467077273752761251}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6712325203246198432
+--- !u!33 &6544257236096099089
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8210401646947915631}
+  m_GameObject: {fileID: 8504506601119505118}
   m_Mesh: {fileID: -526377979155433821, guid: d250dc24dabc8904894a4a8e0e72c659, type: 3}
---- !u!23 &209766251189612855
+--- !u!23 &368761041676942470
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8210401646947915631}
+  m_GameObject: {fileID: 8504506601119505118}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -542,7 +527,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -555,13 +540,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4623536117198982068
+--- !u!114 &3195061255313990654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8210401646947915631}
+  m_GameObject: {fileID: 8504506601119505118}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2500d90d07ed1a0469e7eddaa7ba519d, type: 3}

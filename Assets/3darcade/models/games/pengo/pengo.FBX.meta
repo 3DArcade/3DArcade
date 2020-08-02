@@ -1,71 +1,11 @@
 fileFormatVersion: 2
 guid: 9c26a189453d57640a830a77f002dffe
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-bezel
-    second: {fileID: 2100000, guid: 1451c199563bb7e4c90b3d4671eca16c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-cpo
-    second: {fileID: 2100000, guid: 7f6353dede1c54f47949b5692a0b93f4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-flaps
-    second: {fileID: 2100000, guid: 5951145352a1aae46b71e24203eef1c3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-flatblack
-    second: {fileID: 2100000, guid: 6076a4a9abd9f7a419f4fa87f47ba85d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-joystick
-    second: {fileID: 2100000, guid: 1b092f83876d39b458b1ee7b7ea489ea, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-marquee
-    second: {fileID: 2100000, guid: 4965cae9aa770d4418512f459d281530, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-metal
-    second: {fileID: 2100000, guid: c295bf358af7c634a8e9aa526a80b27b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-monitor
-    second: {fileID: 2100000, guid: 2b77e096fb47fc4478326497370c1878, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-screen
-    second: {fileID: 2100000, guid: ef81faba57ca8b14592d10ab2a9d9d0f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-shiny
-    second: {fileID: 2100000, guid: e8144ffe194c2b84b94eb744e811c200, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-shinyyellow
-    second: {fileID: 2100000, guid: 4a4cb88ddb995e44699c3c62431d2bce, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pengo-textures
-    second: {fileID: 2100000, guid: ff4798de9b3a6c94bac43d468ec1bfed, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -98,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -129,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -147,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

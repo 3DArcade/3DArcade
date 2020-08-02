@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d938c0bf9fae5094f8d9ca9be927782b
 ModelImporter:
-  serializedVersion: 28
+  serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: 8440248360967096626
@@ -26,11 +26,11 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
-    animationWrapMode: 2
+    animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
@@ -46,6 +46,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -86,10 +87,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0

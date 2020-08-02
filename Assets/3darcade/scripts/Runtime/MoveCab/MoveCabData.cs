@@ -36,10 +36,25 @@ namespace Arcade
 
         public int SavedLayer;
 
+        public void Set(ModelConfigurationComponent targetModel, Collider collider, Rigidbody rigidbody)
+        {
+            ModelSetup = targetModel;
+            Collider   = collider;
+            if (Rigidbody != null)
+            {
+                Rigidbody.angularVelocity = Vector3.zero;
+            }
+            Rigidbody = rigidbody;
+        }
+
         public void Reset()
         {
             ModelSetup  = null;
             Collider    = null;
+            if (Rigidbody != null)
+            {
+                Rigidbody.angularVelocity = Vector3.zero;
+            }
             Rigidbody   = null;
             ScreenPoint = Vector2.zero;
             AimPosition = Vector2.zero;

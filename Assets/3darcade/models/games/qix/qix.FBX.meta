@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: 12d5e7646100e4a45bdfc28fd8491cbe
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-bezel
-    second: {fileID: 2100000, guid: 224e9a571e5166443b690ca863d2dfaa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-marquee
-    second: {fileID: 2100000, guid: c598c677d6150314790a47d48f2d1e30, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-metal
-    second: {fileID: 2100000, guid: 15819d334354fb64c83f51e57d0e9bef, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-monitor
-    second: {fileID: 2100000, guid: 809ac38428b35184995eaf332e3cbb2f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-shiny
-    second: {fileID: 2100000, guid: 977d603f133fd2d4bb85d8dd147fb97c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-shinyred
-    second: {fileID: 2100000, guid: 940a93cbd5499e44e8d5d77d77c3a020, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-shinywhite
-    second: {fileID: 2100000, guid: e85cccb00841e9146b9ca11ffcbc7f04, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qix-textures
-    second: {fileID: 2100000, guid: 31d3e1972848e9348b6bf88d2c7b7ba2, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -78,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

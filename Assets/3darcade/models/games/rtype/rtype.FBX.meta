@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: 70e355e61c9f6e64dbfa4ab7e67c5da0
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01-rtype-marquee
-    second: {fileID: 2100000, guid: 17146a46f01e9c94fa4c7a4e210eab1a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02-rtype-monitor
-    second: {fileID: 2100000, guid: db684c6d10aa5e341b01dfe13ec5e822, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rtype-back
-    second: {fileID: 2100000, guid: 9a1d9cb8f93a3034298dbee6954da168, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rtype-coin
-    second: {fileID: 2100000, guid: 2d15004ac63ea444cbc84f2ac6068106, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rtype-cpo
-    second: {fileID: 2100000, guid: 67d6fd9c028b8b44d9954686b2be464c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rtype-left
-    second: {fileID: 2100000, guid: 29b58ab613907fa43813f85ad0f22867, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rtype-plexi
-    second: {fileID: 2100000, guid: eeb003d5894a75b428738f3e8e34d5e9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rtype-right
-    second: {fileID: 2100000, guid: c8d87c6016bacce4bb44754b45590f3d, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

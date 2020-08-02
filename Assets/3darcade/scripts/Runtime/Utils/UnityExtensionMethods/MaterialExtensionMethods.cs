@@ -171,6 +171,7 @@ namespace Arcade
                 return;
             }
 
+            material.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_KEYWORD, 0f);
             material.EnableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
         }
 

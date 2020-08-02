@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: b0c5760178f3728458fa04e013d8dcde
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-bezel
-    second: {fileID: 2100000, guid: c7b4a82a007c4954cb4e7c790549db78, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-marquee
-    second: {fileID: 2100000, guid: ba06ee57084e06c4fbd6b38d71f32f48, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-metal
-    second: {fileID: 2100000, guid: fdbd0f3d0202a09408e989ed904df08e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-monitor
-    second: {fileID: 2100000, guid: cddf136992a922a4eaede34cc269a814, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-shiny
-    second: {fileID: 2100000, guid: 9a1271ebd8bed134b8142e74c0af172e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-shinyred
-    second: {fileID: 2100000, guid: f0896371e2d65b342845fb7afbef620a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-shinywhite
-    second: {fileID: 2100000, guid: 435bb2faee32c42408080975906c2b3c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: zookeep-textures
-    second: {fileID: 2100000, guid: d1042245cc48d1f469234110f0dbb65f, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -78,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

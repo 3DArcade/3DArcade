@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: 8cd8ccbcdb34f3541b0d93a3f8b5f2f8
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01-szaxxon-marquee
-    second: {fileID: 2100000, guid: af2755d5042b29740b0f25870ba94609, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02-szaxxon-monitor
-    second: {fileID: 2100000, guid: 5044fb6113cc8154d87c6c6d79a0247f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-coin
-    second: {fileID: 2100000, guid: 5d2de43f7d981234c8ff2d43dd736365, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-cpo
-    second: {fileID: 2100000, guid: 0b3cc750e6a175f4eab7ed12aa8b65de, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-joy
-    second: {fileID: 2100000, guid: 484f464bfc1fbb743ad2e1b2e86f5519, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-left
-    second: {fileID: 2100000, guid: 8499738873f47c64a907661130901f37, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-plexi
-    second: {fileID: 2100000, guid: 01220e0888e8df64b8730b3b0048c69b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-right
-    second: {fileID: 2100000, guid: 737772440c634a24aa61484a8c2d709a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: szaxxon-tmold
-    second: {fileID: 2100000, guid: 1c3822a27da9dc34c9361d9e5abc33c5, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -88,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

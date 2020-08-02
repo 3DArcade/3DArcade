@@ -1,86 +1,11 @@
 fileFormatVersion: 2
 guid: e70c758b1f3386b41bf688e51f4ef4df
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-bezel
-    second: {fileID: 2100000, guid: d07c0771ca87df64ba445bd83c628dba, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-black
-    second: {fileID: 2100000, guid: 978a72712d437724d9e299fa8de8de94, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-coin
-    second: {fileID: 2100000, guid: 106a8d838bf37e944a655aa94d831549, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-joyshaft
-    second: {fileID: 2100000, guid: 6ca40c7171f26a345bb4d188ed844e8c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-lightblue
-    second: {fileID: 2100000, guid: 917904b8c10fef14b859e23af8a2cc8e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-marquee
-    second: {fileID: 2100000, guid: 553ff0a93a6742149b308b9cd661c743, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-monitor
-    second: {fileID: 2100000, guid: e95ffc6d3d6cedd40a7d43b31e8e7c3b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-red
-    second: {fileID: 2100000, guid: 138d77b0e7b2fd64c89828a351203d57, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-sideleft-l
-    second: {fileID: 2100000, guid: 4c316f11043c16c4e8d2cb019a85be6c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-sideleft-m
-    second: {fileID: 2100000, guid: 7c73e78d0cf450945bdf1c353b9e1d51, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-sideleft-r
-    second: {fileID: 2100000, guid: c9d1c3731f47cea4195063b9fe831973, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-sideright-l
-    second: {fileID: 2100000, guid: 38e85b68fd100d844b68f8c1bfb4adca, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-sideright-m
-    second: {fileID: 2100000, guid: 0f54679aed15e47448c43db254ddfc09, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-sideright-r
-    second: {fileID: 2100000, guid: 1f363e55da62b34419366879f5a8fcf4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mspacman-white
-    second: {fileID: 2100000, guid: fc8281d6c96634f4fbd3d596d86ceb00, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -118,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -144,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -162,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

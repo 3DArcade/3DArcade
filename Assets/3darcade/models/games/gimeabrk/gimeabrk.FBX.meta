@@ -1,59 +1,9 @@
 fileFormatVersion: 2
 guid: 437f25761a8ff6548ba36dbb0cba320c
 ModelImporter:
-  serializedVersion: 19300
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkbezel
-    second: {fileID: 2100000, guid: 01a4792e8999ab441bf20973cc4fcec1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkmarquee
-    second: {fileID: 2100000, guid: b4656071e7e96d84eac3ff2a8311dd96, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkmonitor
-    second: {fileID: 2100000, guid: 6667ea44cf5ccc1489e888071725b273, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkred
-    second: {fileID: 2100000, guid: 508723afe4475964c8b4540f68429f1b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gimeabrksideart
-    second: {fileID: 2100000, guid: 24d6108183fc8244b8ec39687a808168, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: minigolfyellow
-    second: {fileID: 2100000, guid: d356b7d33cff05b4b809573573f1bc89, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkbezel
-    second: {fileID: 2800000, guid: 45aa7d487e3e5db49bccdea8ff459480, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkmarquee
-    second: {fileID: 2800000, guid: 2a567f1557c6d0342b5b9879de7d0c5b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: gimeabrkmonitor
-    second: {fileID: 2800000, guid: 617ab9aaaacb8ca4d9442c0c7a367a09, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: gimeabrksideart
-    second: {fileID: 2800000, guid: 35ead11f5d511b545a028150055881f7, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -72,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -87,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -105,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -137,7 +88,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   additionalBone: 0

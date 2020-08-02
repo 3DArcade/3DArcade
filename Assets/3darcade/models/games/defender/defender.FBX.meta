@@ -1,86 +1,11 @@
 fileFormatVersion: 2
 guid: a40aba37f126017478e437bb1bcdc6fa
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01_defender_marquee
-    second: {fileID: 2100000, guid: 9250c1519483fa1428437d80c69e19c5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02_defender_screen
-    second: {fileID: 2100000, guid: 74ab5c548498c2041985527d7e0a9e76, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_bezel
-    second: {fileID: 2100000, guid: f68093455e442f340a0e6d94c6a95915, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_black
-    second: {fileID: 2100000, guid: 8874e783f0c390c4882cff427922598a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_cpocoin
-    second: {fileID: 2100000, guid: ef49e5385f7d2bd428074bb3f93a0205, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_shinyblack
-    second: {fileID: 2100000, guid: 347bc4c431287244a8c769e5e87d8ef6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_shinygreen
-    second: {fileID: 2100000, guid: ccf9e288fa5712045aa64bb69308d83a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_shinyred
-    second: {fileID: 2100000, guid: 894c7a8c48b033d4dac703acd0d4912f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_shinywhite
-    second: {fileID: 2100000, guid: d82f9dbf1aea91047bd86e182b244d3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: defender_sideart
-    second: {fileID: 2100000, guid: 63004c4d327a6cf40a5df0b0d3015f66, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: defender_bezel
-    second: {fileID: 2800000, guid: 7d5d6248cb9afd146b91da2a410463a8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: defender_cpocoin
-    second: {fileID: 2800000, guid: e0c9c4ebc15d4bf49baa2caa6dd0066c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: defender_marquee
-    second: {fileID: 2800000, guid: b3c2291d5d2ee444ca2eb30b5b2d7e5e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: defender_sideart
-    second: {fileID: 2800000, guid: 706d050838477b243b37da2b654ad778, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: defender_snap
-    second: {fileID: 2800000, guid: 7bee68de1e821ad40a30e217e3b2aeba, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -97,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -112,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -130,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -144,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -162,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

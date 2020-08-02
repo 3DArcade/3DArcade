@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: f703b3c31a5316a4d88a2afa593ca007
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagman-bezel
-    second: {fileID: 2100000, guid: 6f1bfd1bfd92f2840b9a93547e462601, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagman-cabinet
-    second: {fileID: 2100000, guid: bed952e04dffaa842835f22ec2c25042, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagman-metal
-    second: {fileID: 2100000, guid: 1c2d32d5e9cf08d45b73a6ce80be867c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagman-shiny
-    second: {fileID: 2100000, guid: 83d22fe40c784b440aa4e00c127aeec8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagman-shinyred
-    second: {fileID: 2100000, guid: 5d364bcd93365bc4bbec0e270dcb9fd2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagman-shinywhite
-    second: {fileID: 2100000, guid: 8746b0c0b0a67b04687dc16c8dc24a14, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagmancoindoor
-    second: {fileID: 2100000, guid: 03e595d466a08564f8fa2045cee389a3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagmanmarquee
-    second: {fileID: 2100000, guid: 0bca9b21e5d106c489ec1e9a8280ffe5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bagmanmonitor
-    second: {fileID: 2100000, guid: af304152d73fe15488e137944aa67de9, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

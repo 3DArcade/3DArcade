@@ -1,121 +1,11 @@
 fileFormatVersion: 2
 guid: 284c16829678d1842ac1aab9cff74d0b
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-bezelart
-    second: {fileID: 2100000, guid: 132105947ffb97d4cafef1155901f660, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-bezelbotart
-    second: {fileID: 2100000, guid: 6dff6228d3b720c4fa06b299fcd84806, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-black
-    second: {fileID: 2100000, guid: 66e69243c4baa7b47b9be1f00af1a33f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-coinart
-    second: {fileID: 2100000, guid: 6ca09c17c5521f64db43922d285ad6a9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-cpoart
-    second: {fileID: 2100000, guid: 0001bdcd186d66549afa2fc94cedcfda, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-ctrlstickart
-    second: {fileID: 2100000, guid: c8141190d0302484ca11429dbcf94494, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-marqueeart
-    second: {fileID: 2100000, guid: 4804fc05d43c4f94ea3fe78bfba3b7af, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-monitorart
-    second: {fileID: 2100000, guid: a2f574c47e1d0d146997c8177935969c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-red
-    second: {fileID: 2100000, guid: 483936555d616224c9c209f70ac74903, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-sideart
-    second: {fileID: 2100000, guid: 92695202f9cc75a46954e2e3edb8147c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-sideright-l
-    second: {fileID: 2100000, guid: 8dcdc1aaa0f8c97479a514835a2c5be0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-sideright-m
-    second: {fileID: 2100000, guid: c5256f1a31fc2834b9b9f0c60f10a13b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-sideright-r
-    second: {fileID: 2100000, guid: 73ffed94ca564d24dbd31b55eef73910, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-whitebutton
-    second: {fileID: 2100000, guid: 1a90768c6e186554b8a695bc5ad29a48, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-bezel
-    second: {fileID: 2800000, guid: 3076884bbd99c5b44aa29f8729198965, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-bezelbot
-    second: {fileID: 2800000, guid: c1e1da2ecd9d2344e8c96318b6aebebe, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-coin
-    second: {fileID: 2800000, guid: 7ebef0ac422a5da47948fc842b6101c8, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-cpo
-    second: {fileID: 2800000, guid: 1c3975f72de426d428c86384e9a896ec, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-marquee
-    second: {fileID: 2800000, guid: 9fa890522b2f3e340833751ca79f5cf6, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-sideart
-    second: {fileID: 2800000, guid: 4a5ddc7a561bde7478077bb9423db743, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-smallsideart
-    second: {fileID: 2800000, guid: 49ec3538d01d19845be97d2f300d8089, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: arkanoid-sshot
-    second: {fileID: 2800000, guid: ef362047615766240957ee0dff7146de, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -132,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -147,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -165,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -179,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -197,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

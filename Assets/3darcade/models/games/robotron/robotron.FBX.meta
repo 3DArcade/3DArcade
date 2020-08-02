@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: 3bbf120a0d5e5c34d977e1c66b51df2d
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-bezel
-    second: {fileID: 2100000, guid: ee3809f9257c496489435185271c5040, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-cabinet
-    second: {fileID: 2100000, guid: 16f146a3a2f95ee46b11b55b0b76a5aa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-marquee
-    second: {fileID: 2100000, guid: a081e9ecdfc75a2488bce16ba730ad5a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-metal
-    second: {fileID: 2100000, guid: de70d1ad689a573418770c6055e8ced7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-molding
-    second: {fileID: 2100000, guid: ad9e5b38a492c29409576937676cc7dc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-screen
-    second: {fileID: 2100000, guid: 96f22e1144a3c834e896a18c471dd2d3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-shinyblue
-    second: {fileID: 2100000, guid: 8799732514c7dd5439ae2dd240da11f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-shinyred
-    second: {fileID: 2100000, guid: d59ea30c5d0b30c4bb81b94ec601b701, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: robotron-sides
-    second: {fileID: 2100000, guid: 19cbc7da6f31e914fb0d2adfd31649ab, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

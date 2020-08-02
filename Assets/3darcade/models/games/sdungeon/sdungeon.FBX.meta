@@ -1,46 +1,11 @@
 fileFormatVersion: 2
 guid: c8ec55e03e52ebd43b66693b3a3907e6
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-bezel
-    second: {fileID: 2100000, guid: dade219637ee125449072ddbea15b2de, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-marquee
-    second: {fileID: 2100000, guid: cffbabe0c738a5a4a9041bc06af703ba, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-metal
-    second: {fileID: 2100000, guid: 91eba5c09f2d7444e89e464eb260e834, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-monitor
-    second: {fileID: 2100000, guid: c021e08a65f4d5d4c8926c2bab904956, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-shiny
-    second: {fileID: 2100000, guid: 3e69f7b6dac44fd4b9815891c8fca2a6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-shinywhite
-    second: {fileID: 2100000, guid: 3bcca7c5d9f942147ad16c991b641c87, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: sdungeon-textures
-    second: {fileID: 2100000, guid: 55bf7ba85b0b4d843ad80c44edd1ba1b, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -73,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -104,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -122,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

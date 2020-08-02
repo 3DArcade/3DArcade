@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: bbe8eea8fbea67044a6f9058a93bf74e
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-bezel
-    second: {fileID: 2100000, guid: e4e597a01f8d85941bba52ed95e597b6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-marquee
-    second: {fileID: 2100000, guid: 28cc7449f1a847a4995d26d27643ed12, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-metal
-    second: {fileID: 2100000, guid: 5642e5ff6e0761643ae60a11303c4897, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-monitor
-    second: {fileID: 2100000, guid: 2f04cd427339563488daaaf92c061685, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-shiny
-    second: {fileID: 2100000, guid: e7f6b7d0cce3d9f4b8f9c297baaebebb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-shinyred
-    second: {fileID: 2100000, guid: 11597eb33ac34ca4f907e7fdc888a4ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-shinywhite
-    second: {fileID: 2100000, guid: 7d59bf507e79af440983f7f13d31dc01, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: elecyoyo-textures
-    second: {fileID: 2100000, guid: 88de0aa3fc2a01846991ac95c5c45aba, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -78,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

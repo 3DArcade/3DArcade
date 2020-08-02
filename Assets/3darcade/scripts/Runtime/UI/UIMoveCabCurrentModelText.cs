@@ -44,6 +44,6 @@ namespace Arcade
             MoveCabController.OnCurrentModelChanged -= OnTargetChange;
         }
 
-        private void OnTargetChange(string name) => _text.text = name;
+        private void OnTargetChange(ModelConfigurationComponent modelConfiguration) => _text.text = modelConfiguration != null ? modelConfiguration.DescriptiveName : string.Empty;
     }
 }

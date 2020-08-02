@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: 58e3f82776c4d4d4cadb2994fa2b5848
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: frogger-all
-    second: {fileID: 2100000, guid: 0375ed06845386049aa5823b1ded8889, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: frogger-bezelglass
-    second: {fileID: 2100000, guid: e1c980314df51934fa64f82210a3193b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: frogger-marquee
-    second: {fileID: 2100000, guid: 669eec8aa75a5c5409540369eb649d3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: frogger-monitor
-    second: {fileID: 2100000, guid: 39ae827d72f448e49a76b2a2ce5a5184, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: 2x2black
-    second: {fileID: 2800000, guid: 4ed181f9878be7c448eae1708018daf1, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Refmap_light3
-    second: {fileID: 2800000, guid: 964ce8d39045f784f9ba475ba9b3830c, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: frogger
-    second: {fileID: 2800000, guid: 1974e36c2fe9e9746b96c2f1253fe415, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: frogger-all
-    second: {fileID: 2800000, guid: 96bb2b25312f15845b85140e1b946c83, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

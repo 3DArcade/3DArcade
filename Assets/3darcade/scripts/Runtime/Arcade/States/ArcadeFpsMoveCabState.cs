@@ -38,6 +38,8 @@ namespace Arcade
         {
             Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
+            _context.VideoPlayerController.StopAllVideos();
+
             _context.PlayerFpsControls.FpsArcadeActions.Enable();
             if (Cursor.visible)
             {
@@ -50,8 +52,6 @@ namespace Arcade
             _moveCabContext.TransitionTo<MoveCabAimState>();
 
             _context.UIController.EnableMoveCabUI();
-
-            _context.VideoPlayerController.StopAllVideos();
         }
 
         public override void OnExit()

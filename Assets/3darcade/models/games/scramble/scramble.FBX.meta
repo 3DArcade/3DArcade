@@ -1,91 +1,11 @@
 fileFormatVersion: 2
 guid: 1e4d507f011590a48b99e29d2c468b08
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-bezelart
-    second: {fileID: 2100000, guid: 1a5b5d9e16b62d04f9d641493ac11e24, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-black
-    second: {fileID: 2100000, guid: 5d9eeed2ba68a8f4e87431cb4af37e42, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-buttoncolours
-    second: {fileID: 2100000, guid: 6838861ae252589449f332f7b85d9c86, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-buttonred
-    second: {fileID: 2100000, guid: 74dad72864164ff4aac15420efa46627, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-coinart
-    second: {fileID: 2100000, guid: cdd01d998f0e67c4f951a14befafea92, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-cpoart
-    second: {fileID: 2100000, guid: ce570eebb131be745a09faaf11b070b4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-marqueeart
-    second: {fileID: 2100000, guid: 700d76531bc075745987148316ecde9c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-monitorart
-    second: {fileID: 2100000, guid: 03f5ff819fc176645af997fa6c110d79, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-sideleftin
-    second: {fileID: 2100000, guid: 3e964a0a3de4e584a96d439376895616, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-sideleftout
-    second: {fileID: 2100000, guid: f2ec91866f1db95419ab476c017ac19b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-sidelefttmold
-    second: {fileID: 2100000, guid: ec09f0649d4a530458cb99037e779f3d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-siderightin
-    second: {fileID: 2100000, guid: ffebc7a5cabb0ec4da0de2c4bda9350c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-siderightout
-    second: {fileID: 2100000, guid: 8736ea0fe51150a4e950771db81b5263, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-siderighttmold
-    second: {fileID: 2100000, guid: 51a45c0b30223ec4b98ff46da37e672e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-speakerart
-    second: {fileID: 2100000, guid: 06fb91dcb696f084b91f952d3478aa2e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: scramble-tmold
-    second: {fileID: 2100000, guid: 15e678254ac9b354681f98ba5d160d2c, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -123,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -149,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -167,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

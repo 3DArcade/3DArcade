@@ -1,106 +1,11 @@
 fileFormatVersion: 2
 guid: 86f1471ce43c49c4f82c4c590a073899
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01-mach3-marqueemat
-    second: {fileID: 2100000, guid: 3de7b2c10a67b74428b201038084fbe3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02-mach3-monitormat
-    second: {fileID: 2100000, guid: d80cdcf24301e6d47a0ecd2a063c2c3a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-backwindow
-    second: {fileID: 2100000, guid: 1070003295e81a3408fbefb2c7964bc0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-bezelmat
-    second: {fileID: 2100000, guid: e4e2a87c37a3ec74fbead2d0a0700b79, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-cabinetmat
-    second: {fileID: 2100000, guid: 56dc8bae79f1bdb418061948c02f4f66, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-controls
-    second: {fileID: 2100000, guid: 56fc0f908b27def41b990999544da403, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-misc
-    second: {fileID: 2100000, guid: d0f433b90ca300d4b9e269cd657c5e9f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-side2
-    second: {fileID: 2100000, guid: d05f4206faef5f946b2be21c83f059f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-sidemat
-    second: {fileID: 2100000, guid: ea2973abe9ac10e46a1589d1993bed6d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mach3-tmold
-    second: {fileID: 2100000, guid: 7d2d3f75278c42b4f843706cda37eebf, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: contorls
-    second: {fileID: 2800000, guid: 7d2142129c4848c468e0234cf642c042, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mach3-back
-    second: {fileID: 2800000, guid: 2e6affc38c9600640ba22e99fd7ba6d7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mach3-bezel
-    second: {fileID: 2800000, guid: e5d8c04aaacd4b74bbd5ec058c1fcce5, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mach3-marquee
-    second: {fileID: 2800000, guid: b15faa80fc2a654438b0432b18e37fca, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mach3-sides
-    second: {fileID: 2800000, guid: bc3201b3eb375a540b40b953679d0277, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mach3-sides copy
-    second: {fileID: 2800000, guid: 6b34de5cee77f48489cb97b0902e640e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: mach3-snap
-    second: {fileID: 2800000, guid: b909a6d7f2af7124a9253d651d1b1444, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: misc
-    second: {fileID: 2800000, guid: 2390a4c6918f3f240b23aa8924e98d34, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: tmold
-    second: {fileID: 2800000, guid: 9ff6767f9f50a83448c159ec7b31ebe7, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -138,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -164,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -182,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

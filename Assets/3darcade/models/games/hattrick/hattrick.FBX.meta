@@ -1,51 +1,11 @@
 fileFormatVersion: 2
 guid: 10046318216c4a64aa4314a8c9a88b21
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickbezel
-    second: {fileID: 2100000, guid: 8240bc4371678d8479df4908f87e94bd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickmarquee
-    second: {fileID: 2100000, guid: f78b60914a7493c4cada4a4425848f45, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickmetal
-    second: {fileID: 2100000, guid: 16ee0e133f81cc94f858626209d3f4c4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickmonitor
-    second: {fileID: 2100000, guid: cc130d81d9a41c0468c228796da8ac67, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickred
-    second: {fileID: 2100000, guid: 829f561fb55d6f145805455dd2f8284f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickshinyred
-    second: {fileID: 2100000, guid: ba4ddfe2e9bdf7b4d95e3fd3fb6d75c2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattrickshinywhite
-    second: {fileID: 2100000, guid: 771f3f6bb18a10646b7f1ff7843370a7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: hattricksideart
-    second: {fileID: 2100000, guid: fe5a554c133542140abfcbf8c13b4c04, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -78,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -109,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -127,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

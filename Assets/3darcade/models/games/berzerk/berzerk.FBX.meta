@@ -1,116 +1,11 @@
 fileFormatVersion: 2
 guid: b4898e9763ec66f42bae2afde289650a
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01_berzerk_marquee
-    second: {fileID: 2100000, guid: 9db86acd2abadfb4a9b879ed9d08f3a6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02_berzerk_snap
-    second: {fileID: 2100000, guid: bf503bd3256bd804aade6d05f39e4bc4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 03_berzerk_bezel
-    second: {fileID: 2100000, guid: 1f37d948753bb9449bac36b913158304, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_black
-    second: {fileID: 2100000, guid: ffc24921dfe6da845924e14479d345b5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_coin
-    second: {fileID: 2100000, guid: 7820a555b2d58bf41b733504fab0a7f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_cpo
-    second: {fileID: 2100000, guid: 1fc4d8e531edb6645b1d312ce140bf9f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_instructions
-    second: {fileID: 2100000, guid: 1e1b39cc2db85cd4b8ffd89d4c28b30a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_redbutton
-    second: {fileID: 2100000, guid: 9be39783c790850469ecdc17a9884db0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_sidel
-    second: {fileID: 2100000, guid: d1406393f269153459871d6a70e351c5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_sider
-    second: {fileID: 2100000, guid: 87fc8e19c098436458eca27bc58b8ead, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_speaker
-    second: {fileID: 2100000, guid: aeb3cf029d90bb54cada6c51cf9550b3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: berzerk_whitebutton
-    second: {fileID: 2100000, guid: 40ba9360616fa234e90c14edc65739f5, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_bezel
-    second: {fileID: 2800000, guid: 1450187b8dd7b0b4a935986ff60a8bfb, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_coin
-    second: {fileID: 2800000, guid: 4b23be26276f8e444a17c7c2d5b05614, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_cpo
-    second: {fileID: 2800000, guid: 000ba8f8e7d8bad499ac733444ce4f14, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_inst
-    second: {fileID: 2800000, guid: 2e8968838a2023645a0f7b25b27dc498, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_marquee
-    second: {fileID: 2800000, guid: d8b12b3f29651f04c9937a36356f1f17, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_sidel
-    second: {fileID: 2800000, guid: de9f1a9aca21433448708ccb273c2d5b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_sider
-    second: {fileID: 2800000, guid: ab4da98d2091b854794835bc2bcad9fb, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_snap
-    second: {fileID: 2800000, guid: ae7d8d5655ca39249901aae7fd7caff5, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: berzerk_speaker
-    second: {fileID: 2800000, guid: f8579820756dfa9439329fb73369ecc6, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -127,8 +22,8 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -142,16 +37,17 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
-    keepQuads: 0
+    useFileUnits: 0
+    keepQuads: 1
     weldVertices: 1
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -160,9 +56,9 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
@@ -174,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -192,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

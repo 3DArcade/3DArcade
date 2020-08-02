@@ -1,81 +1,11 @@
 fileFormatVersion: 2
 guid: 7befe38350e2c18408d50a90fab1792c
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-bezel
-    second: {fileID: 2100000, guid: be94cb28658d96a4ebdf89622ade9c0c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-black
-    second: {fileID: 2100000, guid: d98eba0e81a0b0a49b6ac7a834addce2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-blackbuttons
-    second: {fileID: 2100000, guid: dc1e946ccb3859642880a784f8b6871e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-coin
-    second: {fileID: 2100000, guid: 286a8326215a0b64a88e47e46d195aa9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-cpo
-    second: {fileID: 2100000, guid: 2c0b0321088deb84eab55e010755f851, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-marquee
-    second: {fileID: 2100000, guid: 9ec21bfe391bcbe4fa6ebab6d2d1bd6a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-monitor
-    second: {fileID: 2100000, guid: 607bb875f7ef24148a2b54c471af60bd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-red
-    second: {fileID: 2100000, guid: 7eabbd2bce37e374abf13cabd56ea6d2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-side-left-l
-    second: {fileID: 2100000, guid: df5a46c1b9d785242b7e6ead8ff3ebe2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-side-left-m
-    second: {fileID: 2100000, guid: b67b88cc781793d4bb721458869fa1df, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-side-left-r
-    second: {fileID: 2100000, guid: e5cb083a932459440983166fb454ec62, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-side-right-l
-    second: {fileID: 2100000, guid: 9e49f4b5eb1024e49b74906abe2ca118, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-side-right-m
-    second: {fileID: 2100000, guid: 4a368fc00636b904cabc1b646f836d0b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: tempest-side-right-r
-    second: {fileID: 2100000, guid: 215a6b74cbd74574696ca6bf2972b253, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -113,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -139,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -157,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

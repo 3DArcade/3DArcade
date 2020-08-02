@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: f47f48b07cf83d3489d19f3017e0f946
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-bezelart
-    second: {fileID: 2100000, guid: c9511440804da7c45badfdea74cd19a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-black
-    second: {fileID: 2100000, guid: 7169490ab62afbd44a48d9b90caf9d24, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-coinart
-    second: {fileID: 2100000, guid: 8da255528ca0428438388dd3340c09ae, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-marqueeart
-    second: {fileID: 2100000, guid: c467c5627b711ad43ba042507ab098e4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-metal
-    second: {fileID: 2100000, guid: 6e32b8fe71ace3847ae81faaafc1b600, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-monitorart
-    second: {fileID: 2100000, guid: bcd898e7cc92cde40bed5ad16991cbdd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-shinyblack
-    second: {fileID: 2100000, guid: a78500f1d26dc564cbee553702159d6d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-shinywhite
-    second: {fileID: 2100000, guid: e8c144d864f07ac4fab4fdf8c7c0dc39, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: teetert-textures
-    second: {fileID: 2100000, guid: 37130312462ec424c9724878e0ab67de, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

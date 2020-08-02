@@ -1,56 +1,11 @@
 fileFormatVersion: 2
 guid: d4d0cc8527964964e8260e4c31877a79
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-bezel
-    second: {fileID: 2100000, guid: 92c125d2db0be964296cc34808bd3c9f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-marquee
-    second: {fileID: 2100000, guid: 90da94ad392b2c04a9566304519b13fb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-metal
-    second: {fileID: 2100000, guid: 1a3631f0499235f43925af964708e1fe, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-monitor
-    second: {fileID: 2100000, guid: 56ffd4daa03f9dd46accccf1a53da0b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-shiny
-    second: {fileID: 2100000, guid: 05691bfc66698154fb5b6d123039e29f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-shinyred
-    second: {fileID: 2100000, guid: ae59d5b55a63f074196982684c2c431d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-shinywhite
-    second: {fileID: 2100000, guid: 6b9ff174f16fb0b43a8ff0b6773d66da, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-shinyyellow
-    second: {fileID: 2100000, guid: b01d65c0891cc08468036b7102a35dc0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: kram-textures
-    second: {fileID: 2100000, guid: 3f7155ce9360ad1429bccd521ec4513a, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -83,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -114,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -132,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

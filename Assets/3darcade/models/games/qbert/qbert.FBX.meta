@@ -1,81 +1,11 @@
 fileFormatVersion: 2
 guid: f185f901e18848a4381712f79d49ab90
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-bezel
-    second: {fileID: 2100000, guid: 87697ee3a2d40b748bcc59bba312d6ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-black
-    second: {fileID: 2100000, guid: 046391208c8bbee4394deb36b6a9882d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-blackball
-    second: {fileID: 2100000, guid: 4af25d3907cb09e4a990dc89094bbf34, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-blackbuttons
-    second: {fileID: 2100000, guid: 5383995a9090e6344a0f2238e6bfcf4e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-coin
-    second: {fileID: 2100000, guid: 2ed5216430d8acd47a4bc8c32bf1bcc0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-cpo
-    second: {fileID: 2100000, guid: d9c47ea27065b614ea527737b11a5b33, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-marquee
-    second: {fileID: 2100000, guid: 94027fce10a8a4d42b90e8f5f3701be5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-monitor
-    second: {fileID: 2100000, guid: 71ba18d576f7acd45b00b3f04bca0d20, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-side-left-l
-    second: {fileID: 2100000, guid: 350bd979cccf00b489048e32f13ccacc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-side-left-m
-    second: {fileID: 2100000, guid: 12c7c0544cb831847ba7c2286b7dc243, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-side-left-r
-    second: {fileID: 2100000, guid: 916a0045f745e3e458c20eadc45edb68, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-side-right-l
-    second: {fileID: 2100000, guid: 1aa9f39a1891f9948be5f32c6065222f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-side-right-m
-    second: {fileID: 2100000, guid: c867bd68438055d4098f60b15fc9729d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: qbert-side-right-r
-    second: {fileID: 2100000, guid: f626ea244a3d00f4e8693fea57e25666, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -113,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -139,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -157,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,86 +1,11 @@
 fileFormatVersion: 2
 guid: f68113b97f7a9b44582c53731aaae690
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-amarquee
-    second: {fileID: 2100000, guid: 7bb10b909795171409b84fd23bb6cef3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-amonitor
-    second: {fileID: 2100000, guid: 20fa33ba1a841d246acb48ba3e95f716, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-bezel
-    second: {fileID: 2100000, guid: d976d509d34e91a45afe3dca1a843e50, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-bezel2
-    second: {fileID: 2100000, guid: b0e385557a6257247bbdbfaffb31cf9d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-button
-    second: {fileID: 2100000, guid: bbb6784ccff6dbd4bb906b5c17eff7ae, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-cashdoor
-    second: {fileID: 2100000, guid: 08f5e55137df6694daeba35f302e8b9f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-coinpanel
-    second: {fileID: 2100000, guid: bedb3f5027a76fd4aabb946aed003c31, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-cpo
-    second: {fileID: 2100000, guid: 6d67c89c12b3d9d4284f33aaccb1604d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-metal
-    second: {fileID: 2100000, guid: 1afb9acbe00d6b64eb7c68c821d7c8bf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-plates
-    second: {fileID: 2100000, guid: d03d77be2375ccc42a6a59d1953fc197, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-shinyblack
-    second: {fileID: 2100000, guid: f61080b9a1d10aa46880cf8d39278c26, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-shinywhite
-    second: {fileID: 2100000, guid: 1474096208a0cfc4b9aa0577eeca1d80, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-side
-    second: {fileID: 2100000, guid: 2884c6241f9e63246991d7ab94de65c2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-speaker
-    second: {fileID: 2100000, guid: 8a76a4b46fa511f438fd2074f46d46e3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cavenger-wood
-    second: {fileID: 2100000, guid: eaad13d5f167ee24488529608cb4d3fb, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -113,11 +38,12 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
-    sortHierarchyByName: 0
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -144,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -162,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

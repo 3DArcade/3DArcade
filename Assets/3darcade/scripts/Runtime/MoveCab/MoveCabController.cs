@@ -28,7 +28,7 @@ namespace Arcade
 {
     public static class MoveCabController
     {
-        public static event Action<string> OnCurrentModelChanged;
+        public static event Action<ModelConfigurationComponent> OnCurrentModelChanged;
 
         public static void FindModelSetup(in MoveCabData data, in Ray ray, in float maxDistance, in LayerMask layerMask)
         {
@@ -40,52 +40,33 @@ namespace Arcade
                 if (targetModel != null && targetModel != data.ModelSetup)
                 {
                     int arcadeModelsLayer = LayerMask.NameToLayer("Arcade/ArcadeModels");
-                    int selectionLayer    = LayerMask.NameToLayer("Selection");
 
                     if (data.ModelSetup != null && data.ModelSetup.gameObject.layer != arcadeModelsLayer)
                     {
                         data.ModelSetup.transform.SetLayersRecursively(data.SavedLayer);
                     }
 
-                    data.ModelSetup = targetModel;
-                    data.Collider   = hitInfo.collider;
-
-                    if (data.Rigidbody != null)
-                    {
-                        data.Rigidbody.angularVelocity = Vector3.zero;
-                    }
-                    data.Rigidbody = hitInfo.rigidbody;
+                    data.Set(targetModel, hitInfo.collider, hitInfo.rigidbody);
 
                     if (data.ModelSetup.gameObject.layer != arcadeModelsLayer)
                     {
                         data.SavedLayer = data.ModelSetup.gameObject.layer;
-                        data.ModelSetup.transform.SetLayersRecursively(selectionLayer);
+                        data.ModelSetup.transform.SetLayersRecursively(LayerMask.NameToLayer("Selection"));
 
-                        OnCurrentModelChanged?.Invoke(data.ModelSetup.DescriptiveName);
+                        OnCurrentModelChanged?.Invoke(data.ModelSetup);
                     }
                     else
                     {
-                        OnCurrentModelChanged?.Invoke(string.Empty);
+                        OnCurrentModelChanged?.Invoke(null);
                     }
                 }
             }
             else
             {
-                ResetData(data);
+                data.Reset();
 
-                OnCurrentModelChanged?.Invoke(string.Empty);
+                OnCurrentModelChanged?.Invoke(null);
             }
-        }
-
-        private static void ResetData(MoveCabData data)
-        {
-            data.ModelSetup = null;
-            data.Collider   = null;
-            if (data.Rigidbody != null)
-            {
-                data.Rigidbody.angularVelocity = Vector3.zero;
-            }
-            data.Rigidbody = null;
         }
 
         public static void ManualMoveAndRotate(in Transform transform, in Rigidbody rigidbody, in Vector2 positionInput, in float rotationInput)

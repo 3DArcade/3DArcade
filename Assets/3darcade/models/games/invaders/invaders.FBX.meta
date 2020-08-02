@@ -1,66 +1,11 @@
 fileFormatVersion: 2
 guid: 1c247e4acdcbba144ab44b14ac8e1ec4
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01_invaders_fakemarquee
-    second: {fileID: 2100000, guid: ff55b3555075f4b43b7f73f29bb95ba2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 02_invaders-monitor
-    second: {fileID: 2100000, guid: af10d66eda8e8794fbd6197119785abf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: invaders-black
-    second: {fileID: 2100000, guid: 9d9a1ce8bf231ce4cb8e6f456b7c4899, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: invaders_bezel
-    second: {fileID: 2100000, guid: 29d1105001f5ad74985869d936d889df, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: invaders_cpocoin
-    second: {fileID: 2100000, guid: a91d1efc035fdca4bb685a930abaf938, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: invaders_side
-    second: {fileID: 2100000, guid: 34a4303d90d8ef84d99b00e56d801ae7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: invaders_whitebutton
-    second: {fileID: 2100000, guid: 4a7a7ae6e7af8cf43866210504f52eb0, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: invaders-sideart
-    second: {fileID: 2800000, guid: b87193867f093424cb6c5e19770b9191, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: invaders_bezel
-    second: {fileID: 2800000, guid: 88efb4323de508949a0c4042854667b0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: invaders_cpocoin
-    second: {fileID: 2800000, guid: a8057d63faa2ac84985051f186755326, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: invaders_snap
-    second: {fileID: 2800000, guid: df72dd2f8f3e94a4a810cf778dda1331, type: 3}
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -98,6 +43,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 0
@@ -124,7 +70,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -142,8 +87,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
