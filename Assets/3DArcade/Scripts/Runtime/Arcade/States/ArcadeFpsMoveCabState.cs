@@ -77,6 +77,8 @@ namespace Arcade
             if (_context.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
             {
                 _ = _context.SaveCurrentArcadeConfigurationModels();
+
+                _moveCabContext.TransitionTo<MoveCabNullState>();
                 _context.TransitionTo<ArcadeFpsNormalState>();
             }
 
