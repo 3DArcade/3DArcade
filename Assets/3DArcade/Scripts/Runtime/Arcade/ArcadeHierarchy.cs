@@ -28,11 +28,10 @@ namespace Arcade
     public sealed class ArcadeHierarchy
     {
         public readonly Transform RootNode;
-        public readonly Transform ArcadesNode;
         public readonly Transform GamesNode;
         public readonly Transform PropsNode;
 
-        private static readonly string[] _childNames = new string[] { "ArcadeModels", "GameModels", "PropModels" };
+        private static readonly string[] _childNames = new string[] { "GameModels", "PropModels" };
 
         public ArcadeHierarchy()
         {
@@ -50,19 +49,16 @@ namespace Arcade
             }
 
             RootNode    = rootNode.transform;
-            ArcadesNode = childNodes[0].transform;
-            GamesNode   = childNodes[1].transform;
-            PropsNode   = childNodes[2].transform;
+            GamesNode   = childNodes[0].transform;
+            PropsNode   = childNodes[1].transform;
 
-            RootNode.position    = Vector3.zero;
-            ArcadesNode.position = Vector3.zero;
-            GamesNode.position   = Vector3.zero;
-            PropsNode.position   = Vector3.zero;
+            RootNode.position  = Vector3.zero;
+            GamesNode.position = Vector3.zero;
+            PropsNode.position = Vector3.zero;
         }
 
         public void Reset()
         {
-            ResetNode(ArcadesNode);
             ResetNode(GamesNode);
             ResetNode(PropsNode);
         }

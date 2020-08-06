@@ -34,6 +34,10 @@ namespace Arcade
         protected abstract Transform TransformAnchor { get; }
         protected abstract Vector3 TransformVector { get; }
 
+        protected sealed override bool UseModelTransfoms => false;
+        protected sealed override PlayerControls PlayerControls => _playerCylControls;
+        protected sealed override CameraSettings CameraSettings => _cylArcadeProperties.CameraSettings;
+
         protected CylArcadeProperties _cylArcadeProperties;
 
         protected int _sprockets;
@@ -73,20 +77,7 @@ namespace Arcade
 
         protected abstract void AdjustModelPosition(Transform model, bool forward, float spacing);
 
-        public sealed override void StartArcade(ArcadeConfiguration arcadeConfiguration)
-        {
-            Assert.IsNotNull(arcadeConfiguration);
-            Assert.IsNotNull(arcadeConfiguration.CylArcadeProperties);
-
-            _playerFpsControls.gameObject.SetActive(false);
-            _playerCylControls.gameObject.SetActive(true);
-
-            SetupPlayer(_playerCylControls, arcadeConfiguration.CylArcadeProperties.CameraSettings);
-
-            _ = _coroutineHelper.StartCoroutine(SetupWorld(arcadeConfiguration));
-        }
-
-        public sealed override bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry)
+        public sealed override bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry, float emissionIntensity)
         {
             string videopath = _videoCache.Load(directories, namesToTry);
             if (string.IsNullOrEmpty(videopath))
@@ -95,59 +86,70 @@ namespace Arcade
             }
 
             screen.material.EnableEmissive();
+            screen.material.SetEmissiveColor(Color.white * emissionIntensity);
 
-            AudioSource audioSource = screen.gameObject.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake = false;
+            AudioSource audioSource  = screen.gameObject.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
             audioSource.dopplerLevel = 0f;
             audioSource.spatialBlend = 1f;
-            audioSource.minDistance = _audioMinDistance;
-            audioSource.maxDistance = _audioMaxDistance;
-            audioSource.volume = 1f;
-            audioSource.rolloffMode = AudioRolloffMode.Custom;
+            audioSource.minDistance  = _audioMinDistance;
+            audioSource.maxDistance  = _audioMaxDistance;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
             audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
 
-            VideoPlayer videoPlayer = screen.gameObject.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
-            videoPlayer.playOnAwake = false;
-            videoPlayer.waitForFirstFrame = true;
-            videoPlayer.isLooping = true;
-            videoPlayer.skipOnDrop = true;
-            videoPlayer.source = VideoSource.Url;
-            videoPlayer.url = videopath;
-            videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            VideoPlayer videoPlayer               = screen.gameObject.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
+            videoPlayer.playOnAwake               = false;
+            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.isLooping                 = true;
+            videoPlayer.skipOnDrop                = true;
+            videoPlayer.source                    = VideoSource.Url;
+            videoPlayer.url                       = videopath;
+            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
             videoPlayer.controlledAudioTrackCount = 1;
-            videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
             videoPlayer.Stop();
 
             return true;
         }
 
-        protected sealed override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
+        protected sealed override void PreSetupPlayer()
         {
-            ArcadeLoaded = false;
-
-            _cylArcadeProperties = arcadeConfiguration.CylArcadeProperties;
-
+            _playerFpsControls.gameObject.SetActive(false);
+            _playerCylControls.gameObject.SetActive(true);
+            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
             _playerCylControls.SetVerticalLookLimits(-40f, 40f);
             _playerCylControls.SetHorizontalLookLimits(0f, 0f);
+        }
 
-            RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
-            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade));
-            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp));
-            _ = _coroutineHelper.StartCoroutine(AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame));
-
-            while (!_gameModelsLoaded)
+        protected sealed override void GameModelAdditionalSteps(GameObject instantiatedModel)
+        {
+            if (instantiatedModel.TryGetComponent(out Rigidbody rigidbody))
             {
-                yield return null;
+                rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+                rigidbody.interpolation          = RigidbodyInterpolation.None;
+                rigidbody.useGravity             = false;
+                rigidbody.isKinematic            = true;
             }
 
+            instantiatedModel.SetActive(false);
+        }
+
+        protected override void LateSetupWorld()
+        {
+            base.LateSetupWorld();
+
+            Assert.IsNotNull(_arcadeConfiguration.CylArcadeProperties);
+            _cylArcadeProperties = _arcadeConfiguration.CylArcadeProperties;
+
             _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
-            _sprockets            = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
-            int selectedSprocket  = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
-            int halfSprockets     = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
-            _selectionIndex       = halfSprockets - selectedSprocket;
+            _sprockets = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
+            int selectedSprocket = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
+            int halfSprockets = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
+            _selectionIndex = halfSprockets - selectedSprocket;
 
             if (_cylArcadeProperties.InverseList)
             {
@@ -159,8 +161,6 @@ namespace Arcade
                 _allGames.RotateRight(_selectionIndex);
             }
 
-            LateSetupWorld();
-
             SetupWheel();
 
             if (_selectionIndex >= 0 && _allGames.Count >= _selectionIndex)
@@ -171,70 +171,6 @@ namespace Arcade
             {
                 CurrentGame = null;
             }
-
-            ArcadeLoaded = true;
-        }
-
-        protected sealed override IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
-        {
-            _gameModelsLoaded = false;
-
-            _allGames.Clear();
-
-            foreach (ModelConfiguration modelConfiguration in modelConfigurations)
-            {
-                EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
-                List<string> namesToTry        = getNamesToTry(modelConfiguration, emulator);
-
-                GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
-                if (prefab == null)
-                {
-                    continue;
-                }
-
-                GameObject instantiatedModel = Object.Instantiate(prefab, Vector3.zero, Quaternion.identity, _arcadeHierarchy.GamesNode);
-                instantiatedModel.name       = modelConfiguration.Id;
-                instantiatedModel.transform.localScale = modelConfiguration.Scale;
-                instantiatedModel.transform.SetLayersRecursively(_arcadeHierarchy.GamesNode.gameObject.layer);
-
-                instantiatedModel.AddComponent<ModelConfigurationComponent>()
-                                 .FromModelConfiguration(modelConfiguration);
-
-                _allGames.Add(instantiatedModel.transform);
-
-                if (instantiatedModel.TryGetComponent(out Rigidbody rigidbody))
-                {
-                    rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
-                    rigidbody.interpolation          = RigidbodyInterpolation.None;
-                    rigidbody.useGravity             = false;
-                    rigidbody.isKinematic            = true;
-                }
-
-                // Look for artworks only in play mode / runtime
-                if (Application.isPlaying)
-                {
-                    _marqueeNodeController.Setup(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
-                    _screenNodeController.Setup(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
-                    _genericNodeController.Setup(instantiatedModel, modelConfiguration, emulator, 1f);
-                }
-
-                instantiatedModel.SetActive(false);
-
-                // Instantiate asynchronously only when loaded from the editor menu / auto reload
-                if (Application.isPlaying)
-                {
-                    yield return null;
-                }
-            }
-
-            _gameModelsLoaded = true;
-        }
-
-        protected override void LateSetupWorld()
-        {
-            base.LateSetupWorld();
-
-            _playerCylControls.MouseLookEnabled = _cylArcadeProperties.MouseLook;
         }
 
         protected sealed override IEnumerator CoNavigateForward(float dt)

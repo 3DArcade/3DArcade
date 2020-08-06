@@ -23,13 +23,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace Arcade
 {
     public sealed class FpsArcadeController : ArcadeController
     {
+        protected override bool UseModelTransfoms => true;
+        protected override PlayerControls PlayerControls => _playerFpsControls;
+        protected override CameraSettings CameraSettings => _arcadeConfiguration.FpsArcadeProperties.CameraSettings;
+
         public FpsArcadeController(ArcadeHierarchy arcadeHierarchy,
                                    PlayerFpsControls playerFpsControls,
                                    PlayerCylControls playerCylControls,
@@ -50,19 +54,7 @@ namespace Arcade
             });
         }
 
-        public override void StartArcade(ArcadeConfiguration arcadeConfiguration)
-        {
-            Assert.IsNotNull(arcadeConfiguration);
-
-            _playerFpsControls.gameObject.SetActive(true);
-            _playerCylControls.gameObject.SetActive(false);
-
-            SetupPlayer(_playerFpsControls, arcadeConfiguration.FpsArcadeProperties.CameraSettings);
-
-            _ = _coroutineHelper.StartCoroutine(SetupWorld(arcadeConfiguration));
-        }
-
-        public override bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry)
+        public override bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry, float emissionIntensity)
         {
             string videopath = _videoCache.Load(directories, namesToTry);
             if (string.IsNullOrEmpty(videopath))
@@ -71,98 +63,44 @@ namespace Arcade
             }
 
             screen.material.EnableEmissive();
+            screen.material.SetEmissiveColor(Color.white * emissionIntensity);
 
-            AudioSource audioSource = screen.gameObject.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake = false;
+            AudioSource audioSource  = screen.gameObject.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
             audioSource.dopplerLevel = 0f;
             audioSource.spatialBlend = 1f;
-            audioSource.minDistance = _audioMinDistance;
-            audioSource.maxDistance = _audioMaxDistance;
-            audioSource.volume = 1f;
-            audioSource.rolloffMode = AudioRolloffMode.Custom;
+            audioSource.minDistance  = _audioMinDistance;
+            audioSource.maxDistance  = _audioMaxDistance;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
             audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
 
-            VideoPlayer videoPlayer = screen.gameObject.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
-            videoPlayer.prepareCompleted -= OnVideoPlayerPrepareCompleted;
-            videoPlayer.prepareCompleted += OnVideoPlayerPrepareCompleted;
-            videoPlayer.playOnAwake = true;
-            videoPlayer.waitForFirstFrame = true;
-            videoPlayer.isLooping = true;
-            videoPlayer.skipOnDrop = true;
-            videoPlayer.source = VideoSource.Url;
-            videoPlayer.url = videopath;
-            videoPlayer.renderMode = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            VideoPlayer videoPlayer               = screen.gameObject.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
+            videoPlayer.prepareCompleted         -= OnVideoPlayerPrepareCompleted;
+            videoPlayer.prepareCompleted         += OnVideoPlayerPrepareCompleted;
+            videoPlayer.playOnAwake               = true;
+            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.isLooping                 = true;
+            videoPlayer.skipOnDrop                = true;
+            videoPlayer.source                    = VideoSource.Url;
+            videoPlayer.url                       = videopath;
+            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
             videoPlayer.controlledAudioTrackCount = 1;
-            videoPlayer.targetMaterialProperty = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
             videoPlayer.Prepare();
 
             return true;
         }
-
-        protected override IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration)
+        protected override void PreSetupPlayer()
         {
-            ArcadeLoaded = false;
-
-            RenderSettings renderSettings = arcadeConfiguration.RenderSettings;
-            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.ArcadeModelList, _arcadeHierarchy.ArcadesNode, renderSettings, ARCADE_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForArcade));
-            _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp));
-            _ = _coroutineHelper.StartCoroutine(AddGameModelsToWorld(arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame));
-
-            while (!_gameModelsLoaded)
-            {
-                yield return null;
-            }
-
-            _allGames.Clear();
-            for (int i = 0; i < _arcadeHierarchy.GamesNode.childCount; ++i)
-            {
-                _allGames.Add(_arcadeHierarchy.GamesNode.GetChild(i));
-            }
-
-            LateSetupWorld();
-
-            ArcadeLoaded = true;
+            _playerFpsControls.gameObject.SetActive(true);
+            _playerCylControls.gameObject.SetActive(false);
         }
 
-        protected override IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
-        {
-            _gameModelsLoaded = false;
-
-            foreach (ModelConfiguration modelConfiguration in modelConfigurations)
-            {
-                EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
-                List<string> namesToTry = getNamesToTry(modelConfiguration, emulator);
-
-                GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
-                if (prefab == null)
-                {
-                    continue;
-                }
-
-                GameObject instantiatedModel = InstantiatePrefab(prefab, _arcadeHierarchy.GamesNode, modelConfiguration);
-
-                // Look for artworks only in play mode / runtime
-                if (Application.isPlaying)
-                {
-                    _marqueeNodeController.Setup(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
-                    _screenNodeController.Setup(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
-                    _genericNodeController.Setup(instantiatedModel, modelConfiguration, emulator, 1f);
-                }
-
-                // Instantiate asynchronously only when loaded from the editor menu / auto reload
-                if (Application.isPlaying)
-                {
-                    yield return null;
-                }
-            }
-
-            _gameModelsLoaded = true;
-        }
-
-        private void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
+        private static void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
         {
             float frameCount = videoPlayer.frameCount;
             float frameRate  = videoPlayer.frameRate;

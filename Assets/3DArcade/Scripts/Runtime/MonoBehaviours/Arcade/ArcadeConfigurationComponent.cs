@@ -44,7 +44,7 @@ namespace Arcade
 
         public bool Save(Database<ArcadeConfiguration> arcadeDatabase, CameraSettings fpsCameraSettings, CameraSettings cylCameraSettings, bool saveGameTransforms)
         {
-            GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps);
+            GetChildNodes(out Transform tGames, out Transform tProps);
 
             ArcadeConfiguration cfg = new ArcadeConfiguration
             {
@@ -53,7 +53,6 @@ namespace Arcade
                 RenderSettings      = RenderSettings,
                 FpsArcadeProperties = FpsArcadeProperties ?? Defaults.FpsArcadeProperties,
                 CylArcadeProperties = CylArcadeProperties ?? Defaults.CylArcadeProperties,
-                ArcadeModelList     = GetModelConfigurations(tArcades),
                 GameModelList       = saveGameTransforms ? GetModelConfigurations(tGames) : arcadeDatabase.Get(Id).GameModelList,
                 PropModelList       = GetModelConfigurations(tProps)
             };
@@ -90,27 +89,25 @@ namespace Arcade
 
         public void SetGamesAndPropsTransforms(ModelConfiguration[] games, ModelConfiguration[] props)
         {
-            GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
+            GetChildNodes(out Transform tGames, out Transform tProps);
             SetModelTransforms(tGames, games);
             SetModelTransforms(tProps, props);
         }
 
         private void GetGamesAndProps(out ModelConfiguration[] games, out ModelConfiguration[] props)
         {
-            GetChildNodes(out Transform _, out Transform tGames, out Transform tProps);
+            GetChildNodes(out Transform tGames, out Transform tProps);
             games = GetModelConfigurations(tGames);
             props = GetModelConfigurations(tProps);
         }
 
-        private void GetChildNodes(out Transform tArcades, out Transform tGames, out Transform tProps)
+        private void GetChildNodes(out Transform tGames, out Transform tProps)
         {
-            Assert.IsTrue(transform.childCount >= 3);
+            Assert.IsTrue(transform.childCount > 2);
 
-            tArcades = transform.GetChild(0);
-            tGames   = transform.GetChild(1);
-            tProps   = transform.GetChild(2);
+            tGames   = transform.GetChild(0);
+            tProps   = transform.GetChild(1);
 
-            Assert.IsTrue(tArcades.name == "ArcadeModels");
             Assert.IsTrue(tGames.name == "GameModels");
             Assert.IsTrue(tProps.name == "PropModels");
         }

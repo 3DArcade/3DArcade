@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace Arcade
@@ -34,7 +35,10 @@ namespace Arcade
         public bool ArcadeLoaded { get; protected set; }
         public ModelConfigurationComponent CurrentGame { get; protected set; }
 
-        protected const string ARCADE_RESOURCES_DIRECTORY            = "Arcades";
+        protected abstract bool UseModelTransfoms { get; }
+        protected abstract PlayerControls PlayerControls { get; }
+        protected abstract CameraSettings CameraSettings { get; }
+
         protected const string GAME_RESOURCES_DIRECTORY              = "Games";
         protected const string PROP_RESOURCES_DIRECTORY              = "Props";
         protected const string CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME = "InternalCylArcadeWheelPivotPoint";
@@ -43,25 +47,31 @@ namespace Arcade
         protected readonly PlayerFpsControls _playerFpsControls;
         protected readonly PlayerCylControls _playerCylControls;
 
-        protected readonly AssetCache<GameObject> _gameObjectCache;
         protected readonly AssetCache<string> _videoCache;
-
-        protected readonly ContentMatcher _contentMatcher;
 
         protected readonly List<Transform> _allGames;
 
-        protected readonly CoroutineHelper _coroutineHelper;
+        protected ArcadeConfiguration _arcadeConfiguration;
 
         protected float _audioMinDistance;
         protected float _audioMaxDistance;
         protected AnimationCurve _volumeCurve;
 
         protected bool _animating;
-        protected bool _gameModelsLoaded;
 
-        protected readonly NodeController _marqueeNodeController;
-        protected readonly NodeController _screenNodeController;
-        protected readonly NodeController _genericNodeController;
+        private static Scene _loadedScene;
+        private static bool _sceneLoaded;
+
+        private readonly AssetCache<GameObject> _gameObjectCache;
+        private readonly ContentMatcher _contentMatcher;
+
+        private readonly NodeController _marqueeNodeController;
+        private readonly NodeController _screenNodeController;
+        private readonly NodeController _genericNodeController;
+
+        private readonly CoroutineHelper _coroutineHelper;
+
+        private bool _gameModelsLoaded;
 
         public ArcadeController(ArcadeHierarchy arcadeHierarchy,
                                 PlayerFpsControls playerFpsControls,
@@ -90,28 +100,7 @@ namespace Arcade
             _marqueeNodeController = new MarqueeNodeController(this, textureCache);
             _screenNodeController  = new ScreenNodeController(this, textureCache);
             _genericNodeController = new GenericNodeController(this, textureCache);
-        }
 
-        public abstract void StartArcade(ArcadeConfiguration arcadeConfiguration);
-
-        public abstract bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry);
-
-        protected abstract IEnumerator SetupWorld(ArcadeConfiguration arcadeConfiguration);
-
-        protected abstract IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry);
-
-        protected virtual IEnumerator CoNavigateForward(float dt)
-        {
-            yield break;
-        }
-
-        protected virtual IEnumerator CoNavigateBackward(float dt)
-        {
-            yield break;
-        }
-
-        protected virtual void LateSetupWorld()
-        {
             GameObject foundPivotPoint = GameObject.Find(CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME);
             if (foundPivotPoint != null)
             {
@@ -120,6 +109,23 @@ namespace Arcade
 #else
                 Object.Destroy(foundPivotPoint);
 #endif
+            }
+        }
+
+        public void StartArcade(ArcadeConfiguration arcadeConfiguration)
+        {
+            Assert.IsNotNull(arcadeConfiguration);
+
+            _arcadeConfiguration = arcadeConfiguration;
+            ArcadeLoaded         = false;
+
+            if (_sceneLoaded)
+            {
+                _ = _coroutineHelper.StartCoroutine(CoUnloadArcadeScene());
+            }
+            else
+            {
+                _ = _coroutineHelper.StartCoroutine(CoSetupWorld());
             }
         }
 
@@ -139,28 +145,28 @@ namespace Arcade
             }
         }
 
-        protected static void SetupPlayer(PlayerControls playerControls, CameraSettings cameraSettings)
+        public abstract bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry, float emissionIntensity);
+        protected abstract void PreSetupPlayer();
+
+        protected virtual void GameModelAdditionalSteps(GameObject instantiatedModel)
         {
-            playerControls.Camera.orthographic = cameraSettings.Orthographic;
-            playerControls.Camera.rect         = cameraSettings.ViewportRect;
-
-            playerControls.Camera.transform.position    = cameraSettings.Position;
-            playerControls.Camera.transform.eulerAngles = new Vector3(0f, cameraSettings.Rotation.y, 0f);
-
-            playerControls.transform.SetPositionAndRotation(cameraSettings.Position, Quaternion.Euler(0f, cameraSettings.Rotation.y, 0f));
-
-            CinemachineVirtualCamera vCam = playerControls.VirtualCamera;
-            vCam.transform.eulerAngles    = playerControls.Camera.transform.eulerAngles;
-            vCam.m_Lens.FieldOfView       = cameraSettings.FieldOfView;
-            vCam.m_Lens.OrthographicSize  = cameraSettings.AspectRatio;
-            vCam.m_Lens.NearClipPlane     = cameraSettings.NearClipPlane;
-            vCam.m_Lens.FarClipPlane      = cameraSettings.FarClipPlane;
-
-            CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
-            transposer.m_FollowOffset.y      = cameraSettings.Height;
         }
 
-        protected IEnumerator AddModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
+        protected virtual void LateSetupWorld()
+        {
+        }
+
+        protected virtual IEnumerator CoNavigateForward(float dt)
+        {
+            yield break;
+        }
+
+        protected virtual IEnumerator CoNavigateBackward(float dt)
+        {
+            yield break;
+        }
+
+        protected IEnumerator AddPropModelsToWorld(ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
             if (modelConfigurations == null)
             {
@@ -178,7 +184,7 @@ namespace Arcade
                     continue;
                 }
 
-                GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration);
+                GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration, true);
 
                 // Look for artworks only in play mode / runtime
                 if (Application.isPlaying)
@@ -196,9 +202,52 @@ namespace Arcade
             }
         }
 
-        protected GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration)
+        protected IEnumerator AddGameModelsToWorld(ModelConfiguration[] modelConfigurations, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
-            GameObject model           = Object.Instantiate(prefab, modelConfiguration.Position, Quaternion.Euler(modelConfiguration.Rotation), parent);
+            _gameModelsLoaded = false;
+
+
+            foreach (ModelConfiguration modelConfiguration in modelConfigurations)
+            {
+                EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
+                List<string> namesToTry        = getNamesToTry(modelConfiguration, emulator);
+
+                GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
+                if (prefab == null)
+                {
+                    continue;
+                }
+
+                GameObject instantiatedModel = InstantiatePrefab(prefab, _arcadeHierarchy.GamesNode, modelConfiguration, UseModelTransfoms);
+
+                _allGames.Add(instantiatedModel.transform);
+
+                GameModelAdditionalSteps(instantiatedModel);
+
+                // Look for artworks only in play mode / runtime
+                if (Application.isPlaying)
+                {
+                    _marqueeNodeController.Setup(instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
+                    _screenNodeController.Setup(instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
+                    _genericNodeController.Setup(instantiatedModel, modelConfiguration, emulator, 1f);
+                }
+
+                // Instantiate asynchronously only when loaded from the editor menu / auto reload
+                if (Application.isPlaying)
+                {
+                    yield return null;
+                }
+            }
+
+            _gameModelsLoaded = true;
+        }
+
+        protected GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration, bool useModelTransform)
+        {
+            Vector3 position    = useModelTransform ? modelConfiguration.Position : Vector3.zero;
+            Quaternion rotation = useModelTransform ? Quaternion.Euler(modelConfiguration.Rotation) : Quaternion.identity;
+
+            GameObject model           = Object.Instantiate(prefab, position, rotation, parent);
             model.name                 = modelConfiguration.Id;
             model.transform.localScale = modelConfiguration.Scale;
             model.transform.SetLayersRecursively(parent.gameObject.layer);
@@ -224,5 +273,100 @@ namespace Arcade
         }
 
         protected static void OnVideoPlayerErrorReceived(VideoPlayer _, string message) => Debug.Log($"Error: {message}");
+
+        private IEnumerator CoUnloadArcadeScene()
+        {
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                UnityEditor.SceneManagement.EditorSceneManager.CloseScene(_loadedScene, true);
+            }
+            else
+            {
+                AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(_loadedScene);
+                while (!asyncOperation.isDone)
+                {
+                    yield return null;
+                }
+            }
+#else
+            AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(_loadedScene);
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
+#endif
+           _ = _coroutineHelper.StartCoroutine(CoSetupWorld());
+        }
+
+        private IEnumerator CoSetupWorld()
+        {
+            _loadedScene = default;
+            _sceneLoaded = false;
+
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                UnityEditor.SceneManagement.EditorSceneManager.OpenScene($"Assets/3DArcade/Scenes/{_arcadeConfiguration.ArcadeScene}/{_arcadeConfiguration.ArcadeScene}.unity", UnityEditor.SceneManagement.OpenSceneMode.Additive);
+            }
+            else
+            {
+                AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_arcadeConfiguration.ArcadeScene, LoadSceneMode.Additive);
+                while (!asyncOperation.isDone)
+                {
+                    yield return null;
+                }
+            }
+#else
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_arcadeConfiguration.ArcadeScene, LoadSceneMode.Additive);
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
+#endif
+            _loadedScene = SceneManager.GetSceneByName(_arcadeConfiguration.ArcadeScene);
+            _ = SceneManager.SetActiveScene(_loadedScene);
+
+            RenderSettings renderSettings = _arcadeConfiguration.RenderSettings;
+
+            _ = _coroutineHelper.StartCoroutine(AddPropModelsToWorld(_arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp));
+
+            _allGames.Clear();
+            _ = _coroutineHelper.StartCoroutine(AddGameModelsToWorld(_arcadeConfiguration.GameModelList, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame));
+            while (!_gameModelsLoaded)
+            {
+                yield return null;
+            }
+
+            LateSetupWorld();
+
+            SetupPlayer();
+
+            _sceneLoaded = true;
+            ArcadeLoaded = true;
+        }
+
+        private void SetupPlayer()
+        {
+            PreSetupPlayer();
+
+            PlayerControls.Camera.orthographic = CameraSettings.Orthographic;
+            PlayerControls.Camera.rect         = CameraSettings.ViewportRect;
+
+            PlayerControls.Camera.transform.position    = CameraSettings.Position;
+            PlayerControls.Camera.transform.eulerAngles = new Vector3(0f, CameraSettings.Rotation.y, 0f);
+
+            PlayerControls.transform.SetPositionAndRotation(CameraSettings.Position, Quaternion.Euler(0f, CameraSettings.Rotation.y, 0f));
+
+            CinemachineVirtualCamera vCam = PlayerControls.VirtualCamera;
+            vCam.transform.eulerAngles    = PlayerControls.Camera.transform.eulerAngles;
+            vCam.m_Lens.FieldOfView       = CameraSettings.FieldOfView;
+            vCam.m_Lens.OrthographicSize  = CameraSettings.AspectRatio;
+            vCam.m_Lens.NearClipPlane     = CameraSettings.NearClipPlane;
+            vCam.m_Lens.FarClipPlane      = CameraSettings.FarClipPlane;
+
+            CinemachineTransposer transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
+            transposer.m_FollowOffset.y      = CameraSettings.Height;
+        }
     }
 }

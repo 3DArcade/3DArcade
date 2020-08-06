@@ -2,9 +2,9 @@
     "DescriptiveName": "Triggers Demo",
     "Id": "triggers",
     "RenderSettings": {
-        "MarqueeIntensity": 3.0,
-        "ScreenRasterIntensity": 3.0,
-        "ScreenVectorIntenstity": 7.0,
+        "MarqueeIntensity": 8.0,
+        "ScreenRasterIntensity": 4.0,
+        "ScreenVectorIntenstity": 8.0,
         "ScreenPinballIntensity": 1.0
     },
     "FpsArcadeProperties": {
@@ -76,53 +76,7 @@
         "LineAngle": 0.0,
         "HorizontalNavigation": false
     },
-    "ArcadeModelList": [
-        {
-            "DescriptiveName": "Space Port",
-            "Id": "spaceport",
-            "Model": null,
-            "InteractionType": "None",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 0.3937008,
-                "y": 0.3937008,
-                "z": 0.3937008
-            },
-            "Triggers": [],
-            "TriggerIDs": []
-        }
-    ],
+    "ArcadeScene": "spaceport",
     "GameModelList": [
         {
             "DescriptiveName": "Vanguard (SNK)",
@@ -153,13 +107,13 @@
             "Runnable": true,
             "Position": {
                 "x": -4.397021,
-                "y": -0.01341635,
-                "z": 0.8694546
+                "y": -0.0134167075,
+                "z": 0.8694572
             },
             "Rotation": {
-                "x": -0.000353861164,
-                "y": 130.045975,
-                "z": 0.000287655275
+                "x": -0.000384227169,
+                "y": 130.046036,
+                "z": 0.000277311978
             },
             "Scale": {
                 "x": 1.000062,
@@ -197,14 +151,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 3.23580575,
-                "y": -6.2584877E-06,
-                "z": -4.37147141
+                "x": 3.23580337,
+                "y": -5.066395E-06,
+                "z": -4.37146854
             },
             "Rotation": {
-                "x": -0.0001580616,
-                "y": 0.003687386,
-                "z": 0.000617441663
+                "x": -0.000322801556,
+                "y": 0.00377572887,
+                "z": 0.000703469443
             },
             "Scale": {
                 "x": 1.0,
@@ -243,13 +197,13 @@
             "Runnable": true,
             "Position": {
                 "x": 7.529951,
-                "y": -0.0291723013,
+                "y": -0.02917248,
                 "z": 1.3299427
             },
             "Rotation": {
-                "x": 2.1529082E-05,
+                "x": 3.843621E-05,
                 "y": -179.999939,
-                "z": -5.36778361E-06
+                "z": 2.16028111E-05
             },
             "Scale": {
                 "x": 1.0,
@@ -287,14 +241,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -4.54715061,
-                "y": -0.0264944434,
-                "z": -1.82857776
+                "x": -4.547155,
+                "y": -0.0264938474,
+                "z": -1.82857668
             },
             "Rotation": {
-                "x": 0.00231553754,
-                "y": 89.55185,
-                "z": 0.00162176031
+                "x": 0.0022680168,
+                "y": 89.55174,
+                "z": 0.00157559256
             },
             "Scale": {
                 "x": 1.0000031,
@@ -333,13 +287,13 @@
             "Runnable": true,
             "Position": {
                 "x": -4.02515936,
-                "y": -2.14576721E-06,
+                "y": -1.96695328E-06,
                 "z": -4.21095562
             },
             "Rotation": {
-                "x": -6.92757239E-05,
-                "y": 29.9975414,
-                "z": -0.000104500868
+                "x": -9.59061654E-05,
+                "y": 29.997509,
+                "z": -0.000119773074
             },
             "Scale": {
                 "x": 1.00000072,
@@ -377,14 +331,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -0.9617208,
-                "y": -0.005056441,
-                "z": -4.415387
+                "x": -0.9617229,
+                "y": -0.00505769253,
+                "z": -4.41538858
             },
             "Rotation": {
-                "x": -0.0002591741,
-                "y": -3.92797852,
-                "z": 0.000221279173
+                "x": -0.000137300187,
+                "y": -3.927948,
+                "z": 6.934766E-05
             },
             "Scale": {
                 "x": 1.0,
@@ -423,13 +377,13 @@
             "Runnable": true,
             "Position": {
                 "x": 8.272251,
-                "y": -6.49690628E-06,
-                "z": -3.83406115
+                "y": -5.60283661E-06,
+                "z": -3.83406663
             },
             "Rotation": {
-                "x": -8.481101E-05,
-                "y": -48.9720459,
-                "z": 0.0006806283
+                "x": -0.000211864783,
+                "y": -48.9718628,
+                "z": 0.0008132854
             },
             "Scale": {
                 "x": 1.00000691,
@@ -467,14 +421,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -2.39652252,
-                "y": -0.0115072727,
-                "z": -4.290633
+                "x": -2.39652514,
+                "y": -0.0115069747,
+                "z": -4.29063463
             },
             "Rotation": {
-                "x": -0.000211116014,
-                "y": -1.39666748,
-                "z": 9.58631063E-05
+                "x": -0.00019242063,
+                "y": -1.396637,
+                "z": 9.884346E-05
             },
             "Scale": {
                 "x": 1.0,
@@ -513,13 +467,13 @@
             "Runnable": true,
             "Position": {
                 "x": 8.516271,
-                "y": -1.37090683E-06,
+                "y": -2.32458115E-06,
                 "z": 1.02744639
             },
             "Rotation": {
-                "x": 2.027599E-05,
+                "x": 1.0493266E-05,
                 "y": -146.7155,
-                "z": -2.650514E-05
+                "z": -1.359847E-05
             },
             "Scale": {
                 "x": 1.00007629,
@@ -586,14 +540,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 4.04288626,
-                "y": -4.11272049E-06,
-                "z": -4.47346354
+                "x": 4.0428834,
+                "y": -5.12599945E-06,
+                "z": -4.473463
             },
             "Rotation": {
-                "x": 0.00119251106,
-                "y": 3.41967416,
-                "z": -0.000245052826
+                "x": 0.00123222684,
+                "y": 3.41938734,
+                "z": -0.000191024941
             },
             "Scale": {
                 "x": 1.0,
@@ -631,14 +585,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -4.62749147,
-                "y": 0.006284833,
-                "z": -0.970555961
+                "x": -4.627432,
+                "y": 0.006244421,
+                "z": -0.970495
             },
             "Rotation": {
-                "x": 0.8563963,
-                "y": 89.64492,
-                "z": 0.0311321169
+                "x": 0.850033045,
+                "y": 89.63611,
+                "z": 0.0311945844
             },
             "Scale": {
                 "x": 1.00003934,
@@ -676,14 +630,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 4.7691474,
-                "y": -2.62260437E-06,
-                "z": -4.358343
+                "x": 4.769146,
+                "y": -2.92062759E-06,
+                "z": -4.35834265
             },
             "Rotation": {
-                "x": -0.0001399995,
-                "y": 0.7291338,
-                "z": 0.000230067948
+                "x": -0.000165749763,
+                "y": 0.7291615,
+                "z": 0.000192149033
             },
             "Scale": {
                 "x": 1.0,
@@ -721,14 +675,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -4.67986059,
-                "y": 0.0009850264,
-                "z": -2.62953925
+                "x": -4.679865,
+                "y": 0.0009844899,
+                "z": -2.62953615
             },
             "Rotation": {
-                "x": -0.0002742656,
-                "y": 90.00192,
-                "z": 0.0003338574
+                "x": -0.000333083968,
+                "y": 90.00197,
+                "z": 0.000334044715
             },
             "Scale": {
                 "x": 1.000041,
@@ -766,14 +720,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -4.67979527,
-                "y": -5.12599945E-06,
-                "z": -0.128420159
+                "x": -4.67979574,
+                "y": -3.993511E-06,
+                "z": -0.1284202
             },
             "Rotation": {
-                "x": -0.000255825027,
-                "y": 90.0014,
-                "z": 0.000284375856
+                "x": -0.000439684576,
+                "y": 90.00143,
+                "z": 0.000408555585
             },
             "Scale": {
                 "x": 1.000041,
@@ -811,14 +765,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 4.742679,
-                "y": -0.0137382746,
-                "z": 1.38466167
+                "x": 4.709555,
+                "y": -0.0137430429,
+                "z": 1.357895
             },
             "Rotation": {
-                "x": -0.02279663,
-                "y": 177.706177,
-                "z": 0.0302178785
+                "x": -0.000384645682,
+                "y": -179.999969,
+                "z": 0.0003023729
             },
             "Scale": {
                 "x": 1.0,
@@ -856,14 +810,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 4.076089,
-                "y": -0.002133429,
-                "z": 1.38394487
+                "x": 3.97692561,
+                "y": -0.00221163034,
+                "z": 1.3297981
             },
             "Rotation": {
-                "x": 0.0278942157,
-                "y": 175.250351,
-                "z": 0.0106398985
+                "x": -0.0002835632,
+                "y": -179.999969,
+                "z": 0.0002681684
             },
             "Scale": {
                 "x": 1.0000006,
@@ -901,14 +855,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -0.372992724,
+                "x": -0.372894168,
                 "y": -0.0435494781,
-                "z": -1.74799252
+                "z": -1.74815214
             },
             "Rotation": {
-                "x": -7.623946E-05,
-                "y": 48.2289276,
-                "z": -0.000301806373
+                "x": -0.000319188781,
+                "y": 48.2314072,
+                "z": -0.00177267508
             },
             "Scale": {
                 "x": 1.00000024,
@@ -946,14 +900,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 3.431686,
-                "y": 4.25577164E-05,
-                "z": 1.3103348
+                "x": 3.240182,
+                "y": -3.21865082E-06,
+                "z": 1.39976537
             },
             "Rotation": {
-                "x": -0.008605957,
-                "y": 175.105774,
-                "z": -0.05130005
+                "x": -0.0006461775,
+                "y": -179.999924,
+                "z": 0.0005620028
             },
             "Scale": {
                 "x": 1.0,
@@ -991,14 +945,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 2.50802445,
-                "y": -0.008183837,
-                "z": 1.397009
+                "x": 2.50802517,
+                "y": -0.008182466,
+                "z": 1.39700866
             },
             "Rotation": {
-                "x": -0.0003060138,
-                "y": -179.999512,
-                "z": 4.173375E-05
+                "x": -0.0005128297,
+                "y": -179.999481,
+                "z": 0.000270365475
             },
             "Scale": {
                 "x": 1.0,
@@ -1036,14 +990,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 1.62479627,
-                "y": -4.64916229E-06,
-                "z": 1.49611485
+                "x": 1.62479961,
+                "y": -4.887581E-06,
+                "z": 1.49611115
             },
             "Rotation": {
-                "x": -0.0006382751,
-                "y": -178.35585,
-                "z": 0.0008251742
+                "x": -0.000642654544,
+                "y": -178.355652,
+                "z": 0.0008523663
             },
             "Scale": {
                 "x": 1.0,
@@ -1081,14 +1035,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 0.8695656,
-                "y": -0.007308483,
-                "z": 1.44056439
+                "x": 0.8695662,
+                "y": -0.007308185,
+                "z": 1.44056416
             },
             "Rotation": {
-                "x": -0.000270061515,
-                "y": -179.826675,
-                "z": 0.000241255912
+                "x": -0.000317589846,
+                "y": -179.826645,
+                "z": 0.000247132935
             },
             "Scale": {
                 "x": 1.00004852,
@@ -1126,14 +1080,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 0.06844649,
-                "y": -1.847744E-06,
-                "z": 1.450809
+                "x": 0.06844704,
+                "y": -1.90734863E-06,
+                "z": 1.45080876
             },
             "Rotation": {
-                "x": -0.000364730135,
-                "y": -178.722992,
-                "z": 0.000146473132
+                "x": -0.000379579549,
+                "y": -178.722961,
+                "z": 0.000144812468
             },
             "Scale": {
                 "x": 1.0,
@@ -1171,14 +1125,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 7.494795,
-                "y": -0.0190942287,
-                "z": -4.30158138
+                "x": 7.49479151,
+                "y": -0.019092977,
+                "z": -4.301585
             },
             "Rotation": {
-                "x": -0.000357018871,
-                "y": -19.993042,
-                "z": 0.0003849418
+                "x": -0.0006033568,
+                "y": -19.9927979,
+                "z": 0.000673283357
             },
             "Scale": {
                 "x": 1.00000072,
@@ -1216,14 +1170,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -2.817971,
-                "y": 0.000985384,
-                "z": 1.39899862
+                "x": -2.81796956,
+                "y": 0.0009868741,
+                "z": 1.39899755
             },
             "Rotation": {
-                "x": -0.0003985115,
-                "y": -179.999084,
-                "z": 0.0002644841
+                "x": -0.0006539865,
+                "y": -179.999023,
+                "z": 0.0005060954
             },
             "Scale": {
                 "x": 1.00000286,
@@ -1261,14 +1215,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 1.73434472,
-                "y": -0.007309735,
-                "z": -4.38361454
+                "x": 1.73434341,
+                "y": -0.007308781,
+                "z": -4.38361359
             },
             "Rotation": {
-                "x": -0.000179761773,
-                "y": 5.542361,
-                "z": 0.000117607611
+                "x": -0.000360026577,
+                "y": 5.542403,
+                "z": 0.0002272726
             },
             "Scale": {
                 "x": 1.0,
@@ -1306,14 +1260,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 1.0536685,
-                "y": -0.01489532,
-                "z": -4.27956963
+                "x": 1.05366635,
+                "y": -0.0148941278,
+                "z": -4.279568
             },
             "Rotation": {
-                "x": -0.000292054843,
-                "y": 12.5546408,
-                "z": 9.64533538E-05
+                "x": -0.000457720074,
+                "y": 12.5547123,
+                "z": 0.000306643022
             },
             "Scale": {
                 "x": 1.0,
@@ -1351,14 +1305,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 0.126227036,
-                "y": -2.98023224E-06,
-                "z": -4.340817
+                "x": 0.126226068,
+                "y": -3.27825546E-06,
+                "z": -4.340816
             },
             "Rotation": {
-                "x": -0.000473052263,
-                "y": 5.880822,
-                "z": 0.000238442954
+                "x": -0.0004780944,
+                "y": 5.880854,
+                "z": 0.00028652497
             },
             "Scale": {
                 "x": 1.0,
@@ -1396,14 +1350,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -1.69486272,
-                "y": -3.03983688E-06,
+                "x": -1.6948638,
+                "y": -3.874302E-06,
                 "z": -4.321225
             },
             "Rotation": {
-                "x": -0.0005324373,
-                "y": -0.835876465,
-                "z": 0.00046421666
+                "x": -0.0004991696,
+                "y": -0.8358154,
+                "z": 0.000411525456
             },
             "Scale": {
                 "x": 1.0,
@@ -1441,14 +1395,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -3.12374425,
-                "y": -0.0121486783,
-                "z": -4.33227
+                "x": -3.12374139,
+                "y": -0.012149632,
+                "z": -4.332272
             },
             "Rotation": {
-                "x": -0.000362604624,
-                "y": 1.40224409,
-                "z": -0.000453409826
+                "x": -0.000201934061,
+                "y": 1.402261,
+                "z": -0.000314506
             },
             "Scale": {
                 "x": 1.0,
@@ -1486,14 +1440,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -4.60182142,
-                "y": -5.96046448E-06,
-                "z": -3.49637365
+                "x": -4.601823,
+                "y": -6.2584877E-06,
+                "z": -3.496374
             },
             "Rotation": {
-                "x": -0.0004624384,
-                "y": 70.13651,
-                "z": 0.00121830252
+                "x": -0.00041999403,
+                "y": 70.13657,
+                "z": 0.00114319311
             },
             "Scale": {
                 "x": 1.00000882,
@@ -1531,14 +1485,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -1.01644015,
-                "y": -0.0134165287,
-                "z": 1.43140674
+                "x": -1.01643932,
+                "y": -0.0134169459,
+                "z": 1.43140626
             },
             "Rotation": {
-                "x": -0.000405467756,
-                "y": -176.803253,
-                "z": 0.000250008656
+                "x": -0.000446821738,
+                "y": -176.803223,
+                "z": 0.000267297932
             },
             "Scale": {
                 "x": 1.00001085,
@@ -1576,14 +1530,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -1.97078264,
-                "y": -0.0008792281,
-                "z": 1.41420889
+                "x": -1.97077656,
+                "y": -0.0008716583,
+                "z": 1.41421258
             },
             "Rotation": {
-                "x": 0.001291849,
-                "y": 178.569351,
-                "z": -4.82054456E-05
+                "x": 1.71509255E-05,
+                "y": 178.56868,
+                "z": 4.122456E-05
             },
             "Scale": {
                 "x": 1.00000072,
@@ -1621,14 +1575,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -3.62195015,
-                "y": -3.33786E-06,
-                "z": 1.34612429
+                "x": -3.621949,
+                "y": -4.29153442E-06,
+                "z": 1.34612322
             },
             "Rotation": {
-                "x": -0.00045753314,
-                "y": -179.0939,
-                "z": 0.0005731261
+                "x": -0.0004567656,
+                "y": -179.093842,
+                "z": 0.000530883553
             },
             "Scale": {
                 "x": 1.0,
@@ -1666,14 +1620,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 2.4757967,
-                "y": -0.0121503472,
-                "z": -4.33951044
+                "x": 2.47579169,
+                "y": -0.0121507049,
+                "z": -4.33951235
             },
             "Rotation": {
-                "x": -0.000412402034,
-                "y": 0.00340338866,
-                "z": 6.638357E-05
+                "x": -0.000418920623,
+                "y": 0.0034972732,
+                "z": 5.23042982E-05
             },
             "Scale": {
                 "x": 1.0,
@@ -1711,14 +1665,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 6.54687262,
-                "y": -2.32458115E-06,
-                "z": -4.438516
+                "x": 6.546872,
+                "y": -2.62260437E-06,
+                "z": -4.43851662
             },
             "Rotation": {
-                "x": -0.000177660753,
-                "y": 0.000285203743,
-                "z": -1.5236199E-05
+                "x": -0.0001817858,
+                "y": 0.000279124419,
+                "z": 1.35461314E-05
             },
             "Scale": {
                 "x": 1.0,
@@ -1813,14 +1767,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 5.7440443,
-                "y": 0.006601572,
-                "z": 1.3364408
+                "x": 5.74404573,
+                "y": 0.00660312176,
+                "z": 1.33644
             },
             "Rotation": {
-                "x": -0.000281377317,
-                "y": -179.996567,
-                "z": 8.940956E-05
+                "x": -0.0004039291,
+                "y": -179.9965,
+                "z": 0.00032024557
             },
             "Scale": {
                 "x": 1.0,
@@ -1858,14 +1812,14 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 6.608057,
-                "y": -0.0134185553,
-                "z": 1.39335537
+                "x": 6.608058,
+                "y": -0.0134176016,
+                "z": 1.39335477
             },
             "Rotation": {
-                "x": -0.000256415748,
-                "y": -179.996613,
-                "z": 7.690888E-05
+                "x": -0.000458659371,
+                "y": -179.996582,
+                "z": 0.000320993
             },
             "Scale": {
                 "x": 1.0,
@@ -1903,53 +1857,20 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 8.549337,
-                "y": -3.874302E-06,
+                "x": 8.549338,
+                "y": -4.23193E-06,
                 "z": -2.92276335
             },
             "Rotation": {
-                "x": -0.000444560224,
-                "y": -89.99994,
-                "z": 0.0004754545
+                "x": -0.0003732686,
+                "y": -89.99988,
+                "z": 0.000470132945
             },
             "Scale": {
                 "x": 1.00002337,
                 "y": 1.0,
                 "z": 1.00002313
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelCollisionEnter",
-                    "TriggerSource": [],
-                    "TriggerTarget": [
-                        "pi"
-                    ],
-                    "TriggerAction": "SetActiveEnabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelCollisionEnter",
-                    "TriggerSource": [],
-                    "TriggerTarget": [
-                        "pi"
-                    ],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "penguin_path_2",
-                            "Loop": true,
-                            "Speed": 0.1,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 1
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Joust (White/Green label)",
@@ -1979,34 +1900,20 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 5.739927,
-                "y": -0.0190942287,
-                "z": -4.28208733
+                "x": 5.73992443,
+                "y": -0.0190920234,
+                "z": -4.28208447
             },
             "Rotation": {
-                "x": -0.000482727337,
-                "y": 0.236605227,
-                "z": 0.000302012224
+                "x": -0.000628995069,
+                "y": 0.236744419,
+                "z": 0.0005982307
             },
             "Scale": {
                 "x": 1.00000107,
                 "y": 1.0,
                 "z": 1.00000119
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelCollisionEnter",
-                    "TriggerSource": [],
-                    "TriggerTarget": [
-                        "pi"
-                    ],
-                    "TriggerAction": "SetActiveDisabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "M.A.C.H. 3",
@@ -2037,21 +1944,19 @@
             "Runnable": true,
             "Position": {
                 "x": 10.4525518,
-                "y": 1.37090683E-06,
-                "z": -3.080035
+                "y": 1.31130219E-06,
+                "z": -3.08003473
             },
             "Rotation": {
-                "x": -2.29566249E-05,
+                "x": -3.2274238E-05,
                 "y": -1.2699585,
-                "z": 7.9287056E-05
+                "z": -2.391351E-05
             },
             "Scale": {
                 "x": 1.000001,
                 "y": 0.9999998,
                 "z": 1.00000036
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Super Street Fighter 2",
@@ -2082,21 +1987,19 @@
             "Runnable": true,
             "Position": {
                 "x": 12.1081514,
-                "y": 0.0009915829,
+                "y": 0.0009916425,
                 "z": -3.15172935
             },
             "Rotation": {
-                "x": 6.087602E-05,
-                "y": 5.559637,
-                "z": -2.533768E-05
+                "x": 2.414618E-05,
+                "y": 5.55963945,
+                "z": -4.70012637E-05
             },
             "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Main Menu",
@@ -2126,22 +2029,20 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": 1.97396648,
-                "y": -0.008287489,
-                "z": -2.0140028
+                "x": 1.973964,
+                "y": -0.008287013,
+                "z": -2.014004
             },
             "Rotation": {
-                "x": -0.000283821428,
-                "y": 69.12124,
-                "z": 0.0004912951
+                "x": -0.0005203071,
+                "y": 69.12134,
+                "z": 0.00070735137
             },
             "Scale": {
                 "x": 1.000014,
                 "y": 1.0,
                 "z": 1.000014
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Super Street Fighter 2",
@@ -2171,22 +2072,20 @@
             "Available": true,
             "Runnable": true,
             "Position": {
-                "x": -3.14159131,
-                "y": -0.00326192379,
-                "z": -0.4337061
+                "x": -3.14159083,
+                "y": -0.00326246023,
+                "z": -0.433704853
             },
             "Rotation": {
-                "x": -0.0005486082,
-                "y": 144.761,
-                "z": 0.000589879462
+                "x": -0.0005062382,
+                "y": 144.761078,
+                "z": 0.000618261751
             },
             "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         }
     ],
     "PropModelList": [
@@ -2218,157 +2117,20 @@
             "Available": false,
             "Runnable": false,
             "Position": {
-                "x": 10.21599,
-                "y": 0.0500014424,
-                "z": 0.713061452
-            },
-            "Rotation": {
-                "x": -1.003657E-05,
-                "y": 122.645409,
-                "z": 2.43513728E-06
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "run",
-                            "Loop": true,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "walk",
-                            "Loop": true,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "penguin_path_2",
-                            "Loop": true,
-                            "Speed": 0.1,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 1
-                        },
-                        {
-                            "Name": "walk",
-                            "Loop": true,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": [
-                "pi"
-            ]
-        },
-        {
-            "DescriptiveName": "Default Speaker",
-            "Id": "defaultSpeaker",
-            "Model": null,
-            "InteractionType": "None",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 2.31,
-                "y": 2.91,
-                "z": -1.57
+                "x": 1.205,
+                "y": 0.04984635,
+                "z": -1.228
             },
             "Rotation": {
                 "x": 0.0,
-                "y": 0.0,
+                "y": 138.121,
                 "z": 0.0
             },
             "Scale": {
-                "x": 0.554135442,
-                "y": 0.554135442,
-                "z": 0.554135442
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAudio",
-                    "AnimationProperties": [],
-                    "AudioProperties": [
-                        {
-                            "Name": "Ambient Sound ",
-                            "Priority": 0,
-                            "Volume": 0.8,
-                            "Loop": true,
-                            "PlayOnAwake": false,
-                            "Randomize": false,
-                            "SpatialBlend": 1.0,
-                            "Spatialize": true,
-                            "MinDistance": 4.0,
-                            "MaxDistance": 200.0,
-                            "AudioFiles": [
-                                {
-                                    "File": "ambientsound.wav",
-                                    "Path": "/3darcade~/Configuration/Media/Default/Sounds/"
-                                }
-                            ]
-                        }
-                    ],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+                "x": 0.2,
+                "y": 0.2,
+                "z": 0.2
+            }
         },
         {
             "DescriptiveName": "Plane",
@@ -2398,9 +2160,9 @@
             "Available": false,
             "Runnable": false,
             "Position": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 1.0
+                "x": 7.035,
+                "y": 2.418,
+                "z": 1.678
             },
             "Rotation": {
                 "x": 0.0,
@@ -2410,174 +2172,8 @@
             "Scale": {
                 "x": 0.5,
                 "y": 0.5,
-                "z": 0.0100000156
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "MenuStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": [
-                        {
-                            "SetParent": true,
-                            "SetIsKinematic": false,
-                            "SetPosition": true,
-                            "SetRotation": true,
-                            "SetScale": true,
-                            "SetIsActive": true,
-                            "Parent": "selectedmodel",
-                            "IsKinematic": false,
-                            "Position": {
-                                "x": 0.0,
-                                "y": 1.0,
-                                "z": 1.0
-                            },
-                            "Rotation": {
-                                "x": 0.0,
-                                "y": 180.0,
-                                "z": 0.0
-                            },
-                            "Scale": {
-                                "x": 0.5,
-                                "y": 0.5,
-                                "z": 0.5
-                            },
-                            "IsActive": true
-                        }
-                    ]
-                },
-                {
-                    "TriggerEvent": "MenuEnded",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetActiveDisabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetActiveDisabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
-        },
-        {
-            "DescriptiveName": "Menu Static Model",
-            "Id": "static",
-            "Model": null,
-            "InteractionType": "CylMenuConfiguration",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 1.46402663E-05,
-                "y": 0.0499982238,
-                "z": -9.777024E-06
-            },
-            "Rotation": {
-                "x": -4.96916728E-05,
-                "y": -0.000688197149,
-                "z": -0.000145991915
-            },
-            "Scale": {
-                "x": 1.00000072,
-                "y": 1.0,
-                "z": 1.00000072
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "MenuStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": [
-                        {
-                            "SetParent": true,
-                            "SetIsKinematic": true,
-                            "SetPosition": true,
-                            "SetRotation": true,
-                            "SetScale": true,
-                            "SetIsActive": true,
-                            "Parent": "selectedmodel",
-                            "IsKinematic": true,
-                            "Position": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Scale": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "IsActive": true
-                        }
-                    ]
-                },
-                {
-                    "TriggerEvent": "ModelSelectedChanged",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "GetArtworkFromSelectedModel",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetActiveDisabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "MenuEnded",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetActiveDisabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+                "z": 0.01
+            }
         }
     ]
 }

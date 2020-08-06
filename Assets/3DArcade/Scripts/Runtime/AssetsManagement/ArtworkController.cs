@@ -28,7 +28,7 @@ namespace Arcade
     {
         public static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
         {
-            if (material == null)
+            if (material == null || texture == null)
             {
                 return;
             }

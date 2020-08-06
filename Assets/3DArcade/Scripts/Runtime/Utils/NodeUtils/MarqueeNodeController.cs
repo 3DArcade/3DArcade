@@ -52,9 +52,9 @@ namespace Arcade
 
         protected override string GetEmulatorVideoDirectory(EmulatorConfiguration emulator) => emulator?.MarqueesVideoDirectory;
 
-        private static void SetupMagicPixels(Renderer baseRenderer)
+        private static void SetupMagicPixels(Renderer sourceRenderer)
         {
-            Transform parentTransform = baseRenderer.transform.parent;
+            Transform parentTransform = sourceRenderer.transform.parent;
             if (parentTransform == null)
             {
                 return;
@@ -62,30 +62,35 @@ namespace Arcade
 
             IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
                                                              .Where(r => r.GetComponent<NodeTag>() == null
-                                                                      && baseRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
+                                                                      && sourceRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
 
-            bool baseRendererIsEmissive = baseRenderer.material.IsEmissiveEnabled();
+            Color color;
+            Texture texture;
+
+            bool sourceMaterialIsEmissive = sourceRenderer.material.IsEmissiveEnabled();
+            if (sourceMaterialIsEmissive)
+            {
+                color   = sourceRenderer.material.GetEmissiveColor();
+                texture = sourceRenderer.material.GetEmissiveTexture();
+            }
+            else
+            {
+                color   = sourceRenderer.material.GetBaseColor();
+                texture = sourceRenderer.material.GetBaseTexture();
+            }
 
             foreach (Renderer renderer in renderers)
             {
-                if (baseRendererIsEmissive)
+                foreach (Material material in renderer.materials)
                 {
-                    Color color     = baseRenderer.material.GetEmissiveColor();
-                    Texture texture = baseRenderer.material.GetEmissiveTexture();
-                    if (renderer.material.IsEmissiveEnabled())
+                    if (material.IsEmissiveEnabled())
                     {
-                        renderer.material.SetEmissiveColorAndTexture(color, texture, true);
+                        material.SetEmissiveColorAndTexture(color, texture, true);
                     }
                     else
                     {
-                        renderer.material.SetBaseColorAndTexture(color, texture);
+                        material.SetBaseColorAndTexture(Color.white, texture);
                     }
-                }
-                else
-                {
-                    Color color     = baseRenderer.material.GetBaseColor();
-                    Texture texture = baseRenderer.material.GetBaseTexture();
-                    renderer.material.SetBaseColorAndTexture(color, texture);
                 }
             }
         }

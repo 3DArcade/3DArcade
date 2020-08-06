@@ -2,9 +2,9 @@
     "DescriptiveName": "cyl_demo_vert_flat_down",
     "Id": "cyl_demo_vert_flat_down",
     "RenderSettings": {
-        "MarqueeIntensity": 1.46,
-        "ScreenRasterIntensity": 1.25,
-        "ScreenVectorIntenstity": 2.25,
+        "MarqueeIntensity": 8.0,
+        "ScreenRasterIntensity": 4.0,
+        "ScreenVectorIntenstity": 8.0,
         "ScreenPinballIntensity": 1.0
     },
     "AudioSettings": {
@@ -95,7 +95,7 @@
             "z": 0.0
         }
     },
-    "Zones": [],
+    "ArcadeScene": "default_cylinder",
     "ArcadeModelList": [
         {
             "DescriptiveName": "Cylinder Arcade",
@@ -1291,9 +1291,9 @@
                 "z": -3.189646E-06
             },
             "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
+                "x": 0.2,
+                "y": 0.2,
+                "z": 0.2
             },
             "Triggers": [
                 {

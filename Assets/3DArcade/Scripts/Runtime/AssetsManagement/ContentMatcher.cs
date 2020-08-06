@@ -36,8 +36,7 @@ namespace Arcade
 
         private readonly EmulatorDatabase _emulatorDatabase;
 
-        public ContentMatcher(Database<EmulatorConfiguration> emulatorDatabase)
-            => _emulatorDatabase = emulatorDatabase as EmulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
+        public ContentMatcher(Database<EmulatorConfiguration> emulatorDatabase) => _emulatorDatabase = emulatorDatabase as EmulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
 
         public EmulatorConfiguration GetEmulatorForConfiguration(ModelConfiguration modelConfiguration)
         {

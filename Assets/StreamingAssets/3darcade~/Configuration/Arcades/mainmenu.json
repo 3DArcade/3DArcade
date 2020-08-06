@@ -2,9 +2,9 @@
     "DescriptiveName": "Main Menu",
     "Id": "mainmenu",
     "RenderSettings": {
-        "MarqueeIntensity": 1.46,
-        "ScreenRasterIntensity": 1.25,
-        "ScreenVectorIntenstity": 2.25,
+        "MarqueeIntensity": 8.0,
+        "ScreenRasterIntensity": 4.0,
+        "ScreenVectorIntenstity": 8.0,
         "ScreenPinballIntensity": 1.0
     },
     "AudioSettings": {
@@ -82,54 +82,7 @@
         "LineAngle": -5.0,
         "HorizontalNavigation": true
     },
-    "Zones": [],
-    "ArcadeModelList": [
-        {
-            "DescriptiveName": "Main Menu",
-            "Id": "mainmenu",
-            "Model": "single_directional_light",
-            "InteractionType": "None",
-            "Emulator": "",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": "",
-            "RomOf": "",
-            "Genre": "",
-            "Year": "",
-            "Manufacturer": "",
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
-        }
-    ],
+    "ArcadeScene": "empty",
     "GameModelList": [
         {
             "DescriptiveName": "Triggers Demo",
@@ -172,61 +125,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Space Port",
@@ -269,44 +168,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Time Out",
@@ -349,44 +211,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Zoning",
@@ -429,44 +254,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_hor_flat_right",
@@ -509,61 +297,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_hor_flat_left",
@@ -606,61 +340,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_vert_flat_down",
@@ -703,61 +383,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_vert_flat_up",
@@ -800,61 +426,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_hor_inside_right",
@@ -897,61 +469,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_hor_inside_left",
@@ -994,61 +512,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_vert_inside_down",
@@ -1091,61 +555,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_vert_inside_up",
@@ -1188,61 +598,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_hor_outside_right",
@@ -1285,61 +641,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_hor_outside_left",
@@ -1382,61 +684,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_vert_outside_down",
@@ -1479,61 +727,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "cyl_demo_vert_outside_up",
@@ -1576,61 +770,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_selected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_deselected",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "GameStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "defaultmenu_sprocket_zoom",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         }
     ],
     "PropModelList": [
@@ -1675,36 +815,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": null
-                },
-                {
-                    "TriggerEvent": "MainMenuStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "menu_title_move",
-                            "Loop": false,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": null
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Background",
@@ -1747,19 +858,7 @@
                 "x": 0.5,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "SetTransform",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         }
     ]
 }

@@ -55,16 +55,17 @@ namespace Arcade
             List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
             List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectory(modelConfiguration), GetEmulatorVideoDirectory(emulator), DefaultVideoDirectory);
 
-            if (_arcadeController.SetupVideo(renderer, directories, namesToTry))
+            if (_arcadeController.SetupVideo(renderer, directories, namesToTry, emissionIntensity))
             {
                 renderer.material.ClearBaseColorAndTexture();
-                return;
+                PostSetup(renderer, null, emissionIntensity);
             }
-
-            directories     = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectory(modelConfiguration), GetEmulatorImageDirectory(emulator), DefaultImageDirectory);
-            Texture texture = _textureCache.Load(directories, namesToTry);
-
-            PostSetup(renderer, texture, emissionIntensity);
+            else
+            {
+                directories     = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectory(modelConfiguration), GetEmulatorImageDirectory(emulator), DefaultImageDirectory);
+                Texture texture = _textureCache.Load(directories, namesToTry);
+                PostSetup(renderer, texture, emissionIntensity);
+            }
         }
 
         protected abstract void PostSetup(Renderer renderer, Texture texture, float emissionIntensity);
@@ -87,7 +88,7 @@ namespace Arcade
                 return null;
             }
 
-            T nodeTag = model.GetComponentInChildren<T>();
+            T nodeTag = model.GetComponentInChildren<T>(true);
             if (nodeTag != null)
             {
                 Renderer renderer = nodeTag.GetComponent<Renderer>();

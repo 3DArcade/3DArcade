@@ -61,7 +61,5 @@ namespace Arcade
         public Vector3 Position;
         public Vector3 Rotation;
         public Vector3 Scale;
-        public Trigger[] Triggers;
-        public string[] TriggerIDs;
     }
 }

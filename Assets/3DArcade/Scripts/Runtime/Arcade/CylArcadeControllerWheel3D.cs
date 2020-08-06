@@ -39,12 +39,6 @@ namespace Arcade
                                           AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
-        }
-
-        protected override void LateSetupWorld()
-        {
-            base.LateSetupWorld();
-
             _pivotPoint = new GameObject(CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME).transform;
         }
 

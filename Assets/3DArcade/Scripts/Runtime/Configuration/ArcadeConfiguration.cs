@@ -29,7 +29,7 @@ namespace Arcade
         public FpsArcadeProperties FpsArcadeProperties;
         public CylArcadeProperties CylArcadeProperties;
 
-        public ModelConfiguration[] ArcadeModelList;
+        public string ArcadeScene;
         public ModelConfiguration[] GameModelList;
         public ModelConfiguration[] PropModelList;
     }

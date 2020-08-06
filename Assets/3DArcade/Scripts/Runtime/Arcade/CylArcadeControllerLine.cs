@@ -43,11 +43,7 @@ namespace Arcade
 
         protected override float GetSpacing(Transform previousModel, Transform currentModel)
         {
-            if (_cylArcadeProperties.LineAngle >= 45f)
-            {
-                return GetVerticalSpacing(previousModel, currentModel);
-            }
-            else if (_cylArcadeProperties.LineAngle <= -45f)
+            if (_cylArcadeProperties.LineAngle >= 45f || _cylArcadeProperties.LineAngle <= -45f)
             {
                 return GetVerticalSpacing(previousModel, currentModel);
             }

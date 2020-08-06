@@ -55,9 +55,6 @@ namespace Arcade
         public bool Available                          = default;
         public bool Runnable                           = default;
 
-        public Trigger[] Triggers  = default;
-        public string[] TriggerIDs = default;
-
         public void FromModelConfiguration(ModelConfiguration modelConfiguration)
         {
             DescriptiveName       = modelConfiguration.DescriptiveName;
@@ -87,9 +84,6 @@ namespace Arcade
             Mature            = modelConfiguration.Mature;
             Available         = modelConfiguration.Available;
             Runnable          = modelConfiguration.Runnable;
-
-            Triggers   = modelConfiguration.Triggers;
-            TriggerIDs = modelConfiguration.TriggerIDs;
         }
 
         public ModelConfiguration ToModelConfiguration()
@@ -123,9 +117,6 @@ namespace Arcade
                 Mature            = Mature,
                 Available         = Available,
                 Runnable          = Runnable,
-
-                Triggers   = Triggers,
-                TriggerIDs = TriggerIDs,
 
                 Position = transform.localPosition,
                 Rotation = MathUtils.CorrectEulerAngles(transform.localEulerAngles),

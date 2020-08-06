@@ -31,8 +31,6 @@ namespace Arcade
         public readonly ArcadeHierarchy ArcadeHierarchy;
         public readonly Database<ArcadeConfiguration> ArcadeDatabase;
 
-        private static GameObject _hierarchyPrefab;
-
         private readonly IVirtualFileSystem _virtualFileSystem;
         private readonly AssetCache<GameObject> _gameObjectCache;
         private readonly Database<EmulatorConfiguration> _emulatorDatabase;
@@ -42,11 +40,6 @@ namespace Arcade
 
         public EditorLoadSaveArcadeSubstitute()
         {
-            if (_hierarchyPrefab == null)
-            {
-                _hierarchyPrefab = Resources.Load<GameObject>("Misc/pfArcadeHierarchy");
-            }
-
             ArcadeHierarchy = new ArcadeHierarchy();
 
             string dataPath    = SystemUtils.GetDataPath();

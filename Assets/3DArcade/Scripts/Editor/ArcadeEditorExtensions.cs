@@ -47,7 +47,7 @@ namespace Arcade.ArcadeEditorExtensions
         internal const string ARCADEMODELS_FOLDER  = MODELS_FOLDER + "/Arcades";
         internal const string GAMEMODELS_FOLDER    = MODELS_FOLDER + "/Games";
         internal const string PROPMODELS_FOLDER    = MODELS_FOLDER + "/Props";
-        internal const string RESOURCES_FOLDER     = "Assets/Resources";
+        internal const string RESOURCES_FOLDER     = "Assets/3Darcade/Resources";
         internal const string ARCADEPREFABS_FOLDER = RESOURCES_FOLDER + "/Arcades";
         internal const string GAMEPREFABS_FOLDER   = RESOURCES_FOLDER + "/Games";
         internal const string PROPPREFABS_FOLDER   = RESOURCES_FOLDER + "/Props";
@@ -316,7 +316,6 @@ namespace Arcade.ArcadeEditorExtensions
             return selectedObj != null
                 && selectedObj.transform.parent != null
                 && selectedObj.TryGetComponent(out Renderer renderer)
-                && renderer.sharedMaterials.Length == 1
                 && !renderer.sharedMaterial.name.Equals("Default-Material");
         }
 
