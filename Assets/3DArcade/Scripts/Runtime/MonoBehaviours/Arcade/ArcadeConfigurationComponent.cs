@@ -103,7 +103,7 @@ namespace Arcade
 
         private void GetChildNodes(out Transform tGames, out Transform tProps)
         {
-            Assert.IsTrue(transform.childCount > 2);
+            Assert.IsTrue(transform.childCount >= 2);
 
             tGames   = transform.GetChild(0);
             tProps   = transform.GetChild(1);

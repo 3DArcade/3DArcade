@@ -28,8 +28,8 @@ namespace Arcade
 {
     public abstract class NodeController
     {
-        protected abstract string DefaultImageDirectory { get; }
-        protected abstract string DefaultVideoDirectory { get; }
+        protected abstract string[] DefaultImageDirectories { get; }
+        protected abstract string[] DefaultVideoDirectories { get; }
 
         protected static readonly string _defaultMediaDirectory = $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Media";
 
@@ -53,7 +53,9 @@ namespace Arcade
             }
 
             List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectory(modelConfiguration), GetEmulatorVideoDirectory(emulator), DefaultVideoDirectory);
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectories(modelConfiguration), GetEmulatorVideoDirectories(emulator), DefaultVideoDirectories);
+
+            // TODO(Tom): Setup image cycling
 
             if (_arcadeController.SetupVideo(renderer, directories, namesToTry, emissionIntensity))
             {
@@ -62,7 +64,7 @@ namespace Arcade
             }
             else
             {
-                directories     = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectory(modelConfiguration), GetEmulatorImageDirectory(emulator), DefaultImageDirectory);
+                directories     = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectories(modelConfiguration), GetEmulatorImageDirectories(emulator), DefaultImageDirectories);
                 Texture texture = _textureCache.Load(directories, namesToTry);
                 PostSetup(renderer, texture, emissionIntensity);
             }
@@ -72,13 +74,13 @@ namespace Arcade
 
         protected abstract Renderer GetNodeRenderer(GameObject model);
 
-        protected abstract string GetModelImageDirectory(ModelConfiguration modelConfiguration);
+        protected abstract string[] GetModelImageDirectories(ModelConfiguration modelConfiguration);
 
-        protected abstract string GetModelVideoDirectory(ModelConfiguration modelConfiguration);
+        protected abstract string[] GetModelVideoDirectories(ModelConfiguration modelConfiguration);
 
-        protected abstract string GetEmulatorImageDirectory(EmulatorConfiguration emulator);
+        protected abstract string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator);
 
-        protected abstract string GetEmulatorVideoDirectory(EmulatorConfiguration emulator);
+        protected abstract string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator);
 
         [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
         protected static Renderer GetNodeRenderer<T>(GameObject model) where T : NodeTag

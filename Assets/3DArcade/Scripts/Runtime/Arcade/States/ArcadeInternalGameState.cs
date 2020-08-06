@@ -46,7 +46,7 @@ namespace Arcade
                 EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
                 if (emulator != null)
                 {
-                    if (_libretroController.StartGame(_screenNode, emulator.Id, emulator.GamesDirectory, _context.CurrentModelConfiguration.Id))
+                    if (_libretroController.StartGame(_screenNode, emulator.Id, emulator.GamesDirectories, _context.CurrentModelConfiguration.Id))
                     {
                         _context.VideoPlayerController.StopAllVideos();
                         return;

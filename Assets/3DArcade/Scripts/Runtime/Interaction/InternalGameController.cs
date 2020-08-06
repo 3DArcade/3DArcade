@@ -113,7 +113,7 @@ namespace Arcade
             _player = player;
         }
 
-        public bool StartGame(MonoBehaviour screenNode, string core, string gameDirectory, string gameName)
+        public bool StartGame(MonoBehaviour screenNode, string core, string[] gameDirectories, string gameName)
         {
             ResetFields();
 
@@ -125,30 +125,34 @@ namespace Arcade
                 return false;
             }
 
-            if (string.IsNullOrEmpty(core) || string.IsNullOrEmpty(gameDirectory) || string.IsNullOrEmpty(gameName))
+            if (string.IsNullOrEmpty(core) || gameDirectories == null || gameDirectories.Length < 1 || string.IsNullOrEmpty(gameName))
             {
                 return false;
             }
 
             _libretroWrapper = new LibretroWrapper((TargetPlatform)Application.platform, $"{SystemUtils.GetDataPath()}/3darcade~/Libretro");
-            if (_libretroWrapper.StartGame(core, gameDirectory, gameName))
+
+            foreach (string gameDirectory in gameDirectories)
             {
-                _gameFps        = (float)_libretroWrapper.Game.SystemAVInfo.timing.fps;
-                _gameSampleRate = (float)_libretroWrapper.Game.SystemAVInfo.timing.sample_rate;
-
-                if (_gameFps > 0f && _gameSampleRate > 0f)
+                if (_libretroWrapper.StartGame(core, gameDirectory, gameName))
                 {
-                    ActivateGraphics();
-                    ActivateAudio();
-                    ActivateInput();
+                    _gameFps = (float)_libretroWrapper.Game.SystemAVInfo.timing.fps;
+                    _gameSampleRate = (float)_libretroWrapper.Game.SystemAVInfo.timing.sample_rate;
 
-                    SaveVideoPlayerRenderMode();
-                    SetVideoPlayerRenderState(false);
+                    if (_gameFps > 0f && _gameSampleRate > 0f)
+                    {
+                        ActivateGraphics();
+                        ActivateAudio();
+                        ActivateInput();
 
-                    SaveMaterial();
-                    SetMaterialProperties();
+                        SaveVideoPlayerRenderMode();
+                        SetVideoPlayerRenderState(false);
 
-                    return true;
+                        SaveMaterial();
+                        SetMaterialProperties();
+
+                        return true;
+                    }
                 }
             }
 

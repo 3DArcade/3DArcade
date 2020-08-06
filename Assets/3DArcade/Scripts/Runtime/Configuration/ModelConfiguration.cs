@@ -33,14 +33,14 @@ namespace Arcade
         [JsonConverter(typeof(StringEnumConverter))]
         public InteractionType InteractionType;
         public string Emulator;
-        public string MarqueeDirectory;
-        public string MarqueeVideoDirectory;
-        public string ScreenDirectory;
-        public string ScreenVideoDirectory;
-        public string TitleDirectory;
-        public string GenericDirectory;
-        public string GenericVideoDirectory;
-        public string InfoDirectory;
+        public string[] MarqueeImageDirectories;
+        public string[] MarqueeVideoDirectories;
+        public string[] ScreenImageDirectories;
+        public string[] ScreenVideoDirectories;
+        public string[] TitleImageDirectories;
+        public string[] GenericImageDirectories;
+        public string[] GenericVideoDirectories;
+        public string[] InfoDirectories;
         public bool Grabbable;
         public bool MoveCabMovable;
         public bool MoveCabGrabbable;

@@ -43,25 +43,23 @@ namespace Arcade
             string mediaFolder = _virtualFileSystem.GetDirectory("media");
             return new EmulatorConfiguration
             {
-                DescriptiveName        = descriptiveName,
-                Id                     = id,
-                Directory              = null,
-                WorkingDirectory       = null,
-                Executable             = null,
-                Arguments              = null,
-                GamesDirectory         = null,
-                SupportedExtensions    = null,
-                Model                  = null,
-                MarqueesDirectory      = $"{mediaFolder}/Marquees",
-                MarqueesVideoDirectory = $"{mediaFolder}/MarqueesVideo",
-                ScreensDirectory       = $"{mediaFolder}/Screens",
-                ScreensVideoDirectory  = $"{mediaFolder}/ScreensVideo",
-                TitlesDirectory        = $"{mediaFolder}/Titles",
-                GenericsDirectory      = $"{mediaFolder}/Generics",
-                GenericsVideoDirectory = $"{mediaFolder}/GenericsVideo",
-                InfoDirectory          = $"{mediaFolder}/Info",
-                About                  = $"{mediaFolder}/About",
-                OutputCommandLine      = false
+                DescriptiveName          = descriptiveName,
+                Id                       = id,
+                Directory                = null,
+                WorkingDirectory         = null,
+                Executable               = null,
+                Arguments                = null,
+                GamesDirectories         = null,
+                SupportedExtensions      = null,
+                Model                    = null,
+                MarqueeImagesDirectories = new string[] { $"{mediaFolder}/Marquees" },
+                MarqueeVideosDirectories = new string[] { $"{mediaFolder}/MarqueesVideo" },
+                ScreenImagesDirectories  = new string[] { $"{mediaFolder}/Screens" },
+                ScreenVideosDirectories  = new string[] { $"{mediaFolder}/ScreensVideo" },
+                TitleImagesDirectories   = new string[] { $"{mediaFolder}/Titles" },
+                GenericImagesDirectories = new string[] { $"{mediaFolder}/Generics" },
+                GenericVideosDirectories = new string[] { $"{mediaFolder}/GenericsVideo" },
+                InfoDirectories          = new string[] { $"{mediaFolder}/Info" }
             };
         }
     }

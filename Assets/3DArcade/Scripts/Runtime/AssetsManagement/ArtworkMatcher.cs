@@ -26,20 +26,40 @@ namespace Arcade
 {
     public static class ArtworkMatcher
     {
-        public static List<string> GetDirectoriesToTry(string gameArtworkDirectory, string emulatorArtworkDirectory, string defaultArtworkDirectory)
+        public static List<string> GetDirectoriesToTry(string[] gameArtworkDirectories, string[] emulatorArtworkDirectories, string[] defaultArtworkDirectories)
         {
             List<string> result = new List<string>();
 
-            result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(gameArtworkDirectory));
-            result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(emulatorArtworkDirectory));
-            result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(defaultArtworkDirectory));
+            if (gameArtworkDirectories != null)
+            {
+                foreach (string directory in gameArtworkDirectories)
+                {
+                    result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(directory));
+                }
+            }
+
+            if (emulatorArtworkDirectories != null)
+            {
+                foreach (string directory in emulatorArtworkDirectories)
+                {
+                    result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(directory));
+                }
+            }
+
+            if (defaultArtworkDirectories != null)
+            {
+                foreach (string directory in defaultArtworkDirectories)
+                {
+                    result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(directory));
+                }
+            }
 
             return result;
         }
 
         public static List<string> GetNamesToTry(ModelConfiguration game, EmulatorConfiguration emulator)
         {
-            List<string> result  = new List<string>();
+            List<string> result = new List<string>();
 
             if (game != null)
             {

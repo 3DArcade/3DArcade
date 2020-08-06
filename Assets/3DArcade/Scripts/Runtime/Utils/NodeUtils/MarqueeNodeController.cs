@@ -28,8 +28,11 @@ namespace Arcade
 {
     public sealed class MarqueeNodeController : NodeController
     {
-        protected override string DefaultImageDirectory => $"{_defaultMediaDirectory}/Marquees";
-        protected override string DefaultVideoDirectory => $"{_defaultMediaDirectory}/MarqueesVideo";
+        protected override string[] DefaultImageDirectories => _defaultImageDirectories;
+        protected override string[] DefaultVideoDirectories => _defaultVideoDirectories;
+
+        private readonly string[] _defaultImageDirectories = new string[] { $"{_defaultMediaDirectory}/Marquees" };
+        private readonly string[] _defaultVideoDirectories = new string[] { $"{_defaultMediaDirectory}/MarqueesVideo" };
 
         public MarqueeNodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
         : base(arcadeController, textureCache)
@@ -44,13 +47,13 @@ namespace Arcade
 
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<MarqueeNodeTag>(model);
 
-        protected override string GetModelImageDirectory(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeDirectory;
+        protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeImageDirectories;
 
-        protected override string GetModelVideoDirectory(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeVideoDirectory;
+        protected override string[] GetModelVideoDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeVideoDirectories;
 
-        protected override string GetEmulatorImageDirectory(EmulatorConfiguration emulator) => emulator?.MarqueesDirectory;
+        protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator) => emulator?.MarqueeImagesDirectories;
 
-        protected override string GetEmulatorVideoDirectory(EmulatorConfiguration emulator) => emulator?.MarqueesVideoDirectory;
+        protected override string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator) => emulator?.MarqueeVideosDirectories;
 
         private static void SetupMagicPixels(Renderer sourceRenderer)
         {

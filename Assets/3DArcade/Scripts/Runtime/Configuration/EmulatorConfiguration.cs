@@ -29,18 +29,16 @@ namespace Arcade
         public string WorkingDirectory;
         public string Executable;
         public string Arguments;
-        public string GamesDirectory;
+        public string[] GamesDirectories;
         public string[] SupportedExtensions;
         public string Model;
-        public string MarqueesDirectory;
-        public string MarqueesVideoDirectory;
-        public string ScreensDirectory;
-        public string ScreensVideoDirectory;
-        public string TitlesDirectory;
-        public string GenericsDirectory;
-        public string GenericsVideoDirectory;
-        public string InfoDirectory;
-        public string About;
-        public bool OutputCommandLine;
+        public string[] MarqueeImagesDirectories;
+        public string[] MarqueeVideosDirectories;
+        public string[] ScreenImagesDirectories;
+        public string[] ScreenVideosDirectories;
+        public string[] TitleImagesDirectories;
+        public string[] GenericImagesDirectories;
+        public string[] GenericVideosDirectories;
+        public string[] InfoDirectories;
     }
 }

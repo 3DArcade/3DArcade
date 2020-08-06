@@ -5,17 +5,27 @@
     "WorkingDirectory": "",
     "Executable": "mame64.exe",
     "Arguments": "",
-    "GamesDirectory": "W:/complete/roms/MAME 0.221 ROMs (merged)",
+    "GameDirectories": [
+        "W:/complete/roms/MAME 0.221 ROMs (merged)"
+    ],
     "SupportedExtensions": null,
     "Model": "magic-deniro-80-hor",
-    "MarqueesDirectory": "@/3darcade~/Emulators/mame/marquees/",
-    "MarqueesVideoDirectory": "",
-    "ScreensDirectory": "@/3darcade~/Emulators/mame/snap/",
-    "ScreensVideoDirectory": "@/3darcade~/Emulators/mame/video/",
-    "TitlesDirectory": "@/3darcade~/Emulators/mame/titles/",
-    "GenericsDirectory": "@/3darcade~/Emulators/mame/generic/",
-    "GenericsVideoDirectory": "",
-    "InfoDirectory": "@/3darcade~/Emulators/mame/info/",
-    "About": "",
-    "OutputCommandLine": false
+    "MarqueeImagesDirectories": [
+        "@/3darcade~/Emulators/mame/marquees/"
+    ],
+    "MarqueeVideosDirectories": [],
+    "ScreenImagesDirectories": [
+        "@/3darcade~/Emulators/mame/snap/"
+    ],
+    "ScreenVideosDirectories": [
+        "@/3darcade~/Emulators/mame/video/"
+    ],
+    "TitleImagesDirectories": [
+        "@/3darcade~/Emulators/mame/titles/"
+    ],
+    "GenericImagesDirectories": [],
+    "GenericVideosDirectories": [],
+    "InfoTextsDirectories": [
+        "@/3darcade~/Emulators/mame/info/"
+    ]
 }

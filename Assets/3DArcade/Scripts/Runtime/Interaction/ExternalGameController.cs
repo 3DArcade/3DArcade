@@ -29,10 +29,7 @@ namespace Arcade
 
         private readonly OSUtils.ProcessLauncher _processLauncher;
 
-        public ExternalGameController()
-        {
-            _processLauncher = new OSUtils.ProcessLauncher();
-        }
+        public ExternalGameController() => _processLauncher = new OSUtils.ProcessLauncher();
 
         public bool StartGame(EmulatorConfiguration emulator, string game, bool persistent = false)
         {
@@ -53,10 +50,13 @@ namespace Arcade
             {
                 foreach (string supportedExtension in emulator.SupportedExtensions)
                 {
-                    if (FileSystem.FileExists($"{emulator.GamesDirectory}/{game}.{supportedExtension}"))
+                    foreach (string gameDirectory in emulator.GamesDirectories)
                     {
-                        extension = supportedExtension;
-                        break;
+                        if (FileSystem.FileExists($"{gameDirectory}/{game}.{supportedExtension}"))
+                        {
+                            extension = supportedExtension;
+                            break;
+                        }
                     }
                 }
             }
@@ -85,14 +85,8 @@ namespace Arcade
             return true;
         }
 
-        public void StopCurrent()
-        {
-            _processLauncher.StopCurrentProcess();
-        }
+        public void StopCurrent() => _processLauncher.StopCurrentProcess();
 
-        public void StopAll()
-        {
-            _processLauncher.StopAllProcesses();
-        }
+        public void StopAll() => _processLauncher.StopAllProcesses();
     }
 }

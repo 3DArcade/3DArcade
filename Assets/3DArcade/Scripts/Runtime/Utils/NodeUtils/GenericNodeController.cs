@@ -26,8 +26,11 @@ namespace Arcade
 {
     public sealed class GenericNodeController : NodeController
     {
-        protected override string DefaultImageDirectory => $"{_defaultMediaDirectory}/Generics";
-        protected override string DefaultVideoDirectory => $"{_defaultMediaDirectory}/GenericsVideo";
+        protected override string[] DefaultImageDirectories => _defaultImageDirectories;
+        protected override string[] DefaultVideoDirectories => _defaultVideoDirectories;
+
+        private readonly string[] _defaultImageDirectories = new string[] { $"{_defaultMediaDirectory}/Generics" };
+        private readonly string[] _defaultVideoDirectories = new string[] { $"{_defaultMediaDirectory}/GenericsVideo" };
 
         public GenericNodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
         : base(arcadeController, textureCache)
@@ -41,12 +44,12 @@ namespace Arcade
 
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<GenericNodeTag>(model);
 
-        protected override string GetModelImageDirectory(ModelConfiguration modelConfiguration) => modelConfiguration?.GenericDirectory;
+        protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.GenericImageDirectories;
 
-        protected override string GetModelVideoDirectory(ModelConfiguration modelConfiguration) => modelConfiguration?.GenericVideoDirectory;
+        protected override string[] GetModelVideoDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.GenericVideoDirectories;
 
-        protected override string GetEmulatorImageDirectory(EmulatorConfiguration emulator) => emulator?.GenericsDirectory;
+        protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator) => emulator?.GenericImagesDirectories;
 
-        protected override string GetEmulatorVideoDirectory(EmulatorConfiguration emulator) => emulator?.GenericsVideoDirectory;
+        protected override string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator) => emulator?.GenericVideosDirectories;
     }
 }

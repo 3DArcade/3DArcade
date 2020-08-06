@@ -27,22 +27,22 @@ namespace Arcade
     [DisallowMultipleComponent, SelectionBase]
     public sealed class ModelConfigurationComponent : MonoBehaviour
     {
-        public string DescriptiveName          = default;
-        public string Id                       = default;
-        public string Model                    = default;
-        public InteractionType InteractionType = default;
-        public string Emulator                 = default;
-        public string MarqueeDirectory         = default;
-        public string MarqueeVideoDirectory    = default;
-        public string ScreenDirectory          = default;
-        public string ScreenVideoDirectory     = default;
-        public string TitleDirectory           = default;
-        public string GenericDirectory         = default;
-        public string GenericVideoDirectory    = default;
-        public string InfoDirectory            = default;
-        public bool Grabbable                  = default;
-        public bool MoveCabMovable             = default;
-        public bool MoveCabGrabbable           = default;
+        public string DescriptiveName           = default;
+        public string Id                        = default;
+        public string Model                     = default;
+        public InteractionType InteractionType  = default;
+        public string Emulator                  = default;
+        public string[] MarqueeImageDirectories = default;
+        public string[] MarqueeVideoDirectories = default;
+        public string[] ScreenImageDirectories  = default;
+        public string[] ScreenVideoDirectories  = default;
+        public string[] TitleImageDirectories   = default;
+        public string[] GenericImageDirectories = default;
+        public string[] GenericVideoDirectories = default;
+        public string[] InfoDirectories         = default;
+        public bool Grabbable                   = default;
+        public bool MoveCabMovable              = default;
+        public bool MoveCabGrabbable            = default;
 
         public string CloneOf                          = default;
         public string RomOf                            = default;
@@ -57,22 +57,22 @@ namespace Arcade
 
         public void FromModelConfiguration(ModelConfiguration modelConfiguration)
         {
-            DescriptiveName       = modelConfiguration.DescriptiveName;
-            Id                    = modelConfiguration.Id;
-            Model                 = modelConfiguration.Model;
-            InteractionType       = modelConfiguration.InteractionType;
-            Emulator              = modelConfiguration.Emulator;
-            MarqueeDirectory      = modelConfiguration.MarqueeDirectory;
-            MarqueeVideoDirectory = modelConfiguration.MarqueeVideoDirectory;
-            ScreenDirectory       = modelConfiguration.ScreenDirectory;
-            TitleDirectory        = modelConfiguration.TitleDirectory;
-            ScreenVideoDirectory  = modelConfiguration.ScreenVideoDirectory;
-            GenericDirectory      = modelConfiguration.GenericDirectory;
-            GenericVideoDirectory = modelConfiguration.GenericVideoDirectory;
-            InfoDirectory         = modelConfiguration.InfoDirectory;
-            Grabbable             = modelConfiguration.Grabbable;
-            MoveCabMovable        = modelConfiguration.MoveCabMovable;
-            MoveCabGrabbable      = modelConfiguration.MoveCabGrabbable;
+            DescriptiveName         = modelConfiguration.DescriptiveName;
+            Id                      = modelConfiguration.Id;
+            Model                   = modelConfiguration.Model;
+            InteractionType         = modelConfiguration.InteractionType;
+            Emulator                = modelConfiguration.Emulator;
+            MarqueeImageDirectories = modelConfiguration.MarqueeImageDirectories;
+            MarqueeVideoDirectories = modelConfiguration.MarqueeVideoDirectories;
+            ScreenImageDirectories  = modelConfiguration.ScreenImageDirectories;
+            ScreenVideoDirectories  = modelConfiguration.ScreenVideoDirectories;
+            TitleImageDirectories   = modelConfiguration.TitleImageDirectories;
+            GenericImageDirectories = modelConfiguration.GenericImageDirectories;
+            GenericVideoDirectories = modelConfiguration.GenericVideoDirectories;
+            InfoDirectories         = modelConfiguration.InfoDirectories;
+            Grabbable               = modelConfiguration.Grabbable;
+            MoveCabMovable          = modelConfiguration.MoveCabMovable;
+            MoveCabGrabbable        = modelConfiguration.MoveCabGrabbable;
 
             CloneOf           = modelConfiguration.CloneOf;
             RomOf             = modelConfiguration.RomOf;
@@ -90,22 +90,22 @@ namespace Arcade
         {
             return new ModelConfiguration
             {
-                DescriptiveName       = DescriptiveName,
-                Id                    = Id,
-                Model                 = Model,
-                InteractionType       = InteractionType,
-                Emulator              = Emulator,
-                MarqueeDirectory      = MarqueeDirectory,
-                MarqueeVideoDirectory = MarqueeVideoDirectory,
-                ScreenDirectory       = ScreenDirectory,
-                TitleDirectory        = TitleDirectory,
-                ScreenVideoDirectory  = ScreenVideoDirectory,
-                GenericDirectory      = GenericDirectory,
-                GenericVideoDirectory = GenericVideoDirectory,
-                InfoDirectory         = InfoDirectory,
-                Grabbable             = Grabbable,
-                MoveCabMovable        = MoveCabMovable,
-                MoveCabGrabbable      = MoveCabGrabbable,
+                DescriptiveName         = DescriptiveName,
+                Id                      = Id,
+                Model                   = Model,
+                InteractionType         = InteractionType,
+                Emulator                = Emulator,
+                MarqueeImageDirectories = MarqueeImageDirectories,
+                MarqueeVideoDirectories = MarqueeVideoDirectories,
+                ScreenImageDirectories  = ScreenImageDirectories,
+                TitleImageDirectories   = TitleImageDirectories,
+                ScreenVideoDirectories  = ScreenVideoDirectories,
+                GenericImageDirectories = GenericImageDirectories,
+                GenericVideoDirectories = GenericVideoDirectories,
+                InfoDirectories         = InfoDirectories,
+                Grabbable               = Grabbable,
+                MoveCabMovable          = MoveCabMovable,
+                MoveCabGrabbable        = MoveCabGrabbable,
 
                 CloneOf           = CloneOf,
                 RomOf             = RomOf,

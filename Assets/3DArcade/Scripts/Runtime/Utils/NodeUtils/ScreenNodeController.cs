@@ -20,14 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Arcade
 {
     public sealed class ScreenNodeController : NodeController
     {
-        protected override string DefaultImageDirectory => $"{_defaultMediaDirectory}/Screens";
-        protected override string DefaultVideoDirectory => $"{_defaultMediaDirectory}/ScreensVideo";
+        protected override string[] DefaultImageDirectories => _defaultImageDirectories;
+        protected override string[] DefaultVideoDirectories => _defaultVideoDirectories;
+
+        private readonly string[] _defaultImageDirectories = new string[] { $"{_defaultMediaDirectory}/Screens", $"{_defaultMediaDirectory}/Titles" };
+        private readonly string[] _defaultVideoDirectories = new string[] { $"{_defaultMediaDirectory}/ScreensVideo" };
 
         public ScreenNodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
         : base(arcadeController, textureCache)
@@ -41,12 +45,42 @@ namespace Arcade
 
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<ScreenNodeTag>(model);
 
-        protected override string GetModelImageDirectory(ModelConfiguration modelConfiguration) => modelConfiguration?.ScreenDirectory;
+        protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration)
+        {
+            List<string> result = new List<string>();
 
-        protected override string GetModelVideoDirectory(ModelConfiguration modelConfiguration) => modelConfiguration?.ScreenVideoDirectory;
+            if (modelConfiguration.ScreenImageDirectories != null)
+            {
+                result.AddRange(modelConfiguration.ScreenImageDirectories);
+            }
 
-        protected override string GetEmulatorImageDirectory(EmulatorConfiguration emulator) => emulator?.ScreensDirectory;
+            if (modelConfiguration.TitleImageDirectories != null)
+            {
+                result.AddRange(modelConfiguration.TitleImageDirectories);
+            }
 
-        protected override string GetEmulatorVideoDirectory(EmulatorConfiguration emulator) => emulator?.ScreensVideoDirectory;
+            return result.Count > 0 ? result.ToArray() : null;
+        }
+
+        protected override string[] GetModelVideoDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.ScreenVideoDirectories;
+
+        protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator)
+        {
+            List<string> result = new List<string>();
+
+            if (emulator.ScreenImagesDirectories != null)
+            {
+                result.AddRange(emulator.ScreenImagesDirectories);
+            }
+
+            if (emulator.TitleImagesDirectories != null)
+            {
+                result.AddRange(emulator.TitleImagesDirectories);
+            }
+
+            return result.Count > 0 ? result.ToArray() : null;
+        }
+
+        protected override string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator) => emulator?.ScreenVideosDirectories;
     }
 }
