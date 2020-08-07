@@ -21,16 +21,19 @@
  * SOFTWARE. */
 
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Video;
 
 namespace Arcade
 {
     public abstract class CylArcadeController : ArcadeController
     {
+        public sealed override bool VideoPlayOnAwake => false;
+        public sealed override float AudioMinDistance { get; protected set; }
+        public sealed override float AudioMaxDistance { get; protected set; }
+        public sealed override AnimationCurve VolumeCurve { get; protected set; }
+
         protected abstract Transform TransformAnchor { get; }
         protected abstract Vector3 TransformVector { get; }
 
@@ -55,10 +58,10 @@ namespace Arcade
                                    AssetCache<string> videoCache)
         : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
         {
-            _audioMinDistance = 0f;
-            _audioMaxDistance = 100f;
+            AudioMinDistance = 0f;
+            AudioMaxDistance = 200f;
 
-            _volumeCurve = new AnimationCurve(new Keyframe[]
+            VolumeCurve = new AnimationCurve(new Keyframe[]
             {
                  new Keyframe(0f, 1f),
                  new Keyframe(1f, 1f)
@@ -77,45 +80,6 @@ namespace Arcade
 
         protected abstract void AdjustModelPosition(Transform model, bool forward, float spacing);
 
-        public sealed override bool SetupVideo(Renderer screen, List<string> directories, List<string> namesToTry, float emissionIntensity)
-        {
-            string videopath = _videoCache.Load(directories, namesToTry);
-            if (string.IsNullOrEmpty(videopath))
-            {
-                return false;
-            }
-
-            screen.material.EnableEmissive();
-            screen.material.SetEmissiveColor(Color.white * emissionIntensity);
-
-            AudioSource audioSource  = screen.gameObject.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake  = false;
-            audioSource.dopplerLevel = 0f;
-            audioSource.spatialBlend = 1f;
-            audioSource.minDistance  = _audioMinDistance;
-            audioSource.maxDistance  = _audioMaxDistance;
-            audioSource.volume       = 1f;
-            audioSource.rolloffMode  = AudioRolloffMode.Custom;
-            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, _volumeCurve);
-
-            VideoPlayer videoPlayer               = screen.gameObject.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived            -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived            += OnVideoPlayerErrorReceived;
-            videoPlayer.playOnAwake               = false;
-            videoPlayer.waitForFirstFrame         = true;
-            videoPlayer.isLooping                 = true;
-            videoPlayer.skipOnDrop                = true;
-            videoPlayer.source                    = VideoSource.Url;
-            videoPlayer.url                       = videopath;
-            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
-            videoPlayer.controlledAudioTrackCount = 1;
-            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
-            videoPlayer.Stop();
-
-            return true;
-        }
-
         protected sealed override void PreSetupPlayer()
         {
             _playerFpsControls.gameObject.SetActive(false);
@@ -125,7 +89,7 @@ namespace Arcade
             _playerCylControls.SetHorizontalLookLimits(0f, 0f);
         }
 
-        protected sealed override void GameModelAdditionalSteps(GameObject instantiatedModel)
+        protected sealed override void AddModelsToWorldAdditionalLoopStepsForGames(GameObject instantiatedModel)
         {
             if (instantiatedModel.TryGetComponent(out Rigidbody rigidbody))
             {
@@ -146,10 +110,10 @@ namespace Arcade
             _cylArcadeProperties = _arcadeConfiguration.CylArcadeProperties;
 
             _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
-            _sprockets = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
-            int selectedSprocket = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
-            int halfSprockets = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
-            _selectionIndex = halfSprockets - selectedSprocket;
+            _sprockets            = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
+            int selectedSprocket  = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
+            int halfSprockets     = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
+            _selectionIndex       = halfSprockets - selectedSprocket;
 
             if (_cylArcadeProperties.InverseList)
             {

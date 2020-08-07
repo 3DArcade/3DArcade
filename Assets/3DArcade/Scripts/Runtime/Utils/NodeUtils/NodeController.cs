@@ -23,28 +23,27 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace Arcade
 {
     public abstract class NodeController
     {
+        protected static readonly string _defaultMediaDirectory = $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Media";
+
         protected abstract string[] DefaultImageDirectories { get; }
         protected abstract string[] DefaultVideoDirectories { get; }
 
-        protected static readonly string _defaultMediaDirectory = $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Media";
+        private readonly AssetCache<string> _videoCache;
+        private readonly AssetCache<Texture> _textureCache;
 
-        protected readonly ArcadeController _arcadeController;
-        protected readonly AssetCache<Texture> _textureCache;
-
-        protected Renderer _renderer;
-
-        protected NodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
+        protected NodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
         {
-            _arcadeController = arcadeController;
-            _textureCache     = textureCache;
+            _videoCache   = videoCache;
+            _textureCache = textureCache;
         }
 
-        public void Setup(GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
+        public void Setup(ArcadeController arcadeController, GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
         {
             Renderer renderer = GetNodeRenderer(model);
             if (renderer == null)
@@ -57,7 +56,7 @@ namespace Arcade
 
             // TODO(Tom): Setup image cycling
 
-            if (_arcadeController.SetupVideo(renderer, directories, namesToTry, emissionIntensity))
+            if (SetupVideo(renderer, directories, namesToTry, emissionIntensity, arcadeController.VideoPlayOnAwake, arcadeController.AudioMinDistance, arcadeController.AudioMaxDistance, arcadeController.VolumeCurve))
             {
                 renderer.material.ClearBaseColorAndTexture();
                 PostSetup(renderer, null, emissionIntensity);
@@ -100,6 +99,103 @@ namespace Arcade
                 }
             }
             return null;
+        }
+
+        protected static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
+        {
+            if (material == null || texture == null)
+            {
+                return;
+            }
+
+            if (forceEmissive)
+            {
+                material.ClearBaseColorAndTexture();
+                material.SetEmissiveColorAndTexture(Color.white * emissionFactor, texture);
+            }
+            else if (material.IsEmissiveEnabled())
+            {
+                if (overwriteColor)
+                {
+                    material.SetBaseColor(Color.black);
+                    material.SetEmissiveColor(Color.white * emissionFactor);
+                }
+                material.ClearBaseTexture();
+                material.SetEmissiveTexture(texture);
+            }
+            else
+            {
+                if (overwriteColor)
+                {
+                    material.SetBaseColor(Color.white);
+                }
+                material.SetBaseTexture(texture);
+            }
+        }
+
+        public bool SetupVideo(Renderer renderer, List<string> directories, List<string> namesToTry, float emissionIntensity, bool playOnAwake, float audioMinDistance, float audioMaxDistance, AnimationCurve volumeCurve)
+        {
+            string videopath = _videoCache.Load(directories, namesToTry);
+            if (string.IsNullOrEmpty(videopath))
+            {
+                return false;
+            }
+
+            renderer.material.ClearBaseColorAndTexture();
+            renderer.material.EnableEmissive();
+            renderer.material.SetEmissiveColor(Color.white * emissionIntensity);
+
+            AudioSource audioSource  = renderer.gameObject.AddComponentIfNotFound<AudioSource>();
+            audioSource.playOnAwake  = false;
+            audioSource.dopplerLevel = 0f;
+            audioSource.spatialBlend = 1f;
+            audioSource.minDistance  = audioMinDistance;
+            audioSource.maxDistance  = audioMaxDistance;
+            audioSource.volume       = 1f;
+            audioSource.rolloffMode  = AudioRolloffMode.Custom;
+            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, volumeCurve);
+
+            VideoPlayer videoPlayer    = renderer.gameObject.AddComponentIfNotFound<VideoPlayer>();
+            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
+            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
+            if (playOnAwake)
+            {
+                videoPlayer.prepareCompleted -= OnVideoPlayerPrepareCompleted;
+                videoPlayer.prepareCompleted += OnVideoPlayerPrepareCompleted;
+            }
+            videoPlayer.playOnAwake               = playOnAwake;
+            videoPlayer.waitForFirstFrame         = true;
+            videoPlayer.isLooping                 = true;
+            videoPlayer.skipOnDrop                = true;
+            videoPlayer.source                    = VideoSource.Url;
+            videoPlayer.url                       = videopath;
+            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
+            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
+            videoPlayer.controlledAudioTrackCount = 1;
+            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
+            if (playOnAwake)
+            {
+                videoPlayer.Prepare();
+            }
+            else
+            {
+                videoPlayer.Stop();
+            }
+
+            return true;
+        }
+
+        private static void OnVideoPlayerErrorReceived(VideoPlayer _, string message) => Debug.Log($"Error: {message}");
+
+        private static void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
+        {
+            float frameCount = videoPlayer.frameCount;
+            float frameRate  = videoPlayer.frameRate;
+            double duration  = frameCount / frameRate;
+            videoPlayer.time = Random.Range(0.02f, 0.98f) * duration;
+
+            videoPlayer.EnableAudioTrack(0, false);
+            videoPlayer.Pause();
         }
     }
 }

@@ -28,20 +28,17 @@ namespace Arcade
 {
     public sealed class MarqueeNodeController : NodeController
     {
-        protected override string[] DefaultImageDirectories => _defaultImageDirectories;
-        protected override string[] DefaultVideoDirectories => _defaultVideoDirectories;
+        protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Marquees" };
+        protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/MarqueesVideo" };
 
-        private readonly string[] _defaultImageDirectories = new string[] { $"{_defaultMediaDirectory}/Marquees" };
-        private readonly string[] _defaultVideoDirectories = new string[] { $"{_defaultMediaDirectory}/MarqueesVideo" };
-
-        public MarqueeNodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
-        : base(arcadeController, textureCache)
+        public MarqueeNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
+        : base(videoCache, textureCache)
         {
         }
 
         protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity)
         {
-            ArtworkController.SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
+            SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
             SetupMagicPixels(renderer);
         }
 
@@ -88,7 +85,8 @@ namespace Arcade
                 {
                     if (material.IsEmissiveEnabled())
                     {
-                        material.SetEmissiveColorAndTexture(color, texture, true);
+                        material.ClearBaseColorAndTexture();
+                        material.SetEmissiveColorAndTexture(color, texture);
                     }
                     else
                     {

@@ -27,21 +27,15 @@ namespace Arcade
 {
     public sealed class ScreenNodeController : NodeController
     {
-        protected override string[] DefaultImageDirectories => _defaultImageDirectories;
-        protected override string[] DefaultVideoDirectories => _defaultVideoDirectories;
+        protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Screens", $"{_defaultMediaDirectory}/Titles" };
+        protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/ScreensVideo" };
 
-        private readonly string[] _defaultImageDirectories = new string[] { $"{_defaultMediaDirectory}/Screens", $"{_defaultMediaDirectory}/Titles" };
-        private readonly string[] _defaultVideoDirectories = new string[] { $"{_defaultMediaDirectory}/ScreensVideo" };
-
-        public ScreenNodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
-        : base(arcadeController, textureCache)
+        public ScreenNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
+        : base(videoCache, textureCache)
         {
         }
 
-        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity)
-        {
-            ArtworkController.SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
-        }
+        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity) => SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
 
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<ScreenNodeTag>(model);
 

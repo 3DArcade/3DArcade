@@ -137,16 +137,11 @@ namespace Arcade
             material.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, null);
         }
 
-        public static void SetEmissiveColorAndTexture(this Material material, Color color, Texture texture, bool clearMainColorAndTexture)
+        public static void SetEmissiveColorAndTexture(this Material material, Color color, Texture texture)
         {
             if (material == null)
             {
                 return;
-            }
-
-            if (clearMainColorAndTexture)
-            {
-                material.ClearBaseColorAndTexture();
             }
 
             material.SetEmissiveColor(color);

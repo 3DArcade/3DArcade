@@ -26,21 +26,15 @@ namespace Arcade
 {
     public sealed class GenericNodeController : NodeController
     {
-        protected override string[] DefaultImageDirectories => _defaultImageDirectories;
-        protected override string[] DefaultVideoDirectories => _defaultVideoDirectories;
+        protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Generics" };
+        protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/GenericsVideo" };
 
-        private readonly string[] _defaultImageDirectories = new string[] { $"{_defaultMediaDirectory}/Generics" };
-        private readonly string[] _defaultVideoDirectories = new string[] { $"{_defaultMediaDirectory}/GenericsVideo" };
-
-        public GenericNodeController(ArcadeController arcadeController, AssetCache<Texture> textureCache)
-        : base(arcadeController, textureCache)
+        public GenericNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
+        : base(videoCache, textureCache)
         {
         }
 
-        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity)
-        {
-            ArtworkController.SetupStaticImage(renderer.material, texture, true, false, emissionIntensity);
-        }
+        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity) => SetupStaticImage(renderer.material, texture, true, false, emissionIntensity);
 
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<GenericNodeTag>(model);
 

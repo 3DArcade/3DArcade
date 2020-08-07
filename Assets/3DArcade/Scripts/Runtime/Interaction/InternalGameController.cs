@@ -153,10 +153,19 @@ namespace Arcade
 
                         return true;
                     }
+                    else
+                    {
+                        StopGame();
+                    }
+                }
+                else
+                {
+                    StopGame();
                 }
             }
 
             StopGame();
+
             return false;
         }
 
