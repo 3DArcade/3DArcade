@@ -35,8 +35,6 @@ namespace Arcade
         {
         }
 
-        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity) => SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
-
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<ScreenNodeTag>(model);
 
         protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration)
@@ -60,6 +58,11 @@ namespace Arcade
 
         protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator)
         {
+            if (emulator == null)
+            {
+                return null;
+            }
+
             List<string> result = new List<string>();
 
             if (emulator.ScreenImagesDirectories != null)

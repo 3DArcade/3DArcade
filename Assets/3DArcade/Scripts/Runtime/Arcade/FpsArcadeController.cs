@@ -26,7 +26,7 @@ namespace Arcade
 {
     public sealed class FpsArcadeController : ArcadeController
     {
-        public override bool VideoPlayOnAwake => true;
+        public override bool VideoPlayOnAwake => false;
         public override float AudioMinDistance { get; protected set; }
         public override float AudioMaxDistance { get; protected set; }
         public override AnimationCurve VolumeCurve { get; protected set; }

@@ -20,24 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using UnityEngine.Video;
-
 namespace Arcade
 {
     public sealed class VideoPlayerControllerCyl : VideoPlayerController
     {
-        public override void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
-        {
-            videoPlayer.EnableAudioTrack(0, state);
-
-            if (state)
-            {
-                videoPlayer.Play();
-            }
-            else
-            {
-                videoPlayer.Pause();
-            }
-        }
     }
 }

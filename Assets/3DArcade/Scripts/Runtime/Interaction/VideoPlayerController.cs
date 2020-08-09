@@ -39,11 +39,17 @@ namespace Arcade
         {
         }
 
-        public virtual void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
+        public void PlayVideo(MonoBehaviour monoBehaviour)
         {
+            VideoSetPlayingState(monoBehaviour, true);
         }
 
         public void StopVideo(MonoBehaviour monoBehaviour)
+        {
+            VideoSetPlayingState(monoBehaviour, false);
+        }
+
+        protected void VideoSetPlayingState(MonoBehaviour monoBehaviour, bool state)
         {
             if (monoBehaviour == null)
             {
@@ -53,7 +59,26 @@ namespace Arcade
             VideoPlayer[] videoPlayers = monoBehaviour.GetComponentsInChildren<VideoPlayer>();
             foreach (VideoPlayer videoPlayer in videoPlayers)
             {
-                VideoSetPlayingState(videoPlayer, false);
+                VideoSetPlayingState(videoPlayer, state);
+            }
+        }
+
+        protected void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
+        {
+            if (!videoPlayer.enabled)
+            {
+                return;
+            }
+
+            videoPlayer.EnableAudioTrack(0, state);
+
+            if (state)
+            {
+                videoPlayer.Play();
+            }
+            else
+            {
+                videoPlayer.Stop();
             }
         }
     }

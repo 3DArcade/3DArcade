@@ -24,7 +24,7 @@ using UnityEngine;
 
 namespace Arcade
 {
-    [DisallowMultipleComponent]
+    [DisallowMultipleComponent, RequireComponent(typeof(Renderer))]
     public abstract class NodeTag : MonoBehaviour
     {
     }

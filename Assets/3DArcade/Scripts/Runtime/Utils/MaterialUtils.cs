@@ -32,6 +32,8 @@ namespace Arcade
         public const string SHADER_EMISSIVE_KEYWORD                 = "_EMISSIVE_COLOR_MAP";
         public const string SHADER_EMISSIVE_COLOR_NAME              = "_EmissiveColor";
         public const string SHADER_EMISSIVE_TEXTURE_NAME            = "_EmissiveColorMap";
+        public const string SHADER_EMISSIVE_INTENSITY_NAME          = "_EmissiveIntensity";
+        public const string SHADER_EMISSIVE_USE_INTENSITY_KEYWORD   = "_UseEmissiveIntensity";
         public const string SHADER_EMISSIVE_EXPOSURE_WEIGTH_KEYWORD = "_EmissiveExposureWeight";
 
         public static void SetGPUInstancing(bool active, params GameObject[] models)

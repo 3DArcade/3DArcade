@@ -287,15 +287,15 @@ namespace Arcade.ArcadeEditorExtensions
             Utils.SetupTransparentMaterial(renderer.sharedMaterial);
         }
 
-        [MenuItem("GameObject/ArcadeEditorExtensions/Material/Set as emissive", false, 22)]
-        private static void GameObjectSetAsEmissive()
-        {
-            GameObject selectedObj = Selection.activeObject as GameObject;
+        //[MenuItem("GameObject/ArcadeEditorExtensions/Material/Set as emissive", false, 22)]
+        //private static void GameObjectSetAsEmissive()
+        //{
+        //    GameObject selectedObj = Selection.activeObject as GameObject;
 
-            Renderer renderer = selectedObj.GetComponent<MeshRenderer>();
-            Undo.RecordObject(renderer.sharedMaterial, "Set as emissive");
-            Utils.SetupEmissiveMaterial(renderer.sharedMaterial, Color.white * 1.4f);
-        }
+        //    Renderer renderer = selectedObj.GetComponent<MeshRenderer>();
+        //    Undo.RecordObject(renderer.sharedMaterial, "Set as emissive");
+        //    Utils.SetupEmissiveMaterial(renderer.sharedMaterial/*, Color.white * 1.4f*/);
+        //}
 
         // ***************
         // Validation
@@ -334,8 +334,8 @@ namespace Arcade.ArcadeEditorExtensions
 
     internal static class Utils
     {
-        private static readonly Color _marqueeEmissiveColor = Color.white * 1.4f;
-        private static readonly Color _monitorEmissiveColor = Color.white * 1.3f;
+        //private static readonly Color _marqueeEmissiveColor = Color.white * 1.4f;
+        //private static readonly Color _monitorEmissiveColor = Color.white * 1.3f;
 
         internal static ModelType GetModelType(string assetPath)
         {
@@ -529,9 +529,9 @@ namespace Arcade.ArcadeEditorExtensions
             }
             _ = Undo.AddComponent<MarqueeNodeTag>(obj);
 
-            MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
-            Undo.RecordObject(meshRenderer.sharedMaterial, "Set as marquee");
-            SetupEmissiveMaterial(meshRenderer.sharedMaterial, _marqueeEmissiveColor);
+            //MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
+            //Undo.RecordObject(meshRenderer.sharedMaterial, "Set as marquee");
+            //SetupEmissiveMaterial(meshRenderer.sharedMaterial, _marqueeEmissiveColor);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
         }
@@ -553,24 +553,23 @@ namespace Arcade.ArcadeEditorExtensions
             }
             _ = Undo.AddComponent<ScreenNodeTag>(obj);
 
-            MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
-            Undo.RecordObject(meshRenderer.sharedMaterial, "Set as monitor");
-            SetupEmissiveMaterial(meshRenderer.sharedMaterial, _monitorEmissiveColor);
+            //MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
+            //Undo.RecordObject(meshRenderer.sharedMaterial, "Set as monitor");
+            //SetupEmissiveMaterial(meshRenderer.sharedMaterial, _monitorEmissiveColor);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
         }
 
-        internal static void SetupEmissiveMaterial(Material material, Color color)
-        {
-            material.EnableEmissive();
-            material.SetEmissiveColor(color);
-
-            Texture mainTex = material.GetBaseTexture();
-            if (mainTex != null)
-            {
-                material.SetEmissiveTexture(mainTex);
-            }
-        }
+        //internal static void SetupEmissiveMaterial(Material material, Color color)
+        //{
+        //    material.SetEmissive(true);
+        //    material.SetEmissiveColor(color);
+        //    Texture mainTex = material.GetBaseTexture();
+        //    if (mainTex != null)
+        //    {
+        //        material.SetEmissiveTexture(mainTex);
+        //    }
+        //}
 
         internal static void SetupTransparentMaterial(Material material)
         {

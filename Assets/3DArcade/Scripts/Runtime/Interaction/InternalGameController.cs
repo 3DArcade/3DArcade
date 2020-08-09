@@ -92,10 +92,11 @@ namespace Arcade
 
         private readonly Transform _player;
 
-        private LibretroWrapper _libretroWrapper         = null;
-        private MonoBehaviour _screenNode                = null;
-        private Renderer _rendererComponent              = null;
-        private Material _originalMaterial               = null;
+        private LibretroWrapper _libretroWrapper                 = null;
+        private MonoBehaviour _screenNode                        = null;
+        private Renderer _rendererComponent                      = null;
+        private DynamicArtworkComponent _dynamicArtworkComponent = null;
+        private Material _originalMaterial                       = null;
         private VideoRenderMode _originalVideoRenderMode = VideoRenderMode.MaterialOverride;
 
         private float _gameFps        = 0f;
@@ -128,6 +129,11 @@ namespace Arcade
             if (string.IsNullOrEmpty(core) || gameDirectories == null || gameDirectories.Length < 1 || string.IsNullOrEmpty(gameName))
             {
                 return false;
+            }
+
+            if (_screenNode.TryGetComponent(out _dynamicArtworkComponent))
+            {
+                _dynamicArtworkComponent.EnableCycling = false;
             }
 
             _libretroWrapper = new LibretroWrapper((TargetPlatform)Application.platform, $"{SystemUtils.GetDataPath()}/3darcade~/Libretro");
@@ -217,7 +223,9 @@ namespace Arcade
                 }
             }
 #endif
-            _screenNode = null;
+            _dynamicArtworkComponent.EnableCycling = true;
+
+            ResetFields();
         }
 
         public void PauseGame(bool pauseGraphics, bool pauseAudio, bool pauseInput)
@@ -388,7 +396,7 @@ namespace Arcade
             {
                 _rendererComponent.material.color = Color.black;
                 _rendererComponent.material.EnableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
-                _rendererComponent.material.SetColor(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, Color.white * 1.08f);
+                //_rendererComponent.material.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, Color.white * 1.08f);
             }
         }
 
@@ -405,6 +413,7 @@ namespace Arcade
             _libretroWrapper         = null;
             _screenNode              = null;
             _rendererComponent       = null;
+            _dynamicArtworkComponent = null;
             _originalMaterial        = null;
             _originalVideoRenderMode = VideoRenderMode.MaterialOverride;
             _gameFps                 = 0f;

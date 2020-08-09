@@ -31,28 +31,15 @@ namespace Arcade
         protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Marquees" };
         protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/MarqueesVideo" };
 
+        private readonly MaterialPropertyBlock _materialPropertyBlock;
+
         public MarqueeNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
         : base(videoCache, textureCache)
         {
+            _materialPropertyBlock = new MaterialPropertyBlock();
         }
 
-        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity)
-        {
-            SetupStaticImage(renderer.material, texture, true, true, emissionIntensity);
-            SetupMagicPixels(renderer);
-        }
-
-        protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<MarqueeNodeTag>(model);
-
-        protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeImageDirectories;
-
-        protected override string[] GetModelVideoDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeVideoDirectories;
-
-        protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator) => emulator?.MarqueeImagesDirectories;
-
-        protected override string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator) => emulator?.MarqueeVideosDirectories;
-
-        private static void SetupMagicPixels(Renderer sourceRenderer)
+        public void SetupMagicPixels(Renderer sourceRenderer)
         {
             Transform parentTransform = sourceRenderer.transform.parent;
             if (parentTransform == null)
@@ -67,11 +54,12 @@ namespace Arcade
             Color color;
             Texture texture;
 
-            bool sourceMaterialIsEmissive = sourceRenderer.material.IsEmissiveEnabled();
-            if (sourceMaterialIsEmissive)
+            bool sourceIsEmissive = sourceRenderer.material.IsEmissive();
+
+            if (sourceIsEmissive)
             {
-                color   = sourceRenderer.material.GetEmissiveColor();
-                texture = sourceRenderer.material.GetEmissiveTexture();
+                color   = sourceRenderer.material.GetEmissionColor();
+                texture = sourceRenderer.material.GetEmissionTexture();
             }
             else
             {
@@ -79,21 +67,42 @@ namespace Arcade
                 texture = sourceRenderer.material.GetBaseTexture();
             }
 
+            if (texture == null)
+            {
+                return;
+            }
+
             foreach (Renderer renderer in renderers)
             {
-                foreach (Material material in renderer.materials)
+                renderer.GetPropertyBlock(_materialPropertyBlock);
+
+                if (renderer.material.IsEmissive())
                 {
-                    if (material.IsEmissiveEnabled())
-                    {
-                        material.ClearBaseColorAndTexture();
-                        material.SetEmissiveColorAndTexture(color, texture);
-                    }
-                    else
-                    {
-                        material.SetBaseColorAndTexture(Color.white, texture);
-                    }
+                    _materialPropertyBlock.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, color);
+                    _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
+                }
+                else
+                {
+                    color = sourceIsEmissive ? Color.white : color;
+                    _materialPropertyBlock.SetColor(MaterialUtils.SHADER_BASE_COLOR_NAME, color);
+                    _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME, texture);
+                }
+
+                for (int i = 0; i < renderer.materials.Length; ++i)
+                {
+                    renderer.SetPropertyBlock(_materialPropertyBlock, i);
                 }
             }
         }
+
+        protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<MarqueeNodeTag>(model);
+
+        protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeImageDirectories;
+
+        protected override string[] GetModelVideoDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeVideoDirectories;
+
+        protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator) => emulator?.MarqueeImagesDirectories;
+
+        protected override string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator) => emulator?.MarqueeVideosDirectories;
     }
 }

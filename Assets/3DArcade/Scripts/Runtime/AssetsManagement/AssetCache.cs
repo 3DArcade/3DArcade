@@ -20,8 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using UnityEngine;
 
 namespace Arcade
 {
@@ -30,34 +33,13 @@ namespace Arcade
     {
         protected readonly Dictionary<string, T> _loadedAssets;
 
-        public AssetCache()
-        {
-            _loadedAssets = new Dictionary<string, T>();
-        }
+        public AssetCache() => _loadedAssets = new Dictionary<string, T>();
 
         protected abstract T LoadAsset(string filePathNoExt);
 
         protected abstract void UnloadAsset(T asset);
 
         public bool Get(string filePathNoExt, out T asset) => _loadedAssets.TryGetValue(filePathNoExt, out asset);
-
-        public T Load(string[] directories, params string[] namesToTry)
-        {
-            foreach (string directory in directories)
-            {
-                T result = Load(directory, namesToTry);
-                if (result != null)
-                {
-                    return result;
-                }
-            }
-
-            return null;
-        }
-
-        public T Load(List<string> directories, params string[] namesToTry) => Load(directories.ToArray(), namesToTry);
-
-        public T Load(List<string> directories, List<string> namesToTry) => Load(directories.ToArray(), namesToTry.ToArray());
 
         public T Load(string directory, params string[] namesToTry)
         {
@@ -92,7 +74,78 @@ namespace Arcade
             return null;
         }
 
-        public T Load(string directory, List<string> namesToTry) => Load(directory, namesToTry.ToArray());
+        public T Load(string directory, IEnumerable<string> namesToTry) => Load(directory, namesToTry.ToArray());
+
+        public T Load(IEnumerable<string> directories, params string[] namesToTry)
+        {
+            foreach (string directory in directories)
+            {
+                T result = Load(directory, namesToTry);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+
+            return null;
+        }
+
+        public T Load(IEnumerable<string> directories, IEnumerable<string> namesToTry) => Load(directories, namesToTry.ToArray());
+
+        public T[] LoadMultiple(string directory, params string[] namesToTry)
+        {
+            if (string.IsNullOrEmpty(directory))
+            {
+                return null;
+            }
+
+            List<T> result = new List<T>();
+
+            foreach (string name in namesToTry)
+            {
+                if (string.IsNullOrEmpty(name))
+                {
+                    continue;
+                }
+
+                string filePathNoExt = Path.Combine(directory, name);
+                if (_loadedAssets.TryGetValue(filePathNoExt, out T foundAsset))
+                {
+                    result.Add(foundAsset);
+                }
+                else
+                {
+                    T newAsset = LoadAsset(filePathNoExt);
+                    if (newAsset != null)
+                    {
+                        _loadedAssets[filePathNoExt] = newAsset;
+                        result.Add(newAsset);
+                    }
+                }
+            }
+
+            return result.Count > 0 ? result.ToArray() : null;
+        }
+
+        public T[] LoadMultiple(string directory, IEnumerable<string> namesToTry) => LoadMultiple(directory, namesToTry.ToArray());
+
+        public T[] LoadMultiple(IEnumerable<string> directories, params string[] namesToTry)
+        {
+            List<T> result = new List<T>();
+
+            foreach (string directory in directories)
+            {
+                T[] range = LoadMultiple(directory, namesToTry);
+                if (range != null)
+                {
+                    result.AddRange(range);
+                }
+            }
+
+            return result.Count > 0 ? result.ToArray() : null;
+        }
+
+        public T[] LoadMultiple(IEnumerable<string> directories, IEnumerable<string> namesToTry) => LoadMultiple(directories, namesToTry.ToArray());
 
         public void Unload(string filePathNoExt)
         {

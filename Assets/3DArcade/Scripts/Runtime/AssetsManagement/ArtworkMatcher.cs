@@ -60,20 +60,44 @@ namespace Arcade
         public static List<string> GetNamesToTry(ModelConfiguration game, EmulatorConfiguration emulator)
         {
             List<string> result = new List<string>();
+            string name;
 
             if (game != null)
             {
-                result.AddStringIfNotNullOrEmpty(game.Id);
-                result.AddStringIfNotNullOrEmpty(game.CloneOf);
-                result.AddStringIfNotNullOrEmpty(game.RomOf);
+                name = game.Id;
+                result.AddStringIfNotNullOrEmpty(name);
+                AddVariants(result, name);
+
+                name = game.CloneOf;
+                result.AddStringIfNotNullOrEmpty(name);
+                AddVariants(result, name);
+
+                name = game.RomOf;
+                result.AddStringIfNotNullOrEmpty(name);
+                AddVariants(result, name);
             }
 
-            if (emulator != null)
+            if (result.Count < 1 && emulator != null)
             {
-                result.AddStringIfNotNullOrEmpty(emulator.Id);
+                name = emulator.Id;
+                result.AddStringIfNotNullOrEmpty(name);
+                AddVariants(result, name);
             }
 
             return result;
+        }
+
+        private static void AddVariants(List<string> list, string name, int numVariants = 20)
+        {
+            if (list == null || string.IsNullOrEmpty(name))
+            {
+                return;
+            }
+
+            for (int i = 0; i < numVariants; ++i)
+            {
+                list.Add($"{name}_{i}");
+            }
         }
     }
 }

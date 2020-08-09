@@ -29,6 +29,8 @@ namespace Arcade
 {
     public abstract class NodeController
     {
+        public static event System.Action OnVideoPlayerAdded;
+
         protected static readonly string _defaultMediaDirectory = $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Media";
 
         protected abstract string[] DefaultImageDirectories { get; }
@@ -51,25 +53,40 @@ namespace Arcade
                 return;
             }
 
+            renderer.material.EnableEmission(true);
+            renderer.material.SetBaseColor(Color.black);
+            renderer.material.SetBaseTexture(null);
+            renderer.material.SetEmissionColor(Color.white * emissionIntensity);
+
             List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectories(modelConfiguration), GetEmulatorVideoDirectories(emulator), DefaultVideoDirectories);
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectories(modelConfiguration), GetEmulatorImageDirectories(emulator), DefaultImageDirectories);
 
-            // TODO(Tom): Setup image cycling
+            Texture[] textures = _textureCache.LoadMultiple(directories, namesToTry);
+            if (textures != null)
+            {
+                if (textures.Length > 0)
+                {
+                    renderer.material.SetEmissionTexture(textures[0]);
+                    if (this is MarqueeNodeController marqueeNodeController)
+                    {
+                        marqueeNodeController.SetupMagicPixels(renderer);
+                    }
+                }
 
-            if (SetupVideo(renderer, directories, namesToTry, emissionIntensity, arcadeController.VideoPlayOnAwake, arcadeController.AudioMinDistance, arcadeController.AudioMaxDistance, arcadeController.VolumeCurve))
-            {
-                renderer.material.ClearBaseColorAndTexture();
-                PostSetup(renderer, null, emissionIntensity);
+                if (textures.Length > 1)
+                {
+                    DynamicArtworkComponent dynamicArtworkComponent = renderer.gameObject.AddComponentIfNotFound<DynamicArtworkComponent>();
+                    dynamicArtworkComponent.Construct(textures);
+                }
+                else if (textures.Length > 0)
+                {
+                    renderer.material.SetEmissionTexture(textures[0]);
+                }
             }
-            else
-            {
-                directories     = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectories(modelConfiguration), GetEmulatorImageDirectories(emulator), DefaultImageDirectories);
-                Texture texture = _textureCache.Load(directories, namesToTry);
-                PostSetup(renderer, texture, emissionIntensity);
-            }
+
+            directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectories(modelConfiguration), GetEmulatorVideoDirectories(emulator), DefaultVideoDirectories);
+            SetupVideo(renderer, directories, namesToTry, arcadeController.VideoPlayOnAwake, arcadeController.AudioMinDistance, arcadeController.AudioMaxDistance, arcadeController.VolumeCurve);
         }
-
-        protected abstract void PostSetup(Renderer renderer, Texture texture, float emissionIntensity);
 
         protected abstract Renderer GetNodeRenderer(GameObject model);
 
@@ -101,49 +118,13 @@ namespace Arcade
             return null;
         }
 
-        protected static void SetupStaticImage(Material material, Texture texture, bool overwriteColor = false, bool forceEmissive = false, float emissionFactor = 1f)
-        {
-            if (material == null || texture == null)
-            {
-                return;
-            }
-
-            if (forceEmissive)
-            {
-                material.ClearBaseColorAndTexture();
-                material.SetEmissiveColorAndTexture(Color.white * emissionFactor, texture);
-            }
-            else if (material.IsEmissiveEnabled())
-            {
-                if (overwriteColor)
-                {
-                    material.SetBaseColor(Color.black);
-                    material.SetEmissiveColor(Color.white * emissionFactor);
-                }
-                material.ClearBaseTexture();
-                material.SetEmissiveTexture(texture);
-            }
-            else
-            {
-                if (overwriteColor)
-                {
-                    material.SetBaseColor(Color.white);
-                }
-                material.SetBaseTexture(texture);
-            }
-        }
-
-        public bool SetupVideo(Renderer renderer, List<string> directories, List<string> namesToTry, float emissionIntensity, bool playOnAwake, float audioMinDistance, float audioMaxDistance, AnimationCurve volumeCurve)
+        private void SetupVideo(Renderer renderer, List<string> directories, List<string> namesToTry, bool playOnAwake, float audioMinDistance, float audioMaxDistance, AnimationCurve volumeCurve)
         {
             string videopath = _videoCache.Load(directories, namesToTry);
             if (string.IsNullOrEmpty(videopath))
             {
-                return false;
+                return;
             }
-
-            renderer.material.ClearBaseColorAndTexture();
-            renderer.material.EnableEmissive();
-            renderer.material.SetEmissiveColor(Color.white * emissionIntensity);
 
             AudioSource audioSource  = renderer.gameObject.AddComponentIfNotFound<AudioSource>();
             audioSource.playOnAwake  = false;
@@ -182,7 +163,7 @@ namespace Arcade
                 videoPlayer.Stop();
             }
 
-            return true;
+            OnVideoPlayerAdded?.Invoke();
         }
 
         private static void OnVideoPlayerErrorReceived(VideoPlayer _, string message) => Debug.Log($"Error: {message}");

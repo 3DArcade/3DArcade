@@ -23,17 +23,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Video;
 
 namespace Arcade
 {
     public sealed class VideoPlayerControllerFps : VideoPlayerController
     {
-        private const float OVERLAPSPHERE_RADIUS   = 1.8f;
-        private const int NUM_VIDEOS_WITH_SOUND    = 3;
-        private const int NUM_COLLIDERS_TO_PROCESS = 10;
+        private const float OVERLAPSPHERE_RADIUS       = 1.8f;
+        private const int NUM_CABS_WITH_VIDEOS_PLAYING = 3;
+        private const int NUM_COLLIDERS_TO_PROCESS     = 10;
 
-        private readonly List<VideoPlayer> _activeVideos;
+        private readonly List<ModelConfigurationComponent> _activeVideos;
         private readonly Collider[] _overlapSphereHits;
         private readonly LayerMask _layerMask;
 
@@ -41,7 +40,7 @@ namespace Arcade
 
         public VideoPlayerControllerFps(LayerMask layerMask)
         {
-            _activeVideos      = new List<VideoPlayer>();
+            _activeVideos      = new List<ModelConfigurationComponent>();
             _overlapSphereHits = new Collider[NUM_COLLIDERS_TO_PROCESS];
             _layerMask         = layerMask;
         }
@@ -55,8 +54,6 @@ namespace Arcade
                 return;
             }
 
-            _ = _activeVideos.RemoveAll(vp => vp == null || vp.isPaused);
-
             for (int i = 0; i < _overlapSphereHits.Length; ++i)
             {
                 _overlapSphereHits[i] = null;
@@ -64,103 +61,39 @@ namespace Arcade
 
             _ = Physics.OverlapSphereNonAlloc(_player.position, OVERLAPSPHERE_RADIUS, _overlapSphereHits, _layerMask);
 
-            VideoPlayer[] inRange = _overlapSphereHits.Distinct()
-                                                      .Where(col => col != null)
-                                                      .Select(col => col.GetComponentInChildren<VideoPlayer>(true))
-                                                      .Where(vp => vp != null && vp.isPrepared)
-                                                      .OrderBy(vp => MathUtils.DistanceFast(vp.transform.position, _player.position))
-                                                      .Take(NUM_VIDEOS_WITH_SOUND)
-                                                      .ToArray();
+            ModelConfigurationComponent[] inRange = _overlapSphereHits.Where(col => col != null)
+                                                                            .OrderBy(col => MathUtils.DistanceFast(col.transform.position, _player.position))
+                                                                            .Take(NUM_CABS_WITH_VIDEOS_PLAYING)
+                                                                            .Select(col => col.GetComponent<ModelConfigurationComponent>())
+                                                                            .Where(mc => mc != null)
+                                                                            .ToArray();
 
-            VideoPlayer[] toEnable = inRange.Where(vp => vp.isPaused)
-                                            .ToArray();
-
-            foreach (VideoPlayer videoPlayer in toEnable)
+            foreach (ModelConfigurationComponent modelConfigurationComponent in inRange)
             {
-                if (!_activeVideos.Contains(videoPlayer))
+                if (!_activeVideos.Contains(modelConfigurationComponent))
                 {
-                    VideoSetPlayingState(videoPlayer, true);
-                    _activeVideos.Add(videoPlayer);
+                    _activeVideos.Add(modelConfigurationComponent);
                 }
+
+                VideoSetPlayingState(modelConfigurationComponent, true);
             }
 
-            VideoPlayer[] toDisable = _activeVideos.Except(inRange)
-                                                   .Except(toEnable)
-                                                   .ToArray();
-            foreach (VideoPlayer videoPlayer in toDisable)
+            ModelConfigurationComponent[] toDisable = _activeVideos.Except(inRange)
+                                                                   .ToArray();
+            foreach (ModelConfigurationComponent modelConfigurationComponent in toDisable)
             {
-                VideoSetPlayingState(videoPlayer, false);
-                _ = _activeVideos.Remove(videoPlayer);
-            }
-        }
-
-        public void UpdateVideosStateCyl(Vector3 position)
-        {
-            if (_player == null)
-            {
-                return;
-            }
-
-            _ = _activeVideos.RemoveAll(vp => vp == null || vp.isPaused);
-
-            for (int i = 0; i < _overlapSphereHits.Length; ++i)
-            {
-                _overlapSphereHits[i] = null;
-            }
-
-            _ = Physics.OverlapSphereNonAlloc(position, OVERLAPSPHERE_RADIUS, _overlapSphereHits, _layerMask);
-
-            VideoPlayer[] inRange = _overlapSphereHits.Distinct()
-                                                      .Where(col => col != null)
-                                                      .Select(col => col.GetComponentInChildren<VideoPlayer>(true))
-                                                      .Where(vp => vp != null && vp.isPrepared)
-                                                      .OrderBy(vp => MathUtils.DistanceFast(vp.transform.position, _player.position))
-                                                      .Take(NUM_VIDEOS_WITH_SOUND + 1)
-                                                      .ToArray();
-
-            VideoPlayer[] toEnable = inRange.Where(vp => vp.isPaused)
-                                            .ToArray();
-
-            foreach (VideoPlayer videoPlayer in toEnable)
-            {
-                if (!_activeVideos.Contains(videoPlayer))
-                {
-                    VideoSetPlayingState(videoPlayer, true);
-                    _activeVideos.Add(videoPlayer);
-                }
-            }
-
-            VideoPlayer[] toDisable = _activeVideos.Except(inRange)
-                                                   .Except(toEnable)
-                                                   .ToArray();
-            foreach (VideoPlayer videoPlayer in toDisable)
-            {
-                VideoSetPlayingState(videoPlayer, false);
-                _ = _activeVideos.Remove(videoPlayer);
+                VideoSetPlayingState(modelConfigurationComponent, false);
+                _ = _activeVideos.Remove(modelConfigurationComponent);
             }
         }
 
         public override void StopAllVideos()
         {
-            foreach (VideoPlayer videoPlayer in _activeVideos)
+            foreach (ModelConfigurationComponent modelConfigurationComponent in _activeVideos)
             {
-                VideoSetPlayingState(videoPlayer, false);
+                VideoSetPlayingState(modelConfigurationComponent, false);
             }
             _activeVideos.Clear();
-        }
-
-        public override void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
-        {
-            if (state && videoPlayer.isPaused)
-            {
-                videoPlayer.EnableAudioTrack(0, true);
-                videoPlayer.Play();
-            }
-            else if (!state && !videoPlayer.isPaused)
-            {
-                videoPlayer.EnableAudioTrack(0, false);
-                videoPlayer.Pause();
-            }
         }
     }
 }

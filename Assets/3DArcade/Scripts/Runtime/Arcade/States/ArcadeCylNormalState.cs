@@ -137,24 +137,9 @@ namespace Arcade
 
         private void UpdateCurrentInteractable()
         {
-            VideoPlayer[] videoPlayers;
-
-            if (_context.CurrentModelConfiguration != null)
-            {
-                videoPlayers = _context.CurrentModelConfiguration.GetComponentsInChildren<VideoPlayer>();
-                foreach (VideoPlayer videoPlayer in videoPlayers)
-                {
-                    _context.VideoPlayerController.VideoSetPlayingState(videoPlayer, false);
-                }
-            }
-
+            _context.VideoPlayerController.StopVideo(_context.CurrentModelConfiguration);
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration, _context.ArcadeController);
-
-            videoPlayers = _context.CurrentModelConfiguration.GetComponentsInChildren<VideoPlayer>();
-            foreach (VideoPlayer videoPlayer in videoPlayers)
-            {
-                _context.VideoPlayerController.VideoSetPlayingState(videoPlayer, true);
-            }
+            _context.VideoPlayerController.PlayVideo(_context.CurrentModelConfiguration);
         }
 
         private void HandleNavigation(float dt)

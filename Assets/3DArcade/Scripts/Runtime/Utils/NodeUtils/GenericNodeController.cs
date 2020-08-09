@@ -34,8 +34,6 @@ namespace Arcade
         {
         }
 
-        protected override void PostSetup(Renderer renderer, Texture texture, float emissionIntensity) => SetupStaticImage(renderer.material, texture, true, false, emissionIntensity);
-
         protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<GenericNodeTag>(model);
 
         protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.GenericImageDirectories;
