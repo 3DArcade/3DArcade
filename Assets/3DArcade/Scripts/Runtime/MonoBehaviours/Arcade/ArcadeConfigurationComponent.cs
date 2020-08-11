@@ -37,6 +37,7 @@ namespace Arcade
     {
         public string DescriptiveName                  = default;
         public string Id                               = default;
+        public string ArcadeScene                      = default;
         public RenderSettings RenderSettings           = default;
         public AudioSettings AudioSettings             = default;
         public FpsArcadeProperties FpsArcadeProperties = default;
@@ -50,6 +51,7 @@ namespace Arcade
             {
                 DescriptiveName     = DescriptiveName,
                 Id                  = Id,
+                ArcadeScene         = ArcadeScene,
                 RenderSettings      = RenderSettings,
                 FpsArcadeProperties = FpsArcadeProperties ?? Defaults.FpsArcadeProperties,
                 CylArcadeProperties = CylArcadeProperties ?? Defaults.CylArcadeProperties,
@@ -80,6 +82,7 @@ namespace Arcade
         {
             DescriptiveName     = cfg.DescriptiveName;
             Id                  = cfg.Id;
+            ArcadeScene         = cfg.ArcadeScene;
             RenderSettings      = cfg.RenderSettings;
             FpsArcadeProperties = cfg.FpsArcadeProperties ?? Defaults.FpsArcadeProperties;
             CylArcadeProperties = cfg.CylArcadeProperties ?? Defaults.CylArcadeProperties;

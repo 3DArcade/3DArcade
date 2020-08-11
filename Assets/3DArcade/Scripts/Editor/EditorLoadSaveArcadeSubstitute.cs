@@ -123,6 +123,9 @@ namespace Arcade
 
         public void SaveArcade(ArcadeConfigurationComponent arcadeConfiguration)
         {
+            _playerCylControls.gameObject.SetActive(true);
+            _playerCylControls.gameObject.SetActive(false);
+
             Camera camera                          = _playerFpsControls.Camera;
             CinemachineVirtualCamera virtualCamera = _playerFpsControls.VirtualCamera;
             CinemachineTransposer transposer       = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();

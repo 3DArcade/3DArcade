@@ -28,7 +28,7 @@ namespace Arcade
     [DisallowMultipleComponent, RequireComponent(typeof(Renderer))]
     public class DynamicArtworkComponent : MonoBehaviour
     {
-        public bool EnableCycling { get; set; }
+        public bool EnableCycling { get; set; } = true;
 
         private float _imageCyclingDelay = 0.6f;
         private readonly bool _useRandomDelay = false;

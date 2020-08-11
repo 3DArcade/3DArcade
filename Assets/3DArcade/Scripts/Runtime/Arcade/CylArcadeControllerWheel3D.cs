@@ -49,7 +49,7 @@ namespace Arcade
         protected sealed override void AdjustModelPosition(Transform model, bool forward, float spacing)
         {
             float angle = spacing / _cylArcadeProperties.WheelRadius;
-            model.RotateAround(_pivotPoint.transform.localPosition, TransformVector, (forward ? angle : -angle) * Mathf.Rad2Deg);
+            model.RotateAround(_pivotPoint.transform.position, TransformVector, (forward ? angle : -angle) * Mathf.Rad2Deg);
         }
     }
 }

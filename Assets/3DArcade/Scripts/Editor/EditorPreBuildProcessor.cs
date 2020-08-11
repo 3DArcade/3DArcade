@@ -22,6 +22,9 @@
 
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Arcade
 {
@@ -29,6 +32,18 @@ namespace Arcade
     {
         public int callbackOrder => 0;
 
-        public void OnPreprocessBuild(BuildReport report) => new ArcadeHierarchy().Reset();
+        public void OnPreprocessBuild(BuildReport report)
+        {
+            for (int i = 1; i < EditorSceneManager.loadedSceneCount; i++)
+            {
+                _ = EditorSceneManager.CloseScene(SceneManager.GetSceneAt(i), false);
+            }
+
+            GameObject arcadeRootNode = GameObject.Find("Arcade");
+            if (arcadeRootNode != null)
+            {
+                Object.DestroyImmediate(arcadeRootNode);
+            }
+        }
     }
 }

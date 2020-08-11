@@ -144,6 +144,10 @@ namespace Arcade
 
         protected abstract void PreSetupPlayer();
 
+        protected virtual void PostLoadScene()
+        {
+        }
+
         protected virtual void AddModelsToWorldAdditionalLoopStepsForGames(GameObject instantiatedModel)
         {
         }
@@ -272,31 +276,49 @@ namespace Arcade
 
         private IEnumerator CoSetupWorld()
         {
-            _loadedScene = default;
             _sceneLoaded = false;
+
+            string sceneName;
+            if (!string.IsNullOrEmpty(_arcadeConfiguration.ArcadeScene))
+            {
+                sceneName = _arcadeConfiguration.ArcadeScene;
+            }
+            else
+            {
+                sceneName = _arcadeConfiguration.Id;
+            }
 
 #if UNITY_EDITOR
             if (!Application.isPlaying)
             {
-                UnityEditor.SceneManagement.EditorSceneManager.OpenScene($"Assets/3DArcade/Scenes/{_arcadeConfiguration.ArcadeScene}/{_arcadeConfiguration.ArcadeScene}.unity", UnityEditor.SceneManagement.OpenSceneMode.Additive);
+                try
+                {
+                    UnityEditor.SceneManagement.EditorSceneManager.OpenScene($"Assets/3DArcade/Scenes/{sceneName}/{sceneName}.unity", UnityEditor.SceneManagement.OpenSceneMode.Additive);
+                }
+                catch (System.Exception)
+                {
+                    UnityEditor.SceneManagement.EditorSceneManager.OpenScene($"Assets/3DArcade/Scenes/empty/empty.unity", UnityEditor.SceneManagement.OpenSceneMode.Additive);
+                }
             }
             else
             {
-                AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_arcadeConfiguration.ArcadeScene, LoadSceneMode.Additive);
+                AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
                 while (!asyncOperation.isDone)
                 {
                     yield return null;
                 }
             }
 #else
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_arcadeConfiguration.ArcadeScene, LoadSceneMode.Additive);
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             while (!asyncOperation.isDone)
             {
                 yield return null;
             }
 #endif
             _loadedScene = SceneManager.GetSceneByName(_arcadeConfiguration.ArcadeScene);
-            _ = SceneManager.SetActiveScene(_loadedScene);
+            //_ = SceneManager.SetActiveScene(_loadedScene);
+
+            PostLoadScene();
 
             RenderSettings renderSettings = _arcadeConfiguration.RenderSettings;
 

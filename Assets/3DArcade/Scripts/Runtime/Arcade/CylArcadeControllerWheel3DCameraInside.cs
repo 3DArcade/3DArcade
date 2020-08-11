@@ -37,9 +37,9 @@ namespace Arcade
         {
         }
 
-        protected sealed override void LateSetupWorld()
+        protected sealed override void PostLoadScene()
         {
-            base.LateSetupWorld();
+            base.PostLoadScene();
 
             _pivotPoint.localPosition = _centerTargetPosition - new Vector3(0f, 0f, _cylArcadeProperties.WheelRadius);
         }

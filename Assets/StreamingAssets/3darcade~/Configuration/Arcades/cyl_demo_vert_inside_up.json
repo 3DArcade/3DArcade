@@ -7,12 +7,6 @@
         "ScreenVectorIntenstity": 8.0,
         "ScreenPinballIntensity": 1.0
     },
-    "AudioSettings": {
-        "SpatialSound": false
-    },
-    "VideoSettings": {
-        "VideoPlayBehaviour": "VisibleUnobstructed"
-    },
     "FpsArcadeProperties": {
         "CameraSettings": {
             "Position": {
@@ -43,7 +37,7 @@
         "CameraSettings": {
             "Position": {
                 "x": 0.0,
-                "y": 0.89,
+                "y": 0.0,
                 "z": 0.0
             },
             "Rotation": {
@@ -51,10 +45,10 @@
                 "y": 0.0,
                 "z": 0.0
             },
-            "Height": 0.6,
+            "Height": 1.4,
             "Orthographic": false,
             "FieldOfView": 60.0,
-            "AspectRatio": 1.0,
+            "AspectRatio": 2.0,
             "NearClipPlane": 0.01,
             "FarClipPlane": 200.0,
             "ViewportRect": {
@@ -65,129 +59,24 @@
             }
         },
         "WheelVariant": "CameraInsideVertical",
-        "WheelRadius": 5.0,
         "InverseNavigation": true,
         "InverseList": true,
+        "WheelRadius": 5.0,
         "Sprockets": 9,
         "SelectedSprocket": 1,
         "SelectedPositionZ": 5.0,
         "ModelSpacing": 0.25,
-        "ModelWidthAxisY": false,
-        "ModelIsKinemtatic": true,
-        "OnScreenSelectedModel": false,
-        "CameraTranslation": 0.5144213,
-        "CameraMinTranslation": -0.7,
-        "CameraMaxTranslation": 0.7,
-        "CameraTranslationDirectionAxisY": false,
-        "CameraTranslationReverse": false,
-        "CameraTranslationdamping": 4.0,
-        "CameraRotationdamping": 8.0,
-        "CameraLocalEularAngleRotation": true,
-        "CameraLocalDefaultEularAngleRotation": 0.0,
-        "CameraLocalMinEularAngleRotation": -15.0,
-        "CameraLocalMaxEularAngleRotation": 15.0,
         "MouseLook": true,
-        "MouseLookAxisY": true,
         "MouseLookReverse": true,
         "SprocketRotation": {
             "x": 0.0,
             "y": 180.0,
             "z": 0.0
-        }
-    },
-    "ArcadeScene": "default_cylinder",
-    "ArcadeModelList": [
-        {
-            "DescriptiveName": "Cylinder Arcade",
-            "Id": "cylinderarcade",
-            "Model": "defaultCylinder",
-            "InteractionType": "None",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 2.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
         },
-        {
-            "DescriptiveName": "single_directional_light",
-            "Id": "single_directional_light",
-            "Model": "single_directional_light",
-            "InteractionType": "None",
-            "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
-            "Grabbable": false,
-            "MoveCabMovable": false,
-            "MoveCabGrabbable": false,
-            "CloneOf": null,
-            "RomOf": null,
-            "Genre": null,
-            "Year": null,
-            "Manufacturer": null,
-            "ScreenType": "Unspecified",
-            "ScreenOrientation": "Unspecified",
-            "Mature": false,
-            "Available": false,
-            "Runnable": false,
-            "Position": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Rotation": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            },
-            "Scale": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
-        }
-    ],
+        "LineAngle": 0.0,
+        "HorizontalNavigation": false
+    },
+    "ArcadeScene": "empty",
     "GameModelList": [
         {
             "DescriptiveName": "Berzerk (set 1)",
@@ -195,14 +84,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -230,9 +119,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Asteroids (rev 2)",
@@ -240,14 +127,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -267,7 +154,7 @@
                 "z": 5.067409
             },
             "Rotation": {
-                "x": 3.76790922E-06,
+                "x": 3.76791013E-06,
                 "y": 129.839737,
                 "z": -1.98337534E-06
             },
@@ -275,9 +162,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Gyruss (Konami)",
@@ -285,14 +170,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -320,9 +205,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Missile Command (set 1)",
@@ -330,14 +213,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -365,66 +248,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAudio",
-                    "AnimationProperties": [],
-                    "AudioProperties": [
-                        {
-                            "Name": "Play_On_Missile",
-                            "Priority": 128,
-                            "Volume": 1.0,
-                            "Loop": true,
-                            "PlayOnAwake": false,
-                            "Randomize": false,
-                            "SpatialBlend": 1.0,
-                            "Spatialize": true,
-                            "MinDistance": 4.0,
-                            "MaxDistance": 200.0,
-                            "AudioFiles": [
-                                {
-                                    "File": "",
-                                    "Path": "/3darcade~/Configuration/Media/Default/Sounds/nummers/"
-                                }
-                            ]
-                        }
-                    ],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PauseAudio",
-                    "AnimationProperties": [],
-                    "AudioProperties": [
-                        {
-                            "Name": "Play_On_Missile",
-                            "Priority": 0,
-                            "Volume": 0.0,
-                            "Loop": false,
-                            "PlayOnAwake": false,
-                            "Randomize": false,
-                            "SpatialBlend": 0.0,
-                            "Spatialize": false,
-                            "MinDistance": 0.0,
-                            "MaxDistance": 0.0,
-                            "AudioFiles": [
-                                {
-                                    "File": "",
-                                    "Path": "/3darcade~/Configuration/Media/Default/Sounds/nummers/"
-                                }
-                            ]
-                        }
-                    ],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Super Zaxxon",
@@ -432,14 +256,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -467,9 +291,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Time Pilot",
@@ -477,14 +299,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -512,9 +334,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Zoo Keeper (set 1)",
@@ -522,14 +342,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -557,40 +377,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelCollisionEnter",
-                    "TriggerSource": [],
-                    "TriggerTarget": [
-                        "pi"
-                    ],
-                    "TriggerAction": "SetActiveEnabled",
-                    "AnimationProperties": [],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                },
-                {
-                    "TriggerEvent": "ModelCollisionEnter",
-                    "TriggerSource": [],
-                    "TriggerTarget": [
-                        "pi"
-                    ],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "penguin_path_2",
-                            "Loop": true,
-                            "Speed": 0.1,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 1
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Donkey Kong (US set 1)",
@@ -598,14 +385,14 @@
             "Model": "none",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -633,9 +420,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Vanguard (SNK)",
@@ -643,14 +428,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -670,17 +455,15 @@
                 "z": -1.66239047
             },
             "Rotation": {
-                "x": -0.000200917289,
+                "x": -0.0002009173,
                 "y": -29.1204834,
-                "z": 0.0007733845
+                "z": 0.000773384469
             },
             "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Tutankham (Stern)",
@@ -688,14 +471,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -723,9 +506,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Tron (set 1)",
@@ -733,14 +514,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -768,9 +549,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Smash T.V. (rev 8.00)",
@@ -778,14 +557,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -805,17 +584,15 @@
                 "z": -4.65885544
             },
             "Rotation": {
-                "x": -9.776385E-07,
-                "y": 12.4794388,
+                "x": -9.776386E-07,
+                "y": 12.4794407,
                 "z": -3.7034456E-06
             },
             "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Scramble",
@@ -823,14 +600,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -852,15 +629,13 @@
             "Rotation": {
                 "x": -4.442875E-06,
                 "y": -5.920532,
-                "z": 6.739302E-06
+                "z": 6.73930163E-06
             },
             "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "R-Type (Japan)",
@@ -868,14 +643,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -895,17 +670,15 @@
                 "z": -5.00444841
             },
             "Rotation": {
-                "x": 7.385332E-07,
+                "x": 7.38533231E-07,
                 "y": -27.200531,
-                "z": -4.32301249E-06
+                "z": -4.323013E-06
             },
             "Scale": {
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Pooyan",
@@ -913,14 +686,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -948,9 +721,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Pole Position",
@@ -958,14 +729,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -993,9 +764,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Pac-Man (Midway)",
@@ -1003,14 +772,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -1038,38 +807,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelCollisionEnter",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAudio",
-                    "AnimationProperties": [],
-                    "AudioProperties": [
-                        {
-                            "Name": "Play_one",
-                            "Priority": 0,
-                            "Volume": 1.0,
-                            "Loop": false,
-                            "PlayOnAwake": false,
-                            "Randomize": false,
-                            "SpatialBlend": 0.0,
-                            "Spatialize": false,
-                            "MinDistance": 0.0,
-                            "MaxDistance": 0.0,
-                            "AudioFiles": [
-                                {
-                                    "File": "nummer1.wav",
-                                    "Path": "/3darcade~/Configuration/Media/Default/Sounds/nummers/"
-                                }
-                            ]
-                        }
-                    ],
-                    "TriggerTransformProperties": []
-                }
-            ],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Marble Madness (set 1)",
@@ -1077,14 +815,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -1112,9 +850,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Bomb Jack (set 1)",
@@ -1122,14 +858,14 @@
             "Model": "",
             "InteractionType": "GameInternal",
             "Emulator": "mame2003_plus",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -1157,9 +893,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Mame",
@@ -1167,14 +901,14 @@
             "Model": "default80vert",
             "InteractionType": "CylMenuConfiguration",
             "Emulator": "",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -1202,9 +936,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         },
         {
             "DescriptiveName": "Main Menu",
@@ -1212,14 +944,14 @@
             "Model": "",
             "InteractionType": "CylArcadeConfiguration",
             "Emulator": "",
-            "MarqueeDirectory": "",
-            "MarqueeVideoDirectory": "",
-            "ScreenDirectory": "",
-            "ScreenVideoDirectory": "",
-            "TitleDirectory": "",
-            "GenericDirectory": "",
-            "GenericVideoDirectory": "",
-            "InfoDirectory": "",
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": true,
             "MoveCabGrabbable": true,
@@ -1247,9 +979,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [],
-            "TriggerIDs": []
+            }
         }
     ],
     "PropModelList": [
@@ -1259,14 +989,14 @@
             "Model": "penguin",
             "InteractionType": "None",
             "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
@@ -1294,70 +1024,7 @@
                 "x": 0.2,
                 "y": 0.2,
                 "z": 0.2
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ModelSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "run",
-                            "Loop": true,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": null
-                },
-                {
-                    "TriggerEvent": "ModelDeSelected",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "walk",
-                            "Loop": true,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": null
-                },
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAnimation",
-                    "AnimationProperties": [
-                        {
-                            "Name": "circling",
-                            "Loop": true,
-                            "Speed": 0.1,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 1
-                        },
-                        {
-                            "Name": "walk",
-                            "Loop": true,
-                            "Speed": 1.0,
-                            "PlayMode": "StopSameLayer",
-                            "Layer": 0
-                        }
-                    ],
-                    "AudioProperties": [],
-                    "TriggerTransformProperties": null
-                }
-            ],
-            "TriggerIDs": [
-                "pi"
-            ]
+            }
         },
         {
             "DescriptiveName": "Default Speaker",
@@ -1365,14 +1032,14 @@
             "Model": "defaultSpeaker",
             "InteractionType": "None",
             "Emulator": null,
-            "MarqueeDirectory": null,
-            "MarqueeVideoDirectory": null,
-            "ScreenDirectory": null,
-            "ScreenVideoDirectory": null,
-            "TitleDirectory": null,
-            "GenericDirectory": null,
-            "GenericVideoDirectory": null,
-            "InfoDirectory": null,
+            "MarqueeImageDirectories": null,
+            "MarqueeVideoDirectories": null,
+            "ScreenImageDirectories": null,
+            "ScreenVideoDirectories": null,
+            "TitleImageDirectories": null,
+            "GenericImageDirectories": null,
+            "GenericVideoDirectories": null,
+            "InfoDirectories": null,
             "Grabbable": false,
             "MoveCabMovable": false,
             "MoveCabGrabbable": false,
@@ -1400,38 +1067,7 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
-            },
-            "Triggers": [
-                {
-                    "TriggerEvent": "ArcadeStarted",
-                    "TriggerSource": [],
-                    "TriggerTarget": [],
-                    "TriggerAction": "PlayAudio",
-                    "AnimationProperties": [],
-                    "AudioProperties": [
-                        {
-                            "Name": "Ambient Sound ",
-                            "Priority": 0,
-                            "Volume": 0.2,
-                            "Loop": true,
-                            "PlayOnAwake": false,
-                            "Randomize": false,
-                            "SpatialBlend": 1.0,
-                            "Spatialize": true,
-                            "MinDistance": 4.0,
-                            "MaxDistance": 200.0,
-                            "AudioFiles": [
-                                {
-                                    "File": "ambientsound.wav",
-                                    "Path": "/3darcade~/Configuration/Media/Default/Sounds/"
-                                }
-                            ]
-                        }
-                    ],
-                    "TriggerTransformProperties": null
-                }
-            ],
-            "TriggerIDs": []
+            }
         }
     ]
 }

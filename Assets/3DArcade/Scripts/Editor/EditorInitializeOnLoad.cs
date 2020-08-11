@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +30,7 @@ namespace Arcade
     [InitializeOnLoad]
     public static class EditorInitializeOnLoad
     {
-        private const string EXPECTED_SCENE_NAME = "3darcade";
+        private const string EXPECTED_SCENE_NAME = "Main";
 
         static EditorInitializeOnLoad()
         {
@@ -39,12 +40,12 @@ namespace Arcade
 
         private static void OnEditorUpdate()
         {
+            EditorApplication.update -= OnEditorUpdate;
+
             if (SceneManager.GetActiveScene().name != EXPECTED_SCENE_NAME)
             {
                 return;
             }
-
-            EditorApplication.update -= OnEditorUpdate;
 
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -79,10 +80,6 @@ namespace Arcade
 
             switch (parentTransform.name)
             {
-                case "ArcadeModels":
-                    activeObj.layer = LayerMask.NameToLayer("Arcade/ArcadeModels");
-                    _ = activeObj.AddComponentIfNotFound<ModelConfigurationComponent>();
-                    break;
                 case "GameModels":
                     activeObj.layer = LayerMask.NameToLayer("Arcade/GameModels");
                     _ = activeObj.AddComponentIfNotFound<ModelConfigurationComponent>();
@@ -102,10 +99,29 @@ namespace Arcade
             {
                 ReloadCurrentArcade();
             }
+
+            if (state == PlayModeStateChange.ExitingEditMode)
+            {
+                for (int i = 1; i < EditorSceneManager.loadedSceneCount; i++)
+                {
+                    _ = EditorSceneManager.CloseScene(SceneManager.GetSceneAt(i), true);
+                }
+            }
         }
 
         private static void ReloadCurrentArcade()
         {
+            GameObject arcadeRootNode = GameObject.Find("Arcade");
+            if (arcadeRootNode == null)
+            {
+                return;
+            }
+
+            for (int i = 1; i < EditorSceneManager.loadedSceneCount; i++)
+            {
+                _ = EditorSceneManager.CloseScene(SceneManager.GetSceneAt(i), true);
+            }
+
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
 
             if (!loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))

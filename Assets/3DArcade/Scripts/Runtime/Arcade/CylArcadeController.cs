@@ -80,6 +80,14 @@ namespace Arcade
 
         protected abstract void AdjustModelPosition(Transform model, bool forward, float spacing);
 
+        protected override void PostLoadScene()
+        {
+            Assert.IsNotNull(_arcadeConfiguration.CylArcadeProperties);
+            _cylArcadeProperties = _arcadeConfiguration.CylArcadeProperties;
+
+            _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
+        }
+
         protected sealed override void PreSetupPlayer()
         {
             _playerFpsControls.gameObject.SetActive(false);
@@ -102,14 +110,10 @@ namespace Arcade
             instantiatedModel.SetActive(false);
         }
 
-        protected override void LateSetupWorld()
+        protected sealed override void LateSetupWorld()
         {
             base.LateSetupWorld();
 
-            Assert.IsNotNull(_arcadeConfiguration.CylArcadeProperties);
-            _cylArcadeProperties = _arcadeConfiguration.CylArcadeProperties;
-
-            _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
             _sprockets            = Mathf.Clamp(_cylArcadeProperties.Sprockets, 1, _allGames.Count);
             int selectedSprocket  = Mathf.Clamp(_cylArcadeProperties.SelectedSprocket - 1, 0, _sprockets);
             int halfSprockets     = _sprockets % 2 != 0 ? _sprockets / 2 : _sprockets / 2 - 1;
