@@ -23,13 +23,11 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Arcade
 {
     public abstract class CylArcadeController : ArcadeController
     {
-        public sealed override bool VideoPlayOnAwake => false;
         public sealed override float AudioMinDistance { get; protected set; }
         public sealed override float AudioMaxDistance { get; protected set; }
         public sealed override AnimationCurve VolumeCurve { get; protected set; }
@@ -37,7 +35,7 @@ namespace Arcade
         protected abstract Transform TransformAnchor { get; }
         protected abstract Vector3 TransformVector { get; }
 
-        protected sealed override bool UseModelTransfoms => false;
+        protected sealed override bool UseModelTransforms => false;
         protected sealed override PlayerControls PlayerControls => _playerCylControls;
         protected sealed override CameraSettings CameraSettings => _cylArcadeProperties.CameraSettings;
 
@@ -54,9 +52,10 @@ namespace Arcade
                                    PlayerCylControls playerCylControls,
                                    Database<EmulatorConfiguration> emulatorDatabase,
                                    AssetCache<GameObject> gameObjectCache,
-                                   AssetCache<Texture> textureCache,
-                                   AssetCache<string> videoCache)
-        : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
+                                   NodeController<MarqueeNodeTag> marqueeNodeController,
+                                   NodeController<ScreenNodeTag> screenNodeController,
+                                   NodeController<GenericNodeTag> genericNodeController)
+        : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, marqueeNodeController, screenNodeController, genericNodeController)
         {
             AudioMinDistance = 0f;
             AudioMaxDistance = 200f;
@@ -82,9 +81,7 @@ namespace Arcade
 
         protected override void PostLoadScene()
         {
-            Assert.IsNotNull(_arcadeConfiguration.CylArcadeProperties);
-            _cylArcadeProperties = _arcadeConfiguration.CylArcadeProperties;
-
+            _cylArcadeProperties  = _arcadeConfiguration.CylArcadeProperties ?? throw new System.NullReferenceException(nameof(_arcadeConfiguration.CylArcadeProperties));
             _centerTargetPosition = new Vector3(0f, 0f, _cylArcadeProperties.SelectedPositionZ);
         }
 
@@ -108,6 +105,14 @@ namespace Arcade
             }
 
             instantiatedModel.SetActive(false);
+        }
+
+        protected sealed override void AddModelsToWorldAdditionalLoopStepsForProps(GameObject instantiatedModel)
+        {
+            if (Application.isPlaying)
+            {
+                VideoPlayerController.PlayVideo(instantiatedModel);
+            }
         }
 
         protected sealed override void LateSetupWorld()

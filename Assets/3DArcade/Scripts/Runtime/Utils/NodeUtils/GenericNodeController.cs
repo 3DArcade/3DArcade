@@ -24,17 +24,10 @@ using UnityEngine;
 
 namespace Arcade
 {
-    public sealed class GenericNodeController : NodeController
+    public sealed class GenericNodeController : NodeController<GenericNodeTag>
     {
         protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Generics" };
         protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/GenericsVideo" };
-
-        public GenericNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
-        : base(videoCache, textureCache)
-        {
-        }
-
-        protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<GenericNodeTag>(model);
 
         protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.GenericImageDirectories;
 

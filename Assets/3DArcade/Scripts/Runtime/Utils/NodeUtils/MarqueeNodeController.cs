@@ -20,82 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Arcade
 {
-    public sealed class MarqueeNodeController : NodeController
+    public sealed class MarqueeNodeController : NodeController<MarqueeNodeTag>
     {
         protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Marquees" };
         protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/MarqueesVideo" };
-
-        private readonly MaterialPropertyBlock _materialPropertyBlock;
-
-        public MarqueeNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
-        : base(videoCache, textureCache)
-        {
-            _materialPropertyBlock = new MaterialPropertyBlock();
-        }
-
-        public void SetupMagicPixels(Renderer sourceRenderer)
-        {
-            Transform parentTransform = sourceRenderer.transform.parent;
-            if (parentTransform == null)
-            {
-                return;
-            }
-
-            IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
-                                                             .Where(r => r.GetComponent<NodeTag>() == null
-                                                                      && sourceRenderer.sharedMaterial.name.StartsWith(r.sharedMaterial.name));
-
-            Color color;
-            Texture texture;
-
-            bool sourceIsEmissive = sourceRenderer.material.IsEmissive();
-
-            if (sourceIsEmissive)
-            {
-                color   = sourceRenderer.material.GetEmissionColor();
-                texture = sourceRenderer.material.GetEmissionTexture();
-            }
-            else
-            {
-                color   = sourceRenderer.material.GetBaseColor();
-                texture = sourceRenderer.material.GetBaseTexture();
-            }
-
-            if (texture == null)
-            {
-                return;
-            }
-
-            foreach (Renderer renderer in renderers)
-            {
-                renderer.GetPropertyBlock(_materialPropertyBlock);
-
-                if (renderer.material.IsEmissive())
-                {
-                    _materialPropertyBlock.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, color);
-                    _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
-                }
-                else
-                {
-                    color = sourceIsEmissive ? Color.white : color;
-                    _materialPropertyBlock.SetColor(MaterialUtils.SHADER_BASE_COLOR_NAME, color);
-                    _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME, texture);
-                }
-
-                for (int i = 0; i < renderer.materials.Length; ++i)
-                {
-                    renderer.SetPropertyBlock(_materialPropertyBlock, i);
-                }
-            }
-        }
-
-        protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<MarqueeNodeTag>(model);
 
         protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration) => modelConfiguration?.MarqueeImageDirectories;
 

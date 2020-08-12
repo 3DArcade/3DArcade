@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System;
 using System.Collections.Generic;
 
 namespace Arcade
 {
-    public sealed class ContentMatcher
+    public static class ContentMatcher
     {
         public delegate List<string> GetNamesToTryDelegate(ModelConfiguration modelConfiguration, EmulatorConfiguration emulator);
 
@@ -34,35 +33,33 @@ namespace Arcade
         private const string DEFAULT_GAME_VERT_MODEL = "default80vert";
         private const string DEFAULT_PROP_MODEL      = "penguin";
 
-        private readonly EmulatorDatabase _emulatorDatabase;
-
-        public ContentMatcher(Database<EmulatorConfiguration> emulatorDatabase) => _emulatorDatabase = emulatorDatabase as EmulatorDatabase ?? throw new ArgumentNullException(nameof(emulatorDatabase));
-
-        public EmulatorConfiguration GetEmulatorForConfiguration(ModelConfiguration modelConfiguration)
+        public static EmulatorConfiguration GetEmulatorForConfiguration(Database<EmulatorConfiguration> emulatorDatabase, ModelConfiguration modelConfiguration)
         {
+            EmulatorDatabase database = emulatorDatabase as EmulatorDatabase ?? throw new System.ArgumentNullException(nameof(emulatorDatabase));
+
             switch (modelConfiguration.InteractionType)
             {
                 case InteractionType.GameInternal:
                 case InteractionType.GameExternal:
                 case InteractionType.URL:
                 {
-                    return _emulatorDatabase.Get(modelConfiguration.Emulator);
+                    return database.Get(modelConfiguration.Emulator);
                 }
                 case InteractionType.FpsArcadeConfiguration:
                 {
-                    return _emulatorDatabase.FpsArcadeLauncher;
+                    return database.FpsArcadeLauncher;
                 }
                 case InteractionType.CylArcadeConfiguration:
                 {
-                    return _emulatorDatabase.CylArcadeLauncher;
+                    return database.CylArcadeLauncher;
                 }
                 case InteractionType.FpsMenuConfiguration:
                 {
-                    return _emulatorDatabase.FpsMenuLauncher;
+                    return database.FpsMenuLauncher;
                 }
                 case InteractionType.CylMenuConfiguration:
                 {
-                    return _emulatorDatabase.CylMenuLauncher;
+                    return database.CylMenuLauncher;
                 }
                 case InteractionType.None:
                 default:

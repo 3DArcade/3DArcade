@@ -47,7 +47,7 @@ namespace Arcade
 
         private void OnEnable()
         {
-            NodeController.OnVideoPlayerAdded += OnVideoPlayerAdded;
+            ArtworkUtils.OnVideoPlayerAdded += OnVideoPlayerAdded;
 
             Construct(null);
             if (_useRandomDelay)
@@ -58,7 +58,10 @@ namespace Arcade
 
         private void OnVideoPlayerAdded() => _videoPlayer = GetComponent<VideoPlayer>();
 
-        private void OnDisable() => NodeController.OnVideoPlayerAdded -= OnVideoPlayerAdded;
+        private void OnDisable()
+        {
+            ArtworkUtils.OnVideoPlayerAdded -= OnVideoPlayerAdded;
+        }
 
         private void Update()
         {

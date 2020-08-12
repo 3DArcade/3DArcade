@@ -75,14 +75,14 @@ namespace Arcade
                     _activeVideos.Add(modelConfigurationComponent);
                 }
 
-                VideoSetPlayingState(modelConfigurationComponent, true);
+                PlayVideo(modelConfigurationComponent);
             }
 
             ModelConfigurationComponent[] toDisable = _activeVideos.Except(inRange)
                                                                    .ToArray();
             foreach (ModelConfigurationComponent modelConfigurationComponent in toDisable)
             {
-                VideoSetPlayingState(modelConfigurationComponent, false);
+                StopVideo(modelConfigurationComponent);
                 _ = _activeVideos.Remove(modelConfigurationComponent);
             }
         }
@@ -91,7 +91,7 @@ namespace Arcade
         {
             foreach (ModelConfigurationComponent modelConfigurationComponent in _activeVideos)
             {
-                VideoSetPlayingState(modelConfigurationComponent, false);
+                StopVideo(modelConfigurationComponent);
             }
             _activeVideos.Clear();
         }

@@ -26,12 +26,11 @@ namespace Arcade
 {
     public sealed class FpsArcadeController : ArcadeController
     {
-        public override bool VideoPlayOnAwake => false;
         public override float AudioMinDistance { get; protected set; }
         public override float AudioMaxDistance { get; protected set; }
         public override AnimationCurve VolumeCurve { get; protected set; }
 
-        protected override bool UseModelTransfoms => true;
+        protected override bool UseModelTransforms => true;
         protected override PlayerControls PlayerControls => _playerFpsControls;
         protected override CameraSettings CameraSettings => _arcadeConfiguration.FpsArcadeProperties.CameraSettings;
 
@@ -40,9 +39,10 @@ namespace Arcade
                                    PlayerCylControls playerCylControls,
                                    Database<EmulatorConfiguration> emulatorDatabase,
                                    AssetCache<GameObject> gameObjectCache,
-                                   AssetCache<Texture> textureCache,
-                                   AssetCache<string> videoCache)
-        : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
+                                   NodeController<MarqueeNodeTag> marqueeNodeController,
+                                   NodeController<ScreenNodeTag> screenNodeController,
+                                   NodeController<GenericNodeTag> genericNodeController)
+        : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, marqueeNodeController, screenNodeController, genericNodeController)
         {
             AudioMinDistance = 1f;
             AudioMaxDistance = 3f;

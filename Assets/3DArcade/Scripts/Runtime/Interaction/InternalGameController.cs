@@ -223,7 +223,10 @@ namespace Arcade
                 }
             }
 #endif
-            _dynamicArtworkComponent.EnableCycling = true;
+            if (_dynamicArtworkComponent != null)
+            {
+                _dynamicArtworkComponent.EnableCycling = true;
+            }
 
             ResetFields();
         }

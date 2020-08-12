@@ -48,7 +48,7 @@ namespace Arcade
                 {
                     if (_libretroController.StartGame(_screenNode, emulator.Id, emulator.GamesDirectories, _context.CurrentModelConfiguration.Id))
                     {
-                        _context.VideoPlayerController.StopAllVideos();
+                        _context.VideoPlayerController?.StopAllVideos();
                         return;
                     }
                 }

@@ -88,32 +88,32 @@ namespace Arcade
             ArcadeHierarchy.Reset();
             if (_playerFpsControls.gameObject.activeInHierarchy)
             {
-                _arcadeController = new FpsArcadeController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                _arcadeController = new FpsArcadeController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
             }
             else
             {
                 switch (arcadeConfiguration.CylArcadeProperties.WheelVariant)
                 {
                     case WheelVariant.CameraInsideHorizontal:
-                        _arcadeController = new CylArcadeControllerWheel3DCameraInsideHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerWheel3DCameraInsideHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                     case WheelVariant.CameraOutsideHorizontal:
-                        _arcadeController = new CylArcadeControllerWheel3DCameraOutsideHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerWheel3DCameraOutsideHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                     case WheelVariant.LineHorizontal:
-                        _arcadeController = new CylArcadeControllerLineHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerLineHorizontal(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                     case WheelVariant.CameraInsideVertical:
-                        _arcadeController = new CylArcadeControllerWheel3DCameraInsideVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerWheel3DCameraInsideVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                     case WheelVariant.CameraOutsideVertical:
-                        _arcadeController = new CylArcadeControllerWheel3DCameraOutsideVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerWheel3DCameraOutsideVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                     case WheelVariant.LineVertical:
-                        _arcadeController = new CylArcadeControllerLineVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerLineVertical(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                     case WheelVariant.LineCustom:
-                        _arcadeController = new CylArcadeControllerLine(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null);
+                        _arcadeController = new CylArcadeControllerLine(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
                         break;
                 }
             }

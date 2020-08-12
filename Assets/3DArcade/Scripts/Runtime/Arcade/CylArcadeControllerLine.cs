@@ -35,9 +35,10 @@ namespace Arcade
                                        PlayerCylControls playerCylControls,
                                        Database<EmulatorConfiguration> emulatorDatabase,
                                        AssetCache<GameObject> gameObjectCache,
-                                       AssetCache<Texture> textureCache,
-                                       AssetCache<string> videoCache)
-        : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, textureCache, videoCache)
+                                       NodeController<MarqueeNodeTag> marqueeNodeController,
+                                       NodeController<ScreenNodeTag> screenNodeController,
+                                       NodeController<GenericNodeTag> genericNodeController)
+        : base(arcadeHierarchy, playerFpsControls, playerCylControls, emulatorDatabase, gameObjectCache, marqueeNodeController, screenNodeController, genericNodeController)
         {
         }
 

@@ -22,7 +22,6 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Video;
 
 namespace Arcade
 {
@@ -130,16 +129,16 @@ namespace Arcade
 
             if (!Cursor.visible && _context.PlayerCylControls.CylArcadeActions.Interact.triggered)
             {
-                _context.VideoPlayerController.StopVideo(_context.CurrentModelConfiguration);
+                VideoPlayerController.StopVideo(_context.CurrentModelConfiguration);
                 HandleInteraction();
             }
         }
 
         private void UpdateCurrentInteractable()
         {
-            _context.VideoPlayerController.StopVideo(_context.CurrentModelConfiguration);
+            VideoPlayerController.StopVideo(_context.CurrentModelConfiguration);
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration, _context.ArcadeController);
-            _context.VideoPlayerController.PlayVideo(_context.CurrentModelConfiguration);
+            VideoPlayerController.PlayVideo(_context.CurrentModelConfiguration);
         }
 
         private void HandleNavigation(float dt)

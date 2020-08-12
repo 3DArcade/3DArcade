@@ -25,20 +25,18 @@ using UnityEngine;
 
 namespace Arcade
 {
-    public sealed class ScreenNodeController : NodeController
+    public sealed class ScreenNodeController : NodeController<ScreenNodeTag>
     {
         protected override string[] DefaultImageDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/Screens", $"{_defaultMediaDirectory}/Titles" };
         protected override string[] DefaultVideoDirectories { get; } = new string[] { $"{_defaultMediaDirectory}/ScreensVideo" };
 
-        public ScreenNodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
-        : base(videoCache, textureCache)
-        {
-        }
-
-        protected override Renderer GetNodeRenderer(GameObject model) => GetNodeRenderer<ScreenNodeTag>(model);
-
         protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration)
         {
+            if (modelConfiguration == null)
+            {
+                return null;
+            }
+
             List<string> result = new List<string>();
 
             if (modelConfiguration.ScreenImageDirectories != null)

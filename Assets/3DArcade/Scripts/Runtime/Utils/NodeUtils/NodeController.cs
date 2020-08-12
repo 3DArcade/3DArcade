@@ -23,72 +23,40 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
-using UnityEngine.Video;
 
 namespace Arcade
 {
-    public abstract class NodeController
+    public abstract class NodeController<T> where T : NodeTag
     {
-        public static event System.Action OnVideoPlayerAdded;
-
         protected static readonly string _defaultMediaDirectory = $"{SystemUtils.GetDataPath()}/3darcade~/Configuration/Media";
 
         protected abstract string[] DefaultImageDirectories { get; }
         protected abstract string[] DefaultVideoDirectories { get; }
 
-        private readonly AssetCache<string> _videoCache;
-        private readonly AssetCache<Texture> _textureCache;
-
-        protected NodeController(AssetCache<string> videoCache, AssetCache<Texture> textureCache)
-        {
-            _videoCache   = videoCache;
-            _textureCache = textureCache;
-        }
-
         public void Setup(ArcadeController arcadeController, GameObject model, ModelConfiguration modelConfiguration, EmulatorConfiguration emulator, float emissionIntensity)
         {
-            Renderer renderer = GetNodeRenderer(model);
-            if (renderer == null)
+            Renderer[] renderers = GetNodeRenderers(model);
+            if (renderers == null)
             {
                 return;
             }
 
-            renderer.material.EnableEmission(true);
-            renderer.material.SetBaseColor(Color.black);
-            renderer.material.SetBaseTexture(null);
-            renderer.material.SetEmissionColor(Color.white * emissionIntensity);
-
-            List<string> namesToTry  = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
-            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectories(modelConfiguration), GetEmulatorImageDirectories(emulator), DefaultImageDirectories);
-
-            Texture[] textures = _textureCache.LoadMultiple(directories, namesToTry);
-            if (textures != null)
+            foreach (Renderer renderer in renderers)
             {
-                if (textures.Length > 0)
-                {
-                    renderer.material.SetEmissionTexture(textures[0]);
-                    if (this is MarqueeNodeController marqueeNodeController)
-                    {
-                        marqueeNodeController.SetupMagicPixels(renderer);
-                    }
-                }
-
-                if (textures.Length > 1)
-                {
-                    DynamicArtworkComponent dynamicArtworkComponent = renderer.gameObject.AddComponentIfNotFound<DynamicArtworkComponent>();
-                    dynamicArtworkComponent.Construct(textures);
-                }
-                else if (textures.Length > 0)
-                {
-                    renderer.material.SetEmissionTexture(textures[0]);
-                }
+                renderer.material.EnableEmission(true);
+                renderer.material.SetBaseColor(Color.black);
+                renderer.material.SetBaseTexture(null);
+                renderer.material.SetEmissionColor(Color.white * emissionIntensity);
             }
 
-            directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectories(modelConfiguration), GetEmulatorVideoDirectories(emulator), DefaultVideoDirectories);
-            SetupVideo(renderer, directories, namesToTry, arcadeController.VideoPlayOnAwake, arcadeController.AudioMinDistance, arcadeController.AudioMaxDistance, arcadeController.VolumeCurve);
-        }
+            List<string> namesToTry = ArtworkMatcher.GetNamesToTry(modelConfiguration, emulator);
 
-        protected abstract Renderer GetNodeRenderer(GameObject model);
+            List<string> directories = ArtworkMatcher.GetDirectoriesToTry(GetModelImageDirectories(modelConfiguration), GetEmulatorImageDirectories(emulator), DefaultImageDirectories);
+            ArtworkUtils.SetupImages(directories, namesToTry, renderers, this as MarqueeNodeController != null);
+
+            directories = ArtworkMatcher.GetDirectoriesToTry(GetModelVideoDirectories(modelConfiguration), GetEmulatorVideoDirectories(emulator), DefaultVideoDirectories);
+            ArtworkUtils.SetupVideos(directories, namesToTry, renderers, arcadeController.AudioMinDistance, arcadeController.AudioMaxDistance, arcadeController.VolumeCurve);
+        }
 
         protected abstract string[] GetModelImageDirectories(ModelConfiguration modelConfiguration);
 
@@ -99,84 +67,29 @@ namespace Arcade
         protected abstract string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator);
 
         [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
-        protected static Renderer GetNodeRenderer<T>(GameObject model) where T : NodeTag
+        private static Renderer[] GetNodeRenderers(GameObject model)
         {
             if (model == null)
             {
                 return null;
             }
 
-            T nodeTag = model.GetComponentInChildren<T>(true);
-            if (nodeTag != null)
+            List<Renderer> renderers = new List<Renderer>();
+
+            T[] nodeTags = model.GetComponentsInChildren<T>();
+            if (nodeTags != null)
             {
-                Renderer renderer = nodeTag.GetComponent<Renderer>();
-                if (renderer != null)
+                foreach (T nodeTag in nodeTags)
                 {
-                    return renderer;
+                    Renderer renderer = nodeTag.GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        renderers.Add(renderer);
+                    }
                 }
             }
-            return null;
-        }
 
-        private void SetupVideo(Renderer renderer, List<string> directories, List<string> namesToTry, bool playOnAwake, float audioMinDistance, float audioMaxDistance, AnimationCurve volumeCurve)
-        {
-            string videopath = _videoCache.Load(directories, namesToTry);
-            if (string.IsNullOrEmpty(videopath))
-            {
-                return;
-            }
-
-            AudioSource audioSource  = renderer.gameObject.AddComponentIfNotFound<AudioSource>();
-            audioSource.playOnAwake  = false;
-            audioSource.dopplerLevel = 0f;
-            audioSource.spatialBlend = 1f;
-            audioSource.minDistance  = audioMinDistance;
-            audioSource.maxDistance  = audioMaxDistance;
-            audioSource.volume       = 1f;
-            audioSource.rolloffMode  = AudioRolloffMode.Custom;
-            audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, volumeCurve);
-
-            VideoPlayer videoPlayer    = renderer.gameObject.AddComponentIfNotFound<VideoPlayer>();
-            videoPlayer.errorReceived -= OnVideoPlayerErrorReceived;
-            videoPlayer.errorReceived += OnVideoPlayerErrorReceived;
-            if (playOnAwake)
-            {
-                videoPlayer.prepareCompleted -= OnVideoPlayerPrepareCompleted;
-                videoPlayer.prepareCompleted += OnVideoPlayerPrepareCompleted;
-            }
-            videoPlayer.playOnAwake               = playOnAwake;
-            videoPlayer.waitForFirstFrame         = true;
-            videoPlayer.isLooping                 = true;
-            videoPlayer.skipOnDrop                = true;
-            videoPlayer.source                    = VideoSource.Url;
-            videoPlayer.url                       = videopath;
-            videoPlayer.renderMode                = VideoRenderMode.MaterialOverride;
-            videoPlayer.audioOutputMode           = VideoAudioOutputMode.AudioSource;
-            videoPlayer.controlledAudioTrackCount = 1;
-            videoPlayer.targetMaterialProperty    = MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME;
-            if (playOnAwake)
-            {
-                videoPlayer.Prepare();
-            }
-            else
-            {
-                videoPlayer.Stop();
-            }
-
-            OnVideoPlayerAdded?.Invoke();
-        }
-
-        private static void OnVideoPlayerErrorReceived(VideoPlayer _, string message) => Debug.Log($"Error: {message}");
-
-        private static void OnVideoPlayerPrepareCompleted(VideoPlayer videoPlayer)
-        {
-            float frameCount = videoPlayer.frameCount;
-            float frameRate  = videoPlayer.frameRate;
-            double duration  = frameCount / frameRate;
-            videoPlayer.time = Random.Range(0.02f, 0.98f) * duration;
-
-            videoPlayer.EnableAudioTrack(0, false);
-            videoPlayer.Pause();
+            return renderers.Count > 0 ? renderers.ToArray() : null;
         }
     }
 }

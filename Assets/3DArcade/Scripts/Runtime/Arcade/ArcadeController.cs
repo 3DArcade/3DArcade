@@ -34,12 +34,11 @@ namespace Arcade
         public bool ArcadeLoaded { get; protected set; }
         public ModelConfigurationComponent CurrentGame { get; protected set; }
 
-        public abstract bool VideoPlayOnAwake { get; }
         public abstract float AudioMinDistance { get; protected set; }
         public abstract float AudioMaxDistance { get; protected set; }
         public abstract AnimationCurve VolumeCurve { get; protected set; }
 
-        protected abstract bool UseModelTransfoms { get; }
+        protected abstract bool UseModelTransforms { get; }
         protected abstract PlayerControls PlayerControls { get; }
         protected abstract CameraSettings CameraSettings { get; }
 
@@ -60,12 +59,12 @@ namespace Arcade
         private static Scene _loadedScene;
         private static bool _sceneLoaded;
 
+        private readonly Database<EmulatorConfiguration> _emulatorDatabase;
         private readonly AssetCache<GameObject> _gameObjectCache;
-        private readonly ContentMatcher _contentMatcher;
 
-        private readonly NodeController _marqueeNodeController;
-        private readonly NodeController _screenNodeController;
-        private readonly NodeController _genericNodeController;
+        private readonly NodeController<MarqueeNodeTag> _marqueeNodeController;
+        private readonly NodeController<ScreenNodeTag> _screenNodeController;
+        private readonly NodeController<GenericNodeTag> _genericNodeController;
 
         private readonly CoroutineHelper _coroutineHelper;
 
@@ -76,27 +75,23 @@ namespace Arcade
                                 PlayerCylControls playerCylControls,
                                 Database<EmulatorConfiguration> emulatorDatabase,
                                 AssetCache<GameObject> gameObjectCache,
-                                AssetCache<Texture> textureCache,
-                                AssetCache<string> videoCache)
+                                NodeController<MarqueeNodeTag> marqueeNodeController,
+                                NodeController<ScreenNodeTag> screenNodeController,
+                                NodeController<GenericNodeTag> genericNodeController)
         {
-            Assert.IsNotNull(arcadeHierarchy);
-            Assert.IsNotNull(playerFpsControls);
-            Assert.IsNotNull(playerCylControls);
-            Assert.IsNotNull(emulatorDatabase);
-            Assert.IsNotNull(gameObjectCache);
-
-            _arcadeHierarchy   = arcadeHierarchy;
-            _playerFpsControls = playerFpsControls;
-            _playerCylControls = playerCylControls;
-            _gameObjectCache   = gameObjectCache;
-            _contentMatcher    = new ContentMatcher(emulatorDatabase);
+            _arcadeHierarchy   = arcadeHierarchy ?? throw new System.ArgumentNullException(nameof(arcadeHierarchy));
+            _playerFpsControls = playerFpsControls != null ? playerFpsControls : throw new System.ArgumentNullException(nameof(playerFpsControls));
+            _playerCylControls = playerCylControls != null ? playerCylControls : throw new System.ArgumentNullException(nameof(playerCylControls));
             _allGames          = new List<Transform>();
-            _coroutineHelper   = Object.FindObjectOfType<CoroutineHelper>();
-            Assert.IsNotNull(_coroutineHelper);
+            _emulatorDatabase  = emulatorDatabase ?? throw new System.ArgumentNullException(nameof(emulatorDatabase));
+            _gameObjectCache   = gameObjectCache ?? throw new System.ArgumentNullException(nameof(gameObjectCache));
 
-            _marqueeNodeController = new MarqueeNodeController(videoCache, textureCache);
-            _screenNodeController  = new ScreenNodeController(videoCache, textureCache);
-            _genericNodeController = new GenericNodeController(videoCache, textureCache);
+            _marqueeNodeController = marqueeNodeController;
+            _screenNodeController  = screenNodeController;
+            _genericNodeController = genericNodeController;
+
+            _coroutineHelper = Object.FindObjectOfType<CoroutineHelper>();
+            Assert.IsNotNull(_coroutineHelper);
 
             GameObject foundPivotPoint = GameObject.Find(CYLARCADE_PIVOT_POINT_GAMEOBJECT_NAME);
             if (foundPivotPoint != null)
@@ -152,6 +147,10 @@ namespace Arcade
         {
         }
 
+        protected virtual void AddModelsToWorldAdditionalLoopStepsForProps(GameObject instantiatedModel)
+        {
+        }
+
         protected virtual void LateSetupWorld()
         {
         }
@@ -181,7 +180,7 @@ namespace Arcade
 
             foreach (ModelConfiguration modelConfiguration in modelConfigurations)
             {
-                EmulatorConfiguration emulator = _contentMatcher.GetEmulatorForConfiguration(modelConfiguration);
+                EmulatorConfiguration emulator = ContentMatcher.GetEmulatorForConfiguration(_emulatorDatabase, modelConfiguration);
                 List<string> namesToTry        = getNamesToTry(modelConfiguration, emulator);
 
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
@@ -190,20 +189,25 @@ namespace Arcade
                     continue;
                 }
 
-                GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration, true);
+                GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration, !gameModels || UseModelTransforms);
+
+
+                // Look for artworks only in play mode / runtime
+                if (Application.isPlaying)
+                {
+                    _marqueeNodeController?.Setup(this, instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
+                    _screenNodeController?.Setup(this, instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
+                    _genericNodeController?.Setup(this, instantiatedModel, modelConfiguration, emulator, 1f);
+                }
 
                 if (gameModels)
                 {
                     _allGames.Add(instantiatedModel.transform);
                     AddModelsToWorldAdditionalLoopStepsForGames(instantiatedModel);
                 }
-
-                // Look for artworks only in play mode / runtime
-                if (Application.isPlaying)
+                else
                 {
-                    _marqueeNodeController.Setup(this, instantiatedModel, modelConfiguration, emulator, renderSettings.MarqueeIntensity);
-                    _screenNodeController.Setup(this, instantiatedModel, modelConfiguration, emulator, GetScreenIntensity(modelConfiguration, renderSettings));
-                    _genericNodeController.Setup(this, instantiatedModel, modelConfiguration, emulator, 1f);
+                    AddModelsToWorldAdditionalLoopStepsForProps(instantiatedModel);
                 }
 
                 // Instantiate asynchronously only when loaded from the editor menu / auto reload
@@ -219,10 +223,10 @@ namespace Arcade
             }
         }
 
-        protected GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration, bool useModelTransform)
+        protected static GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration, bool useModelTransforms)
         {
-            Vector3 position    = useModelTransform ? modelConfiguration.Position : Vector3.zero;
-            Quaternion rotation = useModelTransform ? Quaternion.Euler(modelConfiguration.Rotation) : Quaternion.identity;
+            Vector3 position    = useModelTransforms ? modelConfiguration.Position : Vector3.zero;
+            Quaternion rotation = useModelTransforms ? Quaternion.Euler(modelConfiguration.Rotation) : Quaternion.identity;
 
             GameObject model           = Object.Instantiate(prefab, position, rotation, parent);
             model.name                 = modelConfiguration.Id;
@@ -316,7 +320,6 @@ namespace Arcade
             }
 #endif
             _loadedScene = SceneManager.GetSceneByName(_arcadeConfiguration.ArcadeScene);
-            //_ = SceneManager.SetActiveScene(_loadedScene);
 
             PostLoadScene();
 

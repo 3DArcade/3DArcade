@@ -39,31 +39,41 @@ namespace Arcade
         {
         }
 
-        public void PlayVideo(MonoBehaviour monoBehaviour)
+        public static void PlayVideo(GameObject gameObject) => VideoSetPlayingState(gameObject, true);
+
+        public static void PlayVideo(MonoBehaviour monoBehaviour)
         {
-            VideoSetPlayingState(monoBehaviour, true);
+            if (monoBehaviour != null)
+            {
+                PlayVideo(monoBehaviour.gameObject);
+            }
         }
 
-        public void StopVideo(MonoBehaviour monoBehaviour)
+        public static void StopVideo(GameObject gameObject) => VideoSetPlayingState(gameObject, false);
+
+        public static void StopVideo(MonoBehaviour monoBehaviour)
         {
-            VideoSetPlayingState(monoBehaviour, false);
+            if (monoBehaviour != null)
+            {
+                StopVideo(monoBehaviour.gameObject);
+            }
         }
 
-        protected void VideoSetPlayingState(MonoBehaviour monoBehaviour, bool state)
+        private static void VideoSetPlayingState(GameObject gameObject, bool state)
         {
-            if (monoBehaviour == null)
+            if (gameObject == null)
             {
                 return;
             }
 
-            VideoPlayer[] videoPlayers = monoBehaviour.GetComponentsInChildren<VideoPlayer>();
+            VideoPlayer[] videoPlayers = gameObject.GetComponentsInChildren<VideoPlayer>();
             foreach (VideoPlayer videoPlayer in videoPlayers)
             {
                 VideoSetPlayingState(videoPlayer, state);
             }
         }
 
-        protected void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
+        private static void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
         {
             if (!videoPlayer.enabled)
             {
