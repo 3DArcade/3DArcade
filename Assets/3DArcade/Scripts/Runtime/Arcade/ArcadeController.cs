@@ -249,7 +249,7 @@ namespace Arcade
                     return renderSettings.ScreenPinballIntensity;
                 case GameScreenType.Unspecified:
                 default:
-                    return 1f;
+                    return 1.4f;
             }
         }
 
