@@ -26,6 +26,7 @@ using UnityEngine.InputSystem;
 using Unity.Mathematics;
 using UnityEngine.Assertions;
 using UnityEngine.Video;
+using System.Collections;
 
 namespace Arcade
 {
@@ -83,7 +84,6 @@ namespace Arcade
 
         // TODO(Tom): Make these customizable
         private readonly float _timeScale            = 1.0f;
-        private readonly bool _useAudioRateForSync   = false;
         private readonly float _audioMaxVolume       = 1f;
         private readonly float _audioMinDistance     = 2f;
         private readonly float _audioMaxDistance     = 10f;
@@ -107,6 +107,7 @@ namespace Arcade
         private bool _graphicsEnabled = false;
         private bool _audioEnabled    = false;
         private bool _inputEnabled    = false;
+        private Coroutine _updateCoroutine         = null;
 
         public InternalGameController(Transform player)
         {
@@ -183,11 +184,10 @@ namespace Arcade
             }
 
             _frameTimer += dt;
-            float targetFrameTime = 1f / (_useAudioRateForSync ? _gameSampleRate / 1000f : _gameFps) / _timeScale;
-            while (_frameTimer >= targetFrameTime)
+
+            if (_updateCoroutine == null)
             {
-                _libretroWrapper.Update();
-                _frameTimer -= targetFrameTime;
+                _updateCoroutine = _screenNode.StartCoroutine(CoUpdate());
             }
 
             GraphicsSetFilterMode(_videoFilterMode);
@@ -282,6 +282,19 @@ namespace Arcade
                 NAudioAudio.SetVolume(Mathf.Clamp(volume, 0f, _audioMaxVolume));
             }
 #endif
+        }
+
+        private IEnumerator CoUpdate()
+        {
+            float targetFrameTime = 1f / _gameFps / _timeScale;
+            while (_frameTimer >= targetFrameTime)
+            {
+                _libretroWrapper.Update();
+                _frameTimer -= targetFrameTime;
+                yield return null;
+            }
+
+            _updateCoroutine = null;
         }
 
         private void ActivateGraphics()
