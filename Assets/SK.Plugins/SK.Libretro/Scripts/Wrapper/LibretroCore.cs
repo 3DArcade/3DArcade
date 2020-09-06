@@ -116,6 +116,7 @@ namespace SK.Libretro
         {
             bool result = false;
 
+            string instancePath = null;
             try
             {
                 switch (wrapper.TargetPlatform)
@@ -145,7 +146,7 @@ namespace SK.Libretro
                         _ = Directory.CreateDirectory(tempDirectory);
                     }
 
-                    string instancePath = Path.Combine(tempDirectory, $"{coreName}_{Guid.NewGuid()}.{_dll.Extension}");
+                    instancePath = Path.Combine(tempDirectory, $"{coreName}_{Guid.NewGuid()}.{_dll.Extension}");
                     File.Copy(corePath, instancePath);
 
                     _dll.Load(instancePath);
@@ -182,11 +183,16 @@ namespace SK.Libretro
                 }
                 else
                 {
-                     throw new Exception($"Core '{coreName}' at path '{corePath}' not found.");
+                    throw new Exception($"Core '{coreName}' at path '{corePath}' not found.");
                 }
             }
             catch (Exception e )
             {
+                if (instancePath != null && File.Exists(instancePath))
+                {
+                    File.Delete(instancePath);
+                }
+
                 Log.Exception(e, "Libretro.LibretroCore.Start");
                 _dll?.Free();
                 _dll = null;
