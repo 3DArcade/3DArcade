@@ -98,6 +98,8 @@ namespace SK.Libretro
         private readonly DllModule _dll = new DllModuleWindows();
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         private readonly DllModule _dll = new DllModuleMacOS();
+#elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
+        private readonly DllModule _dll = new DllModuleLinux();
 #else
 #endif
 
@@ -127,6 +129,8 @@ namespace SK.Libretro
                 extension = ".dll";
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         extension = ".dylib";
+#elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
+        extension = ".so";
 #else
 #endif
 
