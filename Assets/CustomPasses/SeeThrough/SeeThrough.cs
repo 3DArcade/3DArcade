@@ -9,21 +9,19 @@ class SeeThrough : CustomPass
     public LayerMask seeThroughLayer = 1;
     public Material seeThroughMaterial = null;
 
-    [SerializeField, HideInInspector]
-    Shader stencilShader;
+    [SerializeField, HideInInspector] private Shader _stencilShader;
 
-    Material stencilMaterial;
-
-    ShaderTagId[]   shaderTags;
+    private Material _stencilMaterial;
+    private ShaderTagId[] _shaderTags;
 
     protected override void Setup(ScriptableRenderContext renderContext, CommandBuffer cmd)
     {
-        if (stencilShader == null)
-            stencilShader = Shader.Find("Hidden/Renderers/SeeThroughStencil");
+        if (_stencilShader == null)
+            _stencilShader = Shader.Find("Hidden/Renderers/SeeThroughStencil");
 
-        stencilMaterial = CoreUtils.CreateEngineMaterial(stencilShader);
+        _stencilMaterial = CoreUtils.CreateEngineMaterial(_stencilShader);
 
-        shaderTags = new ShaderTagId[4]
+        _shaderTags = new ShaderTagId[4]
         {
             new ShaderTagId("Forward"),
             new ShaderTagId("ForwardOnly"),
@@ -32,13 +30,13 @@ class SeeThrough : CustomPass
         };
     }
 
-    protected override void Execute(ScriptableRenderContext renderContext, CommandBuffer cmd, HDCamera hdCamera, CullingResults cullingResult)
+    protected override void Execute(CustomPassContext ctx)
     {
         // We first render objects into the user stencil bit 0, this will allow us to detect
         // if the object is behind another object.
-        stencilMaterial.SetInt("_StencilWriteMask", (int)UserStencilUsage.UserBit0);
+        _stencilMaterial.SetInt("_StencilWriteMask", (int)UserStencilUsage.UserBit0);
 
-        RenderObjects(renderContext, cmd, stencilMaterial, 0, CompareFunction.LessEqual, cullingResult, hdCamera);
+        RenderObjects(ctx.renderContext, ctx.cmd, _stencilMaterial, 0, CompareFunction.LessEqual, ctx.cullingResults, ctx.hdCamera);
 
         // Then we render the objects that are behind walls using the stencil buffer with Greater Equal ZTest:
         StencilState seeThroughStencil = new StencilState(
@@ -46,7 +44,7 @@ class SeeThrough : CustomPass
             readMask: (byte)UserStencilUsage.UserBit0,
             compareFunction: CompareFunction.Equal
         );
-        RenderObjects(renderContext, cmd, seeThroughMaterial, seeThroughMaterial.FindPass("ForwardOnly"), CompareFunction.GreaterEqual, cullingResult, hdCamera, seeThroughStencil);
+        RenderObjects(ctx.renderContext, ctx.cmd, seeThroughMaterial, seeThroughMaterial.FindPass("ForwardOnly"), CompareFunction.GreaterEqual, ctx.cullingResults, ctx.hdCamera, seeThroughStencil);
     }
 
     public override IEnumerable<Material> RegisterMaterialForInspector() { yield return seeThroughMaterial; }
@@ -54,7 +52,7 @@ class SeeThrough : CustomPass
     void RenderObjects(ScriptableRenderContext renderContext, CommandBuffer cmd, Material overrideMaterial, int passIndex, CompareFunction depthCompare, CullingResults cullingResult, HDCamera hdCamera, StencilState? overrideStencil = null)
     {
         // Render the objects in the layer blur mask into a mask buffer with their materials so we keep the alpha-clip and transparency if there is any.
-        var result = new RendererListDesc(shaderTags, cullingResult, hdCamera.camera)
+        RendererListDesc result = new RendererListDesc(_shaderTags, cullingResult, hdCamera.camera)
         {
             rendererConfiguration = PerObjectData.None,
             renderQueueRange = RenderQueueRange.all,
@@ -68,13 +66,13 @@ class SeeThrough : CustomPass
 
         if (overrideStencil != null)
         {
-            var block = result.stateBlock.Value;
+            RenderStateBlock block = result.stateBlock.Value;
             block.mask |= RenderStateMask.Stencil;
             block.stencilState = overrideStencil.Value;
             result.stateBlock = block;
         }
 
-        HDUtils.DrawRendererList(renderContext, cmd, RendererList.Create(result));
+        CoreUtils.DrawRendererList(renderContext, cmd, RendererList.Create(result));
     }
 
     protected override void Cleanup()

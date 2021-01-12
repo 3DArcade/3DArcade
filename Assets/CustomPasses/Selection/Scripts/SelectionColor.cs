@@ -1,32 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
 public class SelectionColor : MonoBehaviour
 {
-    public Color selectionColor = new Color(1f, 0.5f, 0f, 1f);
+    public Color Color = new Color(1f, 0.5f, 0f, 1f);
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetColor();
-    }
+    private Renderer _renderer;
 
-    void OnValidate()
-    {
-        SetColor();
-    }
+    private void Awake() => _renderer = GetComponent<Renderer>();
+
+    private void Start() => SetColor();
+
+    private void OnValidate() => SetColor();
 
     void SetColor()
     {
-        var rndr = GetComponent<Renderer>();
-
-        var propertyBlock = new MaterialPropertyBlock();
-        rndr.GetPropertyBlock(propertyBlock);
-
-        propertyBlock.SetColor("_SelectionColor", selectionColor);
-
-        rndr.SetPropertyBlock(propertyBlock);
+        MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+        _renderer.GetPropertyBlock(propertyBlock);
+        propertyBlock.SetColor("_SelectionColor", Color);
+        _renderer.SetPropertyBlock(propertyBlock);
     }
 }

@@ -59,6 +59,8 @@
             {
                 // Write back the data to the output structures
                 ZERO_INITIALIZE(BuiltinData, builtinData);
+
+                ZERO_INITIALIZE(SurfaceData, surfaceData);
                 surfaceData.color = 1;
             }
 
