@@ -44,9 +44,7 @@ namespace Arcade
         public static void PlayVideo(MonoBehaviour monoBehaviour)
         {
             if (monoBehaviour != null)
-            {
                 PlayVideo(monoBehaviour.gameObject);
-            }
         }
 
         public static void StopVideo(GameObject gameObject) => VideoSetPlayingState(gameObject, false);
@@ -54,42 +52,30 @@ namespace Arcade
         public static void StopVideo(MonoBehaviour monoBehaviour)
         {
             if (monoBehaviour != null)
-            {
                 StopVideo(monoBehaviour.gameObject);
-            }
         }
 
         private static void VideoSetPlayingState(GameObject gameObject, bool state)
         {
             if (gameObject == null)
-            {
                 return;
-            }
 
             VideoPlayer[] videoPlayers = gameObject.GetComponentsInChildren<VideoPlayer>();
             foreach (VideoPlayer videoPlayer in videoPlayers)
-            {
                 VideoSetPlayingState(videoPlayer, state);
-            }
         }
 
         private static void VideoSetPlayingState(VideoPlayer videoPlayer, bool state)
         {
             if (!videoPlayer.enabled)
-            {
                 return;
-            }
 
             videoPlayer.EnableAudioTrack(0, state);
 
             if (state)
-            {
                 videoPlayer.Play();
-            }
             else
-            {
                 videoPlayer.Stop();
-            }
         }
     }
 }

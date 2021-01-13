@@ -59,9 +59,7 @@ namespace Arcade
             MoveCabController.AutoMoveAndRotate(_data, ray, _context.PlayerFpsControls.transform.forward, RAYCAST_MAX_DISTANCE, _context.RaycastLayers);
 
             if (_context.PlayerFpsControls.FpsMoveCabActions.GrabReleaseModel.triggered)
-            {
                 _context.TransitionTo<MoveCabAimState>();
-            }
         }
     }
 }

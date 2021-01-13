@@ -45,9 +45,7 @@ namespace Arcade
             Texture[] textures = _textureCache.LoadMultiple(directories, namesToTry);
 
             if (textures == null)
-            {
                 return;
-            }
 
             if (textures.Length > 0)
             {
@@ -57,29 +55,21 @@ namespace Arcade
 
                     // Only setup magic pixels for the first Marquee Node found
                     if (i == 0 && isMarqueeNode)
-                    {
                         SetupMagicPixels(renderers[i]);
-                    }
                 }
             }
 
             if (textures.Length > 1)
-            {
                 SetupImageCycling(renderers, textures);
-            }
             else if (textures.Length == 1)
-            {
                 SetupStaticImage(renderers, textures[0]);
-            }
         }
 
         public static void SetupVideos(IEnumerable<string> directories, IEnumerable<string> namesToTry, Renderer[] renderers, float audioMinDistance, float audioMaxDistance, AnimationCurve volumeCurve)
         {
             string videopath = _videoCache.Load(directories, namesToTry);
             if (string.IsNullOrEmpty(videopath))
-            {
                 return;
-            }
 
             foreach (Renderer renderer in renderers)
             {
@@ -124,18 +114,14 @@ namespace Arcade
         private static void SetupStaticImage(Renderer[] renderers, Texture texture)
         {
             foreach (Renderer renderer in renderers)
-            {
                 renderer.material.SetEmissionTexture(texture);
-            }
         }
 
         private static void SetupMagicPixels(Renderer sourceRenderer)
         {
             Transform parentTransform = sourceRenderer.transform.parent;
             if (parentTransform == null)
-            {
                 return;
-            }
 
             IEnumerable<Renderer> renderers = parentTransform.GetComponentsInChildren<Renderer>()
                                                              .Where(r => r.GetComponent<NodeTag>() == null
@@ -158,9 +144,7 @@ namespace Arcade
             }
 
             if (texture == null)
-            {
                 return;
-            }
 
             MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
 
@@ -181,12 +165,11 @@ namespace Arcade
                 }
 
                 for (int i = 0; i < renderer.materials.Length; ++i)
-                {
                     renderer.SetPropertyBlock(materialPropertyBlock, i);
-                }
             }
         }
 
-        private static void OnVideoPlayerErrorReceived(VideoPlayer _, string message) => Debug.LogError($"OnVideoPlayerErrorReceived: {message}");
+        private static void OnVideoPlayerErrorReceived(VideoPlayer _, string message)
+            => Debug.LogError($"OnVideoPlayerErrorReceived: {message}");
     }
 }

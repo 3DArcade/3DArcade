@@ -51,37 +51,26 @@ namespace Arcade
 
             Construct(null);
             if (_useRandomDelay)
-            {
                 _imageCyclingDelay = Random.Range(0.4f, 1f);
-            }
         }
 
         private void OnVideoPlayerAdded() => _videoPlayer = GetComponent<VideoPlayer>();
 
-        private void OnDisable()
-        {
-            ArtworkUtils.OnVideoPlayerAdded -= OnVideoPlayerAdded;
-        }
+        private void OnDisable() => ArtworkUtils.OnVideoPlayerAdded -= OnVideoPlayerAdded;
 
         private void Update()
         {
             if (VideoIsPlaying || !EnableCycling)
-            {
                 return;
-            }
 
             if (_imageCyclingTextures.Length < 2)
-            {
                 return;
-            }
 
             if ((_imageCyclingTimer += Time.deltaTime) >= _imageCyclingDelay)
             {
                 CycleTexture();
                 if (_changeRandomDelayAfterTimerEnds)
-                {
                     _imageCyclingDelay = Random.Range(0.6f, 1.2f);
-                }
                 _imageCyclingTimer = 0f;
             }
         }
@@ -94,20 +83,10 @@ namespace Arcade
             _videoPlayer           = GetComponent<VideoPlayer>();
 
             if (textures != null)
-            {
                 _imageCyclingTextures = textures;
-            }
 
-            if (_renderer.enabled)
-            {
-                if (_imageCyclingTextures != null)
-                {
-                    if (_imageCyclingTextures.Length > 0)
-                    {
-                        SwapTexture();
-                    }
-                }
-            }
+            if (_renderer.enabled && _imageCyclingTextures != null && _imageCyclingTextures.Length > 0)
+                SwapTexture();
         }
 
         public void SetImageCyclingTextures(Texture[] textures) => _imageCyclingTextures = textures;
@@ -117,9 +96,7 @@ namespace Arcade
         private void CycleTexture()
         {
             if (_imageCyclingIndex++ >= _imageCyclingTextures.Length - 1)
-            {
                 _imageCyclingIndex = 0;
-            }
 
             SwapTexture();
         }
@@ -127,20 +104,14 @@ namespace Arcade
         private void SwapTexture()
         {
             if (_imageCyclingTextures.Length < 1)
-            {
                 return;
-            }
 
             _renderer.GetPropertyBlock(_materialPropertyBlock);
 
             if (_renderer.material.IsEmissive())
-            {
                 _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, _imageCyclingTextures[_imageCyclingIndex]);
-            }
             else
-            {
                 _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME, _imageCyclingTextures[_imageCyclingIndex]);
-            }
 
             _renderer.SetPropertyBlock(_materialPropertyBlock);
         }

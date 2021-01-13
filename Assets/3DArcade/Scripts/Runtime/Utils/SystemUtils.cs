@@ -39,13 +39,9 @@ namespace Arcade
         public static void ToggleMouseCursor()
         {
             if (Cursor.lockState == CursorLockMode.Locked)
-            {
                 ShowMouseCursor();
-            }
             else
-            {
                 HideMouseCursor();
-            }
         }
 
         public static void ShowMouseCursor()
@@ -60,14 +56,12 @@ namespace Arcade
             Cursor.visible   = false;
         }
 
-        public static void ExitApp()
-        {
+        public static void ExitApp() =>
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
             Application.Quit(0);
 #endif
-        }
 
         public static OS GetCurrentOS()
         {
@@ -107,9 +101,7 @@ namespace Arcade
         public static string GetDataPath()
         {
             if (Application.platform == RuntimePlatform.IPhonePlayer)
-            {
                 return $"{Application.dataPath}/Raw";
-            }
 
             return Application.streamingAssetsPath;
         }

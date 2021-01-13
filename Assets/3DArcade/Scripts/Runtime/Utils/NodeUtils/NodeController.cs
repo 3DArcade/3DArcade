@@ -37,9 +37,7 @@ namespace Arcade
         {
             Renderer[] renderers = GetNodeRenderers(model);
             if (renderers == null)
-            {
                 return;
-            }
 
             foreach (Renderer renderer in renderers)
             {
@@ -66,13 +64,11 @@ namespace Arcade
 
         protected abstract string[] GetEmulatorVideoDirectories(EmulatorConfiguration emulator);
 
-        [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
+        // [SuppressMessage("Type Safety", "UNT0014:Invalid type for call to GetComponent", Justification = "Analyzer is dumb")]
         private static Renderer[] GetNodeRenderers(GameObject model)
         {
             if (model == null)
-            {
                 return null;
-            }
 
             List<Renderer> renderers = new List<Renderer>();
 
@@ -83,9 +79,7 @@ namespace Arcade
                 {
                     Renderer renderer = nodeTag.GetComponent<Renderer>();
                     if (renderer != null)
-                    {
                         renderers.Add(renderer);
-                    }
                 }
             }
 

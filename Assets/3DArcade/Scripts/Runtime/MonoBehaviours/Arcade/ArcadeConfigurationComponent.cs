@@ -60,14 +60,10 @@ namespace Arcade
             };
 
             if (fpsCameraSettings != null)
-            {
                 cfg.FpsArcadeProperties.CameraSettings = fpsCameraSettings;
-            }
 
             if (cylCameraSettings != null)
-            {
                 cfg.CylArcadeProperties.CameraSettings = cylCameraSettings;
-            }
 
             return arcadeDatabase.Save(cfg);
         }

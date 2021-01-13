@@ -110,9 +110,7 @@ namespace Arcade
         protected sealed override void AddModelsToWorldAdditionalLoopStepsForProps(GameObject instantiatedModel)
         {
             if (Application.isPlaying)
-            {
                 VideoPlayerController.PlayVideo(instantiatedModel);
-            }
         }
 
         protected sealed override void LateSetupWorld()
@@ -130,20 +128,14 @@ namespace Arcade
                 _allGames.RotateRight(_selectionIndex + 1);
             }
             else
-            {
                 _allGames.RotateRight(_selectionIndex);
-            }
 
             SetupWheel();
 
             if (_selectionIndex >= 0 && _allGames.Count >= _selectionIndex)
-            {
                 CurrentGame = _allGames[_selectionIndex].GetComponent<ModelConfigurationComponent>();
-            }
             else
-            {
                 CurrentGame = null;
-            }
         }
 
         protected sealed override IEnumerator CoNavigateForward(float dt)
@@ -195,9 +187,7 @@ namespace Arcade
         protected void SetupWheel()
         {
             if (_allGames.Count < 1)
-            {
                 return;
-            }
 
             Transform firstModel = _allGames[_selectionIndex];
             firstModel.gameObject.SetActive(true);
@@ -235,9 +225,7 @@ namespace Arcade
         protected void UpdateWheel()
         {
             if (_allGames.Count < 1)
-            {
                 return;
-            }
 
             Transform previousModel = _allGames[_sprockets - 2];
             Transform newModel      = _allGames[_sprockets - 1];
@@ -269,17 +257,13 @@ namespace Arcade
         protected void ParentGamesToAnchor()
         {
             foreach (Transform game in _allGames.Take(_sprockets))
-            {
                 game.SetParent(TransformAnchor);
-            }
         }
 
         protected void ResetGamesParent()
         {
             foreach (Transform game in _allGames.Take(_sprockets))
-            {
                 game.SetParent(_arcadeHierarchy.GamesNode);
-            }
         }
     }
 }

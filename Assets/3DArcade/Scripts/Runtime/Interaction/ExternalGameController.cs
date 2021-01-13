@@ -72,15 +72,10 @@ namespace Arcade
                 CommandId        = game
             };
 
-            _processLauncher.StartProcess(command, persistent,
-                (OSUtils.ProcessStartedData processStartedData) =>
-                {
-                    OnAppStarted?.Invoke(processStartedData, emulator, game);
-                },
-                (OSUtils.ProcessExitedData processExitedData) =>
-                {
-                    OnAppExited?.Invoke(processExitedData, emulator, game);
-                });
+            _processLauncher.StartProcess(command,
+                                          persistent,
+                                          (OSUtils.ProcessStartedData processStartedData) => OnAppStarted?.Invoke(processStartedData, emulator, game),
+                                          (OSUtils.ProcessExitedData processExitedData)   => OnAppExited?.Invoke(processExitedData, emulator, game));
 
             return true;
         }

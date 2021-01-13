@@ -61,10 +61,7 @@ namespace Arcade
             private int _currentProcessId = -1;
             private readonly List<int> _persistentProcesses;
 
-            public ProcessLauncher()
-            {
-                _persistentProcesses = new List<int>();
-            }
+            public ProcessLauncher() => _persistentProcesses = new List<int>();
 
             public void StartProcess(ProcessCommand command, bool persistent, ProcessStartedDelegate processStartedDelegate, ProcessExitedDelegate processExitedDelegate)
             {
@@ -115,13 +112,9 @@ namespace Arcade
                     if (process.Start())
                     {
                         if (persistent)
-                        {
                             _persistentProcesses.Add(process.Id);
-                        }
                         else
-                        {
                             _currentProcessId = process.Id;
-                        }
 
                         process.BeginOutputReadLine();
                         process.BeginErrorReadLine();
@@ -138,19 +131,14 @@ namespace Arcade
                 }
             }
 
-            public void StopCurrentProcess()
-            {
-                StopProcess(_currentProcessId);
-            }
+            public void StopCurrentProcess() => StopProcess(_currentProcessId);
 
             public void StopAllProcesses()
             {
                 StopProcess(_currentProcessId);
 
                 foreach (int processId in _persistentProcesses)
-                {
                     StopProcess(processId);
-                }
 
                 _persistentProcesses.Clear();
             }
@@ -171,9 +159,7 @@ namespace Arcade
                             }
                         }
                         else
-                        {
                             Debug.LogWarning("[OSUtils.ProcessLauncher.StopProcess] Process is null.");
-                        }
                     }
                     catch (Exception)
                     {
@@ -189,18 +175,14 @@ namespace Arcade
             private void ProcessOutputDataReceivedEventHandler(object sender, DataReceivedEventArgs eventArgs)
             {
                 if (!string.IsNullOrEmpty(eventArgs.Data))
-                {
                     Debug.Log($"[STDOUT] {eventArgs.Data}");
-                }
             }
 
             // TODO: Write to file instead of printing to Unity's console window
             private void ProcessErrorDataReceivedEventHandler(object sender, DataReceivedEventArgs eventArgs)
             {
                 if (!string.IsNullOrEmpty(eventArgs.Data))
-                {
                     Debug.Log($"[STDERR] {eventArgs.Data}");
-                }
             }
         }
     }

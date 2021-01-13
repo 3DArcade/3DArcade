@@ -43,9 +43,7 @@ namespace Arcade
 
             _context.PlayerCylControls.CylArcadeActions.Enable();
             if (!_context.PlayerCylControls.MouseLookEnabled)
-            {
                 _context.PlayerCylControls.CylArcadeActions.Look.Disable();
-            }
 
             _context.CurrentModelConfiguration = null;
 
@@ -100,9 +98,7 @@ namespace Arcade
         public override void Update(float dt)
         {
             if (_context.PlayerCylControls.GlobalActions.Quit.triggered)
-            {
                 SystemUtils.ExitApp();
-            }
 
             if (_context.PlayerCylControls.GlobalActions.ToggleCursor.triggered)
             {
@@ -110,22 +106,16 @@ namespace Arcade
                 if (_context.PlayerCylControls.MouseLookEnabled)
                 {
                     if (!Cursor.visible)
-                    {
                         _context.PlayerCylControls.CylArcadeActions.Look.Enable();
-                    }
                     else
-                    {
                         _context.PlayerCylControls.CylArcadeActions.Look.Disable();
-                    }
                 }
             }
 
             HandleNavigation(dt);
 
             if (_context.CurrentModelConfiguration != _context.ArcadeController.CurrentGame)
-            {
                 UpdateCurrentInteractable();
-            }
 
             if (!Cursor.visible && _context.PlayerCylControls.CylArcadeActions.Interact.triggered)
             {
@@ -144,9 +134,7 @@ namespace Arcade
         private void HandleNavigation(float dt)
         {
             if (_navigationInput.phase != InputActionPhase.Started)
-            {
                 return;
-            }
 
             float direction = _navigationInput.ReadValue<float>();
 
@@ -158,24 +146,16 @@ namespace Arcade
                 if (direction > 0f)
                 {
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
-                    {
                         _context.ArcadeController.NavigateBackward(dt);
-                    }
                     else
-                    {
                         _context.ArcadeController.NavigateForward(dt);
-                    }
                 }
                 else if (direction < 0f)
                 {
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
-                    {
                         _context.ArcadeController.NavigateForward(dt);
-                    }
                     else
-                    {
                         _context.ArcadeController.NavigateBackward(dt);
-                    }
                 }
             }
             else if ((_timer += _acceleration * dt) > 1.0f)
@@ -186,24 +166,16 @@ namespace Arcade
                 if (direction > 0f)
                 {
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
-                    {
                         _context.ArcadeController.NavigateBackward(_acceleration * dt);
-                    }
                     else
-                    {
                         _context.ArcadeController.NavigateForward(_acceleration * dt);
-                    }
                 }
                 else if (direction < 0f)
                 {
                     if (_context.CurrentArcadeConfiguration.CylArcadeProperties.InverseNavigation)
-                    {
                         _context.ArcadeController.NavigateForward(_acceleration * dt);
-                    }
                     else
-                    {
                         _context.ArcadeController.NavigateBackward(_acceleration * dt);
-                    }
                 }
 
                 _timer = 0f;
@@ -213,9 +185,7 @@ namespace Arcade
         private void HandleInteraction()
         {
             if (_context.CurrentModelConfiguration == null)
-            {
                 return;
-            }
 
             //if (_context.CurrentModelConfiguration.Grabbable)
             //{
@@ -226,25 +196,17 @@ namespace Arcade
                 switch (_context.CurrentModelConfiguration.InteractionType)
                 {
                     case InteractionType.GameInternal:
-                    {
                         _context.TransitionTo<ArcadeInternalGameState>();
-                    }
-                    break;
+                        break;
                     case InteractionType.GameExternal:
-                    {
                         _context.TransitionTo<ArcadeExternalGameState>();
-                    }
-                    break;
+                        break;
                     case InteractionType.FpsArcadeConfiguration:
-                    {
                         _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, ArcadeType.Fps);
-                    }
-                    break;
+                        break;
                     case InteractionType.CylArcadeConfiguration:
-                    {
                         _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, ArcadeType.Cyl);
-                    }
-                    break;
+                        break;
                     case InteractionType.FpsMenuConfiguration:
                     case InteractionType.CylMenuConfiguration:
                     case InteractionType.URL:

@@ -37,36 +37,17 @@ namespace Arcade
         {
             EmulatorDatabase database = emulatorDatabase as EmulatorDatabase ?? throw new System.ArgumentNullException(nameof(emulatorDatabase));
 
-            switch (modelConfiguration.InteractionType)
+            return modelConfiguration.InteractionType switch
             {
-                case InteractionType.GameInternal:
-                case InteractionType.GameExternal:
-                case InteractionType.URL:
-                {
-                    return database.Get(modelConfiguration.Emulator);
-                }
-                case InteractionType.FpsArcadeConfiguration:
-                {
-                    return database.FpsArcadeLauncher;
-                }
-                case InteractionType.CylArcadeConfiguration:
-                {
-                    return database.CylArcadeLauncher;
-                }
-                case InteractionType.FpsMenuConfiguration:
-                {
-                    return database.FpsMenuLauncher;
-                }
-                case InteractionType.CylMenuConfiguration:
-                {
-                    return database.CylMenuLauncher;
-                }
-                case InteractionType.None:
-                default:
-                    break;
-            }
-
-            return null;
+                InteractionType.GameInternal           => database.Get(modelConfiguration.Emulator),
+                InteractionType.GameExternal           => database.Get(modelConfiguration.Emulator),
+                InteractionType.URL                    => database.Get(modelConfiguration.Emulator),
+                InteractionType.FpsArcadeConfiguration => database.FpsArcadeLauncher,
+                InteractionType.CylArcadeConfiguration => database.CylArcadeLauncher,
+                InteractionType.FpsMenuConfiguration   => database.FpsMenuLauncher,
+                InteractionType.CylMenuConfiguration   => database.CylMenuLauncher,
+                _ => null,
+            };
         }
 
         public static List<string> GetNamesToTryForArcade(ModelConfiguration modelConfiguration, EmulatorConfiguration _)
@@ -100,17 +81,11 @@ namespace Arcade
                 if (int.TryParse(modelConfiguration.Year, out int year))
                 {
                     if (year >= 1970 && year < 1980)
-                    {
                         prefabName = isVertical ? "default70vert" : "default70hor";
-                    }
                     else if (year < 1990)
-                    {
                         prefabName = isVertical ? "default80vert" : "default80hor";
-                    }
                     else if (year < 2000)
-                    {
                         prefabName = isVertical ? "default90vert" : "default90hor";
-                    }
                 }
                 result.Add(prefabName);
             }

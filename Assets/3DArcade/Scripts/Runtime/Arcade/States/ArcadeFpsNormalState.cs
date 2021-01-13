@@ -64,21 +64,15 @@ namespace Arcade
         public override void Update(float dt)
         {
             if (_context.PlayerFpsControls.GlobalActions.Quit.triggered)
-            {
                 SystemUtils.ExitApp();
-            }
 
             if (_context.PlayerFpsControls.GlobalActions.ToggleCursor.triggered)
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
-                {
                     _context.PlayerFpsControls.FpsArcadeActions.Look.Enable();
-                }
                 else
-                {
                     _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
-                }
             }
 
             InteractionController.FindInteractable(ref _context.CurrentModelConfiguration,
@@ -89,22 +83,16 @@ namespace Arcade
             _context.VideoPlayerController.UpdateVideosState();
 
             if (!Cursor.visible && _context.PlayerFpsControls.FpsArcadeActions.Interact.triggered)
-            {
                 HandleInteraction();
-            }
 
             if (_context.PlayerFpsControls.FpsArcadeActions.ToggleMoveCab.triggered)
-            {
                 _context.TransitionTo<ArcadeFpsMoveCabState>();
-            }
         }
 
         private void HandleInteraction()
         {
             if (_context.CurrentModelConfiguration == null)
-            {
                 return;
-            }
 
             //if (_context.CurrentModelConfiguration.Grabbable)
             //{
@@ -115,25 +103,17 @@ namespace Arcade
                 switch (_context.CurrentModelConfiguration.InteractionType)
                 {
                     case InteractionType.GameInternal:
-                    {
                         _context.TransitionTo<ArcadeInternalGameState>();
-                    }
-                    break;
+                        break;
                     case InteractionType.GameExternal:
-                    {
                         _context.TransitionTo<ArcadeExternalGameState>();
-                    }
-                    break;
+                        break;
                     case InteractionType.FpsArcadeConfiguration:
-                    {
                         _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, ArcadeType.Fps);
-                    }
-                    break;
+                        break;
                     case InteractionType.CylArcadeConfiguration:
-                    {
                         _context.SetAndStartCurrentArcadeConfiguration(_context.CurrentModelConfiguration.Id, ArcadeType.Cyl);
-                    }
-                    break;
+                        break;
                     case InteractionType.FpsMenuConfiguration:
                     case InteractionType.CylMenuConfiguration:
                     case InteractionType.URL:

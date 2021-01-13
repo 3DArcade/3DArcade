@@ -34,6 +34,6 @@ namespace Arcade
             Assert.IsNotNull(context);
             _context = context;
             _data    = _context.Data;
-       }
+        }
     }
 }

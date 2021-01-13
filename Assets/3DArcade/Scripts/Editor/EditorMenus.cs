@@ -53,9 +53,7 @@ namespace Arcade
 
             ArcadeConfigurationComponent arcadeConfigurationComponent = Object.FindObjectOfType<ArcadeConfigurationComponent>();
             if (arcadeConfigurationComponent != null)
-            {
                 new EditorLoadSaveArcadeSubstitute().LoadAndStartArcade(arcadeConfigurationComponent.Id);
-            }
         }
 
         [MenuItem("3DArcade/Reload Current Arcade", false, 100), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
@@ -63,9 +61,7 @@ namespace Arcade
         {
             ArcadeConfigurationComponent arcadeConfigurationComponent = Object.FindObjectOfType<ArcadeConfigurationComponent>();
             if (arcadeConfigurationComponent != null)
-            {
                 new EditorLoadSaveArcadeSubstitute().LoadAndStartArcade(arcadeConfigurationComponent.Id);
-            }
         }
 
         [MenuItem("3DArcade/Save Arcade", false, 102), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
@@ -73,9 +69,7 @@ namespace Arcade
         {
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
             if (loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeCfgComponent))
-            {
                 loadSaveSubstitute.SaveArcade(arcadeCfgComponent);
-            }
         }
 
         // Validation
@@ -83,9 +77,9 @@ namespace Arcade
         private static bool MenuSwitchArcadeTypeValidation() => !Application.isPlaying;
 
         [MenuItem("3DArcade/Reload Current Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
-        private static bool MenuReloadCurrentArcadeValidation() => MenuSwitchArcadeTypeValidation();
+        private static bool MenuReloadCurrentArcadeValidation() => !Application.isPlaying;
 
         [MenuItem("3DArcade/Save Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
-        private static bool MenuSaveArcadeValidation() => MenuSwitchArcadeTypeValidation();
+        private static bool MenuSaveArcadeValidation() => !Application.isPlaying;
     }
 }

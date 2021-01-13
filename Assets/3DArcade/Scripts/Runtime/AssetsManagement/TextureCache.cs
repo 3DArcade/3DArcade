@@ -35,9 +35,7 @@ namespace Arcade
                 string imagePath = $"{filePathNoExt}.{extension}";
                 Texture result   = TextureUtils.LoadTextureFromFile(imagePath, true);
                 if (result != null)
-                {
                     return result;
-                }
             }
 
             return null;
@@ -56,9 +54,7 @@ namespace Arcade
             {
                 string videoPath = $"{filePathNoExt}.{extension}";
                 if (FileSystem.FileExists(videoPath))
-                {
                     return videoPath;
-                }
             }
 
             return null;

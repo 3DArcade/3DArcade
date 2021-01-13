@@ -49,9 +49,7 @@ namespace Arcade
         private void Update()
         {
             if (_inputActions.FpsArcade.Movement.enabled)
-            {
                 GatherMovementInputValues();
-            }
             HandleMovement(Time.deltaTime);
 
             if (_inputActions.FpsArcade.Look.enabled)
@@ -81,15 +79,11 @@ namespace Arcade
                 _moveVelocity = transform.TransformDirection(_moveVelocity) * speed;
 
                 if (_performJump)
-                {
                     _moveVelocity.y = _jumpForce;
-                }
             }
 
             if ((_characterController.collisionFlags & CollisionFlags.Above) != 0 && _moveVelocity.y > 0f)
-            {
                 _moveVelocity.y -= _moveVelocity.y;
-            }
 
             _moveVelocity.y -= _extraGravity * dt;
             _ = _characterController.Move(_moveVelocity * dt);
@@ -101,9 +95,7 @@ namespace Arcade
             _lookVertical  += _lookInputValue.y;
             _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
             if (_virtualCamera != null)
-            {
                 _virtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
-            }
             transform.Rotate(new Vector3(0f, _lookHorizontal, 0f));
         }
     }

@@ -39,55 +39,39 @@ namespace Arcade
         public static void SetGPUInstancing(bool active, params GameObject[] models)
         {
             for (int modelInxed = 0; modelInxed < models.Length; ++modelInxed)
-            {
                 SetGPUInstancing(active, models[modelInxed].GetComponentsInChildren<Renderer>());
-            }
         }
 
         public static void SetGPUInstancing(bool active, params Renderer[] renderers)
         {
             for (int rendererIndex = 0; rendererIndex < renderers.Length; ++rendererIndex)
-            {
                 SetGPUInstancing(active, renderers[rendererIndex].sharedMaterials);
-            }
         }
 
         public static void SetGPUInstancing(bool active, params Material[] materials)
         {
             for (int materialIndex = 0; materialIndex < materials.Length; ++materialIndex)
-            {
                 if (materials[materialIndex] != null)
-                {
                     materials[materialIndex].enableInstancing = active;
-                }
-            }
         }
 
         public static void SetGPUInstancing(bool active, IEnumerable<GameObject> models)
         {
             foreach (GameObject model in models)
-            {
                 SetGPUInstancing(active, model.GetComponentsInChildren<Renderer>());
-            }
         }
 
         public static void SetGPUInstancing(bool active, IEnumerable<Renderer> renderers)
         {
             foreach (Renderer renderer in renderers)
-            {
                 SetGPUInstancing(active, renderer.sharedMaterials);
-            }
         }
 
         public static void SetGPUInstancing(bool active, IEnumerable<Material> materials)
         {
             foreach (Material material in materials)
-            {
                 if (material != null)
-                {
                     material.enableInstancing = active;
-                }
-            }
         }
     }
 }

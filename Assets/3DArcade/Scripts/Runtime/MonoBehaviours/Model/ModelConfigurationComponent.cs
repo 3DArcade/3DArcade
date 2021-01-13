@@ -86,42 +86,39 @@ namespace Arcade
             Runnable          = modelConfiguration.Runnable;
         }
 
-        public ModelConfiguration ToModelConfiguration()
+        public ModelConfiguration ToModelConfiguration() => new ModelConfiguration
         {
-            return new ModelConfiguration
-            {
-                DescriptiveName         = DescriptiveName,
-                Id                      = Id,
-                Model                   = Model,
-                InteractionType         = InteractionType,
-                Emulator                = Emulator,
-                MarqueeImageDirectories = MarqueeImageDirectories,
-                MarqueeVideoDirectories = MarqueeVideoDirectories,
-                ScreenImageDirectories  = ScreenImageDirectories,
-                TitleImageDirectories   = TitleImageDirectories,
-                ScreenVideoDirectories  = ScreenVideoDirectories,
-                GenericImageDirectories = GenericImageDirectories,
-                GenericVideoDirectories = GenericVideoDirectories,
-                InfoDirectories         = InfoDirectories,
-                Grabbable               = Grabbable,
-                MoveCabMovable          = MoveCabMovable,
-                MoveCabGrabbable        = MoveCabGrabbable,
+            DescriptiveName         = DescriptiveName,
+            Id                      = Id,
+            Model                   = Model,
+            InteractionType         = InteractionType,
+            Emulator                = Emulator,
+            MarqueeImageDirectories = MarqueeImageDirectories,
+            MarqueeVideoDirectories = MarqueeVideoDirectories,
+            ScreenImageDirectories  = ScreenImageDirectories,
+            TitleImageDirectories   = TitleImageDirectories,
+            ScreenVideoDirectories  = ScreenVideoDirectories,
+            GenericImageDirectories = GenericImageDirectories,
+            GenericVideoDirectories = GenericVideoDirectories,
+            InfoDirectories         = InfoDirectories,
+            Grabbable               = Grabbable,
+            MoveCabMovable          = MoveCabMovable,
+            MoveCabGrabbable        = MoveCabGrabbable,
 
-                CloneOf           = CloneOf,
-                RomOf             = RomOf,
-                Genre             = Genre,
-                Year              = Year,
-                Manufacturer      = Manufacturer,
-                ScreenType        = ScreenType,
-                ScreenOrientation = ScreenOrientation,
-                Mature            = Mature,
-                Available         = Available,
-                Runnable          = Runnable,
+            CloneOf           = CloneOf,
+            RomOf             = RomOf,
+            Genre             = Genre,
+            Year              = Year,
+            Manufacturer      = Manufacturer,
+            ScreenType        = ScreenType,
+            ScreenOrientation = ScreenOrientation,
+            Mature            = Mature,
+            Available         = Available,
+            Runnable          = Runnable,
 
-                Position = transform.localPosition,
-                Rotation = MathUtils.CorrectEulerAngles(transform.localEulerAngles),
-                Scale    = transform.localScale
-            };
-        }
+            Position = transform.localPosition,
+            Rotation = MathUtils.CorrectEulerAngles(transform.localEulerAngles),
+            Scale    = transform.localScale
+        };
     }
 }

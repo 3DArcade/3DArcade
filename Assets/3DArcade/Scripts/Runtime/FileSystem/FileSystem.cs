@@ -34,13 +34,8 @@ namespace Arcade
     {
         public static string CorrectPath(string path)
         {
-            if (!string.IsNullOrEmpty(path))
-            {
-                if (path.StartsWith("@"))
-                {
-                    return PathCombine(SystemUtils.GetDataPath(), path.TrimStart('@'));
-                }
-            }
+            if (!string.IsNullOrEmpty(path) && path.StartsWith("@"))
+                return PathCombine(SystemUtils.GetDataPath(), path.TrimStart('@'));
             return path;
         }
 
@@ -67,25 +62,17 @@ namespace Arcade
         public static string[] GetFiles(string dirPath, string searchPattern, bool searchAllDirectories)
         {
             if (!Directory.Exists(dirPath))
-            {
                 return null;
-            }
 
             SearchOption searchOption;
             if (string.IsNullOrEmpty(searchPattern))
-            {
                 searchOption = SearchOption.TopDirectoryOnly;
-            }
             else
-            {
                 searchOption = searchAllDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-            }
 
             string[] files = Directory.GetFiles(dirPath, searchPattern, searchOption);
             for (int i = 0; i < files.Length; i++)
-            {
                 files[i] = Path.GetFullPath(files[i]);
-            }
 
             return files.Length > 0 ? files : null;
         }
@@ -104,15 +91,15 @@ namespace Arcade
                 serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
                 serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
 
-                using (StreamWriter sw    = new StreamWriter(filePath))
-                using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                using StreamWriter sw    = new StreamWriter(filePath);
+                using JsonTextWriter jtw = new JsonTextWriter(sw)
                 {
-                    jtw.Formatting  = Formatting.Indented;
-                    jtw.IndentChar  = ' ';
-                    jtw.Indentation = 4;
+                    Formatting  = Formatting.Indented,
+                    IndentChar  = ' ',
+                    Indentation = 4
+                };
 
-                    serializer.Serialize(jtw, configuration);
-                }
+                serializer.Serialize(jtw, configuration);
             }
             catch (System.Exception e)
             {
@@ -130,11 +117,9 @@ namespace Arcade
                 serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector2Converter());
                 serializer.Converters.Add(new Newtonsoft.Json.UnityConverters.Math.Vector3Converter());
 
-                using (StreamReader sr    = new StreamReader(path))
-                using (JsonTextReader jtr = new JsonTextReader(sr))
-                {
-                    return serializer.Deserialize<T>(jtr);
-                }
+                using StreamReader sr    = new StreamReader(path);
+                using JsonTextReader jtr = new JsonTextReader(sr);
+                return serializer.Deserialize<T>(jtr);
             }
             catch (System.Exception e)
             {
@@ -155,9 +140,7 @@ namespace Arcade
         {
             IList<JsonProperty> properties = base.CreateProperties(type, memberSerialization);
             if (properties != null)
-            {
                 return properties.OrderBy(p => p.DeclaringType.BaseTypesAndSelf().Count()).ToList();
-            }
             return properties;
         }
     }

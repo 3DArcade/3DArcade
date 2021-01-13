@@ -50,14 +50,10 @@ namespace Arcade
         public override void UpdateVideosState()
         {
             if (_player == null)
-            {
                 return;
-            }
 
             for (int i = 0; i < _overlapSphereHits.Length; ++i)
-            {
                 _overlapSphereHits[i] = null;
-            }
 
             _ = Physics.OverlapSphereNonAlloc(_player.position, OVERLAPSPHERE_RADIUS, _overlapSphereHits, _layerMask);
 
@@ -71,9 +67,7 @@ namespace Arcade
             foreach (ModelConfigurationComponent modelConfigurationComponent in inRange)
             {
                 if (!_activeVideos.Contains(modelConfigurationComponent))
-                {
                     _activeVideos.Add(modelConfigurationComponent);
-                }
 
                 PlayVideo(modelConfigurationComponent);
             }
@@ -90,9 +84,7 @@ namespace Arcade
         public override void StopAllVideos()
         {
             foreach (ModelConfigurationComponent modelConfigurationComponent in _activeVideos)
-            {
                 StopVideo(modelConfigurationComponent);
-            }
             _activeVideos.Clear();
         }
     }

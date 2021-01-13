@@ -29,30 +29,22 @@ namespace Arcade
         public static void AddStringIfNotNullOrEmpty(this List<string> list, string toAdd)
         {
             if (list == null)
-            {
                 return;
-            }
 
             if (!string.IsNullOrEmpty(toAdd))
-            {
                 list.Add(toAdd);
-            }
         }
 
         public static void RotateLeft<T>(this List<T> list, int count = 1)
         {
             if (list == null || list.Count < 1)
-            {
                 return;
-            }
 
             for (int i = 0; i < count; ++i)
             {
                 T first = list[0];
                 for (int j = 1; j < list.Count; ++j)
-                {
                     list[j - 1] = list[j];
-                }
                 list[list.Count - 1] = first;
             }
         }
@@ -60,17 +52,13 @@ namespace Arcade
         public static void RotateRight<T>(this List<T> list, int count = 1)
         {
             if (list == null || list.Count < 1)
-            {
                 return;
-            }
 
             for (int i = 0; i < count; ++i)
             {
                 T last = list[list.Count - 1];
                 for (int j = list.Count - 2; j >= 0; --j)
-                {
                     list[j + 1] = list[j];
-                }
                 list[0] = last;
             }
         }

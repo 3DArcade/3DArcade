@@ -29,7 +29,7 @@ using UnityEditor;
 using UnityEditor.Presets;
 using UnityEngine;
 
-[assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "UnityEditor", Scope = "namespaceanddescendants", Target = "Arcade.ArcadeEditorExtensions")]
+[assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "UnityEditor", Scope = "namespaceanddescendants", Target = "~N:Arcade.ArcadeEditorExtensions")]
 
 namespace Arcade.ArcadeEditorExtensions
 {
@@ -70,9 +70,7 @@ namespace Arcade.ArcadeEditorExtensions
                         {
                             Preset preset = AssetDatabase.LoadAssetAtPath<Preset>(presetPath);
                             if (preset.ApplyTo(assetImporter))
-                            {
                                 return;
-                            }
                         }
                     }
                     assetDirectory = Path.GetDirectoryName(assetDirectory);
@@ -107,9 +105,7 @@ namespace Arcade.ArcadeEditorExtensions
             {
                 GUILayout.Label("Model file:", GUILayout.Width(80f));
                 if (GUILayout.Button("Browse", GUILayout.Width(60f), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
-                {
                     _externalPath = ShowSelectModelFileDialog();
-                }
                 _externalPath = GUILayout.TextField(_externalPath);
             }
             GUILayout.EndHorizontal();
@@ -123,17 +119,11 @@ namespace Arcade.ArcadeEditorExtensions
 
             GUILayout.Space(8f);
             if (string.IsNullOrEmpty(_externalPath) || !Path.GetExtension(_externalPath).Equals(".fbx", System.StringComparison.OrdinalIgnoreCase))
-            {
                 EditorGUILayout.HelpBox("No valid model selected!", MessageType.Error);
-            }
             else if (_modelType == ModelType.None)
-            {
                 EditorGUILayout.HelpBox("Select a model type other than 'None'!", MessageType.Error);
-            }
             else if (_externalPath.Contains(Application.dataPath))
-            {
                 EditorGUILayout.HelpBox("The model must be located outside of the project!", MessageType.Error);
-            }
             else
             {
                 if (GUILayout.Button("Import", GUILayout.Height(32f)))
@@ -157,9 +147,7 @@ namespace Arcade.ArcadeEditorExtensions
                     }
 
                     if (!Directory.Exists(destinationFolder))
-                    {
                         _ = Directory.CreateDirectory(destinationFolder);
-                    }
 
                     string destinationPath = Path.Combine(destinationFolder, assetName);
                     File.Copy(_externalPath, destinationPath, true);
@@ -171,21 +159,15 @@ namespace Arcade.ArcadeEditorExtensions
                     if (modelImporter != null)
                     {
                         if (Utils.ExtractTextures(assetPath, modelImporter))
-                        {
                             Utils.ExtractMaterials(assetPath);
-                        }
                     }
                     else
-                    {
                         Debug.LogError("modelImporter is null");
-                    }
 
                     Utils.SaveAsPrefab(asset, _modelType);
 
                     if (_closeAfterImport)
-                    {
                         GetWindow<ImportAssistantWindow>().Close();
-                    }
                 }
             }
         }
@@ -194,9 +176,7 @@ namespace Arcade.ArcadeEditorExtensions
         {
             string filePath = EditorUtility.OpenFilePanel("Select FBX", _savedBrowseDir, "fbx");
             if (!string.IsNullOrEmpty(filePath))
-            {
                 _savedBrowseDir = Path.GetDirectoryName(filePath);
-            }
             return filePath;
         }
     }
@@ -211,9 +191,7 @@ namespace Arcade.ArcadeEditorExtensions
             Undo.SetCurrentGroupName("Add/Replace BoxCollider");
 
             if (selectedObj.TryGetComponent(out Collider collider))
-            {
                 Undo.DestroyObjectImmediate(collider);
-            }
             Utils.AddBoxCollider(selectedObj);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
@@ -227,9 +205,7 @@ namespace Arcade.ArcadeEditorExtensions
             Undo.SetCurrentGroupName("Add/Replace Non-Kinematic Rigidbody");
 
             if (selectedObj.TryGetComponent(out Rigidbody rigidbody))
-            {
                 Undo.DestroyObjectImmediate(rigidbody);
-            }
             Utils.AddRigidBody(selectedObj, false, 80f);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
@@ -243,9 +219,7 @@ namespace Arcade.ArcadeEditorExtensions
             Undo.SetCurrentGroupName("Add/Replace Kinematic Rigidbody");
 
             if (selectedObj.TryGetComponent(out Rigidbody rigidbody))
-            {
                 Undo.DestroyObjectImmediate(rigidbody);
-            }
             Utils.AddRigidBody(selectedObj, true, 1f);
 
             Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
@@ -268,9 +242,7 @@ namespace Arcade.ArcadeEditorExtensions
             if (parent != null)
             {
                 if (selectedObj.TryGetComponent(out NodeTag nodeTag))
-                {
                     Undo.DestroyObjectImmediate(nodeTag);
-                }
                 _ = Undo.AddComponent<GenericNodeTag>(selectedObj);
             }
 
@@ -341,17 +313,11 @@ namespace Arcade.ArcadeEditorExtensions
         {
             ModelType result = ModelType.None;
             if (assetPath.StartsWith(GlobalPaths.ARCADEMODELS_FOLDER, System.StringComparison.OrdinalIgnoreCase))
-            {
                 result = ModelType.Arcade;
-            }
             else if (assetPath.StartsWith(GlobalPaths.GAMEMODELS_FOLDER, System.StringComparison.OrdinalIgnoreCase))
-            {
                 result = ModelType.Game;
-            }
             else if (assetPath.StartsWith(GlobalPaths.PROPMODELS_FOLDER, System.StringComparison.OrdinalIgnoreCase))
-            {
                 result = ModelType.Prop;
-            }
             return result;
         }
 
@@ -369,9 +335,7 @@ namespace Arcade.ArcadeEditorExtensions
                 Debug.Log("Extracted textures");
             }
             else
-            {
                 Debug.LogError("Failed to extract textures");
-            }
 
             return result;
         }
@@ -388,16 +352,12 @@ namespace Arcade.ArcadeEditorExtensions
             {
                 Material mat = material as Material;
                 if (mat != null && mat.mainTexture != null)
-                {
                     mat.color = Color.white;
-                }
                 string newAssetPath = Path.Combine(materialsDirectory, $"{material.name}.mat");
                 newAssetPath        = AssetDatabase.GenerateUniqueAssetPath(newAssetPath);
                 string error        = AssetDatabase.ExtractAsset(material, newAssetPath);
                 if (string.IsNullOrEmpty(error))
-                {
                     _ = assetsToReload.Add(assetPath);
-                }
             }
 
             if (assetsToReload.Count > 0)
@@ -447,9 +407,7 @@ namespace Arcade.ArcadeEditorExtensions
             }
 
             if (!Directory.Exists(prefabsFolder))
-            {
                 _ = Directory.CreateDirectory(prefabsFolder);
-            }
 
             RenameNodes(tempObj.transform, modelType);
 
@@ -469,9 +427,7 @@ namespace Arcade.ArcadeEditorExtensions
                 _ = AssetDatabase.OpenAsset(newObj);
             }
             else
-            {
                 Debug.LogError($"{modelType} prefab '{obj.name}' creation failed");
-            }
 
             Object.DestroyImmediate(tempObj);
         }
@@ -479,9 +435,7 @@ namespace Arcade.ArcadeEditorExtensions
         internal static void AddBoxCollider(GameObject obj)
         {
             if (obj.GetComponent<Collider>() != null || obj.GetComponentInChildren<Collider>() != null)
-            {
                 return;
-            }
 
             BoxCollider boxCollider = Undo.AddComponent<BoxCollider>(obj);
 
@@ -502,9 +456,7 @@ namespace Arcade.ArcadeEditorExtensions
         internal static void AddRigidBody(GameObject obj, bool kinematic, float mass)
         {
             if (obj.GetComponent<Rigidbody>() != null)
-            {
                 return;
-            }
 
             Rigidbody rigidbody   = Undo.AddComponent<Rigidbody>(obj);
             rigidbody.useGravity  = !kinematic;
@@ -524,9 +476,7 @@ namespace Arcade.ArcadeEditorExtensions
             }
 
             if (obj.TryGetComponent(out NodeTag nodeTag))
-            {
                 Undo.DestroyObjectImmediate(nodeTag);
-            }
             _ = Undo.AddComponent<MarqueeNodeTag>(obj);
 
             //MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
@@ -548,9 +498,7 @@ namespace Arcade.ArcadeEditorExtensions
             }
 
             if (obj.TryGetComponent(out NodeTag nodeTag))
-            {
                 Undo.DestroyObjectImmediate(nodeTag);
-            }
             _ = Undo.AddComponent<ScreenNodeTag>(obj);
 
             //MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
@@ -610,9 +558,7 @@ namespace Arcade.ArcadeEditorExtensions
             {
                 result.Add(childTransform);
                 if (getNestedNodes)
-                {
                     result.AddRange(GetAllChildren(childTransform, getNestedNodes));
-                }
             }
             return result.ToArray();
         }

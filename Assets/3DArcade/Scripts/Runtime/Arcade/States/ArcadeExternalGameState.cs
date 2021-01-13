@@ -58,40 +58,28 @@ namespace Arcade
             _context.TransitionTo<ArcadeFpsNormalState>();
         }
 
-        public override void OnExit()
-        {
-            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
-        }
+        public override void OnExit() => Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
 
         public override void Update(float dt)
         {
             if (_isGameRunning)
-            {
                 return;
-            }
 
             RestoreUnityWindow();
 
             _externalAppController.StopCurrent();
 
             if (_context.CurrentArcadeType == ArcadeType.Fps)
-            {
                 _context.TransitionTo<ArcadeFpsNormalState>();
-            }
             else if (_context.CurrentArcadeType == ArcadeType.Cyl)
-            {
                 _context.TransitionTo<ArcadeCylNormalState>();
-            }
         }
 
         private void OnAppStarted(OSUtils.ProcessStartedData data, EmulatorConfiguration emulator, string game)
         {
         }
 
-        private void OnAppExited(OSUtils.ProcessExitedData data, EmulatorConfiguration emulator, string game)
-        {
-            _isGameRunning = false;
-        }
+        private void OnAppExited(OSUtils.ProcessExitedData data, EmulatorConfiguration emulator, string game) => _isGameRunning = false;
 
 #if UNITY_EDITOR_WIN
         [System.Runtime.InteropServices.DllImport("user32")] static extern uint GetActiveWindow();
@@ -105,8 +93,12 @@ namespace Arcade
             SystemUtils.ToggleMouseCursor();
         }
 #else
-        private void SaveUnityWindow() {}
-        private void RestoreUnityWindow() {}
+        private void SaveUnityWindow()
+        {
+        }
+        private void RestoreUnityWindow()
+        {
+        }
 #endif
     }
 }

@@ -37,41 +37,27 @@ namespace Arcade
 
         public void MountDirectory(string alias, string path)
         {
-            if (!_mountedDirectories.ContainsKey(alias))
-            {
-                if (FileSystem.DirectoryExists(path))
-                {
-                    _mountedDirectories.Add(alias, path);
-                }
-            }
+            if (!_mountedDirectories.ContainsKey(alias) && FileSystem.DirectoryExists(path))
+                _mountedDirectories.Add(alias, path);
         }
 
         public void MountFile(string alias, string path)
         {
-            if (!_mountedFiles.ContainsKey(alias))
-            {
-                if (FileSystem.FileExists(path))
-                {
-                    _mountedFiles.Add(alias, path);
-                }
-            }
+            if (!_mountedFiles.ContainsKey(alias) && FileSystem.FileExists(path))
+                _mountedFiles.Add(alias, path);
         }
 
         public string GetDirectory(string alias)
         {
             if (_mountedDirectories.TryGetValue(alias, out string result))
-            {
                 return result;
-            }
             return null;
         }
 
         public string GetFile(string alias)
         {
             if (_mountedFiles.TryGetValue(alias, out string result))
-            {
                 return result;
-            }
             return null;
         }
 
@@ -79,9 +65,7 @@ namespace Arcade
         {
             string directory = GetDirectory(alias);
             if (directory != null)
-            {
                 return FileSystem.GetFiles(directory, searchPattern, searchAllDirectories);
-            }
             return new string[0];
         }
     }

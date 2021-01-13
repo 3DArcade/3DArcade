@@ -42,9 +42,7 @@ namespace Arcade
                     int arcadeModelsLayer = LayerMask.NameToLayer("Arcade/ArcadeModels");
 
                     if (data.ModelSetup != null && data.ModelSetup.gameObject.layer != arcadeModelsLayer)
-                    {
                         data.ModelSetup.transform.SetLayersRecursively(data.SavedLayer);
-                    }
 
                     data.Set(targetModel, hitInfo.collider, hitInfo.rigidbody);
 
@@ -56,9 +54,7 @@ namespace Arcade
                         OnCurrentModelChanged?.Invoke(data.ModelSetup);
                     }
                     else
-                    {
                         OnCurrentModelChanged?.Invoke(null);
-                    }
                 }
             }
             else
@@ -99,13 +95,9 @@ namespace Arcade
                 if (Mathf.Abs(angleDifference) > 180f)
                 {
                     if (angleDifference < 0f)
-                    {
                         angleDifference = (360f + angleDifference);
-                    }
                     else if (angleDifference > 0f)
-                    {
                         angleDifference = (360f - angleDifference) * -1f;
-                    }
                 }
 
                 rigidbody.AddTorque(Vector3.up * angleDifference, ForceMode.VelocityChange);

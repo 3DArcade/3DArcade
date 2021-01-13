@@ -20,11 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEngine;
 
 namespace Arcade
 {
@@ -95,24 +93,18 @@ namespace Arcade
         public T[] LoadMultiple(string directory, params string[] namesToTry)
         {
             if (string.IsNullOrEmpty(directory))
-            {
                 return null;
-            }
 
             List<T> result = new List<T>();
 
             foreach (string name in namesToTry)
             {
                 if (string.IsNullOrEmpty(name))
-                {
                     continue;
-                }
 
                 string filePathNoExt = Path.Combine(directory, name);
                 if (_loadedAssets.TryGetValue(filePathNoExt, out T foundAsset))
-                {
                     result.Add(foundAsset);
-                }
                 else
                 {
                     T newAsset = LoadAsset(filePathNoExt);
@@ -137,9 +129,7 @@ namespace Arcade
             {
                 T[] range = LoadMultiple(directory, namesToTry);
                 if (range != null)
-                {
                     result.AddRange(range);
-                }
             }
 
             return result.Count > 0 ? result.ToArray() : null;
@@ -150,26 +140,20 @@ namespace Arcade
         public void Unload(string filePathNoExt)
         {
             if (Get(filePathNoExt, out T asset))
-            {
                 UnloadInternal(filePathNoExt, asset);
-            }
         }
 
         public void Reset()
         {
             foreach (KeyValuePair<string, T> loadedAsset in _loadedAssets)
-            {
                 UnloadInternal(loadedAsset.Key, loadedAsset.Value);
-            }
             _loadedAssets.Clear();
         }
 
         private void UnloadInternal(string filePathNoExt, T asset)
         {
             if (asset != null)
-            {
                 UnloadAsset(asset);
-            }
             _ = _loadedAssets.Remove(filePathNoExt);
         }
     }

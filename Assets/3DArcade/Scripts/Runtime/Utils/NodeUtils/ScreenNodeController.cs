@@ -33,21 +33,15 @@ namespace Arcade
         protected override string[] GetModelImageDirectories(ModelConfiguration modelConfiguration)
         {
             if (modelConfiguration == null)
-            {
                 return null;
-            }
 
             List<string> result = new List<string>();
 
             if (modelConfiguration.ScreenImageDirectories != null)
-            {
                 result.AddRange(modelConfiguration.ScreenImageDirectories);
-            }
 
             if (modelConfiguration.TitleImageDirectories != null)
-            {
                 result.AddRange(modelConfiguration.TitleImageDirectories);
-            }
 
             return result.Count > 0 ? result.ToArray() : null;
         }
@@ -57,21 +51,15 @@ namespace Arcade
         protected override string[] GetEmulatorImageDirectories(EmulatorConfiguration emulator)
         {
             if (emulator == null)
-            {
                 return null;
-            }
 
             List<string> result = new List<string>();
 
             if (emulator.ScreenImagesDirectories != null)
-            {
                 result.AddRange(emulator.ScreenImagesDirectories);
-            }
 
             if (emulator.TitleImagesDirectories != null)
-            {
                 result.AddRange(emulator.TitleImagesDirectories);
-            }
 
             return result.Count > 0 ? result.ToArray() : null;
         }

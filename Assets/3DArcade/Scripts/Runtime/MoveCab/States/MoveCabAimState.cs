@@ -36,27 +36,18 @@ namespace Arcade
         {
         }
 
-        public override void OnEnter()
-        {
-            Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
-        }
+        public override void OnEnter() => Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
-        public override void OnExit()
-        {
-            Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
-        }
+        public override void OnExit() => Debug.Log($">> <color=orange>Exited</color> {GetType().Name}");
 
         public override void Update(float dt)
         {
             Vector2 rayPosition;
             if (Cursor.visible && Mouse.current != null)
-            {
                 rayPosition = Mouse.current.position.ReadValue();
-            }
             else
-            {
                 rayPosition = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
-            }
+
             Ray ray = _context.PlayerFpsControls.Camera.ScreenPointToRay(rayPosition);
             MoveCabController.FindModelSetup(_data, ray, _raycastMaxDistance, _context.RaycastLayers);
 
@@ -67,22 +58,15 @@ namespace Arcade
                 _data.AimPosition     = positionInput * _movementSpeedMultiplier;
                 _data.AimRotation     = rotationInput * _rotationSpeedMultiplier;
 
-                if (_data.ModelSetup.MoveCabGrabbable)
-                {
-                    if (_context.PlayerFpsControls.FpsMoveCabActions.GrabReleaseModel.triggered)
-                    {
-                        _context.TransitionTo<MoveCabGrabState>();
-                    }
-                }
+                if (_data.ModelSetup.MoveCabGrabbable && _context.PlayerFpsControls.FpsMoveCabActions.GrabReleaseModel.triggered)
+                    _context.TransitionTo<MoveCabGrabState>();
             }
         }
 
         public override void FixedUpdate(float dt)
         {
             if (_data.ModelSetup != null && _data.ModelSetup.MoveCabMovable)
-            {
                 MoveCabController.ManualMoveAndRotate(_data.ModelSetup.transform, _data.Rigidbody, _data.AimPosition, _data.AimRotation);
-            }
         }
     }
 }

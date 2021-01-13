@@ -66,9 +66,7 @@ namespace Arcade
         private static void ResetNode(Transform transform)
         {
             while (transform.childCount > 0)
-            {
                 Object.DestroyImmediate(transform.GetChild(0).gameObject);
-            }
 
             transform.position = Vector3.zero;
         }

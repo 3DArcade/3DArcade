@@ -36,10 +36,7 @@ namespace Arcade
         private int _nextIndex;
         private float _timer;
 
-        private void Awake()
-        {
-            _light = GetComponent<Light>();
-        }
+        private void Awake() => _light = GetComponent<Light>();
 
         private void Start()
         {

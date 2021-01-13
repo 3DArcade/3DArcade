@@ -31,28 +31,16 @@ namespace Arcade
             List<string> result = new List<string>();
 
             if (gameArtworkDirectories != null)
-            {
                 foreach (string directory in gameArtworkDirectories)
-                {
                     result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(directory));
-                }
-            }
 
             if (emulatorArtworkDirectories != null)
-            {
                 foreach (string directory in emulatorArtworkDirectories)
-                {
                     result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(directory));
-                }
-            }
 
             if (defaultArtworkDirectories != null)
-            {
                 foreach (string directory in defaultArtworkDirectories)
-                {
                     result.AddStringIfNotNullOrEmpty(FileSystem.CorrectPath(directory));
-                }
-            }
 
             return result;
         }
@@ -69,9 +57,7 @@ namespace Arcade
             }
 
             if (result.Count < 1 && emulator != null)
-            {
                 AddPossibleVariants(result, emulator.Id);
-            }
 
             return result;
         }
@@ -79,16 +65,12 @@ namespace Arcade
         private static void AddPossibleVariants(List<string> list, string name, int numVariants = 20)
         {
             if (list == null || string.IsNullOrEmpty(name))
-            {
                 return;
-            }
 
             list.Add(name);
 
             for (int i = 0; i < numVariants; ++i)
-            {
                 list.Add($"{name}_{i}");
-            }
         }
     }
 }

@@ -29,17 +29,13 @@ namespace Arcade
         public static void AddBits(this ref LayerMask layerMask, params int[] bits)
         {
             for (int i = 0; i < bits.Length; i++)
-            {
                 layerMask |= bits[i];
-            }
         }
 
         public static void RemoveBits(this ref LayerMask layerMask, params int[] bits)
         {
             for (int i = 0; i < bits.Length; i++)
-            {
                 layerMask &= ~bits[i];
-            }
         }
     }
 }

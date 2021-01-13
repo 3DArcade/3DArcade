@@ -30,62 +30,36 @@ namespace Arcade
             where T : Component
         {
             if (gameObject == null)
-            {
                 return null;
-            }
 
             if (!gameObject.TryGetComponent(out T component))
-            {
                 component = gameObject.AddComponent<T>();
-            }
 
             return component;
         }
 
         public static void StripCloneFromName(this GameObject gameObject)
         {
-            if (gameObject == null)
-            {
-                return;
-            }
-
-            gameObject.name = gameObject.name.Substring(0, gameObject.name.Length - 7);
+            if (gameObject != null)
+                gameObject.name = gameObject.name.Substring(0, gameObject.name.Length - 7);
         }
 
         public static float GetWidth(this GameObject gameObject)
-        {
-            if (gameObject == null)
-            {
-                return 0f;
-            }
-
-            return gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.x : 0f;
-        }
+            => gameObject != null && gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.x : 0f;
 
         public static float GetHeight(this GameObject gameObject)
-        {
-            if (gameObject == null)
-            {
-                return 0f;
-            }
-
-            return gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.y : 0f;
-        }
+            => gameObject != null && gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.y : 0f;
 
         public static float GetDepth(this GameObject gameObject)
-        {
-            if (gameObject == null)
-            {
-                return 0f;
-            }
+            => gameObject != null && gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.z : 0f;
 
-            return gameObject.TryGetComponent(out BoxCollider collider) ? collider.size.z : 0f;
-        }
+        public static float GetHalfWidth(this GameObject gameObject)
+            => gameObject != null ? gameObject.GetWidth() * 0.5f : 0f;
 
-        public static float GetHalfWidth(this GameObject gameObject) => gameObject.GetWidth() * 0.5f;
+        public static float GetHalfHeight(this GameObject gameObject)
+            => gameObject != null ? gameObject.GetHeight() * 0.5f : 0f;
 
-        public static float GetHalfHeight(this GameObject gameObject) => gameObject.GetHeight() * 0.5f;
-
-        public static float GetHalfDepth(this GameObject gameObject) => gameObject.GetDepth() * 0.5f;
+        public static float GetHalfDepth(this GameObject gameObject)
+            => gameObject != null ? gameObject.GetDepth() * 0.5f : 0f;
     }
 }

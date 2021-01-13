@@ -35,21 +35,15 @@ namespace Arcade
         {
             UILoadingCanvasTag loadingCanvasTag = uiRoot.GetComponentInChildren<UILoadingCanvasTag>(true);
             if (loadingCanvasTag != null)
-            {
                 _loadingUI = loadingCanvasTag.gameObject;
-            }
 
             UINormalCanvasTag normalCanvasTag = uiRoot.GetComponentInChildren<UINormalCanvasTag>(true);
             if (normalCanvasTag != null)
-            {
                 _normalUI = normalCanvasTag.gameObject;
-            }
 
             UIMoveCabCanvasTag moveCabCanvasTag = uiRoot.GetComponentInChildren<UIMoveCabCanvasTag>(true);
             if (moveCabCanvasTag != null)
-            {
                 _moveCabUI = moveCabCanvasTag.gameObject;
-            }
 
             DisableLoadingUI();
             DisableNormalUI();
@@ -59,49 +53,37 @@ namespace Arcade
         public void EnableLoadingUI()
         {
             if (_loadingUI != null)
-            {
                 _loadingUI.SetActive(true);
-            }
         }
 
         public void DisableLoadingUI()
         {
             if (_loadingUI != null)
-            {
                 _loadingUI.SetActive(false);
-            }
         }
 
         public void EnableNormalUI()
         {
             if (_normalUI != null)
-            {
                 _normalUI.SetActive(true);
-            }
         }
 
         public void DisableNormalUI()
         {
             if (_normalUI != null)
-            {
                 _normalUI.SetActive(false);
-            }
         }
 
         public void EnableMoveCabUI()
         {
             if (_moveCabUI != null)
-            {
                 _moveCabUI.SetActive(true);
-            }
         }
 
         public void DisableMoveCabUI()
         {
             if (_moveCabUI != null)
-            {
                 _moveCabUI.SetActive(false);
-            }
         }
     }
 }

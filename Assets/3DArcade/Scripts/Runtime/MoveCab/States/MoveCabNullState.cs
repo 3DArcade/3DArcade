@@ -34,9 +34,7 @@ namespace Arcade
         public override void OnEnter()
         {
             if (_data.ModelSetup != null && _data.ModelSetup.gameObject.layer != LayerMask.NameToLayer("Arcade/ArcadeModels"))
-            {
                 _data.ModelSetup.transform.SetLayersRecursively(_data.SavedLayer);
-            }
 
             _data.Reset();
         }

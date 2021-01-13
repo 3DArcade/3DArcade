@@ -48,16 +48,12 @@ namespace Arcade
         private void Update()
         {
             if (_movementInputAction.enabled)
-            {
                 GatherMovementInputValues();
-            }
             HandleMovement(Time.deltaTime);
 
             if (MouseLookEnabled)
-            {
                 GatherLookInputValues();
                 HandleLook();
-            }
         }
 
         public void SetupForHorizontalWheel() => _movementInputAction = _inputActions.CylArcade.NavigationUpDown;
@@ -79,9 +75,7 @@ namespace Arcade
             _ = _characterController.Move(new Vector3(0f, 0f, _movementInputValue) * _walkSpeed * dt);
 
             if (transform.localPosition.z < 0f)
-            {
                 transform.localPosition = new Vector3(0f, transform.localPosition.y, 0f);
-            }
         }
 
         protected override void HandleLook()
@@ -91,9 +85,7 @@ namespace Arcade
             _lookHorizontal = Mathf.Clamp(_lookHorizontal, _minHorizontalLookAngle, _maxHorizontalLookAngle);
             _lookVertical   = Mathf.Clamp(_lookVertical, _minVerticalLookAngle, _maxVerticalLookAngle);
             if (_virtualCamera != null)
-            {
                 _virtualCamera.transform.localEulerAngles = new Vector3(-_lookVertical, 0f, 0f);
-            }
             transform.localEulerAngles = new Vector3(0f, _lookHorizontal, 0f);
         }
     }

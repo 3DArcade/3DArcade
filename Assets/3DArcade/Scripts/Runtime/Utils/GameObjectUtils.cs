@@ -30,12 +30,10 @@ namespace Arcade
         {
             GameObject result = GameObject.Find(name);
             if (result == null)
-            {
                 result = new GameObject(name)
                 {
                     layer = layer
                 };
-            }
             return result;
         }
     }

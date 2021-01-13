@@ -29,9 +29,7 @@ namespace Arcade
         public static void SetLayersRecursively(this Transform transform, int layer)
         {
             if (transform == null)
-            {
                 return;
-            }
 
             transform.gameObject.layer = layer;
             for (int i = 0; i < transform.childCount; ++i)
@@ -43,63 +41,21 @@ namespace Arcade
         }
 
         public static float GetWidth(this Transform transform)
-        {
-            if (transform == null)
-            {
-                return 0f;
-            }
-
-            return transform.TryGetComponent(out BoxCollider collider) ? collider.size.x : 0f;
-        }
+            => transform != null && transform.TryGetComponent(out BoxCollider collider) ? collider.size.x : 0f;
 
         public static float GetHeight(this Transform transform)
-        {
-            if (transform == null)
-            {
-                return 0f;
-            }
-
-            return transform.TryGetComponent(out BoxCollider collider) ? collider.size.y : 0f;
-        }
+            => transform != null && transform.TryGetComponent(out BoxCollider collider) ? collider.size.y : 0f;
 
         public static float GetDepth(this Transform transform)
-        {
-            if (transform == null)
-            {
-                return 0f;
-            }
-
-            return transform.TryGetComponent(out BoxCollider collider) ? collider.size.z : 0f;
-        }
+            => transform != null && transform.TryGetComponent(out BoxCollider collider) ? collider.size.z : 0f;
 
         public static float GetHalfWidth(this Transform transform)
-        {
-            if (transform == null)
-            {
-                return 0f;
-            }
-
-            return transform.GetWidth() * 0.5f;
-        }
+            => transform != null ? transform.GetWidth() * 0.5f : 0f;
 
         public static float GetHalfHeight(this Transform transform)
-        {
-            if (transform == null)
-            {
-                return 0f;
-            }
-
-            return transform.GetHeight() * 0.5f;
-        }
+            => transform != null ? transform.GetHeight() * 0.5f : 0f;
 
         public static float GetHalfDepth(this Transform transform)
-        {
-            if (transform == null)
-            {
-                return 0f;
-            }
-
-            return transform.GetDepth() * 0.5f;
-        }
+            => transform != null ? transform.GetDepth() * 0.5f : 0f;
     }
 }

@@ -51,9 +51,7 @@ namespace Arcade
             _configurations.Clear();
             string[] filePaths = _virtualFileSystem.GetFiles(_directoryAlias, "*.json", false);
             foreach (string filePath in filePaths)
-            {
                 _configurations.Add(Path.GetFileNameWithoutExtension(filePath), null);
-            }
         }
 
         public T Get(string id, bool reload = false)
@@ -71,9 +69,7 @@ namespace Arcade
             }
 
             if (_configurations[id] == null || reload)
-            {
                 _configurations[id] = Load(id);
-            }
 
             return _configurations[id];
         }

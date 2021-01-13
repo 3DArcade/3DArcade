@@ -31,10 +31,7 @@ namespace Arcade
         private ScreenNodeTag _screenNode;
 
         public ArcadeInternalGameState(ArcadeContext context)
-        : base(context)
-        {
-            _libretroController = new InternalGameController(_context.CurrentPlayerControls.transform);
-        }
+        : base(context) => _libretroController = new InternalGameController(_context.CurrentPlayerControls.transform);
 
         public override void OnEnter()
         {
@@ -55,13 +52,9 @@ namespace Arcade
             }
 
             if (_context.CurrentArcadeType == ArcadeType.Fps)
-            {
                 _context.TransitionTo<ArcadeFpsNormalState>();
-            }
             else if (_context.CurrentArcadeType == ArcadeType.Cyl)
-            {
                 _context.TransitionTo<ArcadeCylNormalState>();
-            }
         }
 
         public override void OnExit()
@@ -77,13 +70,9 @@ namespace Arcade
             if (_context.CurrentPlayerControls.GlobalActions.Quit.triggered)
             {
                 if (_context.CurrentArcadeType == ArcadeType.Fps)
-                {
                     _context.TransitionTo<ArcadeFpsNormalState>();
-                }
                 else if (_context.CurrentArcadeType == ArcadeType.Cyl)
-                {
                     _context.TransitionTo<ArcadeCylNormalState>();
-                }
             }
         }
     }

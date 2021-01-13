@@ -114,18 +114,13 @@ namespace Arcade
         public void SetAndStartCurrentArcadeConfiguration(string id, ArcadeType type)
         {
             if (SetCurrentArcadeConfiguration(id, type))
-            {
                 TransitionTo<ArcadeLoadState>();
-            }
         }
 
         public bool StartCurrentArcade()
         {
             if (CurrentArcadeConfiguration == null)
-            {
                 return false;
-            }
-
 
             _arcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>()
                                                .Restore(CurrentArcadeConfiguration);
@@ -180,9 +175,7 @@ namespace Arcade
         {
             ArcadeConfigurationComponent cfgComponent = _arcadeHierarchy.RootNode.GetComponent<ArcadeConfigurationComponent>();
             if (cfgComponent == null)
-            {
                 return false;
-            }
 
             Camera fpsCamera                          = PlayerFpsControls.Camera;
             CinemachineVirtualCamera fpsVirtualCamera = PlayerFpsControls.VirtualCamera;
@@ -226,9 +219,7 @@ namespace Arcade
         public void ReloadCurrentArcadeConfigurationModels()
         {
             if (_arcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent cfgComponent))
-            {
                 cfgComponent.SetGamesAndPropsTransforms(CurrentArcadeConfiguration);
-            }
         }
 
         public EmulatorConfiguration GetEmulatorForCurrentModelConfiguration() => _emulatorDatabase.Get(CurrentModelConfiguration.Emulator);

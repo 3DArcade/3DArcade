@@ -24,39 +24,31 @@ namespace Arcade
 {
     public static class ArrayExtensions
     {
-        public static void RotateLeft<T>(this T[] list, int count)
+        public static void RotateLeft<T>(this T[] arr, int count)
         {
-            if (list == null || list.Length < 1)
-            {
+            if (arr == null || arr.Length < 1)
                 return;
-            }
 
             for (int i = 0; i < count; ++i)
             {
-                T first = list[0];
-                for (int j = 1; j < list.Length; ++j)
-                {
-                    list[j - 1] = list[j];
-                }
-                list[list.Length - 1] = first;
+                T first = arr[0];
+                for (int j = 1; j < arr.Length; ++j)
+                    arr[j - 1] = arr[j];
+                arr[arr.Length - 1] = first;
             }
         }
 
-        public static void RotateRight<T>(this T[] list, int count)
+        public static void RotateRight<T>(this T[] arr, int count)
         {
-            if (list == null || list.Length < 1)
-            {
+            if (arr == null || arr.Length < 1)
                 return;
-            }
 
             for (int i = 0; i < count; ++i)
             {
-                T last = list[list.Length - 1];
-                for (int j = list.Length - 2; j >= 0; --j)
-                {
-                    list[j + 1] = list[j];
-                }
-                list[0] = last;
+                T last = arr[arr.Length - 1];
+                for (int j = arr.Length - 2; j >= 0; --j)
+                    arr[j + 1] = arr[j];
+                arr[0] = last;
             }
         }
     }

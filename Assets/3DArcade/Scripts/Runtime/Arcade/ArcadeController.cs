@@ -112,29 +112,21 @@ namespace Arcade
             ArcadeLoaded         = false;
 
             if (_sceneLoaded)
-            {
                 _ = _coroutineHelper.StartCoroutine(CoUnloadArcadeScene());
-            }
             else
-            {
                 _ = _coroutineHelper.StartCoroutine(CoSetupWorld());
-            }
         }
 
         public void NavigateForward(float dt)
         {
             if (!_animating)
-            {
                 _ = _playerCylControls.StartCoroutine(CoNavigateForward(dt));
-            }
         }
 
         public void NavigateBackward(float dt)
         {
             if (!_animating)
-            {
                 _ = _playerCylControls.StartCoroutine(CoNavigateBackward(dt));
-            }
         }
 
         protected abstract void PreSetupPlayer();
@@ -168,9 +160,7 @@ namespace Arcade
         protected IEnumerator AddModelsToWorld(bool gameModels, ModelConfiguration[] modelConfigurations, Transform parent, RenderSettings renderSettings, string resourceDirectory, ContentMatcher.GetNamesToTryDelegate getNamesToTry)
         {
             if (modelConfigurations == null)
-            {
                 yield break;
-            }
 
             if (gameModels)
             {
@@ -185,12 +175,9 @@ namespace Arcade
 
                 GameObject prefab = _gameObjectCache.Load(resourceDirectory, namesToTry);
                 if (prefab == null)
-                {
                     continue;
-                }
 
                 GameObject instantiatedModel = InstantiatePrefab(prefab, parent, modelConfiguration, !gameModels || UseModelTransforms);
-
 
                 // Look for artworks only in play mode / runtime
                 if (Application.isPlaying)
@@ -206,21 +193,15 @@ namespace Arcade
                     AddModelsToWorldAdditionalLoopStepsForGames(instantiatedModel);
                 }
                 else
-                {
                     AddModelsToWorldAdditionalLoopStepsForProps(instantiatedModel);
-                }
 
                 // Instantiate asynchronously only when loaded from the editor menu / auto reload
                 if (Application.isPlaying)
-                {
                     yield return null;
-                }
             }
 
             if (gameModels)
-            {
                 _gameModelsLoaded = true;
-            }
         }
 
         protected static GameObject InstantiatePrefab(GameObject prefab, Transform parent, ModelConfiguration modelConfiguration, bool useModelTransforms)
@@ -237,43 +218,29 @@ namespace Arcade
             return model;
         }
 
-        protected static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings)
+        protected static float GetScreenIntensity(ModelConfiguration modelConfiguration, RenderSettings renderSettings) => modelConfiguration.ScreenType switch
         {
-            switch (modelConfiguration.ScreenType)
-            {
-                case GameScreenType.Raster:
-                    return renderSettings.ScreenRasterIntensity;
-                case GameScreenType.Vector:
-                    return renderSettings.ScreenVectorIntenstity;
-                case GameScreenType.Pinball:
-                    return renderSettings.ScreenPinballIntensity;
-                case GameScreenType.Unspecified:
-                default:
-                    return 1.4f;
-            }
-        }
+            GameScreenType.Raster => renderSettings.ScreenRasterIntensity,
+            GameScreenType.Vector => renderSettings.ScreenVectorIntenstity,
+            GameScreenType.Pinball => renderSettings.ScreenPinballIntensity,
+            _ => 1.4f,
+        };
 
         private IEnumerator CoUnloadArcadeScene()
         {
 #if UNITY_EDITOR
             if (!Application.isPlaying)
-            {
                 UnityEditor.SceneManagement.EditorSceneManager.CloseScene(_loadedScene, true);
-            }
             else
             {
                 AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(_loadedScene);
                 while (!asyncOperation.isDone)
-                {
                     yield return null;
-                }
             }
 #else
             AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(_loadedScene);
             while (!asyncOperation.isDone)
-            {
                 yield return null;
-            }
 #endif
            _ = _coroutineHelper.StartCoroutine(CoSetupWorld());
         }
@@ -284,13 +251,9 @@ namespace Arcade
 
             string sceneName;
             if (!string.IsNullOrEmpty(_arcadeConfiguration.ArcadeScene))
-            {
                 sceneName = _arcadeConfiguration.ArcadeScene;
-            }
             else
-            {
                 sceneName = _arcadeConfiguration.Id;
-            }
 
 #if UNITY_EDITOR
             if (!Application.isPlaying)
@@ -308,16 +271,12 @@ namespace Arcade
             {
                 AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
                 while (!asyncOperation.isDone)
-                {
                     yield return null;
-                }
             }
 #else
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             while (!asyncOperation.isDone)
-            {
                 yield return null;
-            }
 #endif
             _loadedScene = SceneManager.GetSceneByName(_arcadeConfiguration.ArcadeScene);
 
@@ -328,9 +287,7 @@ namespace Arcade
             _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(false, _arcadeConfiguration.PropModelList, _arcadeHierarchy.PropsNode, renderSettings, PROP_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForProp));
             _ = _coroutineHelper.StartCoroutine(AddModelsToWorld(true, _arcadeConfiguration.GameModelList, _arcadeHierarchy.GamesNode, renderSettings, GAME_RESOURCES_DIRECTORY, ContentMatcher.GetNamesToTryForGame));
             while (!_gameModelsLoaded)
-            {
                 yield return null;
-            }
 
             LateSetupWorld();
 

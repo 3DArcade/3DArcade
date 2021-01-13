@@ -32,20 +32,15 @@ namespace Arcade
     {
         private const string EXPECTED_SCENE_NAME = "Main";
 
-        static EditorInitializeOnLoad()
-        {
-            // Using 'update' because InitializeOnLoad occurs before the scene is loaded and active...
-            EditorApplication.update += OnEditorUpdate;
-        }
+        // Using 'update' because InitializeOnLoad occurs before the scene is loaded and active...
+        static EditorInitializeOnLoad() => EditorApplication.update += OnEditorUpdate;
 
         private static void OnEditorUpdate()
         {
             EditorApplication.update -= OnEditorUpdate;
 
             if (SceneManager.GetActiveScene().name != EXPECTED_SCENE_NAME)
-            {
                 return;
-            }
 
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -54,29 +49,21 @@ namespace Arcade
             EditorApplication.hierarchyChanged += OnHierarchyChanged;
 
             if (!EditorApplication.isPlayingOrWillChangePlaymode)
-            {
                 ReloadCurrentArcade();
-            }
         }
 
         private static void OnHierarchyChanged()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
-            {
                 return;
-            }
 
             GameObject activeObj = Selection.activeGameObject;
             if (activeObj == null)
-            {
                 return;
-            }
 
             Transform parentTransform = activeObj.transform.parent;
             if (parentTransform == null)
-            {
                 return;
-            }
 
             switch (parentTransform.name)
             {
@@ -96,43 +83,29 @@ namespace Arcade
         private static void OnPlayModeStateChanged(PlayModeStateChange state)
         {
             if (state == PlayModeStateChange.EnteredEditMode)
-            {
                 ReloadCurrentArcade();
-            }
 
             if (state == PlayModeStateChange.ExitingEditMode)
-            {
                 for (int i = 1; i < EditorSceneManager.loadedSceneCount; i++)
-                {
                     _ = EditorSceneManager.CloseScene(SceneManager.GetSceneAt(i), true);
-                }
-            }
         }
 
         private static void ReloadCurrentArcade()
         {
             GameObject arcadeRootNode = GameObject.Find("Arcade");
             if (arcadeRootNode == null)
-            {
                 return;
-            }
 
             for (int i = 1; i < EditorSceneManager.loadedSceneCount; i++)
-            {
                 _ = EditorSceneManager.CloseScene(SceneManager.GetSceneAt(i), true);
-            }
 
             EditorLoadSaveArcadeSubstitute loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
 
             if (!loadSaveSubstitute.ArcadeHierarchy.RootNode.TryGetComponent(out ArcadeConfigurationComponent arcadeConfigurationComponent))
-            {
                 return;
-            }
 
             if (string.IsNullOrEmpty(arcadeConfigurationComponent.Id))
-            {
                 return;
-            }
 
             loadSaveSubstitute.LoadAndStartArcade(arcadeConfigurationComponent.Id);
         }

@@ -29,10 +29,7 @@ namespace Arcade
         private readonly MoveCabContext _moveCabContext;
 
         public ArcadeFpsMoveCabState(ArcadeContext context)
-        : base(context)
-        {
-            _moveCabContext = new MoveCabContext(_context.PlayerFpsControls);
-        }
+        : base(context) => _moveCabContext = new MoveCabContext(_context.PlayerFpsControls);
 
         public override void OnEnter()
         {
@@ -42,9 +39,7 @@ namespace Arcade
 
             _context.PlayerFpsControls.FpsArcadeActions.Enable();
             if (Cursor.visible)
-            {
                 _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
-            }
             _context.PlayerFpsControls.FpsArcadeActions.Interact.Disable();
 
             _context.PlayerFpsControls.FpsMoveCabActions.Enable();
@@ -86,13 +81,9 @@ namespace Arcade
             {
                 SystemUtils.ToggleMouseCursor();
                 if (!Cursor.visible)
-                {
                     _context.PlayerFpsControls.FpsArcadeActions.Look.Enable();
-                }
                 else
-                {
                     _context.PlayerFpsControls.FpsArcadeActions.Look.Disable();
-                }
             }
 
             _moveCabContext.Update(dt);

@@ -35,10 +35,7 @@ namespace Arcade
 
         private readonly IVirtualFileSystem _virtualFileSystem;
 
-        public GeneralConfiguration(IVirtualFileSystem virtualFileSystem)
-        {
-            _virtualFileSystem = virtualFileSystem;
-        }
+        public GeneralConfiguration(IVirtualFileSystem virtualFileSystem) => _virtualFileSystem = virtualFileSystem;
 
         public bool Load()
         {

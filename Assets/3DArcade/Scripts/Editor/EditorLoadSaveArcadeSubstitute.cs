@@ -78,18 +78,14 @@ namespace Arcade
         {
             ArcadeConfiguration arcadeConfiguration = ArcadeDatabase.Get(name);
             if (arcadeConfiguration == null)
-            {
                 return;
-            }
 
             ArcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>()
                                                .Restore(arcadeConfiguration);
 
             ArcadeHierarchy.Reset();
             if (_playerFpsControls.gameObject.activeInHierarchy)
-            {
                 _arcadeController = new FpsArcadeController(ArcadeHierarchy, _playerFpsControls, _playerCylControls, _emulatorDatabase, _gameObjectCache, null, null, null);
-            }
             else
             {
                 switch (arcadeConfiguration.CylArcadeProperties.WheelVariant)

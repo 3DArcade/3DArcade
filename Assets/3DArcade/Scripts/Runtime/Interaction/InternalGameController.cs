@@ -38,13 +38,9 @@ namespace Arcade
             set
             {
                 if (value)
-                {
                     ActivateGraphics();
-                }
                 else
-                {
                     DeactivateGraphics();
-                }
             }
         }
 
@@ -54,13 +50,9 @@ namespace Arcade
             set
             {
                 if (value)
-                {
                     ActivateAudio();
-                }
                 else
-                {
                     DeactivateAudio();
-                }
             }
         }
 
@@ -70,13 +62,9 @@ namespace Arcade
             set
             {
                 if (value)
-                {
                     ActivateInput();
-                }
                 else
-                {
                     DeactivateInput();
-                }
             }
         }
 
@@ -123,19 +111,13 @@ namespace Arcade
             _screenNode = screenNode;
 
             if (!_screenNode.TryGetComponent(out _rendererComponent))
-            {
                 return false;
-            }
 
             if (string.IsNullOrEmpty(core) || gameDirectories == null || gameDirectories.Length < 1 || string.IsNullOrEmpty(gameName))
-            {
                 return false;
-            }
 
             if (_screenNode.TryGetComponent(out _dynamicArtworkComponent))
-            {
                 _dynamicArtworkComponent.EnableCycling = false;
-            }
 
             _libretroWrapper = new LibretroWrapper((TargetPlatform)Application.platform, $"{SystemUtils.GetDataPath()}/3darcade~/Libretro");
 
@@ -161,14 +143,10 @@ namespace Arcade
                         return true;
                     }
                     else
-                    {
                         StopGame();
-                    }
                 }
                 else
-                {
                     StopGame();
-                }
             }
 
             StopGame();
@@ -179,16 +157,12 @@ namespace Arcade
         public void UpdateGame(float dt)
         {
             if (_libretroWrapper == null)
-            {
                 return;
-            }
 
             _frameTimer += dt;
 
             if (_updateCoroutine == null)
-            {
                 _updateCoroutine = _screenNode.StartCoroutine(CoUpdate());
-            }
 
             GraphicsSetFilterMode(_videoFilterMode);
 
@@ -218,15 +192,11 @@ namespace Arcade
             {
                 SK.Libretro.Unity.AudioProcessor unityAudio = _screenNode.GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>();
                 if (unityAudio != null)
-                {
                     Object.Destroy(unityAudio.gameObject, 1f);
-                }
             }
 #endif
             if (_dynamicArtworkComponent != null)
-            {
                 _dynamicArtworkComponent.EnableCycling = true;
-            }
 
             ResetFields();
         }
@@ -234,32 +204,22 @@ namespace Arcade
         public void PauseGame(bool pauseGraphics, bool pauseAudio, bool pauseInput)
         {
             if (_libretroWrapper == null)
-            {
                 return;
-            }
 
             if (pauseGraphics)
-            {
                 DeactivateGraphics();
-            }
 
             if (pauseAudio)
-            {
                 DeactivateAudio();
-            }
 
             if (pauseInput)
-            {
                 DeactivateInput();
-            }
         }
 
         public void ResumeGame()
         {
             if (_libretroWrapper == null)
-            {
                 return;
-            }
 
             ActivateGraphics();
             ActivateAudio();
@@ -269,18 +229,14 @@ namespace Arcade
         public void GraphicsSetFilterMode(FilterMode filterMode)
         {
             if (_libretroWrapper != null && _libretroWrapper.GraphicsProcessor is SK.Libretro.Unity.GraphicsProcessor unityGraphics)
-            {
                 unityGraphics.VideoFilterMode = filterMode;
-            }
         }
 
         public void AudioSetVolume(float volume)
         {
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
             if (_libretroWrapper.AudioProcessor != null && _libretroWrapper.AudioProcessor is SK.Libretro.NAudio.AudioProcessor NAudioAudio)
-            {
                 NAudioAudio.SetVolume(Mathf.Clamp(volume, 0f, _audioMaxVolume));
-            }
 #endif
         }
 
@@ -319,13 +275,9 @@ namespace Arcade
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
             SK.Libretro.Unity.AudioProcessor unityAudio = _screenNode.GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>();
             if (unityAudio != null)
-            {
                 _libretroWrapper?.ActivateAudio(unityAudio);
-            }
             else
-            {
                 _libretroWrapper?.ActivateAudio(new SK.Libretro.NAudio.AudioProcessor());
-            }
 #else
             SK.Libretro.Unity.AudioProcessor unityAudio = _screenNode.GetComponentInChildren<SK.Libretro.Unity.AudioProcessor>(true);
             if (unityAudio != null)
@@ -365,45 +317,33 @@ namespace Arcade
         private void OnGraphicsTextureChanged(Texture2D texture)
         {
             if (_rendererComponent != null)
-            {
                 _rendererComponent.material.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
-            }
         }
 
         private void SaveVideoPlayerRenderMode()
         {
             if (_screenNode != null && _screenNode.TryGetComponent(out VideoPlayer videoPlayer))
-            {
                 _originalVideoRenderMode = videoPlayer.renderMode;
-            }
             else
-            {
                 _originalVideoRenderMode = VideoRenderMode.MaterialOverride;
-            }
         }
 
         private void SetVideoPlayerRenderState(bool enabled)
         {
             if (_screenNode != null && _screenNode.TryGetComponent(out VideoPlayer videoPlayer))
-            {
                 videoPlayer.renderMode = enabled ? VideoRenderMode.MaterialOverride : VideoRenderMode.APIOnly;
-            }
         }
 
         private void RestoreVideoPlayerRenderMode()
         {
             if (_screenNode != null && _screenNode.TryGetComponent(out VideoPlayer videoPlayer))
-            {
                 videoPlayer.renderMode = _originalVideoRenderMode;
-            }
         }
 
         private void SaveMaterial()
         {
             if (_rendererComponent != null)
-            {
                 _originalMaterial = _rendererComponent.sharedMaterial;
-            }
         }
 
         private void SetMaterialProperties()
@@ -419,9 +359,7 @@ namespace Arcade
         private void RestoreMaterial()
         {
             if (_rendererComponent != null && _rendererComponent.material != null && _originalMaterial != null)
-            {
                 _rendererComponent.material = _originalMaterial;
-            }
         }
 
         private void ResetFields()
