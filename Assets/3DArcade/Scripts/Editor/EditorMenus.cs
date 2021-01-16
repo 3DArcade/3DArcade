@@ -25,7 +25,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Arcade
+namespace Arcade.UnityEditor
 {
     public static class EditorMenus
     {

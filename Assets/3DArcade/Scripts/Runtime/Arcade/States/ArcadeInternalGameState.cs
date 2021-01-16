@@ -28,8 +28,6 @@ namespace Arcade
     {
         private readonly InternalGameController _libretroController;
 
-        private ScreenNodeTag _screenNode;
-
         public ArcadeInternalGameState(ArcadeContext context)
         : base(context) => _libretroController = new InternalGameController(_context.CurrentPlayerControls.transform);
 
@@ -37,13 +35,13 @@ namespace Arcade
         {
             Debug.Log($">> <color=green>Entered</color> {GetType().Name}");
 
-            _screenNode = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>(true);
-            if (_screenNode != null)
+            ScreenNodeTag screenNodeTag = _context.CurrentModelConfiguration.GetComponentInChildren<ScreenNodeTag>(true);
+            if (screenNodeTag != null)
             {
                 EmulatorConfiguration emulator = _context.GetEmulatorForCurrentModelConfiguration();
                 if (emulator != null)
                 {
-                    if (_libretroController.StartGame(_screenNode, emulator.Executable, emulator.GamesDirectories, _context.CurrentModelConfiguration.Id))
+                    if (_libretroController.StartGame(screenNodeTag, emulator.Executable, emulator.GamesDirectories, _context.CurrentModelConfiguration.Id))
                     {
                         _context.VideoPlayerController?.StopAllVideos();
                         return;
@@ -65,7 +63,7 @@ namespace Arcade
 
         public override void Update(float dt)
         {
-            _libretroController.UpdateGame(dt);
+            _libretroController.UpdateGame();
 
             if (_context.CurrentPlayerControls.GlobalActions.Quit.triggered)
             {

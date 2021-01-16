@@ -1,5 +1,31 @@
 {
   "dependencies": {
+    "com.sk.libretro": {
+      "version": "https://github.com/Skurdt/SK.Libretro.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.burst": "1.4.3",
+        "com.unity.inputsystem": "1.0.1",
+        "com.sk.utilities": "1.0.0",
+        "com.sk.utilities.unity": "1.0.0"
+      },
+      "hash": "5f172601cd9945e70e0113b46a73400875afe718"
+    },
+    "com.sk.utilities": {
+      "version": "https://github.com/Skurdt/SK.Utilities.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f19618829bb4a46b93fb6d381ca4f040b992194a"
+    },
+    "com.sk.utilities.unity": {
+      "version": "https://github.com/Skurdt/SK.Utilities.Unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7e45c128d20ee93e9b9561175922dc6acb9d4d5f"
+    },
     "com.unity.burst": {
       "version": "1.4.3",
       "depth": 0,
@@ -12,13 +38,6 @@
     "com.unity.cinemachine": {
       "version": "2.7.1",
       "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.ext.nunit": {
-      "version": "1.0.6",
-      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -91,24 +110,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.subsystemregistration": {
-      "version": "1.0.6",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.test-framework": {
-      "version": "1.1.20",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ext.nunit": "1.0.6",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.textmeshpro": {
       "version": "3.0.3",
       "depth": 0,
@@ -119,7 +120,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.4.5",
+      "version": "1.4.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -145,23 +146,6 @@
       "source": "registry",
       "dependencies": {
         "com.unity.shadergraph": "10.2.2"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.6",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.xr.management": {
-      "version": "3.2.17",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.xr.legacyinputhelpers": "2.1.2",
-        "com.unity.subsystemregistration": "1.0.6"
       },
       "url": "https://packages.unity.com"
     },

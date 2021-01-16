@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using Cinemachine;
+using SK.Utilities.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

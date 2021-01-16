@@ -21,10 +21,11 @@
  * SOFTWARE. */
 
 using Cinemachine;
+using SK.Utilities.Unity;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Arcade
+namespace Arcade.UnityEditor
 {
     public class EditorLoadSaveArcadeSubstitute
     {

@@ -20,11 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
-using System.Diagnostics.CodeAnalysis;
 using UnityEditor;
 using UnityEngine;
 
-namespace Arcade
+namespace Arcade.UnityEditor
 {
     public sealed class EditorLoadArcadeWindow : EditorWindow
     {
@@ -33,7 +32,7 @@ namespace Arcade
 
         private Vector2 _scrollPos = Vector2.zero;
 
-        [MenuItem("3DArcade/Load Arcade", false, 101), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        [MenuItem("3DArcade/Load Arcade", false, 101)]
         private static void ShowWindow()
         {
             _loadSaveSubstitute = new EditorLoadSaveArcadeSubstitute();
@@ -64,7 +63,7 @@ namespace Arcade
         }
 
         // Validation
-        [MenuItem("3DArcade/Load Arcade", true), SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
+        [MenuItem("3DArcade/Load Arcade", true)]
         private static bool LoadArcadeWindowValidation() => !Application.isPlaying;
     }
 }

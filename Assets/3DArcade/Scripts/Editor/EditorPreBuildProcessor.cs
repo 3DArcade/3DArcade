@@ -26,7 +26,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Arcade
+namespace Arcade.UnityEditor
 {
     public sealed class EditorPreBuildProcessor : IPreprocessBuildWithReport
     {

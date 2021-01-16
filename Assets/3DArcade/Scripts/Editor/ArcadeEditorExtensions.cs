@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using SK.Utilities.Unity;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -29,9 +30,9 @@ using UnityEditor;
 using UnityEditor.Presets;
 using UnityEngine;
 
-[assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "UnityEditor", Scope = "namespaceanddescendants", Target = "~N:Arcade.ArcadeEditorExtensions")]
+[assembly: SuppressMessage("Code Quality", "IDE0051:Remove unused private members", Justification = "UnityEditor", Scope = "namespaceanddescendants", Target = "~N:Arcade.UnityEditor")]
 
-namespace Arcade.ArcadeEditorExtensions
+namespace Arcade.UnityEditor
 {
     internal enum ModelType
     {

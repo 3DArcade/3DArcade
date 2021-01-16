@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. */
 
+using SK.Utilities.Unity;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -130,7 +131,7 @@ namespace Arcade
             Color color;
             Texture texture;
 
-            bool sourceIsEmissive = sourceRenderer.material.IsEmissive();
+            bool sourceIsEmissive = sourceRenderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
 
             if (sourceIsEmissive)
             {
@@ -152,7 +153,7 @@ namespace Arcade
             {
                 renderer.GetPropertyBlock(materialPropertyBlock);
 
-                if (renderer.material.IsEmissive())
+                if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
                 {
                     materialPropertyBlock.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, color);
                     materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);

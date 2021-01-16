@@ -21,6 +21,7 @@
  * SOFTWARE. */
 
 using Cinemachine;
+using SK.Utilities.Unity;
 using UnityEngine;
 
 namespace Arcade
@@ -123,7 +124,7 @@ namespace Arcade
                 return false;
 
             _arcadeHierarchy.RootNode.gameObject.AddComponentIfNotFound<ArcadeConfigurationComponent>()
-                                               .Restore(CurrentArcadeConfiguration);
+                                                .Restore(CurrentArcadeConfiguration);
 
             _arcadeHierarchy.Reset();
 
