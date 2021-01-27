@@ -34,7 +34,7 @@ namespace Arcade.UnityEditor
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            for (int i = 1; i < EditorSceneManager.loadedSceneCount; i++)
+            for (int i = 1; i < EditorSceneManager.loadedSceneCount; ++i)
                 _ = EditorSceneManager.CloseScene(SceneManager.GetSceneAt(i), false);
 
             GameObject arcadeRootNode = GameObject.Find("Arcade");

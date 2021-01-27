@@ -94,29 +94,26 @@ namespace Arcade.UnityEditor
         private void OnGUI()
         {
             GUILayout.Space(8f);
-            GUILayout.BeginHorizontal();
+            using (new EditorGUILayout.HorizontalScope())
             {
                 GUILayout.Label("Close after import:", GUILayout.Width(110f));
                 _closeAfterImport = GUILayout.Toggle(_closeAfterImport, string.Empty, GUILayout.Height(EditorGUIUtility.singleLineHeight));
             }
-            GUILayout.EndHorizontal();
 
             GUILayout.Space(8f);
-            GUILayout.BeginHorizontal();
+            using (new EditorGUILayout.HorizontalScope())
             {
                 GUILayout.Label("Model file:", GUILayout.Width(80f));
                 if (GUILayout.Button("Browse", GUILayout.Width(60f), GUILayout.Height(EditorGUIUtility.singleLineHeight)))
                     _externalPath = ShowSelectModelFileDialog();
                 _externalPath = GUILayout.TextField(_externalPath);
             }
-            GUILayout.EndHorizontal();
 
-            GUILayout.BeginHorizontal();
+            using (new EditorGUILayout.HorizontalScope())
             {
                 GUILayout.Label("Model type:", GUILayout.Width(80f));
                 _modelType = (ModelType)EditorGUILayout.EnumPopup(_modelType);
             }
-            GUILayout.EndHorizontal();
 
             GUILayout.Space(8f);
             if (string.IsNullOrEmpty(_externalPath) || !Path.GetExtension(_externalPath).Equals(".fbx", System.StringComparison.OrdinalIgnoreCase))
@@ -159,8 +156,8 @@ namespace Arcade.UnityEditor
                     ModelImporter modelImporter = AssetImporter.GetAtPath(assetPath) as ModelImporter;
                     if (modelImporter != null)
                     {
-                        if (Utils.ExtractTextures(assetPath, modelImporter))
-                            Utils.ExtractMaterials(assetPath);
+                        if (Utils.ExtractTextures(assetPath, modelImporter, "textures"))
+                            Utils.ExtractMaterials(assetPath, "materials");
                     }
                     else
                         Debug.LogError("modelImporter is null");
@@ -322,41 +319,43 @@ namespace Arcade.UnityEditor
             return result;
         }
 
-        internal static bool ExtractTextures(string assetPath, ModelImporter modelImporter)
+        internal static bool ExtractTextures(string assetPath, ModelImporter modelImporter, string subFolder = null)
         {
-            bool result = false;
-
             string modelPath         = Path.GetDirectoryName(assetPath);
-            string texturesDirectory = Path.Combine(modelPath, "textures");
+            string texturesDirectory = !string.IsNullOrEmpty(subFolder) ? Path.Combine(modelPath, subFolder) : modelPath;
 
-            if (modelImporter.ExtractTextures(texturesDirectory))
+            if (!Directory.Exists(texturesDirectory))
+                _ = Directory.CreateDirectory(texturesDirectory);
+
+            if (!modelImporter.ExtractTextures(texturesDirectory))
             {
-                AssetDatabase.Refresh(ImportAssetOptions.Default);
-                result = true;
-                Debug.Log("Extracted textures");
-            }
-            else
                 Debug.LogError("Failed to extract textures");
+                return false;
+            }
 
-            return result;
+            AssetDatabase.Refresh(ImportAssetOptions.Default);
+            Debug.Log("Extracted textures");
+            return true;
         }
 
-        internal static void ExtractMaterials(string assetPath)
+        internal static void ExtractMaterials(string assetPath, string subFolder = null)
         {
             string modelPath          = Path.GetDirectoryName(assetPath);
-            string materialsDirectory = Path.Combine(modelPath, "materials");
-            _ = Directory.CreateDirectory(materialsDirectory);
+            string materialsDirectory = !string.IsNullOrEmpty(subFolder) ? Path.Combine(modelPath, subFolder) : modelPath;
+
+            if (!Directory.Exists(materialsDirectory))
+                _ = Directory.CreateDirectory(materialsDirectory);
 
             HashSet<string> assetsToReload = new HashSet<string>();
             IEnumerable<Object> materials  = AssetDatabase.LoadAllAssetsAtPath(assetPath).Where(x => x.GetType() == typeof(Material));
-            foreach (Object material in materials)
+            foreach (Object obj in materials)
             {
-                Material mat = material as Material;
-                if (mat != null && mat.mainTexture != null)
-                    mat.color = Color.white;
-                string newAssetPath = Path.Combine(materialsDirectory, $"{material.name}.mat");
+                Material material = obj as Material;
+                if (material != null && material.mainTexture != null)
+                    material.color = Color.white;
+                string newAssetPath = Path.Combine(materialsDirectory, $"{obj.name}.mat");
                 newAssetPath        = AssetDatabase.GenerateUniqueAssetPath(newAssetPath);
-                string error        = AssetDatabase.ExtractAsset(material, newAssetPath);
+                string error        = AssetDatabase.ExtractAsset(obj, newAssetPath);
                 if (string.IsNullOrEmpty(error))
                     _ = assetsToReload.Add(assetPath);
             }
@@ -371,15 +370,13 @@ namespace Arcade.UnityEditor
                 Debug.Log("Extracted materials");
             }
             else
-            {
                 Debug.LogWarning("Failed to extract materials (Already extracted?)");
-            }
         }
 
         internal static void SaveAsPrefab(GameObject obj, ModelType modelType)
         {
             GameObject tempObj   = Object.Instantiate(obj);
-            string prefabsFolder = string.Empty;
+            string prefabsFolder;
             switch (modelType)
             {
                 case ModelType.Arcade:
@@ -404,7 +401,7 @@ namespace Arcade.UnityEditor
                 break;
                 case ModelType.None:
                 default:
-                    break;
+                    return;
             }
 
             if (!Directory.Exists(prefabsFolder))
@@ -441,17 +438,15 @@ namespace Arcade.UnityEditor
             BoxCollider boxCollider = Undo.AddComponent<BoxCollider>(obj);
 
             Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
-            if (renderers.Length > 0)
-            {
-                Bounds bounds = new Bounds(renderers[0].bounds.center, renderers[0].bounds.size);
-                foreach (Renderer renderer in renderers)
-                {
-                    bounds.Encapsulate(renderer.bounds);
-                }
-                boxCollider.center = boxCollider.transform.InverseTransformPoint(bounds.center);
-                Vector3 size       = boxCollider.transform.InverseTransformVector(bounds.size);
-                boxCollider.size   = new Vector3(math.abs(size.x), math.abs(size.y), math.abs(size.z));
-            }
+            if (renderers == null || renderers.Length == 0)
+                return;
+
+            Bounds bounds = new Bounds(renderers[0].bounds.center, renderers[0].bounds.size);
+            foreach (Renderer renderer in renderers)
+                bounds.Encapsulate(renderer.bounds);
+            boxCollider.center = boxCollider.transform.InverseTransformPoint(bounds.center);
+            Vector3 size       = boxCollider.transform.InverseTransformVector(bounds.size);
+            boxCollider.size   = new Vector3(math.abs(size.x), math.abs(size.y), math.abs(size.z));
         }
 
         internal static void AddRigidBody(GameObject obj, bool kinematic, float mass)
@@ -537,17 +532,17 @@ namespace Arcade.UnityEditor
         private static void RenameNodes(Transform transform, ModelType modelType)
         {
             Transform[] children = GetAllChildren(transform, modelType == ModelType.Arcade);
-            if (children.Length > 0)
+            if (children.Length == 0)
+                return;
+
+            string meshNumberFormat = children.Length > 100 ? "{0:000}" : "{0:00}";
+            for (int i = 0; i < children.Length; ++i)
             {
-                string meshNumberFormat = children.Length > 100 ? "{0:000}" : "{0:00}";
-                for (int i = 0; i < children.Length; ++i)
+                Transform child = children[i];
+                if (!child.name.StartsWith(transform.name))
                 {
-                    Transform child = children[i];
-                    if (!child.name.StartsWith(transform.name))
-                    {
-                        child.gameObject.StripCloneFromName();
-                        child.name += $"_Mesh{string.Format(meshNumberFormat, i)}";
-                    }
+                    child.gameObject.StripCloneFromName();
+                    child.name += $"_Mesh{string.Format(meshNumberFormat, i)}";
                 }
             }
         }

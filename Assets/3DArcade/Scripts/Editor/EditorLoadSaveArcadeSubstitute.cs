@@ -72,7 +72,6 @@ namespace Arcade.UnityEditor
                 _playerFpsControls.gameObject.SetActive(false);
                 _playerCylControls.gameObject.SetActive(true);
             }
-
         }
 
         public void LoadAndStartArcade(string name)
