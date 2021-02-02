@@ -26,8 +26,7 @@ using System.Linq;
 
 namespace Arcade
 {
-    public abstract class AssetCache<T>
-        where T : class
+    public abstract class AssetCache<T> where T : class
     {
         protected readonly Dictionary<string, T> _loadedAssets;
 
@@ -42,22 +41,16 @@ namespace Arcade
         public T Load(string directory, params string[] namesToTry)
         {
             if (string.IsNullOrEmpty(directory))
-            {
                 return null;
-            }
 
             foreach (string name in namesToTry)
             {
                 if (string.IsNullOrEmpty(name))
-                {
                     continue;
-                }
 
                 string filePathNoExt = Path.Combine(directory, name);
                 if (_loadedAssets.TryGetValue(filePathNoExt, out T foundAsset))
-                {
                     return foundAsset;
-                }
                 else
                 {
                     T newAsset = LoadAsset(filePathNoExt);
@@ -80,9 +73,7 @@ namespace Arcade
             {
                 T result = Load(directory, namesToTry);
                 if (result != null)
-                {
                     return result;
-                }
             }
 
             return null;
