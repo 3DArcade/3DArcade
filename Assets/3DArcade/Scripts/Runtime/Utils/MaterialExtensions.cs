@@ -30,49 +30,49 @@ namespace Arcade
         public static Color GetBaseColor(this Material material)
         {
             Assert.IsNotNull(material);
-            return material.GetColor(MaterialUtils.SHADER_BASE_COLOR_NAME);
+            return material.GetColor(MaterialUtils.SHADER_BASE_COLOR_ID);
         }
 
         public static Texture GetBaseTexture(this Material material)
         {
             Assert.IsNotNull(material);
-            return material.GetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME);
+            return material.GetTexture(MaterialUtils.SHADER_BASE_TEXTURE_ID);
         }
 
         public static Color GetEmissionColor(this Material material)
         {
             Assert.IsNotNull(material);
-            return material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME);
+            return material.GetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_ID);
         }
 
         public static Texture GetEmissionTexture(this Material material)
         {
             Assert.IsNotNull(material);
-            return material.GetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME);
+            return material.GetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_ID);
         }
 
         public static void SetBaseColor(this Material material, Color color)
         {
             Assert.IsNotNull(material);
-            material.SetColor(MaterialUtils.SHADER_BASE_COLOR_NAME, color);
+            material.SetColor(MaterialUtils.SHADER_BASE_COLOR_ID, color);
         }
 
         public static void SetBaseTexture(this Material material, Texture texture)
         {
             Assert.IsNotNull(material);
-            material.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME, texture);
+            material.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_ID, texture);
         }
 
         public static void SetEmissionColor(this Material material, Color color)
         {
             Assert.IsNotNull(material);
-            material.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, color);
+            material.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_ID, color);
         }
 
         public static void SetEmissionTexture(this Material material, Texture texture)
         {
             Assert.IsNotNull(material);
-            material.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
+            material.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_ID, texture);
         }
 
         public static void EnableEmission(this Material material, bool enabled)
@@ -81,13 +81,16 @@ namespace Arcade
             if (enabled)
             {
                 material.EnableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
-                material.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_KEYWORD, 0f);
+                material.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID, 0f);
             }
             else
             {
-                material.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_KEYWORD, 1f);
+                material.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID, 1f);
                 material.DisableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
             }
         }
+
+        public static bool IsEmissive(this Material material)
+            => material != null && material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
     }
 }

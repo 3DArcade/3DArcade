@@ -27,14 +27,13 @@ namespace Arcade
 {
     public static class MaterialUtils
     {
-        public const string SHADER_BASE_COLOR_NAME                  = "_BaseColor";
-        public const string SHADER_BASE_TEXTURE_NAME                = "_BaseColorMap";
-        public const string SHADER_EMISSIVE_KEYWORD                 = "_EMISSIVE_COLOR_MAP";
-        public const string SHADER_EMISSIVE_COLOR_NAME              = "_EmissiveColor";
-        public const string SHADER_EMISSIVE_TEXTURE_NAME            = "_EmissiveColorMap";
-        public const string SHADER_EMISSIVE_INTENSITY_NAME          = "_EmissiveIntensity";
-        public const string SHADER_EMISSIVE_USE_INTENSITY_KEYWORD   = "_UseEmissiveIntensity";
-        public const string SHADER_EMISSIVE_EXPOSURE_WEIGTH_KEYWORD = "_EmissiveExposureWeight";
+        public const string SHADER_EMISSIVE_KEYWORD                   = "_EMISSIVE_COLOR_MAP";
+        public const string SHADER_EMISSIVE_TEXTURE_NAME              = "_EmissiveColorMap";
+        public static readonly int SHADER_BASE_COLOR_ID               = Shader.PropertyToID("_BaseColor");
+        public static readonly int SHADER_BASE_TEXTURE_ID             = Shader.PropertyToID("_BaseColorMap");
+        public static readonly int SHADER_EMISSIVE_COLOR_ID           = Shader.PropertyToID("_EmissiveColor");
+        public static readonly int SHADER_EMISSIVE_TEXTURE_ID         = Shader.PropertyToID(SHADER_EMISSIVE_TEXTURE_NAME);
+        public static readonly int SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID = Shader.PropertyToID("_EmissiveExposureWeight");
 
         public static void SetGPUInstancing(bool active, params GameObject[] models)
         {

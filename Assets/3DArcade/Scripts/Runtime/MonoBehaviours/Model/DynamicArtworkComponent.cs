@@ -109,9 +109,9 @@ namespace Arcade
             _renderer.GetPropertyBlock(_materialPropertyBlock);
 
             if (_renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
-                _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, _imageCyclingTextures[_imageCyclingIndex]);
+                _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_ID, _imageCyclingTextures[_imageCyclingIndex]);
             else
-                _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME, _imageCyclingTextures[_imageCyclingIndex]);
+                _materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_ID, _imageCyclingTextures[_imageCyclingIndex]);
 
             _renderer.SetPropertyBlock(_materialPropertyBlock);
         }

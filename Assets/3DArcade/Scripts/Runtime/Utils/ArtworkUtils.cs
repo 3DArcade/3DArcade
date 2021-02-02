@@ -1,4 +1,4 @@
-﻿/* MIT License
+/* MIT License
 
  * Copyright (c) 2020 Skurdt
  *
@@ -131,7 +131,7 @@ namespace Arcade
             Color color;
             Texture texture;
 
-            bool sourceIsEmissive = sourceRenderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
+            bool sourceIsEmissive = sourceRenderer.IsEmissive();
 
             if (sourceIsEmissive)
             {
@@ -153,16 +153,16 @@ namespace Arcade
             {
                 renderer.GetPropertyBlock(materialPropertyBlock);
 
-                if (renderer.material.IsKeywordEnabled(MaterialUtils.SHADER_EMISSIVE_KEYWORD))
+                if (renderer.IsEmissive())
                 {
-                    materialPropertyBlock.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_NAME, color);
-                    materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_NAME, texture);
+                    materialPropertyBlock.SetColor(MaterialUtils.SHADER_EMISSIVE_COLOR_ID, color);
+                    materialPropertyBlock.SetTexture(MaterialUtils.SHADER_EMISSIVE_TEXTURE_ID, texture);
                 }
                 else
                 {
                     color = sourceIsEmissive ? Color.white : color;
-                    materialPropertyBlock.SetColor(MaterialUtils.SHADER_BASE_COLOR_NAME, color);
-                    materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_NAME, texture);
+                    materialPropertyBlock.SetColor(MaterialUtils.SHADER_BASE_COLOR_ID, color);
+                    materialPropertyBlock.SetTexture(MaterialUtils.SHADER_BASE_TEXTURE_ID, texture);
                 }
 
                 for (int i = 0; i < renderer.materials.Length; ++i)
