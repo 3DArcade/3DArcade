@@ -120,11 +120,11 @@ namespace Arcade
             if (enabled)
             {
                 renderer.material.EnableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
-                block.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID, 0f);
+                //block.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID, 0f);
             }
             else
             {
-                block.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID, 1f);
+                //block.SetFloat(MaterialUtils.SHADER_EMISSIVE_EXPOSURE_WEIGTH_ID, 1f);
                 renderer.material.DisableKeyword(MaterialUtils.SHADER_EMISSIVE_KEYWORD);
             }
             renderer.SetPropertyBlock(block, materialWriteIndex ?? materialReadIndex);

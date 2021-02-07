@@ -28,6 +28,7 @@ GraphicsSettings:
   m_LensFlare:
     m_Mode: 1
     m_Shader: {fileID: 102, guid: 0000000000000000f000000000000000, type: 0}
+  m_VideoShadersIncludeMode: 2
   m_AlwaysIncludedShaders:
   - {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 15104, guid: 0000000000000000f000000000000000, type: 0}
@@ -42,8 +43,7 @@ GraphicsSettings:
   m_PreloadedShaders: []
   m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000,
     type: 0}
-  m_CustomRenderPipeline: {fileID: 11400000, guid: de85d0b85ddba12408f2d6093f217dbb,
-    type: 2}
+  m_CustomRenderPipeline: {fileID: 0}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
   m_DefaultRenderingPath: 1
@@ -53,7 +53,7 @@ GraphicsSettings:
     m_BuildTarget: 1
     m_Tier: 0
     m_Settings:
-      standardShaderQuality: 2
+      standardShaderQuality: 0
       renderingPath: 3
       hdrMode: 1
       realtimeGICPUUsage: 25
@@ -70,10 +70,10 @@ GraphicsSettings:
     m_BuildTarget: 1
     m_Tier: 1
     m_Settings:
-      standardShaderQuality: 2
+      standardShaderQuality: 1
       renderingPath: 3
       hdrMode: 1
-      realtimeGICPUUsage: 25
+      realtimeGICPUUsage: 50
       useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 1
       useHDR: 1
@@ -90,7 +90,7 @@ GraphicsSettings:
       standardShaderQuality: 2
       renderingPath: 3
       hdrMode: 1
-      realtimeGICPUUsage: 50
+      realtimeGICPUUsage: 75
       useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 1
       useHDR: 1
@@ -115,5 +115,5 @@ GraphicsSettings:
   m_AlbedoSwatchInfos: []
   m_LightsUseLinearIntensity: 1
   m_LightsUseColorTemperature: 1
+  m_DefaultRenderingLayerMask: 1
   m_LogWhenShaderIsCompiled: 0
-  m_AllowEnlightenSupportForUpgradedProject: 1
