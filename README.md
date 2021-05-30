@@ -1,6 +1,3 @@
-# 3DArcade
-3DArcade Emulator Frontend
+**This repository is now considered deprecated until further notice.**
 
-[3DArcade Forum](http://3darcade.messageboard.nl/)
-
-[3Darcade Website](https://www.mameworld.info/3darcade/index.html)
+Development has moved to: https://github.com/Skurdt/3DArcade
